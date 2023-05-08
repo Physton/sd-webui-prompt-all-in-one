@@ -25,7 +25,7 @@
                     <div class="extend-content">
                         <button type="button" class="lg secondary gradio-button tool svelte-1ipelgc hover-scale-120"
                                 v-tooltip="getLang('copy_keywords_to_clipboard')" @click="onCopyAllTagsClick">
-                            <icon-copy width="18" height="18"/>
+                            <icon-copy width="18" height="18" color="#000"/>
                         </button>
                     </div>
                 </div>
@@ -52,7 +52,7 @@
                         <button type="button" class="lg secondary gradio-button tool svelte-1ipelgc hover-scale-120"
                                 v-tooltip="getLang('translate_keywords_to_local_language')"
                                 @click="onTranslatesToLocalClick">
-                            <icon-translate v-if="!loading['all_local']" width="18" height="18"/>
+                            <icon-translate v-if="!loading['all_local']" width="18" height="18" color="#ad6800"/>
                             <icon-loading v-if="loading['all_local']" width="18" height="18"/>
                         </button>
                     </div>
@@ -62,7 +62,7 @@
                         <button type="button" class="lg secondary gradio-button tool svelte-1ipelgc hover-scale-120"
                                 v-tooltip="getLang('translate_all_keywords_to_english')"
                                 @click="onTranslatesToEnglishClick">
-                            <icon-english v-if="!loading['all_en']" width="18" height="18"/>
+                            <icon-english v-if="!loading['all_en']" width="18" height="18" color="#ad6800"/>
                             <icon-loading v-if="loading['all_en']" width="18" height="18"/>
                         </button>
                     </div>
@@ -72,7 +72,7 @@
                         <button type="button" class="lg secondary gradio-button tool svelte-1ipelgc hover-scale-120"
                                 v-tooltip="getLang('delete_all_keywords')"
                                 @click="onDeleteAllTagsClick">
-                            <icon-remove width="18" height="18" color="#02b7fd"/>
+                            <icon-remove width="18" height="18" color="#d81e06"/>
                         </button>
                     </div>
                 </div>
@@ -90,7 +90,7 @@
                                 <input type="checkbox" name="auto_translate_to_english" value="1"
                                        :checked="autoTranslateToEnglish"
                                        @change="$emit('update:autoTranslateToEnglish', $event.target.checked)">
-                                <icon-english width="26" height="26" color="#d46b08"/>
+                                <icon-english width="26" height="26" color="#ad6800"/>
                             </label>
                         </div>
                     </div>
@@ -102,7 +102,7 @@
                                 <input type="checkbox" name="auto_translate_to_local_language" value="1"
                                        :checked="autoTranslateToLocal"
                                        @change="$emit('update:autoTranslateToLocal', $event.target.checked)">
-                                <icon-translate width="26" height="26" color="#d46b08"/>
+                                <icon-translate width="26" height="26" color="#ad6800"/>
                             </label>
                         </div>
                     </div>
@@ -114,13 +114,13 @@
                                 <input type="checkbox" name="hide_default_input" value="1"
                                        :checked="hideDefaultInput"
                                        @change="$emit('update:hideDefaultInput', $event.target.checked)">
-                                <icon-input width="26" height="26" color="#d46b08"/>
+                                <icon-input width="26" height="26" color="#000"/>
                             </label>
                             <label v-else v-tooltip="getLang('hide_default_input_box')">
                                 <input type="checkbox" name="hide_default_input" value="1"
                                        :checked="hideDefaultInput"
                                        @change="$emit('update:hideDefaultInput', $event.target.checked)">
-                                <icon-input width="26" height="26" color="#d46b08"/>
+                                <icon-input width="26" height="26" color="#000"/>
                             </label>
                         </div>
                     </div>
@@ -132,7 +132,7 @@
                                 <input type="checkbox" name="enable_tooltip" value="1"
                                        :checked="enableTooltip"
                                        @change="$emit('update:enableTooltip', $event.target.checked)">
-                                <icon-tooltip width="26" height="26" color="#d46b08"/>
+                                <icon-tooltip width="26" height="26" color="#000"/>
                             </label>
                         </div>
                     </div>
@@ -189,12 +189,11 @@
                                         v-show="!isEnglish"
                                         @click="onTranslateToEnglishClick(index).then(() => updateTags())">
                                     <icon-english v-if="!loading[tag.id + '_en']" width="20" height="20"
-                                                  color="#ffffff"/>
-                                    <icon-loading v-if="loading[tag.id + '_en']" width="20" height="20"
-                                                  color="#ffffff"/>
+                                                  color="#ad6800"/>
+                                    <icon-loading v-if="loading[tag.id + '_en']" width="20" height="20"/>
                                 </button>
                                 <button type="button" v-tooltip="getLang('copy_to_clipboard')" @click="copy(tag.value)">
-                                    <icon-copy width="20" height="20" color="#ffffff"/>
+                                    <icon-copy width="20" height="20" color="#3c3c3c"/>
                                 </button>
                                 <button type="button"
                                         v-tooltip="getLang(tag.disabled ? 'enable_keyword': 'disable_keyword')"
@@ -813,6 +812,11 @@ export default {
           color: var(--button-primary-text-color);
           height: 20px;
           line-height: 20px;
+
+          &:hover {
+            background: var(--button-primary-background-fill-hover);
+            border-color: var(--button-primary-border-color-hover);
+          }
         }
 
         .current-translate-api {
@@ -820,8 +824,8 @@ export default {
           padding: 0 10px;
 
           &:hover {
-            background: var(--input-background-fill-hover);
-            border-color: var(--input-border-color-hover);
+            background: var(--button-primary-background-fill-hover);
+            border-color: var(--button-primary-border-color-hover);
           }
         }
 
@@ -843,8 +847,8 @@ export default {
           border-radius: var(--checkbox-border-radius);
           background-color: var(--checkbox-background-color);
           line-height: var(--line-sm);
-          width: 20px;
-          height: 20px;
+          width: 16px;
+          height: 16px;
 
           &:checked {
             border-color: var(--checkbox-border-color-selected);
