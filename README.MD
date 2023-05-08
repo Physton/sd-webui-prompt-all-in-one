@@ -11,9 +11,9 @@ sd-webui-prompt-all-in-one is an extension based on stable-diffusion-webui that 
 
 ---
 
-The currently supported languages are: `简体中文` `繁體中文` `English` `Русский` `日本語` `한국어` `Français` `Deutsch` `Español` `Português` `Italiano` `Español`. If you would like to add a new language, please submit a PR.
+The currently supported languages are: `🇨🇳中文` `🇺🇸English` ` 🇷🇺Русский` `🇯🇵日本語` `🇰🇷한국어` ` 🇫🇷Français` `🇩🇪Deutsch` ` 🇪🇸Español` `🇵🇹Português` `🇮🇹Italiano` `🇸🇦العربية`. If you would like to add a new language, please submit a PR.
 
-*目前支持的语言有：`简体中文` `繁體中文` `English` `Русский` `日本語` `한국어` `Français` `Deutsch` `Español` `Português` `Italiano` `Español`。如果你想要添加新的语言，欢迎提交 PR。*
+*目前支持的语言有：`🇨🇳中文` `🇺🇸English` ` 🇷🇺Русский` `🇯🇵日本語` `🇰🇷한국어` ` 🇫🇷Français` `🇩🇪Deutsch` ` 🇪🇸Español` `🇵🇹Português` `🇮🇹Italiano` `🇸🇦العربية`。如果你想要添加新的语言，欢迎提交 PR。*
 
 
 > If you find this extension helpful, please give me a star on Github!
