@@ -437,8 +437,7 @@ export default {
                 this.counterText = `${token_count}/${max_length}`
             })
             this.$refs.history.push(this.tags, this.prompt)
-            // this.textarea.dispatchEvent(new Event('input'))
-            // updateInput(this.textarea)
+            this.textarea.dispatchEvent(new Event('input'))
         },
         renderTag(index) {
             let value = this.tags[index].value
