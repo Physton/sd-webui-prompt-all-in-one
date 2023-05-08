@@ -112,14 +112,14 @@
                         <div class="gradio-checkbox hover-scale-120">
                             <label v-if="hideDefaultInput" v-tooltip="getLang('show_default_input_box')">
                                 <input type="checkbox" name="hide_default_input" value="1"
-                                       :checked="hideDefaultInput"
-                                       @change="$emit('update:hideDefaultInput', $event.target.checked)">
+                                       :checked="!hideDefaultInput"
+                                       @change="$emit('update:hideDefaultInput', !$event.target.checked)">
                                 <icon-input width="26" height="26" color="#000"/>
                             </label>
                             <label v-else v-tooltip="getLang('hide_default_input_box')">
                                 <input type="checkbox" name="hide_default_input" value="1"
-                                       :checked="hideDefaultInput"
-                                       @change="$emit('update:hideDefaultInput', $event.target.checked)">
+                                       :checked="!hideDefaultInput"
+                                       @change="$emit('update:hideDefaultInput', !$event.target.checked)">
                                 <icon-input width="26" height="26" color="#000"/>
                             </label>
                         </div>
@@ -424,7 +424,7 @@ export default {
                 prompts.push(tag.value)
             })
             // console.log('update tags', prompts)
-            return prompts.join(', ').trim()
+            return prompts.join(', ').trim() + ', '
         },
         updateTags() {
             console.log('tags change', this.tags)
