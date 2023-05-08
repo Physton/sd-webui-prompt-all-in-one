@@ -9,6 +9,17 @@ sd-webui-prompt-all-in-one is an extension based on stable-diffusion-webui that 
 
 *sd-webui-prompt-all-in-one 是一个基于 stable-diffusion-webui 的扩展，旨在提高提示词/反向提示词输入框的使用体验。它拥有更直观、强大的输入界面功能，它提供了自动翻译、历史记录和收藏等功能，它支持多种语言，满足不同用户的需求。*
 
+---
+
+<font size="2">
+
+The currently supported languages are: `简体中文` `繁體中文` `English` `Русский` `日本語` `한국어` `Français` `Deutsch` `Español` `Português` `Italiano` `Español`. If you would like to add a new language, please submit a PR.
+
+*目前支持的语言有：`简体中文` `繁體中文` `English` `Русский` `日本語` `한국어` `Français` `Deutsch` `Español` `Português` `Italiano` `Español`。如果你想要添加新的语言，欢迎提交 PR。*
+
+</font>
+
+
 > If you find this extension helpful, please give me a star on Github!
 > You could also buy me a coffee: [donate](#donate)
 
@@ -135,17 +146,9 @@ contact me via:
 
 ## FAQ / *常见问题列表*
 
-### Q: What languages does sd-webui-prompt-all-in-one support?
-
-A: sd-webui-prompt-all-in-one supports multiple languages, including Simplified Chinese, Traditional Chinese, English, Russian, Japanese, Korean, French, German, Spanish, Portuguese, Italian, and Spanish.
-
 ### Q: What is the difference between translation interfaces that do not require API keys and those that require API keys?
 
 A: The translation interface that does not require an API key is obtained through crawling and does not require the user to apply for an API key. However, there may be translation failures, instability, slow speed, and lack of support for concurrency. The translation interface that requires an API key calls the API interface of a third-party translation service and requires the user to apply for an API key. However, the translation success rate is relatively high, some interfaces support high concurrency, and the translation speed is fast.
-
-### Q: sd-webui-prompt-all-in-one 支持哪些语言？
-
-A: sd-webui-prompt-all-in-one 支持多种语言，包括简体中文、繁体中文、英文、俄语、日语、韩语、法语、德语、西班牙语、葡萄牙语、意大利语、西班牙语。
 
 ### Q: 无需api key的翻译接口和需要api key的翻译接口有什么区别？
 
