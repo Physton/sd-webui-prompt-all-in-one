@@ -11,6 +11,24 @@ sd-webui-prompt-all-in-one is an extension based on stable-diffusion-webui that 
 > 如果你觉得这个扩展有帮助，请在Github上给我一颗星！
 > 你也可以请我喝杯咖啡: [donate](#donate)
 
+## Features / *功能特性*
+
+- More intuitive and powerful prompt input interface: supports adding new keywords with one click, drag and drop sorting, one-click copying and one-click translation. At the same time, the interface can display the translation results of English<->local language intuitively.
+
+    *更直观、强大的 prompt 输入界面：支持回车添加新关键词、拖动排序、一键复制和一键翻译。同时，界面中能够直观地显示英文<->本地语言的翻译结果。*
+
+- Automatic translation: automatically translate the local language into English, and translate the English input of the prompt into the local language at the same time.
+
+    *自动翻译：自动将本地语言翻译成英文，同时将 prompt 输入的英文翻译成本地语言。*
+
+- History and collection: support recording the history and collection of the prompt, making it convenient for users to quickly search and use.
+
+    *历史记录和收藏：支持记录 prompt 的历史记录和收藏，方便用户快速查找和使用。*
+
+- Multi-language support: currently supports Simplified Chinese, Traditional Chinese, English, Russian, Japanese, Korean, French, German, Spanish, Portuguese, Italian, and Spanish, meeting the needs of different users.
+
+    *多国语言支持：目前支持简体中文、繁体中文、英文、俄语、日语、韩语、法语、德语、西班牙语、葡萄牙语、意大利语、西班牙语，满足不同用户的需求。*
+
 ## Installation and Usage / *安装使用*
 
 ### Method 1 (Recommended) / *方式一（推荐）*： 
@@ -45,24 +63,6 @@ sd-webui-prompt-all-in-one is an extension based on stable-diffusion-webui that 
 2. Restart stable-diffusion-webui.
 
    *重启 stable-diffusion-webui。*
-
-## Features / *功能特性*
-
-- More intuitive and powerful prompt input interface: supports adding new keywords with one click, drag and drop sorting, one-click copying and one-click translation. At the same time, the interface can display the translation results of English<->local language intuitively.
-
-    *更直观、强大的 prompt 输入界面：支持回车添加新关键词、拖动排序、一键复制和一键翻译。同时，界面中能够直观地显示英文<->本地语言的翻译结果。*
-
-- Automatic translation: automatically translate the local language into English, and translate the English input of the prompt into the local language at the same time.
-
-    *自动翻译：自动将本地语言翻译成英文，同时将 prompt 输入的英文翻译成本地语言。*
-
-- History and collection: support recording the history and collection of the prompt, making it convenient for users to quickly search and use.
-
-    *历史记录和收藏：支持记录 prompt 的历史记录和收藏，方便用户快速查找和使用。*
-
-- Multi-language support: currently supports Simplified Chinese, Traditional Chinese, English, Russian, Japanese, Korean, French, German, Spanish, Portuguese, Italian, and Spanish, meeting the needs of different users.
-
-    *多国语言支持：目前支持简体中文、繁体中文、英文、俄语、日语、韩语、法语、德语、西班牙语、葡萄牙语、意大利语、西班牙语，满足不同用户的需求。*
 
 ## Demo / *演示*
 
