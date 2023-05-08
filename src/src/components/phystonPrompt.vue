@@ -590,6 +590,10 @@ export default {
         },
         onTranslateToLocalClick(index) {
             return new Promise((resolve, reject) => {
+                if (this.languageCode === 'en_US') {
+                    reject('en_US')
+                    return
+                }
                 if (this.loading[this.tags[index].id + '_local']) {
                     reject('loading')
                     return
@@ -614,6 +618,10 @@ export default {
         },
         onTranslateToEnglishClick(index) {
             return new Promise((resolve, reject) => {
+                if (this.languageCode === 'en_US') {
+                    reject('en_US')
+                    return
+                }
                 if (this.loading[this.tags[index].id + '_en']) {
                     reject('loading')
                     return
@@ -654,6 +662,10 @@ export default {
         },
         translatesToLocal(tagIndexes) {
             return new Promise((resolve, reject) => {
+                if (this.languageCode === 'en_US') {
+                    resolve()
+                    return
+                }
                 let texts = []
                 let textsIndexes = []
                 for (const index of tagIndexes) {
@@ -689,6 +701,10 @@ export default {
         },
         translatesToEnglish(tagIndexes) {
             return new Promise((resolve, reject) => {
+                if (this.languageCode === 'en_US') {
+                    resolve()
+                    return
+                }
                 let texts = []
                 let textsIndexes = []
                 for (const index of tagIndexes) {
