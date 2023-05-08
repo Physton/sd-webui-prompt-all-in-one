@@ -641,6 +641,7 @@ export default {
             })
         },
         onTranslatesToLocalClick() {
+            if (this.tags.length === 0) return
             if (this.loading['all_local']) return
             this.loading['all_local'] = true
             let tagIndexes = []
@@ -675,6 +676,7 @@ export default {
             })
         },
         onTranslatesToEnglishClick() {
+            if (this.tags.length === 0) return
             if (this.loading['all_en']) return
             this.loading['all_en'] = true
             let tagIndexes = []
