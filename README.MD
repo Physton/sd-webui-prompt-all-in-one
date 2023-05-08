@@ -1,7 +1,5 @@
 # sd-webui-prompt-all-in-one
 
-------------
-
 sd-webui-prompt-all-in-one is an extension based on stable-diffusion-webui that aims to improve the user experience of the prompt/negative prompt input box. It has a more intuitive and powerful input interface, provides automatic translation, history and collection functions, and supports multiple languages to meet the needs of different users.
 
 *sd-webui-prompt-all-in-one 是一个基于 stable-diffusion-webui
@@ -14,8 +12,6 @@ sd-webui-prompt-all-in-one is an extension based on stable-diffusion-webui that 
 > 你也可以请我喝杯咖啡: [donate](#donate)
 
 ## Installation and Usage / *安装使用*
-
-------------
 
 ### Method 1 (Recommended) / *方式一（推荐）*： 
 
@@ -52,8 +48,6 @@ sd-webui-prompt-all-in-one is an extension based on stable-diffusion-webui that 
 
 ## Features / *功能特性*
 
-------------
-
 - More intuitive and powerful prompt input interface: supports adding new keywords with one click, drag and drop sorting, one-click copying and one-click translation. At the same time, the interface can display the translation results of English<->local language intuitively.
 
     *更直观、强大的 prompt 输入界面：支持回车添加新关键词、拖动排序、一键复制和一键翻译。同时，界面中能够直观地显示英文<->本地语言的翻译结果。*
@@ -71,8 +65,6 @@ sd-webui-prompt-all-in-one is an extension based on stable-diffusion-webui that 
     *多国语言支持：目前支持简体中文、繁体中文、英文、俄语、日语、韩语、法语、德语、西班牙语、葡萄牙语、意大利语、西班牙语，满足不同用户的需求。*
 
 ## Demo / *演示*
-
-------------
 
 - Automatic translation / *自动翻译*
 
@@ -93,8 +85,6 @@ sd-webui-prompt-all-in-one is an extension based on stable-diffusion-webui that 
 
 ## Contributing / *帮助开发*
 
-------------
-
 If you want to contribute to sd-webui-prompt-all-in-one, welcome to submit issues and pull requests. You can also
 contact me via:
 
@@ -103,8 +93,6 @@ contact me via:
 - Email / *邮箱*：physton@163.com
 - Wechat / *微信*：physton8
 - QQ群：820700336
-
-------------
 
 ## Development / *开发方式*
 
@@ -129,16 +117,12 @@ contact me via:
   2. Modify the code / *修改代码*
   3. Restart stable-diffusion-webui / *重启 stable-diffusion-webui。*
 
-------------
-
 ## Future / *未来计划*
 
 - Support more languages / *支持更多的语言*
 - Optimize translation services / *优化翻译服务*
 - More powerful history function / *更强大的历史记录功能*
 - ......
-
-------------
 
 ## FAQ / *常见问题列表*
 
@@ -159,8 +143,6 @@ A: sd-webui-prompt-all-in-one 支持多种语言，包括简体中文、繁体�
 A: 无需api key的翻译接口，是通过爬虫获取的，不需要用户自己申请api key，但是可能会存在翻译失败的情况，稳定下差，速度慢，不支持并发。需要api key的翻译接口，是通过调用第三方翻译服务的api接口，需要用户自己申请api key，但是翻译成功率较高，某些接口支持高并发，翻译速度快。
 
 ## Donate
-
-------------
 
 ### Buy me a coffee / *请我喝杯咖啡*
 
