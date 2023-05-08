@@ -1,0 +1,26 @@
+<template>
+    <div class="icon-svg" :style="{width: width + 'px', height: height + 'px'}">
+        <svg t="1683017656179" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1536" :width="width" :height="height" :style="{fill: color}">
+            <path d="M512 32A480 480 0 1 0 992 512 480.64 480.64 0 0 0 512 32zM928 512a414.08 414.08 0 0 1-100.48 270.08L241.92 196.48A415.36 415.36 0 0 1 928 512z m-832 0a414.08 414.08 0 0 1 100.48-270.08l585.6 585.6A415.36 415.36 0 0 1 96 512z" p-id="1537"></path>
+        </svg>
+    </div>
+</template>
+<script>
+export default {
+    name: 'IconDisabled',
+    props: {
+        width: {
+            type: Number,
+            default: 16,
+        },
+        height: {
+            type: Number,
+            default: 16,
+        },
+        color: {
+            type: String,
+            default: '#d81e06',
+        }
+    },
+}
+</script>

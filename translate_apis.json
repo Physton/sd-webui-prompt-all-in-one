@@ -1,0 +1,1510 @@
+{
+    "default": "alibaba_free",
+    "apis": [
+        {
+            "type": "dont_need_api_key",
+            "children": [
+                {
+                    "key": "bing_free",
+                    "name": "[Free] Microsoft Bing, America",
+                    "type": "translators",
+                    "translator": "bing",
+                    "support": {
+                        "zh_CN": "zh-Hans",
+                        "zh_TW": "zh-Hant",
+                        "en_US": "en",
+                        "ru_RU": "ru",
+                        "ja_JP": "ja",
+                        "ko_KR": "ko",
+                        "fr_FR": "fr",
+                        "de_DE": "de",
+                        "es_ES": "es",
+                        "pt_PT": "pt",
+                        "it_IT": "it",
+                        "ar_SA": "ar"
+                    },
+                    "help": [
+                        {
+                            "title": "Bing - Microsoft, America",
+                            "url": "https://www.bing.com/Translator"
+                        },
+                        {
+                            "title": "[github]translators",
+                            "url": "https://github.com/UlionTse/translators"
+                        }
+                    ]
+                },
+                {
+                    "key": "google_free",
+                    "name": "[Free] Google, America",
+                    "type": "translators",
+                    "translator": "google",
+                    "support": {
+                        "zh_CN": "zh-CN",
+                        "zh_TW": "zh-TW",
+                        "en_US": "en",
+                        "ru_RU": "ru",
+                        "ja_JP": "ja",
+                        "ko_KR": "ko",
+                        "fr_FR": "fr",
+                        "de_DE": "de",
+                        "es_ES": "es",
+                        "pt_PT": "pt",
+                        "it_IT": "it",
+                        "ar_SA": "ar"
+                    },
+                    "help": [
+                        {
+                            "title": "Google - Google, America",
+                            "url": "https://translate.google.com/"
+                        },
+                        {
+                            "title": "[github]translators",
+                            "url": "https://github.com/UlionTse/translators"
+                        }
+                    ]
+                },
+                {
+                    "key": "deepl_free",
+                    "name": "[Free] DeepL, Germany",
+                    "type": "translators",
+                    "translator": "deepl",
+                    "support": {
+                        "zh_CN": "zh",
+                        "zh_TW": false,
+                        "en_US": "en",
+                        "ru_RU": "ru",
+                        "ja_JP": "ja",
+                        "ko_KR": false,
+                        "fr_FR": "fr",
+                        "de_DE": "de",
+                        "es_ES": "es",
+                        "pt_PT": "pt",
+                        "it_IT": "it",
+                        "ar_SA": false
+                    },
+                    "help": [
+                        {
+                            "title": "DeepL - Deepl, Germany",
+                            "url": "https://www.deepl.com/translator"
+                        },
+                        {
+                            "title": "[github]translators",
+                            "url": "https://github.com/UlionTse/translators"
+                        }
+                    ]
+                },
+                {
+                    "key": "itranslate_free",
+                    "name": "[Free] iTranslate, Austria",
+                    "type": "translators",
+                    "translator": "itranslate",
+                    "support": {
+                        "zh_CN": "zh-CN",
+                        "zh_TW": "zh-TW",
+                        "en_US": "en-US",
+                        "ru_RU": "ru",
+                        "ja_JP": "ja",
+                        "ko_KR": "ko",
+                        "fr_FR": "fr",
+                        "de_DE": "de",
+                        "es_ES": "es",
+                        "pt_PT": "pt",
+                        "it_IT": "it",
+                        "ar_SA": "ar"
+                    },
+                    "help": [
+                        {
+                            "title": "iTranslate - Itranslate, Austria",
+                            "url": "https://itranslate.com/webapp"
+                        },
+                        {
+                            "title": "[github]translators",
+                            "url": "https://github.com/UlionTse/translators"
+                        }
+                    ]
+                },
+                {
+                    "key": "lingvanex_free",
+                    "name": "[Free] Lingvanex, Cyprus",
+                    "type": "translators",
+                    "translator": "lingvanex",
+                    "support": {
+                        "zh_CN": "zh-CN",
+                        "zh_TW": "zh-TW",
+                        "en_US": "en-US",
+                        "ru_RU": "ru_RU",
+                        "ja_JP": "ja_JP",
+                        "ko_KR": "ko_KR",
+                        "fr_FR": "fr_FR",
+                        "de_DE": "de_DE",
+                        "es_ES": "es_ES",
+                        "pt_PT": "pt_PT",
+                        "it_IT": "it_IT",
+                        "ar_SA": "ar_EG"
+                    },
+                    "help": [
+                        {
+                            "title": "Lingvanex - Lingvanex, Cyprus",
+                            "url": "https://lingvanex.com/demo"
+                        },
+                        {
+                            "title": "[github]translators",
+                            "url": "https://github.com/UlionTse/translators"
+                        }
+                    ]
+                },
+                {
+                    "key": "modernMt_free",
+                    "name": "[Free] ModernMt / Translated, Italy",
+                    "type": "translators",
+                    "translator": "modernMt",
+                    "support": {
+                        "zh_CN": "zh-CN",
+                        "zh_TW": "zh-TW",
+                        "en_US": "en",
+                        "ru_RU": "ru",
+                        "ja_JP": "ja",
+                        "ko_KR": "ko",
+                        "fr_FR": "fr",
+                        "de_DE": "de",
+                        "es_ES": "es-ES",
+                        "pt_PT": "pt-PT",
+                        "it_IT": "it",
+                        "ar_SA": "ar"
+                    },
+                    "help": [
+                        {
+                            "title": "ModernMt - Modernmt / Translated, Italy",
+                            "url": "https://www.modernmt.com/translate"
+                        },
+                        {
+                            "title": "[github]translators",
+                            "url": "https://github.com/UlionTse/translators"
+                        }
+                    ]
+                },
+                {
+                    "key": "myMemory_free",
+                    "name": "[Free] MyMemory, Italy",
+                    "type": "translators",
+                    "translator": "myMemory",
+                    "support": {
+                        "zh_CN": "zh-CN",
+                        "zh_TW": "zh-TW",
+                        "en_US": "en-GB",
+                        "ru_RU": "ru-RU",
+                        "ja_JP": "ja-JP",
+                        "ko_KR": "ko-KR",
+                        "fr_FR": "fr-FR",
+                        "de_DE": "de-DE",
+                        "es_ES": "es-ES",
+                        "pt_PT": "pt-PT",
+                        "it_IT": "it-IT",
+                        "ar_SA": "ar-SA"
+                    },
+                    "help": [
+                        {
+                            "title": "MyMemory - Translated, Italy",
+                            "url": "https://mymemory.translated.net/"
+                        },
+                        {
+                            "title": "[github]translators",
+                            "url": "https://github.com/UlionTse/translators"
+                        }
+                    ]
+                },
+                {
+                    "key": "sysTran_free",
+                    "name": "[Free] SysTran, France",
+                    "type": "translators",
+                    "translator": "sysTran",
+                    "support": {
+                        "zh_CN": "zh-Hans",
+                        "zh_TW": "zh-Hant",
+                        "en_US": "en",
+                        "ru_RU": "ru",
+                        "ja_JP": "ja",
+                        "ko_KR": "ko",
+                        "fr_FR": "fr",
+                        "de_DE": "de",
+                        "es_ES": "es",
+                        "pt_PT": "pt",
+                        "it_IT": "it",
+                        "ar_SA": "ar"
+                    },
+                    "help": [
+                        {
+                            "title": "SysTran - SysTran, France",
+                            "url": "https://www.systran.net/translate/"
+                        },
+                        {
+                            "title": "[github]translators",
+                            "url": "https://github.com/UlionTse/translators"
+                        }
+                    ]
+                },
+                {
+                    "key": "translateCom_free",
+                    "name": "[Free] TranslateCom, America",
+                    "type": "translators",
+                    "translator": "translateCom",
+                    "support": {
+                        "zh_CN": "zh",
+                        "zh_TW": "zh-TW",
+                        "en_US": "en",
+                        "ru_RU": "ru",
+                        "ja_JP": "ja",
+                        "ko_KR": "ko",
+                        "fr_FR": "fr",
+                        "de_DE": "de",
+                        "es_ES": "es",
+                        "pt_PT": "pt",
+                        "it_IT": "it",
+                        "ar_SA": "ar"
+                    },
+                    "help": [
+                        {
+                            "title": "TranslateCom - TranslateCom, America",
+                            "url": "https://www.translate.com/machine-translation"
+                        },
+                        {
+                            "title": "[github]translators",
+                            "url": "https://github.com/UlionTse/translators"
+                        }
+                    ]
+                },
+                {
+                    "key": "yandex_free",
+                    "name": "[Free] Yandex, Russia",
+                    "type": "translators",
+                    "translator": "yandex",
+                    "support": {
+                        "zh_CN": "zh",
+                        "zh_TW": false,
+                        "en_US": "en",
+                        "ru_RU": "ru",
+                        "ja_JP": "ja",
+                        "ko_KR": "ko",
+                        "fr_FR": "fr",
+                        "de_DE": "de",
+                        "es_ES": "es",
+                        "pt_PT": "pt",
+                        "it_IT": "it",
+                        "ar_SA": "ar"
+                    },
+                    "help": [
+                        {
+                            "title": "Yandex - Yandex, Russia",
+                            "url": "https://translate.yandex.com/"
+                        },
+                        {
+                            "title": "[github]translators",
+                            "url": "https://github.com/UlionTse/translators"
+                        }
+                    ]
+                },
+                {
+                    "key": "argos_free",
+                    "name": "[Free] Argos / Libre, America",
+                    "type": "translators",
+                    "translator": "argos",
+                    "support": {
+                        "zh_CN": "zh",
+                        "zh_TW": false,
+                        "en_US": "en",
+                        "ru_RU": "ru",
+                        "ja_JP": "ja",
+                        "ko_KR": "ko",
+                        "fr_FR": "fr",
+                        "de_DE": "de",
+                        "es_ES": "es",
+                        "pt_PT": "pt",
+                        "it_IT": "it",
+                        "ar_SA": "ar"
+                    },
+                    "help": [
+                        {
+                            "title": "Argos - Argos / Libre, America",
+                            "url": "https://translate.argosopentech.com/"
+                        },
+                        {
+                            "title": "[github]translators",
+                            "url": "https://github.com/UlionTse/translators"
+                        }
+                    ]
+                },
+                {
+                    "key": "papago_free",
+                    "name": "[Free] Papago / Naver, South Korea",
+                    "type": "translators",
+                    "translator": "papago",
+                    "support": {
+                        "zh_CN": "zh-CN",
+                        "zh_TW": "zh-TW",
+                        "en_US": "en",
+                        "ru_RU": "ru",
+                        "ja_JP": "ja",
+                        "ko_KR": "ko",
+                        "fr_FR": "fr",
+                        "de_DE": "de",
+                        "es_ES": "es",
+                        "pt_PT": "pt",
+                        "it_IT": "it",
+                        "ar_SA": false
+                    },
+                    "help": [
+                        {
+                            "title": "Papago - Naver, South Korea",
+                            "url": "https://papago.naver.com/"
+                        },
+                        {
+                            "title": "[github]translators",
+                            "url": "https://github.com/UlionTse/translators"
+                        }
+                    ]
+                },
+                {
+                    "key": "reverso_free",
+                    "name": "[Free] Reverso, France",
+                    "type": "translators",
+                    "translator": "reverso",
+                    "support": {
+                        "zh_CN": "chi",
+                        "zh_TW": false,
+                        "en_US": "eng",
+                        "ru_RU": "rus",
+                        "ja_JP": "jpn",
+                        "ko_KR": "kor",
+                        "fr_FR": "fra",
+                        "de_DE": "ger",
+                        "es_ES": "spa",
+                        "pt_PT": "por",
+                        "it_IT": "ita",
+                        "ar_SA": "ara"
+                    },
+                    "help": [
+                        {
+                            "title": "Reverso - Reverso, France",
+                            "url": "https://www.reverso.net/text-translation"
+                        },
+                        {
+                            "title": "[github]translators",
+                            "url": "https://github.com/UlionTse/translators"
+                        }
+                    ]
+                },
+                {
+                    "key": "apertium_free",
+                    "name": "[Free] Apertium",
+                    "type": "translators",
+                    "translator": "apertium",
+                    "support": {
+                        "zh_CN": false,
+                        "zh_TW": false,
+                        "en_US": "en",
+                        "ru_RU": "ru",
+                        "ja_JP": "ja",
+                        "ko_KR": "ko",
+                        "fr_FR": "fr",
+                        "de_DE": "de",
+                        "es_ES": "es",
+                        "pt_PT": "pt",
+                        "it_IT": "it",
+                        "ar_SA": "ar"
+                    },
+                    "help": [
+                        {
+                            "title": "Apertium - Apertium",
+                            "url": "https://www.apertium.org/"
+                        },
+                        {
+                            "title": "[github]translators",
+                            "url": "https://github.com/UlionTse/translators"
+                        }
+                    ]
+                },
+                {
+                    "key": "translateMe_free",
+                    "name": "[Free] TranslateMe / Neosus, Lithuania",
+                    "type": "translators",
+                    "translator": "translateMe",
+                    "support": {
+                        "zh_CN": "Chinese",
+                        "zh_TW": false,
+                        "en_US": "English",
+                        "ru_RU": "Russian",
+                        "ja_JP": "Japanese",
+                        "ko_KR": false,
+                        "fr_FR": "French",
+                        "de_DE": "German",
+                        "es_ES": "Spanish",
+                        "pt_PT": "Portuguese",
+                        "it_IT": "Italian",
+                        "ar_SA": "Arabic"
+                    },
+                    "help": [
+                        {
+                            "title": "TranslateMe - TranslateMe / Neosus, Lithuania",
+                            "url": "https://translateme.network/"
+                        },
+                        {
+                            "title": "[github]translators",
+                            "url": "https://github.com/UlionTse/translators"
+                        }
+                    ]
+                },
+                {
+                    "key": "tilde_free",
+                    "name": "[Free] Tilde, Latvia",
+                    "type": "translators",
+                    "translator": "tilde",
+                    "support": {
+                        "zh_CN": false,
+                        "zh_TW": false,
+                        "en_US": "en",
+                        "ru_RU": "ru",
+                        "ja_JP": false,
+                        "ko_KR": false,
+                        "fr_FR": "fr",
+                        "de_DE": "de",
+                        "es_ES": "es",
+                        "pt_PT": "pt",
+                        "it_IT": "it",
+                        "ar_SA": "ar"
+                    },
+                    "help": [
+                        {
+                            "title": "Tilde - Tilde, Latvia",
+                            "url": "https://translate.tilde.com/"
+                        },
+                        {
+                            "title": "[github]translators",
+                            "url": "https://github.com/UlionTse/translators"
+                        }
+                    ]
+                },
+                {
+                    "key": "languageWire_free",
+                    "name": "[Free] LanguageWire, Denmark",
+                    "type": "translators",
+                    "translator": "languageWire",
+                    "support": {
+                        "zh_CN": false,
+                        "zh_TW": false,
+                        "en_US": "en",
+                        "ru_RU": false,
+                        "ja_JP": false,
+                        "ko_KR": false,
+                        "fr_FR": "fr",
+                        "de_DE": "de",
+                        "es_ES": "es",
+                        "pt_PT": false,
+                        "it_IT": false,
+                        "ar_SA": false
+                    },
+                    "help": [
+                        {
+                            "title": "LanguageWire - LanguageWire, Denmark",
+                            "url": "https://www.languagewire.com/en/technology/languagewire-translate"
+                        },
+                        {
+                            "title": "[github]translators",
+                            "url": "https://github.com/UlionTse/translators"
+                        }
+                    ]
+                },
+                {
+                    "key": "elia_free",
+                    "name": "[Free] Elia / Elhuyar, Spain",
+                    "type": "translators",
+                    "translator": "elia",
+                    "support": {
+                        "zh_CN": false,
+                        "zh_TW": false,
+                        "en_US": "en",
+                        "ru_RU": false,
+                        "ja_JP": false,
+                        "ko_KR": false,
+                        "fr_FR": "fr",
+                        "de_DE": false,
+                        "es_ES": "es",
+                        "pt_PT": false,
+                        "it_IT": false,
+                        "ar_SA": false
+                    },
+                    "help": [
+                        {
+                            "title": "Elia - Elhuyar, Spain",
+                            "url": "https://elia.eus/translator"
+                        },
+                        {
+                            "title": "[github]translators",
+                            "url": "https://github.com/UlionTse/translators"
+                        }
+                    ]
+                },
+                {
+                    "key": "judic_free",
+                    "name": "[Free] Judic / CrossLang, Belgium",
+                    "type": "translators",
+                    "translator": "judic",
+                    "support": {
+                        "zh_CN": false,
+                        "zh_TW": false,
+                        "en_US": "en",
+                        "ru_RU": false,
+                        "ja_JP": false,
+                        "ko_KR": false,
+                        "fr_FR": "fr",
+                        "de_DE": "de",
+                        "es_ES": false,
+                        "pt_PT": false,
+                        "it_IT": false,
+                        "ar_SA": false
+                    },
+                    "help": [
+                        {
+                            "title": "Judic - CrossLang, Belgium",
+                            "url": "https://judic.io/en/translate"
+                        },
+                        {
+                            "title": "[github]translators",
+                            "url": "https://github.com/UlionTse/translators"
+                        }
+                    ]
+                },
+                {
+                    "key": "alibaba_free",
+                    "name": "[Free] Alibaba / 阿里翻译, China",
+                    "type": "translators",
+                    "translator": "alibaba",
+                    "support": {
+                        "zh_CN": "zh",
+                        "zh_TW": "zh-TW",
+                        "en_US": "en",
+                        "ru_RU": "ru",
+                        "ja_JP": "ja",
+                        "ko_KR": "ko",
+                        "fr_FR": "fr",
+                        "de_DE": "de",
+                        "es_ES": "es",
+                        "pt_PT": "pt",
+                        "it_IT": "it",
+                        "ar_SA": "ar"
+                    },
+                    "help": [
+                        {
+                            "title": "Alibaba/阿里翻译 - Alibaba, China",
+                            "url": "https://translate.alibaba.com/"
+                        },
+                        {
+                            "title": "[github]translators",
+                            "url": "https://github.com/UlionTse/translators"
+                        }
+                    ]
+                },
+                {
+                    "key": "baidu_free",
+                    "name": "[Free] Baidu / 百度翻译, China",
+                    "type": "translators",
+                    "translator": "baidu",
+                    "support": {
+                        "zh_CN": "zh",
+                        "zh_TW": "cht",
+                        "en_US": "en",
+                        "ru_RU": "ru",
+                        "ja_JP": "jp",
+                        "ko_KR": "kor",
+                        "fr_FR": "fra",
+                        "de_DE": "de",
+                        "es_ES": "spa",
+                        "pt_PT": "pt",
+                        "it_IT": "it",
+                        "ar_SA": "ara"
+                    },
+                    "help": [
+                        {
+                            "title": "Baidu/百度翻译 - Baidu, China",
+                            "url": "https://fanyi.baidu.com/"
+                        },
+                        {
+                            "title": "[github]translators",
+                            "url": "https://github.com/UlionTse/translators"
+                        }
+                    ]
+                },
+                {
+                    "key": "sogou_free",
+                    "name": "[Free] Sogou / 搜狗翻译, China",
+                    "type": "translators",
+                    "translator": "sogou",
+                    "support": {
+                        "zh_CN": "zh-CHS",
+                        "zh_TW": "zh-CHT",
+                        "en_US": "en",
+                        "ru_RU": "ru",
+                        "ja_JP": "ja",
+                        "ko_KR": "ko",
+                        "fr_FR": "fr",
+                        "de_DE": "de",
+                        "es_ES": "es",
+                        "pt_PT": "pt",
+                        "it_IT": "it",
+                        "ar_SA": "ar"
+                    },
+                    "help": [
+                        {
+                            "title": "Sogou/搜狗翻译 - Tencent, China",
+                            "url": "https://fanyi.sogou.com/"
+                        },
+                        {
+                            "title": "[github]translators",
+                            "url": "https://github.com/UlionTse/translators"
+                        }
+                    ]
+                },
+                {
+                    "key": "qqFanyi_free",
+                    "name": "[Free] QQFanyi / 腾讯翻译君, China",
+                    "type": "translators",
+                    "translator": "qqFanyi",
+                    "support": {
+                        "zh_CN": "zh",
+                        "zh_TW": false,
+                        "en_US": "en",
+                        "ru_RU": "ru",
+                        "ja_JP": "ja",
+                        "ko_KR": "ko",
+                        "fr_FR": "fr",
+                        "de_DE": "de",
+                        "es_ES": "es",
+                        "pt_PT": "pt",
+                        "it_IT": "it",
+                        "ar_SA": "ar"
+                    },
+                    "help": [
+                        {
+                            "title": "QQFanyi/腾讯翻译君 - Tencent, China",
+                            "url": "https://fanyi.qq.com/"
+                        },
+                        {
+                            "title": "[github]translators",
+                            "url": "https://github.com/UlionTse/translators"
+                        }
+                    ]
+                },
+                {
+                    "key": "qqTranSmart_free",
+                    "name": "[Free] QQTranSmart / 腾讯交互翻译, China",
+                    "type": "translators",
+                    "translator": "qqTranSmart",
+                    "support": {
+                        "zh_CN": "zh",
+                        "zh_TW": false,
+                        "en_US": "en",
+                        "ru_RU": "ru",
+                        "ja_JP": "ja",
+                        "ko_KR": "ko",
+                        "fr_FR": "fr",
+                        "de_DE": "de",
+                        "es_ES": "es",
+                        "pt_PT": "pt",
+                        "it_IT": "it",
+                        "ar_SA": "ar"
+                    },
+                    "help": [
+                        {
+                            "title": "QQTranSmart/腾讯交互翻译 - Tencent, China",
+                            "url": "https://transmart.qq.com/"
+                        },
+                        {
+                            "title": "[github]translators",
+                            "url": "https://github.com/UlionTse/translators"
+                        }
+                    ]
+                },
+                {
+                    "key": "youdao_free",
+                    "name": "[Free] Youdao / 有道翻译, China",
+                    "type": "translators",
+                    "translator": "youdao",
+                    "support": {
+                        "zh_CN": "zh-CHS",
+                        "zh_TW": false,
+                        "en_US": "en",
+                        "ru_RU": "ru",
+                        "ja_JP": "ja",
+                        "ko_KR": "ko",
+                        "fr_FR": "fr",
+                        "de_DE": "de",
+                        "es_ES": "es",
+                        "pt_PT": "pt",
+                        "it_IT": "it",
+                        "ar_SA": "ar"
+                    },
+                    "help": [
+                        {
+                            "title": "Youdao/有道翻译 - NetEase, China",
+                            "url": "https://ai.youdao.com/product-fanyi-text.s"
+                        },
+                        {
+                            "title": "[github]translators",
+                            "url": "https://github.com/UlionTse/translators"
+                        }
+                    ]
+                },
+                {
+                    "key": "iflytek_free",
+                    "name": "[Free] Iflytek / 讯飞智能翻译, China",
+                    "type": "translators",
+                    "translator": "iflytek",
+                    "support": {
+                        "zh_CN": "zh",
+                        "zh_TW": false,
+                        "en_US": "en",
+                        "ru_RU": "ru",
+                        "ja_JP": "ja",
+                        "ko_KR": "ko",
+                        "fr_FR": "fr",
+                        "de_DE": "de",
+                        "es_ES": "es",
+                        "pt_PT": "pt",
+                        "it_IT": "it",
+                        "ar_SA": "ar"
+                    },
+                    "help": [
+                        {
+                            "title": "Iflytek/讯飞智能翻译 - Iflytek, China",
+                            "url": "https://fanyi.xfyun.cn/console/trans/text"
+                        },
+                        {
+                            "title": "[github]translators",
+                            "url": "https://github.com/UlionTse/translators"
+                        }
+                    ]
+                },
+                {
+                    "key": "iflyrec_free",
+                    "name": "[Free] Iflyrec / 讯飞听见翻译, China",
+                    "type": "translators",
+                    "translator": "iflyrec",
+                    "support": {
+                        "zh_CN": "zh",
+                        "zh_TW": false,
+                        "en_US": "en",
+                        "ru_RU": "ru",
+                        "ja_JP": "ja",
+                        "ko_KR": "ko",
+                        "fr_FR": "fr",
+                        "de_DE": "de",
+                        "es_ES": "es",
+                        "pt_PT": "pt",
+                        "it_IT": "it",
+                        "ar_SA": "ar"
+                    },
+                    "help": [
+                        {
+                            "title": "Iflyrec/讯飞听见翻译 - Iflytek, China",
+                            "url": "https://fanyi.iflyrec.com/"
+                        },
+                        {
+                            "title": "[github]translators",
+                            "url": "https://github.com/UlionTse/translators"
+                        }
+                    ]
+                },
+                {
+                    "key": "iciba_free",
+                    "name": "[Free] Iciba / 爱词霸, China",
+                    "type": "translators",
+                    "translator": "iciba",
+                    "support": {
+                        "zh_CN": "zh",
+                        "zh_TW": "cht",
+                        "en_US": "en",
+                        "ru_RU": "ru",
+                        "ja_JP": "ja",
+                        "ko_KR": "ko",
+                        "fr_FR": "fr",
+                        "de_DE": "de",
+                        "es_ES": "es",
+                        "pt_PT": "pt",
+                        "it_IT": "it",
+                        "ar_SA": "ar"
+                    },
+                    "help": [
+                        {
+                            "title": "Iciba/爱词霸 - Kingsoft / Xiaomi, China",
+                            "url": "https://www.iciba.com/fy"
+                        },
+                        {
+                            "title": "[github]translators",
+                            "url": "https://github.com/UlionTse/translators"
+                        }
+                    ]
+                },
+                {
+                    "key": "volcEngine_free",
+                    "name": "[Free] VolcEngine / 火山翻译, China",
+                    "type": "translators",
+                    "translator": "volcEngine",
+                    "support": {
+                        "zh_CN": "zh",
+                        "zh_TW": "zh-Hant-tw",
+                        "en_US": "en",
+                        "ru_RU": "ru",
+                        "ja_JP": "ja",
+                        "ko_KR": "ko",
+                        "fr_FR": "fr",
+                        "de_DE": "de",
+                        "es_ES": "es",
+                        "pt_PT": "pt",
+                        "it_IT": "it",
+                        "ar_SA": "ar"
+                    },
+                    "help": [
+                        {
+                            "title": "VolcEngine/火山翻译 - Bytedance, China",
+                            "url": "https://translate.volcengine.com/"
+                        },
+                        {
+                            "title": "[github]translators",
+                            "url": "https://github.com/UlionTse/translators"
+                        }
+                    ]
+                },
+                {
+                    "key": "niutrans_free",
+                    "name": "[Free] Niutrans / 小牛翻译, China",
+                    "type": "translators",
+                    "translator": "niutrans",
+                    "support": {
+                        "zh_CN": "zh",
+                        "zh_TW": "cht",
+                        "en_US": "en",
+                        "ru_RU": "ru",
+                        "ja_JP": "ja",
+                        "ko_KR": "ko",
+                        "fr_FR": "fr",
+                        "de_DE": "de",
+                        "es_ES": "es",
+                        "pt_PT": "pt",
+                        "it_IT": "it",
+                        "ar_SA": "ar"
+                    },
+                    "help": [
+                        {
+                            "title": "Niutrans/小牛翻译 - Northeastern University / Niutrans, China",
+                            "url": "https://niutrans.com/trans"
+                        },
+                        {
+                            "title": "[github]translators",
+                            "url": "https://github.com/UlionTse/translators"
+                        }
+                    ]
+                },
+                {
+                    "key": "cloudYi_free",
+                    "name": "[Free] CloudYi / 深圳云译, China",
+                    "type": "translators",
+                    "translator": "cloudYi",
+                    "support": {
+                        "zh_CN": "zh-cn",
+                        "zh_TW": "zh-tw",
+                        "en_US": "en-us",
+                        "ru_RU": "ru",
+                        "ja_JP": "ja",
+                        "ko_KR": "ko",
+                        "fr_FR": "fr",
+                        "de_DE": "de",
+                        "es_ES": "es",
+                        "pt_PT": "pt",
+                        "it_IT": "it",
+                        "ar_SA": "ar"
+                    },
+                    "help": [
+                        {
+                            "title": "CloudYi/深圳云译 - Xiamen University / CloudTranslation, China",
+                            "url": "https://www.cloudtranslation.com/#/translate"
+                        },
+                        {
+                            "title": "[github]translators",
+                            "url": "https://github.com/UlionTse/translators"
+                        }
+                    ]
+                },
+                {
+                    "key": "yeekit_free",
+                    "name": "[Free] Yeekit / 中译语通, China",
+                    "type": "translators",
+                    "translator": "yeekit",
+                    "support": {
+                        "zh_CN": "zh",
+                        "zh_TW": false,
+                        "en_US": "en",
+                        "ru_RU": "ru",
+                        "ja_JP": "ja",
+                        "ko_KR": "ko",
+                        "fr_FR": "fr",
+                        "de_DE": "de",
+                        "es_ES": "es",
+                        "pt_PT": "pt",
+                        "it_IT": false,
+                        "ar_SA": "ar"
+                    },
+                    "help": [
+                        {
+                            "title": "Yeekit/中译语通 - CTC, China",
+                            "url": "https://www.yeekit.com/site/translate"
+                        },
+                        {
+                            "title": "[github]translators",
+                            "url": "https://github.com/UlionTse/translators"
+                        }
+                    ]
+                },
+                {
+                    "key": "caiyun_free",
+                    "name": "[Free] Caiyun / 彩云翻译, China",
+                    "type": "translators",
+                    "translator": "caiyun",
+                    "support": {
+                        "zh_CN": "zh",
+                        "zh_TW": "zh-TW",
+                        "en_US": "en",
+                        "ru_RU": false,
+                        "ja_JP": "ja",
+                        "ko_KR": false,
+                        "fr_FR": "fr",
+                        "de_DE": false,
+                        "es_ES": "es",
+                        "pt_PT": false,
+                        "it_IT": false,
+                        "ar_SA": false
+                    },
+                    "help": [
+                        {
+                            "title": "Caiyun/彩云翻译 - ColorfulClouds, China",
+                            "url": "https://fanyi.caiyunapp.com/"
+                        },
+                        {
+                            "title": "[github]translators",
+                            "url": "https://github.com/UlionTse/translators"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "need_api_key",
+            "children": [
+                {
+                    "key": "google",
+                    "name": "Google",
+                    "concurrent": 10,
+                    "support": {
+                        "zh_CN": "zh-CN",
+                        "zh_TW": "zh-TW",
+                        "en_US": "en",
+                        "ru_RU": "ru",
+                        "ja_JP": "ja",
+                        "ko_KR": "ko",
+                        "fr_FR": "fr",
+                        "de_DE": "de",
+                        "es_ES": "es",
+                        "pt_PT": "pt",
+                        "it_IT": "it",
+                        "ar_SA": "ar"
+                    },
+                    "help": [
+                        {
+                            "title": "[official] Google Cloud Translation API",
+                            "url": "https://cloud.google.com/translate/docs/setup"
+                        },
+                        {
+                            "title": "[YouTube] How to get a Google API translation key",
+                            "url": "https://www.youtube.com/watch?v=1wcE-DfqNtU"
+                        },
+                        {
+                            "title": "【中文】申请教程 by BobTranslate",
+                            "url": "https://bobtranslate.com/service/translate/google.html"
+                        },
+                        {
+                            "title": "【中文】申请教程 by TTime",
+                            "url": "https://ttime.timerecord.cn/pages/2448b0/"
+                        }
+                    ],
+                    "config": [
+                        {
+                            "key": "api_key",
+                            "title": "API Key",
+                            "type": "input"
+                        }
+                    ]
+                },
+                {
+                    "key": "openai",
+                    "name": "OpenAI / ChatGPT",
+                    "concurrent": 1,
+                    "support": {
+                        "zh_CN": "Simplified Chinese",
+                        "zh_TW": "Traditional Chinese",
+                        "en_US": "English",
+                        "ru_RU": "Russian",
+                        "ja_JP": "Japanese",
+                        "ko_KR": "Korean",
+                        "fr_FR": "French",
+                        "de_DE": "German",
+                        "es_ES": "Spanish",
+                        "pt_PT": "Portuguese",
+                        "it_IT": "Italian",
+                        "ar_SA": "Arabic"
+                    },
+                    "help": [
+                        {
+                            "title": "[official] OpenAI API",
+                            "url": "https://platform.openai.com/docs/introduction"
+                        },
+                        {
+                            "title": "[YouTube] How to Get Your OpenAI API Key",
+                            "url": "https://www.youtube.com/watch?v=nafDyRsVnXU"
+                        },
+                        {
+                            "title": "【中文】申请教程 by BobTranslate",
+                            "url": "https://bobtranslate.com/service/translate/openai.html"
+                        },
+                        {
+                            "title": "【中文】申请教程 by TTime",
+                            "url": "https://ttime.timerecord.cn/pages/bc2a83/"
+                        }
+                    ],
+                    "config": [
+                        {
+                            "key": "api_key",
+                            "title": "API Key",
+                            "type": "input"
+                        },
+                        {
+                            "key": "model",
+                            "title": "Model",
+                            "type": "select",
+                            "default": "gpt-3.5-turbo",
+                            "options": [
+                                "gpt-3.5-turbo",
+                                "gpt-3.5-turbo-0301",
+                                "text-davinci-003",
+                                "text-davinci-002",
+                                "code-davinci-002",
+                                "gpt-4",
+                                "gpt-4-0314",
+                                "gpt-4-32k",
+                                "gpt-4-32k-0314"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "key": "microsoft",
+                    "name": "Microsoft",
+                    "concurrent": 999,
+                    "support": {
+                        "zh_CN": "zh-Hans",
+                        "zh_TW": "zh-Hant",
+                        "en_US": "en",
+                        "ru_RU": "ru",
+                        "ja_JP": "ja",
+                        "ko_KR": "ko",
+                        "fr_FR": "fr",
+                        "de_DE": "de",
+                        "es_ES": "es",
+                        "pt_PT": "pt",
+                        "it_IT": "it",
+                        "ar_SA": "ar"
+                    },
+                    "help": [
+                        {
+                            "title": "[official] Microsoft Translator Text API",
+                            "url": "https://learn.microsoft.com/azure/cognitive-services/translator/quickstart-translator?tabs=csharp"
+                        },
+                        {
+                            "title": "[YouTube] How to get a Microsoft Translator API key",
+                            "url": "https://www.youtube.com/watch?v=l6Rl4HSZVvg"
+                        },
+                        {
+                            "title": "【中文】申请教程 by BobTranslate",
+                            "url": "https://bobtranslate.com/service/translate/microsoft.html"
+                        }
+                    ],
+                    "config": [
+                        {
+                            "key": "api_key",
+                            "title": "API Key",
+                            "type": "input"
+                        },
+                        {
+                            "key": "region",
+                            "title": "Region",
+                            "type": "input",
+                            "default": "eastasia"
+                        }
+                    ]
+                },
+                {
+                    "key": "amazon",
+                    "name": "Amazon",
+                    "concurrent": 999,
+                    "support": {
+                        "zh_CN": "zh",
+                        "zh_TW": "zh-TW",
+                        "en_US": "en",
+                        "ru_RU": "ru",
+                        "ja_JP": "ja",
+                        "ko_KR": "ko",
+                        "fr_FR": "fr",
+                        "de_DE": "de",
+                        "es_ES": "es",
+                        "pt_PT": "pt",
+                        "it_IT": "it",
+                        "ar_SA": "ar"
+                    },
+                    "help": [
+                        {
+                            "title": "[official] Amazon Translate",
+                            "url": "https://docs.aws.amazon.com/translate/latest/dg/getting-started.html"
+                        },
+                        {
+                            "title": "【中文】申请教程 by BobTranslate",
+                            "url": "https://bobtranslate.com/service/translate/amazon.html"
+                        }
+                    ],
+                    "config": [
+                        {
+                            "key": "api_key_id",
+                            "title": "API Key ID",
+                            "type": "input"
+                        },
+                        {
+                            "key": "api_key_secret",
+                            "title": "API Key Secret",
+                            "type": "input"
+                        },
+                        {
+                            "key": "region",
+                            "title": "Region",
+                            "type": "select",
+                            "default": "us-east-1",
+                            "options": [
+                                "af-south-1",
+                                "ap-east-1",
+                                "ap-northeast-1",
+                                "ap-northeast-2",
+                                "ap-northeast-3",
+                                "ap-south-1",
+                                "ap-southeast-1",
+                                "ap-southeast-2",
+                                "ap-southeast-3",
+                                "ca-central-1",
+                                "cn-north-1",
+                                "cn-northwest-1",
+                                "eu-central-1",
+                                "eu-north-1",
+                                "eu-south-1",
+                                "eu-west-1",
+                                "eu-west-2",
+                                "eu-west-3",
+                                "me-south-1",
+                                "sa-east-1",
+                                "us-east-1",
+                                "us-east-2",
+                                "us-gov-east-1",
+                                "us-gov-west-1",
+                                "us-iso-east-1",
+                                "us-isob-east-1",
+                                "us-west-1",
+                                "us-west-2"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "key": "deepl",
+                    "name": "DeepL",
+                    "concurrent": 999,
+                    "support": {
+                        "zh_CN": "ZH",
+                        "zh_TW": false,
+                        "en_US": "EN",
+                        "ru_RU": "RU",
+                        "ja_JP": "JA",
+                        "ko_KR": "KO",
+                        "fr_FR": "FR",
+                        "de_DE": "DE",
+                        "es_ES": "ES",
+                        "pt_PT": "PT",
+                        "it_IT": "IT",
+                        "ar_SA": false
+                    },
+                    "help": [
+                        {
+                            "title": "[official] DeepL API",
+                            "url": "https://www.deepl.com/docs-api/"
+                        },
+                        {
+                            "title": "[YouTube] How to get the DeepL API key and use it in Bohemicus, Trados, memoQ...",
+                            "url": "https://www.youtube.com/watch?v=PEEmJNZN5X0"
+                        },
+                        {
+                            "title": "【中文】申请教程 by BobTranslate",
+                            "url": "https://bobtranslate.com/service/translate/deepl.html"
+                        },
+                        {
+                            "title": "【中文】申请教程 by TTime",
+                            "url": "https://ttime.timerecord.cn/pages/5216d6/"
+                        }
+                    ],
+                    "config": [
+                        {
+                            "key": "api_key",
+                            "title": "API Key",
+                            "type": "input"
+                        }
+                    ]
+                },
+                {
+                    "key": "baidu",
+                    "name": "Baidu / 百度翻译",
+                    "concurrent": 1,
+                    "support": {
+                        "zh_CN": "zh",
+                        "zh_TW": "cht",
+                        "en_US": "en",
+                        "ru_RU": "ru",
+                        "ja_JP": "jp",
+                        "ko_KR": "kor",
+                        "fr_FR": "fra",
+                        "de_DE": "de",
+                        "es_ES": "spa",
+                        "pt_PT": "pt",
+                        "it_IT": "it",
+                        "ar_SA": "ara"
+                    },
+                    "help": [
+                        {
+                            "title": "[official] 百度翻译开放平台",
+                            "url": "https://fanyi-api.baidu.com/product/11"
+                        },
+                        {
+                            "title": "【中文】申请教程 by BobTranslate",
+                            "url": "https://bobtranslate.com/service/translate/baidu.html"
+                        },
+                        {
+                            "title": "【中文】申请教程 by TTime",
+                            "url": "https://ttime.timerecord.cn/pages/4596af/"
+                        }
+                    ],
+                    "config": [
+                        {
+                            "key": "app_id",
+                            "title": "APP ID",
+                            "type": "input"
+                        },
+                        {
+                            "key": "app_secret",
+                            "title": "APP Secret",
+                            "type": "input"
+                        }
+                    ]
+                },
+                {
+                    "key": "alibaba",
+                    "name": "Alibaba / 阿里翻译",
+                    "concurrent": 50,
+                    "support": {
+                        "zh_CN": "zh",
+                        "zh_TW": "zh-TW",
+                        "en_US": "en",
+                        "ru_RU": "ru",
+                        "ja_JP": "ja",
+                        "ko_KR": "ko",
+                        "fr_FR": "fr",
+                        "de_DE": "de",
+                        "es_ES": "es",
+                        "pt_PT": "pt",
+                        "it_IT": "it",
+                        "ar_SA": "ar"
+                    },
+                    "help": [
+                        {
+                            "title": "[official] 阿里云翻译",
+                            "url": "https://help.aliyun.com/document_detail/468740.html"
+                        },
+                        {
+                            "title": "【中文】申请教程 by BobTranslate",
+                            "url": "https://bobtranslate.com/service/translate/ali.html"
+                        },
+                        {
+                            "title": "【中文】申请教程 by TTime",
+                            "url": "https://ttime.timerecord.cn/pages/635309/"
+                        }
+                    ],
+                    "config": [
+                        {
+                            "key": "access_key_id",
+                            "title": "Access Key ID",
+                            "type": "input"
+                        },
+                        {
+                            "key": "access_key_secret",
+                            "title": "Access Key Secret",
+                            "type": "input"
+                        },
+                        {
+                            "key": "region",
+                            "title": "Region ID",
+                            "type": "select",
+                            "default": "cn-shanghai",
+                            "options": [
+                                "cn-qingdao",
+                                "cn-beijing",
+                                "cn-zhangjiakou",
+                                "cn-huhehaote",
+                                "cn-hangzhou",
+                                "cn-shanghai",
+                                "cn-shenzhen",
+                                "cn-chengdu",
+                                "cn-hongkong",
+                                "ap-southeast-1",
+                                "ap-southeast-2",
+                                "ap-southeast-3",
+                                "ap-southeast-5",
+                                "ap-northeast-1",
+                                "us-west-1",
+                                "us-east-1",
+                                "eu-central-1",
+                                "eu-west-1",
+                                "me-east-1",
+                                "ap-south-1"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "key": "youdao",
+                    "name": "Youdao / 有道翻译",
+                    "concurrent": 999,
+                    "support": {
+                        "zh_CN": "zh-CHS",
+                        "zh_TW": "zh-CHT",
+                        "en_US": "en",
+                        "ru_RU": "ru",
+                        "ja_JP": "ja",
+                        "ko_KR": "ko",
+                        "fr_FR": "fr",
+                        "de_DE": "de",
+                        "es_ES": "es",
+                        "pt_PT": "pt",
+                        "it_IT": "it",
+                        "ar_SA": "ar"
+                    },
+                    "help": [
+                        {
+                            "title": "[official] 有道智云翻译",
+                            "url": "https://ai.youdao.com/doc.s#guide"
+                        },
+                        {
+                            "title": "【中文】申请教程 by BobTranslate",
+                            "url": "https://bobtranslate.com/service/translate/youdao.html"
+                        },
+                        {
+                            "title": "【中文】申请教程 by TTime",
+                            "url": "https://ttime.timerecord.cn/pages/43750c/"
+                        }
+                    ],
+                    "config": [
+                        {
+                            "key": "app_id",
+                            "title": "App ID",
+                            "type": "input"
+                        },
+                        {
+                            "key": "app_secret",
+                            "title": "App Secret",
+                            "type": "input"
+                        }
+                    ]
+                },
+                {
+                    "key": "tencent",
+                    "name": "Tencent / 腾讯翻译",
+                    "concurrent": 5,
+                    "support": {
+                        "zh_CN": "zh",
+                        "zh_TW": "zh-TW",
+                        "en_US": "en",
+                        "ru_RU": "ru",
+                        "ja_JP": "ja",
+                        "ko_KR": "ko",
+                        "fr_FR": "fr",
+                        "de_DE": "de",
+                        "es_ES": "es",
+                        "pt_PT": "pt",
+                        "it_IT": "it",
+                        "ar_SA": "ar"
+                    },
+                    "help": [
+                        {
+                            "title": "[official] 腾讯云翻译",
+                            "url": "https://cloud.tencent.com/document/product/551"
+                        },
+                        {
+                            "title": "【中文】申请教程 by BobTranslate",
+                            "url": "https://bobtranslate.com/service/translate/tencent.html"
+                        },
+                        {
+                            "title": "【中文】申请教程 by TTime",
+                            "url": "https://ttime.timerecord.cn/pages/e2d1b5/"
+                        }
+                    ],
+                    "config": [
+                        {
+                            "key": "secret_id",
+                            "title": "Secret ID",
+                            "type": "input"
+                        },
+                        {
+                            "key": "secret_key",
+                            "title": "Secret Key",
+                            "type": "input"
+                        },
+                        {
+                            "key": "region",
+                            "title": "Region",
+                            "type": "select",
+                            "default": "ap-shanghai",
+                            "options": [
+                                "ap-bangkok",
+                                "ap-beijing",
+                                "ap-chengdu",
+                                "ap-chongqing",
+                                "ap-guangzhou",
+                                "ap-hongkong",
+                                "ap-mumbai",
+                                "ap-seoul",
+                                "ap-shanghai",
+                                "ap-shenzhen-fsi",
+                                "ap-shenzhen-fsi",
+                                "ap-singapore",
+                                "ap-tokyo",
+                                "eu-frankfurt",
+                                "na-ashburn",
+                                "na-siliconvalley",
+                                "na-toronto"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,5 @@
+/.idea
+/development_styles
+/index.php
+/src/node_modules
+/src/package-lock.json

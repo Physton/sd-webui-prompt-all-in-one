@@ -1,0 +1,25 @@
+{
+  "name": "sd-webui-prompt-all-in-one",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "autosize-input": "^1.0.2",
+    "axios": "^1.4.0",
+    "sortablejs": "^1.15.0",
+    "tippy.js": "^6.3.7",
+    "toastr": "^2.1.4",
+    "vue": "^3.2.47",
+    "vue-clipboard3": "^2.0.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.0.0",
+    "less": "^4.1.3",
+    "less-loader": "^11.1.0",
+    "vite": "^4.1.4"
+  }
+}
