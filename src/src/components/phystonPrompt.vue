@@ -9,7 +9,7 @@
                     <div class="extend-content">
                         <select @change="$emit('update:languageCode', $event.target.value)" :value="languageCode">
                             <option v-for="item in languages" :key="item.code" :value="item.code"
-                                    :selected="item.code == languageCode">{{ item.code }} - {{ item.name }}
+                                    :selected="item.code == languageCode"><!--{{ item.code }} - -->{{ item.name }}
                             </option>
                         </select>
                     </div>
