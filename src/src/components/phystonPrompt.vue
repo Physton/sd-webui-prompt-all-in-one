@@ -25,7 +25,7 @@
                     <div class="extend-content">
                         <button type="button" class="lg secondary gradio-button tool svelte-1ipelgc hover-scale-120"
                                 v-tooltip="getLang('copy_keywords_to_clipboard')" @click="onCopyAllTagsClick">
-                            <icon-copy width="18" height="18" color="#000"/>
+                            <icon-copy width="18" height="18" color="var(--body-text-color)"/>
                         </button>
                     </div>
                 </div>
@@ -52,7 +52,7 @@
                         <button type="button" class="lg secondary gradio-button tool svelte-1ipelgc hover-scale-120"
                                 v-tooltip="getLang('translate_keywords_to_local_language')"
                                 @click="onTranslatesToLocalClick">
-                            <icon-translate v-if="!loading['all_local']" width="18" height="18" color="#ad6800"/>
+                            <icon-translate v-if="!loading['all_local']" width="18" height="18" color="#ff9900"/>
                             <icon-loading v-if="loading['all_local']" width="18" height="18"/>
                         </button>
                     </div>
@@ -62,7 +62,7 @@
                         <button type="button" class="lg secondary gradio-button tool svelte-1ipelgc hover-scale-120"
                                 v-tooltip="getLang('translate_all_keywords_to_english')"
                                 @click="onTranslatesToEnglishClick">
-                            <icon-english v-if="!loading['all_en']" width="18" height="18" color="#ad6800"/>
+                            <icon-english v-if="!loading['all_en']" width="18" height="18" color="#ff9900"/>
                             <icon-loading v-if="loading['all_en']" width="18" height="18"/>
                         </button>
                     </div>
@@ -114,13 +114,13 @@
                                 <input type="checkbox" name="hide_default_input" value="1"
                                        :checked="!hideDefaultInput"
                                        @change="$emit('update:hideDefaultInput', !$event.target.checked)">
-                                <icon-input width="26" height="26" color="#000"/>
+                                <icon-input width="26" height="26" color="var(--body-text-color)"/>
                             </label>
                             <label v-else v-tooltip="getLang('hide_default_input_box')">
                                 <input type="checkbox" name="hide_default_input" value="1"
                                        :checked="!hideDefaultInput"
                                        @change="$emit('update:hideDefaultInput', !$event.target.checked)">
-                                <icon-input width="26" height="26" color="#000"/>
+                                <icon-input width="26" height="26" color="var(--body-text-color)"/>
                             </label>
                         </div>
                     </div>
@@ -132,7 +132,7 @@
                                 <input type="checkbox" name="enable_tooltip" value="1"
                                        :checked="enableTooltip"
                                        @change="$emit('update:enableTooltip', $event.target.checked)">
-                                <icon-tooltip width="26" height="26" color="#000"/>
+                                <icon-tooltip width="26" height="26" color="var(--body-text-color)"/>
                             </label>
                         </div>
                     </div>
@@ -916,7 +916,7 @@ export default {
           }
         }
 
-        .gradio-button {
+        .gradio-button, a {
           height: 26px !important;
           min-height: 26px !important;
           max-height: 26px !important;
