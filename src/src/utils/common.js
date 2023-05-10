@@ -3,6 +3,11 @@ export default {
     weightNumRegexEN: /:\s*([0-9\.]+)/,
     weightNumRegexCN: /：\s*([0-9\.]+)/,
 
+    /**
+     * 替换标签
+     * @param text {string}
+     * @returns {*|string}
+     */
     replaceTag(text) {
         if (typeof text !== "string") return text
         if (text === "") return text
@@ -12,6 +17,11 @@ export default {
         return text
     },
 
+    /**
+     * 替换括号
+     * @param text
+     * @returns {*}
+     */
     replaceBrackets(text) {
         const length = text.length
         if (length === 0) return text
@@ -38,12 +48,36 @@ export default {
         let start = text[0]
         let end = text[length - 1]
         if (typeof replaces[start] !== "undefined") {
-            text[0] = replaces[start]
+            text = replaces[start] + text.substring(1)
         }
         if (typeof replaces[end] !== "undefined") {
-            text[length - 1] = replaces[end]
+            text = text.substring(0, length - 1) + replaces[end]
         }
         return text
+    },
+
+    /**
+     * 是否有括号
+     * @param text {string}
+     * @returns {Array|boolean}
+     */
+    hasBrackets(text) {
+        const length = text.length
+        if (length === 0) return false
+        const brackets = [[
+            '(', ')'],
+            ['[', ']'],
+            ['{', '}'],
+            ['<', '>']
+        ]
+        let start = text[0]
+        let end = text[length - 1]
+        for (const bracket of brackets) {
+            if (bracket[0] === start && bracket[1] === end) {
+                return bracket
+            }
+        }
+        return false
     },
 
     /**
@@ -225,9 +259,10 @@ export default {
      * @param num {number}
      * @param start {string}
      * @param end {string}
+     * @param joinStr {string}
      * @returns {string}
      */
-    setLayers(str, num = 0, start = '(', end = ')') {
+    setLayers(str, num = 0, start = '(', end = ')', joinStr = '') {
         // 先去除所有的括号
         while (true) {
             let first = str[0]
@@ -243,7 +278,7 @@ export default {
         // 如果层数为0，那么直接返回
         if (num === 0) return str
         // 如果层数大于0，那么在字符串的前面加上num个start，后面加上num个end
-        return start.repeat(num) + str + end.repeat(num)
+        return start.repeat(num) + str + joinStr + end.repeat(num)
     },
 
     /**

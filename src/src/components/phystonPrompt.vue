@@ -162,7 +162,7 @@
                                 </div>
                             </div>
                             <div class="btn-tag-extend">
-                                <input v-if="tag.weightNum > 0" type="number" min="0.1" step="0.1"
+                                <input type="number" min="0" step="0.1"
                                        :value="tag.weightNum"
                                        @change="onTagWeightNumChange(index, $event)">
                                 <button type="button" v-tooltip="getLang('increase_weight_add_parentheses')"
@@ -574,7 +574,44 @@ export default {
         },
         onTagWeightNumChange(index, e) {
             if (this.tags[index].weightNum === e.target.value) return
-            this.tags[index].weightNum = e.target.value
+            let weightNum = e.target.value
+            let value = this.tags[index].value
+            let localValue = this.tags[index].localValue
+            if (weightNum > 0) {
+                // 如果原来没有权重数，那么就加上权重数
+                if (!common.weightNumRegex.test(value)) {
+                    // 如果原来有括号，就要加到括号内
+                    let bracket = common.hasBrackets(value)
+                    if (bracket) {
+                        value = common.setLayers(value, 1, bracket[0], bracket[1], ':' + weightNum)
+                        if (localValue !== '') localValue = common.setLayers(localValue, 1, bracket[0], bracket[1], ':' + weightNum)
+                    } else {
+                        value = value + ':' + weightNum
+                        if (localValue !== '') localValue = localValue + ':' + weightNum
+                    }
+                }
+                // 如果原来没有括号() [] {} <>，那么就加上括号
+                if (!common.hasBrackets(value)) {
+                    value = common.setLayers(value, 1, '(', ')')
+                    if (localValue !== '') localValue = common.setLayers(localValue, 1, '(', ')')
+                }
+                if (value !== this.tags[index].value) {
+                    this.tags[index].value = value
+                    if (localValue !== '') this.tags[index].localValue = localValue
+                    this._setTag(this.tags[index])
+                }
+            } else {
+                // 如果原来的括号是<>，那么最小权重数只能是0.1
+                const bracket = common.hasBrackets(value)
+                if (bracket[0] === '<' && bracket[1] === '>') {
+                    weightNum = 0.1
+                } else {
+                    // 移除权重数
+                    this.tags[index].value = value.replace(common.weightNumRegex, '')
+                    if (localValue !== '') this.tags[index].localValue = this.tags[index].localValue.replace(common.weightNumRegex, '')
+                }
+            }
+            this.tags[index].weightNum = weightNum
             this.updateTags()
         },
         onDeleteTagClick(index) {
@@ -592,26 +629,34 @@ export default {
         },
         onIncWeightClick(index, num) {
             let value = this.tags[index].value
+            let localValue = this.tags[index].localValue
             value = common.setLayers(value, 0, '[', ']')
+            if (localValue !== '') localValue = common.setLayers(localValue, 0, '[', ']')
             let incWeight = this.tags[index].incWeight
             incWeight += num
             if (incWeight < 0) incWeight = 0
             this.tags[index].incWeight = incWeight
             this.tags[index].decWeight = 0
             value = common.setLayers(value, incWeight, '(', ')')
+            if (localValue !== '') localValue = common.setLayers(localValue, incWeight, '(', ')')
             this.tags[index].value = value
+            if (localValue !== '') this.tags[index].localValue = localValue
             this.updateTags()
         },
         onDecWeightClick(index, num) {
             let value = this.tags[index].value
+            let localValue = this.tags[index].localValue
             value = common.setLayers(value, 0, '(', ')')
+            if (localValue !== '') localValue = common.setLayers(localValue, 0, '(', ')')
             let decWeight = this.tags[index].decWeight
             decWeight += num
             if (decWeight < 0) decWeight = 0
             this.tags[index].incWeight = 0
             this.tags[index].decWeight = decWeight
             value = common.setLayers(value, decWeight, '[', ']')
+            if (localValue !== '') localValue = common.setLayers(localValue, decWeight, '[', ']')
             this.tags[index].value = value
+            if (localValue !== '') this.tags[index].localValue = localValue
             this.updateTags()
         },
         onTranslateToLocalClick(index) {
