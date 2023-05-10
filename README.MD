@@ -100,9 +100,9 @@ The currently supported languages are: `中文` `English` ` Русский` `日
 
 
 ## Update Record / *更新记录*
-[c056ac8](./commit/c056ac8) Fix the issue: after manually adding weight to keywords, there is no input box for weight quantity. *修复问题：手动给关键词添加权重数后，没有快捷设置数量输入框*
+[c056ac8](/commit/c056ac8) Fix the issue: after manually adding weight to keywords, there is no input box for weight quantity. *修复问题：手动给关键词添加权重数后，没有快捷设置数量输入框*
 
-[9fdc680](./commit/9fdc680) Fix the issue [#1](./issues/1): Conflict with tagcomplete causing the inability to select tags in tagcomplete. *修复问题 [#1](./issues/1)：与tagcomplete冲突，导致tagcomplete无法选择tag*
+[9fdc680](/commit/9fdc680) Fix the issue [#1](/issues/1): Conflict with tagcomplete causing the inability to select tags in tagcomplete. *修复问题 [#1](/issues/1)：与tagcomplete冲突，导致tagcomplete无法选择tag*
 
 ## Contributing / *帮助开发*
 
