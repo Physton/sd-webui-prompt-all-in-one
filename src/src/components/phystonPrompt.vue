@@ -353,6 +353,10 @@ export default {
             }, 1000)*/
         },
         async onTextareaChange(event) {
+            const autocompleteResults = this.textarea.parentElement.getElementsByClassName('autocompleteResults')
+            if (autocompleteResults.length > 0 && autocompleteResults[0].style.display !== 'none') {
+                return
+            }
             let value = this.textarea.value.trim()
             if (value === this.prompt) return
             let tags = common.splitTags(value)
