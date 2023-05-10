@@ -107,6 +107,8 @@ The currently supported languages are: `中文` `English` ` Русский` `日
 [28bf6f6](https://github.com/Physton/sd-webui-prompt-all-in-one/commit/28bf6f6) The Tag input box has been optimized and
 some issues have been fixed. Continuously optimizing... *优化Tag输入框，修复了一些问题，持续优化中...*
 
+[b10f43a](https://github.com/Physton/sd-webui-prompt-all-in-one/commit/b10f43a) Optimize the Tag input box. Now you can directly set the weight for keywords without parentheses. In some languages, such as Chinese, where parentheses are not equivalent to English punctuation marks, it will also be automatically converted to English format, like "(girl: 0.1)", when setting the weight for text such as "（女孩：0.1）". *优化Tag输入框，现在可以为没有括号的关键词直接设置权重数。在一些语言中，例如中文文本：（女孩：0.1），这种并不是英文标点符号的，也会自动处理成英文：(girl:0.1)。*
+
 ## Contributing / *帮助开发*
 
 If you want to contribute to sd-webui-prompt-all-in-one, welcome to submit issues and pull requests. You can also
