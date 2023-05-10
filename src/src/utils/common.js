@@ -1,5 +1,50 @@
 export default {
     weightNumRegex: /:([0-9\.]+)/,
+    weightNumRegexEN: /:\s*([0-9\.]+)/,
+    weightNumRegexCN: /：\s*([0-9\.]+)/,
+
+    replaceTag(text) {
+        if (typeof text !== "string") return text
+        if (text === "") return text
+        text = this.replaceBrackets(text)
+        if (this.weightNumRegexEN.test(text)) text = text.replace(this.weightNumRegexEN, ':$1')
+        if (this.weightNumRegexCN.test(text)) text = text.replace(this.weightNumRegexCN, ':$1')
+        return text
+    },
+
+    replaceBrackets(text) {
+        const length = text.length
+        if (length === 0) return text
+        const replaces = {
+            "（": "(",
+            "）": ")",
+            "【": "[",
+            "】": "]",
+            "《": "<",
+            "》": ">",
+            "「": "{",
+            "」": "}",
+            "『": "{",
+            "』": "}",
+            "〈": "<",
+            "〉": ">",
+            "﹝": "(",
+            "﹞": ")",
+            "﹛": "{",
+            "﹜": "}",
+            "﹙": "(",
+            "﹚": ")",
+        }
+        let start = text[0]
+        let end = text[length - 1]
+        if (typeof replaces[start] !== "undefined") {
+            text[0] = replaces[start]
+        }
+        if (typeof replaces[end] !== "undefined") {
+            text[length - 1] = replaces[end]
+        }
+        return text
+    },
 
     /**
      * 分割标签

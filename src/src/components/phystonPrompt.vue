@@ -417,6 +417,17 @@ export default {
         genPrompt() {
             let prompts = []
             this.tags.forEach(tag => {
+                let value = common.replaceTag(tag.value)
+                console.log(value)
+                if (value !== tag.value) {
+                    tag.value = value
+                    this._setTag(tag)
+                }
+                let localValue = common.replaceTag(tag.localValue)
+                if (localValue !== tag.localValue) {
+                    tag.localValue = localValue
+                }
+
                 if (tag.weightNum > 0) {
                     tag.weightNum = parseFloat(tag.weightNum).toFixed(1)
                     tag.value = tag.value.replace(common.weightNumRegex, ':' + tag.weightNum)
@@ -459,14 +470,23 @@ export default {
             }
             return value
         },
+        _setTag(tag) {
+            tag.weightNum = common.getTagWeightNum(tag.value)
+            tag.incWeight = common.getTagIncWeight(tag.value)
+            tag.decWeight = common.getTagDecWeight(tag.value)
+        },
         _appendTag(value, localValue = '', disabled = false) {
             const id = this.lastId++
-            const weightNum = common.getTagWeightNum(value)
-            const incWeight = common.getTagIncWeight(value)
-            const decWeight = common.getTagDecWeight(value)
+            let tag = {
+                id,
+                value,
+                localValue,
+                disabled,
+            }
+            this._setTag(tag)
             // value           = common.setLayers(value, 0, '(', ')')
             // value           = common.setLayers(value, 0, '[', ']')
-            const index = this.tags.push({id, value, localValue, disabled, weightNum, incWeight, decWeight})
+            const index = this.tags.push(tag)
             this.$nextTick(() => {
                 autoSizeInput(this.$refs['promptTagEdit-' + id][0])
             })
@@ -540,22 +560,16 @@ export default {
             if (e.keyCode === 13) {
                 this.editing[this.tags[index].id] = false
                 if (this.tags[index].value !== e.target.value) {
-                    const value = e.target.value
-                    this.tags[index].weightNum = common.getTagWeightNum(value)
-                    this.tags[index].incWeight = common.getTagIncWeight(value)
-                    this.tags[index].decWeight = common.getTagDecWeight(value)
                     this.tags[index].value = e.target.value
+                    this._setTag(this.tags[index])
                     // this.updateTags()
                 }
             }
         },
         onTagInputChange(index, e) {
             if (this.tags[index].value === e.target.value) return
-            const value = e.target.value
-            this.tags[index].weightNum = common.getTagWeightNum(value)
-            this.tags[index].incWeight = common.getTagIncWeight(value)
-            this.tags[index].decWeight = common.getTagDecWeight(value)
-            this.tags[index].value = value
+            this.tags[index].value = e.target.value
+            this._updateTag(this.tags[index])
             this.updateTags()
         },
         onTagWeightNumChange(index, e) {
