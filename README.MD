@@ -113,6 +113,11 @@ some issues have been fixed. Continuously optimizing... *优化Tag输入框，�
 
 [2cc08e5](https://github.com/Physton/sd-webui-prompt-all-in-one/commit/2cc08e5) UI optimization. *UI优化。*
 
+[70f56f7](https://github.com/Physton/sd-webui-prompt-all-in-one/commit/70f56f7) Fixed the problem where the Alibaba API
+could not be used for Traditional Chinese. *修复了阿里巴巴接口繁体中文不能使用的问题*
+
+[aac2c76](https://github.com/Physton/sd-webui-prompt-all-in-one/commit/aac2c76) Adjusting the data storage path location. *调整数据存储路径位置。*
+
 ## Contributing / *帮助开发*
 
 If you want to contribute to sd-webui-prompt-all-in-one, welcome to submit issues and pull requests. You can also
