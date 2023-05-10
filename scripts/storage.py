@@ -9,10 +9,23 @@ class storage:
         pass
 
     def __get_storage_path(self):
-        self.get_storage_path = os.path.join(Path().absolute(), 'physton-prompt')
-        if not os.path.exists(self.get_storage_path):
-            os.makedirs(self.get_storage_path)
-        return self.get_storage_path
+        self.storage_path = os.path.dirname(os.path.abspath(__file__)) + '/../storage'
+        self.storage_path = os.path.normpath(self.storage_path)
+        if not os.path.exists(self.storage_path):
+            os.makedirs(self.storage_path)
+
+        old_storage_path = os.path.join(Path().absolute(), 'physton-prompt')
+        if os.path.exists(old_storage_path):
+            # 复制就的存储文件到新的存储文件夹
+            for file in os.listdir(old_storage_path):
+                old_file_path = os.path.join(old_storage_path, file)
+                new_file_path = os.path.join(self.storage_path, file)
+                if not os.path.exists(new_file_path):
+                    os.rename(old_file_path, new_file_path)
+            # 删除旧的存储文件夹
+            os.rmdir(old_storage_path)
+
+        return self.storage_path
 
     def __get_data_filename(self, key):
         return self.__get_storage_path() + '/' + key + '.json'
