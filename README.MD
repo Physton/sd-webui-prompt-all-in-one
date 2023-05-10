@@ -156,9 +156,40 @@ contact me via:
 
 A: The translation interface that does not require an API key is obtained through crawling and does not require the user to apply for an API key. However, there may be translation failures, instability, slow speed, and lack of support for concurrency. The translation interface that requires an API key calls the API interface of a third-party translation service and requires the user to apply for an API key. However, the translation success rate is relatively high, some interfaces support high concurrency, and the translation speed is fast.
 
+### Q: Unable to use translation service, clicking "Test!" results in "No module named 'xxx'" error message?
+
+A:  This is because the dependencies required by webui are not installed properly at startup. You can solve this issue by following these steps:
+
+1. Switch to the python/bin directory used by sd-webui.
+2. Run the following commands:
+   ```
+   ./python -m pip install translators
+   ./python -m pip install openai
+   ./python -m pip install boto3
+   ./python -m pip install aliyun-python-sdk-core
+   ./python -m pip install aliyun-python-sdk-alimt
+   ./python -m pip install tencentcloud-sdk-python
+   ```
+3. After the installation is complete, restart webui.
+
 ### Q: 无需api key的翻译接口和需要api key的翻译接口有什么区别？
 
 A: 无需api key的翻译接口，是通过爬虫获取的，不需要用户自己申请api key，但是可能会存在翻译失败的情况，稳定下差，速度慢，不支持并发。需要api key的翻译接口，是通过调用第三方翻译服务的api接口，需要用户自己申请api key，但是翻译成功率较高，某些接口支持高并发，翻译速度快。
+
+### Q: 无法使用翻译服务，点击“Test!”，提示“No module named 'xxx'”？
+
+A: 这是由于webui启动时，没有正确的安装依赖导致的，可以通过以下方式解决：
+1. 切换到webui所使用的python/bin目录。
+2. 执行命令：
+   ```
+   ./python -m pip install translators
+   ./python -m pip install openai
+   ./python -m pip install boto3
+   ./python -m pip install aliyun-python-sdk-core
+   ./python -m pip install aliyun-python-sdk-alimt
+   ./python -m pip install tencentcloud-sdk-python
+   ```
+3. 等待安装完成后，重启webui。
 
 ## Donate
 
