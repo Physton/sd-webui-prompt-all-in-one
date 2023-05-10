@@ -118,6 +118,8 @@ could not be used for Traditional Chinese. *修复了阿里巴巴接口繁体中
 
 [aac2c76](https://github.com/Physton/sd-webui-prompt-all-in-one/commit/aac2c76) Adjusting the data storage path location. *调整数据存储路径位置。*
 
+[a381364](https://github.com/Physton/sd-webui-prompt-all-in-one/commit/a381364) Fixed the issue [#4](https://github.com/Physton/sd-webui-prompt-all-in-one/issues/4): where the Paste Helper button cannot function properly when the extension is enabled. *修复问题[#4](https://github.com/Physton/sd-webui-prompt-all-in-one/issues/4)：开启扩展无法正常使用粘贴助手按钮。*
+
 ## Contributing / *帮助开发*
 
 If you want to contribute to sd-webui-prompt-all-in-one, welcome to submit issues and pull requests. You can also
