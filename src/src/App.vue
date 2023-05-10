@@ -25,7 +25,7 @@
                 </div>
                 <div class="paste-popup-title">{{ pasteTitle }}</div>
                 <div class="paste-popup-body">
-                    <textarea class="paste-content" v-model="pasteContent"></textarea>
+                    <textarea class="paste-content" v-model="pasteContent" :placeholder="getLang('please_enter_the_content_here')"></textarea>
                     <div v-if="!pasteLoading" class="paste-submit" @click="onClickPasteSubmit">Submit</div>
                     <div v-else class="paste-submit">
                         <icon-loading width="24" height="24"></icon-loading>
@@ -228,6 +228,9 @@ export default {
         })
     },
     methods: {
+        getLang(key) {
+            return common.getLang(key, this.languageCode, this.languages)
+        },
         init() {
             let dataListsKeys = ['languageCode', 'autoTranslateToEnglish', 'autoTranslateToLocal', 'hideDefaultInput', 'translateApi', 'enableTooltip']
             /*this.prompts.forEach(item => {
