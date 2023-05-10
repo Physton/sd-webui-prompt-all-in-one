@@ -104,6 +104,9 @@ The currently supported languages are: `中文` `English` ` Русский` `日
 
 [9fdc680](https://github.com/Physton/sd-webui-prompt-all-in-one/commit/9fdc680) Fix the issue [#1](https://github.com/Physton/sd-webui-prompt-all-in-one/issues/1): Conflict with tagcomplete causing the inability to select tags in tagcomplete. *修复问题 [#1](https://github.com/Physton/sd-webui-prompt-all-in-one/issues/1)：与tagcomplete冲突，导致tagcomplete无法选择tag*
 
+[e68cfde](https://github.com/Physton/sd-webui-prompt-all-in-one/commit/e68cfde) The Tag input box has been optimized and
+some issues have been fixed. Continuously optimizing... *优化Tag输入框，修复了一些问题，持续优化中...*
+
 ## Contributing / *帮助开发*
 
 If you want to contribute to sd-webui-prompt-all-in-one, welcome to submit issues and pull requests. You can also
