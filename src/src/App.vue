@@ -17,6 +17,22 @@
         <translate-setting ref="translateSetting" v-model:language-code="languageCode"
                            :translate-apis="translateApis" :languages="languages"
                            v-model:translate-api="translateApi"></translate-setting>
+
+        <div class="physton-paste-popup" v-if="showPastePopup" @click="closePastePopup">
+            <div class="paste-popup-main" @click.stop>
+                <div class="paste-popup-close" @click="closePastePopup">
+                    <icon-close width="24" height="24"></icon-close>
+                </div>
+                <div class="paste-popup-title">{{ pasteTitle }}</div>
+                <div class="paste-popup-body">
+                    <textarea class="paste-content" v-model="pasteContent"></textarea>
+                    <div v-if="!pasteLoading" class="paste-submit" @click="onClickPasteSubmit">Submit</div>
+                    <div v-else class="paste-submit">
+                        <icon-loading width="24" height="24"></icon-loading>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -24,10 +40,14 @@
 import PhystonPrompt from "./components/phystonPrompt.vue"
 import TranslateSetting from "@/components/translateSetting.vue";
 import common from "@/utils/common";
+import IconClose from "@/components/icons/iconClose.vue";
+import IconLoading from "@/components/icons/iconLoading.vue";
 
 export default {
     name: 'App',
     components: {
+        IconLoading,
+        IconClose,
         TranslateSetting,
         PhystonPrompt,
     },
@@ -36,6 +56,7 @@ export default {
         return {
             prompts: [
                 {
+                    tab: 'tab_txt2img',
                     prompt: 'txt2img_prompt',
                     counter: 'txt2img_token_counter',
                     button: 'txt2img_token_button',
@@ -52,6 +73,7 @@ export default {
                     id: 'phystonPrompt_txt2img_prompt'
                 },
                 {
+                    tab: 'tab_txt2img',
                     prompt: 'txt2img_neg_prompt',
                     counter: 'txt2img_negative_token_counter',
                     button: 'txt2img_negative_token_button',
@@ -68,6 +90,7 @@ export default {
                     id: 'phystonPrompt_txt2img_neg_prompt'
                 },
                 {
+                    tab: 'tab_img2img',
                     prompt: 'img2img_prompt',
                     counter: 'img2img_token_counter',
                     button: 'img2img_token_button',
@@ -84,6 +107,7 @@ export default {
                     id: 'phystonPrompt_img2img_prompt'
                 },
                 {
+                    tab: 'tab_img2img',
                     prompt: 'img2img_neg_prompt',
                     counter: 'img2img_negative_token_counter',
                     button: 'img2img_negative_token_button',
@@ -111,6 +135,12 @@ export default {
             enableTooltip: true,
 
             startWatchSave: false,
+
+            pasteBtn: null,
+            showPastePopup: false,
+            pasteTitle: '',
+            pasteContent: '',
+            pasteLoading: false,
         }
     },
     watch: {
@@ -256,6 +286,7 @@ export default {
                     this.startWatchSave = true
                 })
 
+                this.handlePaste()
                 // this.$refs.translateSetting.open(this.translateApi)
             })
         },
@@ -287,7 +318,71 @@ export default {
         },
         onTranslateApiClick() {
             this.$refs.translateSetting.open(this.translateApi)
-        }
+        },
+        handlePaste() {
+            const $paste = document.getElementById('paste')
+            // 拷贝一个新的按钮
+            const $pasteNew = $paste.cloneNode(true)
+            $pasteNew.id = 'paste-new'
+            // 加到原来的按钮后面一个
+            $paste.parentNode.insertBefore($pasteNew, $paste.nextSibling)
+            // 原来的按钮隐藏
+            $paste.style.display = 'none'
+            // 监听新按钮点击事件
+            $pasteNew.addEventListener('click', () => {
+                this.openPastePopup()
+            })
+            this.pasteTitle = $paste.title
+            this.pasteBtn = $paste
+        },
+        openPastePopup() {
+            this.pasteContent = ''
+            this.pasteLoading = false
+            this.showPastePopup = true
+        },
+        closePastePopup() {
+            this.showPastePopup = false
+        },
+        onClickPasteSubmit() {
+            this.pasteLoading = true
+            const ele = get_uiCurrentTabContent()
+            let $textarea = null
+            let $prompt = null
+            for (const item of this.prompts) {
+                if (!item.neg && item.tab == ele.id) {
+                    $textarea = item.$textarea
+                    $prompt = item.$prompt
+                    break
+                }
+            }
+            if (!$textarea || !$prompt) {
+                this.pasteLoading = false
+                return
+            }
+            $textarea.value = this.pasteContent
+            $textarea.dispatchEvent(new Event('input'))
+            this.pasteBtn.dispatchEvent(new Event('click'))
+
+            setTimeout(() => {
+                let interval = 0
+                let intervalI = 0
+                interval = setInterval(() => {
+                    intervalI++
+                    if (intervalI > 100) {
+                        this.pasteLoading = false
+                        clearInterval(interval)
+                        return
+                    }
+                    const $hide = $prompt.getElementsByClassName('hide')
+                    console.log($prompt, $hide)
+                    if ($hide.length > 0) {
+                        this.pasteLoading = false
+                        this.closePastePopup()
+                        clearInterval(interval)
+                    }
+                }, 100)
+            }, 1000)
+        },
     },
 }
 </script>
@@ -309,6 +404,97 @@ export default {
 
   &:hover {
     transform: scale(1.4);
+  }
+}
+
+.physton-paste-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.5);
+
+  .paste-popup-main {
+    width: 700px;
+    height: auto;
+    padding: 20px;
+    margin: 0;
+    box-shadow: 0 0 3px 0 #4a54ff;
+    border-radius: 6px 6px 4px 4px;
+    background-color: rgba(30, 30, 30, .9);
+    transition: height .1s ease-in-out, width .1s ease-in-out;
+    color: #fff;
+    position: relative;
+
+    .paste-popup-close {
+      display: block;
+      padding: 4px;
+      position: absolute;
+      right: -14px;
+      top: -14px;
+      background: #ffffffe6;
+      border-radius: 50%;
+      box-shadow: 0px 1px 5px 0px #d81e06;
+      cursor: pointer;
+
+      &:hover {
+        background: #d81e06;
+      }
+    }
+
+    .paste-popup-title {
+      font-size: 14px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      word-break: keep-all;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    .paste-popup-body {
+      .paste-content {
+        background: rgba(30, 30, 30, .9);
+        border: 1px solid #3c3c3c;
+        padding: 4px;
+        width: 100%;
+        font-size: 14px;
+        color: #fff;
+        resize: none;
+        height: 400px;
+        box-sizing: border-box;
+
+        &:focus {
+          outline: none;
+          border-color: #4A54FF;
+        }
+      }
+
+      .paste-submit {
+        background: center center #4A54FF;
+        background-image: linear-gradient(315deg, #6772FF 0, #00F9E5 100%);
+        background-size: 104% 104%;
+        color: #1d1d1d;
+        border-radius: 10px;
+        padding: 10px;
+        margin-top: 10px;
+        text-align: center;
+        color: #fff;
+        font-size: 20px;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &:hover {
+          box-shadow: 0 0 14px #4a54ff;
+        }
+      }
+    }
   }
 }
 </style>
