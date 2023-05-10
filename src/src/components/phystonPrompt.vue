@@ -189,7 +189,7 @@
                                         v-show="!isEnglish"
                                         @click="onTranslateToEnglishClick(index).then(() => updateTags())">
                                     <icon-english v-if="!loading[tag.id + '_en']" width="20" height="20"
-                                                  color="#ad6800"/>
+                                                  color="#ff9900"/>
                                     <icon-loading v-if="loading[tag.id + '_en']" width="20" height="20"/>
                                 </button>
                                 <button type="button" v-tooltip="getLang('copy_to_clipboard')" @click="copy(tag.value)">
@@ -894,15 +894,14 @@ export default {
           padding: 0 10px 0 5px;
           font-size: 0.8rem;
           appearance: auto;
-          border: var(--button-border-width) solid var(--button-primary-border-color);
-          background: var(--button-primary-background-fill);
-          color: var(--button-primary-text-color);
+          border: var(--button-border-width) solid var(--body-text-color);
+          background: var(--body-background-fill);
+          color: var(--body-text-color);
           height: 20px;
           line-height: 20px;
 
           &:hover {
-            background: var(--button-primary-background-fill-hover);
-            border-color: var(--button-primary-border-color-hover);
+            border-color: var(--button-primary-border-color);
           }
         }
 
@@ -980,6 +979,7 @@ export default {
       line-height: 0.9rem;
       font-family: inherit;
       font-weight: inherit;
+      border-radius: 4px;
 
       &:focus {
         box-shadow: var(--input-shadow-focus);
@@ -1032,6 +1032,7 @@ export default {
             font-size: 0.9rem !important;
             height: 24px !important;
             min-height: unset !important;
+            border-radius: 4px !important;
             border-top-right-radius: 0 !important;
             border-bottom-right-radius: 0 !important;
 
@@ -1041,6 +1042,7 @@ export default {
           }
 
           .input-tag-edit {
+            border-radius: 4px !important;
             border-top-right-radius: 0 !important;
             border-bottom-right-radius: 0 !important;
           }
@@ -1055,6 +1057,7 @@ export default {
             padding: 0;
             width: 16px;
             height: 24px;
+            border-radius: 0;
             border-top-right-radius: 4px;
             border-bottom-right-radius: 4px;
 
