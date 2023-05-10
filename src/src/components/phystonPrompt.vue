@@ -569,7 +569,7 @@ export default {
         onTagInputChange(index, e) {
             if (this.tags[index].value === e.target.value) return
             this.tags[index].value = e.target.value
-            this._updateTag(this.tags[index])
+            this._setTag(this.tags[index])
             this.updateTags()
         },
         onTagWeightNumChange(index, e) {
