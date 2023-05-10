@@ -58,7 +58,9 @@
                 "delete_all_keywords_confirm": "确定要删除所有关键词吗？",
                 "whether_to_enable_tooltip": "是否启用每个功能的提示框，如果你已经熟练掌握本扩展的所有功能，可以取消勾选",
                 "delete_all_history": "删除所有历史记录",
-                "delete_all_history_confirm": "确定要删除所有历史记录吗？"
+                "delete_all_history_confirm": "确定要删除所有历史记录吗？",
+                "please_enter_the_content_here": "请输入内容",
+                "not_api_key_desc": "免费的翻译接口不稳定，并不是每个接口都能在你的电脑中使用，请尽量申请api key使用稳定的官方接口"
             }
         },
         {
@@ -118,7 +120,9 @@
                 "delete_all_keywords_confirm": "確定要刪除所有關鍵詞嗎？",
                 "whether_to_enable_tooltip": "是否啟用每個功能的提示框，如果你已經熟練掌握本擴展的所有功能，可以取消勾選",
                 "delete_all_history": "删除所有歷史記錄",
-                "delete_all_history_confirm": "確定要删除所有歷史記錄嗎？"
+                "delete_all_history_confirm": "確定要删除所有歷史記錄嗎？",
+                "please_enter_the_content_here": "請輸入內容",
+                "not_api_key_desc": "免費的翻譯介面不穩定，不是每一個介面都能在你的電腦上使用，建議申請API Key以使用穩定的官方介面。"
             }
         },
         {
@@ -178,7 +182,9 @@
                 "delete_all_keywords_confirm": "Are you sure you want to delete all keywords?",
                 "whether_to_enable_tooltip": "Enable Tooltips for Each Function. If You Are Familiar with All the Functions of This Extension, You Can Uncheck This Option.",
                 "delete_all_history": "Delete All History",
-                "delete_all_history_confirm": "Are you sure you want to delete all history?"
+                "delete_all_history_confirm": "Are you sure you want to delete all history?",
+                "please_enter_the_content_here": "Please enter content",
+                "not_api_key_desc": "Free translation interfaces are unstable, and not every interface can be used on your computer. Please apply for an API Key to use the stable official interface."
             }
         },
         {
@@ -238,7 +244,9 @@
                 "delete_all_keywords_confirm": "Вы действительно хотите удалить все ключевые слова?",
                 "whether_to_enable_tooltip": "Включить всплывающие подсказки для каждой функции. Если вы уже владеете всеми функциями расширения, можете снимать галочку.",
                 "delete_all_history": "Удалить всю историю",
-                "delete_all_history_confirm": "Вы действительно хотите удалить всю историю?"
+                "delete_all_history_confirm": "Вы действительно хотите удалить всю историю?",
+                "please_enter_the_content_here": "Пожалуйста, введите содержимое",
+                "not_api_key_desc": "Бесплатные интерфейсы перевода нестабильны и не каждый интерфейс можно использовать на вашем компьютере. Пожалуйста, получите API Key для использования стабильного официального интерфейса"
             }
         },
         {
@@ -298,7 +306,9 @@
                 "delete_all_keywords_confirm": "本当にすべてのキーワードを削除しますか？",
                 "whether_to_enable_tooltip": "各機能のツールチップを有効にするかどうか（この拡張機能のすべての機能を熟知している場合はチェックを外してください）",
                 "delete_all_history": "すべての履歴を削除する",
-                "delete_all_history_confirm": "本当にすべての履歴を削除しますか？"
+                "delete_all_history_confirm": "本当にすべての履歴を削除しますか？",
+                "please_enter_the_content_here": "コンテンツを入力してください",
+                "not_api_key_desc": "無料の翻訳インターフェースは不安定であり、すべてのインターフェースをあなたのコンピュータで使用できるわけではありません。安定した公式インターフェイスを使用するにはAPI Keyを申請してください。"
             }
         },
         {
@@ -358,7 +368,9 @@
                 "delete_all_keywords_confirm": "정말 모든 키워드를 삭제하시겠습니까?",
                 "whether_to_enable_tooltip": "각 기능에 대한 도움말 설명을 사용할 지 여부, 확장 프로그램의 모든 기능을 이미 익히셨다면 체크 해제 가능",
                 "delete_all_history": "모든 기록 삭제",
-                "delete_all_history_confirm": "정말 모든 기록을 삭제하시겠습니까?"
+                "delete_all_history_confirm": "정말 모든 기록을 삭제하시겠습니까?",
+                "please_enter_the_content_here": "내용을 입력하세요",
+                "not_api_key_desc": "무료 번역 인터페이스는 불안정합니다. 모든 인터페이스를 컴퓨터에서 사용할 수 있는 것은 아닙니다. 안정적인 공식 인터페이스를 사용하려면 API 키를 신청하십시오."
             }
         },
         {
@@ -418,7 +430,9 @@
                 "delete_all_keywords_confirm": "Êtes-vous sûr de vouloir supprimer tous les mots clés ?",
                 "whether_to_enable_tooltip": "Voulez-vous activer les info-bulles de chaque fonction ? Si vous maîtrisez déjà toutes les fonctions de cette extension, vous pouvez décocher cette option",
                 "delete_all_history": "Supprimer tout l'historique",
-                "delete_all_history_confirm": "Êtes-vous sûr de vouloir supprimer tout l'historique ?"
+                "delete_all_history_confirm": "Êtes-vous sûr de vouloir supprimer tout l'historique ?",
+                "please_enter_the_content_here": "Veuillez entrer le contenu",
+                "not_api_key_desc": "Les interfaces de traduction gratuites sont instables et toutes les interfaces ne peuvent pas être utilisées sur votre ordinateur. Veuillez demander une clé d'API pour utiliser l'interface officielle stable."
             }
         },
         {
@@ -478,7 +492,9 @@
                 "delete_all_keywords_confirm": "Möchten Sie wirklich alle Schlüsselwörter löschen?",
                 "whether_to_enable_tooltip": "Soll jeder Funktionshinweis aktiviert werden? Wenn Sie mit allen Funktionen dieser Erweiterung vertraut sind, können Sie das Kontrollkästchen deaktivieren.",
                 "delete_all_history": "Alle Verlaufseinträge löschen",
-                "delete_all_history_confirm": "Möchten Sie wirklich alle Verlaufseinträge löschen?"
+                "delete_all_history_confirm": "Möchten Sie wirklich alle Verlaufseinträge löschen?",
+                "please_enter_the_content_here": "Bitte Inhalt eingeben",
+                "not_api_key_desc": "Kostenlose Übersetzungs-Schnittstellen sind instabil, und nicht jede Schnittstelle kann auf Ihrem Computer verwendet werden. Bitte beantragen Sie einen API-Schlüssel, um die stabile offizielle Schnittstelle zu verwenden."
             }
         },
         {
@@ -538,7 +554,9 @@
                 "delete_all_keywords_confirm": "¿Estás seguro de que quieres eliminar todas las palabras clave?",
                 "whether_to_enable_tooltip": "¿Activar información sobre herramientas para cada función? Si ya estás familiarizado con todas las funciones de esta extensión, puedes desactivar esta opción.",
                 "delete_all_history": "Eliminar todo el historial",
-                "delete_all_history_confirm": "¿Seguro que quieres eliminar todo el historial?"
+                "delete_all_history_confirm": "¿Seguro que quieres eliminar todo el historial?",
+                "please_enter_the_content_here": "Por favor, ingrese el contenido",
+                "not_api_key_desc": "Las interfaces de traducción gratuitas son inestables y no todas las interfaces se pueden usar en su computadora. Por favor, solicite una clave de API para usar la interfaz oficial estable."
             }
         },
         {
@@ -598,7 +616,9 @@
                 "delete_all_keywords_confirm": "Tem a certeza que pretende eliminar todas as palavras-chave?",
                 "whether_to_enable_tooltip": "Deseja ativar a caixa de ferramentas de sugestões para cada funcionalidade? Se já estiver familiarizado com todas as funcionalidades desta extensão, pode desmarcar esta opção.",
                 "delete_all_history": "Eliminar todo o histórico",
-                "delete_all_history_confirm": "Tem a certeza que pretende eliminar todo o histórico?"
+                "delete_all_history_confirm": "Tem a certeza que pretende eliminar todo o histórico?",
+                "please_enter_the_content_here": "Por favor, digite o conteúdo",
+                "not_api_key_desc": "As interfaces de tradução gratuitas são instáveis e nem todas as interfaces podem ser usadas no seu computador. Por favor, solicite uma chave de API para usar a interface oficial estável."
             }
         },
         {
@@ -658,7 +678,9 @@
                 "delete_all_keywords_confirm": "Sei sicuro di voler eliminare tutte le parole chiave?",
                 "whether_to_enable_tooltip": "Abilitare o meno i suggerimenti per ogni funzione. Se sei già esperto di tutte le funzionalità dell'estensione, puoi deselezionare questa opzione",
                 "delete_all_history": "Elimina tutto lo storico",
-                "delete_all_history_confirm": "Sei sicuro di voler eliminare tutto lo storico?"
+                "delete_all_history_confirm": "Sei sicuro di voler eliminare tutto lo storico?",
+                "please_enter_the_content_here": "Si prega di inserire il contenuto",
+                "not_api_key_desc": "Le interfacce di traduzione gratuite sono instabili e non tutte le interfacce possono essere utilizzate sul vostro computer. Si prega di richiedere una chiave API per utilizzare l'interfaccia ufficiale stabile."
             }
         },
         {
@@ -718,7 +740,9 @@
                 "delete_all_keywords_confirm": "هل أنت متأكد من رغبتك في حذف جميع الكلمات المفتاحية؟",
                 "whether_to_enable_tooltip": "هل تريد تمكين نافذة تلميح لكل وظيفة؟ إذا كنت قد اكتسبت الخبرة المطلوبة في استخدام هذه الإضافة، يمكنك إلغاء التحديد",
                 "delete_all_history": "حذف جميع السجلات",
-                "delete_all_history_confirm": "هل أنت متأكد من رغبتك في حذف جميع السجلات؟"
+                "delete_all_history_confirm": "هل أنت متأكد من رغبتك في حذف جميع السجلات؟",
+                "please_enter_the_content_here": "يرجى إدخال المحتوى",
+                "not_api_key_desc": "الواجهات البرمجية المجانية للترجمة غير مستقرة، ولا يمكن استخدام كل الواجهات على جهاز الكمبيوتر الخاص بك. يرجى طلب مفتاح واجهة برمجة التطبيقات لاستخدام الواجهة الرسمية والمستقرة."
             }
         }
     ]

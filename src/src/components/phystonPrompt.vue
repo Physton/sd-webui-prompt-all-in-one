@@ -418,7 +418,6 @@ export default {
             let prompts = []
             this.tags.forEach(tag => {
                 let value = common.replaceTag(tag.value)
-                console.log(value)
                 if (value !== tag.value) {
                     tag.value = value
                     this._setTag(tag)

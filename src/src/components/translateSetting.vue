@@ -14,6 +14,12 @@
                     </select>
                 </div>
             </div>
+            <div class="setting-line" v-if="apiItem && apiItem.type == 'translators'">
+                <div class="line-title"></div>
+                <div class="line-content">
+                    <span style="color: var(--red5)">*{{ getLang('not_api_key_desc') }}</span>
+                </div>
+            </div>
             <div class="setting-line" v-if="apiItem.help">
                 <div class="line-title"></div>
                 <div class="line-content">
@@ -117,15 +123,18 @@ Github: https://github.com/Physton/sd-webui-prompt-all-in-one`,
                 this.loading = false
                 this.configs = []
                 this.gradioAPI.getData('translate_api.' + this.apiKey).then(res => {
-                    for (const item of this.apiItem.config) {
-                        if (res) {
-                            item.value = res[item.key]
-                        } else {
-                            item.value = item.default || ''
+                    const apiItem = this.apiItem
+                    if (apiItem && apiItem.config) {
+                        for (const item of this.apiItem.config) {
+                            if (res) {
+                                item.value = res[item.key]
+                            } else {
+                                item.value = item.default || ''
+                            }
+                            this.configs.push(item)
                         }
-                        this.configs.push(item)
+                        console.log(this.configs)
                     }
-                    console.log(this.configs)
                 })
             },
         },
