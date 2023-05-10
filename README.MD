@@ -111,6 +111,8 @@ some issues have been fixed. Continuously optimizing... *优化Tag输入框，�
 
 [a77a85f](https://github.com/Physton/sd-webui-prompt-all-in-one/commit/a77a85f) Modify the color of certain buttons. *修改部分按钮颜色。*
 
+[2cc08e5](https://github.com/Physton/sd-webui-prompt-all-in-one/commit/2cc08e5) UI optimization. *UI优化。*
+
 ## Contributing / *帮助开发*
 
 If you want to contribute to sd-webui-prompt-all-in-one, welcome to submit issues and pull requests. You can also
