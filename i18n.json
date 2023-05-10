@@ -3,7 +3,7 @@
     "languages": [
         {
             "code": "zh_CN",
-            "name": "中文（简体）",
+            "name": "简体中文 (中国)",
             "lang": {
                 "need_api_key": "需要API Key",
                 "dont_need_api_key": "不需要API Key（不稳定）",
@@ -63,7 +63,7 @@
         },
         {
             "code": "zh_TW",
-            "name": "漢語（繁體）",
+            "name": "繁体中文 (中國台灣)",
             "lang": {
                 "need_api_key": "需要API Key",
                 "dont_need_api_key": "不需要API Key（不穩定）",
