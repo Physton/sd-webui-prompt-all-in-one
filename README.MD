@@ -99,6 +99,9 @@ The currently supported languages are: `中文` `English` ` Русский` `日
   ![](images/feature2.gif)
 
 
+## Update Record / *更新记录*
+[c056ac8](https://github.com/Physton/sd-webui-prompt-all-in-one/commit/c056ac8871639e105e99d4b8546af8b8d6714d1b) Fix the issue: after manually adding weight to keywords, there is no input box for weight quantity. *修复问题：手动给关键词添加权重数后，没有快捷设置数量输入框*
+
 ## Contributing / *帮助开发*
 
 If you want to contribute to sd-webui-prompt-all-in-one, welcome to submit issues and pull requests. You can also
