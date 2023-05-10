@@ -536,6 +536,10 @@ export default {
             if (e.keyCode === 13) {
                 this.editing[this.tags[index].id] = false
                 if (this.tags[index].value !== e.target.value) {
+                    const value = e.target.value
+                    this.tags[index].weightNum = common.getTagWeightNum(value)
+                    this.tags[index].incWeight = common.getTagIncWeight(value)
+                    this.tags[index].decWeight = common.getTagDecWeight(value)
                     this.tags[index].value = e.target.value
                     // this.updateTags()
                 }
@@ -543,7 +547,11 @@ export default {
         },
         onTagInputChange(index, e) {
             if (this.tags[index].value === e.target.value) return
-            this.tags[index].value = e.target.value
+            const value = e.target.value
+            this.tags[index].weightNum = common.getTagWeightNum(value)
+            this.tags[index].incWeight = common.getTagIncWeight(value)
+            this.tags[index].decWeight = common.getTagDecWeight(value)
+            this.tags[index].value = value
             this.updateTags()
         },
         onTagWeightNumChange(index, e) {
