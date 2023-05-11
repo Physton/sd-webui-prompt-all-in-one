@@ -127,6 +127,8 @@ could not be used for Traditional Chinese. *修复了阿里巴巴接口繁体中
 
 [bd9fc43](https://github.com/Physton/sd-webui-prompt-all-in-one/commit/bd9fc43) Fix the issue [#9](https://github.com/Physton/sd-webui-prompt-all-in-one/issues/9). *修复问题[#9](https://github.com/Physton/sd-webui-prompt-all-in-one/issues/9)*
 
+[22e2554](https://github.com/Physton/sd-webui-prompt-all-in-one/commit/22e2554) Fix the issue [#7](https://github.com/Physton/sd-webui-prompt-all-in-one/issues/7). *修复问题[#7](https://github.com/Physton/sd-webui-prompt-all-in-one/issues/7)*
+
 ## Contributing / *帮助开发*
 
 If you want to contribute to sd-webui-prompt-all-in-one, welcome to submit issues and pull requests. You can also
