@@ -1,7 +1,10 @@
 <template>
     <div class="physton-prompt" :name="name">
-        <div class="prompt-main" @click="onPromptMainClick">
+        <div :class="['prompt-main', unfold ? '': 'fold']" @click="onPromptMainClick">
             <div class="prompt-header">
+                <div class="prompt-unfold" @click="onUnfoldClick">
+                    <icon-unfold class="hover-scale-120" width="20" height="20"/>
+                </div>
                 <div class="prompt-header-title">{{ neg ? getLang('negative_prompt') : getLang('prompt') }}</div>
                 <div class="prompt-header-counter" v-show="counterText">({{ counterText }})</div>
                 <div class="prompt-header-extend">
@@ -23,7 +26,8 @@
                 <div class="prompt-header-extend">
                     <div class="extend-content">
                         <div class="extend-btn-group">
-                            <div class="extend-btn-item" ref="historyButton" v-tooltip="getLang('history')" @click.stop="onShowHistoryClick">
+                            <div class="extend-btn-item" ref="historyButton" v-tooltip="getLang('history')"
+                                 @click.stop="onShowHistoryClick">
                                 <icon-history class="hover-scale-120" width="18" height="18"/>
                             </div>
                             <div class="extend-btn-item" ref="favoriteButton"
@@ -38,12 +42,15 @@
                         <div class="extend-btn-group">
                             <div class="extend-btn-item" v-tooltip="getLang('translate_keywords_to_local_language')"
                                  @click="onTranslatesToLocalClick">
-                                <icon-translate class="hover-scale-120" v-if="!loading['all_local']" width="18" height="18" color="#ad6800"/>
-                                <icon-loading class="hover-scale-120" v-if="loading['all_local']" width="18" height="18"/>
+                                <icon-translate class="hover-scale-120" v-if="!loading['all_local']" width="18"
+                                                height="18" color="#ad6800"/>
+                                <icon-loading class="hover-scale-120" v-if="loading['all_local']" width="18"
+                                              height="18"/>
                             </div>
                             <div class="extend-btn-item" v-tooltip="getLang('translate_all_keywords_to_english')"
                                  @click="onTranslatesToEnglishClick">
-                                <icon-english class="hover-scale-120" v-if="!loading['all_en']" width="18" height="18" color="#ad6800"/>
+                                <icon-english class="hover-scale-120" v-if="!loading['all_en']" width="18" height="18"
+                                              color="#ad6800"/>
                                 <icon-loading class="hover-scale-120" v-if="loading['all_en']" width="18" height="18"/>
                             </div>
                         </div>
@@ -54,7 +61,8 @@
                         <div class="extend-btn-group">
                             <div class="extend-btn-item" v-tooltip="getLang('copy_keywords_to_clipboard')"
                                  @click="onCopyAllTagsClick">
-                                <icon-copy class="hover-scale-120" width="18" height="18" color="var(--body-text-color)"/>
+                                <icon-copy class="hover-scale-120" width="18" height="18"
+                                           color="var(--body-text-color)"/>
                             </div>
                             <div class="extend-btn-item" v-tooltip="getLang('delete_all_keywords')"
                                  @click="onDeleteAllTagsClick">
@@ -142,7 +150,9 @@
                                 </div>
                             </div>
                             <div class="btn-tag-extend">
-                                <vue-number-input class="input-number" :model-value="tag.weightNum" center controls :min="0" :step="0.1" size="small" @update:model-value="onTagWeightNumChange(index, $event)"></vue-number-input>
+                                <vue-number-input class="input-number" :model-value="tag.weightNum" center controls
+                                                  :min="0" :step="0.1" size="small"
+                                                  @update:model-value="onTagWeightNumChange(index, $event)"></vue-number-input>
                                 <button type="button" v-tooltip="getLang('increase_weight_add_parentheses')"
                                         @click="onIncWeightClick(index, +1)">
                                     <icon-weight width="20" height="20" type="parentheses" :increase="true"
@@ -231,10 +241,12 @@ import IconGithub from "@/components/icons/iconGithub.vue";
 import IconI18n from "@/components/icons/iconI18n.vue";
 import IconApi from "@/components/icons/iconApi.vue";
 import VueNumberInput from '@chenfengyuan/vue-number-input';
+import IconUnfold from "@/components/icons/iconUnflod.vue";
 
 export default {
     name: 'PhystonPrompt',
     components: {
+        IconUnfold,
         VueNumberInput,
         IconApi,
         IconI18n,
@@ -294,6 +306,7 @@ export default {
     emits: ['update:languageCode', 'update:autoTranslateToEnglish', 'update:autoTranslateToLocal', 'update:hideDefaultInput', 'update:enableTooltip', 'update:translateApi', 'click:translateApi', 'click:selectLanguage'],
     data() {
         return {
+            unfold: true,
             prompt: '',
             counterText: '',
             tags: [],
@@ -545,7 +558,7 @@ export default {
                 if (this.tags[index].value !== e.target.value) {
                     this.tags[index].value = e.target.value
                     this._setTag(this.tags[index])
-                    // this.updateTags()
+                    this.updateTags()
                 }
             }
         },
@@ -801,380 +814,399 @@ export default {
             this.onTextareaChange(true)
             this.$refs.history.hide(0)
             this.$refs.favorite.hide(0)
+        },
+        onUnfoldClick() {
+            this.unfold = !this.unfold
         }
     },
 }
 </script>
 <style lang="less">
 .physton-prompt {
-  border: 1px solid var(--input-border-color);
-  padding: 0 10px;
-  margin: 5px 0;
-
-  div {
-    line-height: 1;
-  }
-
-  svg {
-    display: inline-block;
-  }
-
-  .icon-svg {
-    display: inline-block;
-    line-height: 1;
-  }
-
-  .prompt-header {
+    border: 1px solid var(--input-border-color);
+    padding: 0 10px;
     margin: 5px 0;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    //padding-bottom: 10px;
-    margin-bottom: 10px;
-    border-bottom: 1px dashed var(--input-border-color);
-    flex-wrap: wrap;
 
-    > * {
-      margin-right: 10px;
-      margin-bottom: 10px;
-
-      &:last-child {
-        margin-right: 0;
-      }
+    div {
+        line-height: 1;
     }
 
-    .prompt-header-title {
-      font-weight: bold;
-      font-size: 1rem;
+    svg {
+        display: inline-block;
     }
 
-    .prompt-header-counter {
-      font-size: .9rem;
+    .icon-svg {
+        display: inline-block;
+        line-height: 1;
     }
 
-    .prompt-header-break {
-      flex-basis: 100%;
-      height: 0;
-      margin-bottom: 0;
-    }
+    .prompt-main {
+        &.fold {
+            max-height: 36px;
+            overflow: hidden;
 
-    .prompt-header-extend {
-      margin-right: 10px;
-      display: flex;
-      justify-content: flex-start;
-      align-items: center;
-
-      &:last-child {
-        margin-right: 0;
-      }
-
-      .extend-title {
-        font-size: 0.8rem;
-        margin-right: 5px;
-      }
-
-      .extend-content {
-        select, .select-btn {
-          padding: 0 10px 0 5px;
-          font-size: 0.8rem;
-          appearance: auto;
-          border: var(--button-border-width) solid var(--body-text-color);
-          background: var(--body-background-fill);
-          color: var(--body-text-color);
-          height: 20px;
-          line-height: 20px;
-
-          &:hover {
-            border-color: var(--button-primary-border-color);
-          }
-        }
-
-        .select-btn {
-          cursor: pointer;
-          padding: 0 10px;
-
-          &:hover {
-            background: var(--button-primary-background-fill-hover);
-            border-color: var(--button-primary-border-color-hover);
-          }
-        }
-
-        .extend-btn-group{
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          color: var(--button-secondary-text-color);
-          background: var(--button-secondary-background-fill);
-          border: 1px solid var(--button-secondary-border-color);
-          padding: 0;
-          border-radius: 4px;
-
-          .extend-btn-item {
-            cursor: pointer;
-            border-left: 1px solid var(--button-secondary-border-color);
-            height: 26px;
-            width: 30px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            &:first-child {
-              border-left: 0;
-              margin-left: 0;
+            .prompt-unfold {
+                transform: rotate(180deg);
             }
-          }
         }
-
-        .gradio-button, a {
-          height: 26px !important;
-          min-height: 26px !important;
-          max-height: 26px !important;
-        }
-
-        .gradio-checkbox {
-          cursor: pointer;
-        }
-
-        input[type="checkbox"] {
-          --ring-color: transparent;
-          position: relative;
-          box-shadow: var(--input-shadow);
-          border: 1px solid var(--checkbox-border-color);
-          border-radius: var(--checkbox-border-radius);
-          background-color: var(--checkbox-background-color);
-          line-height: var(--line-sm);
-          width: 16px;
-          height: 16px;
-
-          &:checked {
-            border-color: var(--checkbox-border-color-selected);
-            background-image: var(--checkbox-check);
-            background-color: var(--checkbox-background-color-selected)
-          }
-        }
-      }
-    }
-  }
-
-  .prompt-tags {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    align-items: flex-start;
-
-    > * {
-      margin-right: 12px;
-      margin-bottom: 8px;
-
-      &:last-child {
-        margin-right: 0;
-      }
     }
 
-    &.droping {
-      .btn-tag-extend {
-        display: none !important;
-      }
-    }
-
-    input[type="text"], input[type="number"] {
-      display: inline-block;
-      overflow-y: scroll;
-      height: 24px;
-      padding: 4px;
-      border: 1px solid #02b7fd;
-      appearance: none;
-      background-color: transparent;
-      font-size: 0.9rem;
-      line-height: 0.9rem;
-      font-family: inherit;
-      font-weight: inherit;
-      border-radius: 4px;
-
-      &:focus {
-        box-shadow: var(--input-shadow-focus);
-        border-color: var(--input-border-color-focus);
-      }
-    }
-
-    .prompt-tag {
-      display: inline-flex;
-      align-items: center;
-
-      &.disabled {
-        opacity: 0.5;
-      }
-
-      /*&.sortable-chosen {
-    .btn-tag-extend {
-        display: none !important;
-    }
-}*/
-
-      .prompt-tag-content {
-      }
-
-      .prompt-tag-main {
-        display: flex;
-        justify-content: flex-start;
-        align-items: flex-start;
-        position: relative;
-
-        &:hover {
-          .prompt-tag-edit, .btn-tag-extend {
-            box-shadow: 0 0 3px 0 #4a54ff;
-          }
-
-          .btn-tag-extend {
-            display: flex;
-          }
-        }
-
-        .prompt-tag-edit {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          position: relative;
-          border-radius: 4px;
-
-          .prompt-tag-value {
-            padding: 4px !important;
-            font-size: 0.9rem !important;
-            height: 24px !important;
-            min-height: unset !important;
-            border-radius: 4px !important;
-            border-top-right-radius: 0 !important;
-            border-bottom-right-radius: 0 !important;
-
-            .weight-character {
-              color: #d81e06;
-            }
-          }
-
-          .input-tag-edit {
-            border-radius: 4px !important;
-            border-top-right-radius: 0 !important;
-            border-bottom-right-radius: 0 !important;
-          }
-
-          .btn-tag-delete {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            border: var(--button-border-width) solid var(--button-secondary-border-color);
-            background: var(--button-secondary-background-fill);
-            padding: 0;
-            width: 16px;
-            height: 24px;
-            border-radius: 0;
-            border-top-right-radius: 4px;
-            border-bottom-right-radius: 4px;
-
-            &:hover {
-              background: #d81e06;
-
-              svg {
-                fill: #fff !important;
-              }
-            }
-          }
-        }
-
-        .btn-tag-extend {
-          display: none;
-          justify-content: flex-start;
-          align-items: center;
-          position: absolute;
-          top: -32px;
-          left: 0;
-          z-index: 100;
-          padding: 0;
-          box-shadow: 0 0 3px 0 #4a54ff;
-          background: center center #4A54FF;
-          background-image: linear-gradient(315deg, #6772FF 0, #00F9E5 100%);
-          background-size: 104% 104%;
-          border-radius: 4px;
-          overflow: hidden;
-
-          > button {
-            height: 32px;
-            width: 32px;
-            border: 0;
-            border-radius: 0;
-            padding: 5px;
-            min-width: auto;
-            font-size: 0.9rem;
-            min-height: auto;
-            background: transparent;
-            color: #fff;
-            border-right: 1px solid rgba(255, 255, 255, 0.2);
-
-            &:last-child {
-              border-right: 0;
-            }
-
-            &:hover {
-              background: rgba(255, 255, 255, 0.2);
-            }
-          }
-
-          > input {
-            width: 54px;
-            border: 0;
-          }
-
-          .input-number {
-            width: 90px;
-            border: 0;
-            padding: 0;
-
-            .vue-number-input__button {
-              width: 1.5rem;
-              background: rgba(255, 255, 255, .9);
-            }
-
-            .vue-number-input__input {
-              height: 32px;
-              border: 0;
-              padding: 0;
-            }
-          }
-
-          input[type=number]::-webkit-inner-spin-button,
-          input[type=number]::-webkit-outer-spin-button {
-            opacity: 1;
-          }
-        }
-      }
-
-      .prompt-local-language {
-        margin-top: 2px;
+    .prompt-header {
+        margin: 5px 0;
         display: flex;
         justify-content: flex-start;
         align-items: center;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+        border-bottom: 1px dashed var(--input-border-color);
+        flex-wrap: wrap;
 
-        .translate-to-local {
-          cursor: pointer;
+        > * {
+            margin-right: 10px;
+
+            &:last-child {
+                margin-right: 0;
+            }
         }
 
-        .local-language {
-          font-size: .8rem;
-          color: var(--body-text-color-subdued);
-          margin-left: 2px;
+        .prompt-unfold {
+            cursor: pointer;
+            margin-right: 2px;
+            animation: all .3s
         }
-      }
+
+        .prompt-header-title {
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        .prompt-header-counter {
+            font-size: .9rem;
+        }
+
+        .prompt-header-break {
+            flex-basis: 100%;
+            height: 0;
+            margin-bottom: 0;
+        }
+
+        .prompt-header-extend {
+            margin-right: 10px;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+
+            &:last-child {
+                margin-right: 0;
+            }
+
+            .extend-title {
+                font-size: 0.8rem;
+                margin-right: 5px;
+            }
+
+            .extend-content {
+                select, .select-btn {
+                    padding: 0 10px 0 5px;
+                    font-size: 0.8rem;
+                    appearance: auto;
+                    border: var(--button-border-width) solid var(--body-text-color);
+                    background: var(--body-background-fill);
+                    color: var(--body-text-color);
+                    height: 20px;
+                    line-height: 20px;
+
+                    &:hover {
+                        border-color: var(--button-primary-border-color);
+                    }
+                }
+
+                .select-btn {
+                    cursor: pointer;
+                    padding: 0 10px;
+
+                    &:hover {
+                        background: var(--button-primary-background-fill-hover);
+                        border-color: var(--button-primary-border-color-hover);
+                    }
+                }
+
+                .extend-btn-group {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    color: var(--button-secondary-text-color);
+                    background: var(--button-secondary-background-fill);
+                    border: 1px solid var(--button-secondary-border-color);
+                    padding: 0;
+                    border-radius: 4px;
+
+                    .extend-btn-item {
+                        cursor: pointer;
+                        border-left: 1px solid var(--button-secondary-border-color);
+                        height: 26px;
+                        width: 30px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+
+                        &:first-child {
+                            border-left: 0;
+                            margin-left: 0;
+                        }
+                    }
+                }
+
+                .gradio-button, a {
+                    height: 26px !important;
+                    min-height: 26px !important;
+                    max-height: 26px !important;
+                }
+
+                .gradio-checkbox {
+                    cursor: pointer;
+                }
+
+                input[type="checkbox"] {
+                    --ring-color: transparent;
+                    position: relative;
+                    box-shadow: var(--input-shadow);
+                    border: 1px solid var(--checkbox-border-color);
+                    border-radius: var(--checkbox-border-radius);
+                    background-color: var(--checkbox-background-color);
+                    line-height: var(--line-sm);
+                    width: 16px;
+                    height: 16px;
+
+                    &:checked {
+                        border-color: var(--checkbox-border-color-selected);
+                        background-image: var(--checkbox-check);
+                        background-color: var(--checkbox-background-color-selected)
+                    }
+                }
+            }
+        }
     }
 
-    .input-tag-append {
-      min-width: 200px;
-    }
+    .prompt-tags {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        align-items: flex-start;
 
-    .gradio-button {
-      max-width: none !important;
-      width: auto !important;
-      padding: 4px 12px !important;
+        > * {
+            margin-right: 12px;
+            margin-bottom: 8px;
+
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+
+        &.droping {
+            .btn-tag-extend {
+                display: none !important;
+            }
+        }
+
+        input[type="text"], input[type="number"] {
+            display: inline-block;
+            overflow-y: scroll;
+            height: 24px;
+            padding: 4px;
+            border: 1px solid #02b7fd;
+            appearance: none;
+            background-color: transparent;
+            font-size: 0.9rem;
+            line-height: 0.9rem;
+            font-family: inherit;
+            font-weight: inherit;
+            border-radius: 4px;
+
+            &:focus {
+                box-shadow: var(--input-shadow-focus);
+                border-color: var(--input-border-color-focus);
+            }
+        }
+
+        .prompt-tag {
+            display: inline-flex;
+            align-items: center;
+
+            &.disabled {
+                opacity: 0.5;
+            }
+
+            /*&.sortable-chosen {
+          .btn-tag-extend {
+              display: none !important;
+          }
+      }*/
+
+            .prompt-tag-content {
+            }
+
+            .prompt-tag-main {
+                display: flex;
+                justify-content: flex-start;
+                align-items: flex-start;
+                position: relative;
+
+                &:hover {
+                    .prompt-tag-edit, .btn-tag-extend {
+                        box-shadow: 0 0 3px 0 #4a54ff;
+                    }
+
+                    .btn-tag-extend {
+                        display: flex;
+                    }
+                }
+
+                .prompt-tag-edit {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    position: relative;
+                    border-radius: 4px;
+
+                    .prompt-tag-value {
+                        padding: 4px !important;
+                        font-size: 0.9rem !important;
+                        height: 24px !important;
+                        min-height: unset !important;
+                        border-radius: 4px !important;
+                        border-top-right-radius: 0 !important;
+                        border-bottom-right-radius: 0 !important;
+
+                        .weight-character {
+                            color: #d81e06;
+                        }
+                    }
+
+                    .input-tag-edit {
+                        border-radius: 4px !important;
+                        border-top-right-radius: 0 !important;
+                        border-bottom-right-radius: 0 !important;
+                    }
+
+                    .btn-tag-delete {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        cursor: pointer;
+                        border: var(--button-border-width) solid var(--button-secondary-border-color);
+                        background: var(--button-secondary-background-fill);
+                        padding: 0;
+                        width: 16px;
+                        height: 24px;
+                        border-radius: 0;
+                        border-top-right-radius: 4px;
+                        border-bottom-right-radius: 4px;
+
+                        &:hover {
+                            background: #d81e06;
+
+                            svg {
+                                fill: #fff !important;
+                            }
+                        }
+                    }
+                }
+
+                .btn-tag-extend {
+                    display: none;
+                    justify-content: flex-start;
+                    align-items: center;
+                    position: absolute;
+                    top: -32px;
+                    left: 0;
+                    z-index: 100;
+                    padding: 0;
+                    box-shadow: 0 0 3px 0 #4a54ff;
+                    background: center center #4A54FF;
+                    background-image: linear-gradient(315deg, #6772FF 0, #00F9E5 100%);
+                    background-size: 104% 104%;
+                    border-radius: 4px;
+                    overflow: hidden;
+
+                    > button {
+                        height: 32px;
+                        width: 32px;
+                        border: 0;
+                        border-radius: 0;
+                        padding: 5px;
+                        min-width: auto;
+                        font-size: 0.9rem;
+                        min-height: auto;
+                        background: transparent;
+                        color: #fff;
+                        border-right: 1px solid rgba(255, 255, 255, 0.2);
+
+                        &:last-child {
+                            border-right: 0;
+                        }
+
+                        &:hover {
+                            background: rgba(255, 255, 255, 0.2);
+                        }
+                    }
+
+                    > input {
+                        width: 54px;
+                        border: 0;
+                    }
+
+                    .input-number {
+                        width: 90px;
+                        border: 0;
+                        padding: 0;
+
+                        .vue-number-input__button {
+                            width: 1.5rem;
+                            background: rgba(255, 255, 255, .9);
+                        }
+
+                        .vue-number-input__input {
+                            height: 32px;
+                            border: 0;
+                            padding: 0;
+                        }
+                    }
+
+                    input[type=number]::-webkit-inner-spin-button,
+                    input[type=number]::-webkit-outer-spin-button {
+                        opacity: 1;
+                    }
+                }
+            }
+
+            .prompt-local-language {
+                margin-top: 2px;
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+
+                .translate-to-local {
+                    cursor: pointer;
+                }
+
+                .local-language {
+                    font-size: .8rem;
+                    color: var(--body-text-color-subdued);
+                    margin-left: 2px;
+                }
+            }
+        }
+
+        .input-tag-append {
+            min-width: 200px;
+        }
+
+        .gradio-button {
+            max-width: none !important;
+            width: auto !important;
+            padding: 4px 12px !important;
+        }
     }
-  }
 }
 </style>
