@@ -100,35 +100,6 @@ function supports the majority of countries worldwide.
   ![](images/feature2.gif)
 
 
-## Update Record / *更新记录*
-[c056ac8](https://github.com/Physton/sd-webui-prompt-all-in-one/commit/c056ac8) Fix the issue: after manually adding weight to keywords, there is no input box for weight quantity. *修复问题：手动给关键词添加权重数后，没有快捷设置数量输入框*
-
-[9fdc680](https://github.com/Physton/sd-webui-prompt-all-in-one/commit/9fdc680) Fix the issue [#1](https://github.com/Physton/sd-webui-prompt-all-in-one/issues/1): Conflict with tagcomplete causing the inability to select tags in tagcomplete. *修复问题 [#1](https://github.com/Physton/sd-webui-prompt-all-in-one/issues/1)：与tagcomplete冲突，导致tagcomplete无法选择tag*
-
-[28bf6f6](https://github.com/Physton/sd-webui-prompt-all-in-one/commit/28bf6f6) The Tag input box has been optimized and
-some issues have been fixed. Continuously optimizing... *优化Tag输入框，修复了一些问题，持续优化中...*
-
-[b10f43a](https://github.com/Physton/sd-webui-prompt-all-in-one/commit/b10f43a) Optimize the Tag input box. Now you can directly set the weight for keywords without parentheses. In some languages, such as Chinese, where parentheses are not equivalent to English punctuation marks, it will also be automatically converted to English format, like "(girl: 0.1)", when setting the weight for text such as "（女孩：0.1）". *优化Tag输入框，现在可以为没有括号的关键词直接设置权重数。在一些语言中，例如中文文本：（女孩：0.1），这种并不是英文标点符号的，也会自动处理成英文：(girl:0.1)。*
-
-[a77a85f](https://github.com/Physton/sd-webui-prompt-all-in-one/commit/a77a85f) Modify the color of certain buttons. *修改部分按钮颜色。*
-
-[2cc08e5](https://github.com/Physton/sd-webui-prompt-all-in-one/commit/2cc08e5) UI optimization. *UI优化。*
-
-[70f56f7](https://github.com/Physton/sd-webui-prompt-all-in-one/commit/70f56f7) Fixed the problem where the Alibaba API
-could not be used for Traditional Chinese. *修复了阿里巴巴接口繁体中文不能使用的问题*
-
-[aac2c76](https://github.com/Physton/sd-webui-prompt-all-in-one/commit/aac2c76) Adjusting the data storage path location. *调整数据存储路径位置。*
-
-[a381364](https://github.com/Physton/sd-webui-prompt-all-in-one/commit/a381364) Fixed the issue [#4](https://github.com/Physton/sd-webui-prompt-all-in-one/issues/4): where the Paste Helper button cannot function properly when the extension is enabled. *修复问题[#4](https://github.com/Physton/sd-webui-prompt-all-in-one/issues/4)：开启扩展无法正常使用粘贴助手按钮。*
-
-[b74fb4f](https://github.com/Physton/sd-webui-prompt-all-in-one/commit/b74fb4f) UI optimization, more language support. *UI优化和更多语言支持。*
-
-[54cf795](https://github.com/Physton/sd-webui-prompt-all-in-one/commit/54cf795) Fix the issue [#6](https://github.com/Physton/sd-webui-prompt-all-in-one/issues/6): Weight number can only be rounded to one decimal place. *修复问题[#6](https://github.com/Physton/sd-webui-prompt-all-in-one/issues/6)：权重数只能保留1位小数。*
-
-[bd9fc43](https://github.com/Physton/sd-webui-prompt-all-in-one/commit/bd9fc43) Fix the issue [#9](https://github.com/Physton/sd-webui-prompt-all-in-one/issues/9). *修复问题[#9](https://github.com/Physton/sd-webui-prompt-all-in-one/issues/9)*
-
-[22e2554](https://github.com/Physton/sd-webui-prompt-all-in-one/commit/22e2554) Fix the issue [#7](https://github.com/Physton/sd-webui-prompt-all-in-one/issues/7). *修复问题[#7](https://github.com/Physton/sd-webui-prompt-all-in-one/issues/7)*
-
 ## Contributing / *帮助开发*
 
 If you want to contribute to sd-webui-prompt-all-in-one, welcome to submit issues and pull requests. You can also
