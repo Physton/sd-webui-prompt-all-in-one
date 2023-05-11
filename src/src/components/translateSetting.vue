@@ -82,10 +82,9 @@ export default {
             testText: `Hi, this extension is developed by Physton. Welcome to use it!
 If you have any suggestions or opinions, please feel free to raise an issue or PR on Github.
 If you find this extension helpful, please give me a star on Github!
-You could also buy me a coffee: https://github.com/Physton/sd-webui-prompt-all-in-one#donate
 
-Developed by: https://www.physton.com
-Github: https://github.com/Physton/sd-webui-prompt-all-in-one`,
+Developed by: Physton
+Github: Physton/sd-webui-prompt-all-in-one`,
             translateSuccess: false,
             errorMessage: '',
             translatedText: '',
