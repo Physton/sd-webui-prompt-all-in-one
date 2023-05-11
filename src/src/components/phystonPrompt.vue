@@ -358,8 +358,9 @@ export default {
             if (value === this.prompt) return
             let tags = common.splitTags(value)
             let newTags = []
+            let newTagsIndex = []
             let delTags = []
-            tags.forEach(tag => {
+            tags.forEach((tag, index) => {
                 let find = false
                 for (let i = 0; i < this.tags.length; i++) {
                     if (this.tags[i].value === tag) {
@@ -367,7 +368,10 @@ export default {
                         break
                     }
                 }
-                if (!find) newTags.push(tag)
+                if (!find) {
+                    newTags.push(tag)
+                    newTagsIndex.push(index)
+                }
             })
             this.tags.forEach((tag, index) => {
                 let find = false
@@ -386,7 +390,8 @@ export default {
             }
             let indexes = []
             for (let i = 0; i < newTags.length; i++) {
-                indexes.push(this._appendTag(newTags[i]))
+                // indexes.push(this._appendTag(newTags[i]))
+                indexes.push(this._appendTag(newTags[i], '', false, newTagsIndex[i]))
             }
             if (event && this.autoTranslateToLocal) {
                 // 如果开启了自动翻译到本地语言，那么就自动翻译
@@ -434,8 +439,9 @@ export default {
                 if (tag.disabled) return
                 prompts.push(tag.value)
             })
+            if (prompts.length <= 0) return ''
             // console.log('update tags', prompts)
-            return prompts.join(', ').trim() + ', '
+            return prompts.join(', ') + ', '
         },
         updateTags() {
             console.log('tags change', this.tags)
@@ -474,7 +480,7 @@ export default {
             const bracket = common.hasBrackets(tag.value)
             tag.isLora = bracket[0] === '<' && bracket[1] === '>'
         },
-        _appendTag(value, localValue = '', disabled = false) {
+        _appendTag(value, localValue = '', disabled = false, index = -1) {
             const id = this.lastId++
             let tag = {
                 id,
@@ -485,7 +491,12 @@ export default {
             this._setTag(tag)
             // value           = common.setLayers(value, 0, '(', ')')
             // value           = common.setLayers(value, 0, '[', ']')
-            const index = this.tags.push(tag)
+            if (index >= 0) {
+                // 插入到指定位置
+                this.tags.splice(index, 0, tag)
+            } else {
+                index = this.tags.push(tag)
+            }
             this.$nextTick(() => {
                 autoSizeInput(this.$refs['promptTagEdit-' + id][0])
             })
