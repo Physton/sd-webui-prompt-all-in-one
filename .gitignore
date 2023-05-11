@@ -4,3 +4,5 @@
 /src/node_modules
 /src/package-lock.json
 /storage
+/tests/tested.json
+__pycache__

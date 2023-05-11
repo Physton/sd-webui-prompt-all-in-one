@@ -311,11 +311,13 @@ def translate(text, from_lang, to_lang, api, api_config = {}):
             result['message'] = 'translate_api_not_support'
             return result
 
+        result['translated_text'] = result['translated_text'].strip()
+
         caches[cache_name] = result['translated_text']
         result['success'] = True
         return result
 
     except Exception as e:
-        print(e)
+        # print(e)
         result['message'] = str(e)
         return result

@@ -5,82 +5,62 @@
                 <div class="prompt-header-title">{{ neg ? getLang('negative_prompt') : getLang('prompt') }}</div>
                 <div class="prompt-header-counter" v-show="counterText">({{ counterText }})</div>
                 <div class="prompt-header-extend">
-                    <div class="extend-title">{{ getLang('local_language') }}{{ isEnglish ? '' : '/Language' }}:</div>
                     <div class="extend-content">
-                        <select @change="$emit('update:languageCode', $event.target.value)" :value="languageCode">
-                            <option v-for="item in languages" :key="item.code" :value="item.code"
-                                    :selected="item.code == languageCode"><!--{{ item.code }} - -->{{ item.name }}
-                            </option>
-                        </select>
+                        <div class="extend-btn-group">
+                            <div class="extend-btn-item" v-tooltip="'Language: ' + langName"
+                                 @click="$emit('click:selectLanguage', $event)">
+                                <icon-i18n class="hover-scale-120" width="18" height="18" color="#d81e06"/>
+                            </div>
+                            <div v-if="translateApiItem.name && !isEnglish" class="extend-btn-item"
+                                 v-tooltip="getLang('translate_api') + ': ' + translateApiItem.name"
+                                 @click="$emit('click:translateApi', $event)">
+                                <icon-api class="hover-scale-120" width="18" height="18" color="#d81e06"/>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="prompt-header-extend" v-show="!isEnglish">
-                    <div class="extend-title">{{ getLang('translate_api') }}:</div>
-                    <div class="extend-content">
-                        <div class="current-translate-api" v-if="translateApiItem.name" @click="$emit('click:translateApi')">{{ translateApiItem.name }}</div>
-                    </div>
-                </div>
-                <div class="prompt-header-break"></div>
+                <!--<div class="prompt-header-break"></div>-->
                 <div class="prompt-header-extend">
                     <div class="extend-content">
-                        <button type="button" class="lg secondary gradio-button tool svelte-1ipelgc hover-scale-120"
-                                v-tooltip="getLang('copy_keywords_to_clipboard')" @click="onCopyAllTagsClick">
-                            <icon-copy width="18" height="18" color="var(--body-text-color)"/>
-                        </button>
-                    </div>
-                </div>
-                <div class="prompt-header-extend">
-                    <div class="extend-content">
-                        <button type="button" class="lg secondary gradio-button tool svelte-1ipelgc hover-scale-120"
-                                ref="historyButton"
-                                v-tooltip="getLang('history')" @click.stop="onShowHistoryClick">
-                            <icon-history width="18" height="18"/>
-                        </button>
-                    </div>
-                </div>
-                <div class="prompt-header-extend">
-                    <div class="extend-content">
-                        <button type="button" class="lg secondary gradio-button tool svelte-1ipelgc hover-scale-120"
-                                ref="favoriteButton"
-                                v-tooltip="getLang('favorite')" @click.stop="onShowFavoriteClick">
-                            <icon-favorite width="18" height="18"/>
-                        </button>
+                        <div class="extend-btn-group">
+                            <div class="extend-btn-item" ref="historyButton" v-tooltip="getLang('history')" @click.stop="onShowHistoryClick">
+                                <icon-history class="hover-scale-120" width="18" height="18"/>
+                            </div>
+                            <div class="extend-btn-item" ref="favoriteButton"
+                                 v-tooltip="getLang('favorite')" @click.stop="onShowFavoriteClick">
+                                <icon-favorite class="hover-scale-120" width="18" height="18"/>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="prompt-header-extend" v-show="!isEnglish">
                     <div class="extend-content">
-                        <button type="button" class="lg secondary gradio-button tool svelte-1ipelgc hover-scale-120"
-                                v-tooltip="getLang('translate_keywords_to_local_language')"
-                                @click="onTranslatesToLocalClick">
-                            <icon-translate v-if="!loading['all_local']" width="18" height="18" color="#ff9900"/>
-                            <icon-loading v-if="loading['all_local']" width="18" height="18"/>
-                        </button>
-                    </div>
-                </div>
-                <div class="prompt-header-extend" v-show="!isEnglish">
-                    <div class="extend-content">
-                        <button type="button" class="lg secondary gradio-button tool svelte-1ipelgc hover-scale-120"
-                                v-tooltip="getLang('translate_all_keywords_to_english')"
-                                @click="onTranslatesToEnglishClick">
-                            <icon-english v-if="!loading['all_en']" width="18" height="18" color="#ff9900"/>
-                            <icon-loading v-if="loading['all_en']" width="18" height="18"/>
-                        </button>
+                        <div class="extend-btn-group">
+                            <div class="extend-btn-item" v-tooltip="getLang('translate_keywords_to_local_language')"
+                                 @click="onTranslatesToLocalClick">
+                                <icon-translate class="hover-scale-120" v-if="!loading['all_local']" width="18" height="18" color="#ad6800"/>
+                                <icon-loading class="hover-scale-120" v-if="loading['all_local']" width="18" height="18"/>
+                            </div>
+                            <div class="extend-btn-item" v-tooltip="getLang('translate_all_keywords_to_english')"
+                                 @click="onTranslatesToEnglishClick">
+                                <icon-english class="hover-scale-120" v-if="!loading['all_en']" width="18" height="18" color="#ad6800"/>
+                                <icon-loading class="hover-scale-120" v-if="loading['all_en']" width="18" height="18"/>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="prompt-header-extend">
                     <div class="extend-content">
-                        <button type="button" class="lg secondary gradio-button tool svelte-1ipelgc hover-scale-120"
-                                v-tooltip="getLang('delete_all_keywords')"
-                                @click="onDeleteAllTagsClick">
-                            <icon-remove width="18" height="18" color="#d81e06"/>
-                        </button>
-                    </div>
-                </div>
-                <div class="prompt-header-extend">
-                    <div class="extend-content">
-                        <a href="https://github.com/Physton/sd-webui-prompt-all-in-one" target="_blank" class="lg secondary gradio-button tool svelte-1ipelgc hover-scale-120">
-                            <icon-github width="18" height="18" color="#000"/>
-                        </a>
+                        <div class="extend-btn-group">
+                            <div class="extend-btn-item" v-tooltip="getLang('copy_keywords_to_clipboard')"
+                                 @click="onCopyAllTagsClick">
+                                <icon-copy class="hover-scale-120" width="18" height="18" color="var(--body-text-color)"/>
+                            </div>
+                            <div class="extend-btn-item" v-tooltip="getLang('delete_all_keywords')"
+                                 @click="onDeleteAllTagsClick">
+                                <icon-remove class="hover-scale-120" width="18" height="18" color="#d81e06"/>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="prompt-header-extend" v-show="!isEnglish">
@@ -250,10 +230,14 @@ import IconInput from "@/components/icons/iconInput.vue";
 import IconRemove from "@/components/icons/iconRemove.vue";
 import IconTooltip from "@/components/icons/iconTooltip.vue";
 import IconGithub from "@/components/icons/iconGithub.vue";
+import IconI18n from "@/components/icons/iconI18n.vue";
+import IconApi from "@/components/icons/iconApi.vue";
 
 export default {
     name: 'PhystonPrompt',
     components: {
+        IconApi,
+        IconI18n,
         IconGithub,
         IconTooltip,
         IconRemove,
@@ -307,7 +291,7 @@ export default {
             default: '',
         },
     },
-    emits: ['update:languageCode', 'update:autoTranslateToEnglish', 'update:autoTranslateToLocal', 'update:hideDefaultInput', 'update:enableTooltip', 'update:translateApi', 'click:translateApi'],
+    emits: ['update:languageCode', 'update:autoTranslateToEnglish', 'update:autoTranslateToLocal', 'update:hideDefaultInput', 'update:enableTooltip', 'update:translateApi', 'click:translateApi', 'click:selectLanguage'],
     data() {
         return {
             prompt: '',
@@ -889,7 +873,7 @@ export default {
       }
 
       .extend-content {
-        select, .current-translate-api {
+        select, .select-btn {
           padding: 0 10px 0 5px;
           font-size: 0.8rem;
           appearance: auto;
@@ -904,13 +888,39 @@ export default {
           }
         }
 
-        .current-translate-api {
+        .select-btn {
           cursor: pointer;
           padding: 0 10px;
 
           &:hover {
             background: var(--button-primary-background-fill-hover);
             border-color: var(--button-primary-border-color-hover);
+          }
+        }
+
+        .extend-btn-group{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          color: var(--button-secondary-text-color);
+          background: var(--button-secondary-background-fill);
+          border: 1px solid var(--button-secondary-border-color);
+          padding: 0;
+          border-radius: 4px;
+
+          .extend-btn-item {
+            cursor: pointer;
+            border-left: 1px solid var(--button-secondary-border-color);
+            height: 26px;
+            width: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            &:first-child {
+              border-left: 0;
+              margin-left: 0;
+            }
           }
         }
 
