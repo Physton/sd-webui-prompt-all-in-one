@@ -517,7 +517,13 @@ export default {
             if (e.keyCode === 13) {
                 let tags = this.appendTag
                 this.appendTag = ''
-                tags = common.splitTags(tags)
+                // [night light:magical forest: 5, 15]
+                if (common.hasBrackets(tags)) {
+                    // 如果已经被英文括号括起来，那么就不需要再分词了
+                    tags = [tags]
+                } else {
+                    tags = common.splitTags(tags)
+                }
                 let indexes = []
                 tags.forEach(tag => {
                     indexes.push(this._appendTag(tag))

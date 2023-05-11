@@ -64,8 +64,8 @@ export default {
     hasBrackets(text) {
         const length = text.length
         if (length === 0) return false
-        const brackets = [[
-            '(', ')'],
+        const brackets = [
+            ['(', ')'],
             ['[', ']'],
             ['{', '}'],
             ['<', '>']
