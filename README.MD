@@ -123,6 +123,8 @@ could not be used for Traditional Chinese. *修复了阿里巴巴接口繁体中
 
 [b74fb4f](https://github.com/Physton/sd-webui-prompt-all-in-one/commit/b74fb4f) UI optimization, more language support. *UI优化和更多语言支持。*
 
+[54cf795](https://github.com/Physton/sd-webui-prompt-all-in-one/commit/54cf795) Fix the issue [#6](https://github.com/Physton/sd-webui-prompt-all-in-one/issues/6): Weight number can only be rounded to one decimal place. *修复问题[#6](https://github.com/Physton/sd-webui-prompt-all-in-one/issues/6)：权重数只能保留1位小数。*
+
 ## Contributing / *帮助开发*
 
 If you want to contribute to sd-webui-prompt-all-in-one, welcome to submit issues and pull requests. You can also
