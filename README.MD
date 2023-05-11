@@ -11,9 +11,10 @@ sd-webui-prompt-all-in-one is an extension based on stable-diffusion-webui that 
 
 ---
 
-The currently supported languages are: `中文` `English` ` Русский` `日本語` `한국어` ` Français` `Deutsch` ` Español` `Português` `Italiano` `العربية`. If you would like to add a new language, please submit a PR.
+The localized language interface is currently available in `中文` `English` ` Русский` `日本語` `한국어` ` Français` `Deutsch` ` Español` `Português` `Italiano` `العربية`, and the translation
+function supports the majority of countries worldwide.
 
-*目前支持的语言有：`中文` `English` ` Русский` `日本語` `한국어` ` Français` `Deutsch` ` Español` `Português` `Italiano` `العربية`。如果你想要添加新的语言，欢迎提交 PR。*
+目前支持以下语言的本地化语言界面：`中文` `English` ` Русский` `日本語` `한국어` ` Français` `Deutsch` ` Español` `Português` `Italiano` `العربية`，翻译功能支持目前世界上绝大多数国家。
 
 
 > If you find this extension helpful, please give me a star on Github!
@@ -119,6 +120,8 @@ could not be used for Traditional Chinese. *修复了阿里巴巴接口繁体中
 [aac2c76](https://github.com/Physton/sd-webui-prompt-all-in-one/commit/aac2c76) Adjusting the data storage path location. *调整数据存储路径位置。*
 
 [a381364](https://github.com/Physton/sd-webui-prompt-all-in-one/commit/a381364) Fixed the issue [#4](https://github.com/Physton/sd-webui-prompt-all-in-one/issues/4): where the Paste Helper button cannot function properly when the extension is enabled. *修复问题[#4](https://github.com/Physton/sd-webui-prompt-all-in-one/issues/4)：开启扩展无法正常使用粘贴助手按钮。*
+
+[b74fb4f](https://github.com/Physton/sd-webui-prompt-all-in-one/commit/b74fb4f) UI optimization, more language support. *UI优化和更多语言支持。*
 
 ## Contributing / *帮助开发*
 
