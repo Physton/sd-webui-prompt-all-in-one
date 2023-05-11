@@ -12,11 +12,16 @@
                             v-model:enable-tooltip="enableTooltip"
                             v-model:translate-api="translateApi"
                             :translate-api-config="translateApiConfig"
-                            @click:translate-api="onTranslateApiClick"></physton-prompt>
+                            @click:translate-api="onTranslateApiClick"
+                            @click:select-language="onSelectLanguageClick"></physton-prompt>
         </block>
         <translate-setting ref="translateSetting" v-model:language-code="languageCode"
                            :translate-apis="translateApis" :languages="languages"
                            v-model:translate-api="translateApi"></translate-setting>
+        <select-language ref="selectLanguage" v-model:language-code="languageCode"
+                         :translate-apis="translateApis"
+                         :languages="languages"
+                         v-model:translate-api="translateApi"></select-language>
 
         <div class="physton-paste-popup" v-if="showPastePopup" @click="closePastePopup">
             <div class="paste-popup-main" @click.stop>
@@ -42,10 +47,12 @@ import TranslateSetting from "@/components/translateSetting.vue";
 import common from "@/utils/common";
 import IconClose from "@/components/icons/iconClose.vue";
 import IconLoading from "@/components/icons/iconLoading.vue";
+import SelectLanguage from "@/components/selectLanguage.vue";
 
 export default {
     name: 'App',
     components: {
+        SelectLanguage,
         IconLoading,
         IconClose,
         TranslateSetting,
@@ -135,6 +142,8 @@ export default {
             enableTooltip: true,
 
             startWatchSave: false,
+
+            showSelectLanguage: false,
 
             pasteBtn: null,
             showPastePopup: false,
@@ -318,6 +327,9 @@ export default {
                 }
                 this.translateApiConfig = config
             })
+        },
+        onSelectLanguageClick(e) {
+            this.$refs.selectLanguage.open(e)
         },
         onTranslateApiClick() {
             this.$refs.translateSetting.open(this.translateApi)

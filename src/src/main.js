@@ -19,8 +19,9 @@ onUiLoaded(() => {
     app.mixin(CommonMixin)
     app.directive('tooltip', {
         mounted(el, binding) {
-            app.config.globalProperties.$tippyList.push(tippy(el, {
-                content: binding.value,
+            // data-tippy-content
+            el.setAttribute('data-tippy-content', binding.value)
+            const instance = tippy(el, {
                 placement: 'bottom',
                 theme: 'light',
                 allowHTML: true,
@@ -30,8 +31,14 @@ onUiLoaded(() => {
                         instance.disable()
                     }
                 },
-            }))
+            })
+            el.$tippyInstance = instance
+            app.config.globalProperties.$tippyList.push(instance)
         },
+        updated(el, binding) {
+            el.setAttribute('data-tippy-content', binding.value)
+            el.$tippyInstance.setContent(binding.value)
+        }
     })
 
     app.mount('#physton-prompt-all-in-one')

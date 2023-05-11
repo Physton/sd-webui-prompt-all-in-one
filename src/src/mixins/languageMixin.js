@@ -26,6 +26,17 @@ export default {
     data() {
         return {}
     },
+    computed: {
+        langName() {
+            for (const key in this.languages) {
+                const item = this.languages[key]
+                if (item.code === this.languageCode) {
+                    return item.name
+                }
+            }
+            return item.name
+        }
+    },
     methods: {
         getLang(key) {
             return common.getLang(key, this.languageCode, this.languages)
