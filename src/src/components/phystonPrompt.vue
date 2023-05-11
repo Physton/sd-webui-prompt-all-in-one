@@ -142,9 +142,7 @@
                                 </div>
                             </div>
                             <div class="btn-tag-extend">
-                                <input type="number" min="0" step="0.1"
-                                       :value="tag.weightNum"
-                                       @change="onTagWeightNumChange(index, $event)">
+                                <vue-number-input class="input-number" :model-value="tag.weightNum" center controls :min="0" :step="0.1" size="small" @update:model-value="onTagWeightNumChange(index, $event)"></vue-number-input>
                                 <button type="button" v-tooltip="getLang('increase_weight_add_parentheses')"
                                         @click="onIncWeightClick(index, +1)">
                                     <icon-weight width="20" height="20" type="parentheses" :increase="true"
@@ -232,10 +230,12 @@ import IconTooltip from "@/components/icons/iconTooltip.vue";
 import IconGithub from "@/components/icons/iconGithub.vue";
 import IconI18n from "@/components/icons/iconI18n.vue";
 import IconApi from "@/components/icons/iconApi.vue";
+import VueNumberInput from '@chenfengyuan/vue-number-input';
 
 export default {
     name: 'PhystonPrompt',
     components: {
+        VueNumberInput,
         IconApi,
         IconI18n,
         IconGithub,
@@ -302,7 +302,7 @@ export default {
             dropTag: false,
             loading: {},
             editing: {},
-            tagColor: '',
+            tagColor: ''
         }
     },
     computed: {
@@ -412,7 +412,7 @@ export default {
                 }
 
                 if (tag.weightNum > 0) {
-                    tag.weightNum = parseFloat(tag.weightNum).toFixed(1)
+                    tag.weightNum = Number(parseFloat(tag.weightNum).toFixed(2))
                     tag.value = tag.value.replace(common.weightNumRegex, ':' + tag.weightNum)
                     if (tag.localValue !== '') {
                         tag.localValue = tag.localValue.replace(common.weightNumRegex, ':' + tag.weightNum)
@@ -556,8 +556,9 @@ export default {
             this.updateTags()
         },
         onTagWeightNumChange(index, e) {
-            if (this.tags[index].weightNum === e.target.value) return
-            let weightNum = e.target.value
+            e = typeof e === "number" || typeof a === "string" ? e : e.target.value
+            if (this.tags[index].weightNum == e) return
+            let weightNum = e
             let value = this.tags[index].value
             let localValue = this.tags[index].localValue
             if (weightNum > 0) {
@@ -1096,7 +1097,7 @@ export default {
           border-radius: 4px;
           overflow: hidden;
 
-          > * {
+          > button {
             height: 32px;
             width: 32px;
             border: 0;
@@ -1121,6 +1122,23 @@ export default {
           > input {
             width: 54px;
             border: 0;
+          }
+
+          .input-number {
+            width: 90px;
+            border: 0;
+            padding: 0;
+
+            .vue-number-input__button {
+              width: 1.5rem;
+              background: rgba(255, 255, 255, .9);
+            }
+
+            .vue-number-input__input {
+              height: 32px;
+              border: 0;
+              padding: 0;
+            }
           }
 
           input[type=number]::-webkit-inner-spin-button,
