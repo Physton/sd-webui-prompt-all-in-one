@@ -468,6 +468,7 @@ export default {
         },
         _setTag(tag) {
             tag.weightNum = common.getTagWeightNum(tag.value)
+            tag.weightNum = tag.weightNum <= 0 ? 1 : tag.weightNum
             tag.incWeight = common.getTagIncWeight(tag.value)
             tag.decWeight = common.getTagDecWeight(tag.value)
             const bracket = common.hasBrackets(tag.value)
