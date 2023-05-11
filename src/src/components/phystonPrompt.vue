@@ -134,7 +134,7 @@
                             <div class="prompt-tag-edit">
                                 <button v-show="!editing[tag.id]" type="button"
                                         class="lg secondary gradio-button tool svelte-1ipelgc prompt-tag-value"
-                                        :style="{color: this.tagColor}"
+                                        :style="{color: tag.isLora ? 'var(--geekblue-8)' : this.tagColor}"
                                         :ref="'promptTag-' + tag.id"
                                         v-tooltip="getLang('click_to_edit') + '<br/>' + getLang('drop_to_order')"
                                         @click="onTagClick(index)" v-html="renderTag(index)"></button>
@@ -470,6 +470,8 @@ export default {
             tag.weightNum = common.getTagWeightNum(tag.value)
             tag.incWeight = common.getTagIncWeight(tag.value)
             tag.decWeight = common.getTagDecWeight(tag.value)
+            const bracket = common.hasBrackets(tag.value)
+            tag.isLora = bracket[0] === '<' && bracket[1] === '>'
         },
         _appendTag(value, localValue = '', disabled = false) {
             const id = this.lastId++
