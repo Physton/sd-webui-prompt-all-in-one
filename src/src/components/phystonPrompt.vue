@@ -443,9 +443,9 @@ export default {
 
                 if (tag.weightNum > 0) {
                     tag.weightNum = Number(parseFloat(tag.weightNum).toFixed(2))
-                    tag.value = tag.value.replace(common.weightNumRegex, ':' + tag.weightNum)
+                    tag.value = tag.value.replace(common.weightNumRegex, '$1:' + tag.weightNum)
                     if (tag.localValue !== '') {
-                        tag.localValue = tag.localValue.replace(common.weightNumRegex, ':' + tag.weightNum)
+                        tag.localValue = tag.localValue.replace(common.weightNumRegex, '$1:' + tag.weightNum)
                     }
                 }
                 if (tag.disabled) return
@@ -645,8 +645,8 @@ export default {
                     weightNum = 0.1
                 } else {
                     // 移除权重数
-                    this.tags[index].value = value.replace(common.weightNumRegex, '')
-                    if (localValue !== '') this.tags[index].localValue = this.tags[index].localValue.replace(common.weightNumRegex, '')
+                    this.tags[index].value = value.replace(common.weightNumRegex, '$1')
+                    if (localValue !== '') this.tags[index].localValue = this.tags[index].localValue.replace(common.weightNumRegex, '$1')
                 }
             }
             this.tags[index].weightNum = weightNum

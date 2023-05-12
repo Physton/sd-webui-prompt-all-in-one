@@ -1,7 +1,7 @@
 export default {
-    weightNumRegex: /:([0-9\.]+)/,
-    weightNumRegexEN: /:\s*([0-9\.]+)/,
-    weightNumRegexCN: /：\s*([0-9\.]+)/,
+    weightNumRegex: /(.*):([0-9\.]+)/,
+    weightNumRegexEN: /(.*):\s*([0-9\.]+)/,
+    weightNumRegexCN: /(.*)：\s*([0-9\.]+)/,
     bracketsEN: [
         {'(': '(', ')': ')'},
         {'[': '[', ']': ']'},
@@ -29,8 +29,8 @@ export default {
         if (typeof text !== "string") return text
         if (text === "") return text
         text = this.replaceBrackets(text)
-        if (this.weightNumRegexEN.test(text)) text = text.replace(this.weightNumRegexEN, ':$1')
-        if (this.weightNumRegexCN.test(text)) text = text.replace(this.weightNumRegexCN, ':$1')
+        if (this.weightNumRegexEN.test(text)) text = text.replace(this.weightNumRegexEN, '$1:$2')
+        if (this.weightNumRegexCN.test(text)) text = text.replace(this.weightNumRegexCN, '$1:$2')
         return text
     },
 
@@ -240,7 +240,7 @@ export default {
      */
     getTagWeightNum(tag) {
         const match = tag.match(this.weightNumRegex)
-        let weightNum = match ? parseFloat(match[1]) : 0
+        let weightNum = match ? parseFloat(match[2]) : 0
         weightNum = weightNum >= 0 ? weightNum : 0
         return weightNum
     },
