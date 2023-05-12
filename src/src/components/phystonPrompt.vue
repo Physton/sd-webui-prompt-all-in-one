@@ -548,20 +548,27 @@ export default {
             if (e.keyCode === 13) {
                 const autocompleteResults = e.target.parentElement.querySelector('.autocompleteResults')
                 if (autocompleteResults && autocompleteResults.style.display === 'block') {
-                    setTimeout(() => {
-                        localValue = e.target.value
-                        // 找到li.selected .acListItem
-                        const selected = autocompleteResults.querySelector("li.selected .acListItem")
-                        if(selected) {
-                            const text = selected.innerText
-                            const match = text.match(/\[(.+?)\]/)
-                            if (match) {
-                                localValue = match[1]
+                    const selected = autocompleteResults.querySelector("li.selected .acListItem")
+                    if (selected) {
+                        setTimeout(() => {
+                            localValue = e.target.value
+                            // 找到li.selected .acListItem
+                            const selected = autocompleteResults.querySelector("li.selected .acListItem")
+                            if (selected) {
+                                const text = selected.innerText
+                                const match = text.match(/\[(.+?)\]/)
+                                if (match) {
+                                    localValue = match[1]
+                                }
+                                // 移除 .selected
+                                selected.parentElement.parentElement.querySelectorAll('li').forEach(li => {
+                                    li.classList.remove('selected')
+                                })
                             }
-                        }
-                        this.onAppendTagKeyDown(e, localValue)
-                    }, 300)
-                    return
+                            this.onAppendTagKeyDown(e, localValue)
+                        }, 300)
+                        return
+                    }
                 }
 
                 let tags = this.appendTag
