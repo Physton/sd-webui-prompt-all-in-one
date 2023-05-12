@@ -998,7 +998,7 @@ export default {
                     border-radius: 4px !important;
                     min-width: 200px;
                     width: 80%;
-                    text-align: right;
+                    text-align: left;
 
                     &:focus {
                         box-shadow: var(--input-shadow-focus) !important;
