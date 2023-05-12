@@ -322,7 +322,8 @@ export default {
             dropTag: false,
             loading: {},
             editing: {},
-            tagColor: ''
+            tagColor: '',
+            autocompleteResults: null,
         }
     },
     computed: {
@@ -337,11 +338,20 @@ export default {
         this.$nextTick(() => {
             this.initSortable()
             // autoSizeInput(this.$refs.promptTagAppend)
-            setTimeout(() => {
-                if (typeof addAutocompleteToArea === 'function') {
+            let times = [1000, 3000, 5000, 10000]
+            let isBind = false
+            times.forEach((time) => {
+                if (isBind) return
+                setTimeout(() => {
+                    if (isBind) return
+                    if (typeof addAutocompleteToArea !== 'function') return
+                    if (typeof TAC_CFG !== 'object') return
+                    if (!TAC_CFG) return
+                    if (!TAC_CFG['activeIn']) return
+                    isBind = true
                     addAutocompleteToArea(this.$refs.promptTagAppend)
-                }
-            }, 3000)
+                }, time)
+            })
             this.init()
         })
     },
@@ -544,32 +554,88 @@ export default {
                 },
             })
         },
+        getAutocompleteResults() {
+            if (!this.autocompleteResults) {
+                const autocompleteResults = this.$refs.promptTagAppend.parentElement.querySelector('.autocompleteResults')
+                if (autocompleteResults) {
+                    this.autocompleteResults = autocompleteResults
+                    // 增加mousemove事件
+                    if (this.autocompleteResults.getAttribute('data-mousemove') !== 'true') {
+                        this.autocompleteResults.setAttribute('data-mousemove', 'true')
+                        this.autocompleteResults.addEventListener('mousemove', (e) => {
+                            this.bindAutocompleteResultsClick()
+                        })
+                    }
+                }
+            }
+            return this.autocompleteResults
+        },
+        removeAutocompleteResultsSelected() {
+            const autocompleteResults = this.getAutocompleteResults()
+            if (!autocompleteResults) return false
+            autocompleteResults.querySelectorAll('li').forEach(li => {
+                li.classList.remove('selected')
+            })
+            return true
+        },
+        getAutocompleteResultsSelected() {
+            const autocompleteResults = this.getAutocompleteResults()
+            if (!autocompleteResults) return null
+            const el = autocompleteResults.querySelector('li.selected')
+            if (!el) return null
+            return el
+        },
+        getAutocompleteResultsSelectedText(el = null) {
+            if (!el) {
+                el = this.getAutocompleteResultsSelected()
+                if (!el) return null
+            }
+            const $acListItem = el.querySelector('.acListItem')
+            const text = $acListItem.innerText
+            const match = text.match(/\[(.+?)\]/)
+            if (!match) return null
+            return match[1]
+        },
+        bindAutocompleteResultsClick() {
+            this.getAutocompleteResults()
+            if (!this.autocompleteResults) return
+            // 获取列表
+            let lis = this.autocompleteResults.querySelectorAll('li')
+            // 给每个li绑定点击事件
+            lis.forEach(li => {
+                // 判断是否已经绑定过
+                if (li.getAttribute('physton-on-clicked') === 'true') return
+                li.setAttribute('physton-on-clicked', 'true')
+                li.addEventListener('click', () => {
+                    this.onAutocompleteResultsClicked(li)
+                })
+            })
+        },
+        onAutocompleteResultsClicked(li) {
+            const text = this.getAutocompleteResultsSelectedText(li)
+            setTimeout(() => {
+                let tags = this.appendTag.replace(/,\s*$/, '')
+                this.appendTag = ''
+                if (common.hasBrackets(tags)) {
+                    tags = common.replaceBrackets(tags)
+                }
+                this._appendTag(tags, text)
+                this.updateTags()
+            }, 300)
+        },
         onAppendTagKeyDown(e, localValue = null) {
             if (e.keyCode === 38 || e.keyCode === 40) {
             } else if (e.keyCode === 13) {
-                const autocompleteResults = e.target.parentElement.querySelector('.autocompleteResults')
-                if (autocompleteResults && autocompleteResults.style.display === 'block') {
-                    const selected = autocompleteResults.querySelector("li.selected .acListItem")
-                    if (selected) {
-                        setTimeout(() => {
-                            localValue = e.target.value
-                            // 找到li.selected .acListItem
-                            const selected = autocompleteResults.querySelector("li.selected .acListItem")
-                            if (selected) {
-                                const text = selected.innerText
-                                const match = text.match(/\[(.+?)\]/)
-                                if (match) {
-                                    localValue = match[1]
-                                }
-                                // 移除 .selected
-                                selected.parentElement.parentElement.querySelectorAll('li').forEach(li => {
-                                    li.classList.remove('selected')
-                                })
-                            }
-                            this.onAppendTagKeyDown(e, localValue)
-                        }, 300)
-                        return
-                    }
+                if (this.getAutocompleteResults() && this.autocompleteResults.style.display === 'block' && this.getAutocompleteResultsSelected()) {
+                    setTimeout(() => {
+                        localValue = e.target.value
+                        const text = this.getAutocompleteResultsSelectedText()
+                        if (text) {
+                            localValue = text
+                        }
+                        this.onAppendTagKeyDown(e, localValue)
+                    }, 300)
+                    return
                 }
 
                 let tags = this.appendTag
@@ -582,6 +648,7 @@ export default {
                         tags = common.replaceBrackets(tags)
                     }
                     this._appendTag(tags, localValue)
+                    this.updateTags()
                 } else {
                     if (common.hasBrackets(tags)) {
                         // 如果已经被英文括号括起来，那么就不需要再分词了
@@ -614,16 +681,7 @@ export default {
                 }
             } else {
                 // 不是上下键，也不是回车
-                const autocompleteResults = e.target.parentElement.querySelector('.autocompleteResults')
-                if (autocompleteResults && autocompleteResults.style.display === 'block') {
-                    const selected = autocompleteResults.querySelector("li.selected .acListItem")
-                    if (selected) {
-                        // 移除 .selected
-                        selected.parentElement.parentElement.querySelectorAll('li').forEach(li => {
-                            li.classList.remove('selected')
-                        })
-                    }
-                }
+                this.removeAutocompleteResultsSelected()
             }
         },
         onTagClick(index) {
