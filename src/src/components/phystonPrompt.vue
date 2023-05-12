@@ -339,7 +339,7 @@ export default {
             // autoSizeInput(this.$refs.promptTagAppend)
             setTimeout(() => {
                 if (typeof addAutocompleteToArea === 'function') {
-                    // addAutocompleteToArea(this.$refs.promptTagAppend)
+                    addAutocompleteToArea(this.$refs.promptTagAppend)
                 }
             }, 3000)
             this.init()
@@ -544,38 +544,65 @@ export default {
                 },
             })
         },
-        onAppendTagKeyDown(e) {
+        onAppendTagKeyDown(e, localValue = null) {
             if (e.keyCode === 13) {
+                const autocompleteResults = e.target.parentElement.querySelector('.autocompleteResults')
+                if (autocompleteResults && autocompleteResults.style.display === 'block') {
+                    setTimeout(() => {
+                        localValue = e.target.value
+                        // 找到li.selected .acListItem
+                        const selected = autocompleteResults.querySelector("li.selected .acListItem")
+                        if(selected) {
+                            const text = selected.innerText
+                            const match = text.match(/\[(.+?)\]/)
+                            if (match) {
+                                localValue = match[1]
+                            }
+                        }
+                        this.onAppendTagKeyDown(e, localValue)
+                    }, 300)
+                    return
+                }
+
                 let tags = this.appendTag
                 this.appendTag = ''
                 // [night light:magical forest: 5, 15]
-                if (common.hasBrackets(tags)) {
-                    // 如果已经被英文括号括起来，那么就不需要再分词了
-                    tags = common.replaceBrackets(tags)
-                    tags = [tags]
+                if (localValue) {
+                    // 去除末尾的逗号
+                    tags = tags.replace(/,\s*$/, '')
+                    if (common.hasBrackets(tags)) {
+                        tags = common.replaceBrackets(tags)
+                    }
+                    this._appendTag(tags, localValue)
                 } else {
-                    tags = common.splitTags(tags)
-                }
-                let indexes = []
-                tags.forEach(tag => {
-                    indexes.push(this._appendTag(tag))
-                })
-                if (this.autoTranslateToEnglish || this.autoTranslateToLocal) {
-                    this.$nextTick(() => {
-                        if (this.autoTranslateToEnglish) {
-                            // 如果开启了自动翻译到英语，那么就自动翻译
-                            this.translatesToEnglish(indexes).finally(() => {
-                                this.updateTags()
-                            })
-                        } else if (this.autoTranslateToLocal) {
-                            // 如果开启了自动翻译到本地语言，那么就自动翻译
-                            this.translatesToLocal(indexes).finally(() => {
-                                this.updateTags()
-                            })
-                        }
+                    if (common.hasBrackets(tags)) {
+                        // 如果已经被英文括号括起来，那么就不需要再分词了
+                        tags = common.replaceBrackets(tags)
+                        tags = [tags]
+                    } else {
+                        tags = common.splitTags(tags)
+                    }
+                    let indexes = []
+                    tags.forEach(tag => {
+                        indexes.push(this._appendTag(tag))
                     })
-                } else {
-                    this.updateTags()
+                    if (this.autoTranslateToEnglish || this.autoTranslateToLocal) {
+                        this.$nextTick(() => {
+                            if (this.autoTranslateToEnglish) {
+                                // 如果开启了自动翻译到英语，那么就自动翻译
+                                this.translatesToEnglish(indexes).finally(() => {
+                                    this.updateTags()
+                                })
+                            } else if (this.autoTranslateToLocal) {
+                                // 如果开启了自动翻译到本地语言，那么就自动翻译
+                                this.translatesToLocal(indexes).finally(() => {
+                                    this.updateTags()
+                                })
+                            }
+                        })
+                    } else {
+                        this.updateTags()
+                    }
                 }
             }
         },
@@ -983,6 +1010,10 @@ export default {
                         background: var(--button-primary-background-fill-hover);
                         border-color: var(--button-primary-border-color-hover);
                     }
+                }
+
+                .autocompleteResults {
+                    top: 26px !important;
                 }
 
                 .input-tag-append {
