@@ -72,6 +72,10 @@ function supports the majority of countries worldwide.
 
   ![](images/writing_webui.gif)
 
+- Support for [a1111-sd-webui-tagcomplete](https://github.com/DominikDoom/a1111-sd-webui-tagcomplete) / *支持[a1111-sd-webui-tagcomplete](https://github.com/DominikDoom/a1111-sd-webui-tagcomplete)*
+
+  ![](images/tagcomplete.gif)
+
 ## Installation and Usage / *安装使用*
 
 ### Method 1 (Recommended) / *方式一（推荐）*： 
