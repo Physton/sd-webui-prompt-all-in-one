@@ -126,7 +126,7 @@ Github: Physton/sd-webui-prompt-all-in-one`,
                     if (apiItem && apiItem.config) {
                         for (const item of this.apiItem.config) {
                             if (res) {
-                                item.value = res[item.key]
+                                item.value = res[item.key] || item.default
                             } else {
                                 item.value = item.default || ''
                             }
