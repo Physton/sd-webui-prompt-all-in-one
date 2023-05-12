@@ -127,86 +127,88 @@
                 </div>
             </div>
             <div :class="['prompt-tags', dropTag ? 'droping': '']" ref="promptTags">
-                <div v-for="(tag, index) in tags" :key="tag.id" :data-id="tag.id"
-                     :class="['prompt-tag', tag.disabled ? 'disabled': '']">
-                    <div class="prompt-tag-content">
-                        <div class="prompt-tag-main">
-                            <div class="prompt-tag-edit">
-                                <button v-show="!editing[tag.id]" type="button"
-                                        class="lg secondary gradio-button tool svelte-1ipelgc prompt-tag-value"
-                                        :style="{color: tag.isLora ? 'var(--geekblue-8)' : this.tagColor}"
-                                        :ref="'promptTag-' + tag.id"
-                                        v-tooltip="getLang('click_to_edit') + '<br/>' + getLang('drop_to_order')"
-                                        @click="onTagClick(index)" v-html="renderTag(index)"></button>
-                                <div v-show="editing[tag.id]">
-                                    <input type="text" class="scroll-hide svelte-4xt1ch input-tag-edit"
-                                           :ref="'promptTagEdit-' + tag.id" :placeholder="getLang('enter_to_save')"
-                                           :value="tag.value" @blur="onTagInputBlur(index)"
-                                           @keydown="onTagInputKeyDown(index, $event)"
-                                           @change="onTagInputChange(index, $event)">
+                <div class="prompt-tags-list" ref="promptTagsList">
+                    <div v-for="(tag, index) in tags" :key="tag.id" :data-id="tag.id"
+                         :class="['prompt-tag', tag.disabled ? 'disabled': '']">
+                        <div class="prompt-tag-content">
+                            <div class="prompt-tag-main">
+                                <div class="prompt-tag-edit">
+                                    <button v-show="!editing[tag.id]" type="button"
+                                            class="lg secondary gradio-button tool svelte-1ipelgc prompt-tag-value"
+                                            :style="{color: tag.isLora ? 'var(--geekblue-8)' : this.tagColor}"
+                                            :ref="'promptTag-' + tag.id"
+                                            v-tooltip="getLang('click_to_edit') + '<br/>' + getLang('drop_to_order')"
+                                            @click="onTagClick(index)" v-html="renderTag(index)"></button>
+                                    <div v-show="editing[tag.id]">
+                                        <input type="text" class="scroll-hide svelte-4xt1ch input-tag-edit"
+                                               :ref="'promptTagEdit-' + tag.id" :placeholder="getLang('enter_to_save')"
+                                               :value="tag.value" @blur="onTagInputBlur(index)"
+                                               @keydown="onTagInputKeyDown(index, $event)"
+                                               @change="onTagInputChange(index, $event)">
+                                    </div>
+                                    <div class="btn-tag-delete" @click="onDeleteTagClick(index)">
+                                        <icon-close width="12" height="12"/>
+                                    </div>
                                 </div>
-                                <div class="btn-tag-delete" @click="onDeleteTagClick(index)">
-                                    <icon-close width="12" height="12"/>
+                                <div class="btn-tag-extend">
+                                    <vue-number-input class="input-number" :model-value="tag.weightNum" center controls
+                                                      :min="0" :step="0.1" size="small"
+                                                      @update:model-value="onTagWeightNumChange(index, $event)"></vue-number-input>
+                                    <button type="button" v-tooltip="getLang('increase_weight_add_parentheses')"
+                                            @click="onIncWeightClick(index, +1)">
+                                        <icon-weight width="20" height="20" type="parentheses" :increase="true"
+                                                     color="#ff6969"/>
+                                    </button>
+                                    <button type="button" v-tooltip="getLang('increase_weight_subtract_parentheses')"
+                                            @click="onIncWeightClick(index, -1)">
+                                        <icon-weight width="20" height="20" type="parentheses" :increase="false"
+                                                     color="#ff6969"/>
+                                    </button>
+                                    <button type="button" v-tooltip="getLang('decrease_weight_add_brackets')"
+                                            @click="onDecWeightClick(index, +1)">
+                                        <icon-weight width="20" height="20" type="brackets" :increase="true"
+                                                     color="#84ff8f"/>
+                                    </button>
+                                    <button type="button" v-tooltip="getLang('decrease_weight_subtract_brackets')"
+                                            @click="onDecWeightClick(index, -1)">
+                                        <icon-weight width="20" height="20" type="brackets" :increase="false"
+                                                     color="#84ff8f"/>
+                                    </button>
+                                    <button type="button" v-tooltip="getLang('translate_keyword_to_english')"
+                                            v-show="!isEnglish"
+                                            @click="onTranslateToEnglishClick(index).then(() => updateTags())">
+                                        <icon-english v-if="!loading[tag.id + '_en']" width="20" height="20"
+                                                      color="#ff9900"/>
+                                        <icon-loading v-if="loading[tag.id + '_en']" width="20" height="20"/>
+                                    </button>
+                                    <button type="button" v-tooltip="getLang('copy_to_clipboard')" @click="copy(tag.value)">
+                                        <icon-copy width="20" height="20" color="#3c3c3c"/>
+                                    </button>
+                                    <button type="button"
+                                            v-tooltip="getLang(tag.disabled ? 'enable_keyword': 'disable_keyword')"
+                                            @click="onDisabledTagClick(index)">
+                                        <icon-disabled v-show="!tag.disabled" width="20" height="20" color="#ff472f"/>
+                                        <icon-enable v-show="tag.disabled" width="20" height="20" color="#2fff53"/>
+                                    </button>
                                 </div>
                             </div>
-                            <div class="btn-tag-extend">
-                                <vue-number-input class="input-number" :model-value="tag.weightNum" center controls
-                                                  :min="0" :step="0.1" size="small"
-                                                  @update:model-value="onTagWeightNumChange(index, $event)"></vue-number-input>
-                                <button type="button" v-tooltip="getLang('increase_weight_add_parentheses')"
-                                        @click="onIncWeightClick(index, +1)">
-                                    <icon-weight width="20" height="20" type="parentheses" :increase="true"
-                                                 color="#ff6969"/>
-                                </button>
-                                <button type="button" v-tooltip="getLang('increase_weight_subtract_parentheses')"
-                                        @click="onIncWeightClick(index, -1)">
-                                    <icon-weight width="20" height="20" type="parentheses" :increase="false"
-                                                 color="#ff6969"/>
-                                </button>
-                                <button type="button" v-tooltip="getLang('decrease_weight_add_brackets')"
-                                        @click="onDecWeightClick(index, +1)">
-                                    <icon-weight width="20" height="20" type="brackets" :increase="true"
-                                                 color="#84ff8f"/>
-                                </button>
-                                <button type="button" v-tooltip="getLang('decrease_weight_subtract_brackets')"
-                                        @click="onDecWeightClick(index, -1)">
-                                    <icon-weight width="20" height="20" type="brackets" :increase="false"
-                                                 color="#84ff8f"/>
-                                </button>
-                                <button type="button" v-tooltip="getLang('translate_keyword_to_english')"
-                                        v-show="!isEnglish"
-                                        @click="onTranslateToEnglishClick(index).then(() => updateTags())">
-                                    <icon-english v-if="!loading[tag.id + '_en']" width="20" height="20"
-                                                  color="#ff9900"/>
-                                    <icon-loading v-if="loading[tag.id + '_en']" width="20" height="20"/>
-                                </button>
-                                <button type="button" v-tooltip="getLang('copy_to_clipboard')" @click="copy(tag.value)">
-                                    <icon-copy width="20" height="20" color="#3c3c3c"/>
-                                </button>
-                                <button type="button"
-                                        v-tooltip="getLang(tag.disabled ? 'enable_keyword': 'disable_keyword')"
-                                        @click="onDisabledTagClick(index)">
-                                    <icon-disabled v-show="!tag.disabled" width="20" height="20" color="#ff472f"/>
-                                    <icon-enable v-show="tag.disabled" width="20" height="20" color="#2fff53"/>
-                                </button>
+                            <div class="prompt-local-language" v-show="!isEnglish">
+                                <div class="translate-to-local hover-scale-120"
+                                     v-tooltip="getLang('translate_keyword_to_local_language')"
+                                     @click="onTranslateToLocalClick(index).then(() => updateTags())">
+                                    <icon-translate v-if="!loading[tag.id + '_local']" width="16" height="16"
+                                                    color="var(--body-text-color)"/>
+                                    <icon-loading v-if="loading[tag.id + '_local']" width="16" height="16"/>
+                                </div>
+                                <div class="local-language">{{ tag.localValue }}</div>
                             </div>
-                        </div>
-                        <div class="prompt-local-language" v-show="!isEnglish">
-                            <div class="translate-to-local hover-scale-120"
-                                 v-tooltip="getLang('translate_keyword_to_local_language')"
-                                 @click="onTranslateToLocalClick(index).then(() => updateTags())">
-                                <icon-translate v-if="!loading[tag.id + '_local']" width="16" height="16"
-                                                color="var(--body-text-color)"/>
-                                <icon-loading v-if="loading[tag.id + '_local']" width="16" height="16"/>
-                            </div>
-                            <div class="local-language">{{ tag.localValue }}</div>
                         </div>
                     </div>
                 </div>
                 <div class="prompt-append">
                     <input type="text" class="scroll-hide svelte-4xt1ch input-tag-append" ref="promptTagAppend"
-                       v-model="appendTag" :placeholder="getLang('please_enter_new_keyword')"
-                       v-tooltip="getLang('enter_to_add')" @keydown="onAppendTagKeyDown">
+                           v-model="appendTag" :placeholder="getLang('please_enter_new_keyword')"
+                           v-tooltip="getLang('enter_to_add')" @keydown="onAppendTagKeyDown">
                 </div>
             </div>
         </div>
@@ -518,7 +520,7 @@ export default {
             return index - 1
         },
         initSortable() {
-            Sortable.create(this.$refs.promptTags, {
+            Sortable.create(this.$refs.promptTagsList, {
                 animation: 150,
                 handle: '.prompt-tag-value',
                 onEnd: ({oldIndex, newIndex}) => {
@@ -1030,7 +1032,14 @@ export default {
         justify-content: flex-start;
         align-items: flex-start;
 
-        > * {
+        .prompt-tags-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            align-items: flex-start;
+        }
+
+        > *, .prompt-tags-list > * {
             margin-right: 12px;
             margin-bottom: 8px;
 
