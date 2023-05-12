@@ -46,11 +46,11 @@ function supports the majority of countries worldwide.
 
 - Automatic translation / *自动翻译*
 
-  ![](images/auto_translate.gif)
+  ![](images/auto_translate.gif?1)
 
 - One-click translation / *一键翻译*
 
-  ![](images/translate.gif)
+  ![](images/translate.gif?1)
 
 - Elegant input / *优雅的输入*
 
