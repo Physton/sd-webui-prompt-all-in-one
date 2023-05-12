@@ -49,7 +49,7 @@
                                             <input type="checkbox" name="hide_default_input" value="1"
                                                    :checked="!hideDefaultInput"
                                                    @change="$emit('update:hideDefaultInput', !$event.target.checked)">
-                                            <icon-input width="26" height="26" color="var(--body-text-color)"/>
+                                            <icon-input width="26" height="26" color="#1f2937"/>
                                         </label>
                                     </div>
                                     <div class="gradio-checkbox hover-scale-120">
@@ -57,7 +57,7 @@
                                             <input type="checkbox" name="enable_tooltip" value="1"
                                                    :checked="enableTooltip"
                                                    @change="$emit('update:enableTooltip', $event.target.checked)">
-                                            <icon-tooltip width="26" height="26" color="var(--body-text-color)"/>
+                                            <icon-tooltip width="26" height="26" color="#1f2937"/>
                                         </label>
                                     </div>
                                 </div>
@@ -1041,7 +1041,7 @@ export default {
                         .setting-box {
                             display: none;
                             position: absolute;
-                            background: var(--color-body-background);
+                            background: #e6f4ff;
                             //top: -36px;
                             //left: 0;
                             top: -5px;
