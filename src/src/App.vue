@@ -8,7 +8,8 @@
                             :history-key="item.historyKey" :favorite-key="item.favoriteKey"
                             v-model:auto-translate-to-english="autoTranslateToEnglish"
                             v-model:auto-translate-to-local="autoTranslateToLocal"
-                            v-model:hide-default-input="hideDefaultInput"
+                            :hide-default-input="item.hideDefaultInput"
+                            @update:hide-default-input="onUpdateHideDefaultInput(item.id, $event)"
                             v-model:enable-tooltip="enableTooltip"
                             v-model:translate-api="translateApi"
                             :translate-api-config="translateApiConfig"
@@ -77,6 +78,8 @@ export default {
                     $steps: null,
                     name: 'txt2img_prompt',
                     neg: false,
+                    hideDefaultInputKey: 'txt2ImgHideDefaultInput',
+                    hideDefaultInput: false,
                     id: 'phystonPrompt_txt2img_prompt'
                 },
                 {
@@ -94,6 +97,8 @@ export default {
                     $steps: null,
                     name: 'txt2img_neg_prompt',
                     neg: true,
+                    hideDefaultInputKey: 'txt2ImgNegHideDefaultInput',
+                    hideDefaultInput: false,
                     id: 'phystonPrompt_txt2img_neg_prompt'
                 },
                 {
@@ -111,6 +116,8 @@ export default {
                     $steps: null,
                     name: 'img2img_prompt',
                     neg: false,
+                    hideDefaultInputKey: 'img2ImgHideDefaultInput',
+                    hideDefaultInput: false,
                     id: 'phystonPrompt_img2img_prompt'
                 },
                 {
@@ -128,6 +135,8 @@ export default {
                     $steps: null,
                     name: 'img2img_neg_prompt',
                     neg: true,
+                    hideDefaultInputKey: 'img2ImgNegHideDefaultInput',
+                    hideDefaultInput: false,
                     id: 'phystonPrompt_img2img_neg_prompt'
                 },
             ],
@@ -138,7 +147,7 @@ export default {
             translateApiConfig: {},
             autoTranslateToEnglish: false,
             autoTranslateToLocal: false,
-            hideDefaultInput: false,
+            // hideDefaultInput: false,
             enableTooltip: true,
 
             startWatchSave: false,
@@ -183,7 +192,7 @@ export default {
             },
             immediate: false,
         },
-        hideDefaultInput: {
+        /*hideDefaultInput: {
             handler: function (val, oldVal) {
                 if (!this.startWatchSave) return
                 console.log('onHideDefaultInputChange', val)
@@ -195,7 +204,7 @@ export default {
                 })
             },
             immediate: false,
-        },
+        },*/
         enableTooltip: {
             handler: function (val, oldVal) {
                 if (!this.startWatchSave) return
@@ -241,11 +250,12 @@ export default {
             return common.getLang(key, this.languageCode, this.languages)
         },
         init() {
-            let dataListsKeys = ['languageCode', 'autoTranslateToEnglish', 'autoTranslateToLocal', 'hideDefaultInput', 'translateApi', 'enableTooltip']
-            /*this.prompts.forEach(item => {
-                dataListsKeys.push(item.historyKey)
-                dataListsKeys.push(item.favoriteKey)
-            })*/
+            let dataListsKeys = ['languageCode', 'autoTranslateToEnglish', 'autoTranslateToLocal', /*'hideDefaultInput', */'translateApi', 'enableTooltip']
+            this.prompts.forEach(item => {
+                // dataListsKeys.push(item.historyKey)
+                // dataListsKeys.push(item.favoriteKey)
+                dataListsKeys.push(item.hideDefaultInputKey)
+            })
 
             this.gradioAPI.getDatas(dataListsKeys).then(data => {
                 if (data.languageCode !== null) {
@@ -267,9 +277,9 @@ export default {
                 if (data.autoTranslateToLocal !== null) {
                     this.autoTranslateToLocal = data.autoTranslateToLocal
                 }
-                if (data.hideDefaultInput !== null) {
+                /*if (data.hideDefaultInput !== null) {
                     this.hideDefaultInput = data.hideDefaultInput
-                }
+                }*/
                 if (data.enableTooltip !== null) {
                     this.enableTooltip = data.enableTooltip
                     localStorage.setItem('phystonPromptEnableTooltip', this.enableTooltip ? 'true' : 'false')
@@ -282,6 +292,9 @@ export default {
                 this.updateTranslateApiConfig()
 
                 this.prompts.forEach(item => {
+                    if (data[item.hideDefaultInputKey] !== null) {
+                        item.hideDefaultInput = data[item.hideDefaultInputKey]
+                    }
                     item.$prompt = document.getElementById(item.prompt)
                     item.$textarea = item.$prompt.getElementsByTagName("textarea")[0]
                     item.$steps = document.getElementById(item.steps)
@@ -292,7 +305,7 @@ export default {
                     this.prompts.forEach(item => {
                         const $prompt = document.getElementById(item.id)
                         item.$prompt.parentElement.parentElement.parentElement.appendChild($prompt)
-                        item.$prompt.parentElement.parentElement.style.display = data.hideDefaultInput ? 'none' : 'flex'
+                        item.$prompt.parentElement.parentElement.style.display = item.hideDefaultInput ? 'none' : 'flex'
                         // item.$textarea.parentNode.appendChild($prompt)
                     })
                     this.startWatchSave = true
@@ -397,6 +410,13 @@ export default {
                     }
                 }, 100)
             }, 1000)
+        },
+        onUpdateHideDefaultInput(id, value) {
+            const item = this.prompts.find(item => item.id == id)
+            if (!item) return
+            item.hideDefaultInput = value
+            this.gradioAPI.setData(item.hideDefaultInputKey, item.hideDefaultInput)
+            item.$prompt.parentElement.parentElement.style.display = item.hideDefaultInput ? 'none' : 'flex'
         },
     },
 }

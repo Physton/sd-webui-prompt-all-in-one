@@ -39,20 +39,6 @@
                                         </label>
                                     </div>
                                     <div class="gradio-checkbox hover-scale-120">
-                                        <label v-if="hideDefaultInput" v-tooltip="getLang('show_default_input_box')">
-                                            <input type="checkbox" name="hide_default_input" value="1"
-                                                   :checked="!hideDefaultInput"
-                                                   @change="$emit('update:hideDefaultInput', !$event.target.checked)">
-                                            <icon-input width="26" height="26" color="var(--body-text-color)"/>
-                                        </label>
-                                        <label v-else v-tooltip="getLang('hide_default_input_box')">
-                                            <input type="checkbox" name="hide_default_input" value="1"
-                                                   :checked="!hideDefaultInput"
-                                                   @change="$emit('update:hideDefaultInput', !$event.target.checked)">
-                                            <icon-input width="26" height="26" color="#1f2937"/>
-                                        </label>
-                                    </div>
-                                    <div class="gradio-checkbox hover-scale-120">
                                         <label v-tooltip="getLang('whether_to_enable_tooltip')">
                                             <input type="checkbox" name="enable_tooltip" value="1"
                                                    :checked="enableTooltip"
@@ -121,6 +107,20 @@
                 </div>
                 <div class="prompt-header-extend prompt-append">
                     <div class="extend-content">
+                        <div class="gradio-checkbox hover-scale-120">
+                            <label v-if="hideDefaultInput" v-tooltip="getLang('show_default_input_box')">
+                                <input type="checkbox" name="hide_default_input" value="1"
+                                       :checked="!hideDefaultInput"
+                                       @change="$emit('update:hideDefaultInput', !$event.target.checked)">
+                                <icon-input width="26" height="26" color="var(--body-text-color)"/>
+                            </label>
+                            <label v-else v-tooltip="getLang('hide_default_input_box')">
+                                <input type="checkbox" name="hide_default_input" value="1"
+                                       :checked="!hideDefaultInput"
+                                       @change="$emit('update:hideDefaultInput', !$event.target.checked)">
+                                <icon-input width="26" height="26" color="var(--body-text-color)"/>
+                            </label>
+                        </div>
                         <input type="text" class="scroll-hide svelte-4xt1ch input-tag-append" ref="promptTagAppend"
                                v-model="appendTag" :placeholder="getLang('please_enter_new_keyword')"
                                v-tooltip="getLang('enter_to_add')" @keydown="onAppendTagKeyDown">
@@ -953,7 +953,9 @@ export default {
 
                 .extend-content {
                     width: 100%;
-                    text-align: right;
+                    display: flex;
+                    justify-content: flex-end;
+                    align-items: center;
                 }
             }
 
