@@ -355,7 +355,7 @@ export default {
                 return
             }
             let value = this.textarea.value.trim()
-            if (value === this.prompt) return
+            if (value === this.prompt.trim()) return
             let tags = common.splitTags(value)
             let newTags = []
             let newTagsIndex = []

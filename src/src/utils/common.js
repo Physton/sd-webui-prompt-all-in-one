@@ -99,12 +99,34 @@ export default {
         tags = tags.replace(/\n/g, ',') // 换行符
         tags = tags.replace(/\r/g, ',') // 回车符
 
+        // https://github.com/ljleb/prompt-fusion-extension
+        // [night light:magical forest: 5, 15]
+        // [night light:magical forest:norvegian territory: 5, 15, 25:catmull]
+        // (fire extinguisher: 1.0, 2.0)
+        // [(fire extinguisher: 1.0, 2.0)::5]
+        // [lion:bird:girl: , 7, 10]
+        // 以上标签不能被分割
+        const regexs = [
+            /(\[([\w\s_-]+:)+\s*([0-9\.]*,?\s*)+(:[\w\s_-]+)*\])+/g,
+            /(\(([\w\s_-]+:)+\s*([0-9\.]*,?\s*)+(:[\w\s_-]+)*\))+/g,
+        ]
+        const replace = '----====physton====----'
+        const replaceRex = new RegExp(replace, 'g')
+        for (const regex of regexs) {
+            // 将其中的逗号替换为：<++++----====****>
+            tags = tags.replace(regex, (match) => {
+                return match.replace(/,/g, replace)
+            })
+        }
+
         // 分割
         tags = tags.split(',')
         let list = []
         for (let tag of tags) {
             tag = tag.trim()
             if (tag === '') continue
+            // 把逗号替换回来
+            tag = tag.replace(replaceRex, ',')
             list.push(tag)
         }
         return list
