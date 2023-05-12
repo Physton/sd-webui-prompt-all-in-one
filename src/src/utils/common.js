@@ -2,6 +2,23 @@ export default {
     weightNumRegex: /:([0-9\.]+)/,
     weightNumRegexEN: /:\s*([0-9\.]+)/,
     weightNumRegexCN: /：\s*([0-9\.]+)/,
+    bracketsEN: [
+        {'(': '(', ')': ')'},
+        {'[': '[', ']': ']'},
+        {'{': '{', '}': '}'},
+        {'<': '<', '>': '>'},
+    ],
+    bracketsCN: [
+        {'（': '(', '）': ')'},
+        {'【': '[', '】': ']'},
+        {'《': '<', '》': '>'},
+        {'「': '{', '」': '}'},
+        {'『': '{', '』': '}'},
+        {'〈': '<', '〉': '>'},
+        {'﹝': '(', '﹞': ')'},
+        {'﹛': '{', '﹜': '}'},
+        {'﹙': '(', '﹚': ')'}
+    ],
 
     /**
      * 替换标签
@@ -25,26 +42,13 @@ export default {
     replaceBrackets(text) {
         const length = text.length
         if (length === 0) return text
-        const replaces = {
-            "（": "(",
-            "）": ")",
-            "【": "[",
-            "】": "]",
-            "《": "<",
-            "》": ">",
-            "「": "{",
-            "」": "}",
-            "『": "{",
-            "』": "}",
-            "〈": "<",
-            "〉": ">",
-            "﹝": "(",
-            "﹞": ")",
-            "﹛": "{",
-            "﹜": "}",
-            "﹙": "(",
-            "﹚": ")",
-        }
+        let replaces = {}
+        this.bracketsCN.forEach(item => {
+            for (const key in item) {
+                replaces[key] = item[key]
+            }
+        })
+
         let start = text[0]
         let end = text[length - 1]
         if (typeof replaces[start] !== "undefined") {
@@ -64,12 +68,22 @@ export default {
     hasBrackets(text) {
         const length = text.length
         if (length === 0) return false
-        const brackets = [
-            ['(', ')'],
-            ['[', ']'],
-            ['{', '}'],
-            ['<', '>']
-        ]
+        let brackets = []
+        this.bracketsEN.forEach(item => {
+            let temp = []
+            for (const key in item) {
+                temp.push(key)
+            }
+            brackets.push(temp)
+        })
+        this.bracketsCN.forEach(item => {
+            let temp = []
+            for (const key in item) {
+                temp.push(key)
+            }
+            brackets.push(temp)
+        })
+
         let start = text[0]
         let end = text[length - 1]
         for (const bracket of brackets) {

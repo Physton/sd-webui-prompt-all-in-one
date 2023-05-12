@@ -546,6 +546,7 @@ export default {
                 // [night light:magical forest: 5, 15]
                 if (common.hasBrackets(tags)) {
                     // 如果已经被英文括号括起来，那么就不需要再分词了
+                    tags = common.replaceBrackets(tags)
                     tags = [tags]
                 } else {
                     tags = common.splitTags(tags)
