@@ -5,9 +5,9 @@
 [![GitHub issues](https://img.shields.io/github/issues/Physton/sd-webui-prompt-all-in-one?style=plastic)](https://github.com/Physton/sd-webui-prompt-all-in-one/issues)
 [![GitHub license](https://img.shields.io/github/license/Physton/sd-webui-prompt-all-in-one?style=plastic)](https://github.com/Physton/sd-webui-prompt-all-in-one/blob/master/LICENSE.md)
 
-sd-webui-prompt-all-in-one is an extension based on stable-diffusion-webui that aims to improve the user experience of the prompt/negative prompt input box. It has a more intuitive and powerful input interface, provides automatic translation, history and collection functions, and supports multiple languages to meet the needs of different users.
+sd-webui-prompt-all-in-one is an extension based on [stable-diffusion-webui](https://github.com/AUTOMATIC1111/stable-diffusion-webui) that aims to improve the user experience of the prompt/negative prompt input box. It has a more intuitive and powerful input interface, provides automatic translation, history and collection functions, and supports multiple languages to meet the needs of different users.
 
-*sd-webui-prompt-all-in-one 是一个基于 stable-diffusion-webui 的扩展，旨在提高提示词/反向提示词输入框的使用体验。它拥有更直观、强大的输入界面功能，它提供了自动翻译、历史记录和收藏等功能，它支持多种语言，满足不同用户的需求。*
+*sd-webui-prompt-all-in-one 是一个基于 [stable-diffusion-webui](https://github.com/AUTOMATIC1111/stable-diffusion-webui) 的扩展，旨在提高提示词/反向提示词输入框的使用体验。它拥有更直观、强大的输入界面功能，它提供了自动翻译、历史记录和收藏等功能，它支持多种语言，满足不同用户的需求。*
 
 ---
 
@@ -23,23 +23,50 @@ function supports the majority of countries worldwide.
 > 如果你觉得这个扩展有帮助，请在Github上给我一颗星！
 > 你也可以请我喝杯咖啡: [donate](#donate)
 
-## Features / *功能特性*
+- [Demo / *演示*](#demo--演示)
+- [Installation and Usage / *安装使用*](#installation-and-usage--安装使用)
+- [Contributing / *帮助开发*](#contributing--帮助开发)
+- [Development / *开发方式*](#development--开发方式)
+- [FAQ / *常见问题列表*](#faq--常见问题列表)
+- [Donate / *捐赠*](#Donate)
 
-- More intuitive and powerful prompt input interface: supports adding new keywords with one click, drag and drop sorting, one-click copying and one-click translation. At the same time, the interface can display the translation results of English<->local language intuitively.
+## Demo / *演示*
 
-    *更直观、强大的 prompt 输入界面：支持回车添加新关键词、拖动排序、一键复制和一键翻译。同时，界面中能够直观地显示英文<->本地语言的翻译结果。*
+- Switch language / *切换语言*
 
-- Automatic translation: automatically translate the local language into English, and translate the English input of the prompt into the local language at the same time.
+  ![](images/switch_language.png)
 
-    *自动翻译：自动将本地语言翻译成英文，同时将 prompt 输入的英文翻译成本地语言。*
+- Show/Hide content / *显示/折叠内容*
 
-- History and collection: support recording the history and collection of the prompt, making it convenient for users to quickly search and use.
+  ![](images/fold.gif)
 
-    *历史记录和收藏：支持记录 prompt 的历史记录和收藏，方便用户快速查找和使用。*
+- Show/Hide the WebUI input box / *显示/隐藏WebUI输入框*
 
-- Multi-language support: currently supports Simplified Chinese, Traditional Chinese, English, Russian, Japanese, Korean, French, German, Spanish, Portuguese, Italian, and Spanish, meeting the needs of different users.
+  ![](images/show_input.gif)
 
-    *多国语言支持：目前支持简体中文、繁体中文、英文、俄语、日语、韩语、法语、德语、西班牙语、葡萄牙语、意大利语、西班牙语，满足不同用户的需求。*
+- Automatic translation / *自动翻译*
+
+  ![](images/auto_translate.gif)
+
+- One-click translation / *一键翻译*
+
+  ![](images/translate.gif)
+
+- Elegant input / *优雅的输入*
+
+  ![](images/elegant_input.gif)
+
+- Quick adjustment / *快速调整*
+
+  ![](images/quick_adjust.gif)
+
+- Favorite and History / *收藏和历史记录*
+
+  ![](images/history_favorite.gif)
+
+- Writing in WebUI input box / *在WebUI的输入框中编写*
+
+  ![](images/writing_webui.gif)
 
 ## Installation and Usage / *安装使用*
 
@@ -81,25 +108,6 @@ function supports the majority of countries worldwide.
 
    *重启 stable-diffusion-webui。*
 
-## Demo / *演示*
-
-- Automatic translation / *自动翻译*
-
-  ![](images/auto_translate.gif)
-
-- One-click translation / *一键翻译*
-
-  ![](images/translate.gif)
-
-- Feature 1 / *特性1*
-
-  ![](images/feature1.gif)
-
-- Feature 2 / *特性2*
-
-  ![](images/feature2.gif)
-
-
 ## Contributing / *帮助开发*
 
 If you want to contribute to sd-webui-prompt-all-in-one, welcome to submit issues and pull requests. You can also
@@ -133,13 +141,6 @@ contact me via:
   1. Enter the extension directory / *进入扩展目录*：`cd ./sd-webui-prompt-all-in-one`
   2. Modify the code / *修改代码*
   3. Restart stable-diffusion-webui / *重启 stable-diffusion-webui。*
-
-## Future / *未来计划*
-
-- Support more languages / *支持更多的语言*
-- Optimize translation services / *优化翻译服务*
-- More powerful history function / *更强大的历史记录功能*
-- ......
 
 ## FAQ / *常见问题列表*
 
