@@ -545,7 +545,8 @@ export default {
             })
         },
         onAppendTagKeyDown(e, localValue = null) {
-            if (e.keyCode === 13) {
+            if (e.keyCode === 38 || e.keyCode === 40) {
+            } else if (e.keyCode === 13) {
                 const autocompleteResults = e.target.parentElement.querySelector('.autocompleteResults')
                 if (autocompleteResults && autocompleteResults.style.display === 'block') {
                     const selected = autocompleteResults.querySelector("li.selected .acListItem")
@@ -609,6 +610,18 @@ export default {
                         })
                     } else {
                         this.updateTags()
+                    }
+                }
+            } else {
+                // 不是上下键，也不是回车
+                const autocompleteResults = e.target.parentElement.querySelector('.autocompleteResults')
+                if (autocompleteResults && autocompleteResults.style.display === 'block') {
+                    const selected = autocompleteResults.querySelector("li.selected .acListItem")
+                    if (selected) {
+                        // 移除 .selected
+                        selected.parentElement.parentElement.querySelectorAll('li').forEach(li => {
+                            li.classList.remove('selected')
+                        })
                     }
                 }
             }
