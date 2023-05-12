@@ -78,6 +78,10 @@ export default {
                                 reject(e)
                                 return
                             }
+                        } else {
+                            // 移除末尾的.，因为有些翻译会加上.
+                            res.translated_text = res.translated_text.replace(/\.$/, '')
+                            res.translated_text = res.translated_text.trim()
                         }
                         resolve(res)
                     } else {

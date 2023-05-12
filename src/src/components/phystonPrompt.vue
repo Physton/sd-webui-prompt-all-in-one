@@ -450,7 +450,7 @@ export default {
             })
             if (prompts.length <= 0) return ''
             // console.log('update tags', prompts)
-            return prompts.join(', ') + ', '
+            return prompts.join(',') + ','
         },
         updateTags() {
             console.log('tags change', this.tags)
@@ -1040,11 +1040,14 @@ export default {
         }
 
         > *, .prompt-tags-list > * {
-            margin-right: 12px;
             margin-bottom: 8px;
+        }
+
+        .prompt-tags-list > * {
+            margin-right: 12px;
 
             &:last-child {
-                margin-right: 0;
+                margin-right: 12px;
             }
         }
 
