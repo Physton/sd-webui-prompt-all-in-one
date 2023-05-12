@@ -1615,6 +1615,12 @@
                     ],
                     "config": [
                         {
+                            "key": "api_base",
+                            "title": "API Base",
+                            "type": "input",
+                            "default": "https://api.openai.com/v1"
+                        },
+                        {
                             "key": "api_key",
                             "title": "API Key",
                             "type": "input"
