@@ -203,9 +203,11 @@
                         </div>
                     </div>
                 </div>
-                <input type="text" class="scroll-hide svelte-4xt1ch input-tag-append" ref="promptTagAppend"
+                <div class="prompt-append">
+                    <input type="text" class="scroll-hide svelte-4xt1ch input-tag-append" ref="promptTagAppend"
                        v-model="appendTag" :placeholder="getLang('please_enter_new_keyword')"
                        v-tooltip="getLang('enter_to_add')" @keydown="onAppendTagKeyDown">
+                </div>
             </div>
         </div>
 
@@ -330,6 +332,11 @@ export default {
         this.$nextTick(() => {
             this.initSortable()
             autoSizeInput(this.$refs.promptTagAppend)
+            setTimeout(() => {
+                if (typeof addAutocompleteToArea === 'function') {
+                    // addAutocompleteToArea(this.$refs.promptTagAppend)
+                }
+            }, 3000)
             this.init()
         })
     },
@@ -447,6 +454,14 @@ export default {
             console.log('tags change', this.tags)
             this.prompt = this.genPrompt()
             this.textarea.value = this.prompt
+            if (typeof hideResults === 'function') {
+                const times = [100, 200, 300, 500, 1000]
+                times.forEach(time => {
+                    setTimeout(() => {
+                        hideResults(this.textarea)
+                    }, time)
+                })
+            }
             const steps = this.steps.querySelector('input[type="number"]').value
             this.gradioAPI.tokenCounter(this.textarea.value, steps).then(res => {
                 const {token_count, max_length} = res
@@ -1216,6 +1231,10 @@ export default {
                     margin-left: 2px;
                 }
             }
+        }
+
+        .prompt-append {
+            position: relative;
         }
 
         .input-tag-append {
