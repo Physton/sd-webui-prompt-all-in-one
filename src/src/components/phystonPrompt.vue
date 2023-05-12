@@ -14,11 +14,59 @@
                                  @click="$emit('click:selectLanguage', $event)">
                                 <icon-i18n class="hover-scale-120" width="18" height="18" color="#d81e06"/>
                             </div>
-                            <div v-if="translateApiItem.name && !isEnglish" class="extend-btn-item"
+                            <div class="extend-btn-item">
+                                <icon-setting class="hover-scale-120" width="18" height="18" color="#d81e06" v-tooltip="getLang('setting_desc')" />
+                                <div class="setting-box">
+                                    <div v-if="translateApiItem.name && !isEnglish" class="extend-btn-item"
+                                         v-tooltip="getLang('translate_api') + ': ' + translateApiItem.name"
+                                         @click="$emit('click:translateApi', $event)">
+                                        <icon-api class="hover-scale-120" width="26" height="26" color="#d81e06"/>
+                                    </div>
+                                    <div class="gradio-checkbox hover-scale-120" v-show="!isEnglish">
+                                        <label v-tooltip="getLang('auto_translate_to_local_language')">
+                                            <input type="checkbox" name="auto_translate_to_local_language" value="1"
+                                                   :checked="autoTranslateToLocal"
+                                                   @change="$emit('update:autoTranslateToLocal', $event.target.checked)">
+                                            <icon-translate width="26" height="26" color="#ad6800"/>
+                                        </label>
+                                    </div>
+                                    <div class="gradio-checkbox hover-scale-120" v-show="!isEnglish">
+                                        <label v-tooltip="getLang('auto_translate_to_english')">
+                                            <input type="checkbox" name="auto_translate_to_english" value="1"
+                                                   :checked="autoTranslateToEnglish"
+                                                   @change="$emit('update:autoTranslateToEnglish', $event.target.checked)">
+                                            <icon-english width="26" height="26" color="#ad6800"/>
+                                        </label>
+                                    </div>
+                                    <div class="gradio-checkbox hover-scale-120">
+                                        <label v-if="hideDefaultInput" v-tooltip="getLang('show_default_input_box')">
+                                            <input type="checkbox" name="hide_default_input" value="1"
+                                                   :checked="!hideDefaultInput"
+                                                   @change="$emit('update:hideDefaultInput', !$event.target.checked)">
+                                            <icon-input width="26" height="26" color="var(--body-text-color)"/>
+                                        </label>
+                                        <label v-else v-tooltip="getLang('hide_default_input_box')">
+                                            <input type="checkbox" name="hide_default_input" value="1"
+                                                   :checked="!hideDefaultInput"
+                                                   @change="$emit('update:hideDefaultInput', !$event.target.checked)">
+                                            <icon-input width="26" height="26" color="var(--body-text-color)"/>
+                                        </label>
+                                    </div>
+                                    <div class="gradio-checkbox hover-scale-120">
+                                        <label v-tooltip="getLang('whether_to_enable_tooltip')">
+                                            <input type="checkbox" name="enable_tooltip" value="1"
+                                                   :checked="enableTooltip"
+                                                   @change="$emit('update:enableTooltip', $event.target.checked)">
+                                            <icon-tooltip width="26" height="26" color="var(--body-text-color)"/>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--<div v-if="translateApiItem.name && !isEnglish" class="extend-btn-item"
                                  v-tooltip="getLang('translate_api') + ': ' + translateApiItem.name"
                                  @click="$emit('click:translateApi', $event)">
                                 <icon-api class="hover-scale-120" width="18" height="18" color="#d81e06"/>
-                            </div>
+                            </div>-->
                         </div>
                     </div>
                 </div>
@@ -71,58 +119,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="prompt-header-extend" v-show="!isEnglish">
+                <div class="prompt-header-extend prompt-append">
                     <div class="extend-content">
-                        <div class="gradio-checkbox hover-scale-120">
-                            <label v-tooltip="getLang('auto_translate_to_english')">
-                                <input type="checkbox" name="auto_translate_to_english" value="1"
-                                       :checked="autoTranslateToEnglish"
-                                       @change="$emit('update:autoTranslateToEnglish', $event.target.checked)">
-                                <icon-english width="26" height="26" color="#ad6800"/>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <div class="prompt-header-extend" v-show="!isEnglish">
-                    <div class="extend-content">
-                        <div class="gradio-checkbox hover-scale-120">
-                            <label v-tooltip="getLang('auto_translate_to_local_language')">
-                                <input type="checkbox" name="auto_translate_to_local_language" value="1"
-                                       :checked="autoTranslateToLocal"
-                                       @change="$emit('update:autoTranslateToLocal', $event.target.checked)">
-                                <icon-translate width="26" height="26" color="#ad6800"/>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <div class="prompt-header-extend">
-                    <div class="extend-content">
-                        <div class="gradio-checkbox hover-scale-120">
-                            <label v-if="hideDefaultInput" v-tooltip="getLang('show_default_input_box')">
-                                <input type="checkbox" name="hide_default_input" value="1"
-                                       :checked="!hideDefaultInput"
-                                       @change="$emit('update:hideDefaultInput', !$event.target.checked)">
-                                <icon-input width="26" height="26" color="var(--body-text-color)"/>
-                            </label>
-                            <label v-else v-tooltip="getLang('hide_default_input_box')">
-                                <input type="checkbox" name="hide_default_input" value="1"
-                                       :checked="!hideDefaultInput"
-                                       @change="$emit('update:hideDefaultInput', !$event.target.checked)">
-                                <icon-input width="26" height="26" color="var(--body-text-color)"/>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <div class="prompt-header-extend">
-                    <div class="extend-content">
-                        <div class="gradio-checkbox hover-scale-120">
-                            <label v-tooltip="getLang('whether_to_enable_tooltip')">
-                                <input type="checkbox" name="enable_tooltip" value="1"
-                                       :checked="enableTooltip"
-                                       @change="$emit('update:enableTooltip', $event.target.checked)">
-                                <icon-tooltip width="26" height="26" color="var(--body-text-color)"/>
-                            </label>
-                        </div>
+                        <input type="text" class="scroll-hide svelte-4xt1ch input-tag-append" ref="promptTagAppend"
+                               v-model="appendTag" :placeholder="getLang('please_enter_new_keyword')"
+                               v-tooltip="getLang('enter_to_add')" @keydown="onAppendTagKeyDown">
                     </div>
                 </div>
             </div>
@@ -205,11 +206,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="prompt-append">
+                <!--<div class="prompt-append">
                     <input type="text" class="scroll-hide svelte-4xt1ch input-tag-append" ref="promptTagAppend"
                            v-model="appendTag" :placeholder="getLang('please_enter_new_keyword')"
                            v-tooltip="getLang('enter_to_add')" @keydown="onAppendTagKeyDown">
-                </div>
+                </div>-->
             </div>
         </div>
 
@@ -246,10 +247,12 @@ import IconI18n from "@/components/icons/iconI18n.vue";
 import IconApi from "@/components/icons/iconApi.vue";
 import VueNumberInput from '@chenfengyuan/vue-number-input';
 import IconUnfold from "@/components/icons/iconUnflod.vue";
+import IconSetting from "@/components/icons/iconSetting.vue";
 
 export default {
     name: 'PhystonPrompt',
     components: {
+        IconSetting,
         IconUnfold,
         VueNumberInput,
         IconApi,
@@ -333,7 +336,7 @@ export default {
     mounted() {
         this.$nextTick(() => {
             this.initSortable()
-            autoSizeInput(this.$refs.promptTagAppend)
+            // autoSizeInput(this.$refs.promptTagAppend)
             setTimeout(() => {
                 if (typeof addAutocompleteToArea === 'function') {
                     // addAutocompleteToArea(this.$refs.promptTagAppend)
@@ -897,7 +900,7 @@ export default {
         padding-bottom: 10px;
         margin-bottom: 10px;
         border-bottom: 1px dashed var(--input-border-color);
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
 
         > * {
             margin-right: 10px;
@@ -916,6 +919,7 @@ export default {
         .prompt-header-title {
             font-weight: bold;
             font-size: 1rem;
+            white-space: nowrap;
         }
 
         .prompt-header-counter {
@@ -941,6 +945,16 @@ export default {
             .extend-title {
                 font-size: 0.8rem;
                 margin-right: 5px;
+            }
+
+            &.prompt-append {
+                position: relative;
+                flex: 1;
+
+                .extend-content {
+                    width: 100%;
+                    text-align: right;
+                }
             }
 
             .extend-content {
@@ -969,6 +983,30 @@ export default {
                     }
                 }
 
+                .input-tag-append {
+                    display: inline-block;
+                    height: 26px !important;
+                    padding: 4px !important;
+                    //border: 1px solid var(--input-border-color);
+                    border: 1px solid #02b7fd;
+                    appearance: none;
+                    background-color: transparent;
+                    font-size: 0.9rem !important;
+                    line-height: 0.9rem !important;
+                    font-family: inherit;
+                    font-weight: inherit;
+                    border-radius: 4px !important;
+                    min-width: 200px;
+                    width: 80%;
+                    text-align: right;
+
+                    &:focus {
+                        box-shadow: var(--input-shadow-focus) !important;
+                        //border: 1px solid #02b7fd !important;
+                        //border-color: var(--input-border-color-focus);
+                    }
+                }
+
                 .extend-btn-group {
                     display: flex;
                     justify-content: center;
@@ -987,10 +1025,53 @@ export default {
                         display: flex;
                         justify-content: center;
                         align-items: center;
+                        position: relative;
 
                         &:first-child {
                             border-left: 0;
                             margin-left: 0;
+                        }
+
+                        &:hover{
+                            .setting-box {
+                                display: flex;
+                            }
+                        }
+
+                        .setting-box {
+                            display: none;
+                            position: absolute;
+                            background: var(--color-body-background);
+                            //top: -36px;
+                            //left: 0;
+                            top: -5px;
+                            left: 28px;
+                            justify-content: flex-start;
+                            align-items: center;
+                            width: max-content;
+                            height: 36px;
+                            padding: 0 10px;
+                            box-shadow: 0 0 3px 0 #4a54ff;
+                            border-radius: 6px 6px 4px 4px;
+                            z-index: 10;
+
+                            > * {
+                                margin-left: 10px;
+
+                                &:first-child {
+                                    margin-left: 0;
+                                }
+                            }
+
+                            /*&::before {
+                                content: "";
+                                position: absolute;
+                                bottom: -10px;
+                                left: 10px;
+                                border-width: 10px 10px 0;
+                                border-style: solid;
+                                border-color: #fff transparent transparent; !* 三角箭头的颜色 *!
+                            }*/
                         }
                     }
                 }
@@ -1246,13 +1327,13 @@ export default {
             }
         }
 
-        .prompt-append {
+        /*.prompt-append {
             position: relative;
         }
 
         .input-tag-append {
             min-width: 200px;
-        }
+        }*/
 
         .gradio-button {
             max-width: none !important;
