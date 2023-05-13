@@ -195,6 +195,8 @@ A: 这是由于webui启动时，没有正确的安装依赖导致的，可以通
 
 ## Donate
 
+Donation list / *捐赠列表*：[DONATE.MD](DONATE.MD)
+
 ### Buy me a coffee / *请我喝杯咖啡*
 
 #### BTC-Bitcoin `3LdXwHkkVsspQzgowdy3pymwty9LiFBHda`
@@ -209,7 +211,7 @@ A: 这是由于webui启动时，没有正确的安装依赖导致的，可以通
 
 #### Alipay / 支付宝 `physton@163.com`
 
-#### Wechat / 微信赞赏 
+#### Wechat / 微信赞赏
 
 ![](images/donate-wechat.jpg)
 
