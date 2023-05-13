@@ -469,14 +469,7 @@ export default {
             console.log('tags change', this.tags)
             this.prompt = this.genPrompt()
             this.textarea.value = this.prompt
-            if (typeof hideResults === 'function') {
-                const times = [100, 200, 300, 500, 1000]
-                times.forEach(time => {
-                    setTimeout(() => {
-                        hideResults(this.textarea)
-                    }, time)
-                })
-            }
+            common.hideCompleteResults(this.textarea)
             const steps = this.steps.querySelector('input[type="number"]').value
             this.gradioAPI.tokenCounter(this.textarea.value, steps).then(res => {
                 const {token_count, max_length} = res

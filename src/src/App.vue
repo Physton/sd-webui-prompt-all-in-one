@@ -375,15 +375,23 @@ export default {
             this.pasteLoading = true
             const ele = get_uiCurrentTabContent()
             let $textarea = null
+            let $textareaNeg = null
             let $prompt = null
+            let $promptNeg = null
+            let ids = []
             for (const item of this.prompts) {
-                if (!item.neg && item.tab == ele.id) {
-                    $textarea = item.$textarea
-                    $prompt = item.$prompt
-                    break
+                if (item.tab == ele.id) {
+                    ids.push(item.id)
+                    if (item.neg) {
+                        $textareaNeg = item.$textarea
+                        $promptNeg = item.$prompt
+                    } else {
+                        $textarea = item.$textarea
+                        $prompt = item.$prompt
+                    }
                 }
             }
-            if (!$textarea || !$prompt) {
+            if (!$textarea || !$prompt || !$promptNeg) {
                 this.pasteLoading = false
                 return
             }
@@ -401,12 +409,17 @@ export default {
                         clearInterval(interval)
                         return
                     }
-                    const $hide = $prompt.getElementsByClassName('hide')
-                    console.log($prompt, $hide)
-                    if ($hide.length > 0) {
+                    if ($prompt.getElementsByClassName('hide').length > 0 && $promptNeg.getElementsByClassName('hide').length > 0) {
                         this.pasteLoading = false
                         this.closePastePopup()
                         clearInterval(interval)
+                        common.hideCompleteResults($textarea)
+                        common.hideCompleteResults($textareaNeg)
+                        ids.forEach((id, index) => {
+                            setTimeout(() => {
+                                this.$refs[id][0].onTextareaChange(true)
+                            }, 1000)
+                        })
                     }
                 }, 100)
             }, 1000)

@@ -362,6 +362,12 @@ export default {
         return true
     },
 
+    /**
+     * 获取翻译api的item
+     * @param translateApis {Array}
+     * @param translateApi {string}
+     * @returns {{}|*}
+     */
     getTranslateApiItem(translateApis, translateApi) {
         if (!translateApis || translateApis.length <= 0) return {}
         for (let group of translateApis) {
@@ -372,5 +378,20 @@ export default {
             }
         }
         return {}
+    },
+
+    /**
+     * 隐藏 a1111-sd-webui-tagcomplete 面板
+     * @param textarea
+     */
+    hideCompleteResults(textarea) {
+        if (typeof hideResults === 'function') {
+            const times = [100, 200, 300, 500, 1000]
+            times.forEach(time => {
+                setTimeout(() => {
+                    hideResults(textarea)
+                }, time)
+            })
+        }
     }
 }
