@@ -128,8 +128,6 @@ contact me via:
 *如果你想为 sd-webui-prompt-all-in-one 做出贡献，欢迎提交 issue 和 pull request。同时，你也可以通过以下方式联系我：*
 
 - Email / *邮箱*：physton@163.com
-- Wechat / *微信*：physton8
-- QQ群：820700336
 
 ## Development / *开发方式*
 
