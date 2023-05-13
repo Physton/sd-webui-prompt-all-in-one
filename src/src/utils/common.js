@@ -14,6 +14,8 @@ export default {
         /(([^,]+)?\s*\((([\w\s_-\|]+(:[0-9\.]+)?\,?))+\)\s*([^,]+)?)+/g,
         // EasyNegative [normal quality,Low quality,worst quality:1.4]
         /(([^,]+)?\s*\[(([\w\s_-\|]+(:[0-9\.]+)?\,?))+\]\s*([^,]+)?)+/g,
+        // <lora:clothesTransparent_v20:1:1,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0>
+        /(\<[^\>]+\>)+/g
     ],
     bracketsEN: [
         {'(': '(', ')': ')'},
