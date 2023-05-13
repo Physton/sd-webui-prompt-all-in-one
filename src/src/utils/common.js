@@ -2,6 +2,17 @@ export default {
     weightNumRegex: /(.*):([0-9\.]+)/,
     weightNumRegexEN: /(.*):\s*([0-9\.]+)/,
     weightNumRegexCN: /(.*)：\s*([0-9\.]+)/,
+    dontSplitRegexes: [
+        // [night light:magical forest: 5, 15]
+        // [night light:magical forest:norvegian territory: 5, 15, 25:catmull]
+        // (fire extinguisher: 1.0, 2.0)
+        // [(fire extinguisher: 1.0, 2.0)::5]
+        // [lion:bird:girl: , 7, 10]
+        /(\[([\w\s_-]+:)+\s*([0-9\.]*,?\s*)+(:[\w\s_-]+)*\])+/g,
+        /(\(([\w\s_-]+:)+\s*([0-9\.]*,?\s*)+(:[\w\s_-]+)*\))+/g,
+        // EasyNegative (normal quality,Low quality,worst quality:1.4)
+        /(([^,]+)?\s*\((([\w\s_-\|]+(:[0-9\.]+)?\,?))+\)\s*([^,]+)?)+/g,
+    ],
     bracketsEN: [
         {'(': '(', ')': ')'},
         {'[': '[', ']': ']'},
@@ -113,20 +124,9 @@ export default {
         tags = tags.replace(/\n/g, ',') // 换行符
         tags = tags.replace(/\r/g, ',') // 回车符
 
-        // https://github.com/ljleb/prompt-fusion-extension
-        // [night light:magical forest: 5, 15]
-        // [night light:magical forest:norvegian territory: 5, 15, 25:catmull]
-        // (fire extinguisher: 1.0, 2.0)
-        // [(fire extinguisher: 1.0, 2.0)::5]
-        // [lion:bird:girl: , 7, 10]
-        // 以上标签不能被分割
-        const regexs = [
-            /(\[([\w\s_-]+:)+\s*([0-9\.]*,?\s*)+(:[\w\s_-]+)*\])+/g,
-            /(\(([\w\s_-]+:)+\s*([0-9\.]*,?\s*)+(:[\w\s_-]+)*\))+/g,
-        ]
         const replace = '----====physton====----'
         const replaceRex = new RegExp(replace, 'g')
-        for (const regex of regexs) {
+        for (const regex of this.dontSplitRegexes) {
             // 将其中的逗号替换为：<++++----====****>
             tags = tags.replace(regex, (match) => {
                 return match.replace(/,/g, replace)
