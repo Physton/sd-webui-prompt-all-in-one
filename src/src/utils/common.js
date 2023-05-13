@@ -12,6 +12,8 @@ export default {
         /(\(([\w\s_-]+:)+\s*([0-9\.]*,?\s*)+(:[\w\s_-]+)*\))+/g,
         // EasyNegative (normal quality,Low quality,worst quality:1.4)
         /(([^,]+)?\s*\((([\w\s_-\|]+(:[0-9\.]+)?\,?))+\)\s*([^,]+)?)+/g,
+        // EasyNegative [normal quality,Low quality,worst quality:1.4]
+        /(([^,]+)?\s*\[(([\w\s_-\|]+(:[0-9\.]+)?\,?))+\]\s*([^,]+)?)+/g,
     ],
     bracketsEN: [
         {'(': '(', ')': ')'},
