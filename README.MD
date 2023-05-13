@@ -32,6 +32,10 @@ function supports the majority of countries worldwide.
 
 ## Demo / *演示*
 
+- Bilibili Video (Chinese) / *哔哩哔哩视频介绍和演示*
+
+  [https://www.bilibili.com/video/BV1Am4y1a7oP](https://www.bilibili.com/video/BV1Am4y1a7oP)
+
 - Switch language / *切换语言*
 
   ![](images/switch_language.png)
