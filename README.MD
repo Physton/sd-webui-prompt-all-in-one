@@ -205,6 +205,10 @@ A: 这是由于webui启动时，没有正确的安装依赖导致的，可以通
 
 #### USDT-TRC20 `TWtnKQgSTpHu1eiQGrppSniGyzYtggZYFf`
 
+#### Paypal `physton@163.com`
+
+#### Alipay / 支付宝 `physton@163.com`
+
 #### Wechat / 微信赞赏 
 
 ![](images/donate-wechat.jpg)
