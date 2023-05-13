@@ -1,0 +1,33 @@
+# DONATE *捐赠*
+
+## Donation list / *捐赠列表*
+
+Thank you very much for your love and support. I have received your kindness.
+
+*非常感谢大家的喜爱和支持，你们的心意我已收到。*
+
+| China time / *中国时间* | Nickname / *昵称* | Leave a message / *留言*         | Amount / *金额* |
+|---------------------|-----------------|--------------------------------|---------------|
+| 2023-05-10          | ?unknown        | 很好用，感谢分享                       | ￥5            |
+| 2023-05-11          | K**鱼            | Prompt插件很不错，喝杯咖啡，加油            | ￥30           |
+| 2023-05-11          | 老**畵            |                                | ￥20           |
+| 2023-05-12          | 鸾**醴            | 建议：可以将按钮改成圆角的，还可以把能收起的范围加大到只剩^ | ￥1            |
+| 2023-05-12          | c**o            | 谢谢你的插件，继续加油。                   | ￥5            |
+
+## Buy me a coffee / *请我喝杯咖啡*
+
+#### BTC-Bitcoin `3LdXwHkkVsspQzgowdy3pymwty9LiFBHda`
+
+#### ETH-Ethereum `3DbapbGRQdbrDqBazBPYWfyKjbM5uN2SDy`
+
+#### USDT-ERC20 `0xb8b7a067c5639e7befb9665be9bd00a4c75b6614`
+
+#### USDT-TRC20 `TWtnKQgSTpHu1eiQGrppSniGyzYtggZYFf`
+
+#### Paypal `physton@163.com`
+
+#### Alipay / 支付宝 `physton@163.com`
+
+#### Wechat / 微信赞赏
+
+![](images/donate-wechat.jpg)
