@@ -10,6 +10,8 @@
                             v-model:auto-translate-to-local="autoTranslateToLocal"
                             :hide-default-input="item.hideDefaultInput"
                             @update:hide-default-input="onUpdateHideDefaultInput(item.id, $event)"
+                            :hide-panel="item.hidePanel"
+                            @update:hide-panel="onUpdateHidePanel(item.id, $event)"
                             v-model:enable-tooltip="enableTooltip"
                             v-model:translate-api="translateApi"
                             :translate-api-config="translateApiConfig"
@@ -81,6 +83,8 @@ export default {
                     neg: false,
                     hideDefaultInputKey: 'txt2ImgHideDefaultInput',
                     hideDefaultInput: false,
+                    hidePanelKey: 'txt2ImgHidePanel',
+                    hidePanel: false,
                     id: 'phystonPrompt_txt2img_prompt'
                 },
                 {
@@ -100,6 +104,8 @@ export default {
                     neg: true,
                     hideDefaultInputKey: 'txt2ImgNegHideDefaultInput',
                     hideDefaultInput: false,
+                    hidePanelKey: 'txt2ImgNegHidePanel',
+                    hidePanel: false,
                     id: 'phystonPrompt_txt2img_neg_prompt'
                 },
                 {
@@ -119,6 +125,8 @@ export default {
                     neg: false,
                     hideDefaultInputKey: 'img2ImgHideDefaultInput',
                     hideDefaultInput: false,
+                    hidePanelKey: 'img2ImgHidePanel',
+                    hidePanel: false,
                     id: 'phystonPrompt_img2img_prompt'
                 },
                 {
@@ -138,6 +146,8 @@ export default {
                     neg: true,
                     hideDefaultInputKey: 'img2ImgNegHideDefaultInput',
                     hideDefaultInput: false,
+                    hidePanelKey: 'img2ImgNegHidePanel',
+                    hidePanel: false,
                     id: 'phystonPrompt_img2img_neg_prompt'
                 },
             ],
@@ -256,6 +266,7 @@ export default {
                 // dataListsKeys.push(item.historyKey)
                 // dataListsKeys.push(item.favoriteKey)
                 dataListsKeys.push(item.hideDefaultInputKey)
+                dataListsKeys.push(item.hidePanelKey)
             })
 
             this.gradioAPI.getDatas(dataListsKeys).then(data => {
@@ -295,6 +306,9 @@ export default {
                 this.prompts.forEach(item => {
                     if (data[item.hideDefaultInputKey] !== null) {
                         item.hideDefaultInput = data[item.hideDefaultInputKey]
+                    }
+                    if (data[item.hidePanelKey] !== null) {
+                        item.hidePanel = data[item.hidePanelKey]
                     }
                     item.$prompt = document.getElementById(item.prompt)
                     item.$textarea = item.$prompt.getElementsByTagName("textarea")[0]
@@ -431,6 +445,12 @@ export default {
             item.hideDefaultInput = value
             this.gradioAPI.setData(item.hideDefaultInputKey, item.hideDefaultInput)
             item.$prompt.parentElement.parentElement.style.display = item.hideDefaultInput ? 'none' : 'flex'
+        },
+        onUpdateHidePanel(id, value) {
+            const item = this.prompts.find(item => item.id == id)
+            if (!item) return
+            item.hidePanel = value
+            this.gradioAPI.setData(item.hidePanelKey, item.hidePanel)
         },
     },
 }
