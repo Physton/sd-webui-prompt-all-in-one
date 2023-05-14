@@ -38,47 +38,47 @@ function supports the majority of countries worldwide.
 
 - Switch language / *切换语言*
 
-  ![](https://github.com/Physton/sd-webui-prompt-all-in-one-assets/images/switch_language.png)
+  ![](https://raw.githubusercontent.com/Physton/sd-webui-prompt-all-in-one-assets/main/images/switch_language.png)
 
 - Show/Hide content / *显示/折叠内容*
 
-  ![](https://github.com/Physton/sd-webui-prompt-all-in-one-assets/images/fold.gif)
+  ![](https://raw.githubusercontent.com/Physton/sd-webui-prompt-all-in-one-assets/main/images/fold.gif)
 
 - Show/Hide the WebUI input box / *显示/隐藏WebUI输入框*
 
-  ![](https://github.com/Physton/sd-webui-prompt-all-in-one-assets/images/show_input.gif)
+  ![](https://raw.githubusercontent.com/Physton/sd-webui-prompt-all-in-one-assets/main/images/show_input.gif)
 
 - Automatic translation / *自动翻译*
 
-  ![](https://github.com/Physton/sd-webui-prompt-all-in-one-assets/images/auto_translate.gif)
+  ![](https://raw.githubusercontent.com/Physton/sd-webui-prompt-all-in-one-assets/main/images/auto_translate.gif)
 
 - One-click translation / *一键翻译*
 
-  ![](https://github.com/Physton/sd-webui-prompt-all-in-one-assets/images/translate.gif)
+  ![](https://raw.githubusercontent.com/Physton/sd-webui-prompt-all-in-one-assets/main/images/translate.gif)
 
 - Concise input / *简洁的输入*
 
-  ![](https://github.com/Physton/sd-webui-prompt-all-in-one-assets/images/concise_input.gif)
+  ![](https://raw.githubusercontent.com/Physton/sd-webui-prompt-all-in-one-assets/main/images/concise_input.gif)
 
 - Elegant input / *优雅的输入*
 
-  ![](https://github.com/Physton/sd-webui-prompt-all-in-one-assets/images/elegant_input.gif)
+  ![](https://raw.githubusercontent.com/Physton/sd-webui-prompt-all-in-one-assets/main/images/elegant_input.gif)
 
 - Quick adjustment / *快速调整*
 
-  ![](https://github.com/Physton/sd-webui-prompt-all-in-one-assets/images/quick_adjust.gif)
+  ![](https://raw.githubusercontent.com/Physton/sd-webui-prompt-all-in-one-assets/main/images/quick_adjust.gif)
 
 - Favorite and History / *收藏和历史记录*
 
-  ![](https://github.com/Physton/sd-webui-prompt-all-in-one-assets/images/history_favorite.gif)
+  ![](https://raw.githubusercontent.com/Physton/sd-webui-prompt-all-in-one-assets/main/images/history_favorite.gif)
 
 - Writing in WebUI input box / *在WebUI的输入框中编写*
 
-  ![](https://github.com/Physton/sd-webui-prompt-all-in-one-assets/images/writing_webui.gif)
+  ![](https://raw.githubusercontent.com/Physton/sd-webui-prompt-all-in-one-assets/main/images/writing_webui.gif)
 
 - Support for [a1111-sd-webui-tagcomplete](https://github.com/DominikDoom/a1111-sd-webui-tagcomplete) / *支持[a1111-sd-webui-tagcomplete](https://github.com/DominikDoom/a1111-sd-webui-tagcomplete)*
 
-  ![](https://github.com/Physton/sd-webui-prompt-all-in-one-assets/images/tagcomplete.gif)
+  ![](https://raw.githubusercontent.com/Physton/sd-webui-prompt-all-in-one-assets/main/images/tagcomplete.gif)
 
 ## Installation and Usage / *安装使用*
 
@@ -213,6 +213,6 @@ Donation list / *捐赠列表*：[DONATE.MD](DONATE.MD)
 
 #### Wechat / 微信赞赏
 
-![](https://github.com/Physton/sd-webui-prompt-all-in-one-assets/images/donate-wechat.jpg)
+![](https://raw.githubusercontent.com/Physton/sd-webui-prompt-all-in-one-assets/main/images/donate-wechat.jpg)
 
 Developed by: https://www.physton.com
