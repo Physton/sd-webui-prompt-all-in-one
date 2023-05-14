@@ -38,47 +38,47 @@ function supports the majority of countries worldwide.
 
 - Switch language / *切换语言*
 
-  ![](images/switch_language.png)
+  ![](/Physton/sd-webui-prompt-all-in-one-assets/images/switch_language.png)
 
 - Show/Hide content / *显示/折叠内容*
 
-  ![](images/fold.gif)
+  ![](/Physton/sd-webui-prompt-all-in-one-assets/images/fold.gif)
 
 - Show/Hide the WebUI input box / *显示/隐藏WebUI输入框*
 
-  ![](images/show_input.gif)
+  ![](/Physton/sd-webui-prompt-all-in-one-assets/images/show_input.gif)
 
 - Automatic translation / *自动翻译*
 
-  ![](images/auto_translate.gif)
+  ![](/Physton/sd-webui-prompt-all-in-one-assets/images/auto_translate.gif)
 
 - One-click translation / *一键翻译*
 
-  ![](images/translate.gif)
+  ![](/Physton/sd-webui-prompt-all-in-one-assets/images/translate.gif)
 
 - Concise input / *简洁的输入*
 
-  ![](images/concise_input.gif)
+  ![](/Physton/sd-webui-prompt-all-in-one-assets/images/concise_input.gif)
 
 - Elegant input / *优雅的输入*
 
-  ![](images/elegant_input.gif)
+  ![](/Physton/sd-webui-prompt-all-in-one-assets/images/elegant_input.gif)
 
 - Quick adjustment / *快速调整*
 
-  ![](images/quick_adjust.gif)
+  ![](/Physton/sd-webui-prompt-all-in-one-assets/images/quick_adjust.gif)
 
 - Favorite and History / *收藏和历史记录*
 
-  ![](images/history_favorite.gif)
+  ![](/Physton/sd-webui-prompt-all-in-one-assets/images/history_favorite.gif)
 
 - Writing in WebUI input box / *在WebUI的输入框中编写*
 
-  ![](images/writing_webui.gif)
+  ![](/Physton/sd-webui-prompt-all-in-one-assets/images/writing_webui.gif)
 
 - Support for [a1111-sd-webui-tagcomplete](https://github.com/DominikDoom/a1111-sd-webui-tagcomplete) / *支持[a1111-sd-webui-tagcomplete](https://github.com/DominikDoom/a1111-sd-webui-tagcomplete)*
 
-  ![](images/tagcomplete.gif)
+  ![](/Physton/sd-webui-prompt-all-in-one-assets/images/tagcomplete.gif)
 
 ## Installation and Usage / *安装使用*
 
@@ -213,6 +213,6 @@ Donation list / *捐赠列表*：[DONATE.MD](DONATE.MD)
 
 #### Wechat / 微信赞赏
 
-![](images/donate-wechat.jpg)
+![](/Physton/sd-webui-prompt-all-in-one-assets/images/donate-wechat.jpg)
 
 Developed by: https://www.physton.com
