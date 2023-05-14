@@ -9,10 +9,10 @@ Thank you very much for your love and support. I have received your kindness.
 | China time / *中国时间* | Nickname / *昵称* | Leave a message / *留言*         | Amount / *金额* |
 |---------------------|-----------------|--------------------------------|---------------|
 | 2023-05-10          | ?unknown        | 很好用，感谢分享                       | ￥5            |
-| 2023-05-11          | K**鱼            | Prompt插件很不错，喝杯咖啡，加油            | ￥30           |
-| 2023-05-11          | 老**畵            |                                | ￥20           |
-| 2023-05-12          | 鸾**醴            | 建议：可以将按钮改成圆角的，还可以把能收起的范围加大到只剩^ | ￥1            |
-| 2023-05-12          | c**o            | 谢谢你的插件，继续加油。                   | ￥5            |
+| 2023-05-11          | K**             | Prompt插件很不错，喝杯咖啡，加油            | ￥30           |
+| 2023-05-11          | 老**             |                                | ￥20           |
+| 2023-05-12          | 鸾**             | 建议：可以将按钮改成圆角的，还可以把能收起的范围加大到只剩^ | ￥1            |
+| 2023-05-12          | c**             | 谢谢你的插件，继续加油。                   | ￥5            |
 
 ## Buy me a coffee / *请我喝杯咖啡*
 
@@ -30,4 +30,4 @@ Thank you very much for your love and support. I have received your kindness.
 
 #### Wechat / 微信赞赏
 
-![](images/donate-wechat.jpg)
+![](https://raw.githubusercontent.com/Physton/sd-webui-prompt-all-in-one-assets/main/images/donate-wechat.jpg)
