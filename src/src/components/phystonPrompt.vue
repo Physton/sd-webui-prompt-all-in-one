@@ -131,78 +131,75 @@
                 <div class="prompt-tags-list" ref="promptTagsList">
                     <div v-for="(tag, index) in tags" :key="tag.id" :data-id="tag.id"
                          :class="['prompt-tag', tag.disabled ? 'disabled': '']">
-                        <div class="prompt-tag-content">
-                            <div class="prompt-tag-main">
-                                <div class="prompt-tag-edit">
-                                    <button v-show="!editing[tag.id]" type="button"
-                                            class="lg secondary gradio-button tool svelte-1ipelgc prompt-tag-value"
-                                            :style="{color: tag.isLora ? 'var(--geekblue-8)' : this.tagColor}"
-                                            :ref="'promptTag-' + tag.id"
-                                            v-tooltip="getLang('click_to_edit') + '<br/>' + getLang('drop_to_order')"
-                                            @click="onTagClick(index)" v-html="renderTag(index)"></button>
-                                    <div v-show="editing[tag.id]">
-                                        <input type="text" class="scroll-hide svelte-4xt1ch input-tag-edit"
-                                               :ref="'promptTagEdit-' + tag.id" :placeholder="getLang('enter_to_save')"
-                                               :value="tag.value" @blur="onTagInputBlur(index)"
-                                               @keydown="onTagInputKeyDown(index, $event)"
-                                               @change="onTagInputChange(index, $event)">
-                                    </div>
-                                    <div class="btn-tag-delete" @click="onDeleteTagClick(index)">
-                                        <icon-close width="12" height="12"/>
-                                    </div>
+                        <div class="prompt-tag-main">
+                            <div class="prompt-tag-edit">
+                                <div v-show="!editing[tag.id]"
+                                        class="prompt-tag-value"
+                                        :style="{color: tag.isLora ? 'var(--geekblue-8)' : this.tagColor}"
+                                        :ref="'promptTag-' + tag.id"
+                                        v-tooltip="getLang('click_to_edit') + '<br/>' + getLang('drop_to_order')"
+                                        @click="onTagClick(index)" v-html="renderTag(index)">
                                 </div>
-                                <div class="btn-tag-extend">
-                                    <vue-number-input class="input-number" :model-value="tag.weightNum" center controls
-                                                      :min="0" :step="0.1" size="small"
-                                                      @update:model-value="onTagWeightNumChange(index, $event)"></vue-number-input>
-                                    <button type="button" v-tooltip="getLang('increase_weight_add_parentheses')"
-                                            @click="onIncWeightClick(index, +1)">
-                                        <icon-weight width="20" height="20" type="parentheses" :increase="true"
-                                                     color="#ff6969"/>
-                                    </button>
-                                    <button type="button" v-tooltip="getLang('increase_weight_subtract_parentheses')"
-                                            @click="onIncWeightClick(index, -1)">
-                                        <icon-weight width="20" height="20" type="parentheses" :increase="false"
-                                                     color="#ff6969"/>
-                                    </button>
-                                    <button type="button" v-tooltip="getLang('decrease_weight_add_brackets')"
-                                            @click="onDecWeightClick(index, +1)">
-                                        <icon-weight width="20" height="20" type="brackets" :increase="true"
-                                                     color="#84ff8f"/>
-                                    </button>
-                                    <button type="button" v-tooltip="getLang('decrease_weight_subtract_brackets')"
-                                            @click="onDecWeightClick(index, -1)">
-                                        <icon-weight width="20" height="20" type="brackets" :increase="false"
-                                                     color="#84ff8f"/>
-                                    </button>
-                                    <button type="button" v-tooltip="getLang('translate_keyword_to_english')"
-                                            v-show="!isEnglish"
-                                            @click="onTranslateToEnglishClick(index).then(() => updateTags())">
-                                        <icon-english v-if="!loading[tag.id + '_en']" width="20" height="20"
-                                                      color="#ff9900"/>
-                                        <icon-loading v-if="loading[tag.id + '_en']" width="20" height="20"/>
-                                    </button>
-                                    <button type="button" v-tooltip="getLang('copy_to_clipboard')" @click="copy(tag.value)">
-                                        <icon-copy width="20" height="20" color="#3c3c3c"/>
-                                    </button>
-                                    <button type="button"
-                                            v-tooltip="getLang(tag.disabled ? 'enable_keyword': 'disable_keyword')"
-                                            @click="onDisabledTagClick(index)">
-                                        <icon-disabled v-show="!tag.disabled" width="20" height="20" color="#ff472f"/>
-                                        <icon-enable v-show="tag.disabled" width="20" height="20" color="#2fff53"/>
-                                    </button>
+                                <input v-show="editing[tag.id]" type="text" class="scroll-hide svelte-4xt1ch input-tag-edit"
+                                       :ref="'promptTagEdit-' + tag.id" :placeholder="getLang('enter_to_save')"
+                                       :value="tag.value" @blur="onTagInputBlur(index)"
+                                       @keydown="onTagInputKeyDown(index, $event)"
+                                       @change="onTagInputChange(index, $event)">
+                                <div class="btn-tag-delete" @click="onDeleteTagClick(index)">
+                                    <icon-close width="12" height="12"/>
                                 </div>
                             </div>
-                            <div class="prompt-local-language" v-show="!isEnglish">
-                                <div class="translate-to-local hover-scale-120"
-                                     v-tooltip="getLang('translate_keyword_to_local_language')"
-                                     @click="onTranslateToLocalClick(index).then(() => updateTags())">
-                                    <icon-translate v-if="!loading[tag.id + '_local']" width="16" height="16"
-                                                    color="var(--body-text-color)"/>
-                                    <icon-loading v-if="loading[tag.id + '_local']" width="16" height="16"/>
-                                </div>
-                                <div class="local-language">{{ tag.localValue }}</div>
+                            <div class="btn-tag-extend">
+                                <vue-number-input class="input-number" :model-value="tag.weightNum" center controls
+                                                  :min="0" :step="0.1" size="small"
+                                                  @update:model-value="onTagWeightNumChange(index, $event)"></vue-number-input>
+                                <button type="button" v-tooltip="getLang('increase_weight_add_parentheses')"
+                                        @click="onIncWeightClick(index, +1)">
+                                    <icon-weight width="20" height="20" type="parentheses" :increase="true"
+                                                 color="#ff6969"/>
+                                </button>
+                                <button type="button" v-tooltip="getLang('increase_weight_subtract_parentheses')"
+                                        @click="onIncWeightClick(index, -1)">
+                                    <icon-weight width="20" height="20" type="parentheses" :increase="false"
+                                                 color="#ff6969"/>
+                                </button>
+                                <button type="button" v-tooltip="getLang('decrease_weight_add_brackets')"
+                                        @click="onDecWeightClick(index, +1)">
+                                    <icon-weight width="20" height="20" type="brackets" :increase="true"
+                                                 color="#84ff8f"/>
+                                </button>
+                                <button type="button" v-tooltip="getLang('decrease_weight_subtract_brackets')"
+                                        @click="onDecWeightClick(index, -1)">
+                                    <icon-weight width="20" height="20" type="brackets" :increase="false"
+                                                 color="#84ff8f"/>
+                                </button>
+                                <button type="button" v-tooltip="getLang('translate_keyword_to_english')"
+                                        v-show="!isEnglish"
+                                        @click="onTranslateToEnglishClick(index).then(() => updateTags())">
+                                    <icon-english v-if="!loading[tag.id + '_en']" width="20" height="20"
+                                                  color="#ff9900"/>
+                                    <icon-loading v-if="loading[tag.id + '_en']" width="20" height="20"/>
+                                </button>
+                                <button type="button" v-tooltip="getLang('copy_to_clipboard')" @click="copy(tag.value)">
+                                    <icon-copy width="20" height="20" color="#3c3c3c"/>
+                                </button>
+                                <button type="button"
+                                        v-tooltip="getLang(tag.disabled ? 'enable_keyword': 'disable_keyword')"
+                                        @click="onDisabledTagClick(index)">
+                                    <icon-disabled v-show="!tag.disabled" width="20" height="20" color="#ff472f"/>
+                                    <icon-enable v-show="tag.disabled" width="20" height="20" color="#2fff53"/>
+                                </button>
                             </div>
+                        </div>
+                        <div class="prompt-local-language" v-show="!isEnglish">
+                            <div class="translate-to-local hover-scale-120"
+                                 v-tooltip="getLang('translate_keyword_to_local_language')"
+                                 @click="onTranslateToLocalClick(index).then(() => updateTags())">
+                                <icon-translate v-if="!loading[tag.id + '_local']" width="16" height="16"
+                                                color="var(--body-text-color)"/>
+                                <icon-loading v-if="loading[tag.id + '_local']" width="16" height="16"/>
+                            </div>
+                            <div class="local-language">{{ tag.localValue }}</div>
                         </div>
                     </div>
                 </div>
@@ -483,15 +480,18 @@ export default {
             value = common.escapeHtml(value)
             if (this.tags[index].incWeight > 0) {
                 value = common.setLayers(value, 0, '(', ')')
-                let start = '<span class="weight-character">' + '('.repeat(this.tags[index].incWeight) + '</span>'
-                let end = '<span class="weight-character">' + ')'.repeat(this.tags[index].incWeight) + '</span>'
+                value = '<div class="character">' + value + '</div>'
+                let start = '<div class="weight-character">' + '('.repeat(this.tags[index].incWeight) + '</div>'
+                let end = '<div class="weight-character">' + ')'.repeat(this.tags[index].incWeight) + '</div>'
                 value = start + value + end
-            }
-            if (this.tags[index].decWeight > 0) {
+            }else if (this.tags[index].decWeight > 0) {
                 value = common.setLayers(value, 0, '[', ']')
-                let start = '<span class="weight-character">' + '['.repeat(this.tags[index].decWeight) + '</span>'
-                let end = '<span class="weight-character">' + ']'.repeat(this.tags[index].decWeight) + '</span>'
+                value = '<div class="character">' + value + '</div>'
+                let start = '<div class="weight-character">' + '['.repeat(this.tags[index].decWeight) + '</div>'
+                let end = '<div class="weight-character">' + ']'.repeat(this.tags[index].decWeight) + '</div>'
                 value = start + value + end
+            }else{
+                value = '<div class="character">' + value + '</div>'
             }
             return value
         },
@@ -1217,28 +1217,204 @@ export default {
         justify-content: flex-start;
         align-items: flex-start;
 
+        &.droping {
+            .btn-tag-extend {
+                display: none !important;
+            }
+        }
+
         .prompt-tags-list {
             display: flex;
             flex-wrap: wrap;
             justify-content: flex-start;
             align-items: flex-start;
-        }
+            width: 100%;
 
-        > *, .prompt-tags-list > * {
-            margin-bottom: 8px;
-        }
+            .prompt-tag{
+                margin-bottom: 8px;
+                margin-right: 10px;
+                display: block;
+                align-items: center;
+                max-width: 100%;
 
-        .prompt-tags-list > * {
-            margin-right: 12px;
+                &:last-child {
+                    margin-right: 12px;
+                }
 
-            &:last-child {
-                margin-right: 12px;
-            }
-        }
+                &.disabled {
+                    opacity: 0.5;
+                }
 
-        &.droping {
-            .btn-tag-extend {
-                display: none !important;
+                .prompt-tag-main {
+                    width: 100%;
+                    display: flex;
+                    justify-content: flex-start;
+                    align-items: flex-start;
+                    position: relative;
+
+                    &:hover {
+                        .prompt-tag-edit, .btn-tag-extend {
+                            box-shadow: 0 0 3px 0 #4a54ff;
+                        }
+
+                        .btn-tag-extend {
+                            display: flex;
+                        }
+                    }
+
+                    .prompt-tag-edit {
+                        width: 100%;
+                        display: flex;
+                        justify-content: flex-start;
+                        align-items: center;
+                        position: relative;
+                        border-radius: 4px;
+
+                        .prompt-tag-value {
+                            width: calc(100% - 16px);
+                            padding: 4px;
+                            font-size: 0.9rem;
+                            height: 24px;
+                            border-radius: 4px;
+                            border-top-right-radius: 0;
+                            border-bottom-right-radius: 0;
+                            display: flex;
+                            align-items: center;
+                            justify-content: flex-start;
+                            color: var(--button-secondary-text-color);
+                            background: var(--button-secondary-background-fill);
+                            border: var(--button-border-width) solid var(--button-secondary-border-color);
+                            &:hover{
+                                border-color: var(--button-secondary-border-color-hover);
+                                background: var(--button-secondary-background-fill-hover);
+                                color: var(--button-secondary-text-color-hover);
+                            }
+
+                            .character {
+                                text-overflow: ellipsis;
+                                overflow: hidden;
+                                white-space: nowrap;
+                            }
+
+                            .weight-character {
+                                color: #d81e06;
+                            }
+                        }
+
+                        .input-tag-edit {
+                            max-width: calc(100% - 16px);
+                            border-radius: 4px !important;
+                            border-top-right-radius: 0 !important;
+                            border-bottom-right-radius: 0 !important;
+                        }
+
+                        .btn-tag-delete {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            cursor: pointer;
+                            border: var(--button-border-width) solid var(--button-secondary-border-color);
+                            background: var(--button-secondary-background-fill);
+                            padding: 0;
+                            width: 16px;
+                            height: 24px;
+                            border-radius: 0;
+                            border-top-right-radius: 4px;
+                            border-bottom-right-radius: 4px;
+
+                            &:hover {
+                                background: #d81e06;
+
+                                svg {
+                                    fill: #fff !important;
+                                }
+                            }
+                        }
+                    }
+
+                    .btn-tag-extend {
+                        display: none;
+                        justify-content: flex-start;
+                        align-items: center;
+                        position: absolute;
+                        top: -32px;
+                        left: 0;
+                        z-index: 100;
+                        padding: 0;
+                        box-shadow: 0 0 3px 0 #4a54ff;
+                        background: center center #4A54FF;
+                        background-image: linear-gradient(315deg, #6772FF 0, #00F9E5 100%);
+                        background-size: 104% 104%;
+                        border-radius: 4px;
+                        overflow: hidden;
+
+                        > button {
+                            height: 32px;
+                            width: 32px;
+                            border: 0;
+                            border-radius: 0;
+                            padding: 5px;
+                            min-width: auto;
+                            font-size: 0.9rem;
+                            min-height: auto;
+                            background: transparent;
+                            color: #fff;
+                            border-right: 1px solid rgba(255, 255, 255, 0.2);
+
+                            &:last-child {
+                                border-right: 0;
+                            }
+
+                            &:hover {
+                                background: rgba(255, 255, 255, 0.2);
+                            }
+                        }
+
+                        > input {
+                            width: 54px;
+                            border: 0;
+                        }
+
+                        .input-number {
+                            width: 90px;
+                            border: 0;
+                            padding: 0;
+
+                            .vue-number-input__button {
+                                width: 1.5rem;
+                                background: rgba(255, 255, 255, .9);
+                            }
+
+                            .vue-number-input__input {
+                                height: 32px;
+                                border: 0;
+                                padding: 0;
+                            }
+                        }
+
+                        input[type=number]::-webkit-inner-spin-button,
+                        input[type=number]::-webkit-outer-spin-button {
+                            opacity: 1;
+                        }
+                    }
+                }
+
+                .prompt-local-language {
+                    margin-top: 2px;
+                    display: flex;
+                    justify-content: flex-start;
+                    align-items: center;
+
+                    .translate-to-local {
+                        cursor: pointer;
+                    }
+
+                    .local-language {
+                        font-size: .8rem;
+                        color: var(--body-text-color-subdued);
+                        margin-left: 2px;
+                    }
+                }
             }
         }
 
@@ -1261,183 +1437,6 @@ export default {
                 border-color: var(--input-border-color-focus);
             }
         }
-
-        .prompt-tag {
-            display: inline-flex;
-            align-items: center;
-
-            &.disabled {
-                opacity: 0.5;
-            }
-
-            /*&.sortable-chosen {
-          .btn-tag-extend {
-              display: none !important;
-          }
-      }*/
-
-            .prompt-tag-content {
-            }
-
-            .prompt-tag-main {
-                display: flex;
-                justify-content: flex-start;
-                align-items: flex-start;
-                position: relative;
-
-                &:hover {
-                    .prompt-tag-edit, .btn-tag-extend {
-                        box-shadow: 0 0 3px 0 #4a54ff;
-                    }
-
-                    .btn-tag-extend {
-                        display: flex;
-                    }
-                }
-
-                .prompt-tag-edit {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    position: relative;
-                    border-radius: 4px;
-
-                    .prompt-tag-value {
-                        padding: 4px !important;
-                        font-size: 0.9rem !important;
-                        height: 24px !important;
-                        min-height: unset !important;
-                        border-radius: 4px !important;
-                        border-top-right-radius: 0 !important;
-                        border-bottom-right-radius: 0 !important;
-
-                        .weight-character {
-                            color: #d81e06;
-                        }
-                    }
-
-                    .input-tag-edit {
-                        border-radius: 4px !important;
-                        border-top-right-radius: 0 !important;
-                        border-bottom-right-radius: 0 !important;
-                    }
-
-                    .btn-tag-delete {
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        cursor: pointer;
-                        border: var(--button-border-width) solid var(--button-secondary-border-color);
-                        background: var(--button-secondary-background-fill);
-                        padding: 0;
-                        width: 16px;
-                        height: 24px;
-                        border-radius: 0;
-                        border-top-right-radius: 4px;
-                        border-bottom-right-radius: 4px;
-
-                        &:hover {
-                            background: #d81e06;
-
-                            svg {
-                                fill: #fff !important;
-                            }
-                        }
-                    }
-                }
-
-                .btn-tag-extend {
-                    display: none;
-                    justify-content: flex-start;
-                    align-items: center;
-                    position: absolute;
-                    top: -32px;
-                    left: 0;
-                    z-index: 100;
-                    padding: 0;
-                    box-shadow: 0 0 3px 0 #4a54ff;
-                    background: center center #4A54FF;
-                    background-image: linear-gradient(315deg, #6772FF 0, #00F9E5 100%);
-                    background-size: 104% 104%;
-                    border-radius: 4px;
-                    overflow: hidden;
-
-                    > button {
-                        height: 32px;
-                        width: 32px;
-                        border: 0;
-                        border-radius: 0;
-                        padding: 5px;
-                        min-width: auto;
-                        font-size: 0.9rem;
-                        min-height: auto;
-                        background: transparent;
-                        color: #fff;
-                        border-right: 1px solid rgba(255, 255, 255, 0.2);
-
-                        &:last-child {
-                            border-right: 0;
-                        }
-
-                        &:hover {
-                            background: rgba(255, 255, 255, 0.2);
-                        }
-                    }
-
-                    > input {
-                        width: 54px;
-                        border: 0;
-                    }
-
-                    .input-number {
-                        width: 90px;
-                        border: 0;
-                        padding: 0;
-
-                        .vue-number-input__button {
-                            width: 1.5rem;
-                            background: rgba(255, 255, 255, .9);
-                        }
-
-                        .vue-number-input__input {
-                            height: 32px;
-                            border: 0;
-                            padding: 0;
-                        }
-                    }
-
-                    input[type=number]::-webkit-inner-spin-button,
-                    input[type=number]::-webkit-outer-spin-button {
-                        opacity: 1;
-                    }
-                }
-            }
-
-            .prompt-local-language {
-                margin-top: 2px;
-                display: flex;
-                justify-content: flex-start;
-                align-items: center;
-
-                .translate-to-local {
-                    cursor: pointer;
-                }
-
-                .local-language {
-                    font-size: .8rem;
-                    color: var(--body-text-color-subdued);
-                    margin-left: 2px;
-                }
-            }
-        }
-
-        /*.prompt-append {
-            position: relative;
-        }
-
-        .input-tag-append {
-            min-width: 200px;
-        }*/
 
         .gradio-button {
             max-width: none !important;

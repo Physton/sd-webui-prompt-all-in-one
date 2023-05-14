@@ -3,7 +3,7 @@ export default {
     weightNumRegexEN: /(.*):\s*([0-9\.]+)/,
     weightNumRegexCN: /(.*)：\s*([0-9\.]+)/,
     dontSplitRegexes: [
-        // [night light:magical forest:5, 15],[night light:magical forest:norvegian territory:5, 15, 25:catmull],(fire extinguisher:1, 2.0),[(fire extinguisher: 1.0, 2.0)::5],[lion:bird:girl: , 7, 10],EasyNegative (normal quality,Low quality,worst quality:1.4),EasyNegative [normal quality,Low quality,worst quality:1.4],<lora:clothesTransparent_v20:1:1,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0>,(aaa,bbb,ccc),(deformed iris, deformed pupils, semi-realistic),aaa,
+        // [night light:magical forest:5, 15],[night light:magical forest:norvegian territory:5, 15, 25:catmull],(fire extinguisher:1, 2.0),[(fire extinguisher: 1.0, 2.0)::5],[lion:bird:girl: , 7, 10],EasyNegative (normal quality,Low quality,worst quality:1.4),EasyNegative [normal quality,Low quality,worst quality:1.4],<lora:clothesTransparent_v20:1:1,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0>,(aaa,bbb,ccc),(deformed iris, deformed pupils, semi-realistic),(Tang costume, Chinese women, high collar, neckline, embroidery, gold thread, colored silk thread, floral and bird pattern, wide sleeves, wrist, gold thread embroidery, red silk satin, gloss, side slit design, hemline, floral pattern, petals, vines, romantic,:1.2),aaa,
         // [night light:magical forest: 5, 15]
         // [night light:magical forest:norvegian territory: 5, 15, 25:catmull]
         // (fire extinguisher: 1.0, 2.0)
@@ -12,9 +12,9 @@ export default {
         /(\[([\w\s\_\-]+:)+\s*([0-9\.]*,?\s*)+(:[\w\s\_\-]+)*\])+/g,
         /(\(([\w\s\_\-]+:)+\s*([0-9\.]*,?\s*)+(:[\w\s\_\-]+)*\))+/g,
         // EasyNegative (normal quality,Low quality,worst quality:1.4)
-        /(([^,]+)?\s*\((([\w\s\_\-\|]+(:[0-9\.]+)?\,?))+\)\s*([^,]+)?)+/g,
+        /(([^,]+)?\s*\(([\w\s\_\-\|]+\,*(:[0-9\.]+)?\,?\s*)+\)\s*([^,]+)?)+/g,
         // EasyNegative [normal quality,Low quality,worst quality:1.4]
-        /(([^,]+)?\s*\[(([\w\s\_\-\|]+(:[0-9\.]+)?\,?))+\]\s*([^,]+)?)+/g,
+        /(([^,]+)?\s*\[([\w\s\_\-\|]+\,*(:[0-9\.]+)?\,?\s*)+\]\s*([^,]+)?)+/g,
         // <lora:clothesTransparent_v20:1:1,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0>
         /(\<[^\>]+\>)+/g
     ],
