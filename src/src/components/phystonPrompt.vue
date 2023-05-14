@@ -1,6 +1,6 @@
 <template>
     <div class="physton-prompt" :name="name">
-        <div :class="['prompt-main', unfold ? '': 'fold']" @click="onPromptMainClick">
+        <div :class="['prompt-main', hidePanel ? 'fold': '']" @click="onPromptMainClick">
             <div class="prompt-header">
                 <div class="prompt-unfold" @click="onUnfoldClick">
                     <icon-unfold class="hover-scale-120" width="20" height="20"/>
@@ -294,6 +294,10 @@ export default {
             type: Boolean,
             default: false,
         },
+        hidePanel: {
+            type: Boolean,
+            default: false,
+        },
         enableTooltip: {
             type: Boolean,
             default: true,
@@ -307,10 +311,9 @@ export default {
             default: '',
         },
     },
-    emits: ['update:languageCode', 'update:autoTranslateToEnglish', 'update:autoTranslateToLocal', 'update:hideDefaultInput', 'update:enableTooltip', 'update:translateApi', 'click:translateApi', 'click:selectLanguage'],
+    emits: ['update:languageCode', 'update:autoTranslateToEnglish', 'update:autoTranslateToLocal', 'update:hideDefaultInput', 'update:hidePanel', 'update:enableTooltip', 'update:translateApi', 'click:translateApi', 'click:selectLanguage'],
     data() {
         return {
-            unfold: true,
             prompt: '',
             counterText: '',
             tags: [],
@@ -955,7 +958,7 @@ export default {
             this.$refs.favorite.hide(0)
         },
         onUnfoldClick() {
-            this.unfold = !this.unfold
+            this.$emit("update:hidePanel", !this.hidePanel)
         }
     },
 }
