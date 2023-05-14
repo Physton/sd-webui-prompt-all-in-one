@@ -18,6 +18,7 @@
         </block>
         <translate-setting ref="translateSetting" v-model:language-code="languageCode"
                            :translate-apis="translateApis" :languages="languages"
+                           @forceUpdate:translateApi="updateTranslateApiConfig"
                            v-model:translate-api="translateApi"></translate-setting>
         <select-language ref="selectLanguage" v-model:language-code="languageCode"
                          :translate-apis="translateApis"

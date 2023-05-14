@@ -113,6 +113,7 @@ Github: Physton/sd-webui-prompt-all-in-one`,
         this.translatedText = ''
         this.loading = false
     },
+    emits: ['update:translateApi', 'forceUpdate:translateApi'],
     watch: {
         apiKey: {
             handler: function (val, oldVal) {
@@ -143,6 +144,9 @@ Github: Physton/sd-webui-prompt-all-in-one`,
         open(apiKey) {
             this.apiKey = apiKey
             this.isOpen = true
+            this.errorMessage = ''
+            this.translatedText = ''
+            this.loading = false
         },
         onTestClick() {
             if (this.loading) return
@@ -174,7 +178,9 @@ Github: Physton/sd-webui-prompt-all-in-one`,
                 configs[item.key] = item.value
             }
             this.$emit('update:translateApi', this.apiKey)
-            this.gradioAPI.setData('translate_api.' + this.apiKey, configs)
+            this.gradioAPI.setData('translate_api.' + this.apiKey, configs).then(res => {
+                if (this.apiKey === this.translateApi) this.$emit('forceUpdate:translateApi')
+            })
         },
         onCloseClick() {
             this.isOpen = false
