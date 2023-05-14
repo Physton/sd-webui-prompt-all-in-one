@@ -4,6 +4,7 @@ export default {
     weightNumRegexCN: /(.*)：\s*([0-9\.]+)/,
     dontSplitRegexes: [
         // [night light:magical forest:5, 15],[night light:magical forest:norvegian territory:5, 15, 25:catmull],(fire extinguisher:1, 2.0),[(fire extinguisher: 1.0, 2.0)::5],[lion:bird:girl: , 7, 10],EasyNegative (normal quality,Low quality,worst quality:1.4),EasyNegative [normal quality,Low quality,worst quality:1.4],<lora:clothesTransparent_v20:1:1,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0>,(aaa,bbb,ccc),(deformed iris, deformed pupils, semi-realistic),(Tang costume, Chinese women, high collar, neckline, embroidery, gold thread, colored silk thread, floral and bird pattern, wide sleeves, wrist, gold thread embroidery, red silk satin, gloss, side slit design, hemline, floral pattern, petals, vines, romantic,:1.2),aaa,
+        // (badhandv4:1.4),\(EasyNegative:1.4\), \(ng deepnegative v1 75t\), \(worst quality:1.4\), \(low quality:1.4\) , \(monochrome:1.1\), lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, normal quality, jpeg artifacts, \(signature, watermark, username:1.4\), blurry, bad feet, multiple breasts, \(mutated hands and fingers:1.5 \), \(long body :1.3\), \(mutation, poorly drawn :1.2\) , black-white, liquid body, liquid tongue, disfigured, malformed, mutated, anatomical nonsense, text font ui, malformed hands, long neck, blurred, lowers, bad proportions, bad shadow, uncoordinated body, unnatural body, fused breasts, bad breasts, huge breasts, poorly drawn breasts, extra breasts, liquid breasts, heavy breasts, missing breasts, huge haunch, huge thighs, huge calf, fused hand, missing hand, \(holding\), muscles, abs, (bad_prompt_version2-neg:1.2),
         // [night light:magical forest: 5, 15]
         // [night light:magical forest:norvegian territory: 5, 15, 25:catmull]
         // (fire extinguisher: 1.0, 2.0)
@@ -12,9 +13,9 @@ export default {
         /(\[([\w\s\_\-]+:)+\s*([0-9\.]*,?\s*)+(:[\w\s\_\-]+)*\])+/g,
         /(\(([\w\s\_\-]+:)+\s*([0-9\.]*,?\s*)+(:[\w\s\_\-]+)*\))+/g,
         // EasyNegative (normal quality,Low quality,worst quality:1.4)
-        /(([^,]+)?\s*\(([\w\s\_\-\|]+\,*(:[0-9\.]+)?\,?\s*)+\)\s*([^,]+)?)+/g,
+        /(([^,]+)?\s*\\*\(([\w\s\_\-\|]+\,*(:[0-9\.]+)?\,?\s*)+\\*\)\s*([^,]+)?)+/g,
         // EasyNegative [normal quality,Low quality,worst quality:1.4]
-        /(([^,]+)?\s*\[([\w\s\_\-\|]+\,*(:[0-9\.]+)?\,?\s*)+\]\s*([^,]+)?)+/g,
+        /(([^,]+)?\s*\\*\[([\w\s\_\-\|]+\,*(:[0-9\.]+)?\,?\s*)+\\*\]\s*([^,]+)?)+/g,
         // <lora:clothesTransparent_v20:1:1,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0>
         /(\<[^\>]+\>)+/g
     ],
