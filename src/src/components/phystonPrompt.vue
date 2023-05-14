@@ -1294,6 +1294,7 @@ export default {
                                 text-overflow: ellipsis;
                                 overflow: hidden;
                                 white-space: nowrap;
+                                line-height: 1rem;
                             }
 
                             .weight-character {
