@@ -13,6 +13,7 @@ Thank you very much for your love and support. I have received your kindness.
 | 2023-05-11          | 老**             |                                | ￥20           |
 | 2023-05-12          | 鸾**             | 建议：可以将按钮改成圆角的，还可以把能收起的范围加大到只剩^ | ￥1            |
 | 2023-05-12          | c**             | 谢谢你的插件，继续加油。                   | ￥5            |
+| 2025-05-14          | 墨**             | 感谢大佬                           | ￥8.8          |
 
 ## Buy me a coffee / *请我喝杯咖啡*
 
