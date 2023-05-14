@@ -3,17 +3,18 @@ export default {
     weightNumRegexEN: /(.*):\s*([0-9\.]+)/,
     weightNumRegexCN: /(.*)：\s*([0-9\.]+)/,
     dontSplitRegexes: [
+        // [night light:magical forest:5, 15],[night light:magical forest:norvegian territory:5, 15, 25:catmull],(fire extinguisher:1, 2.0),[(fire extinguisher: 1.0, 2.0)::5],[lion:bird:girl: , 7, 10],EasyNegative (normal quality,Low quality,worst quality:1.4),EasyNegative [normal quality,Low quality,worst quality:1.4],<lora:clothesTransparent_v20:1:1,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0>,(aaa,bbb,ccc),(deformed iris, deformed pupils, semi-realistic),aaa,
         // [night light:magical forest: 5, 15]
         // [night light:magical forest:norvegian territory: 5, 15, 25:catmull]
         // (fire extinguisher: 1.0, 2.0)
         // [(fire extinguisher: 1.0, 2.0)::5]
         // [lion:bird:girl: , 7, 10]
-        /(\[([\w\s_-]+:)+\s*([0-9\.]*,?\s*)+(:[\w\s_-]+)*\])+/g,
-        /(\(([\w\s_-]+:)+\s*([0-9\.]*,?\s*)+(:[\w\s_-]+)*\))+/g,
+        /(\[([\w\s\_\-]+:)+\s*([0-9\.]*,?\s*)+(:[\w\s\_\-]+)*\])+/g,
+        /(\(([\w\s\_\-]+:)+\s*([0-9\.]*,?\s*)+(:[\w\s\_\-]+)*\))+/g,
         // EasyNegative (normal quality,Low quality,worst quality:1.4)
-        /(([^,]+)?\s*\((([\w\s_-\|]+(:[0-9\.]+)?\,?))+\)\s*([^,]+)?)+/g,
+        /(([^,]+)?\s*\((([\w\s\_\-\|]+(:[0-9\.]+)?\,?))+\)\s*([^,]+)?)+/g,
         // EasyNegative [normal quality,Low quality,worst quality:1.4]
-        /(([^,]+)?\s*\[(([\w\s_-\|]+(:[0-9\.]+)?\,?))+\]\s*([^,]+)?)+/g,
+        /(([^,]+)?\s*\[(([\w\s\_\-\|]+(:[0-9\.]+)?\,?))+\]\s*([^,]+)?)+/g,
         // <lora:clothesTransparent_v20:1:1,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0>
         /(\<[^\>]+\>)+/g
     ],
