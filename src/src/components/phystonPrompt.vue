@@ -318,7 +318,6 @@ export default {
             counterText: '',
             tags: [],
             appendTag: '',
-            lastId: 0,
             dropTag: false,
             loading: {},
             editing: {},
@@ -507,7 +506,8 @@ export default {
             tag.isLora = bracket[0] === '<' && bracket[1] === '>'
         },
         _appendTag(value, localValue = '', disabled = false, index = -1) {
-            const id = this.lastId++
+            // 唯一数：当前时间戳+随机数
+            const id = Date.now() + (Math.random() * 1000000).toFixed(0)
             let tag = {
                 id,
                 value,
@@ -945,11 +945,17 @@ export default {
             this.$refs.favorite.show(this.$refs.favoriteButton)
         },
         onUseHistory(history) {
-            this.tags = history.tags
+            this.tags = []
+            history.tags.forEach(item => {
+                this._appendTag(item.value, item.localValue, item.disabled)
+            })
             this.updateTags()
         },
         onUseFavorite(favorite) {
-            this.tags = favorite.tags
+            this.tags = []
+            favorite.tags.forEach(item => {
+                this._appendTag(item.value, item.localValue, item.disabled)
+            })
             this.updateTags()
         },
         onPromptMainClick() {
