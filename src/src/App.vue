@@ -242,7 +242,7 @@ export default {
             this.languages = languages
             this.init()
         }).catch(err => {
-            this.$toastr.error('Failed to connect to Gradio API: ' + err)
+            this.$toastr.error("Connection to backend API service failed. Please manually refresh the webpage. If it still doesn't work, please restart the WebUI.<br/>连接到后台接口服务失败，请手动再刷新一次网页。如果还是不行，请重启WebUI。", "sd-webui-prompt-all-in-one", {timeOut: 20000})
             console.log(err)
         })
     },
