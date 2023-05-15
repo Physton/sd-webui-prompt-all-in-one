@@ -58,7 +58,7 @@ class storage:
     def __set(self, key, data):
         file_path = self.__get_data_filename(key)
         with open(file_path, 'w') as f:
-            json.dump(data, f, indent=4, ensure_ascii=False)
+            json.dump(data, f, indent=4, ensure_ascii=True)
 
     def set(self, key, data):
         while self.__is_locked(key):

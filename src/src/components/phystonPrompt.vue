@@ -15,7 +15,8 @@
                                 <icon-i18n class="hover-scale-120" width="18" height="18" color="#d81e06"/>
                             </div>
                             <div class="extend-btn-item">
-                                <icon-setting class="hover-scale-120" width="18" height="18" color="#d81e06" v-tooltip="getLang('setting_desc')" />
+                                <icon-setting class="hover-scale-120" width="18" height="18" color="#d81e06"
+                                              v-tooltip="getLang('setting_desc')"/>
                                 <div class="setting-box">
                                     <div v-if="translateApiItem.name && !isEnglish" class="extend-btn-item"
                                          v-tooltip="getLang('translate_api') + ': ' + translateApiItem.name"
@@ -123,85 +124,143 @@
                         </div>
                         <input type="text" class="scroll-hide svelte-4xt1ch input-tag-append" ref="promptTagAppend"
                                v-model="appendTag" :placeholder="getLang('please_enter_new_keyword')"
-                               v-tooltip="getLang('enter_to_add')" @keydown="onAppendTagKeyDown">
+                               v-tooltip="getLang('enter_to_add')"
+                               @focus="onAppendTagFocus"
+                               @blur="onAppendTagBlur"
+                               @keyup="onAppendTagKeyUp"
+                               @keydown="onAppendTagKeyDown">
+
+                        <div class="prompt-append-list" ref="promptAppendList" v-show="showAppendList"
+                             :style="appendListStyle">
+                            <div v-for="(item, index) in appendList" :key="item.type"
+                                 :class="['prompt-append-group', appendListSelected === index ? 'selected' : '']">
+                                <div class="append-group-name" @click="onAppendGroupClick(index, null, $event)">
+                                    {{ getLang(item.name) }}
+                                    <span class="arrow-right" v-show="item.children.length > 0"></span>
+                                </div>
+                                <div class="append-group-list" ref="promptAppendListChildren"
+                                     v-show="item.children.length > 0">
+                                    <div v-for="(child, childIndex) in item.children" :key="childIndex"
+                                         ref="promptAppendListChild"
+                                         :class="['append-item', appendListChildSelected === childIndex ? 'selected' : '']"
+                                         @mouseleave="onAppendListChildMouseLeave(index, childIndex, $event)"
+                                         @mouseenter="onAppendListChildMouseEnter(index, childIndex, $event)"
+                                         @click="onAppendGroupClick(index, childIndex, $event)">
+                                        <template v-if="item.type === 'favorite' || item.type === 'history'">
+                                            <div class="tags-name" v-if="child.name">{{ child.name }}</div>
+                                            <div class="tags-name" v-else>{{ child.prompt }}</div>
+                                        </template>
+                                    </div>
+                                </div>
+                                <div class="tags-detail" v-show="appendListSelected !== null && appendListChildSelected !== null && appendListSelected === index && (item.type === 'favorite' || item.type === 'history')">
+                                    <div class="tags-list">
+                                        <template v-for="(tag, tagIndex) in appendListChildItemTags" :key="tagIndex">
+                                            <div v-if="tag.type && tag.type === 'wrap'" class="item-wrap"></div>
+                                            <div v-else class="tags-item">
+                                                <div class="item-tag-value">{{ tag.value }}</div>
+                                                <div class="item-tag-local-value">{{ tag.localValue }}</div>
+                                            </div>
+                                        </template>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
             <div :class="['prompt-tags', dropTag ? 'droping': '']" ref="promptTags">
                 <div class="prompt-tags-list" ref="promptTagsList">
-                    <div v-for="(tag, index) in tags" :key="tag.id" :data-id="tag.id"
-                         :class="['prompt-tag', tag.disabled ? 'disabled': '']">
-                        <div class="prompt-tag-main">
-                            <div class="prompt-tag-edit">
-                                <div v-show="!editing[tag.id]"
-                                        class="prompt-tag-value"
-                                        :style="{color: tag.isLora ? 'var(--geekblue-8)' : this.tagColor}"
-                                        :ref="'promptTag-' + tag.id"
-                                        v-tooltip="getLang('click_to_edit') + '<br/>' + getLang('drop_to_order')"
-                                        @click="onTagClick(index)" v-html="renderTag(index)">
+                    <template v-for="(tag, index) in tags" :key="tag.id" :data-id="tag.id">
+                        <div :class="['prompt-tag', tag.disabled ? 'disabled': '']">
+                            <div class="prompt-tag-main">
+                                <div class="prompt-tag-edit">
+                                    <template v-if="tag.type === 'wrap'">
+                                        <div class="prompt-tag-value"
+                                             :ref="'promptTag-' + tag.id"
+                                             v-tooltip="getLang('line_break_character') + '<br/>' + getLang('drop_to_order')" style="width: 100%">
+                                            <icon-wrap width="16" height="16"/>
+                                        </div>
+                                    </template>
+                                    <!--<template v-else-if="tag.type === 'favorite'">
+                                    </template>
+                                    <template v-else-if="tag.type === 'history'">
+                                    </template>-->
+                                    <template v-else>
+                                        <div v-show="!editing[tag.id]"
+                                             class="prompt-tag-value"
+                                             :style="{color: tag.isLora ? 'var(--geekblue-8)' : this.tagColor}"
+                                             :ref="'promptTag-' + tag.id"
+                                             v-tooltip="getLang('click_to_edit') + '<br/>' + getLang('drop_to_order')"
+                                             @click="onTagClick(index)" v-html="renderTag(index)">
+                                        </div>
+                                        <input v-show="editing[tag.id]" type="text"
+                                               class="scroll-hide svelte-4xt1ch input-tag-edit"
+                                               :ref="'promptTagEdit-' + tag.id" :placeholder="getLang('enter_to_save')"
+                                               :value="tag.value" @blur="onTagInputBlur(index)"
+                                               @keydown="onTagInputKeyDown(index, $event)"
+                                               @change="onTagInputChange(index, $event)">
+                                    </template>
+                                    <div class="btn-tag-delete" @click="onDeleteTagClick(index)">
+                                        <icon-close width="12" height="12"/>
+                                    </div>
                                 </div>
-                                <input v-show="editing[tag.id]" type="text" class="scroll-hide svelte-4xt1ch input-tag-edit"
-                                       :ref="'promptTagEdit-' + tag.id" :placeholder="getLang('enter_to_save')"
-                                       :value="tag.value" @blur="onTagInputBlur(index)"
-                                       @keydown="onTagInputKeyDown(index, $event)"
-                                       @change="onTagInputChange(index, $event)">
-                                <div class="btn-tag-delete" @click="onDeleteTagClick(index)">
-                                    <icon-close width="12" height="12"/>
+                                <div class="btn-tag-extend" v-show="(tag.type === 'text' || !tag.type)">
+                                    <vue-number-input class="input-number" :model-value="tag.weightNum" center controls
+                                                      :min="0" :step="0.1" size="small"
+                                                      @update:model-value="onTagWeightNumChange(index, $event)"></vue-number-input>
+                                    <button type="button" v-tooltip="getLang('increase_weight_add_parentheses')"
+                                            @click="onIncWeightClick(index, +1)">
+                                        <icon-weight width="20" height="20" type="parentheses" :increase="true"
+                                                     color="#ff6969"/>
+                                    </button>
+                                    <button type="button" v-tooltip="getLang('increase_weight_subtract_parentheses')"
+                                            @click="onIncWeightClick(index, -1)">
+                                        <icon-weight width="20" height="20" type="parentheses" :increase="false"
+                                                     color="#ff6969"/>
+                                    </button>
+                                    <button type="button" v-tooltip="getLang('decrease_weight_add_brackets')"
+                                            @click="onDecWeightClick(index, +1)">
+                                        <icon-weight width="20" height="20" type="brackets" :increase="true"
+                                                     color="#84ff8f"/>
+                                    </button>
+                                    <button type="button" v-tooltip="getLang('decrease_weight_subtract_brackets')"
+                                            @click="onDecWeightClick(index, -1)">
+                                        <icon-weight width="20" height="20" type="brackets" :increase="false"
+                                                     color="#84ff8f"/>
+                                    </button>
+                                    <button type="button" v-tooltip="getLang('translate_keyword_to_english')"
+                                            v-show="!isEnglish"
+                                            @click="onTranslateToEnglishClick(index).then(() => updateTags())">
+                                        <icon-english v-if="!loading[tag.id + '_en']" width="20" height="20"
+                                                      color="#ff9900"/>
+                                        <icon-loading v-if="loading[tag.id + '_en']" width="20" height="20"/>
+                                    </button>
+                                    <button type="button" v-tooltip="getLang('copy_to_clipboard')"
+                                            @click="copy(tag.value)">
+                                        <icon-copy width="20" height="20" color="#3c3c3c"/>
+                                    </button>
+                                    <button type="button"
+                                            v-tooltip="getLang(tag.disabled ? 'enable_keyword': 'disable_keyword')"
+                                            @click="onDisabledTagClick(index)">
+                                        <icon-disabled v-show="!tag.disabled" width="20" height="20" color="#ff472f"/>
+                                        <icon-enable v-show="tag.disabled" width="20" height="20" color="#2fff53"/>
+                                    </button>
                                 </div>
                             </div>
-                            <div class="btn-tag-extend">
-                                <vue-number-input class="input-number" :model-value="tag.weightNum" center controls
-                                                  :min="0" :step="0.1" size="small"
-                                                  @update:model-value="onTagWeightNumChange(index, $event)"></vue-number-input>
-                                <button type="button" v-tooltip="getLang('increase_weight_add_parentheses')"
-                                        @click="onIncWeightClick(index, +1)">
-                                    <icon-weight width="20" height="20" type="parentheses" :increase="true"
-                                                 color="#ff6969"/>
-                                </button>
-                                <button type="button" v-tooltip="getLang('increase_weight_subtract_parentheses')"
-                                        @click="onIncWeightClick(index, -1)">
-                                    <icon-weight width="20" height="20" type="parentheses" :increase="false"
-                                                 color="#ff6969"/>
-                                </button>
-                                <button type="button" v-tooltip="getLang('decrease_weight_add_brackets')"
-                                        @click="onDecWeightClick(index, +1)">
-                                    <icon-weight width="20" height="20" type="brackets" :increase="true"
-                                                 color="#84ff8f"/>
-                                </button>
-                                <button type="button" v-tooltip="getLang('decrease_weight_subtract_brackets')"
-                                        @click="onDecWeightClick(index, -1)">
-                                    <icon-weight width="20" height="20" type="brackets" :increase="false"
-                                                 color="#84ff8f"/>
-                                </button>
-                                <button type="button" v-tooltip="getLang('translate_keyword_to_english')"
-                                        v-show="!isEnglish"
-                                        @click="onTranslateToEnglishClick(index).then(() => updateTags())">
-                                    <icon-english v-if="!loading[tag.id + '_en']" width="20" height="20"
-                                                  color="#ff9900"/>
-                                    <icon-loading v-if="loading[tag.id + '_en']" width="20" height="20"/>
-                                </button>
-                                <button type="button" v-tooltip="getLang('copy_to_clipboard')" @click="copy(tag.value)">
-                                    <icon-copy width="20" height="20" color="#3c3c3c"/>
-                                </button>
-                                <button type="button"
-                                        v-tooltip="getLang(tag.disabled ? 'enable_keyword': 'disable_keyword')"
-                                        @click="onDisabledTagClick(index)">
-                                    <icon-disabled v-show="!tag.disabled" width="20" height="20" color="#ff472f"/>
-                                    <icon-enable v-show="tag.disabled" width="20" height="20" color="#2fff53"/>
-                                </button>
+                            <div class="prompt-local-language"
+                                 v-show="!isEnglish && (tag.type === 'text' || !tag.type)">
+                                <div class="translate-to-local hover-scale-120"
+                                     v-tooltip="getLang('translate_keyword_to_local_language')"
+                                     @click="onTranslateToLocalClick(index).then(() => updateTags())">
+                                    <icon-translate v-if="!loading[tag.id + '_local']" width="16" height="16"
+                                                    color="var(--body-text-color)"/>
+                                    <icon-loading v-if="loading[tag.id + '_local']" width="16" height="16"/>
+                                </div>
+                                <div class="local-language">{{ tag.localValue }}</div>
                             </div>
                         </div>
-                        <div class="prompt-local-language" v-show="!isEnglish">
-                            <div class="translate-to-local hover-scale-120"
-                                 v-tooltip="getLang('translate_keyword_to_local_language')"
-                                 @click="onTranslateToLocalClick(index).then(() => updateTags())">
-                                <icon-translate v-if="!loading[tag.id + '_local']" width="16" height="16"
-                                                color="var(--body-text-color)"/>
-                                <icon-loading v-if="loading[tag.id + '_local']" width="16" height="16"/>
-                            </div>
-                            <div class="local-language">{{ tag.localValue }}</div>
-                        </div>
-                    </div>
+                        <!--<div class="prompt-wrap" v-show="tag.type === 'wrap'"></div>-->
+                    </template>
                 </div>
                 <!--<div class="prompt-append">
                     <input type="text" class="scroll-hide svelte-4xt1ch input-tag-append" ref="promptTagAppend"
@@ -245,10 +304,12 @@ import IconApi from "@/components/icons/iconApi.vue";
 import VueNumberInput from '@chenfengyuan/vue-number-input';
 import IconUnfold from "@/components/icons/iconUnflod.vue";
 import IconSetting from "@/components/icons/iconSetting.vue";
+import IconWrap from "@/components/icons/iconWrap.vue";
 
 export default {
     name: 'PhystonPrompt',
     components: {
+        IconWrap,
         IconSetting,
         IconUnfold,
         VueNumberInput,
@@ -318,6 +379,35 @@ export default {
             counterText: '',
             tags: [],
             appendTag: '',
+            showAppendList: false,
+            appendListStyle: {
+                top: 0,
+                left: 0,
+            },
+            appendListSelected: null,
+            appendListChildSelected: null,
+            appendList: [
+                {
+                    "type": "wrap",
+                    "name": "line_break_character",
+                    "children": []
+                },
+                /*{
+                    "type": "lora",
+                    "name": "Lora",
+                    "children": []
+                },*/
+                {
+                    "type": "favorite",
+                    "name": "favorite",
+                    "children": []
+                },
+                {
+                    "type": "history",
+                    "name": "history",
+                    "children": []
+                }
+            ],
             dropTag: false,
             loading: {},
             editing: {},
@@ -331,6 +421,12 @@ export default {
         },
         translateApiItem() {
             return common.getTranslateApiItem(this.translateApis, this.translateApi)
+        },
+        appendListChildItemTags() {
+            if (this.appendListSelected === null) return []
+            if (this.appendListChildSelected === null) return []
+            if (this.appendList[this.appendListSelected].type !== 'favorite' && this.appendList[this.appendListSelected].type !== 'history') return []
+            return this.appendList[this.appendListSelected].children[this.appendListChildSelected].tags
         }
     },
     mounted() {
@@ -378,7 +474,40 @@ export default {
             let value = this.textarea.value.trim()
             if (value === this.prompt.trim()) return
             let tags = common.splitTags(value)
-            let newTags = []
+            let indexes = []
+            let oldTags = this.tags
+            this.tags = []
+            tags.forEach(tag => {
+                if (tag === "\n") {
+                    this._appendTag("\n", "\n", false, -1, 'wrap')
+                } else {
+                    let find = false
+                    for (let item of oldTags) {
+                        if (item.value === tag) {
+                            find = item
+                            break
+                        }
+                    }
+                    const localValue = find ? find.localValue : ''
+                    const disabled = find ? find.disabled : false
+                    const index = this._appendTag(tag, localValue, disabled, -1, 'text')
+                    if (!find || find.localValue === '') indexes.push(index)
+                }
+            })
+            if (event && this.autoTranslateToLocal) {
+                // 如果开启了自动翻译到本地语言，那么就自动翻译
+                /*for (const index of indexes) {
+                    try {
+                        await this.onTranslateToLocalClick(index)
+                    } catch (error) {
+                    }
+                }*/
+                this.updateTags()
+            } else {
+                this.updateTags()
+            }
+            return
+            /*let newTags = []
             let newTagsIndex = []
             let delTags = []
             tags.forEach((tag, index) => {
@@ -412,20 +541,24 @@ export default {
             let indexes = []
             for (let i = 0; i < newTags.length; i++) {
                 // indexes.push(this._appendTag(newTags[i]))
-                indexes.push(this._appendTag(newTags[i], '', false, newTagsIndex[i]))
+                if (newTags[i] === "\n") {
+                    indexes.push(this._appendTag("\n", "\n", false, newTagsIndex[i], 'wrap'))
+                } else {
+                    indexes.push(this._appendTag(newTags[i], '', false, newTagsIndex[i], 'text'))
+                }
             }
             if (event && this.autoTranslateToLocal) {
                 // 如果开启了自动翻译到本地语言，那么就自动翻译
-                /*for (const index of indexes) {
+                /!*for (const index of indexes) {
                     try {
                         await this.onTranslateToLocalClick(index)
                     } catch (error) {
                     }
-                }*/
+                }*!/
                 this.updateTags()
             } else {
                 this.updateTags()
-            }
+            }*/
         },
         copy(text) {
             this.$copyText(text).then(() => {
@@ -440,29 +573,36 @@ export default {
         genPrompt() {
             let prompts = []
             this.tags.forEach(tag => {
-                let value = common.replaceTag(tag.value)
-                if (value !== tag.value) {
-                    tag.value = value
-                    this._setTag(tag)
-                }
-                let localValue = common.replaceTag(tag.localValue)
-                if (localValue !== tag.localValue) {
-                    tag.localValue = localValue
+                let prompt = ''
+                if (typeof tag['type'] === 'string' && tag.type === 'wrap'){
+                    prompt = "\n"
+                } else {
+                    let value = common.replaceTag(tag.value)
+                    if (value !== tag.value) {
+                        tag.value = value
+                        this._setTag(tag)
+                    }
+                    let localValue = common.replaceTag(tag.localValue)
+                    if (localValue !== tag.localValue) {
+                        tag.localValue = localValue
+                    }
+
+                    if (tag.weightNum > 0) {
+                        tag.weightNum = Number(parseFloat(tag.weightNum).toFixed(2))
+                        tag.value = tag.value.replace(common.weightNumRegex, '$1:' + tag.weightNum)
+                        if (tag.localValue !== '') {
+                            tag.localValue = tag.localValue.replace(common.weightNumRegex, '$1:' + tag.weightNum)
+                        }
+                    }
+                    if (tag.disabled) return
+                    prompt = tag.value + ','
                 }
 
-                if (tag.weightNum > 0) {
-                    tag.weightNum = Number(parseFloat(tag.weightNum).toFixed(2))
-                    tag.value = tag.value.replace(common.weightNumRegex, '$1:' + tag.weightNum)
-                    if (tag.localValue !== '') {
-                        tag.localValue = tag.localValue.replace(common.weightNumRegex, '$1:' + tag.weightNum)
-                    }
-                }
-                if (tag.disabled) return
-                prompts.push(tag.value)
+                if (prompt) prompts.push(prompt)
             })
             if (prompts.length <= 0) return ''
             // console.log('update tags', prompts)
-            return prompts.join(',') + ','
+            return prompts.join('')
         },
         updateTags() {
             console.log('tags change', this.tags)
@@ -486,26 +626,33 @@ export default {
                 let start = '<div class="weight-character">' + '('.repeat(this.tags[index].incWeight) + '</div>'
                 let end = '<div class="weight-character">' + ')'.repeat(this.tags[index].incWeight) + '</div>'
                 value = start + value + end
-            }else if (this.tags[index].decWeight > 0) {
+            } else if (this.tags[index].decWeight > 0) {
                 value = common.setLayers(value, 0, '[', ']')
                 value = '<div class="character">' + value + '</div>'
                 let start = '<div class="weight-character">' + '['.repeat(this.tags[index].decWeight) + '</div>'
                 let end = '<div class="weight-character">' + ']'.repeat(this.tags[index].decWeight) + '</div>'
                 value = start + value + end
-            }else{
+            } else {
                 value = '<div class="character">' + value + '</div>'
             }
             return value
         },
         _setTag(tag) {
-            tag.weightNum = common.getTagWeightNum(tag.value)
-            tag.weightNum = tag.weightNum <= 0 ? 1 : tag.weightNum
-            tag.incWeight = common.getTagIncWeight(tag.value)
-            tag.decWeight = common.getTagDecWeight(tag.value)
-            const bracket = common.hasBrackets(tag.value)
-            tag.isLora = bracket[0] === '<' && bracket[1] === '>'
+            if (typeof tag['type'] === 'string' && tag.type === 'wrap') {
+                tag.weightNum = 1
+                tag.incWeight = 0
+                tag.decWeight = 0
+                tag.isLora = false
+            } else {
+                tag.weightNum = common.getTagWeightNum(tag.value)
+                tag.weightNum = tag.weightNum <= 0 ? 1 : tag.weightNum
+                tag.incWeight = common.getTagIncWeight(tag.value)
+                tag.decWeight = common.getTagDecWeight(tag.value)
+                const bracket = common.hasBrackets(tag.value)
+                tag.isLora = bracket[0] === '<' && bracket[1] === '>'
+            }
         },
-        _appendTag(value, localValue = '', disabled = false, index = -1) {
+        _appendTag(value, localValue = '', disabled = false, index = -1, type = 'text') {
             // 唯一数：当前时间戳+随机数
             const id = Date.now() + (Math.random() * 1000000).toFixed(0)
             let tag = {
@@ -513,6 +660,7 @@ export default {
                 value,
                 localValue,
                 disabled,
+                type
             }
             this._setTag(tag)
             // value           = common.setLayers(value, 0, '(', ')')
@@ -524,9 +672,53 @@ export default {
                 index = this.tags.push(tag)
             }
             this.$nextTick(() => {
-                autoSizeInput(this.$refs['promptTagEdit-' + id][0])
+                if (this.$refs['promptTagEdit-' + id]) autoSizeInput(this.$refs['promptTagEdit-' + id][0])
             })
             return index - 1
+        },
+        _appendTagByList() {
+            if (this.appendListSelected === null) return
+            const appendItem = this.appendList[this.appendListSelected]
+            let appendChildItem = null
+            if (appendItem.children.length > 0) {
+                if (this.appendListChildSelected !== null) {
+                    // 有子项并且选中了子项
+                    appendChildItem = appendItem.children[this.appendListChildSelected]
+                }
+            } else {
+                // 没有子项
+            }
+            let appendTags = []
+            switch (appendItem.type) {
+                case 'wrap':
+                    appendTags.push({
+                        value: "\n",
+                        localValue: "\n",
+                        disabled: false,
+                        type: 'wrap'
+                    })
+                    break
+                case 'lora':
+                    break
+                case 'favorite':
+                case 'history':
+                    if (appendChildItem) {
+                        appendChildItem.tags.forEach(tag => {
+                            appendTags.push({
+                                value: tag.value,
+                                localValue: tag.localValue,
+                                disabled: tag.disabled,
+                                type: tag.type || 'text'
+                            })
+                        })
+                    }
+                    break
+            }
+            if (appendTags.length <= 0) return
+            appendTags.forEach(tag => {
+                this._appendTag(tag.value, tag.localValue, tag.disabled, -1, tag.type)
+            })
+            this.updateTags()
         },
         initSortable() {
             Sortable.create(this.$refs.promptTagsList, {
@@ -619,9 +811,89 @@ export default {
                 this.updateTags()
             }, 300)
         },
+        onAppendTagFocus(e) {
+            if (this.appendTag === '' || this.appendTag.trim() === '') {
+                this.appendListStyle = {
+                    top: e.target.offsetTop + e.target.offsetHeight + 'px',
+                    left: e.target.offsetLeft + 'px',
+                }
+                this.appendListSelected = null
+                this.appendListChildSelected = null
+                this.showAppendList = true
+                this.gradioAPI.getFavorites(this.favoriteKey).then(res => {
+                    this.appendList.forEach(item => {
+                        if (item.type !== 'favorite') return
+                        item.children = res
+                    })
+                })
+                this.gradioAPI.getHistories(this.historyKey).then(res => {
+                    this.appendList.forEach(item => {
+                        if (item.type !== 'history') return
+                        item.children = res
+                    })
+                })
+            }
+        },
+        onAppendTagBlur(e) {
+            setTimeout(() => {
+                this.showAppendList = false
+            }, 300)
+        },
+        selectAppendList(down = true) {
+            if (this.appendList.length === 0) return
+            if (this.appendListSelected === null) {
+                this.appendListSelected = 0
+            } else {
+                if (down) {
+                    this.appendListSelected++
+                    if (this.appendListSelected >= this.appendList.length) {
+                        this.appendListSelected = 0
+                    }
+                } else {
+                    this.appendListSelected--
+                    if (this.appendListSelected < 0) {
+                        this.appendListSelected = this.appendList.length - 1
+                    }
+                }
+            }
+            this.appendListChildSelected = null
+        },
+        selectAppendListChild(down = true) {
+            if (this.appendList.length === 0) return
+            if (this.appendListSelected === null) return
+            if (this.appendList[this.appendListSelected].children.length === 0) return
+            if (this.appendListChildSelected === null) {
+                this.appendListChildSelected = 0
+            } else {
+                if (down) {
+                    this.appendListChildSelected++
+                    if (this.appendListChildSelected >= this.appendList[this.appendListSelected].children.length) {
+                        this.appendListChildSelected = 0
+                    }
+                } else {
+                    this.appendListChildSelected--
+                    if (this.appendListChildSelected < 0) {
+                        this.appendListChildSelected = this.appendList[this.appendListSelected].children.length - 1
+                    }
+                }
+            }
+            this.scrollAppendListChild()
+        },
+        scrollAppendListChild() {
+            if (this.appendListSelected === null) return
+            if (this.appendListChildSelected === 0 || this.appendListChildSelected === null) {
+                this.$refs.promptAppendListChildren[this.appendListSelected].scrollTop = 0
+            } else {
+                this.$refs.promptAppendListChild[this.appendListChildSelected].scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                })
+            }
+        },
         onAppendTagKeyDown(e, localValue = null) {
             if (e.keyCode === 38 || e.keyCode === 40) {
             } else if (e.keyCode === 13) {
+                this.showAppendList = true
                 if (this.getAutocompleteResults() && this.autocompleteResults.style.display === 'block' && this.getAutocompleteResultsSelected()) {
                     setTimeout(() => {
                         localValue = e.target.value
@@ -655,7 +927,11 @@ export default {
                     }
                     let indexes = []
                     tags.forEach(tag => {
-                        indexes.push(this._appendTag(tag))
+                        if (tag === "\n") {
+                            indexes.push(this._appendTag("\n", "\n", false, -1, 'wrap'))
+                        } else {
+                            indexes.push(this._appendTag(tag))
+                        }
                     })
                     if (this.autoTranslateToEnglish || this.autoTranslateToLocal) {
                         this.$nextTick(() => {
@@ -679,6 +955,62 @@ export default {
                 // 不是上下键，也不是回车
                 this.removeAutocompleteResultsSelected()
             }
+        },
+        onAppendTagKeyUp(e) {
+            let appendTag = e.target.value
+            if (appendTag === '' || appendTag.trim() === '') {
+                this.showAppendList = true
+
+                if (e.keyCode === 38 || e.keyCode === 40) {
+                    // 如果是上下键
+                    if (this.appendListChildSelected === null) {
+                        this.selectAppendList(e.keyCode === 40)
+                    } else {
+                        this.selectAppendListChild(e.keyCode === 40)
+                    }
+                }else if (e.keyCode === 37 || e.keyCode === 39) {
+                    // 如果是左右键
+                    if (this.appendListSelected !== null) {
+                        if (e.keyCode === 37) {
+                            this.appendListChildSelected = null
+                            this.scrollAppendListChild()
+                        } else {
+                            if (this.appendList[this.appendListSelected].children.length === 0) {
+                                this.appendListChildSelected = null
+                            } else {
+                                this.appendListChildSelected = 0
+                                this.scrollAppendListChild()
+                            }
+                        }
+                    }
+                }else if (e.keyCode === 13) {
+                    // 如果是回车键
+                    this._appendTagByList()
+                    this.scrollAppendListChild()
+                    this.appendListSelected = null
+                    this.appendListChildSelected = null
+                }
+            } else {
+                this.showAppendList = false
+            }
+        },
+        onAppendGroupClick(index, childIndex, e) {
+            console.log(index, childIndex)
+            if (index === null) return
+            this.appendListSelected = index
+            if (childIndex === null) {
+                // 如果是点击的是父级
+                if (this.appendList[this.appendListSelected].children.length > 0) return
+            } else {
+                this.appendListChildSelected = childIndex
+            }
+            this._appendTagByList()
+        },
+        onAppendListChildMouseLeave(index, childIndex, e) {
+        },
+        onAppendListChildMouseEnter(index, childIndex, e) {
+            this.appendListSelected = index
+            this.appendListChildSelected = childIndex
         },
         onTagClick(index) {
             this.editing = {}
@@ -863,6 +1195,7 @@ export default {
             this.loading['all_local'] = true
             let tagIndexes = []
             for (const index in this.tags) {
+                if (this.tags[index].type && this.tags[index].type !== 'text') continue
                 tagIndexes.push(index)
             }
             this.translatesToLocal(tagIndexes).finally(() => {
@@ -902,6 +1235,7 @@ export default {
             this.loading['all_en'] = true
             let tagIndexes = []
             for (const index in this.tags) {
+                if (this.tags[index].type && this.tags[index].type !== 'text') continue
                 tagIndexes.push(index)
             }
             this.translatesToEnglish(tagIndexes).finally(() => {
@@ -947,14 +1281,14 @@ export default {
         onUseHistory(history) {
             this.tags = []
             history.tags.forEach(item => {
-                this._appendTag(item.value, item.localValue, item.disabled)
+                this._appendTag(item.value, item.localValue, item.disabled, -1, item.type || 'text')
             })
             this.updateTags()
         },
         onUseFavorite(favorite) {
             this.tags = []
             favorite.tags.forEach(item => {
-                this._appendTag(item.value, item.localValue, item.disabled)
+                this._appendTag(item.value, item.localValue, item.disabled, -1, item.type || 'text')
             })
             this.updateTags()
         },
@@ -969,490 +1303,3 @@ export default {
     },
 }
 </script>
-<style lang="less">
-.physton-prompt {
-    border: 1px solid var(--input-border-color);
-    padding: 0 10px;
-    margin: 5px 0;
-
-    div {
-        line-height: 1;
-    }
-
-    svg {
-        display: inline-block;
-    }
-
-    .icon-svg {
-        display: inline-block;
-        line-height: 1;
-    }
-
-    .prompt-main {
-        &.fold {
-            max-height: 36px;
-            overflow: hidden;
-
-            .prompt-unfold {
-                transform: rotate(180deg);
-            }
-        }
-    }
-
-    .prompt-header {
-        margin: 5px 0;
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        padding-bottom: 10px;
-        margin-bottom: 10px;
-        border-bottom: 1px dashed var(--input-border-color);
-        flex-wrap: nowrap;
-
-        > * {
-            margin-right: 10px;
-
-            &:last-child {
-                margin-right: 0;
-            }
-        }
-
-        .prompt-unfold {
-            cursor: pointer;
-            margin-right: 2px;
-            animation: all .3s
-        }
-
-        .prompt-header-title {
-            font-weight: bold;
-            font-size: 1rem;
-            white-space: nowrap;
-        }
-
-        .prompt-header-counter {
-            font-size: .9rem;
-        }
-
-        .prompt-header-break {
-            flex-basis: 100%;
-            height: 0;
-            margin-bottom: 0;
-        }
-
-        .prompt-header-extend {
-            margin-right: 10px;
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
-
-            &:last-child {
-                margin-right: 0;
-            }
-
-            .extend-title {
-                font-size: 0.8rem;
-                margin-right: 5px;
-            }
-
-            &.prompt-append {
-                position: relative;
-                flex: 1;
-
-                .extend-content {
-                    width: 100%;
-                    display: flex;
-                    justify-content: flex-end;
-                    align-items: center;
-                }
-            }
-
-            .extend-content {
-                select, .select-btn {
-                    padding: 0 10px 0 5px;
-                    font-size: 0.8rem;
-                    appearance: auto;
-                    border: var(--button-border-width) solid var(--body-text-color);
-                    background: var(--body-background-fill);
-                    color: var(--body-text-color);
-                    height: 20px;
-                    line-height: 20px;
-
-                    &:hover {
-                        border-color: var(--button-primary-border-color);
-                    }
-                }
-
-                .select-btn {
-                    cursor: pointer;
-                    padding: 0 10px;
-
-                    &:hover {
-                        background: var(--button-primary-background-fill-hover);
-                        border-color: var(--button-primary-border-color-hover);
-                    }
-                }
-
-                .autocompleteResults {
-                    top: 26px !important;
-                }
-
-                .input-tag-append {
-                    display: inline-block;
-                    height: 26px !important;
-                    padding: 4px !important;
-                    //border: 1px solid var(--input-border-color);
-                    border: 1px solid #02b7fd;
-                    appearance: none;
-                    background-color: transparent;
-                    font-size: 0.9rem !important;
-                    line-height: 0.9rem !important;
-                    font-family: inherit;
-                    font-weight: inherit;
-                    border-radius: 4px !important;
-                    min-width: 200px;
-                    width: 80%;
-                    text-align: left;
-
-                    &:focus {
-                        box-shadow: var(--input-shadow-focus) !important;
-                        //border: 1px solid #02b7fd !important;
-                        //border-color: var(--input-border-color-focus);
-                    }
-                }
-
-                .extend-btn-group {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    color: var(--button-secondary-text-color);
-                    background: var(--button-secondary-background-fill);
-                    border: 1px solid var(--button-secondary-border-color);
-                    padding: 0;
-                    border-radius: 4px;
-
-                    .extend-btn-item {
-                        cursor: pointer;
-                        border-left: 1px solid var(--button-secondary-border-color);
-                        height: 26px;
-                        width: 30px;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        position: relative;
-
-                        &:first-child {
-                            border-left: 0;
-                            margin-left: 0;
-                        }
-
-                        &:hover{
-                            .setting-box {
-                                display: flex;
-                            }
-                        }
-
-                        .setting-box {
-                            display: none;
-                            position: absolute;
-                            background: #e6f4ff;
-                            //top: -36px;
-                            //left: 0;
-                            top: -5px;
-                            left: 28px;
-                            justify-content: flex-start;
-                            align-items: center;
-                            width: max-content;
-                            height: 36px;
-                            padding: 0 10px;
-                            box-shadow: 0 0 3px 0 #4a54ff;
-                            border-radius: 6px 6px 4px 4px;
-                            z-index: 10;
-
-                            > * {
-                                margin-left: 10px;
-
-                                &:first-child {
-                                    margin-left: 0;
-                                }
-                            }
-
-                            /*&::before {
-                                content: "";
-                                position: absolute;
-                                bottom: -10px;
-                                left: 10px;
-                                border-width: 10px 10px 0;
-                                border-style: solid;
-                                border-color: #fff transparent transparent; !* 三角箭头的颜色 *!
-                            }*/
-                        }
-                    }
-                }
-
-                .gradio-button, a {
-                    height: 26px !important;
-                    min-height: 26px !important;
-                    max-height: 26px !important;
-                }
-
-                .gradio-checkbox {
-                    cursor: pointer;
-                }
-
-                input[type="checkbox"] {
-                    --ring-color: transparent;
-                    position: relative;
-                    box-shadow: var(--input-shadow);
-                    border: 1px solid var(--checkbox-border-color);
-                    border-radius: var(--checkbox-border-radius);
-                    background-color: var(--checkbox-background-color);
-                    line-height: var(--line-sm);
-                    width: 16px;
-                    height: 16px;
-
-                    &:checked {
-                        border-color: var(--checkbox-border-color-selected);
-                        background-image: var(--checkbox-check);
-                        background-color: var(--checkbox-background-color-selected)
-                    }
-                }
-            }
-        }
-    }
-
-    .prompt-tags {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: flex-start;
-        align-items: flex-start;
-
-        &.droping {
-            .btn-tag-extend {
-                display: none !important;
-            }
-        }
-
-        .prompt-tags-list {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: flex-start;
-            align-items: flex-start;
-            width: 100%;
-
-            .prompt-tag{
-                margin-bottom: 8px;
-                margin-right: 10px;
-                display: block;
-                align-items: center;
-                max-width: 100%;
-
-                &:last-child {
-                    margin-right: 12px;
-                }
-
-                &.disabled {
-                    opacity: 0.5;
-                }
-
-                .prompt-tag-main {
-                    width: 100%;
-                    display: flex;
-                    justify-content: flex-start;
-                    align-items: flex-start;
-                    position: relative;
-
-                    &:hover {
-                        .prompt-tag-edit, .btn-tag-extend {
-                            box-shadow: 0 0 3px 0 #4a54ff;
-                        }
-
-                        .btn-tag-extend {
-                            display: flex;
-                        }
-                    }
-
-                    .prompt-tag-edit {
-                        width: 100%;
-                        display: flex;
-                        justify-content: flex-start;
-                        align-items: center;
-                        position: relative;
-                        border-radius: 4px;
-
-                        .prompt-tag-value {
-                            width: calc(100% - 16px);
-                            padding: 4px;
-                            font-size: 0.9rem;
-                            height: 24px;
-                            border-radius: 4px;
-                            border-top-right-radius: 0;
-                            border-bottom-right-radius: 0;
-                            display: flex;
-                            align-items: center;
-                            justify-content: flex-start;
-                            color: var(--button-secondary-text-color);
-                            background: var(--button-secondary-background-fill);
-                            border: var(--button-border-width) solid var(--button-secondary-border-color);
-                            &:hover{
-                                border-color: var(--button-secondary-border-color-hover);
-                                background: var(--button-secondary-background-fill-hover);
-                                color: var(--button-secondary-text-color-hover);
-                            }
-
-                            .character {
-                                text-overflow: ellipsis;
-                                overflow: hidden;
-                                white-space: nowrap;
-                                line-height: 1rem;
-                            }
-
-                            .weight-character {
-                                color: #d81e06;
-                            }
-                        }
-
-                        .input-tag-edit {
-                            max-width: calc(100% - 16px);
-                            border-radius: 4px !important;
-                            border-top-right-radius: 0 !important;
-                            border-bottom-right-radius: 0 !important;
-                        }
-
-                        .btn-tag-delete {
-                            display: flex;
-                            justify-content: center;
-                            align-items: center;
-                            cursor: pointer;
-                            border: var(--button-border-width) solid var(--button-secondary-border-color);
-                            background: var(--button-secondary-background-fill);
-                            padding: 0;
-                            width: 16px;
-                            height: 24px;
-                            border-radius: 0;
-                            border-top-right-radius: 4px;
-                            border-bottom-right-radius: 4px;
-
-                            &:hover {
-                                background: #d81e06;
-
-                                svg {
-                                    fill: #fff !important;
-                                }
-                            }
-                        }
-                    }
-
-                    .btn-tag-extend {
-                        display: none;
-                        justify-content: flex-start;
-                        align-items: center;
-                        position: absolute;
-                        top: -32px;
-                        left: 0;
-                        z-index: 100;
-                        padding: 0;
-                        box-shadow: 0 0 3px 0 #4a54ff;
-                        background: center center #4A54FF;
-                        background-image: linear-gradient(315deg, #6772FF 0, #00F9E5 100%);
-                        background-size: 104% 104%;
-                        border-radius: 4px;
-                        overflow: hidden;
-
-                        > button {
-                            height: 32px;
-                            width: 32px;
-                            border: 0;
-                            border-radius: 0;
-                            padding: 5px;
-                            min-width: auto;
-                            font-size: 0.9rem;
-                            min-height: auto;
-                            background: transparent;
-                            color: #fff;
-                            border-right: 1px solid rgba(255, 255, 255, 0.2);
-
-                            &:last-child {
-                                border-right: 0;
-                            }
-
-                            &:hover {
-                                background: rgba(255, 255, 255, 0.2);
-                            }
-                        }
-
-                        > input {
-                            width: 54px;
-                            border: 0;
-                        }
-
-                        .input-number {
-                            width: 90px;
-                            border: 0;
-                            padding: 0;
-
-                            .vue-number-input__button {
-                                width: 1.5rem;
-                                background: rgba(255, 255, 255, .9);
-                            }
-
-                            .vue-number-input__input {
-                                height: 32px;
-                                border: 0;
-                                padding: 0;
-                            }
-                        }
-
-                        input[type=number]::-webkit-inner-spin-button,
-                        input[type=number]::-webkit-outer-spin-button {
-                            opacity: 1;
-                        }
-                    }
-                }
-
-                .prompt-local-language {
-                    margin-top: 2px;
-                    display: flex;
-                    justify-content: flex-start;
-                    align-items: center;
-
-                    .translate-to-local {
-                        cursor: pointer;
-                    }
-
-                    .local-language {
-                        font-size: .8rem;
-                        color: var(--body-text-color-subdued);
-                        margin-left: 2px;
-                    }
-                }
-            }
-        }
-
-        input[type="text"], input[type="number"] {
-            display: inline-block;
-            overflow-y: scroll;
-            height: 24px;
-            padding: 4px;
-            border: 1px solid #02b7fd;
-            appearance: none;
-            background-color: transparent;
-            font-size: 0.9rem;
-            line-height: 0.9rem;
-            font-family: inherit;
-            font-weight: inherit;
-            border-radius: 4px;
-
-            &:focus {
-                box-shadow: var(--input-shadow-focus);
-                border-color: var(--input-border-color-focus);
-            }
-        }
-
-        .gradio-button {
-            max-width: none !important;
-            width: auto !important;
-            padding: 4px 12px !important;
-        }
-    }
-}
-</style>
