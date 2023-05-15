@@ -1,24 +1,8 @@
+import splitTags from "@/utils/splitTags";
 export default {
     weightNumRegex: /(.*):([0-9\.]+)/,
     weightNumRegexEN: /(.*):\s*([0-9\.]+)/,
     weightNumRegexCN: /(.*)：\s*([0-9\.]+)/,
-    dontSplitRegexes: [
-        // [night light:magical forest:5, 15],[night light:magical forest:norvegian territory:5, 15, 25:catmull],(fire extinguisher:1, 2.0),[(fire extinguisher: 1.0, 2.0)::5],[lion:bird:girl: , 7, 10],EasyNegative (normal quality,Low quality,worst quality:1.4),EasyNegative [normal quality,Low quality,worst quality:1.4],<lora:clothesTransparent_v20:1:1,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0>,(aaa,bbb,ccc),(deformed iris, deformed pupils, semi-realistic),(Tang costume, Chinese women, high collar, neckline, embroidery, gold thread, colored silk thread, floral and bird pattern, wide sleeves, wrist, gold thread embroidery, red silk satin, gloss, side slit design, hemline, floral pattern, petals, vines, romantic,:1.2),aaa,
-        // (badhandv4:1.4),\(EasyNegative:1.4\), \(ng deepnegative v1 75t\), \(worst quality:1.4\), \(low quality:1.4\) , \(monochrome:1.1\), lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, normal quality, jpeg artifacts, \(signature, watermark, username:1.4\), blurry, bad feet, multiple breasts, \(mutated hands and fingers:1.5 \), \(long body :1.3\), \(mutation, poorly drawn :1.2\) , black-white, liquid body, liquid tongue, disfigured, malformed, mutated, anatomical nonsense, text font ui, malformed hands, long neck, blurred, lowers, bad proportions, bad shadow, uncoordinated body, unnatural body, fused breasts, bad breasts, huge breasts, poorly drawn breasts, extra breasts, liquid breasts, heavy breasts, missing breasts, huge haunch, huge thighs, huge calf, fused hand, missing hand, \(holding\), muscles, abs, (bad_prompt_version2-neg:1.2),
-        // [night light:magical forest: 5, 15]
-        // [night light:magical forest:norvegian territory: 5, 15, 25:catmull]
-        // (fire extinguisher: 1.0, 2.0)
-        // [(fire extinguisher: 1.0, 2.0)::5]
-        // [lion:bird:girl: , 7, 10]
-        /(\[([\w\s\_\-]+:)+\s*([0-9\.]*,?\s*)+(:[\w\s\_\-]+)*\])+/g,
-        /(\(([\w\s\_\-]+:)+\s*([0-9\.]*,?\s*)+(:[\w\s\_\-]+)*\))+/g,
-        // EasyNegative (normal quality,Low quality,worst quality:1.4)
-        /(([^,]+)?\s*\\*\(([\w\s\_\-\|]+\,*(:[0-9\.]+)?\,?\s*)+\\*\)\s*([^,]+)?)+/g,
-        // EasyNegative [normal quality,Low quality,worst quality:1.4]
-        /(([^,]+)?\s*\\*\[([\w\s\_\-\|]+\,*(:[0-9\.]+)?\,?\s*)+\\*\]\s*([^,]+)?)+/g,
-        // <lora:clothesTransparent_v20:1:1,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0>
-        /(\<[^\>]+\>)+/g,
-    ],
     bracketsEN: [
         {'(': '(', ')': ')'},
         {'[': '[', ']': ']'},
@@ -117,47 +101,7 @@ export default {
      * @returns {string[]}
      */
     splitTags(tags) {
-        if (tags === null || tags === undefined || tags === false || tags === "" || tags.trim() === "") return []
-
-        tags = tags.trim()
-        tags = tags.replace(/\t/g, '\n') // 制表符
-        // tags = tags.replace(/\n/g, '\n') // 换行符
-        tags = tags.replace(/\r/g, '\n') // 回车符
-        tags = tags.replace(/\n+/g, '\n') // 连续换行符
-
-        let list = []
-        const lines = tags.split("\n")
-        const lineCount = lines.length
-        lines.forEach((line, index) => {
-            line = line.trim()
-            if (line === '') return
-            // 替换
-            line = line.replace(/，/g, ',') // 中文逗号
-            line = line.replace(/。/g, ',') // 中文句号
-            line = line.replace(/、/g, ',') // 中文顿号
-            line = line.replace(/；/g, ',') // 中文分号
-            line = line.replace(/．/g, ',') // 日文句号
-            line = line.replace(/;/g, ',') // 英文分号
-            const replace = '----====physton====----'
-            const replaceRex = new RegExp(replace, 'g')
-            for (const regex of this.dontSplitRegexes) {
-                // 将其中的逗号替换掉
-                line = line.replace(regex, (match) => {
-                    return match.replace(/,/g, replace)
-                })
-            }
-            line.split(",").forEach((tag, index) => {
-                tag = tag.trim()
-                if (tag === '') return
-                // 把逗号替换回来
-                tag = tag.replace(replaceRex, ',')
-                list.push(tag)
-            })
-            if (index < lineCount - 1) {
-                list.push('\n')
-            }
-        })
-        return list
+        return splitTags(tags)
     },
 
     /**
