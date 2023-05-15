@@ -363,20 +363,23 @@ export default {
             this.$refs.translateSetting.open(this.translateApi)
         },
         handlePaste() {
-            const $paste = document.getElementById('paste')
-            // 拷贝一个新的按钮
-            const $pasteNew = $paste.cloneNode(true)
-            $pasteNew.id = 'paste-new'
-            // 加到原来的按钮后面一个
-            $paste.parentNode.insertBefore($pasteNew, $paste.nextSibling)
-            // 原来的按钮隐藏
-            $paste.style.display = 'none'
-            // 监听新按钮点击事件
-            $pasteNew.addEventListener('click', () => {
-                this.openPastePopup()
-            })
-            this.pasteTitle = $paste.title
-            this.pasteBtn = $paste
+            const $pastes = gradioApp().querySelectorAll("#paste")
+            if (!$pastes || $pastes.length <= 0) return
+            $pastes.forEach(($paste, index) => {
+                // 拷贝一个新的按钮
+                const $pasteNew = $paste.cloneNode(true)
+                $pasteNew.id = 'paste-new-' + index
+                // 加到原来的按钮后面一个
+                $paste.parentNode.insertBefore($pasteNew, $paste.nextSibling)
+                // 原来的按钮隐藏
+                $paste.style.display = 'none'
+                // 监听新按钮点击事件
+                $pasteNew.addEventListener('click', () => {
+                    this.pasteBtn = $paste
+                    this.openPastePopup()
+                })
+                this.pasteTitle = $paste.title
+            });
         },
         openPastePopup() {
             this.pasteContent = ''
@@ -396,6 +399,7 @@ export default {
             let ids = []
             for (const item of this.prompts) {
                 if (item.tab == ele.id) {
+                    console.log(item)
                     ids.push(item.id)
                     if (item.neg) {
                         $textareaNeg = item.$textarea
