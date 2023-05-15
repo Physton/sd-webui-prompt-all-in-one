@@ -183,4 +183,8 @@ def on_app_started(_: gr.Blocks, app: FastAPI):
     async def _translate(text: str = Body(...), from_lang: str = Body(...), to_lang: str = Body(...), api: str = Body(...), api_config: dict = Body(...)):
         return translate(text, from_lang, to_lang, api, api_config)
 
-script_callbacks.on_app_started(on_app_started)
+try:
+    script_callbacks.on_app_started(on_app_started)
+    print('sd-webui-prompt-all-in-one background API service started successfully.')
+except Exception as e:
+    print(f'sd-webui-prompt-all-in-one background API service failed to start: {e}')
