@@ -144,10 +144,21 @@
                                          ref="promptAppendListChild"
                                          :class="['append-item', appendListChildSelected === childIndex ? 'selected' : '']"
                                          @click="onAppendGroupClick(index, childIndex, $event)">
-                                        <div class="group-tag" v-if="item.type === 'favorite' || item.type === 'history'">
+                                        <template v-if="item.type === 'favorite' || item.type === 'history'">
                                             <div class="tags-name" v-if="child.name">{{ child.name }}</div>
                                             <div class="tags-name" v-else>{{ child.prompt }}</div>
-                                        </div>
+                                        </template>
+                                    </div>
+                                </div>
+                                <div class="tags-detail" v-show="appendListSelected !== null && appendListChildSelected !== null && appendListSelected === index && (item.type === 'favorite' || item.type === 'history')">
+                                    <div class="tags-list">
+                                        <template v-for="(tag, tagIndex) in appendListChildItemTags" :key="tagIndex">
+                                            <div v-if="tag.type && tag.type === 'wrap'" class="item-wrap"></div>
+                                            <div v-else class="tags-item">
+                                                <div class="item-tag-value">{{ tag.value }}</div>
+                                                <div class="item-tag-local-value">{{ tag.localValue }}</div>
+                                            </div>
+                                        </template>
                                     </div>
                                 </div>
                             </div>
@@ -408,6 +419,12 @@ export default {
         },
         translateApiItem() {
             return common.getTranslateApiItem(this.translateApis, this.translateApi)
+        },
+        appendListChildItemTags() {
+            if (this.appendListSelected === null) return []
+            if (this.appendListChildSelected === null) return []
+            if (this.appendList[this.appendListSelected].type !== 'favorite' && this.appendList[this.appendListSelected].type !== 'history') return []
+            return this.appendList[this.appendListSelected].children[this.appendListChildSelected].tags
         }
     },
     mounted() {

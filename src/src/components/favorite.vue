@@ -4,10 +4,13 @@
         <div class="favorite-content">
             <div class="favorite-detail" v-show="currentItem && currentItem.tags">
                 <div class="favorite-item-tags">
-                    <div class="favorite-item-tag" v-for="(tag, index) in currentItem.tags" :key="index">
-                        <div class="item-tag-value">{{ tag.value }}</div>
-                        <div class="item-tag-local-value">{{ tag.localValue }}</div>
-                    </div>
+                    <template v-for="(tag, index) in currentItem.tags" :key="index">
+                        <div v-if="tag.type && tag.type === 'wrap'" class="favorite-item-wrap"></div>
+                        <div v-else class="favorite-item-tag">
+                            <div class="item-tag-value">{{ tag.value }}</div>
+                            <div class="item-tag-local-value">{{ tag.localValue }}</div>
+                        </div>
+                    </template>
                 </div>
             </div>
             <div class="favorite-list" v-show="favorites.length > 0" :style="{height: defaultHeight + 'px'}">
