@@ -127,6 +127,7 @@
                                v-tooltip="getLang('enter_to_add')"
                                @focus="onAppendTagFocus"
                                @blur="onAppendTagBlur"
+                               @keyup="onAppendTagKeyUp"
                                @keydown="onAppendTagKeyDown">
 
                         <div class="prompt-append-list" ref="promptAppendList" v-show="showAppendList"
@@ -164,7 +165,7 @@
                                         <div class="prompt-tag-value"
                                              :ref="'promptTag-' + tag.id"
                                              v-tooltip="getLang('drop_to_order')" style="width: 100%">
-                                            <icon-wrap width="16" height="16" />
+                                            <icon-wrap width="16" height="16"/>
                                         </div>
                                     </template>
                                     <template v-else-if="tag.type === 'favorite'">
@@ -223,7 +224,8 @@
                                                       color="#ff9900"/>
                                         <icon-loading v-if="loading[tag.id + '_en']" width="20" height="20"/>
                                     </button>
-                                    <button type="button" v-tooltip="getLang('copy_to_clipboard')" @click="copy(tag.value)">
+                                    <button type="button" v-tooltip="getLang('copy_to_clipboard')"
+                                            @click="copy(tag.value)">
                                         <icon-copy width="20" height="20" color="#3c3c3c"/>
                                     </button>
                                     <button type="button"
@@ -234,7 +236,8 @@
                                     </button>
                                 </div>
                             </div>
-                            <div class="prompt-local-language" v-show="!isEnglish && (tag.type === 'text' || !tag.type)">
+                            <div class="prompt-local-language"
+                                 v-show="!isEnglish && (tag.type === 'text' || !tag.type)">
                                 <div class="translate-to-local hover-scale-120"
                                      v-tooltip="getLang('translate_keyword_to_local_language')"
                                      @click="onTranslateToLocalClick(index).then(() => updateTags())">
@@ -555,16 +558,16 @@ export default {
             this.tags.forEach(tag => {
                 tag.type = tag.type || 'text'
                 let prompt = ''
-                switch(tag.type) {
+                switch (tag.type) {
                     case 'wrap':
                         prompt = "\n"
                         break
-                    case 'lora':
+                    /*case 'lora':
                         break
                     case 'favorite':
                         break
                     case 'history':
-                        break
+                        break*/
                     default:
                         let value = common.replaceTag(tag.value)
                         if (value !== tag.value) {
@@ -662,24 +665,44 @@ export default {
         _appendTagByList() {
             if (this.appendListSelected === null) return
             const appendItem = this.appendList[this.appendListSelected]
+            let appendChildItem = null
             if (appendItem.children.length > 0) {
                 if (this.appendListChildSelected !== null) {
                     // 有子项并且选中了子项
+                    appendChildItem = appendItem.children[this.appendListChildSelected]
                 }
             } else {
                 // 没有子项
             }
+            let appendTags = []
             switch (appendItem.type) {
                 case 'wrap':
-                    this._appendTag("\n", "\n", false, -1, 'wrap')
+                    appendTags.push({
+                        value: "\n",
+                        localValue: "\n",
+                        disabled: false,
+                        type: 'wrap'
+                    })
                     break
                 case 'lora':
                     break
                 case 'favorite':
-                    break
                 case 'history':
+                    if (appendChildItem) {
+                        appendChildItem.tags.forEach(tag => {
+                            appendTags.push({
+                                value: tag.value,
+                                localValue: tag.localValue,
+                                disabled: tag.disabled,
+                                type: tag.type || 'text'
+                            })
+                        })
+                    }
                     break
             }
+            appendTags.forEach(tag => {
+                this._appendTag(tag.value, tag.localValue, tag.disabled, -1, tag.type)
+            })
         },
         initSortable() {
             Sortable.create(this.$refs.promptTagsList, {
@@ -849,44 +872,6 @@ export default {
             }
         },
         onAppendTagKeyDown(e, localValue = null) {
-            if (this.appendTag === '' || this.appendTag.trim() === '') {
-                this.showAppendList = true
-                // 如果是上下键
-                if (e.keyCode === 38 || e.keyCode === 40) {
-                    if (this.appendListChildSelected === null) {
-                        this.selectAppendList(e.keyCode === 40)
-                    } else {
-                        this.selectAppendListChild(e.keyCode === 40)
-                    }
-                    return
-                }
-
-                // 如果是左右键
-                if (e.keyCode === 37 || e.keyCode === 39) {
-                    if (this.appendListSelected !== null) {
-                        if (e.keyCode === 37) {
-                            this.appendListChildSelected = null
-                            this.scrollAppendListChild()
-                        } else {
-                            if (this.appendList[this.appendListSelected].children.length === 0) {
-                                this.appendListChildSelected = null
-                            } else {
-                                this.appendListChildSelected = 0
-                                this.scrollAppendListChild()
-                            }
-                        }
-                        return
-                    }
-                }
-                // 如果是回车键
-                if (e.keyCode === 13) {
-                    this._appendTagByList()
-                    return
-                }
-                return
-            } else {
-                this.showAppendList = false
-            }
             if (e.keyCode === 38 || e.keyCode === 40) {
             } else if (e.keyCode === 13) {
                 this.showAppendList = true
@@ -950,6 +935,44 @@ export default {
             } else {
                 // 不是上下键，也不是回车
                 this.removeAutocompleteResultsSelected()
+            }
+        },
+        onAppendTagKeyUp(e) {
+            let appendTag = e.target.value
+            if (appendTag === '' || appendTag.trim() === '') {
+                this.showAppendList = true
+
+                if (e.keyCode === 38 || e.keyCode === 40) {
+                    // 如果是上下键
+                    if (this.appendListChildSelected === null) {
+                        this.selectAppendList(e.keyCode === 40)
+                    } else {
+                        this.selectAppendListChild(e.keyCode === 40)
+                    }
+                }else if (e.keyCode === 37 || e.keyCode === 39) {
+                    // 如果是左右键
+                    if (this.appendListSelected !== null) {
+                        if (e.keyCode === 37) {
+                            this.appendListChildSelected = null
+                            this.scrollAppendListChild()
+                        } else {
+                            if (this.appendList[this.appendListSelected].children.length === 0) {
+                                this.appendListChildSelected = null
+                            } else {
+                                this.appendListChildSelected = 0
+                                this.scrollAppendListChild()
+                            }
+                        }
+                    }
+                }else if (e.keyCode === 13) {
+                    // 如果是回车键
+                    this.scrollAppendListChild()
+                    this.appendListSelected = null
+                    this.appendListChildSelected = null
+                    this._appendTagByList()
+                }
+            } else {
+                this.showAppendList = false
             }
         },
         onTagClick(index) {
