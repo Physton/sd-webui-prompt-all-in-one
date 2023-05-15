@@ -117,38 +117,46 @@ export default {
      * @returns {string[]}
      */
     splitTags(tags) {
-        if (tags === null || tags === undefined || tags === false || tags === "") return []
+        if (tags === null || tags === undefined || tags === false || tags === "" || tags.trim() === "") return []
 
-        // 替换
-        tags = tags.replace(/，/g, ',') // 中文逗号
-        tags = tags.replace(/。/g, ',') // 中文句号
-        tags = tags.replace(/、/g, ',') // 中文顿号
-        tags = tags.replace(/；/g, ',') // 中文分号
-        tags = tags.replace(/．/g, ',') // 日文句号
-        tags = tags.replace(/;/g, ',') // 英文分号
-        tags = tags.replace(/\t/g, ',') // 制表符
-        tags = tags.replace(/\n/g, ',') // 换行符
-        tags = tags.replace(/\r/g, ',') // 回车符
+        tags = tags.trim()
+        tags = tags.replace(/\t/g, '\n') // 制表符
+        // tags = tags.replace(/\n/g, '\n') // 换行符
+        tags = tags.replace(/\r/g, '\n') // 回车符
+        tags = tags.replace(/\n+/g, '\n') // 连续换行符
 
-        const replace = '----====physton====----'
-        const replaceRex = new RegExp(replace, 'g')
-        for (const regex of this.dontSplitRegexes) {
-            // 将其中的逗号替换为：<++++----====****>
-            tags = tags.replace(regex, (match) => {
-                return match.replace(/,/g, replace)
-            })
-        }
-
-        // 分割
-        tags = tags.split(',')
         let list = []
-        for (let tag of tags) {
-            tag = tag.trim()
-            if (tag === '') continue
-            // 把逗号替换回来
-            tag = tag.replace(replaceRex, ',')
-            list.push(tag)
-        }
+        const lines = tags.split("\n")
+        const lineCount = lines.length
+        lines.forEach((line, index) => {
+            line = line.trim()
+            if (line === '') return
+            // 替换
+            line = line.replace(/，/g, ',') // 中文逗号
+            line = line.replace(/。/g, ',') // 中文句号
+            line = line.replace(/、/g, ',') // 中文顿号
+            line = line.replace(/；/g, ',') // 中文分号
+            line = line.replace(/．/g, ',') // 日文句号
+            line = line.replace(/;/g, ',') // 英文分号
+            const replace = '----====physton====----'
+            const replaceRex = new RegExp(replace, 'g')
+            for (const regex of this.dontSplitRegexes) {
+                // 将其中的逗号替换掉
+                line = line.replace(regex, (match) => {
+                    return match.replace(/,/g, replace)
+                })
+            }
+            line.split(",").forEach((tag, index) => {
+                tag = tag.trim()
+                if (tag === '') return
+                // 把逗号替换回来
+                tag = tag.replace(replaceRex, ',')
+                list.push(tag)
+            })
+            if (index < lineCount - 1) {
+                list.push('\n')
+            }
+        })
         return list
     },
 
@@ -158,10 +166,13 @@ export default {
      * @returns {boolean}
      */
     canTranslate(text) {
+        // 如果为空，不翻译
+        if (text.trim() === '') return false
         // 如果<>包裹，不翻译
         if (text[0] === '<' && text[text.length - 1] === '>') return false
         // 如果是数字、标点符号，不翻译
-        if (/^[0-9,.\s!"#$%&'()*+,-./:;<=>?@\[\]^_`{|}~]+$/.test(text)) return false
+        const regex = /^[0-9`~!@#$%^&*()_+\-=\[\]{}\\|;:'",.\/<>?]+$/
+        if (regex.test(text)) return false
         // 如果是单个英文字母，不翻译
         if (/^[a-zA-Z]$/.test(text)) return false
         return true

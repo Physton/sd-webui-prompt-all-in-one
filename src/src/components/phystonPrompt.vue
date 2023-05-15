@@ -15,7 +15,8 @@
                                 <icon-i18n class="hover-scale-120" width="18" height="18" color="#d81e06"/>
                             </div>
                             <div class="extend-btn-item">
-                                <icon-setting class="hover-scale-120" width="18" height="18" color="#d81e06" v-tooltip="getLang('setting_desc')" />
+                                <icon-setting class="hover-scale-120" width="18" height="18" color="#d81e06"
+                                              v-tooltip="getLang('setting_desc')"/>
                                 <div class="setting-box">
                                     <div v-if="translateApiItem.name && !isEnglish" class="extend-btn-item"
                                          v-tooltip="getLang('translate_api') + ': ' + translateApiItem.name"
@@ -128,14 +129,23 @@
                                @blur="onAppendTagBlur"
                                @keydown="onAppendTagKeyDown">
 
-                        <div class="prompt-append-list" ref="promptAppendList" v-show="showAppendList" :style="appendListStyle">
-                            <div v-for="(item, index) in appendList" :key="item.type" :class="['prompt-append-group', appendListSelected === index ? 'selected' : '']">
-                                <div class="append-group-name">{{item.name}}</div>
-                                <div class="append-group-list" ref="promptAppendListChildren" v-show="item.children.length > 0">
-                                    <div v-for="(child, childIndex) in item.children" :key="childIndex" ref="promptAppendListChild" :class="['append-item', appendListChildSelected === childIndex ? 'selected' : '']">
-                                        <div class="group-tag" v-if="item.type === 'favorite' || item.type === 'history'">
+                        <div class="prompt-append-list" ref="promptAppendList" v-show="showAppendList"
+                             :style="appendListStyle">
+                            <div v-for="(item, index) in appendList" :key="item.type"
+                                 :class="['prompt-append-group', appendListSelected === index ? 'selected' : '']">
+                                <div class="append-group-name">
+                                    {{ item.name }}
+                                    <span class="arrow-right" v-show="item.children.length > 0"></span>
+                                </div>
+                                <div class="append-group-list" ref="promptAppendListChildren"
+                                     v-show="item.children.length > 0">
+                                    <div v-for="(child, childIndex) in item.children" :key="childIndex"
+                                         ref="promptAppendListChild"
+                                         :class="['append-item', appendListChildSelected === childIndex ? 'selected' : '']">
+                                        <div class="group-tag"
+                                             v-if="item.type === 'favorite' || item.type === 'history'">
                                             <div class="tags-name" v-if="child.name">{{ child.name }}</div>
-                                            <div class="tags-name" v-else>{{child.prompt}}</div>
+                                            <div class="tags-name" v-else>{{ child.prompt }}</div>
                                         </div>
                                     </div>
                                 </div>
@@ -146,79 +156,97 @@
             </div>
             <div :class="['prompt-tags', dropTag ? 'droping': '']" ref="promptTags">
                 <div class="prompt-tags-list" ref="promptTagsList">
-                    <div v-for="(tag, index) in tags" :key="tag.id" :data-id="tag.id"
-                         :class="['prompt-tag', tag.disabled ? 'disabled': '']">
-                        <div class="prompt-tag-main">
-                            <div class="prompt-tag-edit">
-                                <div v-show="!editing[tag.id]"
-                                        class="prompt-tag-value"
-                                        :style="{color: tag.isLora ? 'var(--geekblue-8)' : this.tagColor}"
-                                        :ref="'promptTag-' + tag.id"
-                                        v-tooltip="getLang('click_to_edit') + '<br/>' + getLang('drop_to_order')"
-                                        @click="onTagClick(index)" v-html="renderTag(index)">
+                    <template v-for="(tag, index) in tags" :key="tag.id" :data-id="tag.id">
+                        <div :class="['prompt-tag', tag.disabled ? 'disabled': '']">
+                            <div class="prompt-tag-main">
+                                <div class="prompt-tag-edit">
+                                    <template v-if="tag.type === 'wrap'">
+                                        <div class="prompt-tag-value"
+                                             :ref="'promptTag-' + tag.id"
+                                             v-tooltip="getLang('drop_to_order')" style="width: 100%">
+                                            <icon-wrap width="16" height="16" />
+                                        </div>
+                                    </template>
+                                    <template v-else-if="tag.type === 'favorite'">
+
+                                    </template>
+                                    <template v-else-if="tag.type === 'history'">
+
+                                    </template>
+                                    <template v-else>
+                                        <div v-show="!editing[tag.id]"
+                                             class="prompt-tag-value"
+                                             :style="{color: tag.isLora ? 'var(--geekblue-8)' : this.tagColor}"
+                                             :ref="'promptTag-' + tag.id"
+                                             v-tooltip="getLang('click_to_edit') + '<br/>' + getLang('drop_to_order')"
+                                             @click="onTagClick(index)" v-html="renderTag(index)">
+                                        </div>
+                                        <input v-show="editing[tag.id]" type="text"
+                                               class="scroll-hide svelte-4xt1ch input-tag-edit"
+                                               :ref="'promptTagEdit-' + tag.id" :placeholder="getLang('enter_to_save')"
+                                               :value="tag.value" @blur="onTagInputBlur(index)"
+                                               @keydown="onTagInputKeyDown(index, $event)"
+                                               @change="onTagInputChange(index, $event)">
+                                    </template>
+                                    <div class="btn-tag-delete" @click="onDeleteTagClick(index)">
+                                        <icon-close width="12" height="12"/>
+                                    </div>
                                 </div>
-                                <input v-show="editing[tag.id]" type="text" class="scroll-hide svelte-4xt1ch input-tag-edit"
-                                       :ref="'promptTagEdit-' + tag.id" :placeholder="getLang('enter_to_save')"
-                                       :value="tag.value" @blur="onTagInputBlur(index)"
-                                       @keydown="onTagInputKeyDown(index, $event)"
-                                       @change="onTagInputChange(index, $event)">
-                                <div class="btn-tag-delete" @click="onDeleteTagClick(index)">
-                                    <icon-close width="12" height="12"/>
+                                <div class="btn-tag-extend" v-show="(tag.type === 'text' || !tag.type)">
+                                    <vue-number-input class="input-number" :model-value="tag.weightNum" center controls
+                                                      :min="0" :step="0.1" size="small"
+                                                      @update:model-value="onTagWeightNumChange(index, $event)"></vue-number-input>
+                                    <button type="button" v-tooltip="getLang('increase_weight_add_parentheses')"
+                                            @click="onIncWeightClick(index, +1)">
+                                        <icon-weight width="20" height="20" type="parentheses" :increase="true"
+                                                     color="#ff6969"/>
+                                    </button>
+                                    <button type="button" v-tooltip="getLang('increase_weight_subtract_parentheses')"
+                                            @click="onIncWeightClick(index, -1)">
+                                        <icon-weight width="20" height="20" type="parentheses" :increase="false"
+                                                     color="#ff6969"/>
+                                    </button>
+                                    <button type="button" v-tooltip="getLang('decrease_weight_add_brackets')"
+                                            @click="onDecWeightClick(index, +1)">
+                                        <icon-weight width="20" height="20" type="brackets" :increase="true"
+                                                     color="#84ff8f"/>
+                                    </button>
+                                    <button type="button" v-tooltip="getLang('decrease_weight_subtract_brackets')"
+                                            @click="onDecWeightClick(index, -1)">
+                                        <icon-weight width="20" height="20" type="brackets" :increase="false"
+                                                     color="#84ff8f"/>
+                                    </button>
+                                    <button type="button" v-tooltip="getLang('translate_keyword_to_english')"
+                                            v-show="!isEnglish"
+                                            @click="onTranslateToEnglishClick(index).then(() => updateTags())">
+                                        <icon-english v-if="!loading[tag.id + '_en']" width="20" height="20"
+                                                      color="#ff9900"/>
+                                        <icon-loading v-if="loading[tag.id + '_en']" width="20" height="20"/>
+                                    </button>
+                                    <button type="button" v-tooltip="getLang('copy_to_clipboard')" @click="copy(tag.value)">
+                                        <icon-copy width="20" height="20" color="#3c3c3c"/>
+                                    </button>
+                                    <button type="button"
+                                            v-tooltip="getLang(tag.disabled ? 'enable_keyword': 'disable_keyword')"
+                                            @click="onDisabledTagClick(index)">
+                                        <icon-disabled v-show="!tag.disabled" width="20" height="20" color="#ff472f"/>
+                                        <icon-enable v-show="tag.disabled" width="20" height="20" color="#2fff53"/>
+                                    </button>
                                 </div>
                             </div>
-                            <div class="btn-tag-extend">
-                                <vue-number-input class="input-number" :model-value="tag.weightNum" center controls
-                                                  :min="0" :step="0.1" size="small"
-                                                  @update:model-value="onTagWeightNumChange(index, $event)"></vue-number-input>
-                                <button type="button" v-tooltip="getLang('increase_weight_add_parentheses')"
-                                        @click="onIncWeightClick(index, +1)">
-                                    <icon-weight width="20" height="20" type="parentheses" :increase="true"
-                                                 color="#ff6969"/>
-                                </button>
-                                <button type="button" v-tooltip="getLang('increase_weight_subtract_parentheses')"
-                                        @click="onIncWeightClick(index, -1)">
-                                    <icon-weight width="20" height="20" type="parentheses" :increase="false"
-                                                 color="#ff6969"/>
-                                </button>
-                                <button type="button" v-tooltip="getLang('decrease_weight_add_brackets')"
-                                        @click="onDecWeightClick(index, +1)">
-                                    <icon-weight width="20" height="20" type="brackets" :increase="true"
-                                                 color="#84ff8f"/>
-                                </button>
-                                <button type="button" v-tooltip="getLang('decrease_weight_subtract_brackets')"
-                                        @click="onDecWeightClick(index, -1)">
-                                    <icon-weight width="20" height="20" type="brackets" :increase="false"
-                                                 color="#84ff8f"/>
-                                </button>
-                                <button type="button" v-tooltip="getLang('translate_keyword_to_english')"
-                                        v-show="!isEnglish"
-                                        @click="onTranslateToEnglishClick(index).then(() => updateTags())">
-                                    <icon-english v-if="!loading[tag.id + '_en']" width="20" height="20"
-                                                  color="#ff9900"/>
-                                    <icon-loading v-if="loading[tag.id + '_en']" width="20" height="20"/>
-                                </button>
-                                <button type="button" v-tooltip="getLang('copy_to_clipboard')" @click="copy(tag.value)">
-                                    <icon-copy width="20" height="20" color="#3c3c3c"/>
-                                </button>
-                                <button type="button"
-                                        v-tooltip="getLang(tag.disabled ? 'enable_keyword': 'disable_keyword')"
-                                        @click="onDisabledTagClick(index)">
-                                    <icon-disabled v-show="!tag.disabled" width="20" height="20" color="#ff472f"/>
-                                    <icon-enable v-show="tag.disabled" width="20" height="20" color="#2fff53"/>
-                                </button>
+                            <div class="prompt-local-language" v-show="!isEnglish && (tag.type === 'text' || !tag.type)">
+                                <div class="translate-to-local hover-scale-120"
+                                     v-tooltip="getLang('translate_keyword_to_local_language')"
+                                     @click="onTranslateToLocalClick(index).then(() => updateTags())">
+                                    <icon-translate v-if="!loading[tag.id + '_local']" width="16" height="16"
+                                                    color="var(--body-text-color)"/>
+                                    <icon-loading v-if="loading[tag.id + '_local']" width="16" height="16"/>
+                                </div>
+                                <div class="local-language">{{ tag.localValue }}</div>
                             </div>
                         </div>
-                        <div class="prompt-local-language" v-show="!isEnglish">
-                            <div class="translate-to-local hover-scale-120"
-                                 v-tooltip="getLang('translate_keyword_to_local_language')"
-                                 @click="onTranslateToLocalClick(index).then(() => updateTags())">
-                                <icon-translate v-if="!loading[tag.id + '_local']" width="16" height="16"
-                                                color="var(--body-text-color)"/>
-                                <icon-loading v-if="loading[tag.id + '_local']" width="16" height="16"/>
-                            </div>
-                            <div class="local-language">{{ tag.localValue }}</div>
-                        </div>
-                    </div>
+                        <div class="prompt-wrap" v-show="tag.type === 'wrap'"></div>
+                    </template>
                 </div>
                 <!--<div class="prompt-append">
                     <input type="text" class="scroll-hide svelte-4xt1ch input-tag-append" ref="promptTagAppend"
@@ -262,10 +290,12 @@ import IconApi from "@/components/icons/iconApi.vue";
 import VueNumberInput from '@chenfengyuan/vue-number-input';
 import IconUnfold from "@/components/icons/iconUnflod.vue";
 import IconSetting from "@/components/icons/iconSetting.vue";
+import IconWrap from "@/components/icons/iconWrap.vue";
 
 export default {
     name: 'PhystonPrompt',
     components: {
+        IconWrap,
         IconSetting,
         IconUnfold,
         VueNumberInput,
@@ -346,14 +376,13 @@ export default {
                 {
                     "type": "wrap",
                     "name": "换行",
-                    "children": [
-                    ]
+                    "children": []
                 },
-                {
+                /*{
                     "type": "lora",
                     "name": "Lora",
                     "children": []
-                },
+                },*/
                 {
                     "type": "favorite",
                     "name": "收藏",
@@ -425,7 +454,40 @@ export default {
             let value = this.textarea.value.trim()
             if (value === this.prompt.trim()) return
             let tags = common.splitTags(value)
-            let newTags = []
+            let indexes = []
+            let oldTags = this.tags
+            this.tags = []
+            tags.forEach(tag => {
+                if (tag === "\n") {
+                    this._appendTag("\n", "\n", false, -1, 'wrap')
+                } else {
+                    let find = false
+                    for (let item of oldTags) {
+                        if (item.value === tag) {
+                            find = item
+                            break
+                        }
+                    }
+                    const localValue = find ? find.localValue : ''
+                    const disabled = find ? find.disabled : false
+                    const index = this._appendTag(tag, localValue, disabled, -1, 'text')
+                    if (!find || find.localValue === '') indexes.push(index)
+                }
+            })
+            if (event && this.autoTranslateToLocal) {
+                // 如果开启了自动翻译到本地语言，那么就自动翻译
+                /*for (const index of indexes) {
+                    try {
+                        await this.onTranslateToLocalClick(index)
+                    } catch (error) {
+                    }
+                }*/
+                this.updateTags()
+            } else {
+                this.updateTags()
+            }
+            return
+            /*let newTags = []
             let newTagsIndex = []
             let delTags = []
             tags.forEach((tag, index) => {
@@ -459,20 +521,24 @@ export default {
             let indexes = []
             for (let i = 0; i < newTags.length; i++) {
                 // indexes.push(this._appendTag(newTags[i]))
-                indexes.push(this._appendTag(newTags[i], '', false, newTagsIndex[i]))
+                if (newTags[i] === "\n") {
+                    indexes.push(this._appendTag("\n", "\n", false, newTagsIndex[i], 'wrap'))
+                } else {
+                    indexes.push(this._appendTag(newTags[i], '', false, newTagsIndex[i], 'text'))
+                }
             }
             if (event && this.autoTranslateToLocal) {
                 // 如果开启了自动翻译到本地语言，那么就自动翻译
-                /*for (const index of indexes) {
+                /!*for (const index of indexes) {
                     try {
                         await this.onTranslateToLocalClick(index)
                     } catch (error) {
                     }
-                }*/
+                }*!/
                 this.updateTags()
             } else {
                 this.updateTags()
-            }
+            }*/
         },
         copy(text) {
             this.$copyText(text).then(() => {
@@ -487,29 +553,46 @@ export default {
         genPrompt() {
             let prompts = []
             this.tags.forEach(tag => {
-                let value = common.replaceTag(tag.value)
-                if (value !== tag.value) {
-                    tag.value = value
-                    this._setTag(tag)
-                }
-                let localValue = common.replaceTag(tag.localValue)
-                if (localValue !== tag.localValue) {
-                    tag.localValue = localValue
+                tag.type = tag.type || 'text'
+                let prompt = ''
+                switch(tag.type) {
+                    case 'wrap':
+                        prompt = "\n"
+                        break
+                    case 'lora':
+                        break
+                    case 'favorite':
+                        break
+                    case 'history':
+                        break
+                    default:
+                        let value = common.replaceTag(tag.value)
+                        if (value !== tag.value) {
+                            tag.value = value
+                            this._setTag(tag)
+                        }
+                        let localValue = common.replaceTag(tag.localValue)
+                        if (localValue !== tag.localValue) {
+                            tag.localValue = localValue
+                        }
+
+                        if (tag.weightNum > 0) {
+                            tag.weightNum = Number(parseFloat(tag.weightNum).toFixed(2))
+                            tag.value = tag.value.replace(common.weightNumRegex, '$1:' + tag.weightNum)
+                            if (tag.localValue !== '') {
+                                tag.localValue = tag.localValue.replace(common.weightNumRegex, '$1:' + tag.weightNum)
+                            }
+                        }
+                        if (tag.disabled) return
+                        prompt = tag.value + ','
+                        break
                 }
 
-                if (tag.weightNum > 0) {
-                    tag.weightNum = Number(parseFloat(tag.weightNum).toFixed(2))
-                    tag.value = tag.value.replace(common.weightNumRegex, '$1:' + tag.weightNum)
-                    if (tag.localValue !== '') {
-                        tag.localValue = tag.localValue.replace(common.weightNumRegex, '$1:' + tag.weightNum)
-                    }
-                }
-                if (tag.disabled) return
-                prompts.push(tag.value)
+                if (prompt) prompts.push(prompt)
             })
             if (prompts.length <= 0) return ''
             // console.log('update tags', prompts)
-            return prompts.join(',') + ','
+            return prompts.join('')
         },
         updateTags() {
             console.log('tags change', this.tags)
@@ -533,13 +616,13 @@ export default {
                 let start = '<div class="weight-character">' + '('.repeat(this.tags[index].incWeight) + '</div>'
                 let end = '<div class="weight-character">' + ')'.repeat(this.tags[index].incWeight) + '</div>'
                 value = start + value + end
-            }else if (this.tags[index].decWeight > 0) {
+            } else if (this.tags[index].decWeight > 0) {
                 value = common.setLayers(value, 0, '[', ']')
                 value = '<div class="character">' + value + '</div>'
                 let start = '<div class="weight-character">' + '['.repeat(this.tags[index].decWeight) + '</div>'
                 let end = '<div class="weight-character">' + ']'.repeat(this.tags[index].decWeight) + '</div>'
                 value = start + value + end
-            }else{
+            } else {
                 value = '<div class="character">' + value + '</div>'
             }
             return value
@@ -552,7 +635,7 @@ export default {
             const bracket = common.hasBrackets(tag.value)
             tag.isLora = bracket[0] === '<' && bracket[1] === '>'
         },
-        _appendTag(value, localValue = '', disabled = false, index = -1) {
+        _appendTag(value, localValue = '', disabled = false, index = -1, type = 'text') {
             // 唯一数：当前时间戳+随机数
             const id = Date.now() + (Math.random() * 1000000).toFixed(0)
             let tag = {
@@ -560,6 +643,7 @@ export default {
                 value,
                 localValue,
                 disabled,
+                type
             }
             this._setTag(tag)
             // value           = common.setLayers(value, 0, '(', ')')
@@ -571,9 +655,31 @@ export default {
                 index = this.tags.push(tag)
             }
             this.$nextTick(() => {
-                autoSizeInput(this.$refs['promptTagEdit-' + id][0])
+                if (this.$refs['promptTagEdit-' + id]) autoSizeInput(this.$refs['promptTagEdit-' + id][0])
             })
             return index - 1
+        },
+        _appendTagByList() {
+            if (this.appendListSelected === null) return
+            const appendItem = this.appendList[this.appendListSelected]
+            if (appendItem.children.length > 0) {
+                if (this.appendListChildSelected !== null) {
+                    // 有子项并且选中了子项
+                }
+            } else {
+                // 没有子项
+            }
+            switch (appendItem.type) {
+                case 'wrap':
+                    this._appendTag("\n", "\n", false, -1, 'wrap')
+                    break
+                case 'lora':
+                    break
+                case 'favorite':
+                    break
+                case 'history':
+                    break
+            }
         },
         initSortable() {
             Sortable.create(this.$refs.promptTagsList, {
@@ -774,6 +880,7 @@ export default {
                 }
                 // 如果是回车键
                 if (e.keyCode === 13) {
+                    this._appendTagByList()
                     return
                 }
                 return
@@ -782,6 +889,7 @@ export default {
             }
             if (e.keyCode === 38 || e.keyCode === 40) {
             } else if (e.keyCode === 13) {
+                this.showAppendList = true
                 if (this.getAutocompleteResults() && this.autocompleteResults.style.display === 'block' && this.getAutocompleteResultsSelected()) {
                     setTimeout(() => {
                         localValue = e.target.value
@@ -815,7 +923,11 @@ export default {
                     }
                     let indexes = []
                     tags.forEach(tag => {
-                        indexes.push(this._appendTag(tag))
+                        if (tag === "\n") {
+                            indexes.push(this._appendTag("\n", "\n", false, -1, 'wrap'))
+                        } else {
+                            indexes.push(this._appendTag(tag))
+                        }
                     })
                     if (this.autoTranslateToEnglish || this.autoTranslateToLocal) {
                         this.$nextTick(() => {
@@ -1023,6 +1135,7 @@ export default {
             this.loading['all_local'] = true
             let tagIndexes = []
             for (const index in this.tags) {
+                if (this.tags[index].type && this.tags[index].type !== 'text') continue
                 tagIndexes.push(index)
             }
             this.translatesToLocal(tagIndexes).finally(() => {
@@ -1062,6 +1175,7 @@ export default {
             this.loading['all_en'] = true
             let tagIndexes = []
             for (const index in this.tags) {
+                if (this.tags[index].type && this.tags[index].type !== 'text') continue
                 tagIndexes.push(index)
             }
             this.translatesToEnglish(tagIndexes).finally(() => {
@@ -1107,14 +1221,14 @@ export default {
         onUseHistory(history) {
             this.tags = []
             history.tags.forEach(item => {
-                this._appendTag(item.value, item.localValue, item.disabled)
+                this._appendTag(item.value, item.localValue, item.disabled, -1, item.type || 'text')
             })
             this.updateTags()
         },
         onUseFavorite(favorite) {
             this.tags = []
             favorite.tags.forEach(item => {
-                this._appendTag(item.value, item.localValue, item.disabled)
+                this._appendTag(item.value, item.localValue, item.disabled, -1, item.type || 'text')
             })
             this.updateTags()
         },
