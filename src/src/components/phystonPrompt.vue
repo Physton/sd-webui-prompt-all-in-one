@@ -143,6 +143,8 @@
                                     <div v-for="(child, childIndex) in item.children" :key="childIndex"
                                          ref="promptAppendListChild"
                                          :class="['append-item', appendListChildSelected === childIndex ? 'selected' : '']"
+                                         @mouseleave="onAppendListChildMouseLeave(index, childIndex, $event)"
+                                         @mouseenter="onAppendListChildMouseEnter(index, childIndex, $event)"
                                          @click="onAppendGroupClick(index, childIndex, $event)">
                                         <template v-if="item.type === 'favorite' || item.type === 'history'">
                                             <div class="tags-name" v-if="child.name">{{ child.name }}</div>
@@ -1003,6 +1005,12 @@ export default {
                 this.appendListChildSelected = childIndex
             }
             this._appendTagByList()
+        },
+        onAppendListChildMouseLeave(index, childIndex, e) {
+        },
+        onAppendListChildMouseEnter(index, childIndex, e) {
+            this.appendListSelected = index
+            this.appendListChildSelected = childIndex
         },
         onTagClick(index) {
             this.editing = {}
