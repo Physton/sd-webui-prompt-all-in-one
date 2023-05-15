@@ -51,13 +51,13 @@ class storage:
         filename = self.__get_data_filename(key)
         if not os.path.exists(filename):
             return None
-        with open(filename, 'r') as f:
+        with open(filename, 'r', encoding='utf-8') as f:
             data = json.load(f)
         return data
 
     def __set(self, key, data):
         file_path = self.__get_data_filename(key)
-        with open(file_path, 'w') as f:
+        with open(file_path, 'w', encoding='utf-8') as f:
             json.dump(data, f, indent=4, ensure_ascii=False)
 
     def set(self, key, data):
