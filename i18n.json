@@ -8,7 +8,7 @@
                 "need_api_key": "需要API Key",
                 "dont_need_api_key": "不需要API Key（不稳定）",
                 "prompt": "提示词",
-                "negative_prompt": "反向提示词",
+                "negative_prompt": "反向词",
                 "txt2img": "文生图",
                 "img2img": "图生图",
                 "please_enter_new_keyword": "请输入新关键词",
@@ -61,7 +61,8 @@
                 "delete_all_history_confirm": "确定要删除所有历史记录吗？",
                 "please_enter_the_content_here": "请输入内容",
                 "not_api_key_desc": "免费的翻译接口不稳定，并不是每个接口都能在你的电脑中使用，请尽量申请api key使用稳定的官方接口",
-                "setting_desc": "设置：翻译API、自动翻译、显示/隐藏..."
+                "setting_desc": "设置：翻译API、自动翻译、显示/隐藏...",
+                "line_break_character": "换行符号"
             }
         },
         {
@@ -124,7 +125,8 @@
                 "delete_all_history_confirm": "確定要刪除所有歷史記錄嗎？",
                 "please_enter_the_content_here": "請輸入內容",
                 "not_api_key_desc": "免費嘅翻譯接口唔太可靠，唔係每個接口都可以喺你嘅電腦中使用，請盡量申請api key使用穩定嘅官方接口",
-                "setting_desc": "設置：翻譯API、自動翻譯、顯示/隱藏..."
+                "setting_desc": "設置：翻譯API、自動翻譯、顯示/隱藏...",
+                "line_break_character": "換行符號"
             }
         },
         {
@@ -187,7 +189,8 @@
                 "delete_all_history_confirm": "確定要删除所有歷史記錄嗎？",
                 "please_enter_the_content_here": "請輸入內容",
                 "not_api_key_desc": "免費的翻譯介面不穩定，不是每一個介面都能在你的電腦上使用，建議申請API Key以使用穩定的官方介面。",
-                "setting_desc": "設置：翻譯API、自動翻譯、顯示/隱藏..."
+                "setting_desc": "設置：翻譯API、自動翻譯、顯示/隱藏...",
+                "line_break_character": "換行字元"
             }
         },
         {
@@ -250,7 +253,8 @@
                 "delete_all_history_confirm": "Are you sure you want to delete all history?",
                 "please_enter_the_content_here": "Please enter content",
                 "not_api_key_desc": "Free translation interfaces are unstable, and not every interface can be used on your computer. Please apply for an API Key to use the stable official interface.",
-                "setting_desc": "Settings: Translation API, automatic translation, show/hide..."
+                "setting_desc": "Settings: Translation API, automatic translation, show/hide...",
+                "line_break_character": "Line break character"
             }
         },
         {
@@ -328,7 +332,8 @@
                 "delete_all_history_confirm": "هل أنت متأكد من رغبتك في حذف جميع السجلات؟",
                 "please_enter_the_content_here": "يرجى إدخال المحتوى",
                 "not_api_key_desc": "الواجهات البرمجية المجانية للترجمة غير مستقرة، ولا يمكن استخدام كل الواجهات على جهاز الكمبيوتر الخاص بك. يرجى طلب مفتاح واجهة برمجة التطبيقات لاستخدام الواجهة الرسمية والمستقرة.",
-                "setting_desc": "الإعدادات: واجهة برمجة تطبيقات الترجمة، الترجمة التلقائية، إظهار/إخفاء..."
+                "setting_desc": "الإعدادات: واجهة برمجة تطبيقات الترجمة، الترجمة التلقائية، إظهار/إخفاء...",
+                "line_break_character": "حرف فاصل السطر"
             }
         },
         {
@@ -491,7 +496,8 @@
                 "delete_all_history_confirm": "Êtes-vous sûr de vouloir supprimer tout l'historique ?",
                 "please_enter_the_content_here": "Veuillez entrer le contenu",
                 "not_api_key_desc": "Les interfaces de traduction gratuites sont instables et toutes les interfaces ne peuvent pas être utilisées sur votre ordinateur. Veuillez demander une clé d'API pour utiliser l'interface officielle stable.",
-                "setting_desc": "Paramètres : API de traduction, traduction automatique, afficher/masquer..."
+                "setting_desc": "Paramètres : API de traduction, traduction automatique, afficher/masquer...",
+                "line_break_character": "Caractère de saut de ligne"
             }
         },
         {
@@ -569,7 +575,8 @@
                 "delete_all_history_confirm": "Möchten Sie wirklich alle Verlaufseinträge löschen?",
                 "please_enter_the_content_here": "Bitte Inhalt eingeben",
                 "not_api_key_desc": "Kostenlose Übersetzungs-Schnittstellen sind instabil, und nicht jede Schnittstelle kann auf Ihrem Computer verwendet werden. Bitte beantragen Sie einen API-Schlüssel, um die stabile offizielle Schnittstelle zu verwenden.",
-                "setting_desc": "Einstellungen: Übersetzungs-API, automatische Übersetzung, Anzeigen/Ausblenden..."
+                "setting_desc": "Einstellungen: Übersetzungs-API, automatische Übersetzung, Anzeigen/Ausblenden...",
+                "line_break_character": "Zeilenumbruch-Zeichen"
             }
         },
         {
@@ -697,7 +704,8 @@
                 "delete_all_history_confirm": "Sei sicuro di voler eliminare tutto lo storico?",
                 "please_enter_the_content_here": "Si prega di inserire il contenuto",
                 "not_api_key_desc": "Le interfacce di traduzione gratuite sono instabili e non tutte le interfacce possono essere utilizzate sul vostro computer. Si prega di richiedere una chiave API per utilizzare l'interfaccia ufficiale stabile.",
-                "setting_desc": "Impostazioni: API di traduzione, traduzione automatica, Mostra/Nascondi..."
+                "setting_desc": "Impostazioni: API di traduzione, traduzione automatica, Mostra/Nascondi...",
+                "line_break_character": "Carattere di ritorno a capo"
             }
         },
         {
@@ -760,7 +768,8 @@
                 "delete_all_history_confirm": "本当にすべての履歴を削除しますか？",
                 "please_enter_the_content_here": "コンテンツを入力してください",
                 "not_api_key_desc": "無料の翻訳インターフェースは不安定であり、すべてのインターフェースをあなたのコンピュータで使用できるわけではありません。安定した公式インターフェイスを使用するにはAPI Keyを申請してください。",
-                "setting_desc": "設定：翻訳API、自動翻訳、表示/非表示..."
+                "setting_desc": "設定：翻訳API、自動翻訳、表示/非表示...",
+                "line_break_character": "改行文字"
             }
         },
         {
@@ -848,7 +857,8 @@
                 "delete_all_history_confirm": "정말 모든 기록을 삭제하시겠습니까?",
                 "please_enter_the_content_here": "내용을 입력하세요",
                 "not_api_key_desc": "무료 번역 인터페이스는 불안정합니다. 모든 인터페이스를 컴퓨터에서 사용할 수 있는 것은 아닙니다. 안정적인 공식 인터페이스를 사용하려면 API 키를 신청하십시오.",
-                "setting_desc": "설정: 번역 API, 자동 번역, 표시/숨기기..."
+                "setting_desc": "설정: 번역 API, 자동 번역, 표시/숨기기...",
+                "line_break_character": "개행 문자"
             }
         },
         {
@@ -1026,7 +1036,8 @@
                 "delete_all_history_confirm": "Tem a certeza que pretende eliminar todo o histórico?",
                 "please_enter_the_content_here": "Por favor, digite o conteúdo",
                 "not_api_key_desc": "As interfaces de tradução gratuitas são instáveis e nem todas as interfaces podem ser usadas no seu computador. Por favor, solicite uma chave de API para usar a interface oficial estável.",
-                "setting_desc": "Configuração: API de tradução, tradução automática, mostrar/ocultar..."
+                "setting_desc": "Configuração: API de tradução, tradução automática, mostrar/ocultar...",
+                "line_break_character": "Caractere de quebra de linha"
             }
         },
         {
@@ -1104,7 +1115,8 @@
                 "delete_all_history_confirm": "Вы действительно хотите удалить всю историю?",
                 "please_enter_the_content_here": "Пожалуйста, введите содержимое",
                 "not_api_key_desc": "Бесплатные интерфейсы перевода нестабильны и не каждый интерфейс можно использовать на вашем компьютере. Пожалуйста, получите API Key для использования стабильного официального интерфейса",
-                "setting_desc": "Настройки: API перевода, автоматический перевод, показать/скрыть..."
+                "setting_desc": "Настройки: API перевода, автоматический перевод, показать/скрыть...",
+                "line_break_character": "Символ перевода строки"
             }
         },
         {
@@ -1197,7 +1209,8 @@
                 "delete_all_history_confirm": "¿Seguro que quieres eliminar todo el historial?",
                 "please_enter_the_content_here": "Por favor, ingrese el contenido",
                 "not_api_key_desc": "Las interfaces de traducción gratuitas son inestables y no todas las interfaces se pueden usar en su computadora. Por favor, solicite una clave de API para usar la interfaz oficial estable.",
-                "setting_desc": "Configuración: API de traducción, traducción automática, mostrar/ocultar..."
+                "setting_desc": "Configuración: API de traducción, traducción automática, mostrar/ocultar...",
+                "line_break_character": "Carácter de salto de línea"
             }
         },
         {

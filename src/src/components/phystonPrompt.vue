@@ -135,7 +135,7 @@
                             <div v-for="(item, index) in appendList" :key="item.type"
                                  :class="['prompt-append-group', appendListSelected === index ? 'selected' : '']">
                                 <div class="append-group-name">
-                                    {{ item.name }}
+                                    {{ getLang(item.name) }}
                                     <span class="arrow-right" v-show="item.children.length > 0"></span>
                                 </div>
                                 <div class="append-group-list" ref="promptAppendListChildren"
@@ -164,16 +164,14 @@
                                     <template v-if="tag.type === 'wrap'">
                                         <div class="prompt-tag-value"
                                              :ref="'promptTag-' + tag.id"
-                                             v-tooltip="getLang('drop_to_order')" style="width: 100%">
+                                             v-tooltip="getLang('line_break_character') + '<br/>' + getLang('drop_to_order')" style="width: 100%">
                                             <icon-wrap width="16" height="16"/>
                                         </div>
                                     </template>
-                                    <template v-else-if="tag.type === 'favorite'">
-
+                                    <!--<template v-else-if="tag.type === 'favorite'">
                                     </template>
                                     <template v-else-if="tag.type === 'history'">
-
-                                    </template>
+                                    </template>-->
                                     <template v-else>
                                         <div v-show="!editing[tag.id]"
                                              class="prompt-tag-value"
@@ -248,7 +246,7 @@
                                 <div class="local-language">{{ tag.localValue }}</div>
                             </div>
                         </div>
-                        <div class="prompt-wrap" v-show="tag.type === 'wrap'"></div>
+                        <!--<div class="prompt-wrap" v-show="tag.type === 'wrap'"></div>-->
                     </template>
                 </div>
                 <!--<div class="prompt-append">
@@ -378,7 +376,7 @@ export default {
             appendList: [
                 {
                     "type": "wrap",
-                    "name": "换行",
+                    "name": "line_break_character",
                     "children": []
                 },
                 /*{
@@ -388,12 +386,12 @@ export default {
                 },*/
                 {
                     "type": "favorite",
-                    "name": "收藏",
+                    "name": "favorite",
                     "children": []
                 },
                 {
                     "type": "history",
-                    "name": "历史",
+                    "name": "history",
                     "children": []
                 }
             ],
@@ -556,39 +554,29 @@ export default {
         genPrompt() {
             let prompts = []
             this.tags.forEach(tag => {
-                tag.type = tag.type || 'text'
                 let prompt = ''
-                switch (tag.type) {
-                    case 'wrap':
-                        prompt = "\n"
-                        break
-                    /*case 'lora':
-                        break
-                    case 'favorite':
-                        break
-                    case 'history':
-                        break*/
-                    default:
-                        let value = common.replaceTag(tag.value)
-                        if (value !== tag.value) {
-                            tag.value = value
-                            this._setTag(tag)
-                        }
-                        let localValue = common.replaceTag(tag.localValue)
-                        if (localValue !== tag.localValue) {
-                            tag.localValue = localValue
-                        }
+                if (typeof tag['type'] === 'string' && tag.type === 'wrap'){
+                    prompt = "\n"
+                } else {
+                    let value = common.replaceTag(tag.value)
+                    if (value !== tag.value) {
+                        tag.value = value
+                        this._setTag(tag)
+                    }
+                    let localValue = common.replaceTag(tag.localValue)
+                    if (localValue !== tag.localValue) {
+                        tag.localValue = localValue
+                    }
 
-                        if (tag.weightNum > 0) {
-                            tag.weightNum = Number(parseFloat(tag.weightNum).toFixed(2))
-                            tag.value = tag.value.replace(common.weightNumRegex, '$1:' + tag.weightNum)
-                            if (tag.localValue !== '') {
-                                tag.localValue = tag.localValue.replace(common.weightNumRegex, '$1:' + tag.weightNum)
-                            }
+                    if (tag.weightNum > 0) {
+                        tag.weightNum = Number(parseFloat(tag.weightNum).toFixed(2))
+                        tag.value = tag.value.replace(common.weightNumRegex, '$1:' + tag.weightNum)
+                        if (tag.localValue !== '') {
+                            tag.localValue = tag.localValue.replace(common.weightNumRegex, '$1:' + tag.weightNum)
                         }
-                        if (tag.disabled) return
-                        prompt = tag.value + ','
-                        break
+                    }
+                    if (tag.disabled) return
+                    prompt = tag.value + ','
                 }
 
                 if (prompt) prompts.push(prompt)
@@ -631,12 +619,19 @@ export default {
             return value
         },
         _setTag(tag) {
-            tag.weightNum = common.getTagWeightNum(tag.value)
-            tag.weightNum = tag.weightNum <= 0 ? 1 : tag.weightNum
-            tag.incWeight = common.getTagIncWeight(tag.value)
-            tag.decWeight = common.getTagDecWeight(tag.value)
-            const bracket = common.hasBrackets(tag.value)
-            tag.isLora = bracket[0] === '<' && bracket[1] === '>'
+            if (typeof tag['type'] === 'string' && tag.type === 'wrap') {
+                tag.weightNum = 1
+                tag.incWeight = 0
+                tag.decWeight = 0
+                tag.isLora = false
+            } else {
+                tag.weightNum = common.getTagWeightNum(tag.value)
+                tag.weightNum = tag.weightNum <= 0 ? 1 : tag.weightNum
+                tag.incWeight = common.getTagIncWeight(tag.value)
+                tag.decWeight = common.getTagDecWeight(tag.value)
+                const bracket = common.hasBrackets(tag.value)
+                tag.isLora = bracket[0] === '<' && bracket[1] === '>'
+            }
         },
         _appendTag(value, localValue = '', disabled = false, index = -1, type = 'text') {
             // 唯一数：当前时间戳+随机数
@@ -700,9 +695,11 @@ export default {
                     }
                     break
             }
+            if (appendTags.length <= 0) return
             appendTags.forEach(tag => {
                 this._appendTag(tag.value, tag.localValue, tag.disabled, -1, tag.type)
             })
+            this.updateTags()
         },
         initSortable() {
             Sortable.create(this.$refs.promptTagsList, {
@@ -862,6 +859,7 @@ export default {
             this.scrollAppendListChild()
         },
         scrollAppendListChild() {
+            if (this.appendListSelected === null) return
             if (this.appendListChildSelected === 0 || this.appendListChildSelected === null) {
                 this.$refs.promptAppendListChildren[this.appendListSelected].scrollTop = 0
             } else {
@@ -966,10 +964,10 @@ export default {
                     }
                 }else if (e.keyCode === 13) {
                     // 如果是回车键
+                    this._appendTagByList()
                     this.scrollAppendListChild()
                     this.appendListSelected = null
                     this.appendListChildSelected = null
-                    this._appendTagByList()
                 }
             } else {
                 this.showAppendList = false
