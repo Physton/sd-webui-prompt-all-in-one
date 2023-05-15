@@ -4,10 +4,13 @@
         <div class="history-content">
             <div class="history-detail" v-show="currentItem && currentItem.tags">
                 <div class="history-item-tags">
-                    <div class="history-item-tag" v-for="(tag, index) in currentItem.tags" :key="index">
-                        <div class="item-tag-value">{{ tag.value }}</div>
-                        <div class="item-tag-local-value">{{ tag.localValue }}</div>
-                    </div>
+                    <template v-for="(tag, index) in currentItem.tags" :key="index">
+                        <div v-if="tag.type && tag.type === 'wrap'" class="history-item-wrap"></div>
+                        <div v-else class="history-item-tag">
+                            <div class="item-tag-value">{{ tag.value }}</div>
+                            <div class="item-tag-local-value">{{ tag.localValue }}</div>
+                        </div>
+                    </template>
                 </div>
             </div>
             <div class="history-list" v-show="histories.length > 0" :style="{height: defaultHeight + 'px'}">

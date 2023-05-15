@@ -682,19 +682,65 @@
                     color: #fff;
                     padding: 10px;
                     cursor: pointer;
+                    position: relative;
 
                     &:hover, &.selected {
                         .common-colourful-background();
                     }
 
-                    .group-tag {
+                    .tags-name {
                         width: 300px;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
+                        display: inline-block;
+                    }
+                }
+            }
 
-                        .tags-name {
-                            overflow: hidden;
-                            text-overflow: ellipsis;
-                            white-space: nowrap;
-                            display: inline-block;
+            .tags-detail {
+                position: absolute;
+                right: 0;
+                top: 100%;
+                width: 400px;
+                z-index: 1001;
+                .common-colourful-background();
+                .common-popup-main-background();
+                padding: 10px;
+                color: #1d1d1d;
+
+                .tags-list {
+                    display: flex;
+                    justify-content: flex-start;
+                    align-items: flex-start;
+                    flex-wrap: wrap;
+
+                    .item-wrap {
+                        flex-basis: 100%;
+                        height: 0;
+                        margin: 0;
+                        padding: 0;
+                    }
+
+                    .tags-item {
+                        margin-right: 5px;
+                        margin-bottom: 5px;
+
+                        &:last-child {
+                            margin-right: 0;
+                        }
+
+                        .item-tag-value {
+                            padding: 4px 6px;
+                            border-radius: 5px;
+                            background: rgba(30, 30, 30, .9);
+                            font-size: 12px;
+                            color: #fff;
+                        }
+
+                        .item-tag-local-value {
+                            font-size: 12px;
+                            margin-top: 2px;
                         }
                     }
                 }
@@ -729,6 +775,13 @@
             justify-content: flex-start;
             align-items: flex-start;
             flex-wrap: wrap;
+
+            .favorite-item-wrap, .history-item-wrap {
+                flex-basis: 100%;
+                height: 0;
+                margin: 0;
+                padding: 0;
+            }
 
             .favorite-item-tag, .history-item-tag {
                 margin-right: 5px;
