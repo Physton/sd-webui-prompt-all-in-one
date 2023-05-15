@@ -123,7 +123,24 @@
                         </div>
                         <input type="text" class="scroll-hide svelte-4xt1ch input-tag-append" ref="promptTagAppend"
                                v-model="appendTag" :placeholder="getLang('please_enter_new_keyword')"
-                               v-tooltip="getLang('enter_to_add')" @keydown="onAppendTagKeyDown">
+                               v-tooltip="getLang('enter_to_add')"
+                               @focus="onAppendTagFocus"
+                               @blur="onAppendTagBlur"
+                               @keydown="onAppendTagKeyDown">
+
+                        <div class="prompt-append-list" ref="promptAppendList" v-show="showAppendList" :style="appendListStyle">
+                            <div v-for="(item, index) in appendList" :key="item.type" :class="['prompt-append-group', appendListSelected === index ? 'selected' : '']">
+                                <div class="append-group-name">{{item.name}}</div>
+                                <div class="append-group-list" ref="promptAppendListChildren" v-show="item.children.length > 0">
+                                    <div v-for="(child, childIndex) in item.children" :key="childIndex" ref="promptAppendListChild" :class="['append-item', appendListChildSelected === childIndex ? 'selected' : '']">
+                                        <div class="group-tag" v-if="item.type === 'favorite' || item.type === 'history'">
+                                            <div class="tags-name" v-if="child.name">{{ child.name }}</div>
+                                            <div class="tags-name" v-else>{{child.prompt}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -318,6 +335,36 @@ export default {
             counterText: '',
             tags: [],
             appendTag: '',
+            showAppendList: false,
+            appendListStyle: {
+                top: 0,
+                left: 0,
+            },
+            appendListSelected: null,
+            appendListChildSelected: null,
+            appendList: [
+                {
+                    "type": "wrap",
+                    "name": "换行",
+                    "children": [
+                    ]
+                },
+                {
+                    "type": "lora",
+                    "name": "Lora",
+                    "children": []
+                },
+                {
+                    "type": "favorite",
+                    "name": "收藏",
+                    "children": []
+                },
+                {
+                    "type": "history",
+                    "name": "历史",
+                    "children": []
+                }
+            ],
             dropTag: false,
             loading: {},
             editing: {},
@@ -619,7 +666,120 @@ export default {
                 this.updateTags()
             }, 300)
         },
+        onAppendTagFocus(e) {
+            if (this.appendTag === '' || this.appendTag.trim() === '') {
+                this.appendListStyle = {
+                    top: e.target.offsetTop + e.target.offsetHeight + 'px',
+                    left: e.target.offsetLeft + 'px',
+                }
+                this.appendListSelected = null
+                this.appendListChildSelected = null
+                this.showAppendList = true
+                this.gradioAPI.getFavorites(this.favoriteKey).then(res => {
+                    this.appendList.forEach(item => {
+                        if (item.type !== 'favorite') return
+                        item.children = res
+                    })
+                })
+                this.gradioAPI.getHistories(this.historyKey).then(res => {
+                    this.appendList.forEach(item => {
+                        if (item.type !== 'history') return
+                        item.children = res
+                    })
+                })
+            }
+        },
+        onAppendTagBlur(e) {
+            this.showAppendList = false
+        },
+        selectAppendList(down = true) {
+            if (this.appendList.length === 0) return
+            if (this.appendListSelected === null) {
+                this.appendListSelected = 0
+            } else {
+                if (down) {
+                    this.appendListSelected++
+                    if (this.appendListSelected >= this.appendList.length) {
+                        this.appendListSelected = 0
+                    }
+                } else {
+                    this.appendListSelected--
+                    if (this.appendListSelected < 0) {
+                        this.appendListSelected = this.appendList.length - 1
+                    }
+                }
+            }
+            this.appendListChildSelected = null
+        },
+        selectAppendListChild(down = true) {
+            if (this.appendList.length === 0) return
+            if (this.appendListSelected === null) return
+            if (this.appendList[this.appendListSelected].children.length === 0) return
+            if (this.appendListChildSelected === null) {
+                this.appendListChildSelected = 0
+            } else {
+                if (down) {
+                    this.appendListChildSelected++
+                    if (this.appendListChildSelected >= this.appendList[this.appendListSelected].children.length) {
+                        this.appendListChildSelected = 0
+                    }
+                } else {
+                    this.appendListChildSelected--
+                    if (this.appendListChildSelected < 0) {
+                        this.appendListChildSelected = this.appendList[this.appendListSelected].children.length - 1
+                    }
+                }
+            }
+            this.scrollAppendListChild()
+        },
+        scrollAppendListChild() {
+            if (this.appendListChildSelected === 0 || this.appendListChildSelected === null) {
+                this.$refs.promptAppendListChildren[this.appendListSelected].scrollTop = 0
+            } else {
+                this.$refs.promptAppendListChild[this.appendListChildSelected].scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                })
+            }
+        },
         onAppendTagKeyDown(e, localValue = null) {
+            if (this.appendTag === '' || this.appendTag.trim() === '') {
+                this.showAppendList = true
+                // 如果是上下键
+                if (e.keyCode === 38 || e.keyCode === 40) {
+                    if (this.appendListChildSelected === null) {
+                        this.selectAppendList(e.keyCode === 40)
+                    } else {
+                        this.selectAppendListChild(e.keyCode === 40)
+                    }
+                    return
+                }
+
+                // 如果是左右键
+                if (e.keyCode === 37 || e.keyCode === 39) {
+                    if (this.appendListSelected !== null) {
+                        if (e.keyCode === 37) {
+                            this.appendListChildSelected = null
+                            this.scrollAppendListChild()
+                        } else {
+                            if (this.appendList[this.appendListSelected].children.length === 0) {
+                                this.appendListChildSelected = null
+                            } else {
+                                this.appendListChildSelected = 0
+                                this.scrollAppendListChild()
+                            }
+                        }
+                        return
+                    }
+                }
+                // 如果是回车键
+                if (e.keyCode === 13) {
+                    return
+                }
+                return
+            } else {
+                this.showAppendList = false
+            }
             if (e.keyCode === 38 || e.keyCode === 40) {
             } else if (e.keyCode === 13) {
                 if (this.getAutocompleteResults() && this.autocompleteResults.style.display === 'block' && this.getAutocompleteResultsSelected()) {
@@ -969,490 +1129,3 @@ export default {
     },
 }
 </script>
-<style lang="less">
-.physton-prompt {
-    border: 1px solid var(--input-border-color);
-    padding: 0 10px;
-    margin: 5px 0;
-
-    div {
-        line-height: 1;
-    }
-
-    svg {
-        display: inline-block;
-    }
-
-    .icon-svg {
-        display: inline-block;
-        line-height: 1;
-    }
-
-    .prompt-main {
-        &.fold {
-            max-height: 36px;
-            overflow: hidden;
-
-            .prompt-unfold {
-                transform: rotate(180deg);
-            }
-        }
-    }
-
-    .prompt-header {
-        margin: 5px 0;
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        padding-bottom: 10px;
-        margin-bottom: 10px;
-        border-bottom: 1px dashed var(--input-border-color);
-        flex-wrap: nowrap;
-
-        > * {
-            margin-right: 10px;
-
-            &:last-child {
-                margin-right: 0;
-            }
-        }
-
-        .prompt-unfold {
-            cursor: pointer;
-            margin-right: 2px;
-            animation: all .3s
-        }
-
-        .prompt-header-title {
-            font-weight: bold;
-            font-size: 1rem;
-            white-space: nowrap;
-        }
-
-        .prompt-header-counter {
-            font-size: .9rem;
-        }
-
-        .prompt-header-break {
-            flex-basis: 100%;
-            height: 0;
-            margin-bottom: 0;
-        }
-
-        .prompt-header-extend {
-            margin-right: 10px;
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
-
-            &:last-child {
-                margin-right: 0;
-            }
-
-            .extend-title {
-                font-size: 0.8rem;
-                margin-right: 5px;
-            }
-
-            &.prompt-append {
-                position: relative;
-                flex: 1;
-
-                .extend-content {
-                    width: 100%;
-                    display: flex;
-                    justify-content: flex-end;
-                    align-items: center;
-                }
-            }
-
-            .extend-content {
-                select, .select-btn {
-                    padding: 0 10px 0 5px;
-                    font-size: 0.8rem;
-                    appearance: auto;
-                    border: var(--button-border-width) solid var(--body-text-color);
-                    background: var(--body-background-fill);
-                    color: var(--body-text-color);
-                    height: 20px;
-                    line-height: 20px;
-
-                    &:hover {
-                        border-color: var(--button-primary-border-color);
-                    }
-                }
-
-                .select-btn {
-                    cursor: pointer;
-                    padding: 0 10px;
-
-                    &:hover {
-                        background: var(--button-primary-background-fill-hover);
-                        border-color: var(--button-primary-border-color-hover);
-                    }
-                }
-
-                .autocompleteResults {
-                    top: 26px !important;
-                }
-
-                .input-tag-append {
-                    display: inline-block;
-                    height: 26px !important;
-                    padding: 4px !important;
-                    //border: 1px solid var(--input-border-color);
-                    border: 1px solid #02b7fd;
-                    appearance: none;
-                    background-color: transparent;
-                    font-size: 0.9rem !important;
-                    line-height: 0.9rem !important;
-                    font-family: inherit;
-                    font-weight: inherit;
-                    border-radius: 4px !important;
-                    min-width: 200px;
-                    width: 80%;
-                    text-align: left;
-
-                    &:focus {
-                        box-shadow: var(--input-shadow-focus) !important;
-                        //border: 1px solid #02b7fd !important;
-                        //border-color: var(--input-border-color-focus);
-                    }
-                }
-
-                .extend-btn-group {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    color: var(--button-secondary-text-color);
-                    background: var(--button-secondary-background-fill);
-                    border: 1px solid var(--button-secondary-border-color);
-                    padding: 0;
-                    border-radius: 4px;
-
-                    .extend-btn-item {
-                        cursor: pointer;
-                        border-left: 1px solid var(--button-secondary-border-color);
-                        height: 26px;
-                        width: 30px;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        position: relative;
-
-                        &:first-child {
-                            border-left: 0;
-                            margin-left: 0;
-                        }
-
-                        &:hover{
-                            .setting-box {
-                                display: flex;
-                            }
-                        }
-
-                        .setting-box {
-                            display: none;
-                            position: absolute;
-                            background: #e6f4ff;
-                            //top: -36px;
-                            //left: 0;
-                            top: -5px;
-                            left: 28px;
-                            justify-content: flex-start;
-                            align-items: center;
-                            width: max-content;
-                            height: 36px;
-                            padding: 0 10px;
-                            box-shadow: 0 0 3px 0 #4a54ff;
-                            border-radius: 6px 6px 4px 4px;
-                            z-index: 10;
-
-                            > * {
-                                margin-left: 10px;
-
-                                &:first-child {
-                                    margin-left: 0;
-                                }
-                            }
-
-                            /*&::before {
-                                content: "";
-                                position: absolute;
-                                bottom: -10px;
-                                left: 10px;
-                                border-width: 10px 10px 0;
-                                border-style: solid;
-                                border-color: #fff transparent transparent; !* 三角箭头的颜色 *!
-                            }*/
-                        }
-                    }
-                }
-
-                .gradio-button, a {
-                    height: 26px !important;
-                    min-height: 26px !important;
-                    max-height: 26px !important;
-                }
-
-                .gradio-checkbox {
-                    cursor: pointer;
-                }
-
-                input[type="checkbox"] {
-                    --ring-color: transparent;
-                    position: relative;
-                    box-shadow: var(--input-shadow);
-                    border: 1px solid var(--checkbox-border-color);
-                    border-radius: var(--checkbox-border-radius);
-                    background-color: var(--checkbox-background-color);
-                    line-height: var(--line-sm);
-                    width: 16px;
-                    height: 16px;
-
-                    &:checked {
-                        border-color: var(--checkbox-border-color-selected);
-                        background-image: var(--checkbox-check);
-                        background-color: var(--checkbox-background-color-selected)
-                    }
-                }
-            }
-        }
-    }
-
-    .prompt-tags {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: flex-start;
-        align-items: flex-start;
-
-        &.droping {
-            .btn-tag-extend {
-                display: none !important;
-            }
-        }
-
-        .prompt-tags-list {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: flex-start;
-            align-items: flex-start;
-            width: 100%;
-
-            .prompt-tag{
-                margin-bottom: 8px;
-                margin-right: 10px;
-                display: block;
-                align-items: center;
-                max-width: 100%;
-
-                &:last-child {
-                    margin-right: 12px;
-                }
-
-                &.disabled {
-                    opacity: 0.5;
-                }
-
-                .prompt-tag-main {
-                    width: 100%;
-                    display: flex;
-                    justify-content: flex-start;
-                    align-items: flex-start;
-                    position: relative;
-
-                    &:hover {
-                        .prompt-tag-edit, .btn-tag-extend {
-                            box-shadow: 0 0 3px 0 #4a54ff;
-                        }
-
-                        .btn-tag-extend {
-                            display: flex;
-                        }
-                    }
-
-                    .prompt-tag-edit {
-                        width: 100%;
-                        display: flex;
-                        justify-content: flex-start;
-                        align-items: center;
-                        position: relative;
-                        border-radius: 4px;
-
-                        .prompt-tag-value {
-                            width: calc(100% - 16px);
-                            padding: 4px;
-                            font-size: 0.9rem;
-                            height: 24px;
-                            border-radius: 4px;
-                            border-top-right-radius: 0;
-                            border-bottom-right-radius: 0;
-                            display: flex;
-                            align-items: center;
-                            justify-content: flex-start;
-                            color: var(--button-secondary-text-color);
-                            background: var(--button-secondary-background-fill);
-                            border: var(--button-border-width) solid var(--button-secondary-border-color);
-                            &:hover{
-                                border-color: var(--button-secondary-border-color-hover);
-                                background: var(--button-secondary-background-fill-hover);
-                                color: var(--button-secondary-text-color-hover);
-                            }
-
-                            .character {
-                                text-overflow: ellipsis;
-                                overflow: hidden;
-                                white-space: nowrap;
-                                line-height: 1rem;
-                            }
-
-                            .weight-character {
-                                color: #d81e06;
-                            }
-                        }
-
-                        .input-tag-edit {
-                            max-width: calc(100% - 16px);
-                            border-radius: 4px !important;
-                            border-top-right-radius: 0 !important;
-                            border-bottom-right-radius: 0 !important;
-                        }
-
-                        .btn-tag-delete {
-                            display: flex;
-                            justify-content: center;
-                            align-items: center;
-                            cursor: pointer;
-                            border: var(--button-border-width) solid var(--button-secondary-border-color);
-                            background: var(--button-secondary-background-fill);
-                            padding: 0;
-                            width: 16px;
-                            height: 24px;
-                            border-radius: 0;
-                            border-top-right-radius: 4px;
-                            border-bottom-right-radius: 4px;
-
-                            &:hover {
-                                background: #d81e06;
-
-                                svg {
-                                    fill: #fff !important;
-                                }
-                            }
-                        }
-                    }
-
-                    .btn-tag-extend {
-                        display: none;
-                        justify-content: flex-start;
-                        align-items: center;
-                        position: absolute;
-                        top: -32px;
-                        left: 0;
-                        z-index: 100;
-                        padding: 0;
-                        box-shadow: 0 0 3px 0 #4a54ff;
-                        background: center center #4A54FF;
-                        background-image: linear-gradient(315deg, #6772FF 0, #00F9E5 100%);
-                        background-size: 104% 104%;
-                        border-radius: 4px;
-                        overflow: hidden;
-
-                        > button {
-                            height: 32px;
-                            width: 32px;
-                            border: 0;
-                            border-radius: 0;
-                            padding: 5px;
-                            min-width: auto;
-                            font-size: 0.9rem;
-                            min-height: auto;
-                            background: transparent;
-                            color: #fff;
-                            border-right: 1px solid rgba(255, 255, 255, 0.2);
-
-                            &:last-child {
-                                border-right: 0;
-                            }
-
-                            &:hover {
-                                background: rgba(255, 255, 255, 0.2);
-                            }
-                        }
-
-                        > input {
-                            width: 54px;
-                            border: 0;
-                        }
-
-                        .input-number {
-                            width: 90px;
-                            border: 0;
-                            padding: 0;
-
-                            .vue-number-input__button {
-                                width: 1.5rem;
-                                background: rgba(255, 255, 255, .9);
-                            }
-
-                            .vue-number-input__input {
-                                height: 32px;
-                                border: 0;
-                                padding: 0;
-                            }
-                        }
-
-                        input[type=number]::-webkit-inner-spin-button,
-                        input[type=number]::-webkit-outer-spin-button {
-                            opacity: 1;
-                        }
-                    }
-                }
-
-                .prompt-local-language {
-                    margin-top: 2px;
-                    display: flex;
-                    justify-content: flex-start;
-                    align-items: center;
-
-                    .translate-to-local {
-                        cursor: pointer;
-                    }
-
-                    .local-language {
-                        font-size: .8rem;
-                        color: var(--body-text-color-subdued);
-                        margin-left: 2px;
-                    }
-                }
-            }
-        }
-
-        input[type="text"], input[type="number"] {
-            display: inline-block;
-            overflow-y: scroll;
-            height: 24px;
-            padding: 4px;
-            border: 1px solid #02b7fd;
-            appearance: none;
-            background-color: transparent;
-            font-size: 0.9rem;
-            line-height: 0.9rem;
-            font-family: inherit;
-            font-weight: inherit;
-            border-radius: 4px;
-
-            &:focus {
-                box-shadow: var(--input-shadow-focus);
-                border-color: var(--input-border-color-focus);
-            }
-        }
-
-        .gradio-button {
-            max-width: none !important;
-            width: auto !important;
-            padding: 4px 12px !important;
-        }
-    }
-}
-</style>
