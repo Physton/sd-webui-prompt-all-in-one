@@ -134,7 +134,7 @@
                              :style="appendListStyle">
                             <div v-for="(item, index) in appendList" :key="item.type"
                                  :class="['prompt-append-group', appendListSelected === index ? 'selected' : '']">
-                                <div class="append-group-name">
+                                <div class="append-group-name" @click="onAppendGroupClick(index, null, $event)">
                                     {{ getLang(item.name) }}
                                     <span class="arrow-right" v-show="item.children.length > 0"></span>
                                 </div>
@@ -142,9 +142,9 @@
                                      v-show="item.children.length > 0">
                                     <div v-for="(child, childIndex) in item.children" :key="childIndex"
                                          ref="promptAppendListChild"
-                                         :class="['append-item', appendListChildSelected === childIndex ? 'selected' : '']">
-                                        <div class="group-tag"
-                                             v-if="item.type === 'favorite' || item.type === 'history'">
+                                         :class="['append-item', appendListChildSelected === childIndex ? 'selected' : '']"
+                                         @click="onAppendGroupClick(index, childIndex, $event)">
+                                        <div class="group-tag" v-if="item.type === 'favorite' || item.type === 'history'">
                                             <div class="tags-name" v-if="child.name">{{ child.name }}</div>
                                             <div class="tags-name" v-else>{{ child.prompt }}</div>
                                         </div>
@@ -816,7 +816,9 @@ export default {
             }
         },
         onAppendTagBlur(e) {
-            this.showAppendList = false
+            setTimeout(() => {
+                this.showAppendList = false
+            }, 300)
         },
         selectAppendList(down = true) {
             if (this.appendList.length === 0) return
@@ -972,6 +974,18 @@ export default {
             } else {
                 this.showAppendList = false
             }
+        },
+        onAppendGroupClick(index, childIndex, e) {
+            console.log(index, childIndex)
+            if (index === null) return
+            this.appendListSelected = index
+            if (childIndex === null) {
+                // 如果是点击的是父级
+                if (this.appendList[this.appendListSelected].children.length > 0) return
+            } else {
+                this.appendListChildSelected = childIndex
+            }
+            this._appendTagByList()
         },
         onTagClick(index) {
             this.editing = {}
