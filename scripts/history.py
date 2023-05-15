@@ -54,7 +54,7 @@ class history:
 
     def push_history(self, type, tags, prompt, name=''):
         if len(self.histoies[type]) >= self.max:
-            self.histoies[type].pop()
+            self.histoies[type].pop(0)
         item = {
             'id': str(uuid.uuid1()),
             'time': int(time.time()),
