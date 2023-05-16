@@ -152,7 +152,8 @@
                                         </template>
                                     </div>
                                 </div>
-                                <div class="tags-detail" v-show="appendListSelected !== null && appendListChildSelected !== null && appendListSelected === index && (item.type === 'favorite' || item.type === 'history')">
+                                <div class="tags-detail"
+                                     v-show="appendListSelected !== null && appendListChildSelected !== null && appendListSelected === index && (item.type === 'favorite' || item.type === 'history')">
                                     <div class="tags-list">
                                         <template v-for="(tag, tagIndex) in appendListChildItemTags" :key="tagIndex">
                                             <div v-if="tag.type && tag.type === 'wrap'" class="item-wrap"></div>
@@ -177,7 +178,8 @@
                                     <template v-if="tag.type === 'wrap'">
                                         <div class="prompt-tag-value"
                                              :ref="'promptTag-' + tag.id"
-                                             v-tooltip="getLang('line_break_character') + '<br/>' + getLang('drop_to_order')" style="width: 100%">
+                                             v-tooltip="getLang('line_break_character') + '<br/>' + getLang('drop_to_order')"
+                                             style="width: 100%">
                                             <icon-wrap width="16" height="16"/>
                                         </div>
                                     </template>
@@ -572,9 +574,9 @@ export default {
         },
         genPrompt() {
             let prompts = []
-            this.tags.forEach(tag => {
+            this.tags.forEach((tag, index) => {
                 let prompt = ''
-                if (typeof tag['type'] === 'string' && tag.type === 'wrap'){
+                if (typeof tag['type'] === 'string' && tag.type === 'wrap') {
                     prompt = "\n"
                 } else {
                     let value = common.replaceTag(tag.value)
@@ -595,7 +597,33 @@ export default {
                         }
                     }
                     if (tag.disabled) return
-                    prompt = tag.value + ','
+
+                    let splitSymbol = ','
+
+                    let nextTag = null
+                    let nextIsWarp = false
+                    // 获取下一个按钮
+                    if (index + 1 < this.tags.length) {
+                        nextTag = this.tags[index + 1]
+                        if (typeof nextTag['type'] === 'string' && nextTag.type === 'wrap') {
+                            nextIsWarp = true
+                        }
+                    }
+
+                    if (nextIsWarp) {
+                        // 如果下一个是换行
+
+                        // sd-webui-regional-prompter
+                        const regionals = [' BREAK', ' ADDCOL', ' ADDROW', ' ADDCOMM', ' ADDBASE']
+                        for (const regional of regionals) {
+                            if (tag.value.endsWith(regional)) {
+                                // 如果是sd-webui-regional-prompter，那么就不需要加逗号
+                                splitSymbol = ''
+                            }
+                        }
+                    }
+
+                    prompt = tag.value + splitSymbol
                 }
 
                 if (prompt) prompts.push(prompt)
@@ -968,7 +996,7 @@ export default {
                     } else {
                         this.selectAppendListChild(e.keyCode === 40)
                     }
-                }else if (e.keyCode === 37 || e.keyCode === 39) {
+                } else if (e.keyCode === 37 || e.keyCode === 39) {
                     // 如果是左右键
                     if (this.appendListSelected !== null) {
                         if (e.keyCode === 37) {
@@ -983,7 +1011,7 @@ export default {
                             }
                         }
                     }
-                }else if (e.keyCode === 13) {
+                } else if (e.keyCode === 13) {
                     // 如果是回车键
                     this._appendTagByList()
                     this.scrollAppendListChild()
