@@ -1,6 +1,7 @@
 import launch
 
 packages = {
+    "chardet": "chardet",
     "translators": "translators",
     "fastapi": "fastapi",
     "hashlib": "hashlib",
