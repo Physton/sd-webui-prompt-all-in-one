@@ -17,51 +17,82 @@ export default (tags) => {
         '<': '>',
         '{': '}'
     }
-    const bracketRegexes = [
-        /\(([^\)]+)\)/g, // 括号
-        /\[([^\]]+)\]/g, // 中括号
-        /<([^\>]+)>/g, // 尖括号
-        /\{([^\}]+)\}/g, // 大括号
-    ]
-    const replaceComma = '----====physton====----'
+    const bracketStarts = Object.keys(brackets)
 
-    // 先把最内层括号中的,替换成----====physton====----
-    bracketRegexes.forEach(regx => {
-        tags = tags.replace(regx, (match, p1) => {
-            return match.replace(p1, p1.replace(/,/g, replaceComma))
-        })
-    })
-    let list = []
-    let lines = tags.split('\n')
-    const linesCount = lines.length
-    lines = lines.map((line, index) => {
-        line = line.trim()
-        if (line === "") return
-        line.split(",").forEach(tag => {
-            tag = tag.trim()
-            if (tag === "") return
-            // 把----====physton====----替换回来
-            // 本行内的括号是否对齐，如果没对齐，不要加逗号，对齐了加逗号
-            /*let isAlign = false
-            for (let start in brackets) {
-                let startCount = tag.split(start).length - 1
-                let endCount = tag.split(brackets[start]).length - 1
-                if (startCount === endCount) {
-                    isAlign = true
-                    break
+    let length = tags.length
+    let temp = ''
+    let startBracketChar = ''
+    let endBracketChar = ''
+    let bracketCount = 0
+    let result = []
+    for (let i = 0; i < length; i++) {
+        const char = tags[i]
+        if (char === "\n") {
+            if (startBracketChar === '') {
+                // 前面没有括号
+                if (temp.trim() !== "") {
+                    result.push(temp.trim())
                 }
-            }*/
-            tag = tag.replace(new RegExp(replaceComma, 'g'), ',')
-            /*if (isAlign) {
-                // tag += ','
-            }*/
-            list.push(tag)
-        })
-        if (index < linesCount - 1) {
-            list.push('\n')
+                result.push("\n")
+                bracketCount = 0
+                startBracketChar = ''
+                endBracketChar = ''
+                temp = ''
+            } else {
+                // 前面有括号
+                temp += ' '
+            }
+        } else if (char === ",") {
+            if (startBracketChar === '') {
+                // 前面没有括号
+                result.push(temp.trim())
+                bracketCount = 0
+                startBracketChar = ''
+                endBracketChar = ''
+                temp = ''
+            } else {
+                // 前面有括号
+                temp += char
+            }
+        } else {
+            if (startBracketChar === '') {
+                // 前面没有括号
+                if (bracketStarts.includes(char)) {
+                    // 括号开始
+                    bracketCount = 1
+                    startBracketChar = char
+                    endBracketChar = brackets[char]
+                    temp += char
+                } else {
+                    temp += char
+                }
+            } else {
+                // 前面有括号
+                if (char === endBracketChar) {
+                    // 是结束括号的标识，减掉括号计数
+                    bracketCount--
+                    if (bracketCount === 0) {
+                        // 括号计数为0，括号结束
+                        startBracketChar = ''
+                        endBracketChar = ''
+                        temp += char
+                    } else {
+                        temp += char
+                    }
+                } else if (char === startBracketChar) {
+                    // 是开始括号的标识，加上括号计数
+                    bracketCount++
+                    temp += char
+                } else {
+                    temp += char
+                }
+            }
         }
-    })
-    return list
+    }
+    if (temp !== '') {
+        result.push(temp.trim())
+    }
+    return result
 }
 
 /*
