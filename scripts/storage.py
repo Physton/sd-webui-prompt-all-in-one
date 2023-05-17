@@ -2,7 +2,7 @@ import os
 from pathlib import Path
 import json
 import time
-import chardet
+import launch
 
 class storage:
     storage_path = ''
@@ -53,15 +53,18 @@ class storage:
         if not os.path.exists(filename):
             return None
         try:
-            with open(filename, 'rb') as f:
-                data = f.read()
-                encoding = chardet.detect(data).get('encoding')
-                data = json.loads(data.decode(encoding))
+            if not launch.is_installed("chardet"):
+                with open(filename, 'r') as f:
+                    data = json.load(f)
+            else:
+                import chardet
+                with open(filename, 'rb') as f:
+                    data = f.read()
+                    encoding = chardet.detect(data).get('encoding')
+                    data = json.loads(data.decode(encoding))
         except Exception as e:
             print(e)
             return None
-        # with open(filename, 'r') as f:
-            # data = json.load(f)
         return data
 
     def __set(self, key, data):
