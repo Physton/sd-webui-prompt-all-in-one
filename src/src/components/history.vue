@@ -1,28 +1,36 @@
 <template>
-    <div class="physton-prompt-history" ref="history" :style="style" @mouseenter="onMouseEnter"
-         @mouseleave="onMouseLeave">
-        <div class="history-content">
-            <div class="history-detail" v-show="currentItem && currentItem.tags">
-                <div class="history-item-tags">
-                    <template v-for="(tag, index) in currentItem.tags" :key="index">
-                        <div v-if="tag.type && tag.type === 'wrap'" class="history-item-wrap"></div>
-                        <div v-else class="history-item-tag">
-                            <div class="item-tag-value">{{ tag.value }}</div>
-                            <div class="item-tag-local-value">{{ tag.localValue }}</div>
-                        </div>
-                    </template>
-                </div>
+    <div class="physton-prompt-history" ref="history" v-show="isShow" @mouseenter="onMouseEnter"
+         @mouseleave="onMouseLeave" @click.stop="">
+        <div class="popup-tabs">
+            <div v-for="(group) in histories" :key="group.key"
+                 :class="['popup-tab', group.key === historyKey ? 'active': '']" @click="onTabClick(group.key)">
+                <div class="tab-name">{{ getLang(group.name) }}</div>
+                <div class="tab-type">{{ getLang(group.type) }}</div>
+                <div class="tab-count">{{ group.list.length }}</div>
             </div>
-            <div class="history-list" v-show="histories.length > 0" :style="{height: defaultHeight + 'px'}">
-                <div class="history-clear" @click="onDeleteAllHistoryClick">
+        </div>
+        <div class="popup-detail" v-show="currentItem && currentItem.tags">
+            <div class="popup-item-tags">
+                <template v-for="(tag, index) in currentItem.tags" :key="index">
+                    <div v-if="tag.type && tag.type === 'wrap'" class="item-wrap"></div>
+                    <div v-else class="item-tag">
+                        <div class="item-tag-value">{{ tag.value }}</div>
+                        <div class="item-tag-local-value">{{ tag.localValue }}</div>
+                    </div>
+                </template>
+            </div>
+        </div>
+        <div v-for="(group) in histories" :key="group.key" :class="['popup-tab-content', group.key === historyKey ? 'active': '']">
+            <div class="content-list" v-show="group.list.length > 0">
+                <div class="clear-btn" @click="onDeleteAllHistoryClick">
                     <icon-remove width="18" height="18" color="#ff4a4a"></icon-remove>
                     {{ getLang('delete_all_history') }}
                 </div>
-                <div class="history-item" v-for="(item, index) in histories" :key="item.id"
+                <div class="content-item" v-for="(item, index) in group.list" :key="item.id"
                      @mouseenter="onItemMouseEnter(index)" @mouseleave="onItemMouseLeave(index)">
-                    <div class="history-item-header">
+                    <div class="item-header">
                         <div class="item-header-left">
-                            <div class="item-header-index">{{ histories.length - index }}</div>
+                            <div class="item-header-index">{{ group.list.length - index }}</div>
                             <div class="item-header-time">{{ formatTime(item.time) }}</div>
                             <div class="item-header-name">
                                 <input class="header-name-input" :value="item.name"
@@ -49,13 +57,13 @@
                             </div>
                         </div>
                     </div>
-                    <div class="history-item-prompt">{{ item.prompt }}</div>
+                    <div class="item-prompt">{{ item.prompt }}</div>
                 </div>
             </div>
-        </div>
-        <div class="history-empty" v-show="histories.length === 0">
-            <icon-loading width="64" height="64" v-if="loading"/>
-            <span v-else>{{ emptyMsg }}</span>
+            <div class="content-empty" v-show="group.list.length === 0">
+                <icon-loading width="64" height="64" v-if="loading"/>
+                <span v-else>{{ emptyMsg }}</span>
+            </div>
         </div>
     </div>
 </template>
@@ -71,158 +79,128 @@ import IconRemove from "@/components/icons/iconRemove.vue";
 
 export default {
     components: {IconRemove, IconUse, IconCopy, IconLoading, IconFavoriteState},
-    props: {
-        historyKey: {
-            type: String,
-            default: '',
-            required: true,
-        }
-    },
+    props: {},
     mixins: [LanguageMixin],
     data() {
         return {
-            histories: [],
+            historyKey: '',
+            histories: [
+                {
+                    'name': 'txt2img',
+                    'type': 'prompt',
+                    'key': 'txt2img',
+                    'list': [],
+                },
+                {
+                    'name': 'txt2img',
+                    'type': 'negative_prompt',
+                    'key': 'txt2img_neg',
+                    'list': [],
+                },
+                {
+                    'name': 'img2img',
+                    'type': 'prompt',
+                    'key': 'img2img',
+                    'list': [],
+                },
+                {
+                    'name': 'img2img',
+                    'type': 'negative_prompt',
+                    'key': 'img2img_neg',
+                    'list': [],
+                },
+            ],
             isShow: false,
-            top: 0,
-            left: 0,
             loading: false,
             emptyMsg: '',
-            defaultWidth: 500,
-            defaultHeight: 600,
-            style: {
-                top: 0,
-                left: 0,
-                width: 0,
-                height: 0,
-                overflow: 'hidden',
-            },
             mouseEnter: false,
             currentItem: {}
         }
     },
+    emits: ['use'],
     mounted() {
     },
     methods: {
         formatTime(time) {
-            let now = new Date(time * 1000);
-            let year = now.getFullYear();
-            let month = now.getMonth() + 1;
-            if (month < 10) month = "0" + month;
-            let day = now.getDate();
-            if (day < 10) day = "0" + day;
-            let hour = now.getHours();
-            if (hour < 10) hour = "0" + hour;
-            let minute = now.getMinutes();
-            if (minute < 10) minute = "0" + minute;
-            let second = now.getSeconds();
-            if (second < 10) second = "0" + second;
-            return `${month}/${day} ${hour}:${minute}:${second}`
+            return common.formatTime(time, false)
         },
-        show($button) {
-            if (!$button) return
-            if (this.isShow) {
-                this._hide(0)
-                return
-            }
-            this.mouseEnter = false
-            this.histories = []
-
-            let eWidth = $button.offsetWidth
-            let eHeight = $button.offsetHeight
-            let top = $button.offsetTop
-            let left = $button.offsetLeft + eWidth + 2
-            if (top + this.defaultHeight > window.innerHeight) top = window.innerHeight - this.defaultHeight
-            if (left + this.defaultWidth > window.innerWidth) left = window.innerWidth - this.defaultWidth
-            if (top < 0) top = 0
-            if (left < 0) left = 0
-            this.top = top
-            this.left = left
-
-            this._show()
-            this.gradioAPI.getHistories(this.historyKey).then(res => {
-                // 倒序
-                res.reverse()
-                this.histories = res
+        getHistories(historyKey) {
+            if (!historyKey) return
+            let historyItem = this.histories.find(item => item.key === historyKey)
+            if (!historyItem) return
+            this.loading = true
+            this.gradioAPI.getHistories(historyKey).then(res => {
+                if (res && res.length > 0) {
+                    // 倒序
+                    res.reverse()
+                    historyItem.list = res
+                }
                 this.emptyMsg = this.getLang('no_history')
                 this.loading = false
             }).catch(err => {
                 this.emptyMsg = this.getLang('get_history_error')
                 this.loading = false
             })
+        },
+        show(historyKey, e) {
+            if (!historyKey || !e) return
+            this.historyKey = historyKey
+            if (this.isShow) {
+                this.isShow = false
+                return
+            }
+            this.mouseEnter = false
+
+            this.loading = true
+            this.isShow = true
+            this.$refs.history.style.top = (e.clientY + 2) + 'px'
+            this.$refs.history.style.left = (e.clientX + 2) + 'px'
+
+            this.getHistories(this.historyKey)
 
             // 如果n秒后鼠标还没进来，就隐藏
             setTimeout(() => {
                 if (this.mouseEnter) return
-                this._hide(0)
+                this.hide()
             }, 3000)
         },
-        _show() {
-            this.isShow = true
-            this.style.top = this.top + 'px'
-            this.style.left = this.left + 'px'
-            this.style.width = this.defaultWidth + 'px'
-            this.style.height = this.defaultHeight + 'px'
-            this.style.overflow = 'visible'
-        },
-        _hide(timeout = 1000) {
+        hide() {
+            this.mouseEnter = false
             this.isShow = false
-            setTimeout(() => {
-                if (this.isShow) return
-                this.style.overflow = 'hidden'
-                this.style.width = 0
-                this.style.height = 0
-                setTimeout(() => {
-                    if (this.isShow) return
-                    this.style.top = '-9999px'
-                    this.style.left = '-9999px'
-                }, 200)
-            }, timeout)
-        },
-        hide(timeout = 1000) {
-            this._hide(timeout)
         },
         onMouseEnter() {
             this.mouseEnter = true
-            this._show()
         },
         onMouseLeave() {
-            this.mouseEnter = false
-            this._hide()
+            this.hide()
         },
-        push(tags, prompt) {
-            if (!tags.length) return
-            this.gradioAPI.getLatestHistory(this.historyKey).then(res => {
-                if (res && res.prompt === prompt) {
-                    // 如果有上一条记录，并且prompt相同，则更新
-                    this.gradioAPI.setHistory(this.historyKey, res.id, tags, prompt, res.name).then(res => {
-                    }).catch(err => {
-                    })
-                } else {
-                    this.gradioAPI.pushHistory(this.historyKey, tags, prompt).then(res => {
-                    }).catch(err => {
-                    })
-                }
-            }).catch(err => {
-            })
+        onTabClick(key) {
+            this.historyKey = key
+            this.getHistories(this.historyKey)
         },
         onFavoriteClick(index) {
-            let history = this.histories[index]
+            let group = this.histories.find(item => item.key === this.historyKey)
+            if (!group) return
+            let history = group.list[index]
             if (!history.is_favorite) {
                 this.gradioAPI.doFavorite(this.historyKey, history.id).then(res => {
                     if (res) {
-                        this.histories[index].is_favorite = true
+                        history.is_favorite = true
                     }
                 })
             } else {
                 this.gradioAPI.unFavorite(this.historyKey, history.id).then(res => {
                     if (res) {
-                        this.histories[index].is_favorite = false
+                        history.is_favorite = false
                     }
                 })
             }
         },
         onCopyClick(index) {
-            this.$copyText(this.histories[index].prompt).then(() => {
+            let group = this.histories.find(item => item.key === this.historyKey)
+            if (!group) return
+            let history = group.list[index]
+            this.$copyText(history.prompt).then(() => {
                 this.$toastr.success("success!")
             }).catch(() => {
                 this.$toastr.error("error!")
@@ -232,35 +210,43 @@ export default {
             if (e.keyCode === 13) {
                 // 离开焦点
                 e.target.blur()
-                // this.histories[index].name = e.target.value
             }
         },
         onNameChange(index, e) {
+            let group = this.histories.find(item => item.key === this.historyKey)
+            if (!group) return
+            let history = group.list[index]
             const value = e.target.value
-            this.gradioAPI.setFavoriteName(this.historyKey, this.histories[index].id, value).then(res => {
+            this.gradioAPI.setHistoryName(this.historyKey, history.id, value).then(res => {
                 if (res) {
-                    this.histories[index].name = value
+                    history.name = value
                 } else {
-                    e.target.value = this.histories[index].name
+                    e.target.value = history.name
                 }
             }).catch(err => {
-                e.target.value = this.histories[index].name
+                e.target.value = history.name
             })
         },
         onItemMouseEnter(index) {
-            this.currentItem = this.histories[index]
+            let group = this.histories.find(item => item.key === this.historyKey)
+            if (!group) return
+            this.currentItem = group.list[index]
         },
         onItemMouseLeave(index) {
             this.currentItem = {}
         },
         onUseClick(index) {
-            this._hide(0)
-            this.$emit('use', this.histories[index])
+            let group = this.histories.find(item => item.key === this.historyKey)
+            if (!group) return
+            this.hide()
+            this.$emit('use', group.list[index])
         },
         onDeleteAllHistoryClick() {
+            let group = this.histories.find(item => item.key === this.historyKey)
+            if (!group) return
             if (!confirm(this.getLang('delete_all_history_confirm'))) return
             this.gradioAPI.deleteHistories(this.historyKey).then(res => {
-                this.histories = []
+                group.list = []
             }).catch(err => {
             })
         },

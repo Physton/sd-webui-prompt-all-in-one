@@ -1,11 +1,14 @@
 <template>
     <div>
-        <block v-for="(item) in prompts" :key="item.name">
+        <template v-for="(item) in prompts" :key="item.name">
             <physton-prompt v-if="item.$textarea" :id="item.id" :ref="item.id" :name="item.name"
                             :neg="item.neg" :textarea="item.$textarea" :steps="item.$steps"
                             v-model:language-code="languageCode"
                             :translate-apis="translateApis" :languages="languages"
-                            :history-key="item.historyKey" :favorite-key="item.favoriteKey"
+                            :history-key="item.historyKey"
+                            @click:show-history="onShowHistory(item.id, $event)"
+                            :favorite-key="item.favoriteKey"
+                            @click:show-favorite="onShowFavorite(item.id, $event)"
                             v-model:auto-translate-to-english="autoTranslateToEnglish"
                             v-model:auto-translate-to-local="autoTranslateToLocal"
                             :hide-default-input="item.hideDefaultInput"
@@ -17,7 +20,7 @@
                             :translate-api-config="translateApiConfig"
                             @click:translate-api="onTranslateApiClick"
                             @click:select-language="onSelectLanguageClick"></physton-prompt>
-        </block>
+        </template>
         <translate-setting ref="translateSetting" v-model:language-code="languageCode"
                            :translate-apis="translateApis" :languages="languages"
                            @forceUpdate:translateApi="updateTranslateApiConfig"
@@ -26,6 +29,10 @@
                          :translate-apis="translateApis"
                          :languages="languages"
                          v-model:translate-api="translateApi"></select-language>
+        <history ref="history" v-model:language-code="languageCode"
+                 :translate-apis="translateApis" :languages="languages" @use="onUseHistory"/>
+        <favorite ref="favorite" v-model:language-code="languageCode"
+                  :translate-apis="translateApis" :languages="languages" @use="onUseFavorite"></favorite>
 
         <div class="physton-paste-popup" v-if="showPastePopup" @click="closePastePopup">
             <div class="paste-popup-main" @click.stop>
@@ -52,10 +59,14 @@ import common from "@/utils/common";
 import IconClose from "@/components/icons/iconClose.vue";
 import IconLoading from "@/components/icons/iconLoading.vue";
 import SelectLanguage from "@/components/selectLanguage.vue";
+import Favorite from "@/components/favorite.vue";
+import History from "@/components/history.vue";
 
 export default {
     name: 'App',
     components: {
+        History,
+        Favorite,
         SelectLanguage,
         IconLoading,
         IconClose,
@@ -73,9 +84,7 @@ export default {
                     button: 'txt2img_token_button',
                     steps: 'txt2img_steps',
                     historyKey: 'txt2img',
-                    history: [],
                     favoriteKey: 'txt2img',
-                    favorite: [],
                     $prompt: null,
                     $textarea: null,
                     $steps: null,
@@ -94,9 +103,7 @@ export default {
                     button: 'txt2img_negative_token_button',
                     steps: 'txt2img_steps',
                     historyKey: 'txt2img_neg',
-                    history: [],
                     favoriteKey: 'txt2img_neg',
-                    favorite: [],
                     $prompt: null,
                     $textarea: null,
                     $steps: null,
@@ -115,9 +122,7 @@ export default {
                     button: 'img2img_token_button',
                     steps: 'img2img_steps',
                     historyKey: 'img2img',
-                    history: [],
                     favoriteKey: 'img2img',
-                    favorite: [],
                     $prompt: null,
                     $textarea: null,
                     $steps: null,
@@ -136,9 +141,7 @@ export default {
                     button: 'img2img_negative_token_button',
                     steps: 'img2img_steps',
                     historyKey: 'img2img_neg',
-                    history: [],
                     favoriteKey: 'img2img_neg',
-                    favorite: [],
                     $prompt: null,
                     $textarea: null,
                     $steps: null,
@@ -163,13 +166,14 @@ export default {
 
             startWatchSave: false,
 
-            showSelectLanguage: false,
-
             pasteBtn: null,
             showPastePopup: false,
             pasteTitle: '',
             pasteContent: '',
             pasteLoading: false,
+
+            historyCurrentPrompt: '',
+            favoriteCurrentPrompt: '',
         }
     },
     watch: {
@@ -263,8 +267,6 @@ export default {
         init() {
             let dataListsKeys = ['languageCode', 'autoTranslateToEnglish', 'autoTranslateToLocal', /*'hideDefaultInput', */'translateApi', 'enableTooltip']
             this.prompts.forEach(item => {
-                // dataListsKeys.push(item.historyKey)
-                // dataListsKeys.push(item.favoriteKey)
                 dataListsKeys.push(item.hideDefaultInputKey)
                 dataListsKeys.push(item.hidePanelKey)
             })
@@ -313,8 +315,6 @@ export default {
                     item.$prompt = document.getElementById(item.prompt)
                     item.$textarea = item.$prompt.getElementsByTagName("textarea")[0]
                     item.$steps = document.getElementById(item.steps)
-                    // item.history = data[item.historyKey] || []
-                    // item.favorite = data[item.favoriteKey] || []
                 })
                 this.$nextTick(() => {
                     this.prompts.forEach(item => {
@@ -327,7 +327,13 @@ export default {
                 })
 
                 this.handlePaste()
+
+                // todo: test
                 // this.$refs.translateSetting.open(this.translateApi)
+                /*this.onShowFavorite('phystonPrompt_txt2img_prompt', {
+                    clientY: 150,
+                    clientX: 283,
+                })*/
             })
         },
         updateTippyState() {
@@ -363,6 +369,7 @@ export default {
             this.$refs.translateSetting.open(this.translateApi)
         },
         handlePaste() {
+            if (typeof gradioApp !== 'function') return
             const $pastes = gradioApp().querySelectorAll("#paste")
             if (!$pastes || $pastes.length <= 0) return
             $pastes.forEach(($paste, index) => {
@@ -455,6 +462,32 @@ export default {
             if (!item) return
             item.hidePanel = value
             this.gradioAPI.setData(item.hidePanelKey, item.hidePanel)
+        },
+        onShowHistory(id, e) {
+            this.$refs.favorite.hide()
+            this.historyCurrentPrompt = id
+            const item = this.prompts.find(item => item.id == id)
+            if (!item) return
+            this.$refs.history.show(item.historyKey, e)
+        },
+        onUseHistory(history) {
+            if (!this.historyCurrentPrompt) return
+            const item = this.prompts.find(item => item.id == this.historyCurrentPrompt)
+            if (!item) return
+            this.$refs[item.id][0].useFavorite(history)
+        },
+        onShowFavorite(id, e) {
+            this.$refs.history.hide()
+            this.favoriteCurrentPrompt = id
+            const item = this.prompts.find(item => item.id == id)
+            if (!item) return
+            this.$refs.favorite.show(item.favoriteKey, e)
+        },
+        onUseFavorite(favorite) {
+            if (!this.favoriteCurrentPrompt) return
+            const item = this.prompts.find(item => item.id == this.favoriteCurrentPrompt)
+            if (!item) return
+            this.$refs[item.id][0].useFavorite(favorite)
         },
     },
 }

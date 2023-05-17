@@ -62,12 +62,12 @@
                     <div class="extend-content">
                         <div class="extend-btn-group">
                             <div class="extend-btn-item" ref="historyButton" v-tooltip="getLang('history')"
-                                 @click.stop="onShowHistoryClick">
+                                 @click="$emit('click:showHistory', $event)">
                                 <icon-history class="hover-scale-120" width="18" height="18"/>
                             </div>
                             <div class="extend-btn-item" ref="favoriteButton"
-                                 v-tooltip="getLang('favorite')" @click.stop="onShowFavoriteClick">
-                                <icon-favorite class="hover-scale-120" width="18" height="18"/>
+                                 v-tooltip="getLang('favorite')" @click="$emit('click:showFavorite', $event)">
+                                <icon-favorite class="hover-scale-120" width="18" height="18" />
                             </div>
                         </div>
                     </div>
@@ -135,7 +135,10 @@
                             <div v-for="(item, index) in appendList" :key="item.type"
                                  :class="['prompt-append-group', appendListSelected === index ? 'selected' : '']">
                                 <div class="append-group-name" @click="onAppendGroupClick(index, null, $event)">
-                                    {{ getLang(item.name) }}
+                                    <icon-wrap class="name-icon" v-if="item.icon === 'wrap'" width="16" height="16" color="#fff" />
+                                    <icon-history class="name-icon" v-else-if="item.icon === 'history'" width="16" height="16" color="#fff" />
+                                    <icon-favorite class="name-icon" v-else-if="item.icon === 'favorite'" width="16" height="16" color="#fff" />
+                                    {{ appendListItemName(item) }}
                                     <span class="arrow-right" v-show="item.children.length > 0"></span>
                                 </div>
                                 <div class="append-group-list" ref="promptAppendListChildren"
@@ -271,11 +274,6 @@
                 </div>-->
             </div>
         </div>
-
-        <history ref="history" :history-key="historyKey" v-model:language-code="languageCode"
-                 :translate-apis="translateApis" :languages="languages" @use="onUseHistory"/>
-        <favorite ref="favorite" :favorite-key="favoriteKey" v-model:language-code="languageCode"
-                  :translate-apis="translateApis" :languages="languages" @use="onUseFavorite"/>
     </div>
 </template>
 
@@ -294,8 +292,6 @@ import IconEnglish from "@/components/icons/iconEnglish.vue";
 import IconHistory from "@/components/icons/iconHistory.vue";
 import IconFavorite from "@/components/icons/iconFavorite.vue";
 import IconLoading from "@/components/icons/iconLoading.vue";
-import History from "@/components/history.vue";
-import Favorite from "@/components/favorite.vue";
 import LanguageMixin from "@/mixins/languageMixin";
 import IconInput from "@/components/icons/iconInput.vue";
 import IconRemove from "@/components/icons/iconRemove.vue";
@@ -321,8 +317,6 @@ export default {
         IconTooltip,
         IconRemove,
         IconInput,
-        Favorite,
-        History,
         IconLoading,
         IconFavorite,
         IconHistory, IconEnglish, IconWeight, IconEnable, IconDisabled, IconCopy, IconTranslate, IconClose,
@@ -374,11 +368,11 @@ export default {
             default: '',
         },
     },
-    emits: ['update:languageCode', 'update:autoTranslateToEnglish', 'update:autoTranslateToLocal', 'update:hideDefaultInput', 'update:hidePanel', 'update:enableTooltip', 'update:translateApi', 'click:translateApi', 'click:selectLanguage'],
+    emits: ['update:languageCode', 'update:autoTranslateToEnglish', 'update:autoTranslateToLocal', 'update:hideDefaultInput', 'update:hidePanel', 'update:enableTooltip', 'update:translateApi', 'click:translateApi', 'click:selectLanguage', 'click:showHistory', 'click:showFavorite'],
     data() {
         return {
             prompt: '',
-            counterText: '',
+            counterText: '0/75',
             tags: [],
             appendTag: '',
             showAppendList: false,
@@ -392,6 +386,7 @@ export default {
                 {
                     "type": "wrap",
                     "name": "line_break_character",
+                    "icon": "wrap",
                     "children": []
                 },
                 /*{
@@ -399,16 +394,18 @@ export default {
                     "name": "Lora",
                     "children": []
                 },*/
-                {
+                /*{
                     "type": "favorite",
                     "name": "favorite",
+                    "icon": "favorite",
                     "children": []
                 },
                 {
                     "type": "history",
                     "name": "history",
+                    "icon": "history",
                     "children": []
-                }
+                }*/
             ],
             dropTag: false,
             loading: {},
@@ -432,6 +429,57 @@ export default {
         }
     },
     mounted() {
+        let temp = [
+            {
+                'name': 'txt2img',
+                'type': 'prompt',
+                'key': 'txt2img',
+            },
+            {
+                'name': 'txt2img',
+                'type': 'negative_prompt',
+                'key': 'txt2img_neg',
+            },
+            {
+                'name': 'img2img',
+                'type': 'prompt',
+                'key': 'img2img',
+            },
+            {
+                'name': 'img2img',
+                'type': 'negative_prompt',
+                'key': 'img2img_neg',
+            },
+        ]
+        /*for (let i = 0; i < temp.length; i++) {
+            if (temp[i].key === this.favoriteKey) {
+                // 排到第一位
+                let item = temp[i]
+                temp.splice(i, 1)
+                temp.unshift(item)
+                break
+            }
+        }*/
+        temp.forEach(item => {
+            this.appendList.push({
+                'type': "favorite",
+                'name': ["favorite", item.name, item.type],
+                "icon": "favorite",
+                "key": item.key,
+                'dataKey': 'favorite.' + item.key,
+                "children": [],
+            })
+        })
+        temp.forEach(item => {
+            this.appendList.push({
+                'type': "history",
+                'name': ["history", item.name, item.type],
+                "icon": "history",
+                "key": item.key,
+                'dataKey': 'history.' + item.key,
+                "children": [],
+            })
+        })
         this.$nextTick(() => {
             this.initSortable()
             // autoSizeInput(this.$refs.promptTagAppend)
@@ -464,9 +512,6 @@ export default {
             this.onTextareaChange()
             this.textarea.removeEventListener('change', this.onTextareaChange)
             this.textarea.addEventListener('change', this.onTextareaChange)
-            /*setTimeout(() => {
-                this.onShowHistoryClick()
-            }, 1000)*/
         },
         async onTextareaChange(event) {
             const autocompleteResults = this.textarea.parentElement.getElementsByClassName('autocompleteResults')
@@ -572,6 +617,17 @@ export default {
         onCopyAllTagsClick() {
             this.copy(this.prompt)
         },
+        appendListItemName(item) {
+            let names = []
+            if (typeof item.name === "object") {
+                for (let name of item.name) {
+                    names.push(this.getLang(name))
+                }
+            } else {
+                names = [this.getLang(item.name)]
+            }
+            return names.join(' / ')
+        },
         genPrompt() {
             let prompts = []
             this.tags.forEach((tag, index) => {
@@ -642,8 +698,22 @@ export default {
                 const {token_count, max_length} = res
                 this.counterText = `${token_count}/${max_length}`
             })
-            this.$refs.history.push(this.tags, this.prompt)
             this.textarea.dispatchEvent(new Event('input'))
+            if (this.tags.length) {
+                this.gradioAPI.getLatestHistory(this.historyKey).then(res => {
+                    if (res && res.prompt === this.prompt) {
+                        // 如果有上一条记录，并且prompt相同，则更新
+                        this.gradioAPI.setHistory(this.historyKey, res.id, this.tags, this.prompt, res.name).then(res => {
+                        }).catch(err => {
+                        })
+                    } else {
+                        this.gradioAPI.pushHistory(this.historyKey, this.tags, this.prompt).then(res => {
+                        }).catch(err => {
+                        })
+                    }
+                }).catch(err => {
+                })
+            }
         },
         renderTag(index) {
             let value = this.tags[index].value
@@ -848,7 +918,21 @@ export default {
                 this.appendListSelected = null
                 this.appendListChildSelected = null
                 this.showAppendList = true
-                this.gradioAPI.getFavorites(this.favoriteKey).then(res => {
+                let dataKeys = []
+                this.appendList.forEach(item => {
+                    if (typeof item['dataKey'] === 'string') {
+                        dataKeys.push(item['dataKey'])
+                    }
+                })
+                this.gradioAPI.getDatas(dataKeys).then(res => {
+                    this.appendList.forEach(item => {
+                        if (typeof item['dataKey'] !== 'string') return
+                        item.children = res[item['dataKey']] || []
+                        // 反转
+                        item.children.reverse()
+                    })
+                })
+                /*this.gradioAPI.getFavorites(this.favoriteKey).then(res => {
                     this.appendList.forEach(item => {
                         if (item.type !== 'favorite') return
                         item.children = res
@@ -859,7 +943,7 @@ export default {
                         if (item.type !== 'history') return
                         item.children = res
                     })
-                })
+                })*/
             }
         },
         onAppendTagBlur(e) {
@@ -1035,6 +1119,8 @@ export default {
             this._appendTagByList()
         },
         onAppendListChildMouseLeave(index, childIndex, e) {
+            this.appendListSelected = null
+            this.appendListChildSelected = null
         },
         onAppendListChildMouseEnter(index, childIndex, e) {
             this.appendListSelected = index
@@ -1298,32 +1384,18 @@ export default {
                 })
             })
         },
-        onShowHistoryClick(e) {
-            this.$refs.favorite.hide(0)
-            this.$refs.history.show(this.$refs.historyButton)
-        },
-        onShowFavoriteClick(e) {
-            this.$refs.history.hide(0)
-            this.$refs.favorite.show(this.$refs.favoriteButton)
-        },
-        onUseHistory(history) {
+        useHistory(history) {
             this.tags = []
             history.tags.forEach(item => {
                 this._appendTag(item.value, item.localValue, item.disabled, -1, item.type || 'text')
             })
             this.updateTags()
         },
-        onUseFavorite(favorite) {
-            this.tags = []
-            favorite.tags.forEach(item => {
-                this._appendTag(item.value, item.localValue, item.disabled, -1, item.type || 'text')
-            })
-            this.updateTags()
+        useFavorite(favorite) {
+            this.useHistory(favorite)
         },
         onPromptMainClick() {
             this.onTextareaChange(true)
-            this.$refs.history.hide(0)
-            this.$refs.favorite.hide(0)
         },
         onUnfoldClick() {
             this.$emit("update:hidePanel", !this.hidePanel)
