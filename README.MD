@@ -161,6 +161,7 @@ A:  This is because the dependencies required by webui are not installed properl
 1. Switch to the python/bin directory used by sd-webui.
 2. Run the following commands:
    ```
+   ./python -m pip install chardet
    ./python -m pip install translators
    ./python -m pip install openai
    ./python -m pip install boto3
@@ -180,6 +181,7 @@ A: 这是由于webui启动时，没有正确的安装依赖导致的，可以通
 1. 切换到webui所使用的python/bin目录。
 2. 执行命令：
    ```
+   ./python -m pip install chardet
    ./python -m pip install translators
    ./python -m pip install openai
    ./python -m pip install boto3
