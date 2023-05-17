@@ -156,7 +156,7 @@ A: The translation interface that does not require an API key is obtained throug
 
 ### Q: Unable to use translation service, clicking "Test!" results in "No module named 'xxx'" error message?
 
-A:  This is because the dependencies required by webui are not installed properly at startup. You can solve this issue by following these steps:
+A: This is because the dependencies required by webui are not installed properly at startup. You can solve this issue by following these steps:
 
 1. Switch to the python/bin directory used by sd-webui.
 2. Run the following commands:
@@ -170,6 +170,14 @@ A:  This is because the dependencies required by webui are not installed properl
    ./python -m pip install tencentcloud-sdk-python
    ```
 3. After the installation is complete, restart webui.
+
+### Display error message: "Connection to backend API service failed. Please manually refresh the webpage. If it still doesn't work, please restart the WebUI."
+
+1. You may need to refresh the web page or restart the WebUI.
+
+2. This is because the dependencies required by webui are not installed properly at startup. Please refer to the above installation method for installing modules.
+
+3. Go to the `extensions\sd-webui-prompt-all-in-one\storage` directory, change the encoding of the `history.*.json` and `favorite.*.json` files to UTF-8 encoding, or delete them (remember to backup first).
 
 ### Q: 无需api key的翻译接口和需要api key的翻译接口有什么区别？
 
@@ -190,6 +198,12 @@ A: 这是由于webui启动时，没有正确的安装依赖导致的，可以通
    ./python -m pip install tencentcloud-sdk-python
    ```
 3. 等待安装完成后，重启webui。
+
+### 显示错误消息："连接到后台接口服务失败，请手动再刷新一次网页。如果还是不行，请重启WebUI"。
+
+1. 你可能需要刷新网页或者重启WebUI。
+2. 这是由于WebUI启动时，没有正确的安装依赖，参考上方安装模块的方法。
+3. 进入`extensions\sd-webui-prompt-all-in-one\storage`目录，将`history.*.json`和`favorite.*.json`文件编码改为UTF-8编码，或者删除它们（记得先备份）。
 
 ## Donate
 
