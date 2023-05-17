@@ -78,43 +78,46 @@ function supports the majority of countries worldwide.
 
 ## Installation and Usage / *安装使用*
 
-### Method 1 (Recommended) / *方式一（推荐）*： 
+- ### Method 1 (Recommended) / *方式一（推荐）*： 
 
-1. Open the terminal and enter your stable-diffusion-webui directory.
+  1. Open the terminal and enter your stable-diffusion-webui directory.
 
-    *打开终端，进入到你的 stable-diffusion-webui 目录下。*
+      *打开终端，进入到你的 stable-diffusion-webui 目录下。*
 
-    For example / *例如*：
+      For example / *例如*：
    
-    `cd "C:\stable-diffusion-webui"`
+      `cd "C:\stable-diffusion-webui"`
+
+  2. Use git to clone sd-webui-prompt-all-in-one to the extensions directory of stable-diffusion-webui.
+    
+      *使用 git 克隆 sd-webui-prompt-all-in-one 到 stable-diffusion-webui 的 extensions 目录下。*
+    
+      ```shell
+      git clone "https://github.com/Physton/sd-webui-prompt-all-in-one.git" extensions/sd-webui-prompt-all-in-one
+      ```
+
+- ### Method 2 / *方式二*：
+
+  In the extension tab of stable-diffusion-webui, select "Install from URL", enter `https://github.com/Physton/sd-webui-prompt-all-in-one.git`, and click on install.
+
+  *在 stable-diffusion-webui 的扩展选项卡中，选择从网址安装，输入 `https://github.com/Physton/sd-webui-prompt-all-in-one.git`, 然后点击安装。*
+
+- ### Method 3 / *方式三*：
+
+  In the extensions tab of stable-diffusion-webui, load the official online extension library, find `sd-webui-prompt-all-in-one`, and click Install.
+
+  *在 stable-diffusion-webui 的扩展选项卡中，加载官方在线扩展库，找到`sd-webui-prompt-all-in-one`，点击安装*
 
 
-2. Use git to clone sd-webui-prompt-all-in-one to the extensions directory of stable-diffusion-webui.
+- ### Method 4 (Not recommended) / *方式四（不推荐）*：
+  Download the source code package of sd-webui-prompt-all-in-one, and unzip it to the extensions directory of stable-diffusion-webui.
 
-    *使用 git 克隆 sd-webui-prompt-all-in-one 到 stable-diffusion-webui 的 extensions 目录下。*
+  *下载 sd-webui-prompt-all-in-one 的源码压缩包，解压到 stable-diffusion-webui 的 extensions 目录下。*
 
-    ```shell
-    git clone "https://github.com/Physton/sd-webui-prompt-all-in-one.git" extensions/sd-webui-prompt-all-in-one
-    ```
+### Restart stable-diffusion-webui. (Not Reload WebUI)
 
-3. Restart stable-diffusion-webui.
+   *重启 stable-diffusion-webui。（不是Reload重载WebUI）*
 
-   *重启 stable-diffusion-webui。*
-
-### Method 2 / *方式二*：
-1. Download the source code package of sd-webui-prompt-all-in-one, and unzip it to the extensions directory of stable-diffusion-webui.
-
-    *下载 sd-webui-prompt-all-in-one 的源码压缩包，解压到 stable-diffusion-webui 的 extensions 目录下。*
-
-### Method 3 / *方式三*：
-1. In the extension tab of stable-diffusion-webui, select "Install from URL", enter `https://github.com/Physton/sd-webui-prompt-all-in-one.git`, and click on install.
-
-    *在 stable-diffusion-webui 的扩展选项卡中，选择从网址安装，输入 `https://github.com/Physton/sd-webui-prompt-all-in-one.git`, 然后点击安装。*
-
-
-2. Restart stable-diffusion-webui.
-
-   *重启 stable-diffusion-webui。*
 
 ## Contributing / *帮助开发*
 
