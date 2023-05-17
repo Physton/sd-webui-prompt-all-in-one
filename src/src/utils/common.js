@@ -1,4 +1,5 @@
 import splitTags from "@/utils/splitTags";
+
 export default {
     weightNumRegex: /(.*):([0-9\.]+)/,
     weightNumRegexEN: /(.*):\s*([0-9\.]+)/,
@@ -349,6 +350,31 @@ export default {
                     hideResults(textarea)
                 }, time)
             })
+        }
+    },
+
+    /**
+     * 获取当前时间
+     * @param time {number}
+     * @returns {string}
+     */
+    formatTime(time, hasYear = true) {
+        let now = new Date(time * 1000);
+        let year = now.getFullYear();
+        let month = now.getMonth() + 1;
+        if (month < 10) month = "0" + month;
+        let day = now.getDate();
+        if (day < 10) day = "0" + day;
+        let hour = now.getHours();
+        if (hour < 10) hour = "0" + hour;
+        let minute = now.getMinutes();
+        if (minute < 10) minute = "0" + minute;
+        let second = now.getSeconds();
+        if (second < 10) second = "0" + second;
+        if (hasYear) {
+            return `${year}/${month}/${day} ${hour}:${minute}:${second}`
+        } else {
+            return `${month}/${day} ${hour}:${minute}:${second}`
         }
     },
 }
