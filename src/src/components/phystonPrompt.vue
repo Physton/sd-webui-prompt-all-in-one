@@ -123,7 +123,7 @@
                             </label>
                         </div>
                         <input type="text" class="scroll-hide svelte-4xt1ch input-tag-append" ref="promptTagAppend"
-                               v-model="appendTag" :placeholder="getLang('please_enter_new_keyword')"
+                               :placeholder="getLang('please_enter_new_keyword')"
                                v-tooltip="getLang('enter_to_add')"
                                @focus="onAppendTagFocus"
                                @blur="onAppendTagBlur"
@@ -374,7 +374,6 @@ export default {
             prompt: '',
             counterText: '0/75',
             tags: [],
-            appendTag: '',
             showAppendList: false,
             appendListStyle: {
                 top: 0,
@@ -900,8 +899,8 @@ export default {
         onAutocompleteResultsClicked(li) {
             const text = this.getAutocompleteResultsSelectedText(li)
             setTimeout(() => {
-                let tags = this.appendTag.replace(/,\s*$/, '')
-                this.appendTag = ''
+                let tags = this.$refs.promptTagAppend.value.replace(/,\s*$/, '')
+                this.$refs.promptTagAppend.value = ''
                 if (common.hasBrackets(tags)) {
                     tags = common.replaceBrackets(tags)
                 }
@@ -910,7 +909,7 @@ export default {
             }, 300)
         },
         onAppendTagFocus(e) {
-            if (this.appendTag === '' || this.appendTag.trim() === '') {
+            if (e.target.value === '' || e.target.value.trim() === '') {
                 this.appendListStyle = {
                     top: e.target.offsetTop + e.target.offsetHeight + 'px',
                     left: e.target.offsetLeft + 'px',
@@ -1005,21 +1004,24 @@ export default {
         onAppendTagKeyDown(e, localValue = null) {
             if (e.keyCode === 38 || e.keyCode === 40) {
             } else if (e.keyCode === 13) {
-                this.showAppendList = true
                 if (this.getAutocompleteResults() && this.autocompleteResults.style.display === 'block' && this.getAutocompleteResultsSelected()) {
+                    let text = this.getAutocompleteResultsSelectedText()
                     setTimeout(() => {
                         localValue = e.target.value
-                        const text = this.getAutocompleteResultsSelectedText()
                         if (text) {
                             localValue = text
+                        } else {
+                            text = this.getAutocompleteResultsSelectedText()
+                            if (text) localValue = text
                         }
                         this.onAppendTagKeyDown(e, localValue)
                     }, 300)
                     return
                 }
 
-                let tags = this.appendTag
-                this.appendTag = ''
+                let tags = e.target.value
+                e.target.value = ''
+                this.showAppendList = true
                 // [night light:magical forest: 5, 15]
                 if (localValue) {
                     // 去除末尾的逗号
@@ -1069,8 +1071,7 @@ export default {
             }
         },
         onAppendTagKeyUp(e) {
-            let appendTag = e.target.value
-            if (appendTag === '' || appendTag.trim() === '') {
+            if (e.target.value === '' || e.target.value.trim() === '') {
                 this.showAppendList = true
 
                 if (e.keyCode === 38 || e.keyCode === 40) {
