@@ -152,14 +152,24 @@ function supports the majority of countries worldwide.
 
 ## Contributing / *帮助开发*
 
+<details>
+<summary>
+Click to expand / 点击展开
+</summary>
 If you want to contribute to sd-webui-prompt-all-in-one, welcome to submit issues and pull requests. You can also
 contact me via:
 
 *如果你想为 sd-webui-prompt-all-in-one 做出贡献，欢迎提交 issue 和 pull request。同时，你也可以通过以下方式联系我：*
 
 - Email / *邮箱*：physton@163.com
+</details>
 
 ## Development / *开发方式*
+
+<details>
+<summary>
+Click to expand / 点击展开
+</summary>
 
 - Front-end development (vue) / *前端开发（vue）*
   1. Enter the src directory / *进入 src 目录*：
@@ -181,6 +191,7 @@ contact me via:
   1. Enter the extension directory / *进入扩展目录*：`cd ./sd-webui-prompt-all-in-one`
   2. Modify the code / *修改代码*
   3. Restart stable-diffusion-webui / *重启 stable-diffusion-webui。*
+</details>
 
 ## FAQ / *常见问题列表*
 
