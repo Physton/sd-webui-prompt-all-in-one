@@ -469,7 +469,7 @@ export default {
                 "children": [],
             })
         })
-        temp.forEach(item => {
+        /*temp.forEach(item => {
             this.appendList.push({
                 'type': "history",
                 'name': ["history", item.name, item.type],
@@ -478,7 +478,7 @@ export default {
                 'dataKey': 'history.' + item.key,
                 "children": [],
             })
-        })
+        })*/
         this.$nextTick(() => {
             this.initSortable()
             // autoSizeInput(this.$refs.promptTagAppend)

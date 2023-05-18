@@ -133,4 +133,12 @@ export default class GradioAPI {
         }
         return data
     }
+
+    async getCSVs() {
+        return (await this.api.get("/get_csvs")).data.csvs
+    }
+
+    async getCSV(key) {
+        return (await this.api.get("/get_csv", {params: {key}})).data
+    }
 }
