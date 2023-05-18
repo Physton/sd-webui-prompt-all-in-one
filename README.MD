@@ -184,71 +184,119 @@ contact me via:
 
 ## FAQ / *常见问题列表*
 
-### Q: What is the difference between translation interfaces that do not require API keys and those that require API keys?
+<details>
+<summary>
+Q: What is the difference between translation interfaces that do not require API keys and those that require API keys?
+</summary>
 
-A: The translation interface that does not require an API key is obtained through crawling and does not require the user to apply for an API key. However, there may be translation failures, instability, slow speed, and lack of support for concurrency. The translation interface that requires an API key calls the API interface of a third-party translation service and requires the user to apply for an API key. However, the translation success rate is relatively high, some interfaces support high concurrency, and the translation speed is fast.
+> A: The translation interface that does not require an API key is obtained through crawling and does not require the user to apply for an API key. However, there may be translation failures, instability, slow speed, and lack of support for concurrency. The translation interface that requires an API key calls the API interface of a third-party translation service and requires the user to apply for an API key. However, the translation success rate is relatively high, some interfaces support high concurrency, and the translation speed is fast.
+</details>
 
-### Q: Unable to use translation service, clicking "Test!" results in "No module named 'xxx'" error message?
+<details>
+<summary>
+Q: Unable to use translation service, clicking "Test!" results in "No module named 'xxx'" error message?
+</summary>
 
-A: This is because the dependencies required by webui are not installed properly at startup. You can solve this issue by following these steps:
+> A: This is because the dependencies required by webui are not installed properly at startup. You can solve this issue by following these steps:
+> 1. Switch to the python/bin directory used by sd-webui.
+> 2. Run the following commands:
+>    ```
+>    ./python -m pip install chardet
+>    ./python -m pip install translators
+>    ./python -m pip install openai
+>    ./python -m pip install boto3
+>    ./python -m pip install aliyun-python-sdk-core
+>    ./python -m pip install aliyun-python-sdk-alimt
+>    ./python -m pip install tencentcloud-sdk-python
+>    ```
+> 3. After the installation is complete, restart webui.
+</details>
 
-1. Switch to the python/bin directory used by sd-webui.
-2. Run the following commands:
-   ```
-   ./python -m pip install chardet
-   ./python -m pip install translators
-   ./python -m pip install openai
-   ./python -m pip install boto3
-   ./python -m pip install aliyun-python-sdk-core
-   ./python -m pip install aliyun-python-sdk-alimt
-   ./python -m pip install tencentcloud-sdk-python
-   ```
-3. After the installation is complete, restart webui.
+<details>
+<summary>
+Q: Display error message: "Connection to backend API service failed. Please manually refresh the webpage. If it still doesn't work, please restart the WebUI."
+</summary>
 
-### Q: Display error message: "Connection to backend API service failed. Please manually refresh the webpage. If it still doesn't work, please restart the WebUI."
+> A:
+> - You may need to refresh the web page or restart the WebUI.
+> - This is because the dependencies required by webui are not installed properly at startup. Please refer to the above installation method for installing modules.
+> - Go to the `extensions\sd-webui-prompt-all-in-one\storage` directory, change the encoding of the `history.*.json` and `favorite.*.json` files to UTF-8 encoding, or delete them (remember to backup first).
+</details>
 
-A:
-- You may need to refresh the web page or restart the WebUI.
+<details>
+<summary>
+Q: Why did the extension install successfully and there were no error outputs in the console, but there is still no extension panel on the webpage?
+</summary>
 
-- This is because the dependencies required by webui are not installed properly at startup. Please refer to the above installation method for installing modules.
+> A: You need to make sure that your WebUI version is `22bcc7b` or higher. If your WebUI version is lower than this, you need to update WebUI.
+</details>
 
-- Go to the `extensions\sd-webui-prompt-all-in-one\storage` directory, change the encoding of the `history.*.json` and `favorite.*.json` files to UTF-8 encoding, or delete them (remember to backup first).
+<details>
+<summary>
+Q: Don't want to use translation services, just want to use it in offline environment?
+</summary>
 
-### Q: Why did the extension install successfully and there were no error outputs in the console, but there is still no extension panel on the webpage?
+> A:
+> 1. During initialization, the extension will install some translation interface SDK packages, such as `translators`、`openai`、`boto3`、`aliyun-python-sdk-core`、`aliyun-python-sdk-alimt`、`tencentcloud-sdk-python`, etc. If you don't need translation services and don't want to install them, please manually open install.py, delete the code according to the comments in the code. This will not affect the use of the extension. Then uncheck the automatic translation button in the extension settings.
+> 2. You can also directly change the local language to English en_US in the extension, which will hide all translation-related buttons. Although the extension will still install these translation interface SDK packages during initialization, they are imported on-demand in the code without using translation services, so they will not be loaded.
+</details>
 
-A: You need to make sure that your WebUI version is `22bcc7b` or higher. If your WebUI version is lower than this, you need to update WebUI.
+<details>
+<summary>
+Q: 无需api key的翻译接口和需要api key的翻译接口有什么区别？
+</summary>
 
-### Q: 无需api key的翻译接口和需要api key的翻译接口有什么区别？
+> A: 无需api key的翻译接口，是通过爬虫获取的，不需要用户自己申请api key，但是可能会存在翻译失败的情况，稳定下差，速度慢，不支持并发。需要api key的翻译接口，是通过调用第三方翻译服务的api接口，需要用户自己申请api key，但是翻译成功率较高，某些接口支持高并发，翻译速度快。
+</details>
 
-A: 无需api key的翻译接口，是通过爬虫获取的，不需要用户自己申请api key，但是可能会存在翻译失败的情况，稳定下差，速度慢，不支持并发。需要api key的翻译接口，是通过调用第三方翻译服务的api接口，需要用户自己申请api key，但是翻译成功率较高，某些接口支持高并发，翻译速度快。
+<details>
+<summary>
+Q: 无法使用翻译服务，点击“测试”，提示“No module named 'xxx'”？
+</summary>
 
-### Q: 无法使用翻译服务，点击“Test!”，提示“No module named 'xxx'”？
+> A: 这是由于webui启动时，没有正确的安装依赖导致的，可以通过以下方式解决：
+> 1. 切换到webui所使用的python/bin目录。
+> 2. 执行命令：
+>    ```
+>    ./python -m pip install chardet
+>    ./python -m pip install translators
+>    ./python -m pip install openai
+>    ./python -m pip install boto3
+>    ./python -m pip install aliyun-python-sdk-core
+>    ./python -m pip install aliyun-python-sdk-alimt
+>    ./python -m pip install tencentcloud-sdk-python
+>    ```
+> 3. 等待安装完成后，重启webui。
+</details>
 
-A: 这是由于webui启动时，没有正确的安装依赖导致的，可以通过以下方式解决：
-1. 切换到webui所使用的python/bin目录。
-2. 执行命令：
-   ```
-   ./python -m pip install chardet
-   ./python -m pip install translators
-   ./python -m pip install openai
-   ./python -m pip install boto3
-   ./python -m pip install aliyun-python-sdk-core
-   ./python -m pip install aliyun-python-sdk-alimt
-   ./python -m pip install tencentcloud-sdk-python
-   ```
-3. 等待安装完成后，重启webui。
+<details>
+<summary>
+Q: 显示错误消息："连接到后台接口服务失败，请手动再刷新一次网页。如果还是不行，请重启WebUI"。
+</summary>
 
-### Q: 显示错误消息："连接到后台接口服务失败，请手动再刷新一次网页。如果还是不行，请重启WebUI"。
+> A:
+> - 你可能需要刷新网页或者重启WebUI。
+> - 这是由于WebUI启动时，没有正确的安装依赖，参考上方安装模块的方法。
+> - 进入`extensions\sd-webui-prompt-all-in-one\storage`目录，将`history.*.json`和`favorite.*.json`文件编码改为UTF-8编码，或者删除它们（记得先备份）。
+</details>
 
-- 你可能需要刷新网页或者重启WebUI。
+<details>
+<summary>
+Q: 为什么扩展安装成功了，控制台也没有错误输出，但网页中就是没有扩展的面板？
+</summary>
 
-- 这是由于WebUI启动时，没有正确的安装依赖，参考上方安装模块的方法。
+> A: 你需要确保你的WebUI版本是 `22bcc7b（2023年第13周）` 及更高。如果你的WebUI版本低于此版本，你需要更新WebUI。
+</details>
 
-- 进入`extensions\sd-webui-prompt-all-in-one\storage`目录，将`history.*.json`和`favorite.*.json`文件编码改为UTF-8编码，或者删除它们（记得先备份）。
+<details>
+<summary>
+Q: 不想使用翻译服务，只想在离线环境中使用？
+</summary>
 
-### Q: 为什么扩展安装成功了，控制台也没有错误输出，但网页中就是没有扩展的面板？
-
-A: 你需要确保你的WebUI版本是 `22bcc7b（2023年第13周）` 及更高。如果你的WebUI版本低于此版本，你需要更新WebUI。
+> A:
+> 1. 扩展在初始化的时候会安装一些翻译接口的SDK包，如`translators`、`openai`、`boto3`、`aliyun-python-sdk-core`、`aliyun-python-sdk-alimt`、`tencentcloud-sdk-python`等等，如果你不需要翻译服务，也不想安装它们，请手动打开`install.py`，根据代码中的注释，删除代码，这并不会影响扩展的使用。然后取消勾选扩展设置中的自动翻译按钮。
+> 2. 你也可以直接在扩展中将本地语言改为英文`en_US`，这样所有翻译相关的按钮都将被隐藏。虽然扩展在初始化时还会安装这些翻译接口的SDK包，但它们在代码中都是按需导入的，没有使用翻译服务，它们也不会被加载。
+</details>
 
 ## Donate
 
