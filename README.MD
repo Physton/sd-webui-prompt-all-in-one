@@ -207,11 +207,16 @@ A: This is because the dependencies required by webui are not installed properly
 
 ### Q: Display error message: "Connection to backend API service failed. Please manually refresh the webpage. If it still doesn't work, please restart the WebUI."
 
+A:
 - You may need to refresh the web page or restart the WebUI.
 
 - This is because the dependencies required by webui are not installed properly at startup. Please refer to the above installation method for installing modules.
 
 - Go to the `extensions\sd-webui-prompt-all-in-one\storage` directory, change the encoding of the `history.*.json` and `favorite.*.json` files to UTF-8 encoding, or delete them (remember to backup first).
+
+### Q: Why did the extension install successfully and there were no error outputs in the console, but there is still no extension panel on the webpage?
+
+A: You need to make sure that your WebUI version is `22bcc7b` or higher. If your WebUI version is lower than this, you need to update WebUI.
 
 ### Q: 无需api key的翻译接口和需要api key的翻译接口有什么区别？
 
@@ -240,6 +245,10 @@ A: 这是由于webui启动时，没有正确的安装依赖导致的，可以通
 - 这是由于WebUI启动时，没有正确的安装依赖，参考上方安装模块的方法。
 
 - 进入`extensions\sd-webui-prompt-all-in-one\storage`目录，将`history.*.json`和`favorite.*.json`文件编码改为UTF-8编码，或者删除它们（记得先备份）。
+
+### Q: 为什么扩展安装成功了，控制台也没有错误输出，但网页中就是没有扩展的面板？
+
+A: 你需要确保你的WebUI版本是 `22bcc7b（2023年第13周）` 及更高。如果你的WebUI版本低于此版本，你需要更新WebUI。
 
 ## Donate
 
