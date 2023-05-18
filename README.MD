@@ -244,7 +244,7 @@ Q: Why did the extension install successfully and there were no error outputs in
 
 <details>
 <summary>
-Q: Don't want to use translation services, just want to use it in offline environment?
+Q: Don't need translation services, just want to use it in an offline environment?
 </summary>
 
 > A:
@@ -301,7 +301,7 @@ Q: 为什么扩展安装成功了，控制台也没有错误输出，但网页�
 
 <details>
 <summary>
-Q: 不想使用翻译服务，只想在离线环境中使用？
+Q: 不需要翻译服务，只想在离线环境中使用？
 </summary>
 
 > A:
