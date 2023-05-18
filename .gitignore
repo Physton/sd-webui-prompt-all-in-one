@@ -5,4 +5,5 @@
 /src/package-lock.json
 /storage
 /tests/tested.json
+/tags/*
 __pycache__

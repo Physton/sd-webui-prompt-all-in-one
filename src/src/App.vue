@@ -19,20 +19,25 @@
                             v-model:translate-api="translateApi"
                             :translate-api-config="translateApiConfig"
                             @click:translate-api="onTranslateApiClick"
+                            v-model:tag-complete-file="tagCompleteFile"
                             @click:select-language="onSelectLanguageClick"></physton-prompt>
         </template>
         <translate-setting ref="translateSetting" v-model:language-code="languageCode"
                            :translate-apis="translateApis" :languages="languages"
                            @forceUpdate:translateApi="updateTranslateApiConfig"
+                           v-model:tag-complete-file="tagCompleteFile"
                            v-model:translate-api="translateApi"></translate-setting>
         <select-language ref="selectLanguage" v-model:language-code="languageCode"
                          :translate-apis="translateApis"
                          :languages="languages"
-                         v-model:translate-api="translateApi"></select-language>
+                         v-model:translate-api="translateApi"
+                         v-model:tag-complete-file="tagCompleteFile"></select-language>
         <history ref="history" v-model:language-code="languageCode"
-                 :translate-apis="translateApis" :languages="languages" @use="onUseHistory"/>
+                 :translate-apis="translateApis" :languages="languages"
+                 v-model:tag-complete-file="tagCompleteFile" @use="onUseHistory"/>
         <favorite ref="favorite" v-model:language-code="languageCode"
-                  :translate-apis="translateApis" :languages="languages" @use="onUseFavorite"></favorite>
+                  :translate-apis="translateApis" :languages="languages"
+                  v-model:tag-complete-file="tagCompleteFile" @use="onUseFavorite"></favorite>
 
         <div class="physton-paste-popup" v-if="showPastePopup" @click="closePastePopup">
             <div class="paste-popup-main" @click.stop>
@@ -163,6 +168,7 @@ export default {
             autoTranslateToLocal: false,
             // hideDefaultInput: false,
             enableTooltip: true,
+            tagCompleteFile: '',
 
             startWatchSave: false,
 
@@ -242,6 +248,16 @@ export default {
             },
             immediate: false,
         },
+        tagCompleteFile: {
+            handler: function (val, oldVal) {
+                if (!this.startWatchSave) return
+                console.log('onTagCompleteFileChange', val, oldVal)
+                this.gradioAPI.setData('tagCompleteFile', val).then(data => {
+                }).catch(err => {
+                })
+            },
+            immediate: false,
+        },
     },
     mounted() {
         this.gradioAPI.getConfig().then(res => {
@@ -265,7 +281,7 @@ export default {
             return common.getLang(key, this.languageCode, this.languages)
         },
         init() {
-            let dataListsKeys = ['languageCode', 'autoTranslateToEnglish', 'autoTranslateToLocal', /*'hideDefaultInput', */'translateApi', 'enableTooltip']
+            let dataListsKeys = ['languageCode', 'autoTranslateToEnglish', 'autoTranslateToLocal', /*'hideDefaultInput', */'translateApi', 'enableTooltip', 'tagCompleteFile']
             this.prompts.forEach(item => {
                 dataListsKeys.push(item.hideDefaultInputKey)
                 dataListsKeys.push(item.hidePanelKey)
@@ -302,6 +318,21 @@ export default {
                 if (data.translateApi !== null) {
                     this.translateApi = data.translateApi
                 }
+                if (data.tagCompleteFile !== null) {
+                    this.tagCompleteFile = data.tagCompleteFile
+                    this.$nextTick(() => {
+                        this.$refs.translateSetting.getCSV(this.tagCompleteFile)
+                    })
+                } else {
+                    if (typeof TAC_CFG === 'object' && typeof QUEUE_FILE_LOAD === 'object') {
+                        QUEUE_FILE_LOAD.push(() => {
+                            if (typeof TAC_CFG.translation !== 'object' || typeof TAC_CFG.translation.translationFile !== 'string') return
+                            if (!TAC_CFG.translation.translationFile) return
+                            this.tagCompleteFile = '\\extensions\\a1111-sd-webui-tagcomplete\\tags\\' + TAC_CFG.translation.translationFile
+                            this.$refs.translateSetting.getCSV(this.tagCompleteFile)
+                        })
+                    }
+                }
 
                 this.updateTranslateApiConfig()
 
@@ -323,6 +354,7 @@ export default {
                         item.$prompt.parentElement.parentElement.style.display = item.hideDefaultInput ? 'none' : 'flex'
                         // item.$textarea.parentNode.appendChild($prompt)
                     })
+
                     this.startWatchSave = true
                 })
 

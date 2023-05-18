@@ -1,62 +1,88 @@
 <template>
     <div class="physton-prompt-translate-setting" v-if="isOpen">
         <div class="translate-setting-main">
-            <div class="setting-line">
-                <div class="line-title">{{ getLang('translate_api') }}</div>
-                <div class="line-content">
-                    <select v-model="apiKey">
-                        <optgroup v-for="typeGroup in supportApi" :key="typeGroup.type"
-                                  :label="getLang(typeGroup.type)">
-                            <option v-for="item in typeGroup.children" :key="item.key" :value="item.key">
-                                {{ item.name }}
-                            </option>
-                        </optgroup>
-                    </select>
-                </div>
-            </div>
-            <div class="setting-line" v-if="apiItem && apiItem.type == 'translators'">
-                <div class="line-title"></div>
-                <div class="line-content">
-                    <span style="color: var(--red5)">*{{ getLang('not_api_key_desc') }}</span>
-                </div>
-            </div>
-            <div class="setting-line" v-if="apiItem.help">
-                <div class="line-title"></div>
-                <div class="line-content">
-                    <div v-for="item in apiItem.help" class="help-list">
-                        <div class="help-item">[?] <a :href="item.url" target="_blank">{{ item.title }}</a></div>
+            <div class="translate-setting-content">
+                <div class="setting-line">
+                    <div class="line-title">{{ getLang('translate_api') }}</div>
+                    <div class="line-content">
+                        <select v-model="apiKey">
+                            <optgroup v-for="typeGroup in supportApi" :key="typeGroup.type"
+                                      :label="getLang(typeGroup.type)">
+                                <option v-for="item in typeGroup.children" :key="item.key" :value="item.key">
+                                    {{ item.name }}
+                                </option>
+                            </optgroup>
+                        </select>
                     </div>
                 </div>
-            </div>
-            <div class="setting-line" v-for="config in configs">
-                <div class="line-title">{{ config.title }}</div>
-                <div class="line-content">
-                    <input v-if="config.type == 'input'" v-model="config.value">
-                    <select v-if="config.type == 'select'" v-model="config.value">
-                        <option v-for="option in config.options" :value="option">{{ option }}</option>
-                    </select>
-                </div>
-            </div>
-            <div class="setting-line">
-                <div class="line-title">{{ getLang('translate_test') }}</div>
-                <div class="line-content">
-                    <textarea class="test-input" v-model="testText"></textarea>
-                </div>
-            </div>
-            <div class="setting-line">
-                <div class="line-title"></div>
-                <div class="line-content">
-                    <div class="hover-scale-120 test-btn" @click="onTestClick">
-                        <icon-loading v-if="loading" width="40" height="40" aria-required="true"/>
-                        <block v-else>Test!</block>
+                <div class="setting-line" v-if="apiItem && apiItem.type == 'translators'">
+                    <div class="line-title"></div>
+                    <div class="line-content">
+                        <span style="color: var(--red5)">*{{ getLang('not_api_key_desc') }}</span>
                     </div>
                 </div>
-            </div>
-            <div class="setting-line">
-                <div class="line-title"></div>
-                <div class="line-content">
-                    <div class="translate-error" v-if="!translateSuccess && errorMessage">{{ errorMessage }}</div>
-                    <textarea class="test-input" v-if="translatedText" v-model="translatedText"></textarea>
+                <div class="setting-line" v-if="apiItem.help">
+                    <div class="line-title"></div>
+                    <div class="line-content">
+                        <div v-for="item in apiItem.help" class="help-list">
+                            <div class="help-item">[?] <a :href="item.url" target="_blank">{{ item.title }}</a></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="setting-line" v-for="config in configs">
+                    <div class="line-title">{{ config.title }}</div>
+                    <div class="line-content">
+                        <input v-if="config.type == 'input'" v-model="config.value">
+                        <select v-if="config.type == 'select'" v-model="config.value">
+                            <option v-for="option in config.options" :value="option">{{ option }}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="setting-line">
+                    <div class="line-title">{{ getLang('translate_test') }}</div>
+                    <div class="line-content">
+                        <textarea class="test-input" v-model="testText"></textarea>
+                    </div>
+                </div>
+                <div class="setting-line">
+                    <div class="line-title"></div>
+                    <div class="line-content">
+                        <div class="hover-scale-120 test-btn" @click="onTestClick">
+                            <icon-loading v-if="loading" width="40" height="40" aria-required="true"/>
+                            <template v-else>{{getLang('test')}}</template>
+                        </div>
+                    </div>
+                </div>
+                <div class="setting-line">
+                    <div class="line-title"></div>
+                    <div class="line-content">
+                        <div class="translate-error" v-if="!translateSuccess && errorMessage">{{ errorMessage }}</div>
+                        <textarea class="test-input" v-if="translatedText" v-model="translatedText"></textarea>
+                    </div>
+                </div>
+                <div class="setting-line">
+                    <div class="line-title">TagComplete</div>
+                    <div class="line-content">
+                        <div v-html="getLang('tagcomplete_translate_desc')"></div>
+                        <div class="line-row">
+                            <select v-model="tagCompleteFileKey" @change="tagCompleteResults = []">
+                                <option v-for="item in tagCompleteFiles" :value="item.key">{{ item.name }}</option>
+                            </select>
+                            <div class="refresh-btn hover-scale-120" v-tooltip="getLang('refresh')" @click="refreshCSVs">
+                                <icon-loading v-if="tagCompleteFilesLoading" width="20" height="20" aria-required="true"/>
+                                <icon-refresh v-else width="20" height="20" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                 <div class="setting-line" v-show="tagCompleteFileKey">
+                    <div class="line-title"></div>
+                    <div class="line-content">
+                        <div class="hover-scale-120 test-btn" @click="onTagCompleteTestClick">{{ getLang('test') }}</div>
+                        <div v-show="tagCompleteResults.length > 0">
+                            <p v-for="text in tagCompleteResults" :key="text">{{ text }}</p>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="setting-btns">
@@ -71,10 +97,11 @@ import LanguageMixin from "@/mixins/languageMixin";
 import IconCopy from "@/components/icons/iconCopy.vue";
 import IconLoading from "@/components/icons/iconLoading.vue";
 import common from "@/utils/common";
+import IconRefresh from "@/components/icons/iconRefresh.vue";
 
 export default {
     name: 'TranslateSetting',
-    components: {IconLoading, IconCopy},
+    components: {IconRefresh, IconLoading, IconCopy},
     mixins: [LanguageMixin],
     props: {},
     data() {
@@ -92,6 +119,10 @@ Github: Physton/sd-webui-prompt-all-in-one`,
             isOpen: false,
             configs: [],
             apiKey: '',
+            tagCompleteFiles: [],
+            tagCompleteFilesLoading: false,
+            tagCompleteFileKey: '',
+            tagCompleteResults: [],
         }
     },
     computed: {
@@ -113,7 +144,7 @@ Github: Physton/sd-webui-prompt-all-in-one`,
         this.translatedText = ''
         this.loading = false
     },
-    emits: ['update:translateApi', 'forceUpdate:translateApi'],
+    emits: ['update:translateApi', 'forceUpdate:translateApi', 'update:tagCompleteFile'],
     watch: {
         apiKey: {
             handler: function (val, oldVal) {
@@ -147,6 +178,29 @@ Github: Physton/sd-webui-prompt-all-in-one`,
             this.errorMessage = ''
             this.translatedText = ''
             this.loading = false
+            this.tagCompleteFileKey = this.tagCompleteFile
+            this.refreshCSVs()
+        },
+        refreshCSVs() {
+            if (this.tagCompleteFilesLoading) return
+            this.tagCompleteFilesLoading = true
+            this.tagCompleteFiles = []
+            this.gradioAPI.getCSVs().then(res => {
+                this.tagCompleteFilesLoading = false
+                if (!res || res.length <= 0) return
+                this.tagCompleteFiles.push({
+                    key: '',
+                    name: this.getLang('not_enable'),
+                })
+                for (const item of res) {
+                    this.tagCompleteFiles.push({
+                        key: item.key,
+                        name: item.key,
+                    })
+                }
+            }).catch(err => {
+                this.tagCompleteFilesLoading = false
+            })
         },
         onTestClick() {
             if (this.loading) return
@@ -178,13 +232,26 @@ Github: Physton/sd-webui-prompt-all-in-one`,
                 configs[item.key] = item.value
             }
             this.$emit('update:translateApi', this.apiKey)
+            this.$emit('update:tagCompleteFile', this.tagCompleteFileKey)
             this.gradioAPI.setData('translate_api.' + this.apiKey, configs).then(res => {
                 if (this.apiKey === this.translateApi) this.$emit('forceUpdate:translateApi')
             })
         },
         onCloseClick() {
             this.isOpen = false
-        }
+        },
+        onTagCompleteTestClick() {
+            this.tagCompleteResults = []
+            const texts = ['1girl', 'Robot dog']
+            texts.forEach(text => {
+                let lang = this.getLang('translate_result')
+                this.translateToLocalByCSV(text, this.tagCompleteFileKey, true).then(res => {
+                    this.tagCompleteResults.push(lang.replace('{0}', text).replace('{1}', res))
+                }).catch(err => {
+                    this.$toastr.error(err)
+                })
+            })
+        },
     },
 }
 </script>

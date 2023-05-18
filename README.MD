@@ -36,6 +36,11 @@ function supports the majority of countries worldwide.
 
   ![](https://raw.githubusercontent.com/Physton/sd-webui-prompt-all-in-one-assets/main/images/switch_language.png)
 
+
+- Translation API settings / *翻译API设置*
+
+  ![](https://raw.githubusercontent.com/Physton/sd-webui-prompt-all-in-one-assets/main/images/translate_setting.gif)
+
 - Show/Hide content / *显示/折叠内容*
 
   ![](https://raw.githubusercontent.com/Physton/sd-webui-prompt-all-in-one-assets/main/images/fold.gif)
@@ -75,6 +80,12 @@ function supports the majority of countries worldwide.
 - Support for [a1111-sd-webui-tagcomplete](https://github.com/DominikDoom/a1111-sd-webui-tagcomplete) / *支持[a1111-sd-webui-tagcomplete](https://github.com/DominikDoom/a1111-sd-webui-tagcomplete)*
 
   ![](https://raw.githubusercontent.com/Physton/sd-webui-prompt-all-in-one-assets/main/images/tagcomplete.gif)
+
+- Use `danbooru.csv` in `a1111-sd-webui-tagcomplete` to enhance the translation function / *使用 `a1111-sd-webui-tagcomplete` 中的 `danbooru.csv` 增强翻译功能*
+
+  ![](https://raw.githubusercontent.com/Physton/sd-webui-prompt-all-in-one-assets/main/images/tagcomplete_setting.png)
+
+  ![](https://raw.githubusercontent.com/Physton/sd-webui-prompt-all-in-one-assets/main/images/tagcomplete_translate.gif)
 
 ## Installation and Usage / *安装使用*
 

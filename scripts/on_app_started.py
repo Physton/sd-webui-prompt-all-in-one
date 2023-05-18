@@ -2,7 +2,8 @@ import gradio as gr
 import os
 from pathlib import Path
 from modules import script_callbacks, extra_networks, prompt_parser
-from fastapi import FastAPI, Body, Request
+from fastapi import FastAPI, Body, Request, Response
+from fastapi.responses import FileResponse
 from scripts.storage import storage
 from scripts.get_extensions import get_extensions
 from scripts.get_token_counter import get_token_counter
@@ -10,6 +11,7 @@ from scripts.get_i18n import get_i18n
 from scripts.get_translate_apis import get_translate_apis
 from scripts.translate import translate
 from scripts.history import history
+from scripts.csv import get_csvs, get_csv
 
 VERSION = '0.0.1'
 
@@ -182,6 +184,18 @@ def on_app_started(_: gr.Blocks, app: FastAPI):
     @app.post("/physton_prompt/translate")
     async def _translate(text: str = Body(...), from_lang: str = Body(...), to_lang: str = Body(...), api: str = Body(...), api_config: dict = Body(...)):
         return translate(text, from_lang, to_lang, api, api_config)
+        return {"success": hi.remove_histories(data['type'])}
+
+    @app.get("/physton_prompt/get_csvs")
+    async def _get_csvs():
+        return {"csvs": get_csvs()}
+
+    @app.get("/physton_prompt/get_csv")
+    async def _get_csv(key: str):
+        file = get_csv(key)
+        if not file:
+            return Response(status_code=404)
+        return FileResponse(file, media_type='text/csv', filename=os.path.basename(file))
 
 try:
     script_callbacks.on_app_started(on_app_started)
