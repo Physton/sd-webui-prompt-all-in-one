@@ -1164,22 +1164,37 @@ export default {
             let value = this.tags[index].value
             let localValue = this.tags[index].localValue
             if (weightNum > 0) {
-                // 如果原来没有权重数，那么就加上权重数
-                if (!common.weightNumRegex.test(value)) {
-                    // 如果原来有括号，就要加到括号内
-                    let bracket = common.hasBrackets(value)
-                    if (bracket) {
-                        value = common.setLayers(value, 1, bracket[0], bracket[1], ':' + weightNum)
-                        if (localValue !== '') localValue = common.setLayers(localValue, 1, bracket[0], bracket[1], ':' + weightNum)
+                if (weightNum === 1) {
+                    // 如果权重数是1，那么就去掉权重数
+                    const bracket = common.hasBrackets(value)
+                    if (bracket[0] === '(' && bracket[1] === ')') {
+                        // 移除括号
+                        value = common.setLayers(value, 0, bracket[0], bracket[1])
+                        if (localValue !== '') localValue = common.setLayers(localValue, 0, bracket[0], bracket[1])
                     } else {
-                        value = value + ':' + weightNum
-                        if (localValue !== '') localValue = localValue + ':' + weightNum
+                        // 不移除括号
                     }
-                }
-                // 如果原来没有括号() [] {} <>，那么就加上括号
-                if (!common.hasBrackets(value)) {
-                    value = common.setLayers(value, 1, '(', ')')
-                    if (localValue !== '') localValue = common.setLayers(localValue, 1, '(', ')')
+                    // 移除权重数
+                    value = value.replace(common.weightNumRegex, '$1')
+                    if (localValue !== '') localValue = localValue.replace(common.weightNumRegex, '$1')
+                } else {
+                    // 如果原来没有权重数，那么就加上权重数
+                    if (!common.weightNumRegex.test(value)) {
+                        // 如果原来有括号，就要加到括号内
+                        let bracket = common.hasBrackets(value)
+                        if (bracket) {
+                            value = common.setLayers(value, 1, bracket[0], bracket[1], ':' + weightNum)
+                            if (localValue !== '') localValue = common.setLayers(localValue, 1, bracket[0], bracket[1], ':' + weightNum)
+                        } else {
+                            value = value + ':' + weightNum
+                            if (localValue !== '') localValue = localValue + ':' + weightNum
+                        }
+                    }
+                    // 如果原来没有括号() [] {} <>，那么就加上括号
+                    if (!common.hasBrackets(value)) {
+                        value = common.setLayers(value, 1, '(', ')')
+                        if (localValue !== '') localValue = common.setLayers(localValue, 1, '(', ')')
+                    }
                 }
                 if (value !== this.tags[index].value) {
                     this.tags[index].value = value
