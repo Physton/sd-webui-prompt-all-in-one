@@ -25,6 +25,7 @@ function supports the majority of countries worldwide.
 
 - [Demo / *演示*](#demo--演示)
 - [Installation and Usage / *安装使用*](#installation-and-usage--安装使用)
+- [Extension update description (important) / *扩展更新说明（重要）*](#extension-update-description-important--扩展更新说明重要)
 - [Contributing / *帮助开发*](#contributing--帮助开发)
 - [Development / *开发方式*](#development--开发方式)
 - [FAQ / *常见问题列表*](#faq--常见问题列表)
@@ -128,6 +129,25 @@ function supports the majority of countries worldwide.
 ### Restart stable-diffusion-webui. (Not Reload WebUI)
 
    *重启 stable-diffusion-webui。（不是Reload重载WebUI）*
+
+
+## Extension update description (important) / *扩展更新说明（重要）*
+
+1. All your data, including API keys, history records, and favorite data, are stored in the `storage` directory of the extension.
+
+    *你的所有数据：API KEY、历史记录、收藏数据等，都保存在扩展的 `storage` 目录下。*
+
+2. Using the built-in updater in WebUI or updating via git will not cause your data to be lost.
+
+    *使用WebUI自带的更新器，或者使用git更新，都不会导致你的数据丢失。*
+
+3. Overwriting the extension installation with a compressed file or deleting the extension and reinstalling it will result in data loss.
+
+    *使用压缩包等方式覆盖安装，或者删除扩展后重新安装，都会导致你的数据丢失。*
+
+4. If you want to backup your data, you can copy the `storage` directory to another location and then copy it back when needed.
+
+    *如果你想备份你的数据，可以将 `storage` 目录复制到其他地方，然后在需要的时候将其复制回来。*
 
 
 ## Contributing / *帮助开发*
