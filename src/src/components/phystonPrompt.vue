@@ -44,6 +44,14 @@
                                         </label>
                                     </div>
                                     <div class="gradio-checkbox hover-scale-120">
+                                        <label v-tooltip="getLang('is_remove_space')">
+                                            <input type="checkbox" name="auto_remove_space" value="1"
+                                                   :checked="autoRemoveSpace"
+                                                   @change="$emit('update:autoRemoveSpace', $event.target.checked)">
+                                            <icon-svg name="remove-space"/>
+                                        </label>
+                                    </div>
+                                    <div class="gradio-checkbox hover-scale-120">
                                         <label v-tooltip="getLang('whether_to_enable_tooltip')">
                                             <input type="checkbox" name="enable_tooltip" value="1"
                                                    :checked="enableTooltip"
@@ -312,6 +320,10 @@ export default {
             type: Boolean,
             default: false,
         },
+        autoRemoveSpace: {
+            type: Boolean,
+            default: false,
+        },
         hideDefaultInput: {
             type: Boolean,
             default: false,
@@ -333,7 +345,7 @@ export default {
             default: '',
         },
     },
-    emits: ['update:languageCode', 'update:autoTranslateToEnglish', 'update:autoTranslateToLocal', 'update:hideDefaultInput', 'update:hidePanel', 'update:enableTooltip', 'update:translateApi', 'click:translateApi', 'click:selectTheme', 'click:selectLanguage', 'click:showHistory', 'click:showFavorite'],
+    emits: ['update:languageCode', 'update:autoTranslateToEnglish', 'update:autoTranslateToLocal', 'update:autoRemoveSpace', 'update:hideDefaultInput', 'update:hidePanel', 'update:enableTooltip', 'update:translateApi', 'click:translateApi', 'click:selectTheme', 'click:selectLanguage', 'click:showHistory', 'click:showFavorite'],
     data() {
         return {
             prompt: '',
@@ -624,7 +636,7 @@ export default {
                     }
                     if (tag.disabled) return
 
-                    let splitSymbol = ','
+                    let splitSymbol = ',' + (this.autoRemoveSpace ? '' : ' ')
 
                     let nextTag = null
                     let nextIsWarp = false

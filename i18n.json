@@ -69,7 +69,8 @@
                 "not_enable": "不启用",
                 "translate_result": "{0} 的翻译结果是：{1}",
                 "not_found_csv_file": "没有找到csv文件",
-                "theme_extension": "主题：扩展插件样式"
+                "theme_extension": "主题：扩展插件样式",
+                "is_remove_space": "是否去除每个关键词逗号后的空格。<br/>勾选后将自动去除空格（不便阅读）。<br/>取消勾选则保留1个空格（影响TOKEN计数）。"
             }
         },
         {
@@ -140,7 +141,8 @@
                 "not_enable": "不啟用",
                 "translate_result": "{0} 的翻譯結果是：{1}",
                 "not_found_csv_file": "沒有找到csv文件",
-                "theme_extension": "主題：擴展插件樣式"
+                "theme_extension": "主題：擴展插件樣式",
+                "is_remove_space": "是否去除每個關鍵詞逗號後的空格。<br/>勾選後將自動去除空格（不便閱讀）。<br/>取消勾選則保留1個空格（影響TOKEN計數）。"
             }
         },
         {
@@ -211,7 +213,8 @@
                 "not_enable": "不啟用",
                 "translate_result": "{0} 的翻譯結果是：{1}",
                 "not_found_csv_file": "找不到csv檔案",
-                "theme_extension": "主題：擴充套件樣式"
+                "theme_extension": "主題：擴充套件樣式",
+                "is_remove_space": "是否移除每個關鍵字逗號後的空格。<br/>勾選後會自動移除空格（不易閱讀）。<br/>取消勾選則保留 1 個空格（會影響 TOKEN 計數）。"
             }
         },
         {
@@ -282,7 +285,8 @@
                 "not_enable": "Not enable",
                 "translate_result": "The translation result of {0} is: {1}",
                 "not_found_csv_file": "Csv file not found",
-                "theme_extension": "Theme: Extension Plugin Style"
+                "theme_extension": "Theme: Extension Plugin Style",
+                "is_remove_space": "Whether to remove the spaces after each comma in the keyword.<br/>Checking will automatically remove the spaces (difficult to read).<br/>Unchecking will keep one space (affecting TOKEN count)."
             }
         },
         {
@@ -368,7 +372,8 @@
                 "not_enable": "غير مفعّل",
                 "translate_result": "نتيجة ترجمة {0} هي: {1}",
                 "not_found_csv_file": "لم يتم العثور على ملف csv",
-                "theme_extension": "السمة: نمط الوظيفة التكميلية للامتداد"
+                "theme_extension": "السمة: نمط الوظيفة التكميلية للامتداد",
+                "is_remove_space": "هل ترغب في إزالة المسافات بعد كل فاصلة في الكلمات الرئيسية؟<br/>إذا حددت هذا الخيار، سيتم إزالة المسافات تلقائياً (مما يجعل النص أقل وضوحاً).<br/>إذا لم تحدد هذا الخيار سيتم الاحتفاظ بمسافة واحدة (مما يؤثر على عداد رموز الرموز)."
             }
         },
         {
@@ -539,7 +544,8 @@
                 "not_enable": "Non activé",
                 "translate_result": "Le résultat de la traduction de {0} est : {1}",
                 "not_found_csv_file": "Fichier csv non trouvé",
-                "theme_extension": "Thème : Style de plugin d'extension"
+                "theme_extension": "Thème : Style de plugin d'extension",
+                "is_remove_space": "Indique si les espaces après chaque virgule dans le mot-clé doivent être supprimés.<br/>La sélection automatique supprime les espaces (difficiles à lire).<br/>La désélection conserve un espace (affectant la comptabilisation des TOKEN)."
             }
         },
         {
@@ -625,7 +631,8 @@
                 "not_enable": "Nicht aktiviert",
                 "translate_result": "Das Übersetzungsergebnis von {0} lautet: {1}",
                 "not_found_csv_file": "Csv-Datei nicht gefunden",
-                "theme_extension": "Thema: Erweiterungs-Plugin-Stil"
+                "theme_extension": "Thema: Erweiterungs-Plugin-Stil",
+                "is_remove_space": "Gibt an, ob die Leerzeichen nach jedem Komma im Schlüsselwort entfernt werden sollen.<br/>Durch das Aktivieren wird die Leerzeichen automatisch entfernt (schwer zu lesen).<br/>Wenn diese Option deaktiviert ist, wird ein Leerzeichen beibehalten (was sich auf die TOKEN-Zählung auswirkt)."
             }
         },
         {
@@ -761,7 +768,8 @@
                 "not_enable": "Non abilitato",
                 "translate_result": "Il risultato della traduzione di {0} è : {1}",
                 "not_found_csv_file": "File csv non trovato",
-                "theme_extension": "Tema: Stile del plug-in di estensione"
+                "theme_extension": "Tema: Stile del plug-in di estensione",
+                "is_remove_space": "Indica se gli spazi dopo ogni virgola nelle parole chiave devono essere rimossi.<br/>La selezione automatica rimuove gli spazi (difficili da leggere).<br/>La deselezione mantiene uno spazio (influenzando il conteggio dei TOKEN)."
             }
         },
         {
@@ -832,7 +840,8 @@
                 "not_enable": "無効にする",
                 "translate_result": "{0}の翻訳結果は：{1}",
                 "not_found_csv_file": "csvファイルが見つかりません",
-                "theme_extension": "テーマ：拡張プラグインスタイル"
+                "theme_extension": "テーマ：拡張プラグインスタイル",
+                "is_remove_space": "キーワードのコンマ後のスペースを削除するかどうか。<br/>チェックすると、自動的にスペースが削除されます（読みづらい）。<br/>チェックを外すと、空白が1つ残ります（TOKEN数に影響します）。"
             }
         },
         {
@@ -928,7 +937,8 @@
                 "not_enable": "비활성화",
                 "translate_result": "{0}의 번역 결과는 : {1}입니다.",
                 "not_found_csv_file": "csv 파일을 찾을 수 없습니다",
-                "theme_extension": "테마: 확장 플러그인 스타일"
+                "theme_extension": "테마: 확장 플러그인 스타일",
+                "is_remove_space": "키워드의 쉼표 뒤 공백을 제거할지 여부입니다.<br/>확인하면 자동으로 공백이 제거됩니다(읽기 어려움).<br/>선택을 취소하면 공백 1개가 유지됩니다.(TOKEN 계산에 영향을 미칩니다)."
             }
         },
         {
@@ -1114,7 +1124,8 @@
                 "not_enable": "Não habilitado",
                 "translate_result": "O resultado da tradução de {0} é: {1}",
                 "not_found_csv_file": "Arquivo csv não encontrado",
-                "theme_extension": "Tema: Estilo de plugin de extensão"
+                "theme_extension": "Tema: Estilo de plugin de extensão",
+                "is_remove_space": "Indique se os espaços após cada vírgula na palavra-chave devem ser removidos.<br/>A seleção automática remove os espaços (difícil de ler).<br/>A desseleção mantém um espaço (afetando a contagem de TOKEN)."
             }
         },
         {
@@ -1200,7 +1211,8 @@
                 "not_enable": "Не активировано",
                 "translate_result": "Результат перевода {0}: {1}",
                 "not_found_csv_file": "CSV-файл не найден",
-                "theme_extension": "Тема: Стиль расширения плагина"
+                "theme_extension": "Тема: Стиль расширения плагина",
+                "is_remove_space": "Указывает, нужно ли удалять пробелы после каждой запятой в ключевом слове.<br/>При выборе будет автоматически удалены пробелы (трудно читать).<br/>Если этот параметр не выбран, то будет сохранен один пробел (влияет на подсчет TOKEN)."
             }
         },
         {
@@ -1301,7 +1313,8 @@
                 "not_enable": "No habilitado",
                 "translate_result": "El resultado de la traducción de {0} es: {1}",
                 "not_found_csv_file": "Archivo csv no encontrado",
-                "theme_extension": "Tema: Estilo de complemento de extensión"
+                "theme_extension": "Tema: Estilo de complemento de extensión",
+                "is_remove_space": "Indica si deben eliminarse los espacios después de cada coma en la palabra clave.<br/>La selección automática elimina los espacios (difícil de leer).<br/>La deselección conserva un espacio (afectando el recuento de TOKEN)."
             }
         },
         {
