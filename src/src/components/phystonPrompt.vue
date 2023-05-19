@@ -749,7 +749,6 @@ export default {
                 tag.LoraExists = false
                 const match = tag.value.match(common.loraRegex)
                 if (match) {
-                    console.log(match)
                     const loraName = match[1]
                     tag.isLora = true
                     if (typeof loras === 'object') {
@@ -766,8 +765,9 @@ export default {
                 tag.isEmbedding = false
                 for (let key in embeddings) {
                     if (typeof embeddings[key] !== 'object') continue
-                    if (embeddings[key][0] === tag.value) {
+                    if (embeddings[key][0].toLowerCase() === tag.value.toLowerCase()) {
                         tag.isEmbedding = true
+                        tag.value = embeddings[key][0]
                         break
                     }
                 }
