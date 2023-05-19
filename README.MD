@@ -200,7 +200,7 @@ If you need to customize the style theme of this extension, please refer to:
 
 *如果你需要自定义此扩展的样式主题，请参考：*
 
-> [https://github.com/Physton/sd-webui-prompt-all-in-one-assets/styles/extensions/README.MD](https://github.com/Physton/sd-webui-prompt-all-in-one-assets/styles/extensions/README.MD)
+> [https://github.com/Physton/sd-webui-prompt-all-in-one/tree/main/styles/extensions](https://github.com/Physton/sd-webui-prompt-all-in-one/tree/main/styles/extensions)
 
 ## FAQ / *常见问题列表*
 
