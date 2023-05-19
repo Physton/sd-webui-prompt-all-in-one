@@ -197,6 +197,15 @@ def on_app_started(_: gr.Blocks, app: FastAPI):
             return Response(status_code=404)
         return FileResponse(file, media_type='text/csv', filename=os.path.basename(file))
 
+    @app.get("/physton_prompt/theme")
+    async def _theme(file: str):
+        theme_path = os.path.dirname(os.path.abspath(__file__)) + '/../theme'
+        theme_path = os.path.normpath(theme_path)
+        file_path = os.path.join(theme_path, file)
+        if not os.path.exists(file_path):
+            return Response(status_code=404)
+        return FileResponse(file_path, filename=os.path.basename(file_path))
+
 try:
     script_callbacks.on_app_started(on_app_started)
     print('sd-webui-prompt-all-in-one background API service started successfully.')

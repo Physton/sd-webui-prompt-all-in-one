@@ -141,4 +141,8 @@ export default class GradioAPI {
     async getCSV(key) {
         return (await this.api.get("/get_csv", {params: {key}})).data
     }
+
+    async theme(file) {
+        return (await this.api.get("/theme", {params: {file}})).data
+    }
 }
