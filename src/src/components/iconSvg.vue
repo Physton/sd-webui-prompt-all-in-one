@@ -1,5 +1,5 @@
 <template>
-    <div v-if="svgCode" class="icon-svg" :style="{width: width + 'px', height: height + 'px'}" v-html="svgCode"></div>
+    <div v-show="svgCode" :class="['icon-svg', 'icon-svg-' + name]" data-name="name" v-html="svgCode"></div>
 </template>
 <script>
 export default {
@@ -9,17 +9,9 @@ export default {
             type: String,
             required: true
         },
-        width: {
-            type: Number,
-            default: 16,
-        },
-        height: {
-            type: Number,
-            default: 16,
-        },
-        color: {
+        svgName: {
             type: String,
-            default: '#02b7fd',
+            default: ''
         },
     },
     data() {
@@ -41,14 +33,45 @@ export default {
     methods: {
         getSvg() {
             if (!this.name) return
-            this.gradioAPI.theme('default/icons/' + this.name + '.svg').then(res => {
-                let parser = new DOMParser()
-                let doc = parser.parseFromString(res, 'image/svg+xml')
-                let svg = doc.getElementsByTagName('svg')[0]
-                svg.setAttribute('width', this.width)
-                svg.setAttribute('height', this.height)
-                svg.setAttribute('fill', this.color)
-                this.svgCode = svg.outerHTML
+            let name = this.svgName || this.name
+
+            window.loadingSvg = window.loadingSvg || {}
+            window.isLoadSvg = window.isLoadSvg || {}
+
+            if (window.isLoadSvg[name]) {
+                // 已经加载过了
+                this.svgCode = localStorage.getItem('iconSVG-' + name)
+                return
+            }
+
+            if (localStorage.getItem('iconSVG-' + name)) {
+                // 有缓存，先读取缓存的用用
+                this.svgCode = localStorage.getItem('iconSVG-' + name)
+            }
+
+            if (window.loadingSvg[name]) {
+                // 其他组件正在加载
+                const interval = setInterval(() => {
+                    if (!window.loadingSvg[name]) {
+                        // 其他组件加载完成
+                        clearInterval(interval)
+                        this.svgCode = localStorage.getItem('iconSVG-' + name)
+                    }
+                }, 10)
+                return
+            }
+            window.loadingSvg[name] = true
+
+            if (!window.iconSvgHash) {
+                window.iconSvgHash = new Date().getTime()
+            }
+            this.gradioAPI.styles('icons/' + name + '.svg', window.iconSvgHash).then(res => {
+                this.svgCode = res
+                localStorage.setItem('iconSVG-' + name, res)
+                window.isLoadSvg[name] = true
+                window.loadingSvg[name] = false
+            }).catch(err => {
+                window.loadingSvg[name] = false
             })
         }
     }

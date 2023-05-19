@@ -2,7 +2,7 @@
     <div class="physton-prompt-select-language" v-if="isOpen" @click="close">
         <div class="language-main" @click.stop>
             <div class="language-close" @click="close">
-                <icon-close width="24" height="24" />
+                <icon-svg name="close"/>
             </div>
             <div class="language-list" @click.stop>
                 <div v-for="item in languages" :key="item.code"
@@ -16,11 +16,11 @@
 </template>
 <script>
 import LanguageMixin from "@/mixins/languageMixin";
-import IconClose from "@/components/icons/iconClose.vue";
+import IconSvg from "@/components/iconSvg.vue";
 
 export default {
     name: 'SelectLanguage',
-    components: {IconClose},
+    components: {IconSvg},
     mixins: [LanguageMixin],
     props: {},
     data() {

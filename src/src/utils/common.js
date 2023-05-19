@@ -377,4 +377,36 @@ export default {
             return `${month}/${day} ${hour}:${minute}:${second}`
         }
     },
+
+    apiUrl() {
+        let url
+        if (typeof gradioURL === "string" && gradioURL !== "") {
+            url = new URL(gradioURL)
+            url = url.origin
+        } else {
+            url = window.location.origin
+        }
+        return url + '/physton_prompt/'
+    },
+
+    removeCSS(id){
+        if (!id) return
+        let css = document.getElementById(id)
+        if (css) {
+            css.remove()
+        }
+    },
+
+    loadCSS(file, id = '', remove = true, cache = false) {
+        if (remove) this.removeCSS(id)
+        let url = this.apiUrl() + 'styles?file=' + encodeURIComponent(file)
+        if (!cache) {
+            url += '&t=' + new Date().getTime()
+        }
+        let link = document.createElement('link')
+        link.id = id
+        link.rel = 'stylesheet'
+        link.href = url
+        document.head.appendChild(link)
+    },
 }

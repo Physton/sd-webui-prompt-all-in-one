@@ -20,7 +20,8 @@
                             :translate-api-config="translateApiConfig"
                             @click:translate-api="onTranslateApiClick"
                             v-model:tag-complete-file="tagCompleteFile"
-                            @click:select-language="onSelectLanguageClick"></physton-prompt>
+                            @click:select-language="onSelectLanguageClick"
+                            @click:select-theme="onSelectThemeClick"></physton-prompt>
         </template>
         <translate-setting ref="translateSetting" v-model:language-code="languageCode"
                            :translate-apis="translateApis" :languages="languages"
@@ -38,18 +39,20 @@
         <favorite ref="favorite" v-model:language-code="languageCode"
                   :translate-apis="translateApis" :languages="languages"
                   v-model:tag-complete-file="tagCompleteFile" @use="onUseFavorite"></favorite>
+        <extension-css ref="extensionCss" v-model:language-code="languageCode"
+                       :translate-apis="translateApis" :languages="languages"/>
 
         <div class="physton-paste-popup" v-if="showPastePopup" @click="closePastePopup">
             <div class="paste-popup-main" @click.stop>
                 <div class="paste-popup-close" @click="closePastePopup">
-                    <icon-close width="24" height="24"></icon-close>
+                    <icon-svg name="close"/>
                 </div>
                 <div class="paste-popup-title">{{ pasteTitle }}</div>
                 <div class="paste-popup-body">
                     <textarea class="paste-content" v-model="pasteContent" :placeholder="getLang('please_enter_the_content_here')"></textarea>
                     <div v-if="!pasteLoading" class="paste-submit" @click="onClickPasteSubmit">Submit</div>
                     <div v-else class="paste-submit">
-                        <icon-loading width="24" height="24"></icon-loading>
+                        <icon-svg name="loading"/>
                     </div>
                 </div>
             </div>
@@ -61,20 +64,20 @@
 import PhystonPrompt from "./components/phystonPrompt.vue"
 import TranslateSetting from "@/components/translateSetting.vue";
 import common from "@/utils/common";
-import IconClose from "@/components/icons/iconClose.vue";
-import IconLoading from "@/components/icons/iconLoading.vue";
 import SelectLanguage from "@/components/selectLanguage.vue";
 import Favorite from "@/components/favorite.vue";
 import History from "@/components/history.vue";
+import IconSvg from "@/components/iconSvg.vue";
+import ExtensionCss from "@/components/extensionCss.vue";
 
 export default {
     name: 'App',
     components: {
+        ExtensionCss,
+        IconSvg,
         History,
         Favorite,
         SelectLanguage,
-        IconLoading,
-        IconClose,
         TranslateSetting,
         PhystonPrompt,
     },
@@ -260,6 +263,7 @@ export default {
         },
     },
     mounted() {
+        common.loadCSS('main.min.css', 'physton-prompt-main', true)
         this.gradioAPI.getConfig().then(res => {
             console.log('config:', res)
             this.languageCode = res.i18n.default
@@ -335,6 +339,7 @@ export default {
                 }
 
                 this.updateTranslateApiConfig()
+                this.$refs.extensionCss.init()
 
                 this.prompts.forEach(item => {
                     if (data[item.hideDefaultInputKey] !== null) {
@@ -399,6 +404,9 @@ export default {
         },
         onTranslateApiClick() {
             this.$refs.translateSetting.open(this.translateApi)
+        },
+        onSelectThemeClick() {
+            this.$refs.extensionCss.open()
         },
         handlePaste() {
             if (typeof gradioApp !== 'function') return
@@ -526,5 +534,6 @@ export default {
 </script>
 
 <style lang="less">
-@import "@/main.less";
+@import "toastr/build/toastr.min.css";
+@import "tippy.js/dist/tippy.css";
 </style>

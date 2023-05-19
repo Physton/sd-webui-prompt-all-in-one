@@ -6,4 +6,5 @@
 /storage
 /tests/tested.json
 /tags/*
+/styles/extensions/demo
 __pycache__
