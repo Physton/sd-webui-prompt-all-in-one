@@ -28,6 +28,7 @@ function supports the majority of countries worldwide.
 - [Extension update description (important) / *扩展更新说明（重要）*](#extension-update-description-important--扩展更新说明重要)
 - [Contributing / *帮助开发*](#contributing--帮助开发)
 - [Development / *开发方式*](#development--开发方式)
+- [Custom Theme / *自定义主题*](#custom-theme--自定义主题)
 - [FAQ / *常见问题列表*](#faq--常见问题列表)
 - [Donate / *捐赠*](#Donate)
 
