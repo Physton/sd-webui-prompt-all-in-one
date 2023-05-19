@@ -303,10 +303,12 @@ import VueNumberInput from '@chenfengyuan/vue-number-input';
 import IconUnfold from "@/components/icons/iconUnflod.vue";
 import IconSetting from "@/components/icons/iconSetting.vue";
 import IconWrap from "@/components/icons/iconWrap.vue";
+import IconSvg from "@/components/iconSvg.vue";
 
 export default {
     name: 'PhystonPrompt',
     components: {
+        IconSvg,
         IconWrap,
         IconSetting,
         IconUnfold,
