@@ -3,7 +3,7 @@
         <div :class="['prompt-main', hidePanel ? 'fold': '']" @click="onPromptMainClick">
             <div class="prompt-header">
                 <div class="prompt-unfold" @click="onUnfoldClick">
-                    <icon-svg class="hover-scale-120" name="unfold" />
+                    <icon-svg class="hover-scale-120" name="unfold"/>
                 </div>
                 <div class="prompt-header-title">{{ neg ? getLang('negative_prompt') : getLang('prompt') }}</div>
                 <div class="prompt-header-counter" v-show="counterText">({{ counterText }})</div>
@@ -12,7 +12,7 @@
                         <div class="extend-btn-group">
                             <div class="extend-btn-item" v-tooltip="'Language: ' + langName"
                                  @click="$emit('click:selectLanguage', $event)">
-                                <icon-svg class="hover-scale-120" name="i18n" />
+                                <icon-svg class="hover-scale-120" name="i18n"/>
                             </div>
                             <div class="extend-btn-item">
                                 <icon-svg class="hover-scale-120" name="setting" v-tooltip="getLang('setting_desc')"/>
@@ -139,8 +139,8 @@
                                  :class="['prompt-append-group', appendListSelected === index ? 'selected' : '']">
                                 <div class="append-group-name" @click="onAppendGroupClick(index, null, $event)">
                                     <icon-svg class="name-icon" v-if="item.icon === 'wrap'" name="wrap"/>
-                                    <icon-svg class="name-icon" v-else-if="item.icon === 'history'" name="history" />
-                                    <icon-svg class="name-icon" v-else-if="item.icon === 'favorite'" name="favorite" />
+                                    <icon-svg class="name-icon" v-else-if="item.icon === 'history'" name="history"/>
+                                    <icon-svg class="name-icon" v-else-if="item.icon === 'favorite'" name="favorite"/>
                                     {{ appendListItemName(item) }}
                                     <span class="arrow-right" v-show="item.children.length > 0"></span>
                                 </div>
@@ -195,17 +195,17 @@
                                     </template>-->
                                     <template v-else>
                                         <div v-show="!editing[tag.id]"
-                                             class="prompt-tag-value"
-                                             :style="{color: tag.isLora ? 'var(--geekblue-8)' : this.tagColor}"
+                                             :class="getTagClass(tag)"
                                              :ref="'promptTag-' + tag.id"
                                              v-tooltip="getLang('click_to_edit') + '<br/>' + getLang('drop_to_order')"
                                              @click="onTagClick(index)" v-html="renderTag(index)">
                                         </div>
                                         <textarea v-show="editing[tag.id]" type="text"
-                                               class="scroll-hide svelte-4xt1ch input-tag-edit"
-                                               :ref="'promptTagEdit-' + tag.id" :placeholder="getLang('enter_to_save')"
-                                               :value="tag.value" @blur="onTagInputBlur(index)"
-                                               @keydown="onTagInputKeyDown(index, $event)"
+                                                  class="scroll-hide svelte-4xt1ch input-tag-edit"
+                                                  :ref="'promptTagEdit-' + tag.id"
+                                                  :placeholder="getLang('enter_to_save')"
+                                                  :value="tag.value" @blur="onTagInputBlur(index)"
+                                                  @keydown="onTagInputKeyDown(index, $event)"
                                                   @change="onTagInputChange(index, $event)"></textarea>
                                         <!--<input v-show="editing[tag.id]" type="text"
                                                class="scroll-hide svelte-4xt1ch input-tag-edit"
@@ -224,7 +224,7 @@
                                                       @update:model-value="onTagWeightNumChange(index, $event)"></vue-number-input>
                                     <button type="button" v-tooltip="getLang('increase_weight_add_parentheses')"
                                             @click="onIncWeightClick(index, +1)">
-                                        <icon-svg name="weight-parentheses-inc" />
+                                        <icon-svg name="weight-parentheses-inc"/>
                                     </button>
                                     <button type="button" v-tooltip="getLang('increase_weight_subtract_parentheses')"
                                             @click="onIncWeightClick(index, -1)">
@@ -248,7 +248,8 @@
                                             @click="copy(tag.value)">
                                         <icon-svg name="copy"/>
                                     </button>
-                                    <button type="button" v-tooltip="getLang(tag.disabled ? 'enable_keyword': 'disable_keyword')"
+                                    <button type="button"
+                                            v-tooltip="getLang(tag.disabled ? 'enable_keyword': 'disable_keyword')"
                                             @click="onDisabledTagClick(index)">
                                         <icon-svg v-if="!tag.disabled" name="disabled"/>
                                         <icon-svg v-if="tag.disabled" name="enable"/>
@@ -386,7 +387,6 @@ export default {
             dropTag: false,
             loading: {},
             editing: {},
-            tagColor: '',
             autocompleteResults: null,
         }
     },
@@ -485,11 +485,6 @@ export default {
     watch: {},
     methods: {
         init() {
-            if (this.neg) {
-                this.tagColor = 'var(--magenta-9)'
-            } else {
-                this.tagColor = 'var(--green-9)'
-            }
             this.tags = []
             this.onTextareaChange()
             this.textarea.removeEventListener('change', this.onTextareaChange)
@@ -697,6 +692,20 @@ export default {
                 })
             }
         },
+        getTagClass(tag) {
+            let classes = ['prompt-tag-value']
+            if (tag.isLora) {
+                classes.push('lora-tag')
+                if (!tag.LoraExists) {
+                    classes.push('lora-not-exists')
+                }
+            } else if (tag.isEmbedding) {
+                classes.push('embedding-tag')
+            } else if (this.neg) {
+                classes.push('neg-tag')
+            }
+            return classes
+        },
         renderTag(index) {
             let value = this.tags[index].value
             value = common.escapeHtml(value)
@@ -728,13 +737,40 @@ export default {
                 tag.incWeight = 0
                 tag.decWeight = 0
                 tag.isLora = false
+                tag.LoraExists = false
             } else {
                 tag.weightNum = common.getTagWeightNum(tag.value)
                 tag.weightNum = tag.weightNum <= 0 ? 1 : tag.weightNum
                 tag.incWeight = common.getTagIncWeight(tag.value)
                 tag.decWeight = common.getTagDecWeight(tag.value)
                 const bracket = common.hasBrackets(tag.value)
-                tag.isLora = bracket[0] === '<' && bracket[1] === '>'
+
+                tag.isLora = false
+                tag.LoraExists = false
+                const match = tag.value.match(common.loraRegex)
+                if (match) {
+                    console.log(match)
+                    const loraName = match[1]
+                    tag.isLora = true
+                    if (typeof loras === 'object') {
+                        for (let key in loras) {
+                            if (loras[key] === loraName) {
+                                tag.LoraExists = true
+                                break
+                            }
+                        }
+                    }
+                }
+            }
+            if (!tag.isLora && typeof embeddings === 'object') {
+                tag.isEmbedding = false
+                for (let key in embeddings) {
+                    if (typeof embeddings[key] !== 'object') continue
+                    if (embeddings[key][0] === tag.value) {
+                        tag.isEmbedding = true
+                        break
+                    }
+                }
             }
             this.$nextTick(() => {
                 this._setTagHeight(tag)

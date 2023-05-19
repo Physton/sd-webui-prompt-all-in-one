@@ -545,6 +545,36 @@
                             background: var(--button-secondary-background-fill);
                             border: var(--button-border-width) solid var(--button-secondary-border-color);
                             height: auto;
+                            color: var(--green-9);
+
+                            &.neg-tag {
+                                color: var(--magenta-9);
+                            }
+
+                            &.lora-tag {
+                                color: var(--geekblue-9);
+                            }
+
+                            &.lora-not-exists {
+                                background: var(--red-2);
+                                animation: lora-not-exists 1s infinite;
+                            }
+
+                            @keyframes lora-not-exists {
+                                0% {
+                                    opacity: 1;
+                                }
+                                50% {
+                                    opacity: .7;
+                                }
+                                100% {
+                                    opacity: 1;
+                                }
+                            }
+
+                            &.embedding-tag {
+                                color: var(--cyan-7);
+                            }
 
                             &:hover {
                                 border-color: var(--button-secondary-border-color-hover);
@@ -578,6 +608,7 @@
                             line-height: 1rem;
                             font-size: 0.9rem;
                             padding: 4px;
+                            background: transparent;
                         }
 
                         .btn-tag-delete {
@@ -1350,7 +1381,7 @@
                 justify-content: flex-start;
                 align-items: center;
 
-                .extension-checkbox{
+                .extension-checkbox {
                     --ring-color: transparent;
                     position: relative;
                     box-shadow: var(--input-shadow);

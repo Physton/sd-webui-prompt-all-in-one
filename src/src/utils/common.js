@@ -1,6 +1,7 @@
 import splitTags from "@/utils/splitTags";
 
 export default {
+    loraRegex: /^\<lora:\s*([^\:]+)\s*(:)?\s*([0-9\.]+)?\>$/,
     weightNumRegex: /(.*):([0-9\.]+)/,
     weightNumRegexEN: /(.*):\s*([0-9\.]+)/,
     weightNumRegexCN: /(.*)：\s*([0-9\.]+)/,
