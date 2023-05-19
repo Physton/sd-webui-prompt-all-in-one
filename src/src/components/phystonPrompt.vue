@@ -234,8 +234,7 @@
                                             @click="copy(tag.value)">
                                         <icon-svg name="copy"/>
                                     </button>
-                                    <button type="button"
-                                            v-tooltip="getLang(tag.disabled ? 'enable_keyword': 'disable_keyword')"
+                                    <button type="button" v-tooltip="getLang(tag.disabled ? 'enable_keyword': 'disable_keyword')"
                                             @click="onDisabledTagClick(index)">
                                         <icon-svg v-if="!tag.disabled" name="disabled"/>
                                         <icon-svg v-if="tag.disabled" name="enable"/>
