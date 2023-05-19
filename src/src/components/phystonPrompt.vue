@@ -193,12 +193,18 @@
                                              v-tooltip="getLang('click_to_edit') + '<br/>' + getLang('drop_to_order')"
                                              @click="onTagClick(index)" v-html="renderTag(index)">
                                         </div>
-                                        <input v-show="editing[tag.id]" type="text"
+                                        <textarea v-show="editing[tag.id]" type="text"
                                                class="scroll-hide svelte-4xt1ch input-tag-edit"
                                                :ref="'promptTagEdit-' + tag.id" :placeholder="getLang('enter_to_save')"
                                                :value="tag.value" @blur="onTagInputBlur(index)"
                                                @keydown="onTagInputKeyDown(index, $event)"
-                                               @change="onTagInputChange(index, $event)">
+                                                  @change="onTagInputChange(index, $event)"></textarea>
+                                        <!--<input v-show="editing[tag.id]" type="text"
+                                               class="scroll-hide svelte-4xt1ch input-tag-edit"
+                                               :ref="'promptTagEdit-' + tag.id" :placeholder="getLang('enter_to_save')"
+                                               :value="tag.value" @blur="onTagInputBlur(index)"
+                                               @keydown="onTagInputKeyDown(index, $event)"
+                                               @change="onTagInputChange(index, $event)">-->
                                     </template>
                                     <div class="btn-tag-delete" @click="onDeleteTagClick(index)">
                                         <icon-svg name="close"/>
@@ -462,6 +468,7 @@ export default {
             })
             this.init()
         })
+        window.addEventListener('resize', this.onResize)
     },
     watch: {},
     methods: {
@@ -698,6 +705,11 @@ export default {
             }
             return value
         },
+        onResize() {
+            this.tags.forEach(tag => {
+                this._setTagHeight(tag)
+            })
+        },
         _setTag(tag) {
             if (typeof tag['type'] === 'string' && tag.type === 'wrap') {
                 tag.weightNum = 1
@@ -711,6 +723,17 @@ export default {
                 tag.decWeight = common.getTagDecWeight(tag.value)
                 const bracket = common.hasBrackets(tag.value)
                 tag.isLora = bracket[0] === '<' && bracket[1] === '>'
+            }
+            this.$nextTick(() => {
+                this._setTagHeight(tag)
+            })
+        },
+        _setTagHeight(tag) {
+            let $tag = this.$refs['promptTag-' + tag.id][0]
+            let height = $tag.offsetHeight
+            $tag.parentNode.style.height = height + 'px'
+            if (this.$refs['promptTagEdit-' + tag.id]) {
+                this.$refs['promptTagEdit-' + tag.id][0].style.height = height + 'px'
             }
         },
         _appendTag(value, localValue = '', disabled = false, index = -1, type = 'text') {
