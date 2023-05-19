@@ -193,6 +193,14 @@ Click to expand / 点击展开
   3. Restart stable-diffusion-webui / *重启 stable-diffusion-webui。*
 </details>
 
+## Custom Theme / *自定义主题*
+
+If you need to customize the style theme of this extension, please refer to: 
+
+*如果你需要自定义此扩展的样式主题，请参考：*
+
+> [https://github.com/Physton/sd-webui-prompt-all-in-one-assets/styles/extensions/README.MD](https://github.com/Physton/sd-webui-prompt-all-in-one-assets/styles/extensions/README.MD)
+
 ## FAQ / *常见问题列表*
 
 <details>
