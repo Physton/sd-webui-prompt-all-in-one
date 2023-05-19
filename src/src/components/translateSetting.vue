@@ -48,7 +48,7 @@
                     <div class="line-title"></div>
                     <div class="line-content">
                         <div class="hover-scale-120 test-btn" @click="onTestClick">
-                            <icon-loading v-if="loading" width="40" height="40" aria-required="true"/>
+                            <icon-svg v-if="loading" name="loading"/>
                             <template v-else>{{getLang('test')}}</template>
                         </div>
                     </div>
@@ -69,8 +69,8 @@
                                 <option v-for="item in tagCompleteFiles" :value="item.key">{{ item.name }}</option>
                             </select>
                             <div class="refresh-btn hover-scale-120" v-tooltip="getLang('refresh')" @click="refreshCSVs">
-                                <icon-loading v-if="tagCompleteFilesLoading" width="20" height="20" aria-required="true"/>
-                                <icon-refresh v-else width="20" height="20" />
+                                <icon-svg v-if="tagCompleteFilesLoading" name="loading"/>
+                                <icon-svg v-else name="refresh" />
                             </div>
                         </div>
                     </div>
@@ -94,14 +94,12 @@
 </template>
 <script>
 import LanguageMixin from "@/mixins/languageMixin";
-import IconCopy from "@/components/icons/iconCopy.vue";
-import IconLoading from "@/components/icons/iconLoading.vue";
 import common from "@/utils/common";
-import IconRefresh from "@/components/icons/iconRefresh.vue";
+import IconSvg from "@/components/iconSvg.vue";
 
 export default {
     name: 'TranslateSetting',
-    components: {IconRefresh, IconLoading, IconCopy},
+    components: {IconSvg},
     mixins: [LanguageMixin],
     props: {},
     data() {

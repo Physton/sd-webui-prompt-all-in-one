@@ -12,6 +12,7 @@ from scripts.get_translate_apis import get_translate_apis
 from scripts.translate import translate
 from scripts.history import history
 from scripts.csv import get_csvs, get_csv
+from scripts.styles import getStyleFullPath, getExtensionCssList
 
 VERSION = '0.0.1'
 
@@ -197,14 +198,16 @@ def on_app_started(_: gr.Blocks, app: FastAPI):
             return Response(status_code=404)
         return FileResponse(file, media_type='text/csv', filename=os.path.basename(file))
 
-    @app.get("/physton_prompt/theme")
-    async def _theme(file: str):
-        theme_path = os.path.dirname(os.path.abspath(__file__)) + '/../theme'
-        theme_path = os.path.normpath(theme_path)
-        file_path = os.path.join(theme_path, file)
+    @app.get("/physton_prompt/styles")
+    async def _styles(file: str):
+        file_path = getStyleFullPath(file)
         if not os.path.exists(file_path):
             return Response(status_code=404)
         return FileResponse(file_path, filename=os.path.basename(file_path))
+
+    @app.get("/physton_prompt/get_extension_css_list")
+    async def _get_extension_css_list():
+        return {"css_list": getExtensionCssList()}
 
 try:
     script_callbacks.on_app_started(on_app_started)

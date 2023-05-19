@@ -23,7 +23,7 @@
         <div v-for="(group) in histories" :key="group.key" :class="['popup-tab-content', group.key === historyKey ? 'active': '']">
             <div class="content-list" v-show="group.list.length > 0">
                 <div class="clear-btn" @click="onDeleteAllHistoryClick">
-                    <icon-remove width="18" height="18" color="#ff4a4a"></icon-remove>
+                    <icon-svg name="remove"/>
                     {{ getLang('delete_all_history') }}
                 </div>
                 <div class="content-item" v-for="(item, index) in group.list" :key="item.id"
@@ -41,19 +41,19 @@
                         <div class="item-header-right">
                             <div class="header-btn-favorite hover-scale-140" @click="onFavoriteClick(index)"
                                  v-show="item.is_favorite" v-tooltip="getLang('remove_from_favorite')">
-                                <icon-favorite-state :is-favorite="true" width="20" height="20"/>
+                                <icon-svg name="favorite-yes"/>
                             </div>
                             <div class="header-btn-favorite hover-scale-140" @click="onFavoriteClick(index)"
                                  v-show="!item.is_favorite" v-tooltip="getLang('add_to_favorite')">
-                                <icon-favorite-state :is-favorite="false" width="20" height="20"/>
+                                <icon-svg name="favorite-no"/>
                             </div>
                             <div class="header-btn-copy hover-scale-140" @click="onCopyClick(index)"
                                  v-tooltip="getLang('copy_to_clipboard')">
-                                <icon-copy width="20" height="20" color="#fff"/>
+                                <icon-svg name="copy"/>
                             </div>
                             <div class="header-btn-use hover-scale-140" @click="onUseClick(index)"
                                  v-tooltip="getLang('use')">
-                                <icon-use width="20" height="20" color="#fff"/>
+                                <icon-svg name="use"/>
                             </div>
                         </div>
                     </div>
@@ -61,24 +61,20 @@
                 </div>
             </div>
             <div class="content-empty" v-show="group.list.length === 0">
-                <icon-loading width="64" height="64" v-if="loading"/>
+                <icon-svg name="loading" v-if="loading"/>
                 <span v-else>{{ emptyMsg }}</span>
             </div>
         </div>
     </div>
 </template>
 <script>
-import IconFavoriteState from "@/components/icons/iconFavoriteState.vue";
 import common from "@/utils/common";
-import IconLoading from "@/components/icons/iconLoading.vue";
-import IconCopy from "@/components/icons/iconCopy.vue";
 
 import LanguageMixin from "@/mixins/languageMixin";
-import IconUse from "@/components/icons/iconUse.vue";
-import IconRemove from "@/components/icons/iconRemove.vue";
+import IconSvg from "@/components/iconSvg.vue";
 
 export default {
-    components: {IconRemove, IconUse, IconCopy, IconLoading, IconFavoriteState},
+    components: {IconSvg},
     props: {},
     mixins: [LanguageMixin],
     data() {

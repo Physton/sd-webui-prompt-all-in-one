@@ -68,7 +68,8 @@
                 "refresh": "刷新",
                 "not_enable": "不启用",
                 "translate_result": "{0} 的翻译结果是：{1}",
-                "not_found_csv_file": "没有找到csv文件"
+                "not_found_csv_file": "没有找到csv文件",
+                "theme_extension": "主题：扩展插件样式"
             }
         },
         {
@@ -138,7 +139,8 @@
                 "refresh": "刷新",
                 "not_enable": "不啟用",
                 "translate_result": "{0} 的翻譯結果是：{1}",
-                "not_found_csv_file": "沒有找到csv文件"
+                "not_found_csv_file": "沒有找到csv文件",
+                "theme_extension": "主題：擴展插件樣式"
             }
         },
         {
@@ -208,7 +210,8 @@
                 "refresh": "重新整理",
                 "not_enable": "不啟用",
                 "translate_result": "{0} 的翻譯結果是：{1}",
-                "not_found_csv_file": "找不到csv檔案"
+                "not_found_csv_file": "找不到csv檔案",
+                "theme_extension": "主題：擴充套件樣式"
             }
         },
         {
@@ -278,7 +281,8 @@
                 "refresh": "Refresh",
                 "not_enable": "Not enable",
                 "translate_result": "The translation result of {0} is: {1}",
-                "not_found_csv_file": "Csv file not found"
+                "not_found_csv_file": "Csv file not found",
+                "theme_extension": "Theme: Extension Plugin Style"
             }
         },
         {
@@ -363,7 +367,8 @@
                 "refresh": "تحديث",
                 "not_enable": "غير مفعّل",
                 "translate_result": "نتيجة ترجمة {0} هي: {1}",
-                "not_found_csv_file": "لم يتم العثور على ملف csv"
+                "not_found_csv_file": "لم يتم العثور على ملف csv",
+                "theme_extension": "السمة: نمط الوظيفة التكميلية للامتداد"
             }
         },
         {
@@ -533,7 +538,8 @@
                 "refresh": "Actualiser",
                 "not_enable": "Non activé",
                 "translate_result": "Le résultat de la traduction de {0} est : {1}",
-                "not_found_csv_file": "Fichier csv non trouvé"
+                "not_found_csv_file": "Fichier csv non trouvé",
+                "theme_extension": "Thème : Style de plugin d'extension"
             }
         },
         {
@@ -618,7 +624,8 @@
                 "refresh": "Aktualisieren",
                 "not_enable": "Nicht aktiviert",
                 "translate_result": "Das Übersetzungsergebnis von {0} lautet: {1}",
-                "not_found_csv_file": "Csv-Datei nicht gefunden"
+                "not_found_csv_file": "Csv-Datei nicht gefunden",
+                "theme_extension": "Thema: Erweiterungs-Plugin-Stil"
             }
         },
         {
@@ -753,7 +760,8 @@
                 "refresh": "Aggiorna",
                 "not_enable": "Non abilitato",
                 "translate_result": "Il risultato della traduzione di {0} è : {1}",
-                "not_found_csv_file": "File csv non trovato"
+                "not_found_csv_file": "File csv non trovato",
+                "theme_extension": "Tema: Stile del plug-in di estensione"
             }
         },
         {
@@ -823,7 +831,8 @@
                 "refresh": "更新",
                 "not_enable": "無効にする",
                 "translate_result": "{0}の翻訳結果は：{1}",
-                "not_found_csv_file": "csvファイルが見つかりません"
+                "not_found_csv_file": "csvファイルが見つかりません",
+                "theme_extension": "テーマ：拡張プラグインスタイル"
             }
         },
         {
@@ -918,7 +927,8 @@
                 "refresh": "새로 고침",
                 "not_enable": "비활성화",
                 "translate_result": "{0}의 번역 결과는 : {1}입니다.",
-                "not_found_csv_file": "csv 파일을 찾을 수 없습니다"
+                "not_found_csv_file": "csv 파일을 찾을 수 없습니다",
+                "theme_extension": "테마: 확장 플러그인 스타일"
             }
         },
         {
@@ -1103,7 +1113,8 @@
                 "refresh": "Atualizar",
                 "not_enable": "Não habilitado",
                 "translate_result": "O resultado da tradução de {0} é: {1}",
-                "not_found_csv_file": "Arquivo csv não encontrado"
+                "not_found_csv_file": "Arquivo csv não encontrado",
+                "theme_extension": "Tema: Estilo de plugin de extensão"
             }
         },
         {
@@ -1188,7 +1199,8 @@
                 "refresh": "Обновить",
                 "not_enable": "Не активировано",
                 "translate_result": "Результат перевода {0}: {1}",
-                "not_found_csv_file": "CSV-файл не найден"
+                "not_found_csv_file": "CSV-файл не найден",
+                "theme_extension": "Тема: Стиль расширения плагина"
             }
         },
         {
@@ -1288,7 +1300,8 @@
                 "refresh": "Actualizar",
                 "not_enable": "No habilitado",
                 "translate_result": "El resultado de la traducción de {0} es: {1}",
-                "not_found_csv_file": "Archivo csv no encontrado"
+                "not_found_csv_file": "Archivo csv no encontrado",
+                "theme_extension": "Tema: Estilo de complemento de extensión"
             }
         },
         {

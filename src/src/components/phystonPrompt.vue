@@ -3,7 +3,7 @@
         <div :class="['prompt-main', hidePanel ? 'fold': '']" @click="onPromptMainClick">
             <div class="prompt-header">
                 <div class="prompt-unfold" @click="onUnfoldClick">
-                    <icon-unfold class="hover-scale-120" width="20" height="20"/>
+                    <icon-svg class="hover-scale-120" name="unfold" />
                 </div>
                 <div class="prompt-header-title">{{ neg ? getLang('negative_prompt') : getLang('prompt') }}</div>
                 <div class="prompt-header-counter" v-show="counterText">({{ counterText }})</div>
@@ -12,23 +12,27 @@
                         <div class="extend-btn-group">
                             <div class="extend-btn-item" v-tooltip="'Language: ' + langName"
                                  @click="$emit('click:selectLanguage', $event)">
-                                <icon-i18n class="hover-scale-120" width="18" height="18" color="#d81e06"/>
+                                <icon-svg class="hover-scale-120" name="i18n" />
                             </div>
                             <div class="extend-btn-item">
-                                <icon-setting class="hover-scale-120" width="18" height="18" color="#d81e06"
-                                              v-tooltip="getLang('setting_desc')"/>
+                                <icon-svg class="hover-scale-120" name="setting" v-tooltip="getLang('setting_desc')"/>
                                 <div class="setting-box">
                                     <div v-if="translateApiItem.name && !isEnglish" class="extend-btn-item"
                                          v-tooltip="getLang('translate_api') + ': ' + translateApiItem.name"
                                          @click="$emit('click:translateApi', $event)">
-                                        <icon-api class="hover-scale-120" width="26" height="26" color="#d81e06"/>
+                                        <icon-svg class="hover-scale-120" name="api"/>
+                                    </div>
+                                    <div class="extend-btn-item"
+                                         v-tooltip="getLang('theme_extension')"
+                                         @click="$emit('click:selectTheme', $event)">
+                                        <icon-svg class="hover-scale-120" name="theme"/>
                                     </div>
                                     <div class="gradio-checkbox hover-scale-120" v-show="!isEnglish">
                                         <label v-tooltip="getLang('auto_translate_to_local_language')">
                                             <input type="checkbox" name="auto_translate_to_local_language" value="1"
                                                    :checked="autoTranslateToLocal"
                                                    @change="$emit('update:autoTranslateToLocal', $event.target.checked)">
-                                            <icon-translate width="26" height="26" color="#ad6800"/>
+                                            <icon-svg name="translate"/>
                                         </label>
                                     </div>
                                     <div class="gradio-checkbox hover-scale-120" v-show="!isEnglish">
@@ -36,7 +40,7 @@
                                             <input type="checkbox" name="auto_translate_to_english" value="1"
                                                    :checked="autoTranslateToEnglish"
                                                    @change="$emit('update:autoTranslateToEnglish', $event.target.checked)">
-                                            <icon-english width="26" height="26" color="#ad6800"/>
+                                            <icon-svg name="english"/>
                                         </label>
                                     </div>
                                     <div class="gradio-checkbox hover-scale-120">
@@ -44,16 +48,11 @@
                                             <input type="checkbox" name="enable_tooltip" value="1"
                                                    :checked="enableTooltip"
                                                    @change="$emit('update:enableTooltip', $event.target.checked)">
-                                            <icon-tooltip width="26" height="26" color="#1f2937"/>
+                                            <icon-svg name="tooltip"/>
                                         </label>
                                     </div>
                                 </div>
                             </div>
-                            <!--<div v-if="translateApiItem.name && !isEnglish" class="extend-btn-item"
-                                 v-tooltip="getLang('translate_api') + ': ' + translateApiItem.name"
-                                 @click="$emit('click:translateApi', $event)">
-                                <icon-api class="hover-scale-120" width="18" height="18" color="#d81e06"/>
-                            </div>-->
                         </div>
                     </div>
                 </div>
@@ -63,11 +62,11 @@
                         <div class="extend-btn-group">
                             <div class="extend-btn-item" ref="historyButton" v-tooltip="getLang('history')"
                                  @click="$emit('click:showHistory', $event)">
-                                <icon-history class="hover-scale-120" width="18" height="18"/>
+                                <icon-svg class="hover-scale-120" name="history"/>
                             </div>
                             <div class="extend-btn-item" ref="favoriteButton"
                                  v-tooltip="getLang('favorite')" @click="$emit('click:showFavorite', $event)">
-                                <icon-favorite class="hover-scale-120" width="18" height="18" />
+                                <icon-svg class="hover-scale-120" name="favorite"/>
                             </div>
                         </div>
                     </div>
@@ -77,16 +76,13 @@
                         <div class="extend-btn-group">
                             <div class="extend-btn-item" v-tooltip="getLang('translate_keywords_to_local_language')"
                                  @click="onTranslatesToLocalClick">
-                                <icon-translate class="hover-scale-120" v-if="!loading['all_local']" width="18"
-                                                height="18" color="#ad6800"/>
-                                <icon-loading class="hover-scale-120" v-if="loading['all_local']" width="18"
-                                              height="18"/>
+                                <icon-svg v-if="!loading['all_local']" class="hover-scale-120" name="translate"/>
+                                <icon-svg v-if="loading['all_local']" class="hover-scale-120" name="loading"/>
                             </div>
                             <div class="extend-btn-item" v-tooltip="getLang('translate_all_keywords_to_english')"
                                  @click="onTranslatesToEnglishClick">
-                                <icon-english class="hover-scale-120" v-if="!loading['all_en']" width="18" height="18"
-                                              color="#ad6800"/>
-                                <icon-loading class="hover-scale-120" v-if="loading['all_en']" width="18" height="18"/>
+                                <icon-svg v-if="!loading['all_en']" class="hover-scale-120" name="english"/>
+                                <icon-svg v-if="loading['all_en']" class="hover-scale-120" name="loading"/>
                             </div>
                         </div>
                     </div>
@@ -96,12 +92,11 @@
                         <div class="extend-btn-group">
                             <div class="extend-btn-item" v-tooltip="getLang('copy_keywords_to_clipboard')"
                                  @click="onCopyAllTagsClick">
-                                <icon-copy class="hover-scale-120" width="18" height="18"
-                                           color="var(--body-text-color)"/>
+                                <icon-svg class="hover-scale-120" name="copy"/>
                             </div>
                             <div class="extend-btn-item" v-tooltip="getLang('delete_all_keywords')"
                                  @click="onDeleteAllTagsClick">
-                                <icon-remove class="hover-scale-120" width="18" height="18" color="#d81e06"/>
+                                <icon-svg class="hover-scale-120" name="remove"/>
                             </div>
                         </div>
                     </div>
@@ -113,13 +108,13 @@
                                 <input type="checkbox" name="hide_default_input" value="1"
                                        :checked="!hideDefaultInput"
                                        @change="$emit('update:hideDefaultInput', !$event.target.checked)">
-                                <icon-input width="26" height="26" color="var(--body-text-color)"/>
+                                <icon-svg name="input"/>
                             </label>
                             <label v-else v-tooltip="getLang('hide_default_input_box')">
                                 <input type="checkbox" name="hide_default_input" value="1"
                                        :checked="!hideDefaultInput"
                                        @change="$emit('update:hideDefaultInput', !$event.target.checked)">
-                                <icon-input width="26" height="26" color="var(--body-text-color)"/>
+                                <icon-svg name="input"/>
                             </label>
                         </div>
                         <input type="text" class="scroll-hide svelte-4xt1ch input-tag-append" ref="promptTagAppend"
@@ -135,9 +130,9 @@
                             <div v-for="(item, index) in appendList" :key="item.type"
                                  :class="['prompt-append-group', appendListSelected === index ? 'selected' : '']">
                                 <div class="append-group-name" @click="onAppendGroupClick(index, null, $event)">
-                                    <icon-wrap class="name-icon" v-if="item.icon === 'wrap'" width="16" height="16" color="#fff" />
-                                    <icon-history class="name-icon" v-else-if="item.icon === 'history'" width="16" height="16" color="#fff" />
-                                    <icon-favorite class="name-icon" v-else-if="item.icon === 'favorite'" width="16" height="16" color="#fff" />
+                                    <icon-svg class="name-icon" v-if="item.icon === 'wrap'" name="wrap"/>
+                                    <icon-svg class="name-icon" v-else-if="item.icon === 'history'" name="history" />
+                                    <icon-svg class="name-icon" v-else-if="item.icon === 'favorite'" name="favorite" />
                                     {{ appendListItemName(item) }}
                                     <span class="arrow-right" v-show="item.children.length > 0"></span>
                                 </div>
@@ -183,7 +178,7 @@
                                              :ref="'promptTag-' + tag.id"
                                              v-tooltip="getLang('line_break_character') + '<br/>' + getLang('drop_to_order')"
                                              style="width: 100%">
-                                            <icon-wrap width="16" height="16"/>
+                                            <icon-svg name="wrap"/>
                                         </div>
                                     </template>
                                     <!--<template v-else-if="tag.type === 'favorite'">
@@ -206,7 +201,7 @@
                                                @change="onTagInputChange(index, $event)">
                                     </template>
                                     <div class="btn-tag-delete" @click="onDeleteTagClick(index)">
-                                        <icon-close width="12" height="12"/>
+                                        <icon-svg name="close"/>
                                     </div>
                                 </div>
                                 <div class="btn-tag-extend" v-show="(tag.type === 'text' || !tag.type)">
@@ -215,40 +210,35 @@
                                                       @update:model-value="onTagWeightNumChange(index, $event)"></vue-number-input>
                                     <button type="button" v-tooltip="getLang('increase_weight_add_parentheses')"
                                             @click="onIncWeightClick(index, +1)">
-                                        <icon-weight width="20" height="20" type="parentheses" :increase="true"
-                                                     color="#ff6969"/>
+                                        <icon-svg name="weight-parentheses-inc" />
                                     </button>
                                     <button type="button" v-tooltip="getLang('increase_weight_subtract_parentheses')"
                                             @click="onIncWeightClick(index, -1)">
-                                        <icon-weight width="20" height="20" type="parentheses" :increase="false"
-                                                     color="#ff6969"/>
+                                        <icon-svg name="weight-parentheses-dec"/>
                                     </button>
                                     <button type="button" v-tooltip="getLang('decrease_weight_add_brackets')"
                                             @click="onDecWeightClick(index, +1)">
-                                        <icon-weight width="20" height="20" type="brackets" :increase="true"
-                                                     color="#84ff8f"/>
+                                        <icon-svg name="weight-brackets-inc"/>
                                     </button>
                                     <button type="button" v-tooltip="getLang('decrease_weight_subtract_brackets')"
                                             @click="onDecWeightClick(index, -1)">
-                                        <icon-weight width="20" height="20" type="brackets" :increase="false"
-                                                     color="#84ff8f"/>
+                                        <icon-svg name="weight-brackets-dec"/>
                                     </button>
                                     <button type="button" v-tooltip="getLang('translate_keyword_to_english')"
                                             v-show="!isEnglish"
                                             @click="onTranslateToEnglishClick(index).then(() => updateTags())">
-                                        <icon-english v-if="!loading[tag.id + '_en']" width="20" height="20"
-                                                      color="#ff9900"/>
-                                        <icon-loading v-if="loading[tag.id + '_en']" width="20" height="20"/>
+                                        <icon-svg v-if="!loading[tag.id + '_en']" name="english"/>
+                                        <icon-svg v-if="loading[tag.id + '_en']" name="loading"/>
                                     </button>
                                     <button type="button" v-tooltip="getLang('copy_to_clipboard')"
                                             @click="copy(tag.value)">
-                                        <icon-copy width="20" height="20" color="#3c3c3c"/>
+                                        <icon-svg name="copy"/>
                                     </button>
                                     <button type="button"
                                             v-tooltip="getLang(tag.disabled ? 'enable_keyword': 'disable_keyword')"
                                             @click="onDisabledTagClick(index)">
-                                        <icon-disabled v-show="!tag.disabled" width="20" height="20" color="#ff472f"/>
-                                        <icon-enable v-show="tag.disabled" width="20" height="20" color="#2fff53"/>
+                                        <icon-svg v-show="!tag.disabled" name="disabled"/>
+                                        <icon-svg v-show="tag.disabled" name="enable"/>
                                     </button>
                                 </div>
                             </div>
@@ -257,9 +247,8 @@
                                 <div class="translate-to-local hover-scale-120"
                                      v-tooltip="getLang('translate_keyword_to_local_language')"
                                      @click="onTranslateToLocalClick(index).then(() => updateTags())">
-                                    <icon-translate v-if="!loading[tag.id + '_local']" width="16" height="16"
-                                                    color="var(--body-text-color)"/>
-                                    <icon-loading v-if="loading[tag.id + '_local']" width="16" height="16"/>
+                                    <icon-svg v-if="!loading[tag.id + '_local']" name="translate"/>
+                                    <icon-svg v-if="loading[tag.id + '_local']" name="loading"/>
                                 </div>
                                 <div class="local-language">{{ tag.localValue }}</div>
                             </div>
@@ -279,49 +268,18 @@
 
 <script>
 import autoSizeInput from 'autosize-input'
-import Sortable from 'sortablejs';
-import common from "@/utils/common";
+import Sortable from 'sortablejs'
+import common from "@/utils/common"
 
-import IconClose from "@/components/icons/iconClose.vue";
-import IconTranslate from "@/components/icons/iconTranslate.vue";
-import IconCopy from "@/components/icons/iconCopy.vue";
-import IconDisabled from "@/components/icons/iconDisabled.vue";
-import IconEnable from "@/components/icons/iconEnable.vue";
-import IconWeight from "@/components/icons/iconWeight.vue";
-import IconEnglish from "@/components/icons/iconEnglish.vue";
-import IconHistory from "@/components/icons/iconHistory.vue";
-import IconFavorite from "@/components/icons/iconFavorite.vue";
-import IconLoading from "@/components/icons/iconLoading.vue";
-import LanguageMixin from "@/mixins/languageMixin";
-import IconInput from "@/components/icons/iconInput.vue";
-import IconRemove from "@/components/icons/iconRemove.vue";
-import IconTooltip from "@/components/icons/iconTooltip.vue";
-import IconGithub from "@/components/icons/iconGithub.vue";
-import IconI18n from "@/components/icons/iconI18n.vue";
-import IconApi from "@/components/icons/iconApi.vue";
-import VueNumberInput from '@chenfengyuan/vue-number-input';
-import IconUnfold from "@/components/icons/iconUnflod.vue";
-import IconSetting from "@/components/icons/iconSetting.vue";
-import IconWrap from "@/components/icons/iconWrap.vue";
-import IconSvg from "@/components/iconSvg.vue";
+import LanguageMixin from "@/mixins/languageMixin"
+import VueNumberInput from '@chenfengyuan/vue-number-input'
+import IconSvg from "@/components/iconSvg.vue"
 
 export default {
     name: 'PhystonPrompt',
     components: {
-        IconSvg,
-        IconWrap,
-        IconSetting,
-        IconUnfold,
         VueNumberInput,
-        IconApi,
-        IconI18n,
-        IconGithub,
-        IconTooltip,
-        IconRemove,
-        IconInput,
-        IconLoading,
-        IconFavorite,
-        IconHistory, IconEnglish, IconWeight, IconEnable, IconDisabled, IconCopy, IconTranslate, IconClose,
+        IconSvg
     },
     mixins: [LanguageMixin],
     props: {
@@ -370,7 +328,7 @@ export default {
             default: '',
         },
     },
-    emits: ['update:languageCode', 'update:autoTranslateToEnglish', 'update:autoTranslateToLocal', 'update:hideDefaultInput', 'update:hidePanel', 'update:enableTooltip', 'update:translateApi', 'click:translateApi', 'click:selectLanguage', 'click:showHistory', 'click:showFavorite'],
+    emits: ['update:languageCode', 'update:autoTranslateToEnglish', 'update:autoTranslateToLocal', 'update:hideDefaultInput', 'update:hidePanel', 'update:enableTooltip', 'update:translateApi', 'click:translateApi', 'click:selectTheme', 'click:selectLanguage', 'click:showHistory', 'click:showFavorite'],
     data() {
         return {
             prompt: '',

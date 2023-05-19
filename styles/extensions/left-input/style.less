@@ -1,0 +1,35 @@
+.physton-prompt .prompt-header {
+    .prompt-unfold {
+        order: 1;
+    }
+
+    .prompt-header-title {
+        order: 2;
+    }
+
+    .prompt-header-counter {
+        order: 3;
+    }
+
+    .prompt-header-extend {
+        order: 5;
+
+        &:nth-last-child(2) {
+            margin-right: 0;
+        }
+
+        &.prompt-append {
+            order: 4;
+            margin-right: 10px;
+
+            .extend-content {
+                justify-content: flex-start;
+
+                .input-tag-append {
+                    order: -1;
+                    margin-right: 10px;
+                }
+            }
+        }
+    }
+}

@@ -1,6 +1,3 @@
-@import "toastr/build/toastr.min.css";
-@import "tippy.js/dist/tippy.css";
-
 .hover-scale-120 {
     animation: all 0.3s;
 
@@ -19,6 +16,24 @@
 
 @common-red: #d81e06;
 @common-blue: #4a54ff;
+
+.set-icon-svg(@width: 20px, @height: 20px, @fill: none, @className: icon-svg) when (@fill=none) {
+    .@{className} svg {
+        width: @width;
+        height: @width;
+    }
+}
+
+.set-icon-svg(@width: 20px, @height: 20px, @fill: none, @className: icon-svg) when not (@fill=none) {
+    .@{className} svg {
+        width: @width;
+        height: @width;
+
+        path {
+            fill: @fill;
+        }
+    }
+}
 
 .common-popup-bg() {
     position: fixed;
@@ -56,7 +71,7 @@
     position: absolute;
     right: -14px;
     top: -14px;
-    background: #ffffffe6;
+    background: rgba(255, 255, 255, .6);
     border-radius: 50%;
     box-shadow: 0 1px 5px 0 @common-red;
     cursor: pointer;
@@ -65,6 +80,8 @@
     &:hover {
         background: @common-red;
     }
+
+    .set-icon-svg(24px, 24px, #000, icon-svg-close);
 }
 
 .common-colourful-background() {
@@ -126,6 +143,8 @@
                 &:hover {
                     box-shadow: 0 0 14px @common-blue;
                 }
+
+                .set-icon-svg(24px, 24px, none, icon-svg-loading);
             }
         }
     }
@@ -185,7 +204,39 @@
         .prompt-unfold {
             cursor: pointer;
             margin-right: 2px;
-            animation: all .3s
+            animation: all .3s;
+        }
+
+        .prompt-unfold {
+            .set-icon-svg(20px, 20px, #02b7fd, icon-svg-unfold);
+        }
+
+        .extend-btn-item {
+            .set-icon-svg(18px, 18px, #d81e06, icon-svg-i18n);
+            .set-icon-svg(18px, 18px, #d81e06, icon-svg-setting);
+            .set-icon-svg(18px, 18px, #02b7fd, icon-svg-history);
+            .set-icon-svg(18px, 18px, #02b7fd, icon-svg-favorite);
+            .set-icon-svg(18px, 18px, #ad6800, icon-svg-translate);
+            .set-icon-svg(18px, 18px, #ad6800, icon-svg-english);
+            .set-icon-svg(18px, 18px, none, icon-svg-loading);
+            .set-icon-svg(18px, 18px, var(--body-text-color), icon-svg-copy);
+            .set-icon-svg(18px, 18px, #d81e06, icon-svg-remove);
+        }
+
+        .setting-box {
+            .set-icon-svg(26px, 26px, #d81e06, icon-svg-api);
+            .set-icon-svg(26px, 26px, #02b7fd, icon-svg-theme);
+            .set-icon-svg(26px, 26px, #ad6800, icon-svg-translate);
+            .set-icon-svg(26px, 26px, #ad6800, icon-svg-english);
+            .set-icon-svg(26px, 26px, #1f2937, icon-svg-tooltip);
+        }
+
+        .set-icon-svg(26px, 26px, var(--body-text-color), icon-svg-input);
+
+        .prompt-append-list {
+            .set-icon-svg(16px, 16px, #fff, icon-svg-wrap);
+            .set-icon-svg(16px, 16px, #fff, icon-svg-history);
+            .set-icon-svg(16px, 16px, #fff, icon-svg-favorite);
         }
 
         .prompt-header-title {
@@ -395,6 +446,31 @@
             .btn-tag-extend {
                 display: none !important;
             }
+        }
+
+        .prompt-tag-edit {
+            .set-icon-svg(16px, 16px, #02b7fd, icon-svg-wrap);
+        }
+
+        .btn-tag-delete {
+            .set-icon-svg(12px, 12px, #000, icon-svg-close);
+        }
+
+        .btn-tag-extend {
+            .set-icon-svg(20px, 20px, #ff6969, icon-svg-weight-parentheses-inc);
+            .set-icon-svg(20px, 20px, #ff6969, icon-svg-weight-parentheses-dec);
+            .set-icon-svg(20px, 20px, #84ff8f, icon-svg-weight-brackets-inc);
+            .set-icon-svg(20px, 20px, #84ff8f, icon-svg-weight-brackets-dec);
+            .set-icon-svg(20px, 20px, #ff9900, icon-svg-english);
+            .set-icon-svg(20px, 20px, none, icon-svg-loading);
+            .set-icon-svg(20px, 20px, #3c3c3c, icon-svg-copy);
+            .set-icon-svg(20px, 20px, #ff472f, icon-svg-disabled);
+            .set-icon-svg(20px, 20px, #2fff53, icon-svg-enable);
+        }
+
+        .prompt-local-language {
+            .set-icon-svg(16px, 16px, var(--body-text-color), icon-svg-translate);
+            .set-icon-svg(16px, 16px, none, icon-svg-loading);
         }
 
         .prompt-tags-list {
@@ -891,6 +967,8 @@
                     font-weight: bold;
                     //background: center center @common-blue;
                 }
+
+                .set-icon-svg(18px, 18px, #ff4a4a, icon-svg-remove);
             }
 
             .content-item {
@@ -919,6 +997,11 @@
                         display: flex;
                         justify-content: flex-start;
                         align-items: center;
+
+                        .set-icon-svg(20px, 20px, none, icon-svg-favorite-yes);
+                        .set-icon-svg(20px, 20px, none, icon-svg-favorite-no);
+                        .set-icon-svg(20px, 20px, #fff, icon-svg-copy);
+                        .set-icon-svg(20px, 20px, #fff, icon-svg-use);
 
                         > div {
                             margin-right: 10px;
@@ -984,6 +1067,8 @@
             display: flex;
             justify-content: center;
             align-items: center;
+
+            .set-icon-svg(64px, 64px, none, icon-svg-loading);
 
             span {
                 font-size: 22px;
@@ -1129,6 +1214,9 @@
                     justify-content: center;
                     align-items: center;
                     border-radius: 4px;
+
+                    .set-icon-svg(20px, 20px, none, icon-svg-loading);
+                    .set-icon-svg(20px, 20px, #02b7fd, icon-svg-refresh);
                 }
 
                 .test-input {
@@ -1144,6 +1232,8 @@
                     color: #fff;
                     background: #108bb5;
                     border-radius: 4px;
+
+                    .set-icon-svg(40px, 40px, none, icon-svg-loading);
                 }
 
                 .translate-error {
@@ -1209,6 +1299,96 @@
                 border: 1px solid @common-blue;
                 border-radius: 4px;
             }
+        }
+    }
+}
+
+.physton-prompt-extension-css {
+    .common-popup-bg();
+    justify-content: flex-end;
+    align-items: flex-end;
+    background: rgba(0, 0, 0, .2);
+
+    .extension-main {
+        height: 300px;
+        position: relative;
+        margin-right: 20px;
+        margin-bottom: 20px;
+
+        .extension-close {
+            .common-popup-close();
+        }
+
+        .extension-list {
+            height: 100%;
+            overflow: hidden;
+            overflow-y: scroll;
+            display: block;
+            position: relative;
+            box-shadow: 0 0 3px @common-blue;
+            border-radius: 6px 6px 4px 4px;
+            background-color: #1e1e1ee6;
+            transition: height .1s ease-in-out, width .1s ease-in-out;
+
+            .extension-item {
+                font-size: 14px;
+                color: #fff;
+                padding: 10px 20px;
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+
+                .extension-checkbox{
+                    --ring-color: transparent;
+                    position: relative;
+                    box-shadow: var(--input-shadow);
+                    border: 1px solid var(--checkbox-border-color);
+                    border-radius: var(--checkbox-border-radius);
+                    background-color: var(--checkbox-background-color);
+                    line-height: var(--line-sm);
+                    width: 20px;
+                    height: 20px;
+
+                    &:checked {
+                        border-color: var(--checkbox-border-color-selected);
+                        background-image: var(--checkbox-check);
+                        background-color: var(--checkbox-background-color-selected)
+                    }
+                }
+
+                .extension-dir {
+                    margin-left: 10px;
+                    font-size: 14px;
+                }
+
+                .extension-name {
+                    margin-left: 5px;
+                    white-space: nowrap;
+                    font-size: 14px;
+                }
+
+                .extension-author {
+                    margin-left: 30px;
+                    flex: 1;
+                    text-align: right;
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+}
+
+
+body {
+    &.light {
+        // 浅色主题
+    }
+
+    &.dark {
+        // 深色主题
+        .physton-prompt .prompt-header .extend-btn-item {
+            .set-icon-svg(18px, 18px, #ff9900, icon-svg-translate);
+            .set-icon-svg(18px, 18px, #ff9900, icon-svg-english);
         }
     }
 }

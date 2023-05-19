@@ -5,14 +5,7 @@ export default class GradioAPI {
     apiBaseURL = "";
 
     constructor() {
-        let url
-        if (typeof gradioURL === "string" && gradioURL !== "") {
-            url = new URL(gradioURL)
-            url = url.origin
-        } else {
-            url = window.location.origin
-        }
-        this.apiBaseURL = url + '/physton_prompt/'
+        this.apiBaseURL = common.apiUrl()
         this.api = axios.create({
             baseURL: this.apiBaseURL,
             timeout: 60000,
@@ -142,7 +135,11 @@ export default class GradioAPI {
         return (await this.api.get("/get_csv", {params: {key}})).data
     }
 
-    async theme(file) {
-        return (await this.api.get("/theme", {params: {file}})).data
+    async styles(file, hash="") {
+        return (await this.api.get("/styles", {params: {file, hash}})).data
+    }
+
+    async getExtensionCssList() {
+        return (await this.api.get("/get_extension_css_list")).data.css_list
     }
 }
