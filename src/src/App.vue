@@ -11,6 +11,7 @@
                             @click:show-favorite="onShowFavorite(item.id, $event)"
                             v-model:auto-translate-to-english="autoTranslateToEnglish"
                             v-model:auto-translate-to-local="autoTranslateToLocal"
+                            v-model:auto-remove-space="autoRemoveSpace"
                             :hide-default-input="item.hideDefaultInput"
                             @update:hide-default-input="onUpdateHideDefaultInput(item.id, $event)"
                             :hide-panel="item.hidePanel"
@@ -169,6 +170,7 @@ export default {
             translateApiConfig: {},
             autoTranslateToEnglish: false,
             autoTranslateToLocal: false,
+            autoRemoveSpace: true,
             // hideDefaultInput: false,
             enableTooltip: true,
             tagCompleteFile: '',
@@ -211,6 +213,16 @@ export default {
                 if (!this.startWatchSave) return
                 console.log('onAutoTranslateToLocalChange', val)
                 this.gradioAPI.setData('autoTranslateToLocal', val).then(data => {
+                }).catch(err => {
+                })
+            },
+            immediate: false,
+        },
+        autoRemoveSpace: {
+            handler: function (val, oldVal) {
+                if (!this.startWatchSave) return
+                console.log('onAutoRemoveSpaceChange', val)
+                this.gradioAPI.setData('autoRemoveSpace', val).then(data => {
                 }).catch(err => {
                 })
             },
@@ -285,7 +297,7 @@ export default {
             return common.getLang(key, this.languageCode, this.languages)
         },
         init() {
-            let dataListsKeys = ['languageCode', 'autoTranslateToEnglish', 'autoTranslateToLocal', /*'hideDefaultInput', */'translateApi', 'enableTooltip', 'tagCompleteFile']
+            let dataListsKeys = ['languageCode', 'autoTranslateToEnglish', 'autoTranslateToLocal', 'autoRemoveSpace', /*'hideDefaultInput', */'translateApi', 'enableTooltip', 'tagCompleteFile']
             this.prompts.forEach(item => {
                 dataListsKeys.push(item.hideDefaultInputKey)
                 dataListsKeys.push(item.hidePanelKey)
@@ -310,6 +322,9 @@ export default {
                 }
                 if (data.autoTranslateToLocal !== null) {
                     this.autoTranslateToLocal = data.autoTranslateToLocal
+                }
+                if (data.autoRemoveSpace !== null) {
+                    this.autoRemoveSpace = data.autoRemoveSpace
                 }
                 /*if (data.hideDefaultInput !== null) {
                     this.hideDefaultInput = data.hideDefaultInput
