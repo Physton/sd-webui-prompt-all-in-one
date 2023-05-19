@@ -392,21 +392,25 @@ export default {
                 'name': 'txt2img',
                 'type': 'prompt',
                 'key': 'txt2img',
+                'neg': false,
             },
             {
                 'name': 'txt2img',
                 'type': 'negative_prompt',
                 'key': 'txt2img_neg',
+                'neg': true,
             },
             {
                 'name': 'img2img',
                 'type': 'prompt',
                 'key': 'img2img',
+                'neg': false,
             },
             {
                 'name': 'img2img',
                 'type': 'negative_prompt',
                 'key': 'img2img_neg',
+                'neg': true,
             },
         ]
         /*for (let i = 0; i < temp.length; i++) {
@@ -419,9 +423,10 @@ export default {
             }
         }*/
         temp.forEach(item => {
+            if (item.neg !== this.neg) return
             this.appendList.push({
                 'type': "favorite",
-                'name': ["favorite", item.name, item.type],
+                'name': ["favorite", item.name/*, item.type*/],
                 "icon": "favorite",
                 "key": item.key,
                 'dataKey': 'favorite.' + item.key,
