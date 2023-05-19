@@ -23,6 +23,8 @@ function supports the majority of countries worldwide.
 > 如果你觉得这个扩展有帮助，请在Github上给我一颗星！
 > 你也可以请我喝杯咖啡: [donate](#donate)
 
+> QQ群：820700336
+
 - [Demo / *演示*](#demo--演示)
 - [Installation and Usage / *安装使用*](#installation-and-usage--安装使用)
 - [Extension update description (important) / *扩展更新说明（重要）*](#extension-update-description-important--扩展更新说明重要)
