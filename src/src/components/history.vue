@@ -149,8 +149,8 @@ export default {
 
             this.loading = true
             this.isShow = true
-            this.$refs.history.style.top = (e.clientY + 2) + 'px'
-            this.$refs.history.style.left = (e.clientX + 2) + 'px'
+            this.$refs.history.style.top = (e.pageY + 2) + 'px'
+            this.$refs.history.style.left = (e.pageX + 2) + 'px'
 
             this.getHistories(this.historyKey)
 
