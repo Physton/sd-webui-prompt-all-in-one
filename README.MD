@@ -91,6 +91,11 @@ function supports the majority of countries worldwide.
 
   ![](https://raw.githubusercontent.com/Physton/sd-webui-prompt-all-in-one-assets/main/images/tagcomplete_translate.gif)
 
+- Custom Theme / Extension styles / *自定义主题/扩展风格*
+
+  ![](https://raw.githubusercontent.com/Physton/sd-webui-prompt-all-in-one-assets/main/images/custom_theme.gif)
+
+
 ## Installation and Usage / *安装使用*
 
 - ### Method 1 (Recommended) / *方式一（推荐）*： 
