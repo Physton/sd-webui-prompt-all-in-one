@@ -39,6 +39,9 @@
                             </div>
                         </div>
                         <div class="item-header-right">
+                            <div class="header-btn-favorite hover-scale-140" @click="onDeleteClick(index)">
+                                <icon-svg name="remove"/>
+                            </div>
                             <div class="header-btn-favorite hover-scale-140" @click="onFavoriteClick(index)"
                                  v-show="item.is_favorite" v-tooltip="getLang('remove_from_favorite')">
                                 <icon-svg name="favorite-yes"/>
@@ -173,6 +176,16 @@ export default {
         onTabClick(key) {
             this.historyKey = key
             this.getHistories(this.historyKey)
+        },
+        onDeleteClick(index) {
+            let group = this.histories.find(item => item.key === this.historyKey)
+            if (!group) return
+            let history = group.list[index]
+            this.gradioAPI.deleteHistory(this.historyKey, history.id).then(res => {
+                if (res) {
+                    group.list.splice(index, 1)
+                }
+            })
         },
         onFavoriteClick(index) {
             let group = this.histories.find(item => item.key === this.historyKey)
