@@ -1043,6 +1043,7 @@
                         justify-content: flex-start;
                         align-items: center;
 
+                        .set-icon-svg(14px, 14px, #ff4a4a, icon-svg-remove);
                         .set-icon-svg(20px, 20px, none, icon-svg-favorite-yes);
                         .set-icon-svg(20px, 20px, none, icon-svg-favorite-no);
                         .set-icon-svg(20px, 20px, #fff, icon-svg-copy);
@@ -1060,6 +1061,8 @@
                     }
 
                     .item-header-left {
+                        flex: .94;
+
                         .item-header-index {
                             background: @common-blue;
                             padding: 2px 0;
@@ -1068,16 +1071,18 @@
                         }
 
                         .item-header-time {
-                            width: 110px;
+                            width: 100px;
                         }
 
                         .item-header-name {
+                            flex: 1;
+
                             .header-name-input {
                                 background: transparent;
                                 border: 1px solid #3c3c3c;
                                 height: 20px;
                                 padding: 0 4px;
-                                width: 210px;
+                                width: 100%;
                                 font-size: 12px;
                                 color: #00F9E5;
 
