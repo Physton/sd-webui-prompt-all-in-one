@@ -1,0 +1,9 @@
+{
+  "name": "Hide the dropdown menu of the keyword input box",
+  "i18n": {
+    "zh_CN": "隐藏关键词输入框下拉菜单",
+    "zh_HK": "隱藏關鍵詞輸入框下拉選單",
+    "zh_TW": "隱藏關鍵字輸入框下拉式選單"
+  },
+  "author": "Physton"
+}
