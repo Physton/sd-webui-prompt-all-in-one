@@ -71,6 +71,8 @@ export default {
                 if (translateText) {
                     resolve(this._translateRes(true, '', text, translateText, from_lang, to_lang, translateApi, translateApiConfig))
                     return
+                } else if (translateApi === 'csv') {
+                    return
                 }
 
                 if (translateApi === 'openai') {

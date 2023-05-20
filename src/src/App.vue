@@ -11,6 +11,7 @@
                             @click:show-favorite="onShowFavorite(item.id, $event)"
                             v-model:auto-translate-to-english="autoTranslateToEnglish"
                             v-model:auto-translate-to-local="autoTranslateToLocal"
+                            v-model:auto-translate-to-local-by-csv="autoTranslateToLocalByCSV"
                             v-model:auto-remove-space="autoRemoveSpace"
                             :hide-default-input="item.hideDefaultInput"
                             @update:hide-default-input="onUpdateHideDefaultInput(item.id, $event)"
@@ -170,6 +171,7 @@ export default {
             translateApiConfig: {},
             autoTranslateToEnglish: false,
             autoTranslateToLocal: false,
+            autoTranslateToLocalByCSV: false,
             autoRemoveSpace: true,
             // hideDefaultInput: false,
             enableTooltip: true,
@@ -213,6 +215,16 @@ export default {
                 if (!this.startWatchSave) return
                 console.log('onAutoTranslateToLocalChange', val)
                 this.gradioAPI.setData('autoTranslateToLocal', val).then(data => {
+                }).catch(err => {
+                })
+            },
+            immediate: false,
+        },
+        autoTranslateToLocalByCSV: {
+            handler: function (val, oldVal) {
+                if (!this.startWatchSave) return
+                console.log('onAutoTranslateToLocalByCSVChange', val)
+                this.gradioAPI.setData('autoTranslateToLocalByCSV', val).then(data => {
                 }).catch(err => {
                 })
             },
@@ -297,7 +309,7 @@ export default {
             return common.getLang(key, this.languageCode, this.languages)
         },
         init() {
-            let dataListsKeys = ['languageCode', 'autoTranslateToEnglish', 'autoTranslateToLocal', 'autoRemoveSpace', /*'hideDefaultInput', */'translateApi', 'enableTooltip', 'tagCompleteFile']
+            let dataListsKeys = ['languageCode', 'autoTranslateToEnglish', 'autoTranslateToLocal', 'autoTranslateToLocalByCSV', 'autoRemoveSpace', /*'hideDefaultInput', */'translateApi', 'enableTooltip', 'tagCompleteFile']
             this.prompts.forEach(item => {
                 dataListsKeys.push(item.hideDefaultInputKey)
                 dataListsKeys.push(item.hidePanelKey)
@@ -322,6 +334,9 @@ export default {
                 }
                 if (data.autoTranslateToLocal !== null) {
                     this.autoTranslateToLocal = data.autoTranslateToLocal
+                }
+                if (data.autoTranslateToLocalByCSV !== null) {
+                    this.autoTranslateToLocalByCSV = data.autoTranslateToLocalByCSV
                 }
                 if (data.autoRemoveSpace !== null) {
                     this.autoRemoveSpace = data.autoRemoveSpace

@@ -36,6 +36,14 @@
                                         </label>
                                     </div>
                                     <div class="gradio-checkbox hover-scale-120" v-show="!isEnglish">
+                                        <label v-tooltip="getLang('auto_translate_to_local_language_by_csv')">
+                                            <input type="checkbox" name="auto_translate_to_local_language_by_csv" value="1"
+                                                   :checked="autoTranslateToLocalByCSV"
+                                                   @change="$emit('update:autoTranslateToLocalByCSV', $event.target.checked)">
+                                            <icon-svg name="translate"/>
+                                        </label>
+                                    </div>
+                                    <div class="gradio-checkbox hover-scale-120" v-show="!isEnglish">
                                         <label v-tooltip="getLang('auto_translate_to_english')">
                                             <input type="checkbox" name="auto_translate_to_english" value="1"
                                                    :checked="autoTranslateToEnglish"
@@ -321,6 +329,10 @@ export default {
             type: Boolean,
             default: false,
         },
+        autoTranslateToLocalByCSV: {
+            type: Boolean,
+            default: false,
+        },
         autoRemoveSpace: {
             type: Boolean,
             default: false,
@@ -346,7 +358,7 @@ export default {
             default: '',
         },
     },
-    emits: ['update:languageCode', 'update:autoTranslateToEnglish', 'update:autoTranslateToLocal', 'update:autoRemoveSpace', 'update:hideDefaultInput', 'update:hidePanel', 'update:enableTooltip', 'update:translateApi', 'click:translateApi', 'click:selectTheme', 'click:selectLanguage', 'click:showHistory', 'click:showFavorite'],
+    emits: ['update:languageCode', 'update:autoTranslateToEnglish', 'update:autoTranslateToLocal', 'update:autoTranslateToLocalByCSV', 'update:autoRemoveSpace', 'update:hideDefaultInput', 'update:hidePanel', 'update:enableTooltip', 'update:translateApi', 'click:translateApi', 'click:selectTheme', 'click:selectLanguage', 'click:showHistory', 'click:showFavorite'],
     data() {
         return {
             prompt: '',
@@ -1082,16 +1094,16 @@ export default {
                             indexes.push(this._appendTag(tag))
                         }
                     })
-                    if (this.autoTranslateToEnglish || this.autoTranslateToLocal) {
+                    if (this.autoTranslateToEnglish || this.autoTranslateToLocal || this.autoTranslateToLocalByCSV) {
                         this.$nextTick(() => {
                             if (this.autoTranslateToEnglish) {
                                 // 如果开启了自动翻译到英语，那么就自动翻译
                                 this.translatesToEnglish(indexes).finally(() => {
                                     this.updateTags()
                                 })
-                            } else if (this.autoTranslateToLocal) {
+                            } else if (this.autoTranslateToLocal || this.autoTranslateToLocalByCSV) {
                                 // 如果开启了自动翻译到本地语言，那么就自动翻译
-                                this.translatesToLocal(indexes).finally(() => {
+                                this.translatesToLocal(indexes, !this.autoTranslateToLocal && this.autoTranslateToLocalByCSV).finally(() => {
                                     this.updateTags()
                                 })
                             }
@@ -1368,7 +1380,7 @@ export default {
                 this.updateTags()
             })
         },
-        translatesToLocal(tagIndexes) {
+        translatesToLocal(tagIndexes, byCSVOnly) {
             return new Promise((resolve, reject) => {
                 if (this.languageCode === 'en_US') {
                     resolve()
@@ -1391,7 +1403,7 @@ export default {
                     this.tags[tagIndex].localValue = res.translated_text
                 }, () => {
                     resolve()
-                })
+                }, byCSVOnly ? 'csv' : null)
             })
         },
         onTranslatesToEnglishClick() {
