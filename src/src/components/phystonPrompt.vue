@@ -1449,6 +1449,11 @@ export default {
             this.onTextareaChange(true)
         },
         onUnfoldClick() {
+            if (this.hidePanel) {
+                this.$nextTick(() => {
+                    this.onResize()
+                })
+            }
             this.$emit("update:hidePanel", !this.hidePanel)
         }
     },
