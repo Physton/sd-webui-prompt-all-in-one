@@ -1,9 +1,9 @@
 {
   "name": "Hide the dropdown menu of the keyword input box",
   "i18n": {
-    "zh_CN": "隐藏关键词输入框下拉菜单",
-    "zh_HK": "隱藏關鍵詞輸入框下拉選單",
-    "zh_TW": "隱藏關鍵字輸入框下拉式選單"
+    "zh_CN": "\u9690\u85cf\u5173\u952e\u8bcd\u8f93\u5165\u6846\u4e0b\u62c9\u83dc\u5355",
+    "zh_HK": "\u96b1\u85cf\u95dc\u9375\u8a5e\u8f38\u5165\u6846\u4e0b\u62c9\u9078\u55ae",
+    "zh_TW": "\u96b1\u85cf\u95dc\u9375\u5b57\u8f38\u5165\u6846\u4e0b\u62c9\u5f0f\u9078\u55ae"
   },
   "author": "Physton"
 }
