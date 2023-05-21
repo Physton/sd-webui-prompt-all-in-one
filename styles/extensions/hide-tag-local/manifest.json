@@ -1,0 +1,9 @@
+{
+  "name": "Hide local language under the tag",
+  "i18n": {
+    "zh_CN": "\u9690\u85cf\u6807\u7b7e\u4e0b\u65b9\u672c\u5730\u8bed\u8a00",
+    "zh_HK": "\u96b1\u85cf\u6a19\u7c64\u4e0b\u65b9\u672c\u5730\u8a9e\u8a00",
+    "zh_TW": "\u96b1\u85cf\u6a19\u7c64\u4e0b\u65b9\u672c\u5730\u8a9e\u8a00"
+  },
+  "author": "Physton"
+}
