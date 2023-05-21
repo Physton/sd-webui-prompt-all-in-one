@@ -180,7 +180,6 @@
  body.dark .physton-prompt .prompt-tags .prompt-tags-list .prompt-tag .prompt-tag-main .prompt-tag-edit .prompt-tag-value .character {
    text-overflow: ellipsis;
    overflow: hidden;
-   white-space: nowrap;
    line-height: 1rem;
    color: rgb(213 215 219);
  }
