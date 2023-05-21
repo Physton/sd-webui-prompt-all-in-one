@@ -1394,20 +1394,22 @@ export default {
                     return
                 }
                 let texts = []
-                let textsIndexes = []
+                let textsIds = []
                 for (const index of tagIndexes) {
                     texts.push(this.tags[index].value)
-                    textsIndexes.push(index)
+                    textsIds.push(this.tags[index].id)
                     this.loading[this.tags[index].id + '_local'] = true
                 }
                 this.translateMulti(texts, 'en_US', this.languageCode, (res, index) => {
-                    const tagIndex = textsIndexes[index]
-                    this.loading[this.tags[tagIndex].id + '_local'] = false
+                    const id = textsIds[index]
+                    this.loading[id + '_local'] = false
+                    let tag = this.tags.find(tag => tag.id === id)
+                    if (!tag) return
                     if (!res.success) {
                         this.$toastr.error(res.message)
                         return
                     }
-                    this.tags[tagIndex].localValue = res.translated_text
+                    tag.localValue = res.translated_text
                 }, () => {
                     resolve()
                 })
@@ -1434,21 +1436,23 @@ export default {
                     return
                 }
                 let texts = []
-                let textsIndexes = []
+                let textsIds = []
                 for (const index of tagIndexes) {
                     texts.push(this.tags[index].value)
-                    textsIndexes.push(index)
+                    textsIds.push(this.tags[index].id)
                     this.loading[this.tags[index].id + '_en'] = true
                 }
                 this.translateMulti(texts, this.languageCode, 'en_US', (res, index) => {
-                    const tagIndex = textsIndexes[index]
-                    this.loading[this.tags[tagIndex].id + '_en'] = false
+                    const id = textsIds[index]
+                    this.loading[id + '_en'] = false
+                    let tag = this.tags.find(tag => tag.id === id)
+                    if (!tag) return
                     if (!res.success) {
                         this.$toastr.error(res.message)
                         return
                     }
-                    this.tags[tagIndex].localValue = this.tags[tagIndex].value
-                    this.tags[tagIndex].value = res.translated_text
+                    tag.localValue = tag.value
+                    tag.value = res.translated_text
                 }, () => {
                     resolve()
                 })
