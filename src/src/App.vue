@@ -276,6 +276,13 @@ export default {
     },
     mounted() {
         common.loadCSS('main.min.css', 'physton-prompt-main', true)
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const theme = urlParams.get("__theme")
+        if (!document.body.classList.contains(theme)) {
+            document.body.classList.add(theme);
+        }
+
         this.gradioAPI.getConfig().then(res => {
             console.log('config:', res)
             this.languageCode = res.i18n.default
