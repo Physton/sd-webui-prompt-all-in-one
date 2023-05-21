@@ -696,8 +696,13 @@ export default {
             let classes = ['prompt-tag-value']
             if (tag.isLora) {
                 classes.push('lora-tag')
-                if (!tag.LoraExists) {
+                if (!tag.loraExists) {
                     classes.push('lora-not-exists')
+                }
+            } else if (tag.isLyco) {
+                classes.push('lyco-tag')
+                if (!tag.lycoExists) {
+                    classes.push('lyco-not-exists')
                 }
             } else if (tag.isEmbedding) {
                 classes.push('embedding-tag')
@@ -732,43 +737,46 @@ export default {
             })
         },
         _setTag(tag) {
+            tag.isLora = false
+            tag.loraExists = false
+            tag.isLyco = false
+            tag.lycoExists = false
+            tag.isEmbedding = false
             if (typeof tag['type'] === 'string' && tag.type === 'wrap') {
                 tag.weightNum = 1
                 tag.incWeight = 0
                 tag.decWeight = 0
-                tag.isLora = false
-                tag.LoraExists = false
             } else {
                 tag.weightNum = common.getTagWeightNum(tag.value)
                 tag.weightNum = tag.weightNum <= 0 ? 1 : tag.weightNum
                 tag.incWeight = common.getTagIncWeight(tag.value)
                 tag.decWeight = common.getTagDecWeight(tag.value)
-                const bracket = common.hasBrackets(tag.value)
+                // const bracket = common.hasBrackets(tag.value)
 
-                tag.isLora = false
-                tag.LoraExists = false
+                // 判断是否lora
                 const match = tag.value.match(common.loraRegex)
                 if (match) {
-                    const loraName = match[1]
                     tag.isLora = true
-                    if (typeof loras === 'object') {
-                        for (let key in loras) {
-                            if (loras[key] === loraName) {
-                                tag.LoraExists = true
-                                break
-                            }
-                        }
+                    const loraName = common.loraExists(match[1])
+                    if (loraName !== false) tag.loraExists = true
+                }
+
+                if (!tag.isLora) {
+                    // 判断是否lyco
+                    const match = tag.value.match(common.lycoRegex)
+                    if (match) {
+                        tag.isLyco = true
+                        const lycoName = common.lycoExists(match[1])
+                        if (lycoName !== false) tag.lycoExists = true
                     }
                 }
-            }
-            if (!tag.isLora && typeof embeddings === 'object') {
-                tag.isEmbedding = false
-                for (let key in embeddings) {
-                    if (typeof embeddings[key] !== 'object') continue
-                    if (embeddings[key][0].toLowerCase() === tag.value.toLowerCase()) {
+
+                if (!tag.isLora && !tag.isLyco) {
+                    // 判断是否embedding
+                    const embeddingName = common.embeddingExists(tag.value)
+                    if (embeddingName !== false) {
                         tag.isEmbedding = true
-                        tag.value = embeddings[key][0]
-                        break
+                        tag.value = embeddingName
                     }
                 }
             }
