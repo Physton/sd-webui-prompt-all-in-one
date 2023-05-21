@@ -1121,12 +1121,12 @@ export default {
                         this.$nextTick(() => {
                             if (this.autoTranslateToEnglish) {
                                 // 如果开启了自动翻译到英语，那么就自动翻译
-                                this.translatesToEnglish(indexes).finally(() => {
+                                this.translatesToEnglish(indexes, false).finally(() => {
                                     this.updateTags()
                                 })
                             } else if (this.autoTranslateToLocal) {
                                 // 如果开启了自动翻译到本地语言，那么就自动翻译
-                                this.translatesToLocal(indexes).finally(() => {
+                                this.translatesToLocal(indexes, false).finally(() => {
                                     this.updateTags()
                                 })
                             }
@@ -1341,7 +1341,7 @@ export default {
                     return
                 }
                 this.loading[this.tags[index].id + '_local'] = true
-                this.translate(this.tags[index].value, 'en_US', this.languageCode).then(res => {
+                this.translate(this.tags[index].value, 'en_US', this.languageCode, null, null, true).then(res => {
                     this.loading[this.tags[index].id + '_local'] = false
                     if (!res.success) {
                         this.$toastr.error(res.message)
@@ -1369,15 +1369,17 @@ export default {
                     return
                 }
                 this.loading[this.tags[index].id + '_en'] = true
-                this.translate(this.tags[index].value, this.languageCode, 'en_US').then(res => {
+                this.translate(this.tags[index].value, this.languageCode, 'en_US', null, null, true).then(res => {
                     this.loading[this.tags[index].id + '_en'] = false
                     if (!res.success) {
                         this.$toastr.error(res.message)
                         reject(res.message)
                         return
                     }
-                    this.tags[index].localValue = this.tags[index].value
-                    this.tags[index].value = res.translated_text
+                    if (res.translated_text !== '') {
+                        this.tags[index].localValue = this.tags[index].value
+                        this.tags[index].value = res.translated_text
+                    }
                     resolve(res.translated_text)
                 }).catch(err => {
                     console.log(err)
@@ -1403,12 +1405,12 @@ export default {
                 if (this.tags[index].type && this.tags[index].type !== 'text') continue
                 tagIndexes.push(index)
             }
-            this.translatesToLocal(tagIndexes).finally(() => {
+            this.translatesToLocal(tagIndexes, true).finally(() => {
                 this.loading['all_local'] = false
                 this.updateTags()
             })
         },
-        translatesToLocal(tagIndexes) {
+        translatesToLocal(tagIndexes, manual = true) {
             return new Promise((resolve, reject) => {
                 if (this.languageCode === 'en_US') {
                     resolve()
@@ -1433,7 +1435,7 @@ export default {
                     tag.localValue = res.translated_text
                 }, () => {
                     resolve()
-                })
+                }, null, null, manual)
             })
         },
         onTranslatesToEnglishClick() {
@@ -1450,12 +1452,12 @@ export default {
                 if (this.tags[index].type && this.tags[index].type !== 'text') continue
                 tagIndexes.push(index)
             }
-            this.translatesToEnglish(tagIndexes).finally(() => {
+            this.translatesToEnglish(tagIndexes, true).finally(() => {
                 this.loading['all_en'] = false
                 this.updateTags()
             })
         },
-        translatesToEnglish(tagIndexes) {
+        translatesToEnglish(tagIndexes, manual = true) {
             return new Promise((resolve, reject) => {
                 if (this.languageCode === 'en_US') {
                     resolve()
@@ -1477,11 +1479,13 @@ export default {
                         this.$toastr.error(res.message)
                         return
                     }
-                    tag.localValue = tag.value
-                    tag.value = res.translated_text
+                    if (res.translated_text !== '') {
+                        tag.localValue = tag.value
+                        tag.value = res.translated_text
+                    }
                 }, () => {
                     resolve()
-                })
+                }, null, null, manual)
             })
         },
         useHistory(history) {

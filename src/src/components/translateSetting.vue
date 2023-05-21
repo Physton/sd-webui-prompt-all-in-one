@@ -32,7 +32,7 @@
                 <div class="setting-line" v-for="config in configs">
                     <div class="line-title">{{ config.title }}</div>
                     <div class="line-content">
-                        <input v-if="config.type == 'input'" v-model="config.value">
+                        <input type="text" v-if="config.type == 'input'" v-model="config.value">
                         <select v-if="config.type == 'select'" v-model="config.value">
                             <option v-for="option in config.options" :value="option">{{ option }}</option>
                         </select>
@@ -73,6 +73,10 @@
                                 <icon-svg v-else name="refresh" />
                             </div>
                         </div>
+                        <label class="onlyCsvOnAuto" :style="{display: tagCompleteFileKey ? 'flex': 'none'}">
+                            <input class="hover-scale-120" type="checkbox" value="1" v-model="onlyCsvOnAutoValue">
+                            <span>{{ getLang('only_csv_on_auto') }}</span>
+                        </label>
                     </div>
                 </div>
                  <div class="setting-line" v-show="tagCompleteFileKey">
@@ -121,6 +125,7 @@ Github: Physton/sd-webui-prompt-all-in-one`,
             tagCompleteFilesLoading: false,
             tagCompleteFileKey: '',
             tagCompleteResults: [],
+            onlyCsvOnAutoValue: false,
         }
     },
     computed: {
@@ -142,7 +147,7 @@ Github: Physton/sd-webui-prompt-all-in-one`,
         this.translatedText = ''
         this.loading = false
     },
-    emits: ['update:translateApi', 'forceUpdate:translateApi', 'update:tagCompleteFile'],
+    emits: ['update:translateApi', 'forceUpdate:translateApi', 'update:tagCompleteFile', 'update:onlyCsvOnAuto'],
     watch: {
         apiKey: {
             handler: function (val, oldVal) {
@@ -177,6 +182,7 @@ Github: Physton/sd-webui-prompt-all-in-one`,
             this.translatedText = ''
             this.loading = false
             this.tagCompleteFileKey = this.tagCompleteFile
+            this.onlyCsvOnAutoValue = this.onlyCsvOnAuto
             this.refreshCSVs()
         },
         refreshCSVs() {
@@ -231,6 +237,7 @@ Github: Physton/sd-webui-prompt-all-in-one`,
             }
             this.$emit('update:translateApi', this.apiKey)
             this.$emit('update:tagCompleteFile', this.tagCompleteFileKey)
+            this.$emit('update:onlyCsvOnAuto', this.onlyCsvOnAutoValue)
             this.gradioAPI.setData('translate_api.' + this.apiKey, configs).then(res => {
                 if (this.apiKey === this.translateApi) this.$emit('forceUpdate:translateApi')
             })

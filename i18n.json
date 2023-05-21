@@ -72,7 +72,8 @@
                 "theme_extension": "主题：扩展插件样式",
                 "is_remove_space": "是否去除每个关键词逗号后的空格。<br/>勾选后将自动去除空格（不便阅读）。<br/>取消勾选则保留1个空格（影响TOKEN计数）。",
                 "theme": "主题",
-                "enhance": "增强"
+                "enhance": "增强",
+                "only_csv_on_auto": "自动翻译只使用CSV翻译（不使用网络翻译），手动点击翻译按钮才使用CSV加网络翻译。"
             }
         },
         {
@@ -146,7 +147,8 @@
                 "theme_extension": "主題：擴展插件樣式",
                 "is_remove_space": "是否去除每個關鍵詞逗號後的空格。<br/>勾選後將自動去除空格（不便閱讀）。<br/>取消勾選則保留1個空格（影響TOKEN計數）。",
                 "theme": "主題",
-                "enhance": "增強"
+                "enhance": "增強",
+                "only_csv_on_auto": "自動翻譯僅使用CSV翻譯（不使用網路翻譯），需手動點擊翻譯按鈕才會使用CSV加網路翻譯。"
             }
         },
         {
@@ -220,7 +222,8 @@
                 "theme_extension": "主題：擴充套件樣式",
                 "is_remove_space": "是否移除每個關鍵字逗號後的空格。<br/>勾選後會自動移除空格（不易閱讀）。<br/>取消勾選則保留 1 個空格（會影響 TOKEN 計數）。",
                 "theme": "主題",
-                "enhance": "增強"
+                "enhance": "增強",
+                "only_csv_on_auto": "自動翻譯僅使用CSV翻譯（不使用網路翻譯），需手動點擊翻譯按鈕才會使用CSV加網路翻譯。"
             }
         },
         {
@@ -294,7 +297,8 @@
                 "theme_extension": "Theme: Extension Plugin Style",
                 "is_remove_space": "Whether to remove the spaces after each comma in the keyword.<br/>Checking will automatically remove the spaces (difficult to read).<br/>Unchecking will keep one space (affecting TOKEN count).",
                 "theme": "Theme",
-                "enhance": "Enhance"
+                "enhance": "Enhance",
+                "only_csv_on_auto": "Automatic translation uses only CSV translation (not network translation). To use both CSV and network translation, click the translate button manually."
             }
         },
         {
@@ -383,7 +387,8 @@
                 "theme_extension": "السمة: نمط الوظيفة التكميلية للامتداد",
                 "is_remove_space": "هل ترغب في إزالة المسافات بعد كل فاصلة في الكلمات الرئيسية؟<br/>إذا حددت هذا الخيار، سيتم إزالة المسافات تلقائياً (مما يجعل النص أقل وضوحاً).<br/>إذا لم تحدد هذا الخيار سيتم الاحتفاظ بمسافة واحدة (مما يؤثر على عداد رموز الرموز).",
                 "theme": "الموضوع",
-                "enhance": "تحسين"
+                "enhance": "تحسين",
+                "only_csv_on_auto": "الترجمة الآلية تستخدم فقط ترجمة CSV (لا تستخدم الترجمة عبر الشبكة) ، والنقر على زر الترجمة يدويًا لاستخدام الترجمة CSV والترجمة عبر الشبكة."
             }
         },
         {
@@ -557,7 +562,8 @@
                 "theme_extension": "Thème : Style de plugin d'extension",
                 "is_remove_space": "Indique si les espaces après chaque virgule dans le mot-clé doivent être supprimés.<br/>La sélection automatique supprime les espaces (difficiles à lire).<br/>La désélection conserve un espace (affectant la comptabilisation des TOKEN).",
                 "theme": "Thème",
-                "enhance": "Améliorer"
+                "enhance": "Améliorer",
+                "only_csv_on_auto": "La traduction automatique utilise uniquement la traduction CSV (pas de traduction réseau). Pour utiliser à la fois la traduction CSV et la traduction réseau, cliquez sur le bouton de traduction manuellement."
             }
         },
         {
@@ -646,7 +652,8 @@
                 "theme_extension": "Thema: Erweiterungs-Plugin-Stil",
                 "is_remove_space": "Gibt an, ob die Leerzeichen nach jedem Komma im Schlüsselwort entfernt werden sollen.<br/>Durch das Aktivieren wird die Leerzeichen automatisch entfernt (schwer zu lesen).<br/>Wenn diese Option deaktiviert ist, wird ein Leerzeichen beibehalten (was sich auf die TOKEN-Zählung auswirkt).",
                 "theme": "Thema",
-                "enhance": "Verbessern"
+                "enhance": "Verbessern",
+                "only_csv_on_auto": "Die automatische Übersetzung verwendet nur die CSV-Übersetzung (keine Netzwerkübersetzung). Um sowohl die CSV- als auch die Netzwerkübersetzung zu verwenden, klicken Sie manuell auf die Übersetzungsschaltfläche."
             }
         },
         {
@@ -785,7 +792,8 @@
                 "theme_extension": "Tema: Stile del plug-in di estensione",
                 "is_remove_space": "Indica se gli spazi dopo ogni virgola nelle parole chiave devono essere rimossi.<br/>La selezione automatica rimuove gli spazi (difficili da leggere).<br/>La deselezione mantiene uno spazio (influenzando il conteggio dei TOKEN).",
                 "theme": "Tema",
-                "enhance": "Migliorare"
+                "enhance": "Migliorare",
+                "only_csv_on_auto": "La traduzione automatica utilizza solo la traduzione CSV (non la traduzione di rete). Per utilizzare sia la traduzione CSV che la traduzione di rete, fare clic manualmente sul pulsante di traduzione."
             }
         },
         {
@@ -859,7 +867,8 @@
                 "theme_extension": "テーマ：拡張プラグインスタイル",
                 "is_remove_space": "キーワードのコンマ後のスペースを削除するかどうか。<br/>チェックすると、自動的にスペースが削除されます（読みづらい）。<br/>チェックを外すと、空白が1つ残ります（TOKEN数に影響します）。",
                 "theme": "テーマ",
-                "enhance": "強化"
+                "enhance": "強化",
+                "only_csv_on_auto": "自動翻訳はCSV翻訳のみを使用します（ネットワーク翻訳ではありません）。CSVおよびネットワーク翻訳を両方使用するには、手動で翻訳ボタンをクリックしてください。"
             }
         },
         {
@@ -958,7 +967,8 @@
                 "theme_extension": "테마: 확장 플러그인 스타일",
                 "is_remove_space": "키워드의 쉼표 뒤 공백을 제거할지 여부입니다.<br/>확인하면 자동으로 공백이 제거됩니다(읽기 어려움).<br/>선택을 취소하면 공백 1개가 유지됩니다.(TOKEN 계산에 영향을 미칩니다).",
                 "theme": "테마",
-                "enhance": "강화"
+                "enhance": "강화",
+                "only_csv_on_auto": "자동 번역은 CSV 번역 만 사용합니다 (네트워크 번역은 사용하지 않음). CSV 및 네트워크 번역을 모두 사용하려면 수동으로 번역 버튼을 클릭하십시오."
             }
         },
         {
@@ -1147,7 +1157,8 @@
                 "theme_extension": "Tema: Estilo de plugin de extensão",
                 "is_remove_space": "Indique se os espaços após cada vírgula na palavra-chave devem ser removidos.<br/>A seleção automática remove os espaços (difícil de ler).<br/>A desseleção mantém um espaço (afetando a contagem de TOKEN).",
                 "theme": "Tema",
-                "enhance": "Melhorar"
+                "enhance": "Melhorar",
+                "only_csv_on_auto": "A tradução automática utiliza apenas a tradução CSV (não a tradução de rede). Para usar tanto a tradução CSV como a tradução de rede, clique manualmente no botão de tradução."
             }
         },
         {
@@ -1236,7 +1247,8 @@
                 "theme_extension": "Тема: Стиль расширения плагина",
                 "is_remove_space": "Указывает, нужно ли удалять пробелы после каждой запятой в ключевом слове.<br/>При выборе будет автоматически удалены пробелы (трудно читать).<br/>Если этот параметр не выбран, то будет сохранен один пробел (влияет на подсчет TOKEN).",
                 "theme": "Тема",
-                "enhance": "Улучшить"
+                "enhance": "Улучшить",
+                "only_csv_on_auto": "Автоматический перевод использует только CSV-перевод (не сетевой перевод). Чтобы использовать как CSV-, так и сетевой перевод, вручную нажмите кнопку перевода."
             }
         },
         {
@@ -1340,7 +1352,8 @@
                 "theme_extension": "Tema: Estilo de complemento de extensión",
                 "is_remove_space": "Indica si deben eliminarse los espacios después de cada coma en la palabra clave.<br/>La selección automática elimina los espacios (difícil de leer).<br/>La deselección conserva un espacio (afectando el recuento de TOKEN).",
                 "theme": "Tema",
-                "enhance": "Mejorar"
+                "enhance": "Mejorar",
+                "only_csv_on_auto": "La traducción automática utiliza solo la traducción CSV (no la traducción de red). Para utilizar tanto la traducción CSV como la traducción de red, haga clic en el botón de traducción manualmente."
             }
         },
         {
