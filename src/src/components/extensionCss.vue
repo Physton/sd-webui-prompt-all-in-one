@@ -5,13 +5,27 @@
                 <icon-svg name="close"/>
             </div>
             <div class="extension-list" @click.stop>
-                <div v-for="(item, index) in list" :key="item.dir" class="extension-item" ref="items">
-                    <input class="extension-checkbox" type="checkbox" name="extension-item" :checked="item.selected"
-                           @change="onChangeSelect(item.id)">
-                    <div class="extension-dir">[{{ item.dir }}]</div>
-                    <div class="extension-name">{{ getName(item) }}</div>
-                    <div class="extension-author" v-if="item.manifest.author">By: {{ item.manifest.author }}</div>
-                </div>
+                <table class="extension-table">
+                    <tr v-for="(item, index) in list" :key="item.dir" class="extension-item" ref="items">
+                        <td>
+                            <input class="extension-checkbox" type="checkbox" name="extension-item"
+                                   :checked="item.selected"
+                                   @change="onChangeSelect(item.id)">
+                        </td>
+                        <td class="extension-name">
+                            {{ getName(item) }}
+                        </td>
+                        <td class="extension-type">
+                            {{ getLang(item.manifest.type) }}
+                        </td>
+                        <td class="extension-dir">
+                            {{ item.dir }}
+                        </td>
+                        <td class="extension-author">
+                            <template v-if="item.manifest.author">By: {{ item.manifest.author }}</template>
+                        </td>
+                    </tr>
+                </table>
             </div>
         </div>
     </div>
@@ -51,6 +65,14 @@ export default {
                     res[i].id = 'physton-prompt-extension-' + res[i].dir
                     list.push(res[i])
                 }
+
+                list.forEach(item => {
+                    item.sort = item.manifest.type + '.' + item.dir
+                })
+                list.sort((a, b) => {
+                    return a.sort > b.sort ? 1 : -1
+                })
+
                 this.list = list
                 if (init) {
                     this.list.forEach(item => {

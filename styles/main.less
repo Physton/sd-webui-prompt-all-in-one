@@ -1389,14 +1389,24 @@
             background-color: #1e1e1ee6;
             transition: height .1s ease-in-out, width .1s ease-in-out;
 
-            .extension-item {
-                font-size: 14px;
-                color: #fff;
-                padding: 10px 20px;
-                display: flex;
-                justify-content: flex-start;
-                align-items: center;
+            .extension-table {
+                border: 0;
 
+                tr, td {
+                    border: 0 !important;
+                    margin: 0 !important;
+                    font-size: 14px;
+                    color: #fff;
+                    padding: 5px !important;
+                    background: transparent !important;
+
+                    &:hover {
+                        background: transparent !important;
+                    }
+                }
+            }
+
+            .extension-item {
                 .extension-checkbox {
                     --ring-color: transparent;
                     position: relative;
@@ -1415,22 +1425,23 @@
                     }
                 }
 
-                .extension-dir {
-                    margin-left: 10px;
-                    font-size: 14px;
+                .extension-name, .extension-type, .extension-dir, .extension-author {
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
                 }
 
                 .extension-name {
-                    margin-left: 5px;
-                    white-space: nowrap;
-                    font-size: 14px;
+                }
+
+                .extension-type {
+                }
+
+                .extension-dir {
                 }
 
                 .extension-author {
-                    margin-left: 30px;
-                    flex: 1;
                     text-align: right;
-                    font-size: 14px;
                 }
             }
         }

@@ -18,13 +18,15 @@
     "zh_HK": "移動關鍵字輸入框到左側",
     "zh_TW": "移動關鍵字輸入框到左側"
   },
-  "author": "Physton"
+  "author": "Physton",
+  "type": "enhance"
 }
 ```
 
 - `name` The English name of the extension style, which must be included.
 - `i18n` The multilingual name(s) of the extension style, which can be absent or multiple. The language codes are available in the `i18n.json` file in the root directory of the extension.
 - `author` The author of the extension style, which can be absent.
+- `type` The type of the extension style. The value can be `enhance` or `theme`.
 
 ---
 
@@ -47,9 +49,11 @@
     "zh_HK": "移動關鍵字輸入框到左側",
     "zh_TW": "移動關鍵字輸入框到左側"
   },
-  "author": "Physton"
+  "author": "Physton",
+  "type": "enhance"
 }
 ```
 - `name` 扩展样式的英文名称，必须包含。
 - `i18n` 扩展样式的多语言名称，可以没有，可以为多个。国家语言代码见扩展根目录的 `i18n.json` 文件。
 - `author` 扩展样式的作者，可以没有。
+- `type` 扩展样式的类型。值可以为 `enhance`：增强 或 `theme`：主题。
