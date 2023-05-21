@@ -1,0 +1,10 @@
+{
+  "name": "The interface displays line breaks as a new line",
+  "i18n": {
+    "zh_CN": "\u754C\u9762\u4E2D\u201C\u6362\u884C\u7B26\u53F7\u201D\u6362\u884C\u663E\u793A",
+    "zh_HK": "\u754C\u9762\u4E2D\u300C\u63DB\u884C\u7B26\u865F\u300D\u63DB\u884C\u986F\u793A",
+    "zh_TW": "\u4ECB\u9762\u4E2D\u300C\u63DB\u884C\u7B26\u865F\u300D\u63DB\u884C\u986F\u793A"
+  },
+  "author": "Physton",
+  "type": "enhance"
+}
