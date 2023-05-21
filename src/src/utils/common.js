@@ -472,5 +472,19 @@ export default {
             }
         }
         return false
-    }
+    },
+
+    /**
+     * 交换元素
+     * @param ele1 {Element}
+     * @param ele2 {Element}
+     */
+    swapElement(ele1, ele2) {
+        let parent1 = ele1.parentNode
+        let parent2 = ele2.parentNode
+        let next1 = ele1.nextSibling
+        let next2 = ele2.nextSibling
+        parent1.insertBefore(ele2, next1)
+        parent2.insertBefore(ele1, next2)
+    },
 }

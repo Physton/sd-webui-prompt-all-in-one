@@ -178,12 +178,13 @@
             <div :class="['prompt-tags', dropTag ? 'droping': '']" ref="promptTags">
                 <div class="prompt-tags-list" ref="promptTagsList">
                     <template v-for="(tag, index) in tags" :key="tag.id" :data-id="tag.id">
-                        <div :class="['prompt-tag', tag.disabled ? 'disabled': '']">
+                        <div :class="['prompt-tag', tag.disabled ? 'disabled': '', tag.type === 'wrap' ? 'wrap-tag' : '']"
+                             :ref="'promptTag-' + tag.id">
                             <div class="prompt-tag-main">
                                 <div class="prompt-tag-edit">
                                     <template v-if="tag.type === 'wrap'">
                                         <div class="prompt-tag-value"
-                                             :ref="'promptTag-' + tag.id"
+                                             :ref="'promptTagValue-' + tag.id"
                                              v-tooltip="getLang('line_break_character') + '<br/>' + getLang('drop_to_order')"
                                              style="width: 100%">
                                             <icon-svg name="wrap"/>
@@ -196,7 +197,7 @@
                                     <template v-else>
                                         <div v-show="!editing[tag.id]"
                                              :class="getTagClass(tag)"
-                                             :ref="'promptTag-' + tag.id"
+                                             :ref="'promptTagValue-' + tag.id"
                                              v-tooltip="getLang('click_to_edit') + '<br/>' + getLang('drop_to_order')"
                                              @click="onTagClick(index)" v-html="renderTag(index)">
                                         </div>
@@ -268,7 +269,7 @@
                                 <div class="local-language">{{ tag.localValue }}</div>
                             </div>
                         </div>
-                        <!--<div class="prompt-wrap" v-show="tag.type === 'wrap'"></div>-->
+                        <div :class="['prompt-wrap', tag.type === 'wrap' ? 'wrap-tag' : '']" ref="promptTagWrap"></div>
                     </template>
                 </div>
                 <!--<div class="prompt-append">
@@ -795,7 +796,7 @@ export default {
             })
         },
         _setTagHeight(tag) {
-            let $tag = this.$refs['promptTag-' + tag.id][0]
+            let $tag = this.$refs['promptTagValue-' + tag.id][0]
             let height = $tag.offsetHeight
             $tag.parentNode.style.height = height + 'px'
             if (this.$refs['promptTagEdit-' + tag.id]) {
@@ -874,18 +875,33 @@ export default {
             Sortable.create(this.$refs.promptTagsList, {
                 animation: 150,
                 handle: '.prompt-tag-value',
-                onEnd: ({oldIndex, newIndex}) => {
+                draggable: ".prompt-tag",
+                onEnd: (env) => {
+                    let oldIndex = env.oldDraggableIndex
+                    let newIndex = env.newDraggableIndex
+                    if (oldIndex === newIndex) {
+                        if (env.oldIndex !== env.newIndex) {
+                            // 强制换回去
+                            let oldElement = this.$refs.promptTagsList.children[env.oldIndex]
+                            let newElement = this.$refs.promptTagsList.children[env.newIndex]
+                            common.swapElement(oldElement, newElement)
+                            console.log(env, env.oldIndex, env.newIndex)
+                            return
+                        }
+                    }
+                    console.log(oldIndex, newIndex)
+                    console.log(env.oldIndex, env.newIndex)
+
                     const tags = [...this.tags]
                     tags.splice(newIndex, 0, tags.splice(oldIndex, 1)[0])
-                    console.log(tags);
+
                     this.tags = tags
                     this.updateTags()
                     this.$forceUpdate()
                 },
                 onChoose: (env) => {
-                    console.log(env);
                     this.editing = {}
-                    this.dropTag = this.tags[env.oldIndex]
+                    this.dropTag = this.tags[env.oldDraggableIndex]
                 },
                 onUnchoose: (env) => {
                     this.dropTag = null
