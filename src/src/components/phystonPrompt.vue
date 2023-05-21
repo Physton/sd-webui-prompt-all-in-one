@@ -204,7 +204,8 @@
                                                   class="scroll-hide svelte-4xt1ch input-tag-edit"
                                                   :ref="'promptTagEdit-' + tag.id"
                                                   :placeholder="getLang('enter_to_save')"
-                                                  :value="tag.value" @blur="onTagInputBlur(index)"
+                                                  :value="tag.value"
+                                                  @blur="onTagInputBlur(index)"
                                                   @keydown="onTagInputKeyDown(index, $event)"
                                                   @change="onTagInputChange(index, $event)"></textarea>
                                         <!--<input v-show="editing[tag.id]" type="text"
@@ -583,6 +584,15 @@ export default {
             } else {
                 this.updateTags()
             }*/
+        },
+        _setTextareaFocus() {
+            if (typeof get_uiCurrentTabContent !== 'function') return
+            if (typeof activePromptTextarea !== 'object') return
+            const currentTab = get_uiCurrentTabContent()
+            if (!currentTab) return
+            let tabName = currentTab.id.replace('tab_', '')
+            if (!tabName) return
+            activePromptTextarea[tabName] = this.textarea
         },
         copy(text) {
             this.$copyText(text).then(() => {
@@ -987,6 +997,7 @@ export default {
                     })
                 })*/
             }
+            this._setTextareaFocus()
         },
         onAppendTagBlur(e) {
             setTimeout(() => {
@@ -1455,6 +1466,7 @@ export default {
         },
         onPromptMainClick() {
             this.onTextareaChange(true)
+            this._setTextareaFocus()
         },
         onUnfoldClick() {
             if (this.hidePanel) {
