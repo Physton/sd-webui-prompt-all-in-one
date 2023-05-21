@@ -1236,7 +1236,7 @@
                     padding: 4px;
                 }
 
-                input, textarea, select {
+                input[type='text'], textarea, select {
                     background: rgba(30, 30, 30, .9);
                     border: 1px solid #3c3c3c;
                     padding: 4px;
@@ -1248,6 +1248,24 @@
                     &:focus {
                         outline: none;
                         border-color: @common-blue;
+                    }
+                }
+
+                .onlyCsvOnAuto {
+                    cursor: pointer;
+                    margin: 10px 0;
+                    display: flex;
+                    justify-content: flex-start;
+                    align-items: center;
+
+                    input[type='checkbox'] {
+                        margin-right: 5px;
+                        width: 20px;
+                        height: 20px;
+                    }
+
+                    span {
+                        color: #ff9f37;
                     }
                 }
 

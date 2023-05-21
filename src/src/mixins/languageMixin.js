@@ -25,6 +25,10 @@ export default {
         tagCompleteFile: {
             type: String,
             default: ''
+        },
+        onlyCsvOnAuto: {
+            type: Boolean,
+            default: false
         }
     },
     data() {
@@ -59,7 +63,7 @@ export default {
                 api_config: apiConfig
             }
         },
-        translate(text, from_lang, to_lang, translateApi = null, translateApiConfig = null) {
+        translate(text, from_lang, to_lang, translateApi = null, translateApiConfig = null, manual = true) {
             return new Promise(async (resolve, reject) => {
                 translateApi = translateApi || this.translateApi
                 translateApiConfig = translateApiConfig || this.translateApiConfig || {}
@@ -71,6 +75,11 @@ export default {
                 let translateText = await this.translateByCSV(text, from_lang, to_lang)
                 if (translateText) {
                     resolve(this._translateRes(true, '', text, translateText, from_lang, to_lang, translateApi, translateApiConfig))
+                    return
+                }
+                if (!manual && this.tagCompleteFile && this.onlyCsvOnAuto) {
+                    // 如果是自动翻译、启用了tagcomplete翻译增强、启用了自动翻译时只使用csv，就不再用网络翻译
+                    resolve(this._translateRes(true, '', text, '', from_lang, to_lang, translateApi, translateApiConfig))
                     return
                 }
 
@@ -106,7 +115,7 @@ export default {
                 })
             })
         },
-        async translateMulti(texts, from_lang, to_lang, callback, complete = null, translateApi = null, translateApiConfig = null) {
+        async translateMulti(texts, from_lang, to_lang, callback, complete = null, translateApi = null, translateApiConfig = null, manual = true) {
             this.cancelMultiTranslate = false
             translateApi = translateApi || this.translateApi
             translateApiConfig = translateApiConfig || this.translateApiConfig || {}
@@ -122,6 +131,12 @@ export default {
                             // 如果从CSV中翻译成功了
                             callback(this._translateRes(true, '', text, translateText, from_lang, to_lang, translateApi, translateApiConfig), index)
                         } else {
+                            if (!manual && this.tagCompleteFile && this.onlyCsvOnAuto) {
+                                // 如果是自动翻译、启用了tagcomplete翻译增强、启用了自动翻译时只使用csv，就不再用网络翻译
+                                callback(this._translateRes(true, '', text, '', from_lang, to_lang, translateApi, translateApiConfig), index)
+                                return
+                            }
+
                             // 如果从CSV中没有翻译成功，就放到需要翻译的数组中
                             needTranslateTexts.push({
                                 "text": text,
@@ -184,7 +199,7 @@ export default {
                         completeFunc()
                         continue
                     }
-                    this.translate(text, from_lang, to_lang, translateApi, translateApiConfig).then(res => {
+                    this.translate(text, from_lang, to_lang, translateApi, translateApiConfig, manual).then(res => {
                         callback(res, index)
                         completeFunc()
                     }).catch(error => {
@@ -202,7 +217,7 @@ export default {
                         continue
                     }
                     try {
-                        let res = (await this.translate(text, from_lang, to_lang, translateApi, translateApiConfig))
+                        let res = (await this.translate(text, from_lang, to_lang, translateApi, translateApiConfig, manual))
                         callback(res, index)
                     } catch (error) {
                         callback(this._translateRes(false, error.message, text, '', from_lang, to_lang, translateApi, translateApiConfig), index)

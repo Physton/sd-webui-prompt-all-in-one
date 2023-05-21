@@ -21,6 +21,7 @@
                             :translate-api-config="translateApiConfig"
                             @click:translate-api="onTranslateApiClick"
                             v-model:tag-complete-file="tagCompleteFile"
+                            v-model:only-csv-on-auto="onlyCsvOnAuto"
                             @click:select-language="onSelectLanguageClick"
                             @click:select-theme="onSelectThemeClick"></physton-prompt>
         </template>
@@ -28,18 +29,24 @@
                            :translate-apis="translateApis" :languages="languages"
                            @forceUpdate:translateApi="updateTranslateApiConfig"
                            v-model:tag-complete-file="tagCompleteFile"
+                           v-model:only-csv-on-auto="onlyCsvOnAuto"
                            v-model:translate-api="translateApi"></translate-setting>
         <select-language ref="selectLanguage" v-model:language-code="languageCode"
                          :translate-apis="translateApis"
                          :languages="languages"
                          v-model:translate-api="translateApi"
-                         v-model:tag-complete-file="tagCompleteFile"></select-language>
+                         v-model:tag-complete-file="tagCompleteFile"
+                         v-model:only-csv-on-auto="onlyCsvOnAuto"></select-language>
         <history ref="history" v-model:language-code="languageCode"
                  :translate-apis="translateApis" :languages="languages"
-                 v-model:tag-complete-file="tagCompleteFile" @use="onUseHistory"/>
+                 v-model:tag-complete-file="tagCompleteFile"
+                 v-model:only-csv-on-auto="onlyCsvOnAuto"
+                 @use="onUseHistory"/>
         <favorite ref="favorite" v-model:language-code="languageCode"
                   :translate-apis="translateApis" :languages="languages"
-                  v-model:tag-complete-file="tagCompleteFile" @use="onUseFavorite"></favorite>
+                  v-model:tag-complete-file="tagCompleteFile"
+                  v-model:only-csv-on-auto="onlyCsvOnAuto"
+                  @use="onUseFavorite"></favorite>
         <extension-css ref="extensionCss" v-model:language-code="languageCode"
                        :translate-apis="translateApis" :languages="languages"/>
 
@@ -174,6 +181,7 @@ export default {
             // hideDefaultInput: false,
             enableTooltip: true,
             tagCompleteFile: '',
+            onlyCsvOnAuto: false,
 
             startWatchSave: false,
 
@@ -273,6 +281,13 @@ export default {
             },
             immediate: false,
         },
+        onlyCsvOnAuto() {
+            if (!this.startWatchSave) return
+            console.log('onOnlyCsvOnAutoChange', this.onlyCsvOnAuto)
+            this.gradioAPI.setData('onlyCsvOnAuto', this.onlyCsvOnAuto).then(data => {
+            }).catch(err => {
+            })
+        },
     },
     mounted() {
         common.loadCSS('main.min.css', 'physton-prompt-main', true)
@@ -304,7 +319,7 @@ export default {
             return common.getLang(key, this.languageCode, this.languages)
         },
         init() {
-            let dataListsKeys = ['languageCode', 'autoTranslateToEnglish', 'autoTranslateToLocal', 'autoRemoveSpace', /*'hideDefaultInput', */'translateApi', 'enableTooltip', 'tagCompleteFile']
+            let dataListsKeys = ['languageCode', 'autoTranslateToEnglish', 'autoTranslateToLocal', 'autoRemoveSpace', /*'hideDefaultInput', */'translateApi', 'enableTooltip', 'tagCompleteFile', 'onlyCsvOnAuto']
             this.prompts.forEach(item => {
                 dataListsKeys.push(item.hideDefaultInputKey)
                 dataListsKeys.push(item.hidePanelKey)
@@ -358,6 +373,9 @@ export default {
                             this.$refs.translateSetting.getCSV(this.tagCompleteFile)
                         })
                     }
+                }
+                if (data.onlyCsvOnAuto !== null) {
+                    this.onlyCsvOnAuto = data.onlyCsvOnAuto
                 }
 
                 this.updateTranslateApiConfig()
