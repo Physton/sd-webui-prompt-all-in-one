@@ -2,6 +2,7 @@ import splitTags from "@/utils/splitTags";
 
 export default {
     loraRegex: /^\<lora:\s*([^\:]+)\s*(:)?\s*([0-9\.]+)?\>$/,
+    lycoRegex: /^\<lyco:\s*([^\:]+)\s*(:)?\s*([0-9\.]+)?\>$/,
     weightNumRegex: /(.*):([0-9\.]+)/,
     weightNumRegexEN: /(.*):\s*([0-9\.]+)/,
     weightNumRegexCN: /(.*)：\s*([0-9\.]+)/,
@@ -379,6 +380,10 @@ export default {
         }
     },
 
+    /**
+     * 获取api url
+     * @returns {string}
+     */
     apiUrl() {
         let url
         if (typeof gradioURL === "string" && gradioURL !== "") {
@@ -390,7 +395,11 @@ export default {
         return url + '/physton_prompt/'
     },
 
-    removeCSS(id){
+    /**
+     * 移除css
+     * @param id {string}
+     */
+    removeCSS(id) {
         if (!id) return
         let css = document.getElementById(id)
         if (css) {
@@ -398,6 +407,13 @@ export default {
         }
     },
 
+    /**
+     * 加载css
+     * @param file {string}
+     * @param id {string}
+     * @param remove {boolean}
+     * @param cache {boolean}
+     */
     loadCSS(file, id = '', remove = true, cache = false) {
         if (remove) this.removeCSS(id)
         let url = this.apiUrl() + 'styles?file=' + encodeURIComponent(file)
@@ -410,4 +426,51 @@ export default {
         link.href = url
         document.head.appendChild(link)
     },
+
+    /**
+     * 判断是否lora
+     * @param name {string}
+     * @returns {string|boolean}
+     */
+    loraExists(name) {
+        if (typeof loras !== 'object') return name
+        for (let key in loras) {
+            if (loras[key] === name) {
+                return loras[key]
+            }
+        }
+        return false
+    },
+
+    /**
+     * 判断是否lyco
+     * @param name {string}
+     * @returns {string|boolean}
+     */
+    lycoExists(name) {
+        if (typeof lycos !== 'object') return name
+        for (let key in lycos) {
+            if (lycos[key] === name) {
+                return lycos[key]
+            }
+        }
+        return false
+    },
+
+    /**
+     * 判断是否embedding
+     * @param name {string}
+     * @returns {boolean|string}
+     */
+    embeddingExists(name) {
+        if (typeof embeddings !== 'object') return name
+        name = name.toLowerCase()
+        for (let key in embeddings) {
+            if (typeof embeddings[key] !== 'object') continue
+            if (embeddings[key][0].toLowerCase() === name) {
+                return embeddings[key][0]
+            }
+        }
+        return false
+    }
 }
