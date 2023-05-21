@@ -1374,8 +1374,13 @@ export default {
             })
         },
         onTranslatesToLocalClick() {
-            if (this.tags.length === 0) return
-            if (this.loading['all_local']) return
+            if (this.tags.length === 0) return // 没有关键词需要翻译
+            if (this.loading['all_local']) {
+                // 正在翻译中，取消翻译
+                this.cancelMultiTranslate = true
+                this.loading['all_local'] = false
+                return
+            }
             this.loading['all_local'] = true
             let tagIndexes = []
             for (const index in this.tags) {
@@ -1416,8 +1421,13 @@ export default {
             })
         },
         onTranslatesToEnglishClick() {
-            if (this.tags.length === 0) return
-            if (this.loading['all_en']) return
+            if (this.tags.length === 0) return // 没有关键词需要翻译
+            if (this.loading['all_en']) {
+                // 正在翻译中，取消翻译
+                this.cancelMultiTranslate = true
+                this.loading['all_en'] = false
+                return
+            }
             this.loading['all_en'] = true
             let tagIndexes = []
             for (const index in this.tags) {
