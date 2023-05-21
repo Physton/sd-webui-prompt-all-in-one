@@ -115,12 +115,20 @@ function supports the majority of countries worldwide.
       ```shell
       git clone "https://github.com/Physton/sd-webui-prompt-all-in-one.git" extensions/sd-webui-prompt-all-in-one
       ```
+     
+      > *China中国镜像地址：*
+      > ```shell
+      > git clone "https://gitee.com/physton/sd-webui-prompt-all-in-one.git" extensions/sd-webui-prompt-all-in-one
+      > ```
 
 - ### Method 2 / *方式二*：
 
   In the extension tab of stable-diffusion-webui, select "Install from URL", enter `https://github.com/Physton/sd-webui-prompt-all-in-one.git`, and click on install.
 
   *在 stable-diffusion-webui 的扩展选项卡中，选择从网址安装，输入 `https://github.com/Physton/sd-webui-prompt-all-in-one.git`, 然后点击安装。*
+
+  > *China中国镜像地址：*
+  > https://gitee.com/physton/sd-webui-prompt-all-in-one.git
 
 - ### Method 3 / *方式三*：
 
