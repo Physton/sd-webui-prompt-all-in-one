@@ -29,6 +29,7 @@ export default {
     },
     data() {
         return {
+            cancelMultiTranslate: false,
         }
     },
     computed: {
@@ -106,27 +107,34 @@ export default {
             })
         },
         async translateMulti(texts, from_lang, to_lang, callback, complete = null, translateApi = null, translateApiConfig = null) {
+            this.cancelMultiTranslate = false
             translateApi = translateApi || this.translateApi
             translateApiConfig = translateApiConfig || this.translateApiConfig || {}
             if (translateApi === 'openai') {
+                // 使用openai翻译，先把所有需要翻译的文本改为JSON数组格式，然后一次性请求，完成后在解析数组
                 let needTranslateTexts = []
                 for (const index in texts) {
                     const text = texts[index]
                     if (common.canTranslate(text)) {
+                        // 如果需要翻译
                         let translateText = this.translateByCSV(text, from_lang, to_lang)
                         if (translateText) {
+                            // 如果从CSV中翻译成功了
                             callback(this._translateRes(true, '', text, translateText, from_lang, to_lang, translateApi, translateApiConfig), index)
                         } else {
+                            // 如果从CSV中没有翻译成功，就放到需要翻译的数组中
                             needTranslateTexts.push({
                                 "text": text,
                                 "index": index
                             })
                         }
                     } else {
+                        // 如果不需要翻译，直接返回
                         callback(this._translateRes(true, '', text, text, from_lang, to_lang, translateApi, translateApiConfig), index)
                     }
                 }
                 if (needTranslateTexts.length === 0) {
+                    // 如果没有需要翻译的文本，直接返回
                     if (complete) complete()
                     return
                 }
@@ -160,6 +168,7 @@ export default {
                     if (complete) complete()
                 })
             } else if (translateApiConfig.concurrent && translateApiConfig.concurrent >= texts.length) {
+                // 如果并发数大于等于需要翻译的文本数，并发翻译
                 let completeCount = texts.length
                 const completeFunc = () => {
                     completeCount--
@@ -167,7 +176,6 @@ export default {
                         if (complete) complete()
                     }
                 }
-                // 如果并发数大于等于需要翻译的文本数，并发翻译
                 for (const index in texts) {
                     const text = texts[index]
                     this.translate(text, from_lang, to_lang, translateApi, translateApiConfig).then(res => {
@@ -182,6 +190,11 @@ export default {
                 // 一个个翻译
                 for (const index in texts) {
                     const text = texts[index]
+                    if (this.cancelMultiTranslate) {
+                        // 如果取消了翻译，跳过
+                        callback(this._translateRes(true, '', text, '', from_lang, to_lang, translateApi, translateApiConfig), index)
+                        continue
+                    }
                     try {
                         let res = (await this.translate(text, from_lang, to_lang, translateApi, translateApiConfig))
                         callback(res, index)
