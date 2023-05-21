@@ -178,6 +178,12 @@ export default {
                 }
                 for (const index in texts) {
                     const text = texts[index]
+                    if (this.cancelMultiTranslate) {
+                        // 如果取消了翻译，跳过
+                        callback(this._translateRes(true, '', text, '', from_lang, to_lang, translateApi, translateApiConfig), index)
+                        completeFunc()
+                        continue
+                    }
                     this.translate(text, from_lang, to_lang, translateApi, translateApiConfig).then(res => {
                         callback(res, index)
                         completeFunc()
