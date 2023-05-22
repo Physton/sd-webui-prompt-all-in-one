@@ -125,13 +125,13 @@
                                 <icon-svg name="input"/>
                             </label>
                         </div>
-                        <input type="text" class="scroll-hide svelte-4xt1ch input-tag-append" ref="promptTagAppend"
+                        <textarea type="text" class="scroll-hide svelte-4xt1ch input-tag-append" ref="promptTagAppend"
                                :placeholder="getLang('please_enter_new_keyword')"
                                v-tooltip="getLang('enter_to_add')"
                                @focus="onAppendTagFocus"
                                @blur="onAppendTagBlur"
                                @keyup="onAppendTagKeyUp"
-                               @keydown="onAppendTagKeyDown">
+                               @keydown="onAppendTagKeyDown"></textarea>
 
                         <div class="prompt-append-list" ref="promptAppendList" v-show="showAppendList"
                              :style="appendListStyle">
@@ -664,17 +664,20 @@ export default {
             // console.log('update tags', prompts)
             return prompts.join('')
         },
-        updateTags() {
-            console.log('tags change', this.tags)
+        updatePrompt() {
             this.prompt = this.genPrompt()
             this.textarea.value = this.prompt
             common.hideCompleteResults(this.textarea)
+            this.textarea.dispatchEvent(new Event('input'))
+        },
+        updateTags() {
+            console.log('tags change', this.tags)
+            this.updatePrompt()
             const steps = this.steps.querySelector('input[type="number"]').value
             this.gradioAPI.tokenCounter(this.textarea.value, steps).then(res => {
                 const {token_count, max_length} = res
                 this.counterText = `${token_count}/${max_length}`
             })
-            this.textarea.dispatchEvent(new Event('input'))
             if (this.tags.length) {
                 this.gradioAPI.getLatestHistory(this.historyKey).then(res => {
                     if (res && res.prompt === this.prompt) {
@@ -1112,6 +1115,7 @@ export default {
                             indexes.push(this._appendTag(tag))
                         }
                     })
+                    this.updatePrompt() // 先更新再翻译
                     if (this.autoTranslateToEnglish || this.autoTranslateToLocal) {
                         this.$nextTick(() => {
                             if (this.autoTranslateToEnglish) {
@@ -1137,6 +1141,7 @@ export default {
         },
         onAppendTagKeyUp(e) {
             if (e.target.value === '' || e.target.value.trim() === '') {
+                e.target.value = ''
                 this.showAppendList = true
 
                 if (e.keyCode === 38 || e.keyCode === 40) {

@@ -420,7 +420,7 @@ export default {
                     this.startWatchSave = true
                 })
 
-                // this.handlePaste()
+                this.handlePaste()
 
                 // todo: test
                 // this.$refs.translateSetting.open(this.translateApi)
@@ -473,10 +473,11 @@ export default {
                 // 拷贝一个新的按钮
                 const $pasteNew = $paste.cloneNode(true)
                 $pasteNew.id = 'paste-new-' + index
+                $pasteNew.innerHTML = '🗒'
                 // 加到原来的按钮后面一个
                 $paste.parentNode.insertBefore($pasteNew, $paste.nextSibling)
                 // 原来的按钮隐藏
-                $paste.style.display = 'none'
+                // $paste.style.display = 'none'
                 // 监听新按钮点击事件
                 $pasteNew.addEventListener('click', () => {
                     this.pasteBtn = $paste
