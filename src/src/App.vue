@@ -426,7 +426,7 @@ export default {
             this.gradioAPI.getData('translate_api.' + this.translateApi).then(res => {
                 let config = {}
                 const apiItem = common.getTranslateApiItem(this.translateApis, this.translateApi)
-                if (apiItem) {
+                if (apiItem.config) {
                     for (const item of apiItem.config) {
                         if (res) {
                             config[item.key] = res[item.key]
