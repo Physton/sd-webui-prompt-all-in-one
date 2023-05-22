@@ -428,53 +428,6 @@ export default {
     },
 
     /**
-     * 判断是否lora
-     * @param name {string}
-     * @returns {string|boolean}
-     */
-    loraExists(name) {
-        if (typeof loras !== 'object') return name
-        for (let key in loras) {
-            if (loras[key] === name) {
-                return loras[key]
-            }
-        }
-        return false
-    },
-
-    /**
-     * 判断是否lyco
-     * @param name {string}
-     * @returns {string|boolean}
-     */
-    lycoExists(name) {
-        if (typeof lycos !== 'object') return name
-        for (let key in lycos) {
-            if (lycos[key] === name) {
-                return lycos[key]
-            }
-        }
-        return false
-    },
-
-    /**
-     * 判断是否embedding
-     * @param name {string}
-     * @returns {boolean|string}
-     */
-    embeddingExists(name) {
-        if (typeof embeddings !== 'object') return name
-        name = name.toLowerCase()
-        for (let key in embeddings) {
-            if (typeof embeddings[key] !== 'object') continue
-            if (embeddings[key][0].toLowerCase() === name) {
-                return embeddings[key][0]
-            }
-        }
-        return false
-    },
-
-    /**
      * 交换元素
      * @param ele1 {Element}
      * @param ele2 {Element}

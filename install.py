@@ -3,7 +3,6 @@ import launch
 packages = {
     "chardet": "chardet",
     "fastapi": "fastapi",
-    "hashlib": "hashlib",
 
     # The following packages are required for translation service. If you do not need translation service, you can remove them.
     # 以下是翻译所需的包，如果不需要翻译服务，可以删除掉它们。

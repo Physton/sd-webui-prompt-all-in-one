@@ -196,7 +196,7 @@
                                     </template>-->
                                     <template v-else>
                                         <div v-show="!editing[tag.id]"
-                                             :class="getTagClass(tag)"
+                                             :class="tag.classes"
                                              :ref="'promptTagValue-' + tag.id"
                                              v-tooltip="getLang('click_to_edit') + '<br/>' + getLang('drop_to_order')"
                                              @click="onTagClick(index)" v-html="renderTag(index)">
@@ -347,6 +347,18 @@ export default {
             type: String,
             default: '',
         },
+        loras: {
+            type: Array,
+            default: () => [],
+        },
+        lycos: {
+            type: Array,
+            default: () => [],
+        },
+        embeddings: {
+            type: Array,
+            default: () => [],
+        },
     },
     emits: ['update:languageCode', 'update:autoTranslateToEnglish', 'update:autoTranslateToLocal', 'update:autoRemoveSpace', 'update:hideDefaultInput', 'update:hidePanel', 'update:enableTooltip', 'update:translateApi', 'click:translateApi', 'click:selectTheme', 'click:selectLanguage', 'click:showHistory', 'click:showFavorite'],
     data() {
@@ -484,7 +496,32 @@ export default {
         })
         window.addEventListener('resize', this.onResize)
     },
-    watch: {},
+    watch: {
+        loras: {
+            handler() {
+                this.tags.forEach((tag) => {
+                    this._setTagClass(tag)
+                })
+            },
+            immediate: false,
+        },
+        lycos: {
+            handler() {
+                this.tags.forEach((tag) => {
+                    this._setTagClass(tag)
+                })
+            },
+            immediate: false,
+        },
+        embeddings: {
+            handler() {
+                this.tags.forEach((tag) => {
+                    this._setTagClass(tag)
+                })
+            },
+            immediate: false,
+        },
+    },
     methods: {
         init() {
             this.tags = []
@@ -652,7 +689,43 @@ export default {
                 })
             }
         },
-        getTagClass(tag) {
+        _setTagClass(tag) {
+            tag.isLora = false
+            tag.loraExists = false
+            tag.isLyco = false
+            tag.lycoExists = false
+            tag.isEmbedding = false
+
+            if (typeof tag['type'] === 'string' && tag.type === 'wrap') {
+            } else {
+                // 判断是否lora
+                const match = tag.value.match(common.loraRegex)
+                if (match) {
+                    tag.isLora = true
+                    const loraName = this.loraExists(match[1])
+                    if (loraName !== false) tag.loraExists = true
+                }
+
+                if (!tag.isLora) {
+                    // 判断是否lyco
+                    const match = tag.value.match(common.lycoRegex)
+                    if (match) {
+                        tag.isLyco = true
+                        const lycoName = this.lycoExists(match[1])
+                        if (lycoName !== false) tag.lycoExists = true
+                    }
+                }
+
+                if (!tag.isLora && !tag.isLyco) {
+                    // 判断是否embedding
+                    const embeddingName = this.embeddingExists(tag.value)
+                    if (embeddingName !== false) {
+                        tag.isEmbedding = true
+                        tag.value = embeddingName
+                    }
+                }
+            }
+
             let classes = ['prompt-tag-value']
             if (tag.isLora) {
                 classes.push('lora-tag')
@@ -669,6 +742,8 @@ export default {
             } else if (this.neg) {
                 classes.push('neg-tag')
             }
+
+            tag.classes = classes
             return classes
         },
         renderTag(index) {
@@ -697,11 +772,6 @@ export default {
             })
         },
         _setTag(tag) {
-            tag.isLora = false
-            tag.loraExists = false
-            tag.isLyco = false
-            tag.lycoExists = false
-            tag.isEmbedding = false
             if (typeof tag['type'] === 'string' && tag.type === 'wrap') {
                 tag.weightNum = 1
                 tag.incWeight = 0
@@ -712,34 +782,8 @@ export default {
                 tag.incWeight = common.getTagIncWeight(tag.value)
                 tag.decWeight = common.getTagDecWeight(tag.value)
                 // const bracket = common.hasBrackets(tag.value)
-
-                // 判断是否lora
-                const match = tag.value.match(common.loraRegex)
-                if (match) {
-                    tag.isLora = true
-                    const loraName = common.loraExists(match[1])
-                    if (loraName !== false) tag.loraExists = true
-                }
-
-                if (!tag.isLora) {
-                    // 判断是否lyco
-                    const match = tag.value.match(common.lycoRegex)
-                    if (match) {
-                        tag.isLyco = true
-                        const lycoName = common.lycoExists(match[1])
-                        if (lycoName !== false) tag.lycoExists = true
-                    }
-                }
-
-                if (!tag.isLora && !tag.isLyco) {
-                    // 判断是否embedding
-                    const embeddingName = common.embeddingExists(tag.value)
-                    if (embeddingName !== false) {
-                        tag.isEmbedding = true
-                        tag.value = embeddingName
-                    }
-                }
             }
+            this._setTagClass(tag)
             this.$nextTick(() => {
                 this._setTagHeight(tag)
             })
@@ -837,12 +881,9 @@ export default {
                             let oldElement = this.$refs.promptTagsList.children[env.oldIndex]
                             let newElement = this.$refs.promptTagsList.children[env.newIndex]
                             common.swapElement(oldElement, newElement)
-                            console.log(env, env.oldIndex, env.newIndex)
                             return
                         }
                     }
-                    console.log(oldIndex, newIndex)
-                    console.log(env.oldIndex, env.newIndex)
 
                     const tags = [...this.tags]
                     tags.splice(newIndex, 0, tags.splice(oldIndex, 1)[0])
