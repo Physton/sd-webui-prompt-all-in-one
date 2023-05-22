@@ -520,71 +520,20 @@ export default {
                     if (!find || find.localValue === '') indexes.push(index)
                 }
             })
-            if (event && this.autoTranslateToLocal) {
+            if (this.autoTranslateToLocal) {
                 // 如果开启了自动翻译到本地语言，那么就自动翻译
-                /*for (const index of indexes) {
-                    try {
-                        await this.onTranslateToLocalClick(index)
-                    } catch (error) {
-                    }
-                }*/
-                this.updateTags()
-            } else {
-                this.updateTags()
-            }
-            return
-            /*let newTags = []
-            let newTagsIndex = []
-            let delTags = []
-            tags.forEach((tag, index) => {
-                let find = false
-                for (let i = 0; i < this.tags.length; i++) {
-                    if (this.tags[i].value === tag) {
-                        find = true
-                        break
-                    }
-                }
-                if (!find) {
-                    newTags.push(tag)
-                    newTagsIndex.push(index)
-                }
-            })
-            this.tags.forEach((tag, index) => {
-                let find = false
-                for (let i = 0; i < tags.length; i++) {
-                    if (tags[i] === tag.value) {
-                        find = true
-                        break
-                    }
-                }
-                if (!find) delTags.push(index)
-            })
-            if (delTags.length <= 0 && newTags.length <= 0) return
-            // console.log(newTags, delTags);
-            for (let i = delTags.length - 1; i >= 0; i--) {
-                this.tags.splice(delTags[i], 1)
-            }
-            let indexes = []
-            for (let i = 0; i < newTags.length; i++) {
-                // indexes.push(this._appendTag(newTags[i]))
-                if (newTags[i] === "\n") {
-                    indexes.push(this._appendTag("\n", "\n", false, newTagsIndex[i], 'wrap'))
+                if (this.tagCompleteFile && this.onlyCsvOnAuto) {
+                    this.translatesToLocal(indexes, false).finally(() => {
+                        this.updateTags()
+                    })
                 } else {
-                    indexes.push(this._appendTag(newTags[i], '', false, newTagsIndex[i], 'text'))
+                    /*this.translatesToLocal(indexes, true).finally(() => {
+                        this.updateTags()
+                    })*/
                 }
-            }
-            if (event && this.autoTranslateToLocal) {
-                // 如果开启了自动翻译到本地语言，那么就自动翻译
-                /!*for (const index of indexes) {
-                    try {
-                        await this.onTranslateToLocalClick(index)
-                    } catch (error) {
-                    }
-                }*!/
-                this.updateTags()
             } else {
                 this.updateTags()
-            }*/
+            }
         },
         _setTextareaFocus() {
             if (typeof get_uiCurrentTabContent !== 'function') return
