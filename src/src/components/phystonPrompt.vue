@@ -540,10 +540,12 @@ export default {
             let indexes = []
             let oldTags = this.tags
             this.tags = []
-            tags.forEach(tag => {
+            for (let index in tags) {
+                let tag = tags[index]
                 if (tag === "\n") {
                     this._appendTag("\n", "\n", false, -1, 'wrap')
                 } else {
+                    // if (tag.indexOf('Negative prompt:') === 0) break
                     let find = false
                     for (let item of oldTags) {
                         if (item.value === tag) {
@@ -556,7 +558,7 @@ export default {
                     const index = this._appendTag(tag, localValue, disabled, -1, 'text')
                     if (!find || find.localValue === '') indexes.push(index)
                 }
-            })
+            }
             if (this.autoTranslateToLocal) {
                 // 如果开启了自动翻译到本地语言，那么就自动翻译
                 if (this.tagCompleteFile && this.onlyCsvOnAuto) {
