@@ -23,7 +23,11 @@
                             v-model:tag-complete-file="tagCompleteFile"
                             v-model:only-csv-on-auto="onlyCsvOnAuto"
                             @click:select-language="onSelectLanguageClick"
-                            @click:select-theme="onSelectThemeClick"></physton-prompt>
+                            @click:select-theme="onSelectThemeClick"
+                            :loras="loras"
+                            :lycos="lycos"
+                            :embeddings="embeddings"
+                            ></physton-prompt>
         </template>
         <translate-setting ref="translateSetting" v-model:language-code="languageCode"
                            :translate-apis="translateApis" :languages="languages"
@@ -193,6 +197,10 @@ export default {
 
             historyCurrentPrompt: '',
             favoriteCurrentPrompt: '',
+
+            loras: [],
+            lycos: [],
+            embeddings: [],
         }
     },
     watch: {
@@ -318,7 +326,16 @@ export default {
         getLang(key) {
             return common.getLang(key, this.languageCode, this.languages)
         },
+        watchVars() {
+            // loras、lycos、embeddings
+            setInterval(() => {
+                if (typeof loras === 'object' && loras !== this.loras) this.loras = loras
+                if (typeof lycos === 'object' && lycos !== this.lycos) this.lycos = lycos
+                if (typeof embeddings === 'object' && embeddings !== this.embeddings) this.embeddings = embeddings
+            }, 100)
+        },
         init() {
+            this.watchVars()
             let dataListsKeys = ['languageCode', 'autoTranslateToEnglish', 'autoTranslateToLocal', 'autoRemoveSpace', /*'hideDefaultInput', */'translateApi', 'enableTooltip', 'tagCompleteFile', 'onlyCsvOnAuto']
             this.prompts.forEach(item => {
                 dataListsKeys.push(item.hideDefaultInputKey)
