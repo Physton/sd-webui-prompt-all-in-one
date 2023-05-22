@@ -216,7 +216,7 @@
                                                @keydown="onTagInputKeyDown(index, $event)"
                                                @change="onTagInputChange(index, $event)">-->
                                     </template>
-                                    <div class="btn-tag-delete" @click="onDeleteTagClick(index)">
+                                    <div class="btn-tag-delete" :ref="'promptTagDelete-' + tag.id" @click="onDeleteTagClick(index)">
                                         <icon-svg name="close"/>
                                     </div>
                                 </div>
@@ -801,6 +801,9 @@ export default {
             $tag.parentNode.style.height = height + 'px'
             if (this.$refs['promptTagEdit-' + tag.id]) {
                 this.$refs['promptTagEdit-' + tag.id][0].style.height = height + 'px'
+            }
+            if (this.$refs['promptTagDelete-' + tag.id]) {
+                this.$refs['promptTagDelete-' + tag.id][0].style.height = height + 'px'
             }
         },
         _appendTag(value, localValue = '', disabled = false, index = -1, type = 'text') {

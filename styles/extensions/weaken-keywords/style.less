@@ -1,0 +1,92 @@
+.physton-prompt {
+    .prompt-tags {
+        .prompt-tags-list {
+            .prompt-tag {
+                margin-bottom: 4px;
+                margin-right: 6px;
+
+                .prompt-tag-main {
+                    .prompt-tag-edit {
+                        min-height: 22px;
+
+                        .prompt-tag-value, .btn-tag-delete {
+                            background: transparent;
+                            padding: 2px;
+                        }
+                    }
+                }
+
+                .prompt-local-language {
+                    margin-top: 0;
+
+                    svg {
+                        width: 12px;
+                        height: 12px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+/*
+浅色主题
+Light theme
+*/
+body.light .physton-prompt {
+    .prompt-tags {
+        .prompt-tags-list {
+            .prompt-tag {
+                .prompt-tag-main {
+                    .prompt-tag-edit {
+                        .prompt-tag-value, .btn-tag-delete {
+                            border-color: #e9e9e9 !important;
+                        }
+                    }
+                }
+
+                .prompt-local-language {
+                    svg path {
+                        fill: var(--block-info-text-color);
+                    }
+                }
+            }
+        }
+    }
+}
+
+/**
+深色主题
+Dark theme
+*/
+body.dark .physton-prompt {
+    .prompt-tags {
+        .prompt-tags-list {
+            .prompt-tag {
+                .prompt-tag-main {
+                    .prompt-tag-edit {
+                        .prompt-tag-value, .btn-tag-delete {
+                            border-color: #222222;
+                        }
+
+                        .btn-tag-delete {
+                            svg path {
+                                fill: #505050;
+                            }
+                        }
+                    }
+                }
+
+                .prompt-local-language {
+                    .local-language {
+                        color: #5a5a5a;
+                    }
+
+                    svg path {
+                        fill: #5a5a5a;
+                    }
+                }
+            }
+        }
+    }
+}
