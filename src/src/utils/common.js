@@ -337,7 +337,8 @@ export default {
                 }
             }
         }
-        return {}
+        // 如果没有找到，那么返回第一个
+        return translateApis[0].children[0]
     },
 
     /**
