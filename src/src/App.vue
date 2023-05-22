@@ -420,7 +420,7 @@ export default {
                     this.startWatchSave = true
                 })
 
-                this.handlePaste()
+                // this.handlePaste()
 
                 // todo: test
                 // this.$refs.translateSetting.open(this.translateApi)
