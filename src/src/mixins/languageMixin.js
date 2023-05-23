@@ -72,11 +72,15 @@ export default {
                     return
                 }
 
-                let translateText = await this.translateByCSV(text, from_lang, to_lang)
-                if (translateText) {
-                    resolve(this._translateRes(true, '', text, translateText, from_lang, to_lang, translateApi, translateApiConfig))
-                    return
+                if (this.tagCompleteFile)
+                {
+                    let translateText = await this.translateByCSV(text, from_lang, to_lang, this.tagCompleteFile)
+                    if (translateText) {
+                        resolve(this._translateRes(true, '', text, translateText, from_lang, to_lang, translateApi, translateApiConfig))
+                        return
+                    }
                 }
+
                 if (!manual && this.tagCompleteFile && this.onlyCsvOnAuto) {
                     // 如果是自动翻译、启用了tagcomplete翻译增强、启用了自动翻译时只使用csv，就不再用网络翻译
                     resolve(this._translateRes(true, '', text, '', from_lang, to_lang, translateApi, translateApiConfig))
@@ -126,23 +130,28 @@ export default {
                     const text = texts[index]
                     if (common.canTranslate(text)) {
                         // 如果需要翻译
-                        let translateText = this.translateByCSV(text, from_lang, to_lang)
-                        if (translateText) {
-                            // 如果从CSV中翻译成功了
-                            callback(this._translateRes(true, '', text, translateText, from_lang, to_lang, translateApi, translateApiConfig), index)
-                        } else {
-                            if (!manual && this.tagCompleteFile && this.onlyCsvOnAuto) {
-                                // 如果是自动翻译、启用了tagcomplete翻译增强、启用了自动翻译时只使用csv，就不再用网络翻译
-                                callback(this._translateRes(true, '', text, '', from_lang, to_lang, translateApi, translateApiConfig), index)
-                                return
+                        if (this.tagCompleteFile)
+                        {
+                            let translateText = await this.translateByCSV(text, from_lang, to_lang, this.tagCompleteFile)
+                            if (translateText) {
+                                // 如果从CSV中翻译成功了
+                                callback(this._translateRes(true, '', text, translateText, from_lang, to_lang, translateApi, translateApiConfig), index)
+                                continue
                             }
-
-                            // 如果从CSV中没有翻译成功，就放到需要翻译的数组中
-                            needTranslateTexts.push({
-                                "text": text,
-                                "index": index
-                            })
                         }
+
+                        if (!manual && this.tagCompleteFile && this.onlyCsvOnAuto) {
+                            // 如果是自动翻译、启用了tagcomplete翻译增强、启用了自动翻译时只使用csv，就不再用网络翻译
+                            callback(this._translateRes(true, '', text, '', from_lang, to_lang, translateApi, translateApiConfig), index)
+                            continue
+                        }
+
+                        // 如果从CSV中没有翻译成功，就放到需要翻译的数组中
+                        needTranslateTexts.push({
+                            "text": text,
+                            "index": index
+                        })
+
                     } else {
                         // 如果不需要翻译，直接返回
                         callback(this._translateRes(true, '', text, text, from_lang, to_lang, translateApi, translateApiConfig), index)
@@ -288,31 +297,21 @@ export default {
                 })
             })
         },
-        translateToLocalByCSV(text, tagCompleteFile = null, reload = false) {
-            return new Promise((resolve, reject) => {
-                this.getCSV(tagCompleteFile, reload).then(res => {
-                    text = text.trim().toLowerCase()
-                    if (res.toLocal.has(text)) {
-                        resolve(res.toLocal.get(text))
-                    }
-                    resolve('')
-                }).catch(err => {
-                    reject(err)
-                })
-            });
+        async translateToLocalByCSV(text, tagCompleteFile = null, reload = false) {
+            let res = await this.getCSV(tagCompleteFile, reload)
+            text = text.trim().toLowerCase()
+            if (res.toLocal.has(text)) {
+                return res.toLocal.get(text)
+            }
+            return ''
         },
-        translateToEnByCSV(text, tagCompleteFile = null, reload = false) {
-            return new Promise((resolve, reject) => {
-                this.getCSV(tagCompleteFile, reload).then(res => {
-                    text = text.trim().toLowerCase()
-                    if (res.toEn.has(text)) {
-                        resolve(res.toEn.get(text))
-                    }
-                    resolve('')
-                }).catch(err => {
-                    reject(err)
-                })
-            });
+        async translateToEnByCSV(text, tagCompleteFile = null, reload = false) {
+            let res = await this.getCSV(tagCompleteFile, reload)
+            text = text.trim().toLowerCase()
+            if (res.toEn.has(text)) {
+                return res.toEn.get(text)
+            }
+            return ''
         },
         async translateByCSV(text, from_lang, to_lang, tagCompleteFile = null, reload = false) {
             let translateText = ''
