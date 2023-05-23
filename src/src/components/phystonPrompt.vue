@@ -1211,7 +1211,6 @@ export default {
             }
         },
         onAppendGroupClick(index, childIndex, e) {
-            console.log(index, childIndex)
             if (index === null) return
             this.appendListSelected = index
             if (childIndex === null) {
@@ -1536,7 +1535,6 @@ export default {
                         let toLang = toLocal ? this.languageCode : 'en_US'
                         this.gradioAPI.translate(JSON.stringify(request), fromLang, toLang, this.translateApi, this.translateApiConfig).then(res => {
                             if (res.success) {
-                                console.log(res.translated_text)
                                 let translated_text = res.translated_text
                                 const start = translated_text.indexOf('[')
                                 const end = translated_text.lastIndexOf(']')
