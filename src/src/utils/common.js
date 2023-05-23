@@ -145,6 +145,28 @@ export default {
     },
 
     /**
+     * 检测是否英文
+     * @param text {string}
+     * @param languageCode {string}
+     * @returns {number} 0: 不是英文，1: 是英文，2: 未知
+     */
+    isEnglishByLangCode(text, languageCode) {
+        const detections = ['zh_CN', 'zh_HK', 'zh_TW', 'ar_SA', 'ja_JP', 'ko_KR', 'ru_RU']
+        detections.push('am_ET', 'hy_AM', 'as_IN', 'bn_BD', 'ba_RU', 'bg_BG', 'prs_AF', 'dv_MV', 'el_GR', 'gu_IN', 'he_IL', 'hi_IN', 'iu_CA', 'kn_IN', 'kk_KZ', 'km_KH', 'ku_Arab_IQ', 'ky_KG', 'lo_LA', 'mk_MK', 'ml_IN', 'mr_IN', 'mn_Cyrl_MN', 'mn_Mong_CN', 'my_MM', 'ne_NP', 'or_IN', 'ps_AF', 'fa_IR', 'pa_Guru_IN', 'sr_Cyrl_RS', 'ta_IN', 'tt_Latn_RU', 'te_IN', 'th_TH', 'bo_CN', 'ti_ET', 'uk_UA', 'ur_PK', 'ug_Arab_CN', 'vi_VN')
+        if (!detections.includes(languageCode)) return -1 // 无法检测是否英文
+
+        const length = text.length
+        // 通过ascii码判断
+        for (let i = 0; i < length; i++) {
+            if (text.charCodeAt(i) > 127) {
+                // 不是英文
+                return 0
+            }
+        }
+        return 1
+    },
+
+    /**
      * 获取语言
      * @param key {string}
      * @param languageCode {string}

@@ -126,12 +126,12 @@
                             </label>
                         </div>
                         <textarea type="text" class="scroll-hide svelte-4xt1ch input-tag-append" ref="promptTagAppend"
-                               :placeholder="getLang('please_enter_new_keyword')"
-                               v-tooltip="getLang('enter_to_add')"
-                               @focus="onAppendTagFocus"
-                               @blur="onAppendTagBlur"
-                               @keyup="onAppendTagKeyUp"
-                               @keydown="onAppendTagKeyDown"></textarea>
+                                  :placeholder="getLang('please_enter_new_keyword')"
+                                  v-tooltip="getLang('enter_to_add')"
+                                  @focus="onAppendTagFocus"
+                                  @blur="onAppendTagBlur"
+                                  @keyup="onAppendTagKeyUp"
+                                  @keydown="onAppendTagKeyDown"></textarea>
 
                         <div class="prompt-append-list" ref="promptAppendList" v-show="showAppendList"
                              :style="appendListStyle">
@@ -216,7 +216,8 @@
                                                @keydown="onTagInputKeyDown(index, $event)"
                                                @change="onTagInputChange(index, $event)">-->
                                     </template>
-                                    <div class="btn-tag-delete" :ref="'promptTagDelete-' + tag.id" @click="onDeleteTagClick(index)">
+                                    <div class="btn-tag-delete" :ref="'promptTagDelete-' + tag.id"
+                                         @click="onDeleteTagClick(index)">
                                         <icon-svg name="close"/>
                                     </div>
                                 </div>
@@ -536,6 +537,8 @@ export default {
             }
             let value = this.textarea.value.trim()
             if (value === this.prompt.trim()) return
+            console.log(value)
+            console.log(this.prompt.trim())
             let tags = common.splitTags(value)
             let indexes = []
             let oldTags = this.tags
@@ -566,6 +569,7 @@ export default {
                         this.updateTags()
                     })
                 } else {
+                    this.updateTags()
                     /*this.translatesToLocal(indexes, true).finally(() => {
                         this.updateTags()
                     })*/
@@ -1405,6 +1409,10 @@ export default {
                 if (this.tags[index].type && this.tags[index].type !== 'text') continue
                 tagIndexes.push(index)
             }
+            return this.translates(tagIndexes, true).finally(() => {
+                this.loading['all_local'] = false
+                this.updateTags()
+            })
             this.translatesToLocal(tagIndexes, true).finally(() => {
                 this.loading['all_local'] = false
                 this.updateTags()
@@ -1509,6 +1517,231 @@ export default {
                 })
             }
             this.$emit("update:hidePanel", !this.hidePanel)
+        },
+        _setTagById(id, value = null, localValue = null) {
+            let tag = this.tags.find(tag => tag.id === id)
+            if (!tag) return false
+            if (value !== null) tag.value = value
+            if (localValue !== null) tag.localValue = localValue
+            return tag
+        },
+        translates(indexes, toLocal = false) {
+            return new Promise((resolve, reject) => {
+                if (this.languageCode === 'en_US' || this.languageCode === 'en_GB') {
+                    // 本地语言是英文，不需要翻译
+                    resolve()
+                    return
+                }
+
+                let fromLang
+                let toLang
+                if (toLocal) {
+                    fromLang = 'en_US'
+                    toLang = this.languageCode
+                } else {
+                    fromLang = this.languageCode
+                    toLang = 'en_US'
+                }
+
+                let needTranslateTags = []
+
+                let setLoadings = (tags, loading) => {
+                    tags.forEach((tag) => {
+                        setLoading(tag, loading)
+                    })
+                }
+
+                let setLoading = (tag, loading) => {
+                    if (tag.toLocal) {
+                        this.loading[tag.id + '_local'] = loading
+                    } else {
+                        this.loading[tag.id + '_en'] = loading
+                    }
+                }
+
+                // 先过滤掉不需要翻译的标签
+                indexes.forEach(index => {
+                    let tag = this.tags[index]
+                    if (!common.canTranslate(tag.value)) {
+                        // 不需要翻译
+                        return
+                    }
+                    setLoading(tag, true)
+                    tag.isEnglish = common.isEnglishByLangCode(tag.value, this.languageCode)
+                    if (tag.isEnglish === -1) {
+                        // 无法检测
+                        if (toLocal) {
+                            // 翻译到本地语言
+                            tag.toLocal = true
+                        } else {
+                            // 翻译到英文
+                            tag.toLocal = false
+                        }
+                    } else if (tag.isEnglish === 0) {
+                        // 不是英文
+                        if (toLocal) {
+                            // 翻译到本地语言
+                            // 不是英文，那么 tag.value 就是本地语言
+                            if (tag.localValue === '') {
+                                // 如果 localValue 为空，那么需要把 value 翻译到英文
+                                tag.localValue = tag.value
+                                tag.toLocal = false
+                            } else {
+                                // 如果 localValue 不为空，那么先把它们交换一下
+                                const value = tag.value
+                                tag.value = tag.localValue
+                                tag.localValue = value
+                            }
+                        } else {
+                            // 翻译到英文
+                            tag.toLocal = false
+                        }
+                    } else {
+                        // 是英文
+                        if (toLocal) {
+                            // 翻译到本地语言
+                            tag.toLocal = true
+                        } else {
+                            // 翻译到本地语言
+                            tag.toLocal = false
+                        }
+                    }
+                    needTranslateTags.push(tag)
+                })
+
+                const translate = (tags) => {
+                    if (tags.length <= 0) {
+                        setLoadings(tags, false)
+                        resolve()
+                        return
+                    }
+                    if (this.translateApi === 'openai') {
+                        // 使用openai翻译，先把所有需要翻译的文本改为JSON数组格式，然后一次性请求，完成后在解析数组
+                        let request = []
+                        tags.forEach((tag, index) => {
+                            request.push({"text": tag.value, "index": index})
+                        })
+                        this.gradioAPI.translate(JSON.stringify(request), 'en_US', this.languageCode, this.translateApi, this.translateApiConfig).then(res => {
+                            if (res.success) {
+                                console.log(res.translated_text)
+                                let translated_text = res.translated_text
+                                const start = translated_text.indexOf('[')
+                                const end = translated_text.lastIndexOf(']')
+                                translated_text = translated_text.substring(start, end + 1)
+                                try {
+                                    translated_text = JSON.parse(translated_text)
+                                    for (const index in translated_text) {
+                                        const item = translated_text[index]
+                                        let tag = tags[item.index]
+                                        this._setTagById(tag.id, null, item.text)
+                                    }
+                                    setLoadings(tags, false)
+                                    resolve()
+                                } catch (e) {
+                                    // 有一个错误，就代表整体都错了
+                                    setLoadings(tags, false)
+                                    this.$toastr.error(e.message)
+                                    reject(e.message)
+                                }
+                            } else {
+                                // 有一个错误，就代表整体都错了
+                                setLoadings(tags, false)
+                                this.$toastr.error(res.message)
+                                reject(res.message)
+                            }
+                        }).catch(error => {
+                            // 有一个错误，就代表整体都错了
+                            setLoadings(tags, false)
+                            this.$toastr.error(error.message)
+                            reject(error.message)
+                        })
+                    } else {
+                        const concurrent = this.translateApiConfig.concurrent || 1 // 并发数
+                        let tagsCount = tags.length // 需要翻译的标签数
+                        let groupCount = Math.ceil(tagsCount / concurrent) // 分组数
+                        const trans = (groupNow = 0) => {
+                            if (this.cancelMultiTranslate) {
+                                // 如果取消了翻译，跳过
+                                setLoadings(tags, false)
+                                resolve()
+                                return
+                            }
+                            if (groupNow >= groupCount) {
+                                // 全部完成
+                                setLoadings(tags, false)
+                                resolve()
+                                return
+                            }
+                            const groupTags = tags.slice(groupNow * concurrent, (groupNow + 1) * concurrent)
+                            let completeCount = groupTags.length
+                            const completeFunc = () => {
+                                completeCount--
+                                if (completeCount === 0) {
+                                    // 本组全部完成
+                                    trans(groupNow + 1)
+                                }
+                            }
+                            groupTags.forEach((tag, index) => {
+                                if (this.cancelMultiTranslate) {
+                                    // 如果取消了翻译，跳过
+                                    setLoading(tag, false)
+                                    completeFunc()
+                                } else {
+                                    this.gradioAPI.translate(tag.value, 'en_US', this.languageCode, this.translateApi, this.translateApiConfig).then(res => {
+                                        if (res.success) {
+                                            this._setTagById(tag.id, null, res.translated_text)
+                                        } else {
+                                            this.$toastr.error(res.message)
+                                        }
+                                        setLoading(tag, false)
+                                        completeFunc()
+                                    }).catch(error => {
+                                        // 有一个错误，其它的也不继续了
+                                        setLoadings(tags, false)
+                                        this.$toastr.error(error.message)
+                                        reject(error.message)
+                                    })
+                                }
+                            })
+                        }
+                        trans(0)
+                    }
+                }
+
+                if (this.tagCompleteFile) {
+                    // 开启了使用tagcomplete翻译
+                    let promises = []
+                    needTranslateTags.forEach(tag => {
+                        if (tag.toLocal) {
+                            // 翻译到本地语言
+                            promises.push(this.translateToLocalByCSV(tag.value))
+                        } else {
+                            // 翻译到英文
+                            promises.push(this.translateToEnByCSV(tag.value))
+                        }
+                    })
+                    Promise.all(promises).then(results => {
+                        let needs = []
+                        results.forEach((result, index) => {
+                            let tag = needTranslateTags[index]
+                            if (result === '') {
+                                needs.push(tag)
+                            } else {
+                                setLoading(tag, false)
+                                this._setTagById(tag.id, null, result)
+                            }
+                        })
+                        translate(needs)
+                    }).catch(error => {
+                        // 有一个错误，就不翻译了
+                        setLoadings(needTranslateTags, false)
+                        this.$toastr.error(error)
+                        reject(error)
+                    })
+                } else {
+                    translate(needTranslateTags)
+                }
+            })
         }
     },
 }
