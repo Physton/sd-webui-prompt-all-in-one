@@ -1,0 +1,969 @@
+  /*  深色主题   Dark theme  */
+  /*滚动条*/
+  body.dark ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    border-radius: 8px;
+    background-color: #141516;
+  }
+  body.dark ::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+    border-radius: 8px;
+    background: #2562e9;
+    transition: 0.3s ease-in-out;
+  }
+  body.dark ::-webkit-scrollbar-track {
+    border-radius: 8px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: #141516;
+  }
+  body.dark ::-webkit-scrollbar-corner {
+    background-color: #171e2e;
+  }
+  body.dark ::-webkit-resizer {
+    background-color: #141516;
+  }
+  body.dark .physton-prompt .prompt-header {
+    /*
+      更换标题栏背景色
+      Change the background color of the title bar
+      */
+    margin: 0;
+    border-bottom: 1px dashed #3741518c;
+    color: #9ea7ae;
+    background-color: #1f293794;
+    height: 41px;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 2px;
+  }
+  /*调整模型lora等缩略图尺寸*/
+  .extra-network-cards .card {
+    width: 10em !important;
+    height: 15em !important;
+  }
+  .extra-network-cards .card .actions .name {
+    font-size: 1.25em !important;
+  }
+  /*修复多扩展启用，隐藏WEBUI按钮错位*/
+  body.dark .physton-prompt .prompt-header .prompt-header-extend .extend-content .gradio-checkbox {
+    width: 45px
+  }
+  /*图标颜色*/
+  body.dark .physton-prompt .prompt-header .extend-btn-item .icon-svg-remove svg path, body.dark .physton-prompt .prompt-header .extend-btn-item .icon-svg-copy svg path, body.dark .physton-prompt .prompt-header .extend-btn-item .icon-svg-english svg path, body.dark .physton-prompt .prompt-header .extend-btn-item .icon-svg-translate svg path, body.dark .physton-prompt .prompt-header .extend-btn-item .icon-svg-favorite svg path, body.dark .physton-prompt .prompt-header .extend-btn-item .icon-svg-history svg path, body.dark .physton-prompt .prompt-header .extend-btn-item .icon-svg-setting svg path, body.dark .physton-prompt .prompt-header .extend-btn-item .icon-svg-i18n svg path, body.dark .physton-prompt .prompt-header .prompt-unfold .icon-svg-unfold svg path, body.dark .physton-prompt .prompt-header .icon-svg-input svg path {
+    fill: #596572;
+  }
+  /*图标尺寸*/
+  body.dark .physton-prompt .prompt-header .setting-box .icon-svg-api svg, body.dark .physton-prompt .prompt-header .setting-box .icon-svg-theme svg, body.dark .physton-prompt .prompt-header .setting-box .icon-svg-remove-space svg, body.dark .physton-prompt .prompt-header .setting-box .icon-svg-tooltip svg {
+    width: 18px;
+    height: 18px;
+  }
+  body.dark .physton-prompt .prompt-header .prompt-header-extend .extend-content .extend-btn-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    background: #0b0f19a6;
+    border: 0;
+    padding: 0;
+    border-radius: 4px;
+  }
+  body.dark .physton-prompt .prompt-header .prompt-header-extend .extend-content .extend-btn-group .extend-btn-item:hover {
+    background: #b6c6d3;
+    border-radius: 4px;
+  }
+  body.dark .physton-prompt .prompt-header .prompt-header-extend .extend-content .extend-btn-group .extend-btn-item {
+    cursor: pointer;
+    border-left: 1px solid #161e2a00;
+    height: 26px;
+    width: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+  body.dark .physton-prompt-select-language .language-main .language-close, body.dark .physton-prompt-extension-css .extension-main .extension-close { /*关闭按钮*/
+    height: 24px;
+    width: 24px;
+    padding: 4px;
+    background: rgb(255 255 255 / 80%);
+    border-radius: 50%;
+    box-shadow: 0 1px 5px 0 #00000096;
+  }
+  body.dark .physton-prompt-select-language .language-main .language-close:hover, body.dark .physton-prompt-extension-css .extension-main .extension-close:hover {
+    background: #bd2727;
+  }
+  body.dark .physton-prompt-select-language .language-main .language-list, body.dark .physton-prompt-extension-css .extension-main .extension-list { /*选择语言弹窗*/ height: 100%;
+    overflow: hidden;
+    overflow-y: scroll;
+    display: block;
+    position: relative;
+    box-shadow: 0 0 3px #000000d9;
+    border-radius: 6px 6px 4px 4px;
+    background-color: rgb(46 49 50 / 50%);
+    backdrop-filter: blur(15px);
+    transition: height .1s ease-in-out, width .1s ease-in-out;
+    padding: 5px;
+  }
+  body.dark .physton-prompt-translate-setting .translate-setting-main { /*翻译接口*/ box-shadow: 0 0 3px 0 #00000094;
+    border-radius: 6px 6px 4px 4px;
+    background-color: rgb(46 49 50 / 50%);
+    backdrop-filter: blur(15px);
+  }
+  body.dark .physton-prompt-translate-setting .translate-setting-main .setting-btns .translate-save {
+    background: #235cdb;
+  }
+  body.dark .physton-prompt-translate-setting .translate-setting-main .setting-btns .translate-close {
+    cursor: pointer;
+    display: inline-block;
+    padding: 0 40px;
+    height: 40px;
+    line-height: 40px;
+    color: #4a54ff;
+    background: #000000a6;
+    border: 0px solid #4a54ff;
+    border-radius: 4px;
+  }
+  body.dark .physton-prompt-translate-setting .translate-setting-main .setting-line .line-content .test-btn {
+    cursor: pointer;
+    display: inline-block;
+    padding: 0 40px;
+    height: 32px;
+    line-height: 32px;
+    color: #fff;
+    background: #235cdb;
+    border-radius: 4px;
+  }
+  body.dark .physton-prompt-translate-setting .translate-setting-main .translate-setting-content {
+    max-height: 600px;
+    overflow: hidden;
+    overflow-y: auto;
+    padding: 6px;
+    border: 0px solid #46464600;
+    border-radius: 6px;
+  }
+  body.dark .physton-prompt-select-language .language-main .language-list .language-item.selected, .physton-prompt-select-language .language-main .language-list .language-item:hover { /*选择语言弹窗*/
+    background: #235ddc;
+  }
+  body.dark .physton-prompt .prompt-append-list .prompt-append-group.selected, .physton-prompt .prompt-append-list .prompt-append-group:hover { /*输入框下拉浮层hover*/
+    background: #2563eb;
+  }
+  body.dark .physton-prompt .prompt-append-list .prompt-append-group .append-group-list { /*输入框下拉浮层hover*/
+    box-shadow: 0 0 3px 0 #0000009e;
+    border-radius: 6px 6px 4px 4px;
+    /* background: #000; */
+    transition: height .1s ease-in-out, width .1s ease-in-out;
+    background: rgb(25 31 39 / 94%);
+    position: absolute;
+    top: 0;
+    left: 100%;
+    height: 400px;
+  }
+  body.dark .physton-prompt .prompt-append-list .prompt-append-group .append-group-list .append-item.selected, body.dark .physton-prompt .prompt-append-list .prompt-append-group .append-group-list .append-item:hover { /*输入框下拉浮层hover*/ background: #2563eb;
+  }
+  body.dark .physton-prompt .prompt-header .prompt-header-extend .extend-content .input-tag-append { /*输入框下拉浮层hover*/
+    display: block;
+    position: relative;
+    outline: none !important;
+    height: 30px !important;
+    padding: 3px 8px !important;
+    line-height: 23px !important;
+    box-shadow: var(--input-shadow);
+    border: var(--input-border-width) solid #232f41;
+    border-radius: var(--input-radius);
+    background: #0b0f19;
+    margin-left: 5px;
+    padding: var(--input-padding);
+    color: var(--body-text-color);
+    font-weight: var(--input-text-weight);
+    font-size: var(--input-text-size);
+    line-height: var(--line-sm);
+  }
+  body.dark .physton-prompt .prompt-append-list .prompt-append-group .tags-detail { /*输入框下拉浮层hover*/ background-color: rgb(20 24 31);
+    background: rgb(20 24 31);
+    box-shadow: 0 0 3px 0 #0e0e0ec2;
+    opacity: .95;
+  }
+  body.dark .physton-prompt .prompt-append-list .prompt-append-group .tags-detail .tags-list .tags-item .item-tag-value { /*输入框下拉浮层hover*/ background: rgb(38 44 50 / 90%);
+    color: #b6bcc6
+  }
+  body.dark .physton-prompt .prompt-header .prompt-header-extend .extend-content input::-webkit-input-placeholder {
+    color: #6b7280;
+  }
+  body.dark .physton-prompt .prompt-append-list .prompt-append-group .tags-detail .tags-list .tags-item .item-tag-local-value {
+    font-size: 12px;
+    color: #7b868a;
+    margin-top: 2px;
+  }
+  body.dark .physton-prompt-favorite .popup-detail .popup-item-tags .item-tag .item-tag-local-value, .physton-prompt-history .popup-detail .popup-item-tags .item-tag .item-tag-local-value {
+    color: #a8aab1;
+    font-size: 12px;
+    margin-top: 2px;
+  }
+  body.dark .physton-prompt {
+    padding: 0;
+    margin: 0px 0 12px 0;
+    border-radius: var(--input-radius);
+    border-block-end-width: 1px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+  body.dark .physton-prompt .prompt-header {
+    margin: 0;
+    border-bottom: 1px dashed #3741518c;
+    color: #bfc4c8;
+    padding-bottom: 0;
+  }
+  /*设置hover*/
+  body.dark .physton-prompt .prompt-header .prompt-header-extend .extend-content .extend-btn-group .extend-btn-item .setting-box {
+    top: -36px;
+    left: -10px;
+    box-shadow: 0 0 3px 0 #1f1f1f;
+  }
+  /*翻译区块1*/
+  body.dark .physton-prompt .prompt-tags {
+    background-color: #0d131c;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+  }
+  /*翻译区块2*/
+  body.dark .physton-prompt .prompt-tags .prompt-tags-list:empty {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+  }
+  body.dark .physton-prompt .prompt-tags .prompt-tags-list {
+    margin: 0;
+    padding: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+  }
+  body.dark .physton-prompt .prompt-tags .prompt-tags-list .prompt-tag {
+    margin: 5px;
+    display: block;
+    align-items: center;
+    max-width: 100%;
+  }
+  body.dark .physton-prompt .prompt-tags .prompt-tags-list .prompt-tag .prompt-tag-main .prompt-tag-edit .prompt-tag-value {
+    width: calc(100% - 16px);
+    padding: 4px;
+    font-size: .9rem;
+    height: 24px;
+    border-radius: 4px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    color: var(--button-secondary-text-color);
+    background: rgb(55 65 81 / 35%);
+    border: 0;
+  }
+  body.dark .physton-prompt .prompt-tags .btn-tag-delete .icon-svg-close svg path {
+    fill: #4e5463;
+  }
+  body.dark .physton-prompt .prompt-tags .prompt-tags-list .prompt-tag .prompt-tag-main .prompt-tag-edit .btn-tag-delete {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border: 0;
+    background: rgb(42 50 66 / 30%);
+    padding: 0;
+    width: 16px;
+    height: 24px;
+    border-left: 1px solid #111824;
+    border-radius: 0;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+  }
+  body.dark .physton-prompt .prompt-tags .prompt-tags-list .prompt-tag .prompt-tag-main .btn-tag-extend { /*TAG上浮*/ background: #e6f4ff;
+  }
+  body.dark .physton-prompt .prompt-tags .prompt-tags-list .prompt-tag .prompt-tag-main .btn-tag-extend .input-number .vue-number-input__input { /*TAG上浮*/ color: #000;
+  }
+  body.dark .physton-prompt .prompt-tags .btn-tag-extend .icon-svg-weight-brackets-inc svg path, body.dark .physton-prompt .prompt-tags .btn-tag-extend .icon-svg-weight-brackets-dec svg path { /*TAG上浮*/
+    fill: #35a446;
+  }
+  body.dark .physton-prompt .prompt-tags .prompt-tags-list .prompt-tag .prompt-tag-main .prompt-tag-edit .prompt-tag-value .character {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    line-height: 1rem;
+    color: rgb(213 215 219);
+  }
+  body.dark .physton-prompt .prompt-tags .prompt-local-language .icon-svg-translate svg path {
+    fill: #3a4554;
+  }
+  body.dark #txt2img_prompt, body.dark #txt2img_neg_prompt, body.dark #img2img_prompt, body.dark #img2img_neg_prompt {
+    margin-bottom: -17px;
+  }
+  body.dark input[type=text].svelte-1pie7s6, body.dark input[type=password].svelte-1pie7s6, body.dark input[type=email].svelte-1pie7s6, body.dark textarea.svelte-1pie7s6 {
+    display: block;
+    position: relative;
+    outline: none !important;
+    box-shadow: var(--input-shadow);
+    border: var(--input-border-width) solid var(--input-border-color);
+    border-radius: var(--input-radius);
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    background: var(--input-background-fill);
+    padding: var(--input-padding);
+    width: 100%;
+    color: var(--body-text-color);
+    font-weight: var(--input-text-weight);
+    font-size: var(--input-text-size);
+    line-height: var(--line-sm);
+  }
+  body.dark .physton-prompt .prompt-tags .prompt-tags-list .prompt-tag .prompt-local-language .local-language {
+    font-size: .8rem;
+    color: #9ca3afc9;
+    margin-left: 2px;
+  }
+  body.dark .physton-prompt-favorite .popup-tabs .popup-tab.active, body.dark .physton-prompt-favorite .popup-tabs .popup-tab:hover, body.dark .physton-prompt-history .popup-tabs .popup-tab.active, body.dark .physton-prompt-history .popup-tabs .popup-tab:hover { /*历史记录tab hover*/
+    background: #2562e9;
+    border-bottom: 0;
+    border-radius: 5px;
+    margin: 4px;
+  }
+  body.dark .physton-prompt-favorite .popup-tabs .popup-tab.active, body.dark .physton-prompt-favorite .popup-tabs .popup-tab, body.dark .physton-prompt-history .popup-tabs .popup-tab.active, body.dark .physton-prompt-history .popup-tabs .popup-tab { /*历史记录tab hover*/
+    margin: 4px;
+  }
+  body.dark .physton-prompt .prompt-header .prompt-header-extend .extend-content .extend-btn-group .extend-btn-item .setting-box > * {
+    margin-left: 5px;
+  }
+  body.dark .physton-prompt-favorite .popup-detail, body.dark .physton-prompt-history .popup-detail { /*历史记录 list hover浮层 */
+    position: absolute;
+    left: 100%;
+    top: 0;
+    width: 400px;
+    z-index: 1000;
+    background-size: 104% 104%;
+    box-shadow: 0 0 3px 0 #292929;
+    border-radius: 6px 6px 4px 4px;
+    background: rgb(29 33 39 / 95%);
+    transition: height .1s ease-in-out, width .1s ease-in-out;
+    padding: 10px;
+    color: #1d1d1d;
+  }
+  body.dark .physton-prompt-favorite .popup-detail .popup-item-tags .item-tag .item-tag-value, body.dark .physton-prompt-history .popup-detail .popup-item-tags .item-tag .item-tag-value { /*历史记录 list hover浮层 tag */
+    padding: 4px 6px;
+    border-radius: 5px;
+    background: rgb(48 51 57 / 90%);
+    font-size: 12px;
+    color: #d0d0d0;
+  }
+  /*隐藏原生框右上角的词组数量提示*/
+  body.dark #txt2img_negative_token_counter, body.dark #txt2img_token_counter, body.dark #img2img_token_counter, body.dark #img2img_negative_token_counter {
+    position: absolute;
+    right: 1em;
+    min-width: 0 !important;
+    width: auto;
+    z-index: 100;
+    top: -0.75em;
+    display: none;
+  }
+  body.dark .physton-prompt-favorite .popup-tab-content .content-list .content-item, body.dark .physton-prompt-history .popup-tab-content .content-list .content-item { /*历史记录弹窗list*/
+    padding: 6px 10px;
+    background-color: #29313c70;
+    border-radius: 4px;
+    margin: 5px;
+    border: 1px solid #303c4ba8;
+    cursor: pointer;
+  }
+  body.dark .physton-prompt-favorite .popup-tab-content .content-list .content-item:hover, body.dark .physton-prompt-history .popup-tab-content .content-list .content-item:hover {
+    background: rgb(115 139 199 / 20%);
+  }
+  body.dark .physton-prompt-favorite .popup-tab-content .content-list .content-item .item-prompt, body.dark .physton-prompt-history .popup-tab-content .content-list .content-item .item-prompt {
+    font-size: 12px;
+    color: #5c626f;
+  }
+  body.dark .physton-prompt-favorite .popup-tab-content .content-list .content-item:hover .item-prompt, body.dark .physton-prompt-history .popup-tab-content .content-list .content-item:hover .item-prompt {
+    overflow: visible;
+    white-space: normal;
+    font-size: 12px;
+    color: #eff3fa;
+  }
+  body.dark .physton-prompt-favorite .popup-tab-content .content-list .clear-btn .icon-svg-remove svg, .physton-prompt-history .popup-tab-content .content-list .clear-btn .icon-svg-remove svg { /*删除所有记录*/
+    width: 18px;
+    height: 18px;
+    margin-top: 5px;
+  }
+  body.dark .physton-prompt-favorite .popup-tab-content .content-list .clear-btn, body.dark .physton-prompt-history .popup-tab-content .content-list .clear-btn {
+    border-radius: 3px;
+    margin: 0;
+    position: sticky;
+    top: -1px;
+    padding: 5px 10px;
+    cursor: pointer;
+    border: 0;
+    color: #ff4027;
+    text-align: center;
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  body.dark .physton-prompt-favorite .popup-tab-content .content-list .content-item .item-header .item-header-left .item-header-index, body.dark .physton-prompt-history .popup-tab-content .content-list .content-item .item-header .item-header-left .item-header-index {
+    background: #4a54ff;
+    padding: 2px 0;
+    width: 32px;
+    text-align: center;
+    border-radius: 4px;
+  }
+  body.dark .physton-prompt-favorite .popup-tab-content .content-list .content-item .item-header .item-header-left .item-header-name .header-name-input, body.dark .physton-prompt-history .popup-tab-content .content-list .content-item .item-header .item-header-left .item-header-name .header-name-input {
+    background: #0000004f;
+    border: 0;
+    border-radius: 3px;
+    height: 20px;
+    padding: 2px 4px;
+    width: 190px;
+    font-size: 12px;
+  color: #ffe700;
+    margin-right: 5px;
+  }
+  body.dark .physton-prompt-favorite .popup-tabs .popup-tab, body.dark .physton-prompt-history .popup-tabs .popup-tab {
+    padding: 5px 0;
+    cursor: pointer;
+    position: relative;
+    flex: 1;
+    border-bottom: 0;
+  }
+  body.dark .physton-prompt .prompt-append-list {
+    width: auto;
+    height: auto;
+    padding: 6px;
+    margin: 0;
+    box-shadow: 0 0 6px 0 #4a54ff00;
+    backdrop-filter: blur(15px);
+    border-radius: 6px 6px 6px 6px;
+    transition: height .1s ease-in-out, width .1s ease-in-out;
+    color: #fff;
+    position: absolute;
+    z-index: 1000;
+    background: rgb(52 63 80 / 47%);
+  }
+  body.dark .physton-prompt-favorite, body.dark .physton-prompt-history { /*历史记录弹窗*/
+    width: 500px;
+    height: auto;
+    padding: 6px;
+    margin: 0;
+    box-shadow: 0 0 6px 0 #4a54ff00;
+    backdrop-filter: blur(15px);
+    border-radius: 6px 6px 6px 6px;
+    background: rgb(20 20 20 / 83%);
+    transition: height .1s ease-in-out, width .1s ease-in-out;
+    color: #fff;
+    position: absolute;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    overflow: visible;
+  }
+  body.dark .physton-prompt .prompt-main.fold {
+    max-height: 42px
+  }
+  /*TAG上浮*/
+  body.dark .physton-prompt .prompt-tags .prompt-tags-list .prompt-tag .prompt-tag-main:hover .btn-tag-extend, body.dark .physton-prompt .prompt-tags .prompt-tags-list .prompt-tag .prompt-tag-main:hover .prompt-tag-edit {
+    box-shadow: 0 0 0px 0 #4a54ff;
+  }
+  /*  浅色主题 ------------------------------------------------  Dark theme  */
+  /*滚动条*/
+  body.light ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    border-radius: 8px;
+    background-color: #fff;
+  }
+  body.light ::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+    border-radius: 8px;
+    background: #2562e9;
+    transition: 0.3s ease-in-out;
+  }
+  body.light ::-webkit-scrollbar-track {
+    border-radius: 8px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: #fff;
+  }
+  body.light ::-webkit-scrollbar-corner {
+    background-color: #fff;
+  }
+  body.light ::-webkit-resizer {
+    background-color: #fff;
+  }
+  body.light .physton-prompt .prompt-header {
+    /*
+      更换标题栏背景色
+      Change the background color of the title bar
+      */
+    margin: 0;
+    border-bottom: 1px dashed #37415130;
+    color: #9ea7ae;
+    background-color: rgb(243 243 243 / 59%);
+    height: 41px;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 2px;
+  }
+  /*调整模型lora等缩略图尺寸*/
+  .extra-network-cards .card {
+    width: 10em !important;
+    height: 15em !important;
+  }
+  .extra-network-cards .card .actions .name {
+    font-size: 1.25em !important;
+  }
+  /*修复多扩展启用，隐藏WEBUI按钮错位*/
+  body.light .physton-prompt .prompt-header .prompt-header-extend .extend-content .gradio-checkbox {
+    width: 45px
+  }
+  /*图标颜色*/
+  body.light .physton-prompt .prompt-header .extend-btn-item .icon-svg-remove svg path, body.light .physton-prompt .prompt-header .extend-btn-item .icon-svg-copy svg path, body.light .physton-prompt .prompt-header .extend-btn-item .icon-svg-english svg path, body.light .physton-prompt .prompt-header .extend-btn-item .icon-svg-translate svg path, body.light .physton-prompt .prompt-header .extend-btn-item .icon-svg-favorite svg path, body.light .physton-prompt .prompt-header .extend-btn-item .icon-svg-history svg path, body.light .physton-prompt .prompt-header .extend-btn-item .icon-svg-setting svg path, body.light .physton-prompt .prompt-header .extend-btn-item .icon-svg-i18n svg path, body.light .physton-prompt .prompt-header .prompt-unfold .icon-svg-unfold svg path, body.light .physton-prompt .prompt-header .icon-svg-input svg path {
+    fill: #565656c2;
+  }
+  /*图标尺寸*/
+  body.light .physton-prompt .prompt-header .setting-box .icon-svg-api svg, body.light .physton-prompt .prompt-header .setting-box .icon-svg-theme svg, body.light .physton-prompt .prompt-header .setting-box .icon-svg-remove-space svg, body.light .physton-prompt .prompt-header .setting-box .icon-svg-tooltip svg {
+    width: 18px;
+    height: 18px;
+  }
+  body.light .physton-prompt .prompt-header .prompt-header-extend .extend-content .extend-btn-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    background: rgb(229 229 229 / 53%);
+    border: 0;
+    padding: 0;
+    border-radius: 4px;
+  }
+  body.light .physton-prompt .prompt-header .prompt-header-extend .extend-content .extend-btn-group .extend-btn-item:hover {
+    background: #b6c6d32b;
+    border-radius: 4px;
+  }
+  body.light .physton-prompt .prompt-header .prompt-header-extend .extend-content .extend-btn-group .extend-btn-item {
+    cursor: pointer;
+    border-left: 1px solid #161e2a00;
+    height: 26px;
+    width: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+  body.light .physton-prompt-select-language .language-main .language-close, body.light .physton-prompt-extension-css .extension-main .extension-close { /*关闭按钮*/
+    height: 24px;
+    width: 24px;
+    padding: 4px;
+    background: rgb(255 255 255 / 80%);
+    border-radius: 50%;
+    box-shadow: 0 1px 5px 0 #00000096;
+  }
+  body.light .physton-prompt-select-language .language-main .language-close:hover, body.light .physton-prompt-extension-css .extension-main .extension-close:hover {
+    background: #bd2727;
+  }
+  body.light .physton-prompt-select-language .language-main .language-list, body.light .physton-prompt-extension-css .extension-main .extension-list { /*选择语言弹窗*/ height: 100%;
+    overflow: hidden;
+    overflow-y: scroll;
+    display: block;
+    position: relative;
+    box-shadow: 0 0 3px #000000d9;
+    border-radius: 6px 6px 4px 4px;
+    background-color: rgb(46 49 50 / 50%);
+    backdrop-filter: blur(15px);
+    transition: height .1s ease-in-out, width .1s ease-in-out;
+    padding: 5px;
+  }
+  body.light .physton-prompt-translate-setting .translate-setting-main { /*翻译接口*/ box-shadow: 0 0 3px 0 #00000094;
+    border-radius: 6px 6px 4px 4px;
+    background-color: rgb(46 49 50 / 50%);
+    backdrop-filter: blur(15px);
+  }
+  body.light .physton-prompt-translate-setting .translate-setting-main .setting-btns .translate-save {
+    background: #235cdb;
+  }
+  body.light .physton-prompt-translate-setting .translate-setting-main .setting-btns .translate-close {
+    cursor: pointer;
+    display: inline-block;
+    padding: 0 40px;
+    height: 40px;
+    line-height: 40px;
+    color: #4a54ff;
+    background: #000000a6;
+    border: 0px solid #4a54ff;
+    border-radius: 4px;
+  }
+  body.light .physton-prompt-translate-setting .translate-setting-main .setting-line .line-content .test-btn {
+    cursor: pointer;
+    display: inline-block;
+    padding: 0 40px;
+    height: 32px;
+    line-height: 32px;
+    color: #fff;
+    background: #235cdb;
+    border-radius: 4px;
+  }
+  body.light .physton-prompt-translate-setting .translate-setting-main .translate-setting-content {
+    max-height: 600px;
+    overflow: hidden;
+    overflow-y: auto;
+    padding: 6px;
+    border: 0px solid #46464600;
+    border-radius: 6px;
+  }
+  body.light .physton-prompt-select-language .language-main .language-list .language-item.selected, .physton-prompt-select-language .language-main .language-list .language-item:hover { /*选择语言弹窗*/
+    background: #235ddc;
+  }
+  body.light .physton-prompt .prompt-append-list .prompt-append-group.selected, .physton-prompt .prompt-append-list .prompt-append-group:hover { /*输入框下拉浮层hover*/
+    background: #2563eb;
+  }
+  body.light .physton-prompt-favorite .popup-detail .popup-item-tags .item-tag .item-tag-local-value, .physton-prompt-history .popup-detail .popup-item-tags .item-tag .item-tag-local-value {
+    color: #a8aab1;
+    font-size: 12px;
+    margin-top: 2px;
+  }
+  body.light .physton-prompt .prompt-append-list .prompt-append-group .append-group-list { /*输入框下拉浮层hover*/
+    box-shadow: 0 0 3px 0 #0000009e;
+    border-radius: 6px 6px 4px 4px;
+    /* background: #000; */
+    transition: height .1s ease-in-out, width .1s ease-in-out;
+    background: rgb(25 31 39 / 94%);
+    position: absolute;
+    top: 0;
+    left: 100%;
+    height: 400px;
+  }
+  body.light .physton-prompt .prompt-append-list .prompt-append-group .append-group-list .append-item.selected, body.light .physton-prompt .prompt-append-list .prompt-append-group .append-group-list .append-item:hover { /*输入框下拉浮层hover*/ background: #2563eb;
+  }
+  body.light .physton-prompt .prompt-header .prompt-header-extend .extend-content .input-tag-append { /*输入框下拉浮层hover*/
+    display: block;
+    position: relative;
+    outline: none !important;
+    height: 30px !important;
+    padding: 3px 8px !important;
+    line-height: 23px !important;
+    box-shadow: var(--input-shadow);
+    border: var(--input-border-width) solid #232f4117;
+    border-radius: var(--input-radius);
+    background: #fff;
+    margin-left: 5px;
+    padding: var(--input-padding);
+    color: var(--body-text-color);
+    font-weight: var(--input-text-weight);
+    font-size: var(--input-text-size);
+    line-height: var(--line-sm);
+  }
+  body.light .physton-prompt .prompt-append-list .prompt-append-group .tags-detail { /*输入框下拉浮层hover*/ background-color: rgb(20 24 31);
+    background: rgb(20 24 31);
+    box-shadow: 0 0 3px 0 #0e0e0ec2;
+    opacity: .95;
+  }
+  body.light .physton-prompt .prompt-append-list .prompt-append-group .tags-detail .tags-list .tags-item .item-tag-value { /*输入框下拉浮层hover*/ background: rgb(38 44 50 / 90%);
+    color: #b6bcc6
+  }
+  body.light .physton-prompt .prompt-header .prompt-header-extend .extend-content input::-webkit-input-placeholder {
+    color: #6b7280;
+  }
+  body.light .physton-prompt .prompt-append-list .prompt-append-group .tags-detail .tags-list .tags-item .item-tag-local-value {
+    font-size: 12px;
+    color: #7b868a;
+    margin-top: 2px;
+  }
+  body.light .physton-prompt {
+    padding: 0;
+    margin: 0px 0 12px 0;
+    border-radius: var(--input-radius);
+    border-block-end-width: 1px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+  body.light .physton-prompt .prompt-header {
+    margin: 0;
+    border-bottom: 1px dashed #3741512b;
+    color: #4f5152;
+    padding-bottom: 0;
+  }
+  /*设置hover*/
+  body.light .physton-prompt .prompt-header .prompt-header-extend .extend-content .extend-btn-group .extend-btn-item .setting-box {
+    top: -36px;
+    left: -10px;
+    box-shadow: 0 0 5px 0 #1e1e1e33;
+  }
+  /*翻译区块1*/
+  body.light .physton-prompt .prompt-tags {
+    background-color: rgb(251 251 251 / 35%);
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+  }
+  /*翻译区块2*/
+  body.light .physton-prompt .prompt-tags .prompt-tags-list:empty {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+  }
+  body.light .physton-prompt .prompt-tags .prompt-tags-list {
+    margin: 0;
+    padding: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+  }
+  body.light .physton-prompt .prompt-tags .prompt-tags-list .prompt-tag {
+    margin: 5px;
+    display: block;
+    align-items: center;
+    max-width: 100%;
+  }
+  body.light .physton-prompt .prompt-tags .prompt-tags-list .prompt-tag .prompt-tag-main .prompt-tag-edit .prompt-tag-value {
+    width: calc(100% - 16px);
+    padding: 4px;
+    font-size: 0.9rem;
+    height: 24px;
+    border-radius: 4px 0px 0px 4px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    color: var(--button-secondary-text-color);
+    background: rgb(237 237 237 / 64%);
+    border: 0;
+  }
+  body.light .physton-prompt .prompt-tags .btn-tag-delete .icon-svg-close svg path {
+    fill: #4e546345;
+  }
+  body.light .physton-prompt .prompt-tags .prompt-tags-list .prompt-tag .prompt-tag-main .prompt-tag-edit .btn-tag-delete {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border: 0;
+    background: rgb(193 193 193 / 8%);
+    padding: 0;
+    width: 16px;
+    height: 24px;
+    border-left: 1px solid #fff;
+    border-radius: 0;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+  }
+  body.light .physton-prompt .prompt-tags .prompt-tags-list .prompt-tag .prompt-tag-main .btn-tag-extend { /*TAG上浮*/ background: #fafafa;
+  }
+  body.light .physton-prompt .prompt-tags .prompt-tags-list .prompt-tag .prompt-tag-main .btn-tag-extend .input-number .vue-number-input__input { /*TAG上浮*/ color: #000;
+  }
+  body.light .physton-prompt .prompt-tags .btn-tag-extend .icon-svg-weight-brackets-inc svg path, body.light .physton-prompt .prompt-tags .btn-tag-extend .icon-svg-weight-brackets-dec svg path { /*TAG上浮*/
+    fill: #35a446;
+  }
+  body.light .physton-prompt .prompt-tags .prompt-tags-list .prompt-tag .prompt-tag-main .prompt-tag-edit .prompt-tag-value .character {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    line-height: 1rem;
+    color: rgb(84 84 84);
+  }
+  body.light .physton-prompt .prompt-tags .prompt-local-language .icon-svg-translate svg path {
+    fill: #3a4554;
+  }
+  body.light #txt2img_prompt, body.light #txt2img_neg_prompt, body.light #img2img_prompt, body.light #img2img_neg_prompt {
+    margin-bottom: -17px;
+  }
+  body.light input[type=text].svelte-1pie7s6, body.light input[type=password].svelte-1pie7s6, body.light input[type=email].svelte-1pie7s6, body.light textarea.svelte-1pie7s6 {
+    display: block;
+    position: relative;
+    outline: none !important;
+    box-shadow: var(--input-shadow);
+    border: var(--input-border-width) solid var(--input-border-color);
+    border-radius: var(--input-radius);
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    background: var(--input-background-fill);
+    padding: var(--input-padding);
+    width: 100%;
+    color: var(--body-text-color);
+    font-weight: var(--input-text-weight);
+    font-size: var(--input-text-size);
+    line-height: var(--line-sm);
+  }
+  body.light .physton-prompt .prompt-tags .prompt-tags-list .prompt-tag .prompt-local-language .local-language {
+    font-size: .8rem;
+    color: #3a3e46c9;
+    margin-left: 2px;
+  }
+  body.light .physton-prompt-favorite .popup-tabs .popup-tab.active, body.light .physton-prompt-favorite .popup-tabs .popup-tab:hover, body.light .physton-prompt-history .popup-tabs .popup-tab.active, body.light .physton-prompt-history .popup-tabs .popup-tab:hover { /*历史记录tab hover*/
+    background: #2562e9;
+    border-bottom: 0;
+    border-radius: 5px;
+    margin: 4px;
+  }
+  body.light .physton-prompt-favorite .popup-tabs .popup-tab.active, body.light .physton-prompt-favorite .popup-tabs .popup-tab, body.light .physton-prompt-history .popup-tabs .popup-tab.active, body.light .physton-prompt-history .popup-tabs .popup-tab { /*历史记录tab hover*/
+    margin: 4px;
+  }
+  body.light .physton-prompt .prompt-header .prompt-header-extend .extend-content .extend-btn-group .extend-btn-item .setting-box > * {
+    margin-left: 5px;
+  }
+  body.light .physton-prompt .prompt-header .prompt-header-extend .extend-content .extend-btn-group .extend-btn-item .setting-box { /*浅色设置hover上浮*/ background: #fafafa;
+  }
+  body.light .physton-prompt-favorite .popup-detail, body.light .physton-prompt-history .popup-detail { /*历史记录 list hover浮层 */
+    position: absolute;
+    left: 100%;
+    top: 0;
+    width: 400px;
+    z-index: 1000;
+    background-size: 104% 104%;
+    box-shadow: 0 0 3px 0 #292929;
+    border-radius: 6px 6px 4px 4px;
+    background: rgb(29 33 39 / 95%);
+    transition: height .1s ease-in-out, width .1s ease-in-out;
+    padding: 10px;
+    color: #1d1d1d;
+  }
+  body.light .physton-prompt-favorite .popup-detail .popup-item-tags .item-tag .item-tag-value, body.light .physton-prompt-history .popup-detail .popup-item-tags .item-tag .item-tag-value { /*历史记录 list hover浮层 tag */
+    padding: 4px 6px;
+    border-radius: 5px;
+    background: rgb(48 51 57 / 90%);
+    font-size: 12px;
+    color: #d0d0d0;
+  }
+  /*隐藏原生框右上角的词组数量提示*/
+  body.light #txt2img_negative_token_counter, body.light #txt2img_token_counter, body.light #img2img_token_counter, body.light #img2img_negative_token_counter {
+    position: absolute;
+    right: 1em;
+    min-width: 0 !important;
+    width: auto;
+    z-index: 100;
+    top: -0.75em;
+    display: none;
+  }
+  body.light .physton-prompt-favorite .popup-tab-content .content-list .content-item, body.light .physton-prompt-history .popup-tab-content .content-list .content-item { /*历史记录弹窗list*/
+    padding: 6px 10px;
+    background-color: #e0e6ed;
+    border-radius: 4px;
+    margin: 5px;
+    border: 1px solid #cacfd500;
+    cursor: pointer;
+  }
+  body.light .physton-prompt-favorite .popup-tab-content .content-list .content-item:hover, body.light .physton-prompt-history .popup-tab-content .content-list .content-item:hover {
+    background: rgb(136 144 154 / 76%);
+  }
+  body.light .physton-prompt-favorite .popup-tab-content .content-list .content-item .item-prompt, body.light .physton-prompt-history .popup-tab-content .content-list .content-item .item-prompt {
+    font-size: 12px;
+    color: #5c626f;
+  }
+  body.light .physton-prompt-favorite .popup-tab-content .content-list .content-item:hover .item-prompt, body.light .physton-prompt-history .popup-tab-content .content-list .content-item:hover .item-prompt {
+    overflow: visible;
+    white-space: normal;
+    font-size: 12px;
+    color: #eff3fa;
+  }
+  body.light .physton-prompt-favorite .popup-tab-content .content-list .clear-btn .icon-svg-remove svg, .physton-prompt-history .popup-tab-content .content-list .clear-btn .icon-svg-remove svg { /*删除所有记录*/
+    width: 18px;
+    height: 18px;
+    margin-top: 5px;
+  }
+  body.light .physton-prompt-favorite .popup-tab-content .content-list .clear-btn, body.light .physton-prompt-history .popup-tab-content .content-list .clear-btn {
+     border-radius: 4px;
+    left: 5px;
+    width: 463px;
+    margin: 0;
+    position: sticky;
+    top: -1px;
+    padding: 5px 10px;
+    cursor: pointer;
+    border: 0;
+    color: #ff4027;
+    text-align: center;
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgb(227 232 240 / 91%);
+  }
+  body.light .physton-prompt-favorite .popup-tab-content .content-list .content-item .item-header .item-header-left .item-header-index, body.light .physton-prompt-history .popup-tab-content .content-list .content-item .item-header .item-header-left .item-header-index {
+   background: #2562e9;
+    padding: 2px 0;
+    width: 32px;
+    text-align: center;
+    border-radius: 4px;
+    color: #fff;
+  }
+  body.light .physton-prompt-favorite .popup-tab-content .content-list .content-item .item-header .item-header-left .item-header-name .header-name-input, body.light .physton-prompt-history .popup-tab-content .content-list .content-item .item-header .item-header-left .item-header-name .header-name-input {
+    background: #ffffff4f;
+    border: 0;
+    border-radius: 3px;
+    height: 20px;
+    padding: 2px 4px;
+    width: 190px;
+    font-size: 12px;
+    color: #2562e9;
+    margin-right: 7px;
+  }
+  body.light .physton-prompt-favorite .popup-tabs .popup-tab, body.light .physton-prompt-history .popup-tabs .popup-tab {
+    padding: 5px 0;
+    cursor: pointer;
+    position: relative;
+    flex: 1;
+    border-bottom: 0;
+  }
+  body.light .physton-prompt .prompt-append-list {
+    width: auto;
+    height: auto;
+    padding: 6px;
+    margin: 0;
+    box-shadow: 0 0 6px 0 #4a54ff00;
+    backdrop-filter: blur(15px);
+    border-radius: 6px 6px 6px 6px;
+    transition: height .1s ease-in-out, width .1s ease-in-out;
+    color: #fff;
+    position: absolute;
+    z-index: 1000;
+    background: rgb(52 63 80 / 47%);
+  }
+  body.light .physton-prompt-favorite, body.light .physton-prompt-history { /*历史记录弹窗*/
+    width: 500px;
+    height: auto;
+    padding: 6px;
+    margin: 0;
+    box-shadow: 0 0 6px 0 #4a54ff00;
+    backdrop-filter: blur(15px);
+    border-radius: 6px 6px 6px 6px;
+    background: rgb(52 63 80 / 47%);
+    transition: height .1s ease-in-out, width .1s ease-in-out;
+    color: #fff;
+    position: absolute;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    overflow: visible;
+  }
+  body.light .physton-prompt .prompt-main.fold {
+    max-height: 42px
+  }
+body.light .physton-prompt-favorite .popup-tab-content .content-list .content-item .item-header .item-header-left>div, body.light .physton-prompt-favorite .popup-tab-content .content-list .content-item .item-header .item-header-right>div, body.light .physton-prompt-history .popup-tab-content .content-list .content-item .item-header .item-header-left>div, body.light .physton-prompt-history .popup-tab-content .content-list .content-item .item-header .item-header-right>div {
+    margin-right: 10px;
+    font-size: 14px;
+    color: #565c61;
+}
+  /*TAG上浮*/
+  body.light .physton-prompt .prompt-tags .prompt-tags-list .prompt-tag .prompt-tag-main:hover .btn-tag-extend, body.light .physton-prompt .prompt-tags .prompt-tags-list .prompt-tag .prompt-tag-main:hover .prompt-tag-edit {
+    box-shadow: 0 0 5px 0 #1e1e1e33;
+  }
