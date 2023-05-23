@@ -310,6 +310,14 @@ Q: Why are there two identical buttons under the generate button?
 > The second button is added by this extension. When you hide the native input box of the WebUI, you cannot paste content into it. In this case, you can click the second button and then paste the content into the popup box. After clicking Submit, it will automatically fill in the parameters for the input box in the WebUI interface. (However, currently, it does not support dragging and dropping images into it.)
 </details>
 
+<details>
+<summary>
+Q: Why do some Lora and LyCORIS keep flashing repeatedly?
+</summary>
+
+> This is because your Lora model or LyCORIS model does not exist. The extension will use flashing to remind you.
+</details>
+
 ---
 
 <details>
@@ -401,6 +409,14 @@ Q: 为什么生成按钮下面有两个描述一样的按钮？
 > 第一个按钮是WebUI自带的，你可以在WebUI原生的输入框中粘贴来自其他地方的Prompt，或者把图片拖动进输入框中。点击这个按钮，就可以自动为WebUI界面中的输入框填写参数。
 > 
 > 第二个按钮是本插件添加的。你在隐藏了WebUI原生的输入框时，导致无法粘贴内容进去。那么就可以点击第二个按钮，然后在弹出框中粘贴内容，点击Submit后，就可以自动为WebUI界面中的输入框填写参数。（但是目前还不支持拖动图片进去）
+</details>
+
+<details>
+<summary>
+Q: 为什么有些Lora和LyCORIS会不停的闪烁？
+</summary>
+
+> 这是因为你的Lora模型或者LyCORIS模型不存在。扩展会用闪烁的方式提醒你。
 </details>
 
 ## Donate
