@@ -566,6 +566,7 @@ export default {
                         this.updateTags()
                     })
                 } else {
+                    this.updateTags()
                     /*this.translatesToLocal(indexes, true).finally(() => {
                         this.updateTags()
                     })*/
