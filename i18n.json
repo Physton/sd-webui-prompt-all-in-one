@@ -73,7 +73,9 @@
                 "is_remove_space": "是否去除每个关键词逗号后的空格。<br/>勾选后将自动去除空格（不便阅读）。<br/>取消勾选则保留1个空格（影响TOKEN计数）。",
                 "theme": "主题",
                 "enhance": "增强",
-                "only_csv_on_auto": "自动翻译只使用CSV翻译（不使用网络翻译），手动点击翻译按钮才使用CSV加网络翻译。"
+                "only_csv_on_auto": "自动翻译只使用CSV翻译（不使用网络翻译），手动点击翻译按钮才使用CSV加网络翻译。",
+                "one_translate_all_keywords": "一键翻译所有关键词",
+                "auto_translate": "输入新关键词后自动翻译"
             }
         },
         {

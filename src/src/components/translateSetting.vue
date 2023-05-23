@@ -9,7 +9,7 @@
                             <optgroup v-for="typeGroup in supportApi" :key="typeGroup.type"
                                       :label="getLang(typeGroup.type)">
                                 <option v-for="item in typeGroup.children" :key="item.key" :value="item.key">
-                                    {{ item.name }}
+                                    {{ item.name }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;QPS: {{ item.concurrent || 1 }}
                                 </option>
                             </optgroup>
                         </select>
@@ -227,6 +227,39 @@ Github: Physton/sd-webui-prompt-all-in-one`,
             }).catch(err => {
                 this.errorMessage = err.message
                 this.loading = false
+            })
+        },
+        translate(text, from_lang, to_lang, translateApi = null, translateApiConfig = null) {
+            return new Promise(async (resolve, reject) => {
+                translateApi = translateApi || this.translateApi
+                translateApiConfig = translateApiConfig || this.translateApiConfig || {}
+
+                if (translateApi === 'openai') {
+                    text = JSON.stringify({text})
+                }
+                this.gradioAPI.translate(text, from_lang, to_lang, translateApi, translateApiConfig).then(res => {
+                    if (res.success) {
+                        if (translateApi === 'openai') {
+                            let translated_text = res.translated_text
+                            // 找到第一个[，截取到最后一个]，然后再转成json
+                            const start = translated_text.indexOf('{')
+                            const end = translated_text.lastIndexOf('}')
+                            translated_text = translated_text.substring(start, end + 1)
+                            try {
+                                translated_text = JSON.parse(translated_text).text
+                                res.translated_text = translated_text
+                            } catch (e) {
+                                reject(e)
+                                return
+                            }
+                        }
+                        resolve(res)
+                    } else {
+                        reject(res)
+                    }
+                }).catch(error => {
+                    reject(error)
+                })
             })
         },
         onSaveClick() {

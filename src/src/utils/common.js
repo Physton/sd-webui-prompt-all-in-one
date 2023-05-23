@@ -98,6 +98,28 @@ export default {
         return false
     },
 
+    splitTag(tag) {
+        let result = {left: '', value: '', right: ''}
+        let match = tag.match(/^([\(\<\{\[]+)(.*)$/)
+        if (!match) {
+            // 没有匹配到左括号
+            result.value = tag
+            return result
+        }
+        result.left = match[1]
+        tag = match[2]
+        match = tag.match(/((\:[0-9\.]+)?[\)\>\}\]]+)$/)
+        if (!match) {
+            // 没有匹配到右括号
+            result.value = tag
+            return result
+        }
+        result.right = match[1]
+        tag = tag.substring(0, tag.length - result.right.length)
+        result.value = tag
+        return result
+    },
+
     /**
      * 分割标签
      * @param tags {string}
@@ -142,6 +164,33 @@ export default {
             }
         }
         return true
+    },
+
+    canOneTranslate(languageCode) {
+        const detections = ['zh_CN', 'zh_HK', 'zh_TW', 'ar_SA', 'ja_JP', 'ko_KR', 'ru_RU']
+        detections.push('am_ET', 'hy_AM', 'as_IN', 'bn_BD', 'ba_RU', 'bg_BG', 'prs_AF', 'dv_MV', 'el_GR', 'gu_IN', 'he_IL', 'hi_IN', 'iu_CA', 'kn_IN', 'kk_KZ', 'km_KH', 'ku_Arab_IQ', 'ky_KG', 'lo_LA', 'mk_MK', 'ml_IN', 'mr_IN', 'mn_Cyrl_MN', 'mn_Mong_CN', 'my_MM', 'ne_NP', 'or_IN', 'ps_AF', 'fa_IR', 'pa_Guru_IN', 'sr_Cyrl_RS', 'ta_IN', 'tt_Latn_RU', 'te_IN', 'th_TH', 'bo_CN', 'ti_ET', 'uk_UA', 'ur_PK', 'ug_Arab_CN', 'vi_VN')
+        if (!detections.includes(languageCode)) return false // 无法检测是否英文
+        return true
+    },
+
+    /**
+     * 检测是否英文
+     * @param text {string}
+     * @param languageCode {string}
+     * @returns {number} 0: 不是英文，1: 是英文，2: 未知
+     */
+    isEnglishByLangCode(text, languageCode) {
+        if (!this.canOneTranslate(languageCode)) return -1 // 无法检测是否英文
+
+        const length = text.length
+        // 通过ascii码判断
+        for (let i = 0; i < length; i++) {
+            if (text.charCodeAt(i) > 127) {
+                // 不是英文
+                return 0
+            }
+        }
+        return 1
     },
 
     /**

@@ -9,6 +9,8 @@
                             @click:show-history="onShowHistory(item.id, $event)"
                             :favorite-key="item.favoriteKey"
                             @click:show-favorite="onShowFavorite(item.id, $event)"
+                            v-model:can-one-translate="canOneTranslate"
+                            v-model:auto-translate="autoTranslate"
                             v-model:auto-translate-to-english="autoTranslateToEnglish"
                             v-model:auto-translate-to-local="autoTranslateToLocal"
                             v-model:auto-remove-space="autoRemoveSpace"
@@ -179,6 +181,8 @@ export default {
             translateApis: [],
             translateApi: '',
             translateApiConfig: {},
+            canOneTranslate: false,
+            autoTranslate: false,
             autoTranslateToEnglish: false,
             autoTranslateToLocal: false,
             autoRemoveSpace: true,
@@ -208,6 +212,7 @@ export default {
             handler: function (val, oldVal) {
                 if (!this.startWatchSave) return
                 console.log('onLanguageCodeChange', val)
+                this.canOneTranslate = common.canOneTranslate(this.languageCode)
                 this.gradioAPI.setData('languageCode', val).then(data => {
                 }).catch(err => {
                 })
@@ -229,6 +234,16 @@ export default {
                 if (!this.startWatchSave) return
                 console.log('onAutoTranslateToLocalChange', val)
                 this.gradioAPI.setData('autoTranslateToLocal', val).then(data => {
+                }).catch(err => {
+                })
+            },
+            immediate: false,
+        },
+        autoTranslate: {
+            handler: function (val, oldVal) {
+                if (!this.startWatchSave) return
+                console.log('onAutoTranslateChange', val)
+                this.gradioAPI.setData('autoTranslate', val).then(data => {
                 }).catch(err => {
                 })
             },
@@ -377,7 +392,7 @@ export default {
         },
         init() {
             this.watchVars()
-            let dataListsKeys = ['languageCode', 'autoTranslateToEnglish', 'autoTranslateToLocal', 'autoRemoveSpace', /*'hideDefaultInput', */'translateApi', 'enableTooltip', 'tagCompleteFile', 'onlyCsvOnAuto']
+            let dataListsKeys = ['languageCode', 'autoTranslate', 'autoTranslateToEnglish', 'autoTranslateToLocal', 'autoRemoveSpace', /*'hideDefaultInput', */'translateApi', 'enableTooltip', 'tagCompleteFile', 'onlyCsvOnAuto']
             this.prompts.forEach(item => {
                 dataListsKeys.push(item.hideDefaultInputKey)
                 dataListsKeys.push(item.hidePanelKey)
@@ -397,11 +412,23 @@ export default {
                         this.$forceUpdate()
                     }
                 }
+                this.canOneTranslate = common.canOneTranslate(this.languageCode)
                 if (data.autoTranslateToEnglish !== null) {
                     this.autoTranslateToEnglish = data.autoTranslateToEnglish
                 }
                 if (data.autoTranslateToLocal !== null) {
                     this.autoTranslateToLocal = data.autoTranslateToLocal
+                }
+                if (data.autoTranslate !== null) {
+                    this.autoTranslate = data.autoTranslate
+                } else {
+                    if (this.canOneTranslate) {
+                        this.autoTranslate = this.autoTranslateToEnglish || this.autoTranslateToLocal
+                        this.autoTranslateToEnglish = true
+                        this.autoTranslateToLocal = true
+                    } else {
+                        this.autoTranslate = false
+                    }
                 }
                 if (data.autoRemoveSpace !== null) {
                     this.autoRemoveSpace = data.autoRemoveSpace
