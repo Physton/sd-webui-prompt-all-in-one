@@ -116,7 +116,7 @@ export default {
             currentItem: {}
         }
     },
-    emits: ['use'],
+    emits: ['use', 'refreshFavorites'],
     mounted() {
     },
     methods: {
@@ -195,12 +195,14 @@ export default {
                 this.gradioAPI.doFavorite(this.historyKey, history.id).then(res => {
                     if (res) {
                         history.is_favorite = true
+                        this.$emit('refreshFavorites', this.historyKey)
                     }
                 })
             } else {
                 this.gradioAPI.unFavorite(this.historyKey, history.id).then(res => {
                     if (res) {
                         history.is_favorite = false
+                        this.$emit('refreshFavorites', this.historyKey)
                     }
                 })
             }
@@ -229,6 +231,7 @@ export default {
             this.gradioAPI.setHistoryName(this.historyKey, history.id, value).then(res => {
                 if (res) {
                     history.name = value
+                    this.$emit('refreshFavorites', this.historyKey)
                 } else {
                     e.target.value = history.name
                 }

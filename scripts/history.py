@@ -66,6 +66,18 @@ class history:
         self.__save_histories(type)
         return item
 
+    def push_favorite(self, type, tags, prompt, name=''):
+        item = {
+            'id': str(uuid.uuid1()),
+            'time': int(time.time()),
+            'name': name,
+            'tags': tags,
+            'prompt': prompt,
+        }
+        self.favorites[type].append(item)
+        self.__save_favorites(type)
+        return item
+
     def get_latest_history(self, type):
         if len(self.histoies[type]) > 0:
             return self.histoies[type][-1]

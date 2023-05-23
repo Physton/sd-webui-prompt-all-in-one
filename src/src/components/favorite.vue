@@ -111,6 +111,9 @@ export default {
     },
     emits: ['use'],
     mounted() {
+        this.favorites.forEach(item => {
+            this.getFavorites(item.key)
+        })
     },
     methods: {
         formatTime(time) {
@@ -130,6 +133,7 @@ export default {
                     })
                     favoriteItem.list = res
                 }
+                window.phystonPromptfavorites = this.favorites
                 this.emptyMsg = this.getLang('no_favorite')
                 this.loading = false
             }).catch(err => {
@@ -181,12 +185,14 @@ export default {
                 this.gradioAPI.doFavorite(this.favoriteKey, favorite.id).then(res => {
                     if (res) {
                         favorite.is_favorite = true
+                        window.phystonPromptfavorites = this.favorites
                     }
                 })
             } else {
                 this.gradioAPI.unFavorite(this.favoriteKey, favorite.id).then(res => {
                     if (res) {
                         favorite.is_favorite = false
+                        window.phystonPromptfavorites = this.favorites
                     }
                 })
             }
@@ -215,6 +221,7 @@ export default {
             this.gradioAPI.setFavoriteName(this.favoriteKey, favorite.id, value).then(res => {
                 if (res) {
                     favorite.name = value
+                    window.phystonPromptfavorites = this.favorites
                 } else {
                     e.target.value = favorite.name
                 }

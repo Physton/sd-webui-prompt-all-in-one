@@ -208,7 +208,7 @@
                     <template v-for="(tag, index) in tags" :key="tag.id" :data-id="tag.id">
                         <div :class="['prompt-tag', tag.disabled ? 'disabled': '', tag.type === 'wrap' ? 'wrap-tag' : '']"
                              :ref="'promptTag-' + tag.id">
-                            <div class="prompt-tag-main">
+                            <div class="prompt-tag-main" @mouseenter="onTagMouseEnter(index)">
                                 <div class="prompt-tag-edit">
                                     <template v-if="tag.type === 'wrap'">
                                         <div class="prompt-tag-value"
@@ -278,6 +278,12 @@
                                     <button type="button" v-tooltip="getLang('copy_to_clipboard')"
                                             @click="copy(tag.value)">
                                         <icon-svg name="copy"/>
+                                    </button>
+                                    <button type="button"
+                                            v-tooltip="getLang(tag.isFavorite ? 'remove_from_favorite': 'add_to_favorite')"
+                                            @click="onFavoriteTagClick(index)">
+                                        <icon-svg v-if="tag.isFavorite" name="favorite-yes"/>
+                                        <icon-svg v-if="!tag.isFavorite" name="favorite-no"/>
                                     </button>
                                     <button type="button"
                                             v-tooltip="getLang(tag.disabled ? 'enable_keyword': 'disable_keyword')"
@@ -397,7 +403,7 @@ export default {
             default: () => [],
         },
     },
-    emits: ['update:languageCode', 'update:autoTranslate', 'update:autoTranslateToEnglish', 'update:autoTranslateToLocal', 'update:autoRemoveSpace', 'update:hideDefaultInput', 'update:hidePanel', 'update:enableTooltip', 'update:translateApi', 'click:translateApi', 'click:selectTheme', 'click:selectLanguage', 'click:showHistory', 'click:showFavorite'],
+    emits: ['update:languageCode', 'update:autoTranslate', 'update:autoTranslateToEnglish', 'update:autoTranslateToLocal', 'update:autoRemoveSpace', 'update:hideDefaultInput', 'update:hidePanel', 'update:enableTooltip', 'update:translateApi', 'click:translateApi', 'click:selectTheme', 'click:selectLanguage', 'click:showHistory', 'click:showFavorite', 'refreshFavorites'],
     data() {
         return {
             prompt: '',
@@ -1229,6 +1235,25 @@ export default {
             this.appendListSelected = index
             this.appendListChildSelected = childIndex
         },
+        onTagMouseEnter(index) {
+            if (!this.tags[index]) return false
+            let tag = this.tags[index]
+            tag.isFavorite = this.isFavorite(index)
+        },
+        isFavorite(index) {
+            if (!this.tags[index]) return false
+            let tag = this.tags[index]
+            if (typeof window.phystonPromptfavorites === 'object') {
+                for (const group of window.phystonPromptfavorites) {
+                    if (group.key !== this.favoriteKey) continue
+                    for (const favorite of group.list) {
+                        if (favorite.tags.length !== 1) continue
+                        if (favorite.tags[0].value === tag.value) return favorite.id
+                    }
+                }
+            }
+            return false
+        },
         onTagClick(index) {
             this.editing = {}
             this.editing[this.tags[index].id] = true
@@ -1325,6 +1350,28 @@ export default {
             if (!confirm(this.getLang('delete_all_keywords_confirm'))) return
             this.tags = []
             this.updateTags()
+        },
+        onFavoriteTagClick(index) {
+            if (!this.tags[index]) return
+            let tag = this.tags[index]
+            let favoriteId = this.isFavorite(index)
+            if (!favoriteId) {
+                // 收藏
+                this.gradioAPI.pushFavorite(this.favoriteKey, [tag], tag.value, tag.localValue === '' ? tag.value : tag.localValue).then(res => {
+                    if (res) {
+                        this.tags[index].isFavorite = true
+                        this.$emit('refreshFavorites', this.favoriteKey)
+                    }
+                })
+            } else {
+                // 取消收藏
+                this.gradioAPI.unFavorite(this.favoriteKey, favoriteId).then(res => {
+                    if (res) {
+                        this.tags[index].isFavorite = false
+                        this.$emit('refreshFavorites', this.favoriteKey)
+                    }
+                })
+            }
         },
         onDisabledTagClick(index) {
             this.tags[index].disabled = !this.tags[index].disabled

@@ -8,6 +8,7 @@
                             :history-key="item.historyKey"
                             @click:show-history="onShowHistory(item.id, $event)"
                             :favorite-key="item.favoriteKey"
+                            @refresh-favorites="onRefreshFavorites"
                             @click:show-favorite="onShowFavorite(item.id, $event)"
                             v-model:can-one-translate="canOneTranslate"
                             v-model:auto-translate="autoTranslate"
@@ -47,6 +48,7 @@
                  :translate-apis="translateApis" :languages="languages"
                  v-model:tag-complete-file="tagCompleteFile"
                  v-model:only-csv-on-auto="onlyCsvOnAuto"
+                 @refresh-favorites="onRefreshFavorites"
                  @use="onUseHistory"/>
         <favorite ref="favorite" v-model:language-code="languageCode"
                   :translate-apis="translateApis" :languages="languages"
@@ -654,6 +656,9 @@ export default {
             const item = this.prompts.find(item => item.id == this.favoriteCurrentPrompt)
             if (!item) return
             this.$refs[item.id][0].useFavorite(favorite)
+        },
+        onRefreshFavorites(key) {
+            this.$refs.favorite.getFavorites(key)
         },
     },
 }

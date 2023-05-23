@@ -86,6 +86,10 @@ export default class GradioAPI {
         return (await this.api.post("/push_history", {type, tags, prompt, name})).data.success
     }
 
+    async pushFavorite(type, tags, prompt, name = '') {
+        return (await this.api.post("/push_favorite", {type, tags, prompt, name})).data.success
+    }
+
     async getLatestHistory(type) {
         return (await this.api.get("/get_latest_history", {params: {type}})).data.history
     }
