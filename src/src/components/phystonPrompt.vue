@@ -563,8 +563,8 @@ export default {
         init() {
             this.tags = []
             this.onTextareaChange()
-            this.textarea.removeEventListener('change', this.onTextareaChange)
-            this.textarea.addEventListener('change', this.onTextareaChange)
+            // this.textarea.removeEventListener('change', this.onTextareaChange)
+            // this.textarea.addEventListener('change', this.onTextareaChange)
         },
         async onTextareaChange(event) {
             const autocompleteResults = this.textarea.parentElement.getElementsByClassName('autocompleteResults')
@@ -599,7 +599,6 @@ export default {
             if (this.autoTranslateToLocal && event) {
                 // 启动了自动翻译到本地语言，并且用户手动触发的
                 let useNetwork = !(this.tagCompleteFile && this.onlyCsvOnAuto)
-                console.log(indexes, useNetwork)
                 this.translates(indexes, true, useNetwork).finally(() => {
                     this.updateTags()
                 })
@@ -1594,7 +1593,9 @@ export default {
                                 completeCount--
                                 if (completeCount === 0) {
                                     // 本组全部完成
-                                    trans(groupNow + 1)
+                                    setTimeout(() => {
+                                        trans(groupNow + 1)
+                                    }, 200)
                                 }
                             }
                             groupTags.forEach((tag, index) => {
@@ -1631,8 +1632,13 @@ export default {
                 if (this.tagCompleteFile) {
                     // 开启了使用tagcomplete翻译
                     let promises = []
-                    console.log(needTranslateTags)
                     needTranslateTags.forEach(tag => {
+                        // 是否被括号包裹
+                        const splitTag = common.splitTag(tag.value)
+                        if (splitTag.value !== tag.value) {
+                            tag.value = splitTag.value
+                            tag.splits = splitTag
+                        }
                         if (tag.toLocal) {
                             // 翻译到本地语言
                             promises.push(this.translateToLocalByCSV(tag.value))
@@ -1645,9 +1651,17 @@ export default {
                         let needs = []
                         results.forEach((result, index) => {
                             let tag = needTranslateTags[index]
+                            if (tag.splits) {
+                                // 如果被括号包裹，还原
+                                tag.value = tag.splits.left + tag.value + tag.splits.right
+                            }
+
                             if (result === '') {
                                 needs.push(tag)
                             } else {
+                                if (tag.splits) {
+                                    result = tag.splits.left + result + tag.splits.right
+                                }
                                 setLoading(tag, false)
                                 setTag(tag, result)
                             }
