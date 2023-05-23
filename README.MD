@@ -310,6 +310,8 @@ Q: Why are there two identical buttons under the generate button?
 > The second button is added by this extension. When you hide the native input box of the WebUI, you cannot paste content into it. In this case, you can click the second button and then paste the content into the popup box. After clicking Submit, it will automatically fill in the parameters for the input box in the WebUI interface. (However, currently, it does not support dragging and dropping images into it.)
 </details>
 
+---
+
 <details>
 <summary>
 Q: 无需api key的翻译接口和需要api key的翻译接口有什么区别？
@@ -379,7 +381,7 @@ Q: 为什么在WebUI里粘贴了Prompt，但是没有自动翻译到本地语言
 
 <details>
 <summary>
-Q: 为什么翻译结果有些是“0”
+Q: 为什么翻译结果有些是“0”？
 </summary>
 
 > 是因为你在翻译设置中启用了tagcomplete翻译增强功能，但是你没有选择正确的CSV文件，一个正确的CSV文件格式应该是，第一列A为索引数字，第二列B为英文单词，第三列C为你的本地语言翻译。如果你的CSV文件格式不对，那么就会出现翻译结果为0的情况。
