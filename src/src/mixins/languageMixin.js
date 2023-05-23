@@ -129,19 +129,5 @@ export default {
             }
             return ''
         },
-        async translateByCSV(text, from_lang, to_lang, tagCompleteFile = null, reload = false) {
-            let translateText = ''
-            try {
-                if (from_lang === this.languageCode && to_lang === 'en_US') {
-                    translateText = await this.translateToEnByCSV(text, tagCompleteFile, reload)
-                } else if (from_lang === 'en_US' && to_lang === this.languageCode) {
-                    translateText = await this.translateToLocalByCSV(text, tagCompleteFile, reload)
-                }
-            } catch (e) {
-                console.log(e)
-            }
-            if (!translateText) return ''
-            return translateText
-        },
     }
 }
