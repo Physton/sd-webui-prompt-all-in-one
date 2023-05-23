@@ -98,6 +98,11 @@ export default {
         return false
     },
 
+    /**
+     * 拆分标签
+     * @param tag {string}
+     * @returns {{left: string, right: string, value: string}}
+     */
     splitTag(tag) {
         let result = {left: '', value: '', right: ''}
         let match = tag.match(/^([\(\<\{\[]+)(.*)$/)
