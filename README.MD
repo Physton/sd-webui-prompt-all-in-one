@@ -318,6 +318,14 @@ Q: Why do some Lora and LyCORIS keep flashing repeatedly?
 > This is because your Lora model or LyCORIS model does not exist. The extension will use flashing to remind you.
 </details>
 
+<details>
+<summary>
+Q: Why does this extension not have a version number and update description?
+</summary>
+
+> This is because the author is too lazy. This extension has not been online for long, and new features are being developed and bugs are being fixed every day. A large number of update logs are too cumbersome. So please keep updating and explore new features by yourself!
+</details>
+
 ---
 
 <details>
@@ -417,6 +425,14 @@ Q: 为什么有些Lora和LyCORIS会不停的闪烁？
 </summary>
 
 > 这是因为你的Lora模型或者LyCORIS模型不存在。扩展会用闪烁的方式提醒你。
+</details>
+
+<details>
+<summary>
+Q: 为什么此扩展没有版本号和更新描述？
+</summary>
+
+> 这是因为作者太懒了。此扩展并没有上线多久，每天都在开发新功能和修复BUG。大量的更新日志太过繁琐。所以请你保持常更新，自己探索新功能吧！
 </details>
 
 ## Donate
