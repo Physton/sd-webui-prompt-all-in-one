@@ -53,12 +53,25 @@ export default {
         },
         getCSV(tagCompleteFile = null, reload = false) {
             window.tagCompleteFileCache = window.tagCompleteFileCache || {}
+            window.tagCompleteFileLoading = window.tagCompleteFileLoading || {}
             return new Promise((resolve, reject) => {
                 tagCompleteFile = tagCompleteFile || this.tagCompleteFile
                 if (!reload && window.tagCompleteFileCache[tagCompleteFile]) {
                     resolve(window.tagCompleteFileCache[tagCompleteFile])
                     return
                 }
+
+                // 判断是否获取csv中
+                if (window.tagCompleteFileLoading[tagCompleteFile]) {
+                    const timer = setInterval(() => {
+                        if (!window.tagCompleteFileLoading[tagCompleteFile]) {
+                            clearInterval(timer)
+                            resolve(window.tagCompleteFileCache[tagCompleteFile])
+                        }
+                    }, 100)
+                    return
+                }
+                window.tagCompleteFileLoading[tagCompleteFile] = true
 
                 let data = {toEn: new Map(), toLocal: new Map()}
                 let setData = (en, local) => {
@@ -76,6 +89,7 @@ export default {
                         translations.forEach((local, en) => {
                             setData(en, local)
                         })
+                        window.tagCompleteFileLoading[tagCompleteFile] = false
                         window.tagCompleteFileCache[tagCompleteFile] = data
                         resolve(data)
                         return
@@ -83,6 +97,8 @@ export default {
                 }
 
                 if (!tagCompleteFile) {
+                    window.tagCompleteFileLoading[tagCompleteFile] = false
+                    window.tagCompleteFileCache[tagCompleteFile] = data
                     reject(this.getLang('not_found_csv_file'))
                     return
                 }
@@ -102,9 +118,12 @@ export default {
                         if (en === '' || local === '') return
                         setData(en, local)
                     })
+                    window.tagCompleteFileLoading[tagCompleteFile] = false
                     window.tagCompleteFileCache[tagCompleteFile] = data
                     resolve(data)
                 }).catch(error => {
+                    window.tagCompleteFileLoading[tagCompleteFile] = false
+                    window.tagCompleteFileCache[tagCompleteFile] = data
                     if (error.response && error.response.status === 404) {
                         reject(this.getLang('not_found_csv_file'))
                     } else {
