@@ -288,6 +288,30 @@ Q: Why isn't the Prompt automatically translated into the local language when pa
 
 <details>
 <summary>
+Q: Why are some translation results "0"?
+</summary>
+
+> It may be because you have enabled the "tagcomplete" translation enhancement feature in the translation settings, but you have not selected the correct CSV file. A correct CSV file should have the index number in the first column A, the English words in the second column B, and the translation of your local language in the third column C. If your CSV file format is incorrect, it will result in a translation result of "0".
+>
+> You can visit [Physton/sd-webui-prompt-all-in-one-assets/tags](https://github.com/Physton/sd-webui-prompt-all-in-one-assets/tree/main/tags) where I have provided a Simplified Chinese CSV file.
+>
+> After selecting a different CSV file, please click the test button below to check if the translation is correct.
+</details>
+
+<details>
+<summary>
+Q: Why are there two identical buttons under the generate button?
+</summary>
+
+![](https://raw.githubusercontent.com/Physton/sd-webui-prompt-all-in-one-assets/main/images/paste.png)
+
+> The first button is built into the WebUI. You can paste the Prompt from other sources into the native input box of WebUI or drag and drop an image into it. Clicking this button will automatically fill in the parameters for the input box in the WebUI interface.
+> 
+> The second button is added by this extension. When you hide the native input box of the WebUI, you cannot paste content into it. In this case, you can click the second button and then paste the content into the popup box. After clicking Submit, it will automatically fill in the parameters for the input box in the WebUI interface. (However, currently, it does not support dragging and dropping images into it.)
+</details>
+
+<details>
+<summary>
 Q: 无需api key的翻译接口和需要api key的翻译接口有什么区别？
 </summary>
 
@@ -351,6 +375,30 @@ Q: 为什么在WebUI里粘贴了Prompt，但是没有自动翻译到本地语言
 > 在WebUI中粘贴了Prompt，一般都是很多关键词，如果自动翻译会消耗很多网络请求，所以扩展暂时不开启这里自动翻译的功能。如果需要，请手动点击一下批量翻译按钮。
 > 
 > 如果有一部分被翻译了，是因为你在翻译设置中启用了tagcomplete翻译增强功能，因为这个功能不需要网络请求，所以会把能匹配到的关键词翻译好。
+</details>
+
+<details>
+<summary>
+Q: 为什么翻译结果有些是“0”
+</summary>
+
+> 是因为你在翻译设置中启用了tagcomplete翻译增强功能，但是你没有选择正确的CSV文件，一个正确的CSV文件格式应该是，第一列A为索引数字，第二列B为英文单词，第三列C为你的本地语言翻译。如果你的CSV文件格式不对，那么就会出现翻译结果为0的情况。
+> 
+> 你可以前往[Physton/sd-webui-prompt-all-in-one-assets/tags](https://github.com/Physton/sd-webui-prompt-all-in-one-assets/tree/main/tags)，这里我提供了一份简体中文的CSV文件。
+> 
+> 在选择了不同的CSV文件后，请点击下方的测试按钮，检查它是否翻译正确。
+</details>
+
+<details>
+<summary>
+Q: 为什么生成按钮下面有两个描述一样的按钮？
+</summary>
+
+![](https://raw.githubusercontent.com/Physton/sd-webui-prompt-all-in-one-assets/main/images/paste.png)
+
+> 第一个按钮是WebUI自带的，你可以在WebUI原生的输入框中粘贴来自其他地方的Prompt，或者把图片拖动进输入框中。点击这个按钮，就可以自动为WebUI界面中的输入框填写参数。
+> 
+> 第二个按钮是本插件添加的。你在隐藏了WebUI原生的输入框时，导致无法粘贴内容进去。那么就可以点击第二个按钮，然后在弹出框中粘贴内容，点击Submit后，就可以自动为WebUI界面中的输入框填写参数。（但是目前还不支持拖动图片进去）
 </details>
 
 ## Donate
