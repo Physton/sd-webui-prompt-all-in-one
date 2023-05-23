@@ -34,11 +34,9 @@ export default {
         },
         embeddingExists(name) {
             if (typeof this.embeddings !== 'object') return name
-            name = name.toLowerCase()
             for (let key in this.embeddings) {
-                if (typeof this.embeddings[key] !== 'object') continue
-                if (this.embeddings[key][0].toLowerCase() === name) {
-                    return this.embeddings[key][0]
+                if (this.embeddings[key] === name) {
+                    return this.embeddings[key]
                 }
             }
             return false

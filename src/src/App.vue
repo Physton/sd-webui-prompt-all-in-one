@@ -328,11 +328,52 @@ export default {
         },
         watchVars() {
             // loras、lycos、embeddings
+            let txt2img_textual_inversion_cards = null
+            let txt2img_textual_inversion_cards_html = ''
+            let text2img_lora_cards = null
+            let text2img_lora_cards_html = ''
+            let txt2img_lycoris_cards = null
+            let txt2img_lycoris_cards_html = ''
             setInterval(() => {
-                if (typeof loras === 'object' && loras !== this.loras) this.loras = loras
-                if (typeof lycos === 'object' && lycos !== this.lycos) this.lycos = lycos
-                if (typeof embeddings === 'object' && embeddings !== this.embeddings) this.embeddings = embeddings
-            }, 100)
+                if (!txt2img_textual_inversion_cards) txt2img_textual_inversion_cards = document.getElementById('txt2img_textual_inversion_cards')
+                if (txt2img_textual_inversion_cards && txt2img_textual_inversion_cards_html !== txt2img_textual_inversion_cards.innerHTML) {
+                    let embeddings = []
+                    txt2img_textual_inversion_cards_html = txt2img_textual_inversion_cards.innerHTML
+                    let cards = txt2img_textual_inversion_cards.querySelectorAll('.card')
+                    cards.forEach(card => {
+                        let name = card.querySelector('.name')
+                        if (!name) return
+                        embeddings.push(name.innerText.trim())
+                    })
+                    this.embeddings = embeddings
+                }
+
+                if (!text2img_lora_cards) text2img_lora_cards = document.getElementById('txt2img_lora_cards')
+                if (text2img_lora_cards && text2img_lora_cards_html !== text2img_lora_cards.innerHTML) {
+                    let loras = []
+                    text2img_lora_cards_html = text2img_lora_cards.innerHTML
+                    let cards = text2img_lora_cards.querySelectorAll('.card')
+                    cards.forEach(card => {
+                        let name = card.querySelector('.name')
+                        if (!name) return
+                        loras.push(name.innerText.trim())
+                    })
+                    this.loras = loras
+                }
+
+                if (!txt2img_lycoris_cards) txt2img_lycoris_cards = document.getElementById('txt2img_lycoris_cards')
+                if (txt2img_lycoris_cards && txt2img_lycoris_cards_html !== txt2img_lycoris_cards.innerHTML) {
+                    let lycos = []
+                    txt2img_lycoris_cards_html = txt2img_lycoris_cards.innerHTML
+                    let cards = txt2img_lycoris_cards.querySelectorAll('.card')
+                    cards.forEach(card => {
+                        let name = card.querySelector('.name')
+                        if (!name) return
+                        lycos.push(name.innerText.trim())
+                    })
+                    this.lycos = lycos
+                }
+            }, 1000)
         },
         init() {
             this.watchVars()
