@@ -605,6 +605,7 @@ export default {
             if (this.autoTranslateToLocal && event) {
                 // 启动了自动翻译到本地语言，并且用户手动触发的
                 let useNetwork = !(this.tagCompleteFile && this.onlyCsvOnAuto)
+                useNetwork = false // 浪费网络请求，先关闭网络翻译。
                 this.translates(indexes, true, useNetwork).finally(() => {
                     this.updateTags()
                 })
