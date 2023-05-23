@@ -593,13 +593,13 @@ export default {
                     const localValue = find ? find.localValue : ''
                     const disabled = find ? find.disabled : false
                     const index = this._appendTag(tag, localValue, disabled, -1, 'text')
-                    if (!find || find.localValue === '') indexes.push(index)
+                    if (!find) indexes.push(index)
                 }
             }
             if (this.autoTranslateToLocal && event) {
                 // 启动了自动翻译到本地语言，并且用户手动触发的
                 let useNetwork = !(this.tagCompleteFile && this.onlyCsvOnAuto)
-                console.log(useNetwork)
+                console.log(indexes, useNetwork)
                 this.translates(indexes, true, useNetwork).finally(() => {
                     this.updateTags()
                 })
@@ -1631,6 +1631,7 @@ export default {
                 if (this.tagCompleteFile) {
                     // 开启了使用tagcomplete翻译
                     let promises = []
+                    console.log(needTranslateTags)
                     needTranslateTags.forEach(tag => {
                         if (tag.toLocal) {
                             // 翻译到本地语言
