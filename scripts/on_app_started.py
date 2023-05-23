@@ -129,6 +129,14 @@ def on_app_started(_: gr.Blocks, app: FastAPI):
         hi.push_history(data['type'], data['tags'], data['prompt'], data.get('name', ''))
         return {"success": True}
 
+    @app.post("/physton_prompt/push_favorite")
+    async def _push_favorite(request: Request):
+        data = await request.json()
+        if 'type' not in data or 'tags' not in data or 'prompt' not in data:
+            return {"success": False, "message": "type or tags or prompt is required"}
+        hi.push_favorite(data['type'], data['tags'], data['prompt'], data.get('name', ''))
+        return {"success": True}
+
     @app.get("/physton_prompt/get_latest_history")
     async def _get_latest_history(type: str):
         return {"history": hi.get_latest_history(type)}
