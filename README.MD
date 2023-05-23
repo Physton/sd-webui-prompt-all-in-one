@@ -278,6 +278,16 @@ Q: Don't need translation services, just want to use it in an offline environmen
 
 <details>
 <summary>
+Q: Why isn't the Prompt automatically translated into the local language when pasted in the WebUI, or only partially translated?
+</summary>
+
+> When pasting a Prompt in the WebUI, there are usually many keywords. If automatic translation is enabled, it will consume a lot of network requests. Therefore, the extension temporarily does not enable automatic translation of this feature. If needed, please manually click the "Bulk Translate" button.
+> 
+> If only part of the Prompt is translated, it may be because you have enabled the "tagcomplete" translation enhancement feature in the translation settings. Because this feature does not require network requests, it will translate any matching keywords it can find.
+</details>
+
+<details>
+<summary>
 Q: 无需api key的翻译接口和需要api key的翻译接口有什么区别？
 </summary>
 
@@ -331,6 +341,16 @@ Q: 不需要翻译服务，只想在离线环境中使用？
 > A:
 > 1. 扩展在初始化的时候会安装一些翻译接口的SDK包，如`translators`、`openai`、`boto3`、`aliyun-python-sdk-core`、`aliyun-python-sdk-alimt`、`tencentcloud-sdk-python`等等，如果你不需要翻译服务，也不想安装它们，请手动打开`install.py`，根据代码中的注释，删除代码，这并不会影响扩展的使用。然后取消勾选扩展设置中的自动翻译按钮。
 > 2. 你也可以直接在扩展中将本地语言改为英文`en_US`，这样所有翻译相关的按钮都将被隐藏。虽然扩展在初始化时还会安装这些翻译接口的SDK包，但它们在代码中都是按需导入的，没有使用翻译服务，它们也不会被加载。
+</details>
+
+<details>
+<summary>
+Q: 为什么在WebUI里粘贴了Prompt，但是没有自动翻译到本地语言，或者只翻译了一部分？
+</summary>
+
+> 在WebUI中粘贴了Prompt，一般都是很多关键词，如果自动翻译会消耗很多网络请求，所以扩展暂时不开启这里自动翻译的功能。如果需要，请手动点击一下批量翻译按钮。
+> 
+> 如果有一部分被翻译了，是因为你在翻译设置中启用了tagcomplete翻译增强功能，因为这个功能不需要网络请求，所以会把能匹配到的关键词翻译好。
 </details>
 
 ## Donate
