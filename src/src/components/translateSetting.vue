@@ -9,7 +9,7 @@
                             <optgroup v-for="typeGroup in supportApi" :key="typeGroup.type"
                                       :label="getLang(typeGroup.type)">
                                 <option v-for="item in typeGroup.children" :key="item.key" :value="item.key">
-                                    {{ item.name }}
+                                    {{ item.name }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;QPS: {{ item.concurrent || 1 }}
                                 </option>
                             </optgroup>
                         </select>

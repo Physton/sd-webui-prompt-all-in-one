@@ -98,6 +98,28 @@ export default {
         return false
     },
 
+    splitTag(tag) {
+        let result = {left: '', value: '', right: ''}
+        let match = tag.match(/^([\(\<\{\[]+)(.*)$/)
+        if (!match) {
+            // 没有匹配到左括号
+            result.value = tag
+            return result
+        }
+        result.left = match[1]
+        tag = match[2]
+        match = tag.match(/((\:[0-9\.]+)?[\)\>\}\]]+)$/)
+        if (!match) {
+            // 没有匹配到右括号
+            result.value = tag
+            return result
+        }
+        result.right = match[1]
+        tag = tag.substring(0, tag.length - result.right.length)
+        result.value = tag
+        return result
+    },
+
     /**
      * 分割标签
      * @param tags {string}
