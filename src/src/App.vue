@@ -257,6 +257,10 @@ export default {
         autoTranslate: {
             handler: function (val, oldVal) {
                 if (!this.startWatchSave) return
+                if (this.autoTranslate) {
+                    this.autoTranslateToEnglish = true
+                    this.autoTranslateToLocal = true
+                }
                 console.log('onAutoTranslateChange', val)
                 this.gradioAPI.setData('autoTranslate', val).then(data => {
                 }).catch(err => {
