@@ -244,7 +244,6 @@ Q: Unable to use translation service, clicking "Test!" results in "No module nam
 >    ./python -m pip install boto3
 >    ./python -m pip install aliyun-python-sdk-core
 >    ./python -m pip install aliyun-python-sdk-alimt
->    ./python -m pip install tencentcloud-sdk-python
 >    ```
 > 3. After the installation is complete, restart webui.
 </details>
@@ -274,7 +273,7 @@ Q: Don't need translation services, just want to use it in an offline environmen
 </summary>
 
 > A:
-> 1. During initialization, the extension will install some translation interface SDK packages, such as `translators`、`openai`、`boto3`、`aliyun-python-sdk-core`、`aliyun-python-sdk-alimt`、`tencentcloud-sdk-python`, etc. If you don't need translation services and don't want to install them, please manually open install.py, delete the code according to the comments in the code. This will not affect the use of the extension. Then uncheck the automatic translation button in the extension settings.
+> 1. During initialization, the extension will install some translation interface SDK packages, such as `translators`、`openai`、`boto3`、`aliyun-python-sdk-core`、`aliyun-python-sdk-alimt`, etc. If you don't need translation services and don't want to install them, please manually open install.py, delete the code according to the comments in the code. This will not affect the use of the extension. Then uncheck the automatic translation button in the extension settings.
 > 2. You can also directly change the local language to English en_US in the extension, which will hide all translation-related buttons. Although the extension will still install these translation interface SDK packages during initialization, they are imported on-demand in the code without using translation services, so they will not be loaded.
 </details>
 
@@ -362,7 +361,6 @@ Q: 无法使用翻译服务，点击“测试”，提示“No module named 'xxx
 >    ./python -m pip install boto3
 >    ./python -m pip install aliyun-python-sdk-core
 >    ./python -m pip install aliyun-python-sdk-alimt
->    ./python -m pip install tencentcloud-sdk-python
 >    ```
 > 3. 等待安装完成后，重启webui。
 </details>
@@ -392,7 +390,7 @@ Q: 不需要翻译服务，只想在离线环境中使用？
 </summary>
 
 > A:
-> 1. 扩展在初始化的时候会安装一些翻译接口的SDK包，如`translators`、`openai`、`boto3`、`aliyun-python-sdk-core`、`aliyun-python-sdk-alimt`、`tencentcloud-sdk-python`等等，如果你不需要翻译服务，也不想安装它们，请手动打开`install.py`，根据代码中的注释，删除代码，这并不会影响扩展的使用。然后取消勾选扩展设置中的自动翻译按钮。
+> 1. 扩展在初始化的时候会安装一些翻译接口的SDK包，如`translators`、`openai`、`boto3`、`aliyun-python-sdk-core`、`aliyun-python-sdk-alimt`等等，如果你不需要翻译服务，也不想安装它们，请手动打开`install.py`，根据代码中的注释，删除代码，这并不会影响扩展的使用。然后取消勾选扩展设置中的自动翻译按钮。
 > 2. 你也可以直接在扩展中将本地语言改为英文`en_US`，这样所有翻译相关的按钮都将被隐藏。虽然扩展在初始化时还会安装这些翻译接口的SDK包，但它们在代码中都是按需导入的，没有使用翻译服务，它们也不会被加载。
 </details>
 

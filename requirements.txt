@@ -5,4 +5,3 @@ openai
 boto3
 aliyun-python-sdk-core
 aliyun-python-sdk-alimt
-tencentcloud-sdk-python
