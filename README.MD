@@ -320,6 +320,15 @@ Q: Why do some Lora and LyCORIS keep flashing repeatedly?
 
 <details>
 <summary>
+Q: Why were there two translation buttons before and now there is only one?
+</summary>
+
+> Now in some languages ​​such as Chinese, Japanese, Korean, etc., the system supports automatic recognition of whether you are inputting English or your local language. Therefore, the previous "Translate to English" and "Translate to Local Language" buttons have been merged into one. Whether you input in English or your local language, it will be automatically recognized and translated accordingly.
+</details>
+
+
+<details>
+<summary>
 Q: Why does this extension not have a version number and update description?
 </summary>
 
@@ -425,6 +434,14 @@ Q: 为什么有些Lora和LyCORIS会不停的闪烁？
 </summary>
 
 > 这是因为你的Lora模型或者LyCORIS模型不存在。扩展会用闪烁的方式提醒你。
+</details>
+
+<details>
+<summary>
+Q: 为什么之前有两个翻译按钮，现在还有一个了？
+</summary>
+
+> 现在某些语言下，例如中文、日文、韩文等等，支持了自动识别你输入的是英文还是本地语言。所以把之前的翻译到英文、翻译到本地语言两个按钮合并成了一个。不管你输入的是英文还是本地语言，都会自动翻译识别翻译。
 </details>
 
 <details>
