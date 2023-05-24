@@ -323,7 +323,7 @@ Q: Why do some Lora and LyCORIS keep flashing repeatedly?
 Q: Why were there two translation buttons before and now there is only one?
 </summary>
 
-> Now in some languages ​​such as Chinese, Japanese, Korean, etc., the system supports automatic recognition of whether you are inputting English or your local language. Therefore, the previous "Translate to English" and "Translate to Local Language" buttons have been merged into one. Whether you input in English or your local language, it will be automatically recognized and translated accordingly.
+> Now in some languages such as Chinese, Japanese, Korean, etc., the system supports automatic recognition of whether you are inputting English or your local language. Therefore, the previous "Translate to English" and "Translate to Local Language" buttons have been merged into one. Whether you input in English or your local language, it will be automatically recognized and translated accordingly.
 </details>
 
 
