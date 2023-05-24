@@ -23,6 +23,11 @@
                                         <icon-svg class="hover-scale-120" name="api"/>
                                     </div>
                                     <div class="extend-btn-item"
+                                         v-tooltip="getLang('prompt_format')"
+                                         @click="$emit('click:promptFormat', $event)">
+                                        <icon-svg class="hover-scale-120" name="format"/>
+                                    </div>
+                                    <div class="extend-btn-item"
                                          v-tooltip="getLang('theme_extension')"
                                          @click="$emit('click:selectTheme', $event)">
                                         <icon-svg class="hover-scale-120" name="theme"/>
@@ -59,14 +64,14 @@
                                             </div>
                                         </template>
                                     </template>
-                                    <div class="gradio-checkbox hover-scale-120">
+                                    <!--<div class="gradio-checkbox hover-scale-120">
                                         <label v-tooltip="getLang('is_remove_space')">
                                             <input type="checkbox" name="auto_remove_space" value="1"
                                                    :checked="autoRemoveSpace"
                                                    @change="$emit('update:autoRemoveSpace', $event.target.checked)">
                                             <icon-svg name="remove-space"/>
                                         </label>
-                                    </div>
+                                    </div>-->
                                     <div class="gradio-checkbox hover-scale-120">
                                         <label v-tooltip="getLang('whether_to_enable_tooltip')">
                                             <input type="checkbox" name="enable_tooltip" value="1"
@@ -370,6 +375,14 @@ export default {
             type: Boolean,
             default: false,
         },
+        autoRemoveLastComma: {
+            type: Boolean,
+            default: false,
+        },
+        autoKeepWeightZero: {
+            type: Boolean,
+            default: false,
+        },
         hideDefaultInput: {
             type: Boolean,
             default: false,
@@ -403,7 +416,7 @@ export default {
             default: () => [],
         },
     },
-    emits: ['update:languageCode', 'update:autoTranslate', 'update:autoTranslateToEnglish', 'update:autoTranslateToLocal', 'update:autoRemoveSpace', 'update:hideDefaultInput', 'update:hidePanel', 'update:enableTooltip', 'update:translateApi', 'click:translateApi', 'click:selectTheme', 'click:selectLanguage', 'click:showHistory', 'click:showFavorite', 'refreshFavorites'],
+    emits: ['update:languageCode', 'update:autoTranslate', 'update:autoTranslateToEnglish', 'update:autoTranslateToLocal', 'update:autoRemoveSpace', 'update:autoRemoveLastComma', 'update:autoKeepWeightZero', 'update:hideDefaultInput', 'update:hidePanel', 'update:enableTooltip', 'update:translateApi', 'click:translateApi', 'click:promptFormat', 'click:selectTheme', 'click:selectLanguage', 'click:showHistory', 'click:showFavorite', 'refreshFavorites'],
     data() {
         return {
             prompt: '',
@@ -645,6 +658,7 @@ export default {
         },
         genPrompt() {
             let prompts = []
+            let length = this.tags.length
             this.tags.forEach((tag, index) => {
                 let prompt = ''
                 if (typeof tag['type'] === 'string' && tag.type === 'wrap') {
@@ -694,6 +708,11 @@ export default {
                         }
                     }
 
+                    if (this.autoRemoveLastComma && index + 1 === length) {
+                        // 如果是最后一个，那么就不需要加逗号
+                        splitSymbol = ''
+                    }
+
                     prompt = tag.value + splitSymbol
                 }
 
@@ -707,7 +726,11 @@ export default {
             this.prompt = this.genPrompt()
             this.textarea.value = this.prompt
             common.hideCompleteResults(this.textarea)
-            this.textarea.dispatchEvent(new Event('input'))
+            if (typeof updateInput === "function") {
+                updateInput(this.textarea)
+            } else {
+                this.textarea.dispatchEvent(new Event('input'))
+            }
         },
         updateTags() {
             console.log('tags change', this.tags)
@@ -1335,9 +1358,15 @@ export default {
                 if (bracket[0] === '<' && bracket[1] === '>') {
                     weightNum = 0.1
                 } else {
-                    // 移除权重数
-                    this.tags[index].value = value.replace(common.weightNumRegex, '$1')
-                    if (localValue !== '') this.tags[index].localValue = this.tags[index].localValue.replace(common.weightNumRegex, '$1')
+                    if (this.autoKeepWeightZero) {
+                        // 保留权重数
+                        this.tags[index].value = value.replace(common.weightNumRegex, '$1:0')
+                        if (localValue !== '') this.tags[index].localValue = this.tags[index].localValue.replace(common.weightNumRegex, '$1:0')
+                    } else {
+                        // 移除权重数
+                        this.tags[index].value = value.replace(common.weightNumRegex, '$1')
+                        if (localValue !== '') this.tags[index].localValue = this.tags[index].localValue.replace(common.weightNumRegex, '$1')
+                    }
                 }
             }
             this.tags[index].weightNum = weightNum

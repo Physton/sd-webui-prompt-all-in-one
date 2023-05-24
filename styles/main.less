@@ -225,6 +225,7 @@
 
         .setting-box {
             .set-icon-svg(26px, 26px, #d81e06, icon-svg-api);
+            .set-icon-svg(26px, 26px, #d81e06, icon-svg-format);
             .set-icon-svg(26px, 26px, #02b7fd, icon-svg-theme);
             .set-icon-svg(26px, 26px, #ad6800, icon-svg-translate);
             .set-icon-svg(26px, 26px, #ad6800, icon-svg-english);
@@ -350,7 +351,7 @@
 
                     .extend-btn-item {
                         cursor: pointer;
-                        border-left: 1px solid var(--button-secondary-border-color);
+                        //border-left: 1px solid var(--button-secondary-border-color);
                         height: 26px;
                         width: 30px;
                         display: flex;
@@ -1171,6 +1172,66 @@
 
                 &:hover, &.selected {
                     .common-colourful-background();
+                }
+            }
+        }
+    }
+}
+
+.physton-prompt-format {
+    .common-popup-bg();
+
+    .format-main {
+        min-height: 300px;
+        position: relative;
+
+        .format-close {
+            .common-popup-close();
+        }
+
+        .format-list {
+            display: block;
+            position: relative;
+            box-shadow: 0 0 3px @common-blue;
+            border-radius: 6px 6px 4px 4px;
+            background-color: #1e1e1ee6;
+            transition: height .1s ease-in-out, width .1s ease-in-out;
+            padding: 20px 40px;
+
+            .format-item {
+                display: flex;
+                justify-content: flex-start;
+                align-items: flex-start;
+                margin-top: 10px;
+
+                &:first-child {
+                    margin-top: 0;
+                }
+
+                .format-checkbox {
+                    --ring-color: transparent;
+                    position: relative;
+                    box-shadow: var(--input-shadow);
+                    border: 1px solid var(--checkbox-border-color);
+                    border-radius: var(--checkbox-border-radius);
+                    background-color: var(--checkbox-background-color);
+                    line-height: var(--line-sm);
+                    width: 16px;
+                    height: 16px;
+                    margin-top: 2px;
+
+                    &:checked {
+                        border-color: var(--checkbox-border-color-selected);
+                        background-image: var(--checkbox-check);
+                        background-color: var(--checkbox-background-color-selected)
+                    }
+                }
+
+                .format-desc {
+                    font-size: 14px;
+                    line-height: 20px;
+                    color: #fff;
+                    margin-left: 10px;
                 }
             }
         }
