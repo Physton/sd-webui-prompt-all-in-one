@@ -75,7 +75,9 @@
                 "enhance": "增强",
                 "only_csv_on_auto": "自动翻译只使用CSV翻译（不使用网络翻译），手动点击翻译按钮才使用CSV加网络翻译。",
                 "one_translate_all_keywords": "一键翻译所有关键词",
-                "auto_translate": "输入新关键词后自动翻译"
+                "auto_translate": "输入新关键词后自动翻译",
+                "is_remove_last_comma": "是否去除Prompt最后的一个逗号。<br/>勾选后Prompt输出为“aaa,bbb,ccc”。<br/>取消勾选Prompt输出为“aaa,bbb,ccc,”。",
+                "is_keep_wight_zero": "是否保留关键词权重为0的格式。<br/>勾选后关键词保留格式为“(text:0)”。<br/>取消勾选将不保留格式为“test”。"
             }
         },
         {
@@ -150,7 +152,11 @@
                 "is_remove_space": "是否去除每個關鍵詞逗號後的空格。<br/>勾選後將自動去除空格（不便閱讀）。<br/>取消勾選則保留1個空格（影響TOKEN計數）。",
                 "theme": "主題",
                 "enhance": "增強",
-                "only_csv_on_auto": "自動翻譯僅使用CSV翻譯（不使用網路翻譯），需手動點擊翻譯按鈕才會使用CSV加網路翻譯。"
+                "only_csv_on_auto": "自動翻譯僅使用CSV翻譯（不使用網路翻譯），需手動點擊翻譯按鈕才會使用CSV加網路翻譯。",
+                "one_translate_all_keywords": "一鍵翻譯所有關鍵詞",
+                "auto_translate": "輸入新關鍵詞後自動翻譯",
+                "is_remove_last_comma": "是否去除Prompt最後的一個逗號。<br/>勾選後Prompt輸出為“aaa,bbb,ccc”。<br/>取消勾選Prompt輸出為“aaa,bbb,ccc,”。",
+                "is_keep_wight_zero": "是否保留關鍵詞權重為0的格式。<br/>勾選後關鍵詞保留格式為“(text:0)”。<br/>取消勾選將不保留格式為“test”。"
             }
         },
         {
@@ -225,7 +231,11 @@
                 "is_remove_space": "是否移除每個關鍵字逗號後的空格。<br/>勾選後會自動移除空格（不易閱讀）。<br/>取消勾選則保留 1 個空格（會影響 TOKEN 計數）。",
                 "theme": "主題",
                 "enhance": "增強",
-                "only_csv_on_auto": "自動翻譯僅使用CSV翻譯（不使用網路翻譯），需手動點擊翻譯按鈕才會使用CSV加網路翻譯。"
+                "only_csv_on_auto": "自動翻譯僅使用CSV翻譯（不使用網路翻譯），需手動點擊翻譯按鈕才會使用CSV加網路翻譯。",
+                "one_translate_all_keywords": "一鍵翻譯所有關鍵詞",
+                "auto_translate": "輸入新關鍵詞後自動翻譯",
+                "is_remove_last_comma": "是否移除Prompt結尾的逗號。<br/>勾選後Prompt輸出為“aaa,bbb,ccc”。<br/>取消勾選Prompt輸出為“aaa,bbb,ccc,”。",
+                "is_keep_wight_zero": "是否保留關鍵詞權重為0的格式。<br/>勾選後關鍵詞保留格式為“(text:0)”。<br/>取消勾選將不保留格式為“test”。"
             }
         },
         {
@@ -300,7 +310,11 @@
                 "is_remove_space": "Whether to remove the spaces after each comma in the keyword.<br/>Checking will automatically remove the spaces (difficult to read).<br/>Unchecking will keep one space (affecting TOKEN count).",
                 "theme": "Theme",
                 "enhance": "Enhance",
-                "only_csv_on_auto": "Automatic translation uses only CSV translation (not network translation). To use both CSV and network translation, click the translate button manually."
+                "only_csv_on_auto": "Automatic translation uses only CSV translation (not network translation). To use both CSV and network translation, click the translate button manually.",
+                "one_translate_all_keywords": "Translate all keywords in one click",
+                "auto_translate": "Automatically translate after entering new keywords",
+                "is_remove_last_comma": "Remove the last comma in Prompt or not.<br/>When selected, Prompt output is \"aaa,bbb,ccc\".<br/>When unselected, Prompt output is \"aaa,bbb,ccc,\".",
+                "is_keep_wight_zero": "Keep the format of keywords with a weight of 0 or not.<br/>When selected, the keyword format is kept as \"(text:0)\".<br/>When unselected, the format is not kept as \"test\"."
             }
         },
         {
@@ -390,7 +404,9 @@
                 "is_remove_space": "هل ترغب في إزالة المسافات بعد كل فاصلة في الكلمات الرئيسية؟<br/>إذا حددت هذا الخيار، سيتم إزالة المسافات تلقائياً (مما يجعل النص أقل وضوحاً).<br/>إذا لم تحدد هذا الخيار سيتم الاحتفاظ بمسافة واحدة (مما يؤثر على عداد رموز الرموز).",
                 "theme": "الموضوع",
                 "enhance": "تحسين",
-                "only_csv_on_auto": "الترجمة الآلية تستخدم فقط ترجمة CSV (لا تستخدم الترجمة عبر الشبكة) ، والنقر على زر الترجمة يدويًا لاستخدام الترجمة CSV والترجمة عبر الشبكة."
+                "only_csv_on_auto": "الترجمة الآلية تستخدم فقط ترجمة CSV (لا تستخدم الترجمة عبر الشبكة) ، والنقر على زر الترجمة يدويًا لاستخدام الترجمة CSV والترجمة عبر الشبكة.",
+                "one_translate_all_keywords": "ترجم جميع الكلمات الرئيسية بنقرة واحدة",
+                "auto_translate": "ترجم تلقائيًا بعد إدخال كلمات رئيسية جديدة"
             }
         },
         {
@@ -565,7 +581,11 @@
                 "is_remove_space": "Indique si les espaces après chaque virgule dans le mot-clé doivent être supprimés.<br/>La sélection automatique supprime les espaces (difficiles à lire).<br/>La désélection conserve un espace (affectant la comptabilisation des TOKEN).",
                 "theme": "Thème",
                 "enhance": "Améliorer",
-                "only_csv_on_auto": "La traduction automatique utilise uniquement la traduction CSV (pas de traduction réseau). Pour utiliser à la fois la traduction CSV et la traduction réseau, cliquez sur le bouton de traduction manuellement."
+                "only_csv_on_auto": "La traduction automatique utilise uniquement la traduction CSV (pas de traduction réseau). Pour utiliser à la fois la traduction CSV et la traduction réseau, cliquez sur le bouton de traduction manuellement.",
+                "one_translate_all_keywords": "Traduire tous les mots clés en un clic",
+                "auto_translate": "Traduire automatiquement après avoir saisi de nouveaux mots clés",
+                "is_remove_last_comma": "Supprimer ou non la dernière virgule dans Prompt.<br/>Lorsqu'elle est sélectionnée, la sortie Prompt est \"aaa,bbb, ccc\".<br/>Lorsqu'elle n'est pas sélectionnée, la sortie Prompt est \"aaa,bbb,ccc,\".",
+                "is_keep_wight_zero": "Conserver ou non le format des mots clés ayant un poids de 0.<br/>Lorsqu'elle est sélectionnée, le format du mot clé est conservé sous la forme de \"(text:0)\".<br/>Lorsqu'elle n'est pas sélectionnée, le format n'est pas conservé sous la forme de \"test\"."
             }
         },
         {
@@ -655,7 +675,11 @@
                 "is_remove_space": "Gibt an, ob die Leerzeichen nach jedem Komma im Schlüsselwort entfernt werden sollen.<br/>Durch das Aktivieren wird die Leerzeichen automatisch entfernt (schwer zu lesen).<br/>Wenn diese Option deaktiviert ist, wird ein Leerzeichen beibehalten (was sich auf die TOKEN-Zählung auswirkt).",
                 "theme": "Thema",
                 "enhance": "Verbessern",
-                "only_csv_on_auto": "Die automatische Übersetzung verwendet nur die CSV-Übersetzung (keine Netzwerkübersetzung). Um sowohl die CSV- als auch die Netzwerkübersetzung zu verwenden, klicken Sie manuell auf die Übersetzungsschaltfläche."
+                "only_csv_on_auto": "Die automatische Übersetzung verwendet nur die CSV-Übersetzung (keine Netzwerkübersetzung). Um sowohl die CSV- als auch die Netzwerkübersetzung zu verwenden, klicken Sie manuell auf die Übersetzungsschaltfläche.",
+                "one_translate_all_keywords": "Alle Schlüsselwörter mit einem Klick übersetzen",
+                "auto_translate": "Automatisch übersetzen, nachdem neue Schlüsselwörter eingegeben wurden",
+                "is_remove_last_comma": "Das letzte Komma in Prompt entfernen oder nicht.<br/>Wenn ausgewählt, wird der Prompt-Ausgang als \"aaa,bbb,ccc\" ausgegeben.<br/>Wenn nicht ausgewählt, wird der Prompt-Ausgang als \"aaa,bbb,ccc,\" ausgegeben.",
+                "is_keep_wight_zero": "Das Format von Schlüsselwörtern mit einem Gewicht von 0 beibehalten oder nicht.<br/>Wenn ausgewählt, wird das Schlüsselwortformat als \"(text:0)\" beibehalten.<br/>Wenn nicht ausgewählt, wird das Format nicht als \"test\" beibehalten."
             }
         },
         {
@@ -795,7 +819,11 @@
                 "is_remove_space": "Indica se gli spazi dopo ogni virgola nelle parole chiave devono essere rimossi.<br/>La selezione automatica rimuove gli spazi (difficili da leggere).<br/>La deselezione mantiene uno spazio (influenzando il conteggio dei TOKEN).",
                 "theme": "Tema",
                 "enhance": "Migliorare",
-                "only_csv_on_auto": "La traduzione automatica utilizza solo la traduzione CSV (non la traduzione di rete). Per utilizzare sia la traduzione CSV che la traduzione di rete, fare clic manualmente sul pulsante di traduzione."
+                "only_csv_on_auto": "La traduzione automatica utilizza solo la traduzione CSV (non la traduzione di rete). Per utilizzare sia la traduzione CSV che la traduzione di rete, fare clic manualmente sul pulsante di traduzione.",
+                "one_translate_all_keywords": "Traduci tutte le parole chiave in un solo clic",
+                "auto_translate": "Traduzione automatica dopo aver inserito nuove parole chiave",
+                "is_remove_last_comma": "Rimuovere o meno l'ultima virgola in Prompt.<br/>Quando selezionato, l'output di Prompt è \"aaa,bbb,ccc\".<br/>Quando non selezionato, l'output di Prompt è \"aaa,bbb,ccc,\".",
+                "is_keep_wight_zero": "Mantenere o meno il formato delle parole chiave con un peso pari a 0.<br/>Quando selezionato, il formato della parola chiave viene mantenuto come \"(text:0)\".<br/>Quando non selezionato, il formato non viene mantenuto come \"test\"."
             }
         },
         {
@@ -870,7 +898,11 @@
                 "is_remove_space": "キーワードのコンマ後のスペースを削除するかどうか。<br/>チェックすると、自動的にスペースが削除されます（読みづらい）。<br/>チェックを外すと、空白が1つ残ります（TOKEN数に影響します）。",
                 "theme": "テーマ",
                 "enhance": "強化",
-                "only_csv_on_auto": "自動翻訳はCSV翻訳のみを使用します（ネットワーク翻訳ではありません）。CSVおよびネットワーク翻訳を両方使用するには、手動で翻訳ボタンをクリックしてください。"
+                "only_csv_on_auto": "自動翻訳はCSV翻訳のみを使用します（ネットワーク翻訳ではありません）。CSVおよびネットワーク翻訳を両方使用するには、手動で翻訳ボタンをクリックしてください。",
+                "one_translate_all_keywords": "すべてのキーワードをワンクリックで翻訳する",
+                "auto_translate": "新しいキーワードを入力した後、自動的に翻訳する",
+                "is_remove_last_comma": "Promptの最後のカンマを削除するかどうか。<br/>選択した場合、Promptの出力は「aaa,bbb,ccc」になります。<br/>選択されていない場合、Promptの出力は「aaa,bbb,ccc,」になります。",
+                "is_keep_wight_zero": "重みが0のキーワードのフォーマットを保持するかどうか。<br/>選択した場合、キーワードのフォーマットは「(text:0)」として保持されます。<br/>選択されていない場合、フォーマットは「test」として保持されません。"
             }
         },
         {
@@ -970,7 +1002,11 @@
                 "is_remove_space": "키워드의 쉼표 뒤 공백을 제거할지 여부입니다.<br/>확인하면 자동으로 공백이 제거됩니다(읽기 어려움).<br/>선택을 취소하면 공백 1개가 유지됩니다.(TOKEN 계산에 영향을 미칩니다).",
                 "theme": "테마",
                 "enhance": "강화",
-                "only_csv_on_auto": "자동 번역은 CSV 번역 만 사용합니다 (네트워크 번역은 사용하지 않음). CSV 및 네트워크 번역을 모두 사용하려면 수동으로 번역 버튼을 클릭하십시오."
+                "only_csv_on_auto": "자동 번역은 CSV 번역 만 사용합니다 (네트워크 번역은 사용하지 않음). CSV 및 네트워크 번역을 모두 사용하려면 수동으로 번역 버튼을 클릭하십시오.",
+                "one_translate_all_keywords": "모든 키워드를 한 번의 클릭으로 번역하세요",
+                "auto_translate": "새 키워드를 입력한 후 자동으로 번역하기",
+                "is_remove_last_comma": "Prompt의 마지막 쉼표를 제거할 것인가요?<br/>선택한 경우, Prompt 출력은 \"aaa,bbb,ccc\"가 됩니다.<br/>선택하지 않은 경우, Prompt 출력은 \"aaa,bbb,ccc,\"가 됩니다.",
+                "is_keep_wight_zero": "무게가 0인 키워드 형식을 유지할 것인가요?<br/>선택한 경우, 키워드 형식은 \"(text:0)\"로 유지됩니다.<br/>선택하지 않은 경우, 형식은 \"test\"로 유지되지 않습니다."
             }
         },
         {
@@ -1160,7 +1196,11 @@
                 "is_remove_space": "Indique se os espaços após cada vírgula na palavra-chave devem ser removidos.<br/>A seleção automática remove os espaços (difícil de ler).<br/>A desseleção mantém um espaço (afetando a contagem de TOKEN).",
                 "theme": "Tema",
                 "enhance": "Melhorar",
-                "only_csv_on_auto": "A tradução automática utiliza apenas a tradução CSV (não a tradução de rede). Para usar tanto a tradução CSV como a tradução de rede, clique manualmente no botão de tradução."
+                "only_csv_on_auto": "A tradução automática utiliza apenas a tradução CSV (não a tradução de rede). Para usar tanto a tradução CSV como a tradução de rede, clique manualmente no botão de tradução.",
+                "one_translate_all_keywords": "Traduzir todas as palavras-chave com um clique",
+                "auto_translate": "Traduzir automaticamente após inserir novas palavras-chave",
+                "is_remove_last_comma": "Remover ou não a última vírgula em Prompt.<br/>Quando selecionado, a saída do Prompt é \"aaa,bbb,ccc\".<br/>Quando não selecionado, a saída do Prompt é \"aaa,bbb,ccc,\".",
+                "is_keep_wight_zero": "Manter ou não o formato das palavras-chave com um peso de 0.<br/>Quando selecionado, o formato da palavra-chave é mantido como \"(text:0)\".<br/>Quando não selecionado, o formato não é mantido como \"test\"."
             }
         },
         {
@@ -1250,7 +1290,11 @@
                 "is_remove_space": "Указывает, нужно ли удалять пробелы после каждой запятой в ключевом слове.<br/>При выборе будет автоматически удалены пробелы (трудно читать).<br/>Если этот параметр не выбран, то будет сохранен один пробел (влияет на подсчет TOKEN).",
                 "theme": "Тема",
                 "enhance": "Улучшить",
-                "only_csv_on_auto": "Автоматический перевод использует только CSV-перевод (не сетевой перевод). Чтобы использовать как CSV-, так и сетевой перевод, вручную нажмите кнопку перевода."
+                "only_csv_on_auto": "Автоматический перевод использует только CSV-перевод (не сетевой перевод). Чтобы использовать как CSV-, так и сетевой перевод, вручную нажмите кнопку перевода.",
+                "one_translate_all_keywords": "Перевести все ключевые слова одним нажатием кнопки",
+                "auto_translate": "Автоматический перевод новых ключевых слов",
+                "is_remove_last_comma": "Удалить последнюю запятую в Prompt или нет? <br/> Если выбрано, то в Prompt будет выводиться \"aaa,bbb,ccc\". <br/> Если не выбрано, то в Prompt будет выводиться \"aaa,bbb,ccc,\".",
+                "is_keep_wight_zero": "Сохранять формат ключевых слов с нулевым весом или нет?<br/> Если выбрано, то формат ключевых слов будет сохранен как \"(test:0)\". <br/> Если не выбрано, то формат будет \"test\" без скобок."
             }
         },
         {
@@ -1355,7 +1399,11 @@
                 "is_remove_space": "Indica si deben eliminarse los espacios después de cada coma en la palabra clave.<br/>La selección automática elimina los espacios (difícil de leer).<br/>La deselección conserva un espacio (afectando el recuento de TOKEN).",
                 "theme": "Tema",
                 "enhance": "Mejorar",
-                "only_csv_on_auto": "La traducción automática utiliza solo la traducción CSV (no la traducción de red). Para utilizar tanto la traducción CSV como la traducción de red, haga clic en el botón de traducción manualmente."
+                "only_csv_on_auto": "La traducción automática utiliza solo la traducción CSV (no la traducción de red). Para utilizar tanto la traducción CSV como la traducción de red, haga clic en el botón de traducción manualmente.",
+                "one_translate_all_keywords": "Traducir todas las palabras clave con un solo clic",
+                "auto_translate": "Traducción automática de nuevas palabras clave",
+                "is_remove_last_comma": "¿Eliminar la última coma en el Prompt? <br/> Si está marcado, el Prompt mostrará \"aaa,bbb,ccc\". <br/> Si no está marcado, el Prompt mostrará \"aaa,bbb,ccc,\".",
+                "is_keep_wight_zero": "¿Mantener el formato de palabras clave con peso 0? <br/> Si está marcado, el formato será \"(test:0)\". <br/> Si no está marcado, el formato será \"test\" sin paréntesis."
             }
         },
         {
