@@ -33,7 +33,7 @@
                             :loras="loras"
                             :lycos="lycos"
                             :embeddings="embeddings"
-                            ></physton-prompt>
+            ></physton-prompt>
         </template>
         <translate-setting ref="translateSetting" v-model:language-code="languageCode"
                            :translate-apis="translateApis" :languages="languages"
@@ -74,7 +74,8 @@
                 </div>
                 <div class="paste-popup-title">{{ pasteTitle }}</div>
                 <div class="paste-popup-body">
-                    <textarea class="paste-content" v-model="pasteContent" :placeholder="getLang('please_enter_the_content_here')"></textarea>
+                    <textarea class="paste-content" v-model="pasteContent"
+                              :placeholder="getLang('please_enter_the_content_here')"></textarea>
                     <div v-if="!pasteLoading" class="paste-submit" @click="onClickPasteSubmit">Submit</div>
                     <div v-else class="paste-submit">
                         <icon-svg name="loading"/>
@@ -380,57 +381,45 @@ export default {
         getLang(key) {
             return common.getLang(key, this.languageCode, this.languages)
         },
-        watchVars() {
-            // loras、lycos、embeddings
-            let txt2img_textual_inversion_cards = null
-            let txt2img_textual_inversion_cards_html = ''
-            let text2img_lora_cards = null
-            let text2img_lora_cards_html = ''
-            let txt2img_lycoris_cards = null
-            let txt2img_lycoris_cards_html = ''
+        getExtraNetworks() {
+            this._getExtraNetworks()
             setInterval(() => {
-                if (!txt2img_textual_inversion_cards) txt2img_textual_inversion_cards = document.getElementById('txt2img_textual_inversion_cards')
-                if (txt2img_textual_inversion_cards && txt2img_textual_inversion_cards_html !== txt2img_textual_inversion_cards.innerHTML) {
-                    let embeddings = []
-                    txt2img_textual_inversion_cards_html = txt2img_textual_inversion_cards.innerHTML
-                    let cards = txt2img_textual_inversion_cards.querySelectorAll('.card')
-                    cards.forEach(card => {
-                        let name = card.querySelector('.name')
-                        if (!name) return
-                        embeddings.push(name.innerText.trim())
-                    })
-                    this.embeddings = embeddings
-                }
-
-                if (!text2img_lora_cards) text2img_lora_cards = document.getElementById('txt2img_lora_cards')
-                if (text2img_lora_cards && text2img_lora_cards_html !== text2img_lora_cards.innerHTML) {
-                    let loras = []
-                    text2img_lora_cards_html = text2img_lora_cards.innerHTML
-                    let cards = text2img_lora_cards.querySelectorAll('.card')
-                    cards.forEach(card => {
-                        let name = card.querySelector('.name')
-                        if (!name) return
-                        loras.push(name.innerText.trim())
-                    })
-                    this.loras = loras
-                }
-
-                if (!txt2img_lycoris_cards) txt2img_lycoris_cards = document.getElementById('txt2img_lycoris_cards')
-                if (txt2img_lycoris_cards && txt2img_lycoris_cards_html !== txt2img_lycoris_cards.innerHTML) {
-                    let lycos = []
-                    txt2img_lycoris_cards_html = txt2img_lycoris_cards.innerHTML
-                    let cards = txt2img_lycoris_cards.querySelectorAll('.card')
-                    cards.forEach(card => {
-                        let name = card.querySelector('.name')
-                        if (!name) return
-                        lycos.push(name.innerText.trim())
-                    })
-                    this.lycos = lycos
-                }
-            }, 1000)
+                this._getExtraNetworks()
+            }, 5000)
+        },
+        _getExtraNetworks() {
+            this.gradioAPI.getExtraNetworks().then(res => {
+                if (!res) return
+                res.forEach(extraNetwork => {
+                    if (extraNetwork.name === 'textual inversion') {
+                        let list = []
+                        extraNetwork.items.forEach(item => {
+                            list.push(item.name)
+                        })
+                        this.embeddings = list
+                    } else if (extraNetwork.name === 'lora' || extraNetwork.name === 'lycoris') {
+                        let list = []
+                        extraNetwork.items.forEach(item => {
+                            list.push(item.name)
+                            if (typeof item.metadata === 'string' && item.metadata) {
+                                item.metadata = JSON.parse(item.metadata)
+                                if (!item.metadata) return
+                                if (item.metadata.ss_output_name) {
+                                    list.push(item.metadata.ss_output_name)
+                                }
+                            }
+                        })
+                        if (extraNetwork.name === 'lora') {
+                            this.loras = list
+                        } else {
+                            this.lycos = list
+                        }
+                    }
+                })
+            })
         },
         init() {
-            this.watchVars()
+            this.getExtraNetworks()
             let dataListsKeys = ['languageCode', 'autoTranslate', 'autoTranslateToEnglish', 'autoTranslateToLocal', 'autoRemoveSpace', 'autoRemoveLastComma', 'autoKeepWeightZero', /*'hideDefaultInput', */'translateApi', 'enableTooltip', 'tagCompleteFile', 'onlyCsvOnAuto']
             this.prompts.forEach(item => {
                 dataListsKeys.push(item.hideDefaultInputKey)

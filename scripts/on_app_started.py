@@ -13,6 +13,7 @@ from scripts.translate import translate
 from scripts.history import history
 from scripts.csv import get_csvs, get_csv
 from scripts.styles import getStyleFullPath, getExtensionCssList
+from scripts.get_extra_networks import get_extra_networks
 
 VERSION = '0.0.1'
 
@@ -216,6 +217,10 @@ def on_app_started(_: gr.Blocks, app: FastAPI):
     @app.get("/physton_prompt/get_extension_css_list")
     async def _get_extension_css_list():
         return {"css_list": getExtensionCssList()}
+
+    @app.get("/physton_prompt/get_extra_networks")
+    async def _get_extra_networks():
+        return {"extra_networks": get_extra_networks()}
 
 try:
     script_callbacks.on_app_started(on_app_started)

@@ -146,4 +146,8 @@ export default class GradioAPI {
     async getExtensionCssList() {
         return (await this.api.get("/get_extension_css_list")).data.css_list
     }
+
+    async getExtraNetworks() {
+        return (await this.api.get("/get_extra_networks")).data.extra_networks
+    }
 }
