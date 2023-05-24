@@ -491,14 +491,14 @@ export default {
                         this.$refs.translateSetting.getCSV(this.tagCompleteFile)
                     })
                 } else {
-                    if (typeof TAC_CFG === 'object' && typeof QUEUE_FILE_LOAD === 'object') {
+                    /*if (typeof TAC_CFG === 'object' && typeof QUEUE_FILE_LOAD === 'object') {
                         QUEUE_FILE_LOAD.push(() => {
                             if (typeof TAC_CFG.translation !== 'object' || typeof TAC_CFG.translation.translationFile !== 'string') return
                             if (!TAC_CFG.translation.translationFile) return
                             this.tagCompleteFile = '\\extensions\\a1111-sd-webui-tagcomplete\\tags\\' + TAC_CFG.translation.translationFile
                             this.$refs.translateSetting.getCSV(this.tagCompleteFile)
                         })
-                    }
+                    }*/
                 }
                 if (data.onlyCsvOnAuto !== null) {
                     this.onlyCsvOnAuto = data.onlyCsvOnAuto
