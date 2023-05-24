@@ -456,6 +456,10 @@ export default {
                 }
                 if (data.autoTranslate !== null) {
                     this.autoTranslate = data.autoTranslate
+                    if (this.autoTranslate) {
+                        this.autoTranslateToEnglish = true
+                        this.autoTranslateToLocal = true
+                    }
                 } else {
                     if (this.canOneTranslate) {
                         this.autoTranslate = this.autoTranslateToEnglish || this.autoTranslateToLocal
