@@ -15,6 +15,8 @@
                             v-model:auto-translate-to-english="autoTranslateToEnglish"
                             v-model:auto-translate-to-local="autoTranslateToLocal"
                             v-model:auto-remove-space="autoRemoveSpace"
+                            v-model:auto-remove-last-comma="autoRemoveLastComma"
+                            v-model:auto-keep-weight-zero="autoKeepWeightZero"
                             :hide-default-input="item.hideDefaultInput"
                             @update:hide-default-input="onUpdateHideDefaultInput(item.id, $event)"
                             :hide-panel="item.hidePanel"
@@ -23,6 +25,7 @@
                             v-model:translate-api="translateApi"
                             :translate-api-config="translateApiConfig"
                             @click:translate-api="onTranslateApiClick"
+                            @click:prompt-format="onPromptFormatClick"
                             v-model:tag-complete-file="tagCompleteFile"
                             v-model:only-csv-on-auto="onlyCsvOnAuto"
                             @click:select-language="onSelectLanguageClick"
@@ -44,6 +47,12 @@
                          v-model:translate-api="translateApi"
                          v-model:tag-complete-file="tagCompleteFile"
                          v-model:only-csv-on-auto="onlyCsvOnAuto"></select-language>
+        <prompt-format ref="promptFormat" v-model:language-code="languageCode"
+                       :translate-apis="translateApis"
+                       :languages="languages"
+                       v-model:auto-remove-space="autoRemoveSpace"
+                       v-model:auto-remove-last-comma="autoRemoveLastComma"
+                       v-model:auto-keep-weight-zero="autoKeepWeightZero"></prompt-format>
         <history ref="history" v-model:language-code="languageCode"
                  :translate-apis="translateApis" :languages="languages"
                  v-model:tag-complete-file="tagCompleteFile"
@@ -85,10 +94,12 @@ import Favorite from "@/components/favorite.vue";
 import History from "@/components/history.vue";
 import IconSvg from "@/components/iconSvg.vue";
 import ExtensionCss from "@/components/extensionCss.vue";
+import PromptFormat from "@/components/promptFormat.vue";
 
 export default {
     name: 'App',
     components: {
+        PromptFormat,
         ExtensionCss,
         IconSvg,
         History,
@@ -188,6 +199,8 @@ export default {
             autoTranslateToEnglish: false,
             autoTranslateToLocal: false,
             autoRemoveSpace: true,
+            autoRemoveLastComma: false,
+            autoKeepWeightZero: false,
             // hideDefaultInput: false,
             enableTooltip: true,
             tagCompleteFile: '',
@@ -256,6 +269,26 @@ export default {
                 if (!this.startWatchSave) return
                 console.log('onAutoRemoveSpaceChange', val)
                 this.gradioAPI.setData('autoRemoveSpace', val).then(data => {
+                }).catch(err => {
+                })
+            },
+            immediate: false,
+        },
+        autoRemoveLastComma: {
+            handler: function (val, oldVal) {
+                if (!this.startWatchSave) return
+                console.log('onAutoRemoveLastCommaChange', val)
+                this.gradioAPI.setData('autoRemoveLastComma', val).then(data => {
+                }).catch(err => {
+                })
+            },
+            immediate: false,
+        },
+        autoKeepWeightZero: {
+            handler: function (val, oldVal) {
+                if (!this.startWatchSave) return
+                console.log('onAutoKeepWeightZeroChange', val)
+                this.gradioAPI.setData('autoKeepWeightZero', val).then(data => {
                 }).catch(err => {
                 })
             },
@@ -394,7 +427,7 @@ export default {
         },
         init() {
             this.watchVars()
-            let dataListsKeys = ['languageCode', 'autoTranslate', 'autoTranslateToEnglish', 'autoTranslateToLocal', 'autoRemoveSpace', /*'hideDefaultInput', */'translateApi', 'enableTooltip', 'tagCompleteFile', 'onlyCsvOnAuto']
+            let dataListsKeys = ['languageCode', 'autoTranslate', 'autoTranslateToEnglish', 'autoTranslateToLocal', 'autoRemoveSpace', 'autoRemoveLastComma', 'autoKeepWeightZero', /*'hideDefaultInput', */'translateApi', 'enableTooltip', 'tagCompleteFile', 'onlyCsvOnAuto']
             this.prompts.forEach(item => {
                 dataListsKeys.push(item.hideDefaultInputKey)
                 dataListsKeys.push(item.hidePanelKey)
@@ -434,6 +467,12 @@ export default {
                 }
                 if (data.autoRemoveSpace !== null) {
                     this.autoRemoveSpace = data.autoRemoveSpace
+                }
+                if (data.autoRemoveLastComma !== null) {
+                    this.autoRemoveLastComma = data.autoRemoveLastComma
+                }
+                if (data.autoKeepWeightZero !== null) {
+                    this.autoKeepWeightZero = data.autoKeepWeightZero
                 }
                 /*if (data.hideDefaultInput !== null) {
                     this.hideDefaultInput = data.hideDefaultInput
@@ -493,6 +532,7 @@ export default {
                 this.handlePaste()
 
                 // todo: test
+                // this.$refs.promptFormat.open()
                 // this.$refs.translateSetting.open(this.translateApi)
                 /*this.onShowFavorite('phystonPrompt_txt2img_prompt', {
                     clientY: 150,
@@ -525,6 +565,9 @@ export default {
                 }
                 this.translateApiConfig = config
             })
+        },
+        onPromptFormatClick(e) {
+            this.$refs.promptFormat.open(e)
         },
         onSelectLanguageClick(e) {
             this.$refs.selectLanguage.open(e)
