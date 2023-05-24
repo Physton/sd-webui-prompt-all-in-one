@@ -18,7 +18,7 @@
                 <div class="setting-line" v-if="apiItem && apiItem.type == 'translators'">
                     <div class="line-title"></div>
                     <div class="line-content">
-                        <span style="color: var(--red5)">*{{ getLang('not_api_key_desc') }}</span>
+                        <span class="common-red">*{{ getLang('not_api_key_desc') }}</span>
                     </div>
                 </div>
                 <div class="setting-line" v-if="apiItem.help">
@@ -64,6 +64,7 @@
                     <div class="line-title">TagComplete</div>
                     <div class="line-content">
                         <div v-html="getLang('tagcomplete_translate_desc')"></div>
+                        <div class="common-red" v-html="getLang('tagcomplete_translate_desc2')"></div>
                         <div class="line-row">
                             <select v-model="tagCompleteFileKey" @change="tagCompleteResults = []">
                                 <option v-for="item in tagCompleteFiles" :value="item.key">{{ item.name }}</option>
@@ -83,7 +84,7 @@
                     <div class="line-title"></div>
                     <div class="line-content">
                         <div class="hover-scale-120 test-btn" @click="onTagCompleteTestClick">{{ getLang('test') }}</div>
-                        <div v-show="tagCompleteResults.length > 0">
+                        <div ref="tagCompleteResults" v-show="tagCompleteResults.length > 0">
                             <p v-for="text in tagCompleteResults" :key="text">{{ text }}</p>
                         </div>
                     </div>
@@ -285,6 +286,10 @@ Github: Physton/sd-webui-prompt-all-in-one`,
                 let lang = this.getLang('translate_result')
                 this.translateToLocalByCSV(text, this.tagCompleteFileKey, true).then(res => {
                     this.tagCompleteResults.push(lang.replace('{0}', text).replace('{1}', res))
+                    this.$refs.tagCompleteResults.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'buttom'
+                    })
                 }).catch(err => {
                     this.$toastr.error(err)
                 })
