@@ -11,7 +11,6 @@ packages = {
     "boto3": "boto3",
     "aliyunsdkcore": "aliyun-python-sdk-core",
     "aliyunsdkalimt": "aliyun-python-sdk-alimt",
-    "tencentcloud": "tencentcloud-sdk-python",
 }
 
 for package_name in packages:

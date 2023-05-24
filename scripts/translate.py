@@ -1,4 +1,5 @@
 from scripts.get_translate_apis import get_translate_apis
+from scripts.sign_tencent import sign_tencent
 import hashlib
 import os
 import requests
@@ -224,24 +225,20 @@ def translate_tencent(text, from_lang, to_lang, api_config):
     if not region:
         raise Exception("region is required")
 
-    from tencentcloud.tmt.v20180321 import models
-    from tencentcloud.common import credential
-    from tencentcloud.tmt.v20180321 import tmt_client
-
-    request = models.TextTranslateRequest()
-    request.SourceText = text
-    request.Source = from_lang
-    request.Target = to_lang
-    request.ProjectId = 0
-    cred = credential.Credential(secret_id, secret_key)
-    client = tmt_client.TmtClient(cred, region)
-    response = client.TextTranslate(request)
-    result = json.loads(response.to_json_string())
-    if 'Error' in result:
-        raise Exception(result['Error']['Message'])
-    if 'TargetText' not in result:
+    params = {
+        'SourceText': text,
+        'Source': from_lang,
+        'Target': to_lang,
+        'ProjectId': 0
+    }
+    res = sign_tencent(secret_id, secret_key, region, params)
+    response = requests.post(res['url'], json=params, timeout=10, headers=res['headers'])
+    result = response.json()
+    if 'Response' not in result:
         raise Exception("No response from Tencent")
-    return result['TargetText']
+    if 'TargetText' not in result['Response']:
+        raise Exception("No response from Tencent")
+    return result['Response']['TargetText']
 
 
 def translate(text, from_lang, to_lang, api, api_config = {}):
