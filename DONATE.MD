@@ -22,6 +22,8 @@ Thank you very much for your love and support. I have received your kindness.
 | 2023-05-24          | 覃**             | 秒薄之力，支持一下。                     | ￥50           |
 | 2023-05-24          | 常**             | all in one 真好用！                | ￥20           |
 | 2023-05-24          | m**             | 开发出这么好的插件，作者，辛苦了！              | ￥1            |
+| 2023-05-24          | T**             |                                | ￥5            |
+| 2023-05-25          | M**             | 谢谢你的辛苦付出，加油！                   | ￥9.9          |
 
 ## Buy me a coffee / *请我喝杯咖啡*
 
