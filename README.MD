@@ -40,62 +40,60 @@ the UI interfaces of other countries are displayed in English. and the translati
 
 - Switch language / *切换语言*
 
-  ![](https://raw.githubusercontent.com/Physton/sd-webui-prompt-all-in-one-assets/main/images/switch_language.png)
+  ![](https://raw.githubusercontent.com/Physton/sd-webui-prompt-all-in-one-assets/main/images/demo.switch_language.gif)
 
 
 - Translation API settings / *翻译API设置*
 
-  ![](https://raw.githubusercontent.com/Physton/sd-webui-prompt-all-in-one-assets/main/images/translate_setting.gif)
+  ![](https://raw.githubusercontent.com/Physton/sd-webui-prompt-all-in-one-assets/main/images/demo.translate_setting.gif)
 
 - Show/Hide content / *显示/折叠内容*
 
-  ![](https://raw.githubusercontent.com/Physton/sd-webui-prompt-all-in-one-assets/main/images/fold.gif)
+  ![](https://raw.githubusercontent.com/Physton/sd-webui-prompt-all-in-one-assets/main/images/demo.fold.gif)
 
 - Show/Hide the WebUI input box / *显示/隐藏WebUI输入框*
 
-  ![](https://raw.githubusercontent.com/Physton/sd-webui-prompt-all-in-one-assets/main/images/show_input.gif)
+  ![](https://raw.githubusercontent.com/Physton/sd-webui-prompt-all-in-one-assets/main/images/demo.show_input.gif)
 
 - Automatic translation / *自动翻译*
 
-  ![](https://raw.githubusercontent.com/Physton/sd-webui-prompt-all-in-one-assets/main/images/auto_translate.gif)
+  ![](https://raw.githubusercontent.com/Physton/sd-webui-prompt-all-in-one-assets/main/images/demo.auto_translate.gif)
 
 - One-click translation / *一键翻译*
 
-  ![](https://raw.githubusercontent.com/Physton/sd-webui-prompt-all-in-one-assets/main/images/translate.gif)
-
-- Concise input / *简洁的输入*
-
-  ![](https://raw.githubusercontent.com/Physton/sd-webui-prompt-all-in-one-assets/main/images/concise_input.gif)
+  ![](https://raw.githubusercontent.com/Physton/sd-webui-prompt-all-in-one-assets/main/images/demo.translate.gif)
 
 - Elegant input / *优雅的输入*
 
-  ![](https://raw.githubusercontent.com/Physton/sd-webui-prompt-all-in-one-assets/main/images/elegant_input.gif)
+  ![](https://raw.githubusercontent.com/Physton/sd-webui-prompt-all-in-one-assets/main/images/demo.elegant_input.gif)
 
 - Quick adjustment / *快速调整*
 
-  ![](https://raw.githubusercontent.com/Physton/sd-webui-prompt-all-in-one-assets/main/images/quick_adjust.gif)
+  ![](https://raw.githubusercontent.com/Physton/sd-webui-prompt-all-in-one-assets/main/images/demo.quick_adjust.gif)
 
 - Favorite and History / *收藏和历史记录*
 
-  ![](https://raw.githubusercontent.com/Physton/sd-webui-prompt-all-in-one-assets/main/images/history_favorite.gif)
+  ![](https://raw.githubusercontent.com/Physton/sd-webui-prompt-all-in-one-assets/main/images/demo.history_favorite.gif)
 
 - Writing in WebUI input box / *在WebUI的输入框中编写*
 
-  ![](https://raw.githubusercontent.com/Physton/sd-webui-prompt-all-in-one-assets/main/images/writing_webui.gif)
+  ![](https://raw.githubusercontent.com/Physton/sd-webui-prompt-all-in-one-assets/main/images/demo.writing_webui.gif)
 
 - Support for [a1111-sd-webui-tagcomplete](https://github.com/DominikDoom/a1111-sd-webui-tagcomplete) / *支持[a1111-sd-webui-tagcomplete](https://github.com/DominikDoom/a1111-sd-webui-tagcomplete)*
 
-  ![](https://raw.githubusercontent.com/Physton/sd-webui-prompt-all-in-one-assets/main/images/tagcomplete.gif)
+  ![](https://raw.githubusercontent.com/Physton/sd-webui-prompt-all-in-one-assets/main/images/demo.tagcomplete.gif)
 
-- Use `danbooru.csv` in `a1111-sd-webui-tagcomplete` to enhance the translation function / *使用 `a1111-sd-webui-tagcomplete` 中的 `danbooru.csv` 增强翻译功能*
+- Highlighting and detection of Lora, LyCORIS, and Textual Inversion / *Lora、LyCORIS、Textual Inversion 高亮和检测*
 
-  ![](https://raw.githubusercontent.com/Physton/sd-webui-prompt-all-in-one-assets/main/images/tagcomplete_setting.png)
+  ![](https://raw.githubusercontent.com/Physton/sd-webui-prompt-all-in-one-assets/main/images/demo.keyword_detection.gif)
 
-  ![](https://raw.githubusercontent.com/Physton/sd-webui-prompt-all-in-one-assets/main/images/tagcomplete_translate.gif)
+- Format of Prompt / *Prompt提示词格式*
+
+  ![](https://raw.githubusercontent.com/Physton/sd-webui-prompt-all-in-one-assets/main/images/demo.prompt_format.gif)
 
 - Custom Theme / Extension styles / *自定义主题/扩展风格*
 
-  ![](https://raw.githubusercontent.com/Physton/sd-webui-prompt-all-in-one-assets/main/images/custom_theme.gif)
+  ![](https://raw.githubusercontent.com/Physton/sd-webui-prompt-all-in-one-assets/main/images/demo.custom_theme.gif)
 
 
 ## Installation and Usage / *安装使用*
