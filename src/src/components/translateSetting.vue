@@ -286,10 +286,10 @@ Github: Physton/sd-webui-prompt-all-in-one`,
                 let lang = this.getLang('translate_result')
                 this.translateToLocalByCSV(text, this.tagCompleteFileKey, true).then(res => {
                     this.tagCompleteResults.push(lang.replace('{0}', text).replace('{1}', res))
-                    this.$refs.tagCompleteResults.scrollIntoView({
+                    /*this.$refs.tagCompleteResults.scrollIntoView({
                         behavior: 'smooth',
                         block: 'buttom'
-                    })
+                    })*/
                 }).catch(err => {
                     this.$toastr.error(err)
                 })
