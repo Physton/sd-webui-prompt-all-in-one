@@ -385,7 +385,7 @@ export default {
             this._getExtraNetworks()
             setInterval(() => {
                 this._getExtraNetworks()
-            }, 5000)
+            }, 10000)
         },
         _getExtraNetworks() {
             this.gradioAPI.getExtraNetworks().then(res => {
