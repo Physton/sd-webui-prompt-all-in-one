@@ -1,0 +1,10 @@
+{
+  "name": "Move the expansion button of the keyword tag to the right",
+  "i18n": {
+    "zh_CN": "将关键词标签的扩展按钮移到到右侧",
+    "zh_HK": "將關鍵詞標籤的擴展按鈕移動到右側",
+    "zh_TW": "將關鍵詞標籤的擴展按鈕移動到右側"
+  },
+  "author": "Physton",
+  "type": "enhance"
+}
