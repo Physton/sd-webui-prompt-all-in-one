@@ -27,18 +27,12 @@ Thank you very much for your love and support. I have received your kindness.
 
 ## Buy me a coffee / *请我喝杯咖啡*
 
-#### BTC-Bitcoin `3LdXwHkkVsspQzgowdy3pymwty9LiFBHda`
+- ko-fi：[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/physton)
+- Paypal: [https://paypal.me/physton](https://paypal.me/physton)
 
-#### ETH-Ethereum `3DbapbGRQdbrDqBazBPYWfyKjbM5uN2SDy`
 
-#### USDT-ERC20 `0xb8b7a067c5639e7befb9665be9bd00a4c75b6614`
+- 爱发电：[https://afdian.net/a/physton](https://afdian.net/a/physton)
+- 支付宝 `physton@163.com`
+- 微信赞赏
 
-#### USDT-TRC20 `TWtnKQgSTpHu1eiQGrppSniGyzYtggZYFf`
-
-#### Paypal `physton@163.com`
-
-#### Alipay / 支付宝 `physton@163.com`
-
-#### Wechat / 微信赞赏
-
-![](https://raw.githubusercontent.com/Physton/sd-webui-prompt-all-in-one-assets/main/images/donate-wechat.jpg)
+    ![](https://raw.githubusercontent.com/Physton/sd-webui-prompt-all-in-one-assets/main/images/donate-wechat.jpg)
