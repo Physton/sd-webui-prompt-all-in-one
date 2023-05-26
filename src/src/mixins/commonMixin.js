@@ -51,7 +51,7 @@ export default {
                     if (item.name === name || item.output_name === name) {
                         if (!item.civitai_info || !item.civitai_info.name) return name
                         if (item.civitai_info.model && item.civitai_info.model.name && item.civitai_info.model.name !== item.civitai_info.name) {
-                            return '[' + item.civitai_info.name + ']' + item.civitai_info.model.name
+                            return '[' + item.civitai_info.name + '] ' + item.civitai_info.model.name
                         } else {
                             return item.civitai_info.name
                         }
