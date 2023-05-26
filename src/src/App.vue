@@ -30,6 +30,7 @@
                             v-model:only-csv-on-auto="onlyCsvOnAuto"
                             @click:select-language="onSelectLanguageClick"
                             @click:select-theme="onSelectThemeClick"
+                            :extra-networks="extraNetworks"
                             :loras="loras"
                             :lycos="lycos"
                             :embeddings="embeddings"
@@ -218,6 +219,7 @@ export default {
             historyCurrentPrompt: '',
             favoriteCurrentPrompt: '',
 
+            extraNetworks: [],
             loras: [],
             lycos: [],
             embeddings: [],
@@ -381,45 +383,8 @@ export default {
         getLang(key) {
             return common.getLang(key, this.languageCode, this.languages)
         },
-        getExtraNetworks() {
-            this._getExtraNetworks()
-            /*setInterval(() => {
-                this._getExtraNetworks()
-            }, 10000)*/
-        },
-        _getExtraNetworks() {
-            this.gradioAPI.getExtraNetworks().then(res => {
-                if (!res) return
-                res.forEach(extraNetwork => {
-                    if (extraNetwork.name === 'textual inversion') {
-                        let list = []
-                        extraNetwork.items.forEach(item => {
-                            list.push(item.name)
-                        })
-                        this.embeddings = list
-                    } else if (extraNetwork.name === 'lora' || extraNetwork.name === 'lycoris') {
-                        let list = []
-                        extraNetwork.items.forEach(item => {
-                            list.push(item.name)
-                            if (typeof item.metadata === 'string' && item.metadata) {
-                                item.metadata = JSON.parse(item.metadata)
-                                if (!item.metadata) return
-                                if (item.metadata.ss_output_name) {
-                                    list.push(item.metadata.ss_output_name)
-                                }
-                            }
-                        })
-                        if (extraNetwork.name === 'lora') {
-                            this.loras = list
-                        } else {
-                            this.lycos = list
-                        }
-                    }
-                })
-            })
-        },
         init() {
-            this.getExtraNetworks()
+            this.loadExtraNetworks()
             let dataListsKeys = ['languageCode', 'autoTranslate', 'autoTranslateToEnglish', 'autoTranslateToLocal', 'autoRemoveSpace', 'autoRemoveLastComma', 'autoKeepWeightZero', /*'hideDefaultInput', */'translateApi', 'enableTooltip', 'tagCompleteFile', 'onlyCsvOnAuto']
             this.prompts.forEach(item => {
                 dataListsKeys.push(item.hideDefaultInputKey)
