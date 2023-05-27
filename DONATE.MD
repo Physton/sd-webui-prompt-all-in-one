@@ -24,6 +24,7 @@ Thank you very much for your love and support. I have received your kindness.
 | 2023-05-24          | m**             | 开发出这么好的插件，作者，辛苦了！              | ￥1            |
 | 2023-05-24          | T**             |                                | ￥5            |
 | 2023-05-25          | M**             | 谢谢你的辛苦付出，加油！                   | ￥9.9          |
+| 2023-05-27          | 此**             | 牛逼，太牛逼了                        | ￥5            |
 
 ## Buy me a coffee / *请我喝杯咖啡*
 
@@ -35,4 +36,4 @@ Thank you very much for your love and support. I have received your kindness.
 - 支付宝 `physton@163.com`
 - 微信赞赏
 
-    ![](https://raw.githubusercontent.com/Physton/sd-webui-prompt-all-in-one-assets/main/images/donate-wechat.jpg)
+  ![](https://raw.githubusercontent.com/Physton/sd-webui-prompt-all-in-one-assets/main/images/donate-wechat.jpg)
