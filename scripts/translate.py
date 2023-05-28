@@ -303,6 +303,8 @@ def translate(text, from_lang, to_lang, api, api_config = {}):
             os.environ['translators_default_region'] = region
             from translators.server import translate_text, translate_html, translators_pool, preaccelerate, tss
             tss.server_region = region
+            tss._bing.server_region = region
+            tss._google.server_region = region
             result['translated_text'] = translate_text(text, from_language=from_lang, to_language=to_lang, translator=find['translator'], timeout=10)
         else:
             result['message'] = 'translate_api_not_support'
