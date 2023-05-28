@@ -91,6 +91,10 @@ the UI interfaces of other countries are displayed in English. and the translati
 
   ![](https://raw.githubusercontent.com/Physton/sd-webui-prompt-all-in-one-assets/main/images/demo.prompt_format.gif)
 
+- Batch operation / *批量操作*
+
+  ![](https://raw.githubusercontent.com/Physton/sd-webui-prompt-all-in-one-assets/main/images/demo.batch_operation.gif)
+
 - Custom Theme / Extension styles / *自定义主题/扩展风格*
 
   ![](https://raw.githubusercontent.com/Physton/sd-webui-prompt-all-in-one-assets/main/images/demo.custom_theme.gif)

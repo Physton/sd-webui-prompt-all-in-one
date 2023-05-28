@@ -495,4 +495,16 @@ export default {
         parent1.insertBefore(ele2, next1)
         parent2.insertBefore(ele1, next2)
     },
+
+    insertBefore(newNode, referenceNode) {
+        referenceNode.parentNode.insertBefore(newNode, referenceNode);
+    },
+
+    insertAfter(newNode, referenceNode) {
+        if (referenceNode.nextSibling) {
+            referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
+        } else {
+            referenceNode.parentNode.appendChild(newNode);
+        }
+    },
 }
