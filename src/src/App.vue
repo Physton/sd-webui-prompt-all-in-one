@@ -528,10 +528,14 @@ export default {
                 const apiItem = common.getTranslateApiItem(this.translateApis, this.translateApi)
                 if (apiItem.config) {
                     for (const item of apiItem.config) {
-                        if (res) {
-                            config[item.key] = res[item.key]
+                        if (apiItem.type === 'translators' && item.key === 'region' && !res['region']) {
+                            config[item.key] = this.languageCode === 'zh_CN' || this.languageCode === 'zh_HK' || this.languageCode === 'zh_TW' ? 'China' : 'EN'
                         } else {
-                            config[item.key] = item.default || ''
+                            if (res) {
+                                config[item.key] = res[item.key]
+                            } else {
+                                config[item.key] = item.default || ''
+                            }
                         }
                     }
                     config['concurrent'] = apiItem.concurrent || 0
