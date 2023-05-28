@@ -301,8 +301,9 @@ def translate(text, from_lang, to_lang, api, api_config = {}):
         elif 'type' in find and find['type'] == 'translators':
             region = api_config.get('region', 'China')
             os.environ['translators_default_region'] = region
-            import translators as ts
-            result['translated_text'] = ts.translate_text(text, from_language=from_lang, to_language=to_lang, translator=find['translator'], timeout=10)
+            from translators.server import translate_text, translate_html, translators_pool, preaccelerate, tss
+            tss.server_region = region
+            result['translated_text'] = translate_text(text, from_language=from_lang, to_language=to_lang, translator=find['translator'], timeout=10)
         else:
             result['message'] = 'translate_api_not_support'
             return result
