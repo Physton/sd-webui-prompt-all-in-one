@@ -243,10 +243,6 @@ def translate_tencent(text, from_lang, to_lang, api_config):
 
 def translate(text, from_lang, to_lang, api, api_config = {}):
     global caches
-    if from_lang == 'zh_CN' or from_lang == 'zh_TW' or to_lang == 'zh_CN' or to_lang == 'zh_TW':
-        os.environ['translators_default_region'] = 'China'
-    else:
-        os.environ['translators_default_region'] = 'EN'
     result = {
         "success": False,
         "message": "",
@@ -303,6 +299,8 @@ def translate(text, from_lang, to_lang, api, api_config = {}):
         elif find['key'] == 'tencent':
             result['translated_text'] = translate_tencent(text, from_lang, to_lang, api_config)
         elif 'type' in find and find['type'] == 'translators':
+            region = api_config.get('region', 'China')
+            os.environ['translators_default_region'] = region
             import translators as ts
             result['translated_text'] = ts.translate_text(text, from_language=from_lang, to_language=to_lang, translator=find['translator'], timeout=10)
         else:
