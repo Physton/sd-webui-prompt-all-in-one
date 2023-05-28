@@ -299,7 +299,7 @@ def translate(text, from_lang, to_lang, api, api_config = {}):
         elif find['key'] == 'tencent':
             result['translated_text'] = translate_tencent(text, from_lang, to_lang, api_config)
         elif 'type' in find and find['type'] == 'translators':
-            region = api_config.get('region', 'China')
+            region = api_config.get('region', 'CN')
             os.environ['translators_default_region'] = region
             from translators.server import translate_text, translate_html, translators_pool, preaccelerate, tss
             tss.server_region = region
