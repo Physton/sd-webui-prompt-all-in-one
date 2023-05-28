@@ -1,5 +1,6 @@
 import gradio as gr
 import os
+import sys
 from pathlib import Path
 from modules import script_callbacks, extra_networks, prompt_parser
 from fastapi import FastAPI, Body, Request, Response
@@ -14,6 +15,7 @@ from scripts.history import history
 from scripts.csv import get_csvs, get_csv
 from scripts.styles import getStyleFullPath, getExtensionCssList
 from scripts.get_extra_networks import get_extra_networks
+from scripts.packages import get_packages_state, install_package
 
 VERSION = '0.0.1'
 
@@ -30,7 +32,16 @@ def on_app_started(_: gr.Blocks, app: FastAPI):
         return {
             'i18n': get_i18n(True),
             'translate_apis': get_translate_apis(True),
+            'packages_state': get_packages_state(),
+            'python': sys.executable,
         }
+
+    @app.post("/physton_prompt/install_package")
+    async def _install_package(request: Request):
+        data = await request.json()
+        if 'name' not in data or 'package' not in data:
+            return {"result": "name or package is required"}
+        return {"result": install_package(data['name'], data['package'])}
 
     @app.get("/physton_prompt/get_extensions")
     async def _get_extensions():

@@ -23,6 +23,11 @@ export default class GradioAPI {
         return (await this.api.get("/get_config")).data
     }
 
+    async installPackage(name, _package) {
+        const config = {timeout: 10000000}
+        return (await this.api.post("/install_package", {name, 'package': _package}, config)).data.result
+    }
+
     async getExtensions() {
         return (await this.api.get("/get_extensions")).data.extensions
     }

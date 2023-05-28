@@ -67,6 +67,10 @@
                   @use="onUseFavorite"></favorite>
         <extension-css ref="extensionCss" v-model:language-code="languageCode"
                        :translate-apis="translateApis" :languages="languages"/>
+        <packages-state ref="packagesState" v-model:language-code="languageCode"
+                        :translate-apis="translateApis" :languages="languages"
+                        @click:select-language="onSelectLanguageClick"
+                        :packages-state="packagesState" :python="python"/>
 
         <div class="physton-paste-popup" v-if="showPastePopup" @click="closePastePopup">
             <div class="paste-popup-main" @click.stop>
@@ -97,10 +101,12 @@ import History from "@/components/history.vue";
 import IconSvg from "@/components/iconSvg.vue";
 import ExtensionCss from "@/components/extensionCss.vue";
 import PromptFormat from "@/components/promptFormat.vue";
+import PackagesState from "@/components/packagesState.vue";
 
 export default {
     name: 'App',
     components: {
+        PackagesState,
         PromptFormat,
         ExtensionCss,
         IconSvg,
@@ -223,6 +229,9 @@ export default {
             loras: [],
             lycos: [],
             embeddings: [],
+
+            python: '',
+            packagesState: [],
         }
     },
     watch: {
@@ -368,6 +377,8 @@ export default {
             this.languageCode = res.i18n.default
             this.translateApi = res.translate_apis.default
             this.translateApis = res.translate_apis.apis
+            this.python = res.python
+            this.packagesState = res.packages_state
             let languages = {}
             res.i18n.languages.forEach(lang => {
                 languages[lang.code] = lang

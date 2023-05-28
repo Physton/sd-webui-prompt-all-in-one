@@ -9,7 +9,7 @@
                             <optgroup v-for="typeGroup in supportApi" :key="typeGroup.type"
                                       :label="getLang(typeGroup.type)">
                                 <option v-for="item in typeGroup.children" :key="item.key" :value="item.key">
-                                    {{ item.name }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;QPS: {{ item.concurrent || 1 }}
+                                    {{ getItemName(item.name) }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;QPS: {{ item.concurrent || 1 }}
                                 </option>
                             </optgroup>
                         </select>
@@ -185,6 +185,11 @@ Github: Physton/sd-webui-prompt-all-in-one`,
             this.tagCompleteFileKey = this.tagCompleteFile
             this.onlyCsvOnAutoValue = this.onlyCsvOnAuto
             this.refreshCSVs()
+        },
+        getItemName(name) {
+            name = name.replace('[Free] ', '[' + this.getLang('free') + '] ')
+            name = name.replace('[ApiKey] ', '[' + this.getLang('apply_for_free') + '] ')
+            return name
         },
         refreshCSVs() {
             if (this.tagCompleteFilesLoading) return
