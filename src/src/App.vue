@@ -452,9 +452,9 @@ export default {
                 }*/
                 if (data.enableTooltip !== null) {
                     this.enableTooltip = data.enableTooltip
-                    localStorage.setItem('phystonPromptEnableTooltip', this.enableTooltip ? 'true' : 'false')
-                    this.updateTippyState()
                 }
+                localStorage.setItem('phystonPromptEnableTooltip', this.enableTooltip ? 'true' : 'false')
+                this.updateTippyState()
                 if (data.translateApi !== null) {
                     this.translateApi = data.translateApi
                 }
