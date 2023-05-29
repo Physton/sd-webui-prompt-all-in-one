@@ -16,6 +16,7 @@ from scripts.csv import get_csvs, get_csv
 from scripts.styles import getStyleFullPath, getExtensionCssList
 from scripts.get_extra_networks import get_extra_networks
 from scripts.packages import get_packages_state, install_package
+from scripts.gen_openai import gen_openai
 
 VERSION = '0.0.1'
 
@@ -232,6 +233,16 @@ def on_app_started(_: gr.Blocks, app: FastAPI):
     @app.get("/physton_prompt/get_extra_networks")
     async def _get_extra_networks():
         return {"extra_networks": get_extra_networks()}
+
+    @app.post("/physton_prompt/gen_openai")
+    async def _gen_openai(request: Request):
+        data = await request.json()
+        if 'messages' not in data or 'api_config' not in data:
+            return {"success": False, "message": "messages or api_config is required"}
+        try:
+            return {"success": True, 'result': gen_openai(data['messages'], data['api_config'])}
+        except Exception as e:
+            return {"success": False, 'message': str(e)}
 
 try:
     script_callbacks.on_app_started(on_app_started)

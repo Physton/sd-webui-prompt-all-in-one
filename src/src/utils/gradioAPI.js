@@ -155,4 +155,8 @@ export default class GradioAPI {
     async getExtraNetworks() {
         return (await this.api.get("/get_extra_networks")).data.extra_networks
     }
+
+    async genOpenAI(messages, api_config) {
+        return (await this.api.post("/gen_openai", {messages, api_config})).data
+    }
 }

@@ -42,7 +42,7 @@ def translate_openai(text, from_lang, to_lang, api_config):
             "content": f"You are a translator assistant. Please translate the following JSON data {to_lang}. Preserve the original format. Only return the translation result, without any additional content or annotations. If the prompt word is in the target language, please send it to me unchanged:\n{text}"
         },
     ]
-    completion = openai.ChatCompletion.create(model=model, messages=messages, timeout=10)
+    completion = openai.ChatCompletion.create(model=model, messages=messages, timeout=60)
     if len(completion.choices) == 0:
         raise Exception("No response from OpenAI")
     content = completion.choices[0].message.content

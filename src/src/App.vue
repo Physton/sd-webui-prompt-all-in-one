@@ -30,6 +30,7 @@
                             v-model:only-csv-on-auto="onlyCsvOnAuto"
                             @click:select-language="onSelectLanguageClick"
                             @click:select-theme="onSelectThemeClick"
+                            @click:show-chatgpt="onShowChatgpt(item.id, $event)"
                             :extra-networks="extraNetworks"
                             :loras="loras"
                             :lycos="lycos"
@@ -71,6 +72,9 @@
                         :translate-apis="translateApis" :languages="languages"
                         @click:select-language="onSelectLanguageClick"
                         :packages-state="packagesState" :python="python"/>
+        <chatgpt-prompt ref="chatgptPrompt" v-model:language-code="languageCode"
+                        :translate-apis="translateApis" :languages="languages"
+                        @use="onUseChatgpt" />
 
         <div class="physton-paste-popup" v-if="showPastePopup" @click="closePastePopup">
             <div class="paste-popup-main" @click.stop>
@@ -102,10 +106,12 @@ import IconSvg from "@/components/iconSvg.vue";
 import ExtensionCss from "@/components/extensionCss.vue";
 import PromptFormat from "@/components/promptFormat.vue";
 import PackagesState from "@/components/packagesState.vue";
+import ChatgptPrompt from "@/components/chatgptPrompt.vue";
 
 export default {
     name: 'App',
     components: {
+        ChatgptPrompt,
         PackagesState,
         PromptFormat,
         ExtensionCss,
@@ -224,6 +230,7 @@ export default {
 
             historyCurrentPrompt: '',
             favoriteCurrentPrompt: '',
+            chatgptCurrentPrompt: '',
 
             extraNetworks: [],
             loras: [],
@@ -505,6 +512,7 @@ export default {
                 this.handlePaste()
 
                 // todo: test
+                // this.$refs.chatgptPrompt.open()
                 // this.$refs.promptFormat.open()
                 // this.$refs.translateSetting.open(this.translateApi)
                 /*this.onShowFavorite('phystonPrompt_txt2img_prompt', {
@@ -679,6 +687,18 @@ export default {
         },
         onRefreshFavorites(key) {
             this.$refs.favorite.getFavorites(key)
+        },
+        onShowChatgpt(id, e) {
+            this.chatgptCurrentPrompt = id
+            const item = this.prompts.find(item => item.id == id)
+            if (!item) return
+            this.$refs.chatgptPrompt.open()
+        },
+        onUseChatgpt(prompt) {
+            if (!this.chatgptCurrentPrompt) return
+            const item = this.prompts.find(item => item.id == this.chatgptCurrentPrompt)
+            if (!item) return
+            this.$refs[item.id][0].useChatgpt(prompt)
         },
     },
 }

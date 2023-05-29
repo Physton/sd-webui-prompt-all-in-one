@@ -75,6 +75,10 @@ the UI interfaces of other countries are displayed in English. and the translati
 
   ![](https://raw.githubusercontent.com/Physton/sd-webui-prompt-all-in-one-assets/main/images/demo.history_favorite.gif)
 
+- Use ChatGPT to Generate Prompts / *使用ChatGPT生成Prompt*
+
+  ![](https://raw.githubusercontent.com/Physton/sd-webui-prompt-all-in-one-assets/main/images/demo.chatgpt.gif)
+
 - Writing in WebUI input box / *在WebUI的输入框中编写*
 
   ![](https://raw.githubusercontent.com/Physton/sd-webui-prompt-all-in-one-assets/main/images/demo.writing_webui.gif)
