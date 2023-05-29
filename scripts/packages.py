@@ -1,11 +1,17 @@
 import launch
-import importlib
-import os
 
-install_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), '../install.py')
-install_file = os.path.normpath(install_file)
-install = importlib.import_module('install', install_file)
-packages = install.packages
+packages = {
+    "chardet": "chardet",
+    "fastapi": "fastapi",
+
+    # The following packages are required for translation service. If you do not need translation service, you can remove them.
+    # 以下是翻译所需的包，如果不需要翻译服务，可以删除掉它们。
+    "translators": "translators",
+    "openai": "openai",
+    "boto3": "boto3",
+    "aliyunsdkcore": "aliyun-python-sdk-core",
+    "aliyunsdkalimt": "aliyun-python-sdk-alimt",
+}
 
 def get_packages_state():
     states = []
