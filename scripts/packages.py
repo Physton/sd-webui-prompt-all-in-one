@@ -22,7 +22,7 @@ def get_packages_state():
             'package': package,
             'state': False
         }
-        if launch.is_installed(package_name):
+        if launch.is_installed(package) or launch.is_installed(package_name):
             item['state'] = True
 
         states.append(item)
