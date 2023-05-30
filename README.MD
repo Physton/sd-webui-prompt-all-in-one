@@ -3,7 +3,9 @@
 [![GitHub stars](https://img.shields.io/github/stars/Physton/sd-webui-prompt-all-in-one?style=plastic)](https://github.com/Physton/sd-webui-prompt-all-in-one/stargazers)
 [![GitHub forks](https://img.shields.io/github/forks/Physton/sd-webui-prompt-all-in-one?style=plastic)](https://github.com/Physton/sd-webui-prompt-all-in-one/network/members)
 [![GitHub issues](https://img.shields.io/github/issues/Physton/sd-webui-prompt-all-in-one?style=plastic)](https://github.com/Physton/sd-webui-prompt-all-in-one/issues)
+[![GitHub issues closed](https://img.shields.io/github/issues-closed/Physton/sd-webui-prompt-all-in-one?style=plastic)](https://github.com/Physton/sd-webui-prompt-all-in-one/issues?q=is%3Aissue+is%3Aclosed)
 [![GitHub license](https://img.shields.io/github/license/Physton/sd-webui-prompt-all-in-one?style=plastic)](https://github.com/Physton/sd-webui-prompt-all-in-one/blob/master/LICENSE.md)
+[![GitHub commits](https://img.shields.io/github/last-commit/Physton/sd-webui-prompt-all-in-one?style=plastic)](https://github.com/Physton/sd-webui-prompt-all-in-one/commits/main)
 
 sd-webui-prompt-all-in-one is an extension based on [stable-diffusion-webui](https://github.com/AUTOMATIC1111/stable-diffusion-webui) that aims to improve the user experience of the prompt/negative prompt input box. It has a more intuitive and powerful input interface, provides automatic translation, history and collection functions, and supports multiple languages to meet the needs of different users.
 
@@ -270,7 +272,7 @@ Q: Display error message: "Connection to backend API service failed. Please manu
 Q: Why did the extension install successfully and there were no error outputs in the console, but there is still no extension panel on the webpage?
 </summary>
 
-> A: You need to make sure that your WebUI version is `22bcc7b` or higher. If your WebUI version is lower than this, you need to update WebUI.
+> A: You need to make sure that your WebUI version is [22bcc7b](https://github.com/AUTOMATIC1111/stable-diffusion-webui/commit/22bcc7be428c94e9408f589966c2040187245d81) or higher. If your WebUI version is lower than this, you need to update WebUI.
 </details>
 
 <details>
@@ -387,7 +389,7 @@ Q: 显示错误消息："连接到后台接口服务失败，请手动再刷新�
 Q: 为什么扩展安装成功了，控制台也没有错误输出，但网页中就是没有扩展的面板？
 </summary>
 
-> A: 你需要确保你的WebUI版本是 `22bcc7b（2023年第13周）` 及更高。如果你的WebUI版本低于此版本，你需要更新WebUI。
+> A: 你需要确保你的WebUI版本是 [22bcc7b（2023年第13周）](https://github.com/AUTOMATIC1111/stable-diffusion-webui/commit/22bcc7be428c94e9408f589966c2040187245d81) 及更高。如果你的WebUI版本低于此版本，你需要更新WebUI。
 </details>
 
 <details>
