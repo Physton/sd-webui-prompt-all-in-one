@@ -28,6 +28,7 @@ Thank you very much for your love and support. I have received your kindness.
 | 2023-05-29          | ?unknown        | 谢谢！加油！                         | ￥10           |
 | 2023-05-30          | 陈**             | 插件非常给力，赞一个                     | ￥100          |
 | 2023-05-31          | 五**             | 大佬厉害                           | ￥5            |
+| 2023-06-01          | 齐**             | 非常感谢                           | ￥10           |
 
 ## Buy me a coffee / *请我喝杯咖啡*
 
