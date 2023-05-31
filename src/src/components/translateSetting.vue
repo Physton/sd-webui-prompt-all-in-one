@@ -9,7 +9,7 @@
                             <optgroup v-for="typeGroup in supportApi" :key="typeGroup.type"
                                       :label="getLang(typeGroup.type)">
                                 <option v-for="item in typeGroup.children" :key="item.key" :value="item.key">
-                                    {{ getItemName(item.name) }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;QPS: {{ item.concurrent || 1 }}
+                                    {{ getItemName(item) }}
                                 </option>
                             </optgroup>
                         </select>
@@ -186,9 +186,15 @@ Github: Physton/sd-webui-prompt-all-in-one`,
             this.onlyCsvOnAutoValue = this.onlyCsvOnAuto
             this.refreshCSVs()
         },
-        getItemName(name) {
+        getItemName(item) {
+            let name = item.name
             name = name.replace('[Free] ', '[' + this.getLang('free') + '] ')
             name = name.replace('[ApiKey] ', '[' + this.getLang('apply_for_free') + '] ')
+            // 不足100个字符的，用空格补齐
+            if (name.length < 30) {
+                name += new Array(30 - name.length).join('　')
+            }
+            name += '[QPS: ' + (item.concurrent || 1) + ']'
             return name
         },
         refreshCSVs() {
