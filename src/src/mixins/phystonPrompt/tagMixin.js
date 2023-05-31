@@ -115,8 +115,8 @@ export default {
             const id = Date.now() + (Math.random() * 1000000).toFixed(0)
             let tag = {
                 id,
-                value,
-                localValue,
+                value: value === null || value === undefined || value === false ? '' : value,
+                localValue: localValue === null || localValue === undefined || localValue === false ? '' : localValue,
                 disabled,
                 type
             }
