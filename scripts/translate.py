@@ -141,10 +141,10 @@ def translate_baidu(text, from_lang, to_lang, api_config):
         raise Exception(result['error_msg'])
     if 'trans_result' not in result:
         raise Exception("No response from Baidu")
-    translated_text = ''
+    translated_text = []
     for item in result['trans_result']:
-        translated_text += "\n" + item['dst']
-    return translated_text
+        translated_text.append(item['dst'])
+    return '\n'.join(translated_text)
     # return result['trans_result'][0]['dst']
 
 def translate_youdao(text, from_lang, to_lang, api_config):
