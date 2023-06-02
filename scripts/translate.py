@@ -104,6 +104,8 @@ def translate(text, from_lang, to_lang, api, api_config = {}):
                 if item == None:
                     translate_indexes.append(index)
                     translate_texts.append(text[index])
+            if len(translate_texts) < 1:
+                return _translate_result(True, '', texts)
             result = translator.translate_batch(translate_texts)
             for index in range(len(result)):
                 item = result[index]
