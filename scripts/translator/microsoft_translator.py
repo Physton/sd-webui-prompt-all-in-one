@@ -8,7 +8,7 @@ class MicrosoftTranslator(BaseTranslator):
 
     def translate(self, text):
         if not text:
-            if isinstance(result['translations'], list):
+            if isinstance(text, list):
                 return []
             else:
                 return ''

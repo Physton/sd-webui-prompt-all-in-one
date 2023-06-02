@@ -7,7 +7,7 @@ class DeeplTranslator(BaseTranslator):
 
     def translate(self, text):
         if not text:
-            if isinstance(result['translations'], list):
+            if isinstance(text, list):
                 return []
             else:
                 return ''
@@ -32,7 +32,7 @@ class DeeplTranslator(BaseTranslator):
             raise Exception(result['message'])
         if 'translations' not in result:
             raise Exception("No response from DeepL")
-        if isinstance(result['translations'], list):
+        if isinstance(text, list):
             results = []
             for item in result['translations']:
                 results.append(item['text'])
