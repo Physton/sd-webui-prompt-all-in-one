@@ -30,6 +30,8 @@ Thank you very much for your love and support. I have received your kindness.
 | 2023-05-31          | 五**             | 大佬厉害                           | ￥5            |
 | 2023-06-01          | 齐**             | 非常感谢                           | ￥10           |
 | 2023-06-01          | 薛**             | 辛苦大佬                           | ￥5            |
+| 2023-06-02          | 黄**             |                                | ￥20           |
+| 2023-06-02          | B**             | 聊表心意                           | ￥1            |
 
 ## Buy me a coffee / *请我喝杯咖啡*
 
