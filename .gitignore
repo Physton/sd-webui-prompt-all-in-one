@@ -8,3 +8,4 @@
 /tags/*
 /styles/extensions/demo
 __pycache__
+/tests/.env

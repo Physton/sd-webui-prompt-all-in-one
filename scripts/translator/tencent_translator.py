@@ -1,10 +1,66 @@
+from scripts.translator.base_tanslator import BaseTranslator
+import requests
 import hashlib, hmac, json, time
 from datetime import datetime
+
+class TencentTranslator(BaseTranslator):
+    def __init__(self):
+        super().__init__('tencent')
+
+    def _get_config(self):
+        secret_id = self.api_config.get('secret_id', '')
+        secret_key = self.api_config.get('secret_key', '')
+        region = self.api_config.get('region', 'ap-shanghai')
+        if not secret_id:
+            raise Exception("secret_id is required")
+        if not secret_key:
+            raise Exception("secret_key is required")
+        if not region:
+            raise Exception("region is required")
+        return secret_id, secret_key, region
+
+    def translate(self, text):
+        if not text:
+            return ''
+        secret_id, secret_key, region = self._get_config()
+        params = {
+            'SourceText': text,
+            'Source': self.from_lang,
+            'Target': self.to_lang,
+            'ProjectId': 0
+        }
+        res = sign_tencent(secret_id, secret_key, region, params)
+        response = requests.post(res['url'], json=params, timeout=10, headers=res['headers'])
+        result = response.json()
+        if 'Response' not in result:
+            raise Exception("No response from Tencent")
+        if 'TargetText' not in result['Response']:
+            raise Exception("No response from Tencent")
+        return result['Response']['TargetText']
+
+    def translate_batch(self, texts):
+        if not texts:
+            return []
+        secret_id, secret_key, region = self._get_config()
+        params = {
+            'SourceTextList': texts,
+            'Source': self.from_lang,
+            'Target': self.to_lang,
+            'ProjectId': 0
+        }
+        res = sign_tencent(secret_id, secret_key, region, params, 'TextTranslateBatch')
+        response = requests.post(res['url'], json=params, timeout=10, headers=res['headers'])
+        result = response.json()
+        if 'Response' not in result:
+            raise Exception("No response from Tencent")
+        if 'TargetTextList' not in result['Response']:
+            raise Exception("No response from Tencent")
+        return result['Response']['TargetTextList']
+
 
 def sign_tencent(secret_id, secret_key, regin, params, action="TextTranslate", version = "2018-03-21"):
     host = 'tmt.tencentcloudapi.com'
     endpoint = "https://" + host
-    action = "TextTranslate"
 
     service = "tmt"
     algorithm = "TC3-HMAC-SHA256"

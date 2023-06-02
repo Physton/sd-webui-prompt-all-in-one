@@ -206,7 +206,13 @@ def on_app_started(_: gr.Blocks, app: FastAPI):
     @app.post("/physton_prompt/translate")
     async def _translate(text: str = Body(...), from_lang: str = Body(...), to_lang: str = Body(...), api: str = Body(...), api_config: dict = Body(...)):
         return translate(text, from_lang, to_lang, api, api_config)
-        return {"success": hi.remove_histories(data['type'])}
+
+    @app.post("/physton_prompt/translates")
+    async def _translates(request: Request):
+        data = await request.json()
+        if 'texts' not in data or 'from_lang' not in data or 'to_lang' not in data or 'api' not in data or 'api_config' not in data:
+            return {"success": False, "message": "texts or from_lang or to_lang or api or api_config is required"}
+        return translate(data['texts'], data['from_lang'], data['to_lang'], data['api'], data['api_config'])
 
     @app.get("/physton_prompt/get_csvs")
     async def _get_csvs():

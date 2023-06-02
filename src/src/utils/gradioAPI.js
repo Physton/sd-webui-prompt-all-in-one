@@ -136,6 +136,17 @@ export default class GradioAPI {
         return data
     }
 
+    async translates(texts, from_lang, to_lang, api, api_config = {}) {
+        let data = (await this.api.post("/translates", {texts, from_lang, to_lang, api, api_config})).data
+        if (data.translated_text) {
+            data.translated_text.forEach((item, index) => {
+                // 实体转义
+                data.translated_text[index] = common.unescapeHtml(item)
+            })
+        }
+        return data
+    }
+
     async getCSVs() {
         return (await this.api.get("/get_csvs")).data.csvs
     }
