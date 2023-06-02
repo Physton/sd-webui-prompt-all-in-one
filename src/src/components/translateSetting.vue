@@ -191,10 +191,10 @@ Github: Physton/sd-webui-prompt-all-in-one`,
             name = name.replace('[Free] ', '[' + this.getLang('free') + '] ')
             name = name.replace('[ApiKey] ', '[' + this.getLang('apply_for_free') + '] ')
             // 不足100个字符的，用空格补齐
-            if (name.length < 30) {
+            /*if (name.length < 30) {
                 name += new Array(30 - name.length).join('　')
             }
-            name += '[QPS: ' + (item.concurrent || 1) + ']'
+            name += '[QPS: ' + (item.concurrent || 1) + ']'*/
             return name
         },
         refreshCSVs() {
