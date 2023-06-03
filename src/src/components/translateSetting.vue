@@ -32,7 +32,7 @@
                 <div class="setting-line" v-for="config in configs">
                     <div class="line-title">{{ config.title }}</div>
                     <div class="line-content">
-                        <input type="text" v-if="config.type == 'input'" v-model="config.value">
+                        <input type="text" v-if="config.type == 'input'" v-model="config.value" @change="onChangeConfigValue(config)">
                         <select v-if="config.type == 'select'" v-model="config.value">
                             <option v-for="option in config.options" :value="option">{{ option }}</option>
                         </select>
@@ -172,8 +172,18 @@ Github: Physton/sd-webui-prompt-all-in-one`,
                     }
                 })
             },
+            immediate: false
         },
-        immediate: true
+        /*configs: {
+            handler: function (val, oldVal) {
+                val.forEach(config => {
+                    if (config.value === '') {
+                        config.value = config.default
+                    }
+                })
+            },
+            deep: true
+        },*/
     },
     methods: {
         open(apiKey) {
@@ -196,6 +206,11 @@ Github: Physton/sd-webui-prompt-all-in-one`,
             }
             name += '[QPS: ' + (item.concurrent || 1) + ']'*/
             return name
+        },
+        onChangeConfigValue(config) {
+            if (config.type === 'input' && config.value === '' && config.default) {
+                config.value = config.default
+            }
         },
         refreshCSVs() {
             if (this.tagCompleteFilesLoading) return
