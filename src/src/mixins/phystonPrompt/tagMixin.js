@@ -232,7 +232,7 @@ export default {
             let value = tag.value
             let localValue = tag.localValue
             if (weightNum > 0) {
-                if (weightNum === 1) {
+                if (weightNum === 1 && !this.autoKeepWeightOne) {
                     // 如果权重数是1，那么就去掉权重数
                     const bracket = common.hasBrackets(value)
                     if (bracket[0] === '(' && bracket[1] === ')') {

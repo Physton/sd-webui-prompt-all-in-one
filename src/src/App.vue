@@ -17,6 +17,7 @@
                             v-model:auto-remove-space="autoRemoveSpace"
                             v-model:auto-remove-last-comma="autoRemoveLastComma"
                             v-model:auto-keep-weight-zero="autoKeepWeightZero"
+                            v-model:auto-keep-weight-one="autoKeepWeightOne"
                             :hide-default-input="item.hideDefaultInput"
                             @update:hide-default-input="onUpdateHideDefaultInput(item.id, $event)"
                             :hide-panel="item.hidePanel"
@@ -54,7 +55,8 @@
                        :languages="languages"
                        v-model:auto-remove-space="autoRemoveSpace"
                        v-model:auto-remove-last-comma="autoRemoveLastComma"
-                       v-model:auto-keep-weight-zero="autoKeepWeightZero"></prompt-format>
+                       v-model:auto-keep-weight-zero="autoKeepWeightZero"
+                       v-model:auto-keep-weight-one="autoKeepWeightOne"></prompt-format>
         <history ref="history" v-model:language-code="languageCode"
                  :translate-apis="translateApis" :languages="languages"
                  v-model:tag-complete-file="tagCompleteFile"
@@ -215,6 +217,7 @@ export default {
             autoRemoveSpace: true,
             autoRemoveLastComma: false,
             autoKeepWeightZero: false,
+            autoKeepWeightOne: false,
             // hideDefaultInput: false,
             enableTooltip: true,
             tagCompleteFile: '',
@@ -317,6 +320,16 @@ export default {
             },
             immediate: false,
         },
+        autoKeepWeightOne: {
+            handler: function (val, oldVal) {
+                if (!this.startWatchSave) return
+                console.log('onAutoKeepWeightOneChange', val)
+                this.gradioAPI.setData('autoKeepWeightOne', val).then(data => {
+                }).catch(err => {
+                })
+            },
+            immediate: false,
+        },
         /*hideDefaultInput: {
             handler: function (val, oldVal) {
                 if (!this.startWatchSave) return
@@ -403,7 +416,7 @@ export default {
         },
         init() {
             this.loadExtraNetworks()
-            let dataListsKeys = ['languageCode', 'autoTranslate', 'autoTranslateToEnglish', 'autoTranslateToLocal', 'autoRemoveSpace', 'autoRemoveLastComma', 'autoKeepWeightZero', /*'hideDefaultInput', */'translateApi', 'enableTooltip', 'tagCompleteFile', 'onlyCsvOnAuto']
+            let dataListsKeys = ['languageCode', 'autoTranslate', 'autoTranslateToEnglish', 'autoTranslateToLocal', 'autoRemoveSpace', 'autoRemoveLastComma', 'autoKeepWeightZero', 'autoKeepWeightOne', /*'hideDefaultInput', */'translateApi', 'enableTooltip', 'tagCompleteFile', 'onlyCsvOnAuto']
             this.prompts.forEach(item => {
                 dataListsKeys.push(item.hideDefaultInputKey)
                 dataListsKeys.push(item.hidePanelKey)
@@ -453,6 +466,9 @@ export default {
                 }
                 if (data.autoKeepWeightZero !== null) {
                     this.autoKeepWeightZero = data.autoKeepWeightZero
+                }
+                if (data.autoKeepWeightOne !== null) {
+                    this.autoKeepWeightOne = data.autoKeepWeightOne
                 }
                 /*if (data.hideDefaultInput !== null) {
                     this.hideDefaultInput = data.hideDefaultInput
