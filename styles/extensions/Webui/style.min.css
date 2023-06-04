@@ -68,20 +68,32 @@ body.light .fwbiXl .ant-menu-overflow-item.ant-menu-item-selected{
     fill: var(--body-text-color);
 }
 .physton-prompt .prompt-header .setting-box .icon-svg-theme svg{
-    height: 22px;
+    height: auto;
     width: 22px;
 }
 .physton-prompt .prompt-header .setting-box .icon-svg-api svg{
-    height: 22px;
+    height: auto;
     width: 22px; 
 }
+.physton-prompt .prompt-header .setting-box .icon-svg-theme svg {
+    height: auto;
+    width: 22px;
+}
+.physton-prompt .prompt-header .setting-box .icon-svg-translate svg {
+    height: auto;
+    width: 22px;
+}
+.physton-prompt .prompt-header .setting-box .icon-svg-english svg {
+    height: auto;
+    width: 22px;
+}
 .physton-prompt .prompt-header .setting-box .icon-svg-remove-space svg {
-    height: 22px;
+    height: auto;
     width: 22px; 
 }
 .physton-prompt .prompt-header .setting-box .icon-svg-tooltip svg {
 
-    height: 22px;
+    height: auto;
     width: 22px; 
 }
 

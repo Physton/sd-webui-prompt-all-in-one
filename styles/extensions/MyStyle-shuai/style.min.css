@@ -51,12 +51,12 @@
     width: 45px
   }
   /*图标颜色*/
-  body.dark .physton-prompt .prompt-header .extend-btn-item .icon-svg-remove svg path, body.dark .physton-prompt .prompt-header .extend-btn-item .icon-svg-copy svg path, body.dark .physton-prompt .prompt-header .extend-btn-item .icon-svg-english svg path, body.dark .physton-prompt .prompt-header .extend-btn-item .icon-svg-translate svg path, body.dark .physton-prompt .prompt-header .extend-btn-item .icon-svg-favorite svg path, body.dark .physton-prompt .prompt-header .extend-btn-item .icon-svg-history svg path, body.dark .physton-prompt .prompt-header .extend-btn-item .icon-svg-setting svg path, body.dark .physton-prompt .prompt-header .extend-btn-item .icon-svg-i18n svg path, body.dark .physton-prompt .prompt-header .prompt-unfold .icon-svg-unfold svg path, body.dark .physton-prompt .prompt-header .icon-svg-input svg path {
+  body.dark .physton-prompt .prompt-header .extend-btn-item .icon-svg-remove svg path, body.dark .physton-prompt .prompt-header .extend-btn-item .icon-svg-copy svg path, body.dark .physton-prompt .prompt-header .extend-btn-item .icon-svg-english svg path, body.dark .physton-prompt .prompt-header .extend-btn-item .icon-svg-translate svg path, body.dark .physton-prompt .prompt-header .extend-btn-item .icon-svg-favorite svg path, body.dark .physton-prompt .prompt-header .extend-btn-item .icon-svg-history svg path, body.dark .physton-prompt .prompt-header .extend-btn-item .icon-svg-setting svg path, body.dark .physton-prompt .prompt-header .extend-btn-item .icon-svg-i18n svg path, body.dark .physton-prompt .prompt-header .prompt-unfold .icon-svg-unfold svg path, body.dark .physton-prompt .prompt-header .icon-svg-input svg path, body.dark .physton-prompt .prompt-header .icon-svg-chatgpt svg path {
     fill: #596572;
   }
   /*图标尺寸*/
-  body.dark .physton-prompt .prompt-header .setting-box .icon-svg-api svg, body.dark .physton-prompt .prompt-header .setting-box .icon-svg-theme svg, body.dark .physton-prompt .prompt-header .setting-box .icon-svg-remove-space svg, body.dark .physton-prompt .prompt-header .setting-box .icon-svg-tooltip svg {
-    width: 18px;
+  body.dark .physton-prompt .prompt-header .setting-box .icon-svg-api svg,body.dark .physton-prompt .prompt-header .setting-box .icon-svg-format svg, body.dark .physton-prompt .prompt-header .setting-box .icon-svg-theme svg, body.dark .physton-prompt .prompt-header .setting-box .icon-svg-remove-space svg, body.dark .physton-prompt .prompt-header .setting-box .icon-svg-tooltip svg {
+    width: auto;
     height: 18px;
   }
   body.dark .physton-prompt .prompt-header .prompt-header-extend .extend-content .extend-btn-group {
@@ -298,7 +298,7 @@
     fill: #35a446;
   }
   body.dark .physton-prompt .prompt-tags .btn-tag-extend .icon-svg-favorite-no svg path:nth-child(1) { /*TAG上浮*/
-    fill: #464646;
+    fill: #464646 !important;
   }
   body.dark .physton-prompt .prompt-tags .prompt-tags-list .prompt-tag .prompt-tag-main .prompt-tag-edit .prompt-tag-value .character {
     text-overflow: ellipsis;
@@ -399,7 +399,7 @@
     color: #eff3fa;
   }
   body.dark .physton-prompt-favorite .popup-tab-content .content-list .clear-btn .icon-svg-remove svg, .physton-prompt-history .popup-tab-content .content-list .clear-btn .icon-svg-remove svg { /*删除所有记录*/
-    width: 18px;
+    width: auto;
     height: 18px;
     margin-top: 5px;
   }
@@ -534,12 +534,12 @@
     width: 45px
   }
   /*图标颜色*/
-  body.light .physton-prompt .prompt-header .extend-btn-item .icon-svg-remove svg path, body.light .physton-prompt .prompt-header .extend-btn-item .icon-svg-copy svg path, body.light .physton-prompt .prompt-header .extend-btn-item .icon-svg-english svg path, body.light .physton-prompt .prompt-header .extend-btn-item .icon-svg-translate svg path, body.light .physton-prompt .prompt-header .extend-btn-item .icon-svg-favorite svg path, body.light .physton-prompt .prompt-header .extend-btn-item .icon-svg-history svg path, body.light .physton-prompt .prompt-header .extend-btn-item .icon-svg-setting svg path, body.light .physton-prompt .prompt-header .extend-btn-item .icon-svg-i18n svg path, body.light .physton-prompt .prompt-header .prompt-unfold .icon-svg-unfold svg path, body.light .physton-prompt .prompt-header .icon-svg-input svg path {
+  body.light .physton-prompt .prompt-header .extend-btn-item .icon-svg-remove svg path, body.light .physton-prompt .prompt-header .extend-btn-item .icon-svg-copy svg path, body.light .physton-prompt .prompt-header .extend-btn-item .icon-svg-english svg path, body.light .physton-prompt .prompt-header .extend-btn-item .icon-svg-translate svg path, body.light .physton-prompt .prompt-header .extend-btn-item .icon-svg-favorite svg path, body.light .physton-prompt .prompt-header .extend-btn-item .icon-svg-history svg path, body.light .physton-prompt .prompt-header .extend-btn-item .icon-svg-setting svg path, body.light .physton-prompt .prompt-header .extend-btn-item .icon-svg-i18n svg path, body.light .physton-prompt .prompt-header .prompt-unfold .icon-svg-unfold svg path, body.light .physton-prompt .prompt-header .icon-svg-input svg path, body.light .physton-prompt .prompt-header .icon-svg-chatgpt svg path {
     fill: #565656c2;
   }
   /*图标尺寸*/
-  body.light .physton-prompt .prompt-header .setting-box .icon-svg-api svg, body.light .physton-prompt .prompt-header .setting-box .icon-svg-theme svg, body.light .physton-prompt .prompt-header .setting-box .icon-svg-remove-space svg, body.light .physton-prompt .prompt-header .setting-box .icon-svg-tooltip svg {
-    width: 18px;
+  body.light .physton-prompt .prompt-header .setting-box .icon-svg-api svg, body.light .physton-prompt .prompt-header .setting-box .icon-svg-format svg, body.light .physton-prompt .prompt-header .setting-box .icon-svg-theme svg, body.light .physton-prompt .prompt-header .setting-box .icon-svg-remove-space svg, body.light .physton-prompt .prompt-header .setting-box .icon-svg-tooltip svg {
+    width: auto;
     height: 18px;
   }
   body.light .physton-prompt .prompt-header .prompt-header-extend .extend-content .extend-btn-group {
@@ -779,7 +779,7 @@
     fill: #35a446;
   }
   body.light .physton-prompt .prompt-tags .btn-tag-extend .icon-svg-favorite-no svg path:nth-child(1) { /*TAG上浮*/
-    fill: #464646;
+    fill: #464646 !important;
   }
   body.light .physton-prompt .prompt-tags .prompt-tags-list .prompt-tag .prompt-tag-main .prompt-tag-edit .prompt-tag-value .character {
     text-overflow: ellipsis;
@@ -882,7 +882,7 @@
     color: #eff3fa;
   }
   body.light .physton-prompt-favorite .popup-tab-content .content-list .clear-btn .icon-svg-remove svg, .physton-prompt-history .popup-tab-content .content-list .clear-btn .icon-svg-remove svg { /*删除所有记录*/
-    width: 18px;
+    width: auto;
     height: 18px;
     margin-top: 5px;
   }

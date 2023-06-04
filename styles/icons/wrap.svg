@@ -1,5 +1,5 @@
-<svg t="1684120692315" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
-     p-id="4885">
-    <path d="M64 64h704v192H64z m-1.28 700.416H960V960H62.72z" p-id="4886"></path>
-    <path d="M895.872 64v403.904H320.128v-68.416L191.872 501.504 320.128 608v-72.832h639.744V64z" p-id="4887"></path>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="uuid-9bcfe68e-7707-4a45-97b2-bbaf86751954" data-name="图层 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 897.28 896">
+  <path d="m1.28,0h704v192H1.28V0ZM0,700.42h897.28v195.58H0v-195.58Z"/>
+  <path d="m833.15,0v403.9H257.41v-68.42l-128.26,102.02,128.26,106.5v-72.83h639.74V0h-64Z"/>
 </svg>
