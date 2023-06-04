@@ -15,6 +15,7 @@ from scripts.translator.youdao_translator import YoudaoTranslator
 from scripts.translator.alibaba_translator import AlibabaTranslator
 from scripts.translator.tencent_translator import TencentTranslator
 from scripts.translator.translators_translator import TranslatorsTranslator
+from scripts.translator.yandex_translator import YandexTranslator
 
 from scripts.translate import translate
 
@@ -112,4 +113,11 @@ def test_translators():
     print(translate(text, 'en_US', 'zh_CN', 'alibaba_free', {'region': 'EN'}))
     print(translate(texts, 'en_US', 'zh_CN', 'alibaba_free', {'region': 'EN'}))
 
-test_baidu()
+def test_yandex():
+    api_config = {
+        'api_key': os.getenv('YANDEX_API_KEY'),
+    }
+    print(translate(text, 'en_US', 'zh_CN', 'yandex', api_config))
+    print(translate(texts, 'en_US', 'zh_CN', 'yandex', api_config))
+
+test_yandex()

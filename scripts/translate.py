@@ -10,6 +10,7 @@ from scripts.translator.microsoft_translator import MicrosoftTranslator
 from scripts.translator.openai_translator import OpenaiTranslator
 from scripts.translator.tencent_translator import TencentTranslator
 from scripts.translator.translators_translator import TranslatorsTranslator
+from scripts.translator.yandex_translator import YandexTranslator
 from scripts.translator.youdao_translator import YoudaoTranslator
 
 caches = {}
@@ -82,6 +83,8 @@ def translate(text, from_lang, to_lang, api, api_config = {}):
             translator = BaiduTranslator()
         elif api == 'alibaba':
             translator = AlibabaTranslator()
+        elif api == 'yandex':
+            translator = YandexTranslator()
         elif api == 'youdao':
             translator = YoudaoTranslator()
         elif api == 'tencent':
