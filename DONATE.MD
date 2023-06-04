@@ -33,6 +33,7 @@ Thank you very much for your love and support. I have received your kindness.
 | 2023-06-02          | 黄**             |                                | ￥20           |
 | 2023-06-02          | B**             | 聊表心意                           | ￥1            |
 | 2023-06-03          | 娟**             |                                | ￥1            |
+| 2023-06-04          | 天**             | 非常感谢开发这么好的插件                   | ￥50           |
 
 ## Buy me a coffee / *请我喝杯咖啡*
 
