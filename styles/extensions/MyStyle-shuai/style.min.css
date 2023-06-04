@@ -297,6 +297,9 @@
   body.dark .physton-prompt .prompt-tags .btn-tag-extend .icon-svg-weight-brackets-inc svg path, body.dark .physton-prompt .prompt-tags .btn-tag-extend .icon-svg-weight-brackets-dec svg path { /*TAG上浮*/
     fill: #35a446;
   }
+  body.dark .physton-prompt .prompt-tags .btn-tag-extend .icon-svg-favorite-no svg path:nth-child(1) { /*TAG上浮*/
+    fill: #464646;
+  }
   body.dark .physton-prompt .prompt-tags .prompt-tags-list .prompt-tag .prompt-tag-main .prompt-tag-edit .prompt-tag-value .character {
     text-overflow: ellipsis;
     overflow: hidden;
@@ -774,6 +777,9 @@
   }
   body.light .physton-prompt .prompt-tags .btn-tag-extend .icon-svg-weight-brackets-inc svg path, body.light .physton-prompt .prompt-tags .btn-tag-extend .icon-svg-weight-brackets-dec svg path { /*TAG上浮*/
     fill: #35a446;
+  }
+  body.light .physton-prompt .prompt-tags .btn-tag-extend .icon-svg-favorite-no svg path:nth-child(1) { /*TAG上浮*/
+    fill: #464646;
   }
   body.light .physton-prompt .prompt-tags .prompt-tags-list .prompt-tag .prompt-tag-main .prompt-tag-edit .prompt-tag-value .character {
     text-overflow: ellipsis;
