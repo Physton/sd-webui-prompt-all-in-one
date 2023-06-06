@@ -42,68 +42,68 @@ the UI interfaces of other countries are displayed in English. and the translati
 
 - Switch language / *切换语言*
 
-  ![](https://raw.githubusercontent.com/Physton/sd-webui-prompt-all-in-one-assets/main/images/demo.switch_language.gif)
+  ![](https://s1.imagehub.cc/images/2023/06/06/demo.switch_language.gif)
 
 
 - Translation API settings / *翻译API设置*
 
-  ![](https://raw.githubusercontent.com/Physton/sd-webui-prompt-all-in-one-assets/main/images/demo.translate_setting.gif)
+  ![](https://s1.imagehub.cc/images/2023/06/06/demo.translate_setting.gif)
 
 - Show/Hide content / *显示/折叠内容*
 
-  ![](https://raw.githubusercontent.com/Physton/sd-webui-prompt-all-in-one-assets/main/images/demo.fold.gif)
+  ![](https://s1.imagehub.cc/images/2023/06/06/demo.fold.gif)
 
 - Show/Hide the WebUI input box / *显示/隐藏WebUI输入框*
 
-  ![](https://raw.githubusercontent.com/Physton/sd-webui-prompt-all-in-one-assets/main/images/demo.show_input.gif)
+  ![](https://s1.imagehub.cc/images/2023/06/06/demo.show_input.gif)
 
 - Automatic translation / *自动翻译*
 
-  ![](https://raw.githubusercontent.com/Physton/sd-webui-prompt-all-in-one-assets/main/images/demo.auto_translate.gif)
+  ![](https://s1.imagehub.cc/images/2023/06/06/demo.auto_translate.gif)
 
 - One-click translation / *一键翻译*
 
-  ![](https://raw.githubusercontent.com/Physton/sd-webui-prompt-all-in-one-assets/main/images/demo.translate.gif)
+  ![](https://s1.imagehub.cc/images/2023/06/06/demo.translate.gif)
 
 - Elegant input / *优雅的输入*
 
-  ![](https://raw.githubusercontent.com/Physton/sd-webui-prompt-all-in-one-assets/main/images/demo.elegant_input.gif)
+  ![](https://s1.imagehub.cc/images/2023/06/06/demo.elegant_input.gif)
 
 - Quick adjustment / *快速调整*
 
-  ![](https://raw.githubusercontent.com/Physton/sd-webui-prompt-all-in-one-assets/main/images/demo.quick_adjust.gif)
+  ![](https://s1.imagehub.cc/images/2023/06/06/demo.quick_adjust.gif)
 
 - Favorite and History / *收藏和历史记录*
 
-  ![](https://raw.githubusercontent.com/Physton/sd-webui-prompt-all-in-one-assets/main/images/demo.history_favorite.gif)
+  ![](https://s1.imagehub.cc/images/2023/06/06/demo.history_favorite.gif)
 
 - Use ChatGPT to Generate Prompts / *使用ChatGPT生成Prompt*
 
-  ![](https://raw.githubusercontent.com/Physton/sd-webui-prompt-all-in-one-assets/main/images/demo.chatgpt.gif)
+  ![](https://s1.imagehub.cc/images/2023/06/06/demo.chatgpt.gif)
 
 - Writing in WebUI input box / *在WebUI的输入框中编写*
 
-  ![](https://raw.githubusercontent.com/Physton/sd-webui-prompt-all-in-one-assets/main/images/demo.writing_webui.gif)
+  ![](https://s1.imagehub.cc/images/2023/06/06/demo.writing_webui.gif)
 
 - Support for [a1111-sd-webui-tagcomplete](https://github.com/DominikDoom/a1111-sd-webui-tagcomplete) / *支持[a1111-sd-webui-tagcomplete](https://github.com/DominikDoom/a1111-sd-webui-tagcomplete)*
 
-  ![](https://raw.githubusercontent.com/Physton/sd-webui-prompt-all-in-one-assets/main/images/demo.tagcomplete.gif)
+  ![](https://s1.imagehub.cc/images/2023/06/06/demo.tagcomplete.gif)
 
 - Highlighting and detection of Lora, LyCORIS, and Textual Inversion / *Lora、LyCORIS、Textual Inversion 高亮和检测*
 
-  ![](https://raw.githubusercontent.com/Physton/sd-webui-prompt-all-in-one-assets/main/images/demo.keyword_detection.gif)
+  ![](https://s1.imagehub.cc/images/2023/06/06/demo.keyword_detection.gif)
 
 - Format of Prompt / *Prompt提示词格式*
 
-  ![](https://raw.githubusercontent.com/Physton/sd-webui-prompt-all-in-one-assets/main/images/demo.prompt_format.gif)
+  ![](https://s1.imagehub.cc/images/2023/06/06/demo.prompt_format.gif)
 
 - Batch operation / *批量操作*
 
-  ![](https://raw.githubusercontent.com/Physton/sd-webui-prompt-all-in-one-assets/main/images/demo.batch_operation.gif)
+  ![](https://s1.imagehub.cc/images/2023/06/06/demo.batch_operation.gif)
 
 - Custom Theme / Extension styles / *自定义主题/扩展风格*
 
-  ![](https://raw.githubusercontent.com/Physton/sd-webui-prompt-all-in-one-assets/main/images/demo.custom_theme.gif)
+  ![](https://s1.imagehub.cc/images/2023/06/06/demo.custom_theme.gif)
 
 
 ## Installation and Usage / *安装使用*
@@ -312,7 +312,7 @@ Q: Why are some translation results "0"?
 Q: Why are there two identical buttons under the generate button?
 </summary>
 
-![](https://raw.githubusercontent.com/Physton/sd-webui-prompt-all-in-one-assets/main/images/paste.png)
+![](https://s1.imagehub.cc/images/2023/06/06/paste.png)
 
 > The first button is built into the WebUI. You can paste the Prompt from other sources into the native input box of WebUI or drag and drop an image into it. Clicking this button will automatically fill in the parameters for the input box in the WebUI interface.
 > 
@@ -429,7 +429,7 @@ Q: 为什么翻译结果有些是“0”？
 Q: 为什么生成按钮下面有两个描述一样的按钮？
 </summary>
 
-![](https://raw.githubusercontent.com/Physton/sd-webui-prompt-all-in-one-assets/main/images/paste.png)
+![](https://s1.imagehub.cc/images/2023/06/06/paste.png)
 
 > 第一个按钮是WebUI自带的，你可以在WebUI原生的输入框中粘贴来自其他地方的Prompt，或者把图片拖动进输入框中。点击这个按钮，就可以自动为WebUI界面中的输入框填写参数。
 > 
@@ -474,6 +474,6 @@ Donation list / *捐赠列表*：[DONATE.MD](DONATE.MD)
 - 支付宝 `physton@163.com`
 - 微信赞赏
 
-    ![](https://raw.githubusercontent.com/Physton/sd-webui-prompt-all-in-one-assets/main/images/donate-wechat.jpg)
+    ![](https://s1.imagehub.cc/images/2023/06/06/donate-wechat.jpeg)
 
 Developed by: https://www.physton.com
