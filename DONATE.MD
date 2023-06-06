@@ -45,4 +45,4 @@ Thank you very much for your love and support. I have received your kindness.
 - 支付宝 `physton@163.com`
 - 微信赞赏
 
-  ![](https://raw.githubusercontent.com/Physton/sd-webui-prompt-all-in-one-assets/main/images/donate-wechat.jpg)
+  ![](https://s1.imagehub.cc/images/2023/06/06/donate-wechat.jpeg)
