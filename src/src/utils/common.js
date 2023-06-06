@@ -441,13 +441,16 @@ export default {
      */
     apiUrl() {
         let url
-        if (typeof gradioURL === "string" && gradioURL !== "") {
+        url = window.location.origin + window.location.pathname
+        url += url.endsWith('/') ? '' : '/'
+        url += 'physton_prompt/'
+        /*if (typeof gradioURL === "string" && gradioURL !== "") {
             url = new URL(gradioURL)
             url = url.origin
         } else {
             url = window.location.origin
-        }
-        return url + '/physton_prompt/'
+        }*/
+        return url
     },
 
     /**
