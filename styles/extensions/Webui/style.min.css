@@ -31,7 +31,7 @@
 .fwbiXl .ant-menu-overflow-item.ant-menu-item-selected{
     background-color:var(--button-primary-border-color) !important;
 }
-body.light .fwbiXl .ant-menu-overflow-item.ant-menu-item-selected{
+.physton-gradio-container.light .fwbiXl .ant-menu-overflow-item.ant-menu-item-selected{
    color: #ffffff;
 }
 /* -----------------------------------------------------------------------------------*/
@@ -122,7 +122,7 @@ Light theme
 
 
 
-body.light .physton-prompt .prompt-header .extend-btn-item .icon-svg-favorite:before {
+.physton-gradio-container.light .physton-prompt .prompt-header .extend-btn-item .icon-svg-favorite:before {
     /* 功能设置图标样式*/
     background-image: url(/physton_prompt/styles?file=extensions/Webui/images/favorite_l.svg);
     background-size: 100% 100%;
@@ -131,23 +131,23 @@ body.light .physton-prompt .prompt-header .extend-btn-item .icon-svg-favorite:be
     width: 18px;
     height: 18px;
 }
-body.light .physton-prompt .prompt-header .extend-btn-item .icon-svg-favorite svg {
+.physton-gradio-container.light .physton-prompt .prompt-header .extend-btn-item .icon-svg-favorite svg {
      /* 功能设置图标样式*/
      fill: var(--body-text-color);   
      display:none;
 }
 
-body.light .physton-prompt .prompt-header .extend-btn-item .icon-svg-translate svg path{
+.physton-gradio-container.light .physton-prompt .prompt-header .extend-btn-item .icon-svg-translate svg path{
     /* 功能设置图标样式*/
     fill: var(--body-text-color);   
 }
-body.light .physton-prompt .prompt-header .extend-btn-item .icon-svg-english svg path{
+.physton-gradio-container.light .physton-prompt .prompt-header .extend-btn-item .icon-svg-english svg path{
     /* 功能设置图标样式*/
     fill: var(--body-text-color);  
 }
 
 
-body.light .physton-prompt .prompt-header {
+.physton-gradio-container.light .physton-prompt .prompt-header {
     /*
     更换标题栏背景色
     Change the background color of the title bar
@@ -158,7 +158,7 @@ body.light .physton-prompt .prompt-header {
 
 /**深色主题Dark theme*/
 
-body.dark .physton-prompt .prompt-header .extend-btn-item .icon-svg-favorite:before {
+.physton-gradio-container.dark .physton-prompt .prompt-header .extend-btn-item .icon-svg-favorite:before {
     /* 功能设置图标样式*/
     background-image: url(/physton_prompt/styles?file=extensions/Webui/images/favorite.svg);
     background-size: 100% 100%;
@@ -167,7 +167,7 @@ body.dark .physton-prompt .prompt-header .extend-btn-item .icon-svg-favorite:bef
     width: 18px;
     height: 18px;
 }
-body.dark .physton-prompt .prompt-header .extend-btn-item .icon-svg-favorite svg {
+.physton-gradio-container.dark .physton-prompt .prompt-header .extend-btn-item .icon-svg-favorite svg {
      /* 功能设置图标样式*/
      fill: var(--body-text-color);   
      display:none;
@@ -175,16 +175,16 @@ body.dark .physton-prompt .prompt-header .extend-btn-item .icon-svg-favorite svg
 
 
 
-body.dark .physton-prompt .prompt-header .extend-btn-item .icon-svg-translate svg path{
+.physton-gradio-container.dark .physton-prompt .prompt-header .extend-btn-item .icon-svg-translate svg path{
     /* 功能设置图标样式*/
     fill: var(--body-text-color);   
 }
-body.dark .physton-prompt .prompt-header .extend-btn-item .icon-svg-english svg path{
+.physton-gradio-container.dark .physton-prompt .prompt-header .extend-btn-item .icon-svg-english svg path{
     /* 功能设置图标样式*/
     fill: var(--body-text-color);  
 }
 
-body.dark .physton-prompt .prompt-header {
+.physton-gradio-container.dark .physton-prompt .prompt-header {
     /*
     更换标题栏背景色
     Change the background color of the title bar
@@ -204,7 +204,7 @@ body.dark .physton-prompt .prompt-header {
     border: 1px solid #1296db;
 }
 
-body.dark .physton-prompt .prompt-header .prompt-header-extend .extend-content .input-tag-append {
+.physton-gradio-container.dark .physton-prompt .prompt-header .prompt-header-extend .extend-content .input-tag-append {
     /*改变输入框的的样式*/
     color:#1296db;
 }

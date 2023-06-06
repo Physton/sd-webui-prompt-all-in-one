@@ -3,14 +3,14 @@ import App from './App.vue'
 import toastr from 'toastr'
 import VueClipboard from 'vue-clipboard3'
 const {toClipboard} = VueClipboard()
-import CommonMixin from "@/mixins/commonMixin";
-
-import tippy from "tippy.js";
+import CommonMixin from "@/mixins/commonMixin"
+import common from "@/utils/common"
+import tippy from "tippy.js"
 
 onUiLoaded(() => {
     const div = document.createElement('div')
     div.id    = 'physton-prompt-all-in-one'
-    document.body.appendChild(div)
+    common.gradioApp().appendChild(div)
     const app = Vue.createApp(App)
 
     app.config.globalProperties.$toastr    = toastr
@@ -41,6 +41,6 @@ onUiLoaded(() => {
         }
     })
 
-    app.mount('#physton-prompt-all-in-one')
+    app.mount(div)
 })
 

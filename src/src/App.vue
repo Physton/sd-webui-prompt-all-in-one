@@ -384,12 +384,14 @@ export default {
         },
     },
     mounted() {
+        common.loadCSS('toastr.min.css', 'physton-prompt-toastr', true, true, false)
+        common.loadCSS('tippy.css', 'physton-prompt-tippy', true, true, false)
         common.loadCSS('main.min.css', 'physton-prompt-main', true)
 
         const urlParams = new URLSearchParams(window.location.search);
         const theme = urlParams.get("__theme")
-        if (!document.body.classList.contains(theme)) {
-            document.body.classList.add(theme);
+        if (!common.gradioApp().classList.contains(theme)) {
+            common.gradioApp().classList.add(theme)
         }
 
         this.gradioAPI.getConfig().then(res => {
@@ -510,13 +512,13 @@ export default {
                     if (data[item.hidePanelKey] !== null) {
                         item.hidePanel = data[item.hidePanelKey]
                     }
-                    item.$prompt = document.getElementById(item.prompt)
+                    item.$prompt = common.gradioApp().querySelector("#" + item.prompt)
                     item.$textarea = item.$prompt.getElementsByTagName("textarea")[0]
-                    item.$steps = document.getElementById(item.steps)
+                    item.$steps = common.gradioApp().querySelector("#" + item.steps)
                 })
                 this.$nextTick(() => {
                     this.prompts.forEach(item => {
-                        const $prompt = document.getElementById(item.id)
+                        const $prompt = common.gradioApp().querySelector("#" + item.id)
                         item.$prompt.parentElement.parentElement.parentElement.appendChild($prompt)
                         item.$prompt.parentElement.parentElement.style.display = item.hideDefaultInput ? 'none' : 'flex'
                         // item.$textarea.parentNode.appendChild($prompt)
@@ -719,8 +721,3 @@ export default {
     },
 }
 </script>
-
-<style lang="less">
-@import "toastr/build/toastr.min.css";
-@import "tippy.js/dist/tippy.css";
-</style>

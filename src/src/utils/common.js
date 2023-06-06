@@ -453,10 +453,16 @@ export default {
     /**
      * 移除css
      * @param id {string}
+     * @param gradioAPP {boolean}
      */
-    removeCSS(id) {
+    removeCSS(id, gradioAPP = true) {
         if (!id) return
-        let css = document.getElementById(id)
+        let css = null
+        if (gradioAPP) {
+            css = this.gradioApp().querySelector("#" + id)
+        } else {
+            css = document.querySelector("#" + id)
+        }
         if (css) {
             css.remove()
         }
@@ -468,9 +474,10 @@ export default {
      * @param id {string}
      * @param remove {boolean}
      * @param cache {boolean}
+     * @param gradioAPP {boolean}
      */
-    loadCSS(file, id = '', remove = true, cache = false) {
-        if (remove) this.removeCSS(id)
+    loadCSS(file, id = '', remove = true, cache = false, gradioAPP = true) {
+        if (remove) this.removeCSS(id, gradioAPP)
         let url = this.apiUrl() + 'styles?file=' + encodeURIComponent(file)
         if (!cache) {
             url += '&t=' + new Date().getTime()
@@ -479,7 +486,11 @@ export default {
         link.id = id
         link.rel = 'stylesheet'
         link.href = url
-        document.head.appendChild(link)
+        if (gradioAPP) {
+            this.gradioApp().appendChild(link)
+        } else {
+            document.body.appendChild(link)
+        }
     },
 
     /**
@@ -505,6 +516,28 @@ export default {
             referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
         } else {
             referenceNode.parentNode.appendChild(newNode);
+        }
+    },
+
+    gradioContainer: null,
+    gradioApp() {
+        if (this.gradioContainer) return this.gradioContainer
+        const elems = document.getElementsByTagName('gradio-app')
+        const gradioShadowRoot = elems.length == 0 ? null : elems[0].shadowRoot
+        if (gradioShadowRoot) {
+            const gradioContainers = gradioShadowRoot.querySelectorAll(".gradio-container")
+            for (let i = 0; i < gradioContainers.length; i++) {
+                const gradioContainer = gradioContainers[i]
+                if (gradioContainer.querySelectorAll("#tabs").length) {
+                    gradioContainer.classList.add("physton-gradio-container")
+                    this.gradioContainer = gradioContainer
+                    return gradioContainer
+                }
+            }
+        } else {
+            document.body.classList.add("physton-gradio-container")
+            this.gradioContainer = document.body
+            return document.body
         }
     },
 }

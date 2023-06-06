@@ -172,7 +172,7 @@ export default {
             return names.join(' / ')
         },
         onAppendTagFocus(e) {
-            if (e.target.value === '' || e.target.value.trim() === '') {
+            if (this.$refs.promptTagAppend.value === '' || this.$refs.promptTagAppend.value.trim() === '') {
                 this.appendListStyle = {
                     top: e.target.offsetTop + e.target.offsetHeight + 'px',
                     left: e.target.offsetLeft + 'px',
@@ -271,7 +271,7 @@ export default {
                 if (this.getAutocompleteResults() && this.autocompleteResults.style.display === 'block' && this.getAutocompleteResultsSelected()) {
                     let text = this.getAutocompleteResultsSelectedText()
                     setTimeout(() => {
-                        localValue = e.target.value
+                        localValue = this.$refs.promptTagAppend.value
                         if (text) {
                             localValue = text
                         } else {
@@ -283,10 +283,11 @@ export default {
                     return
                 }
 
-                let tags = e.target.value
-                e.target.value = ''
+                let tags = this.$refs.promptTagAppend.value
+                this.$refs.promptTagAppend.value = ''
                 this.showAppendList = true
                 // [night light:magical forest: 5, 15]
+                console.log(tags, localValue)
                 if (localValue) {
                     // 去除末尾的逗号
                     tags = tags.replace(/,\s*$/, '')
@@ -337,8 +338,8 @@ export default {
             }
         },
         onAppendTagKeyUp(e) {
-            if (e.target.value === '' || e.target.value.trim() === '') {
-                e.target.value = ''
+            if (this.$refs.promptTagAppend.value === '' || this.$refs.promptTagAppend.value.trim() === '') {
+                this.$refs.promptTagAppend.value = ''
                 this.showAppendList = true
 
                 if (e.keyCode === 38 || e.keyCode === 40) {
