@@ -272,7 +272,8 @@ Q: Display error message: "Connection to backend API service failed. Please manu
 Q: Why did the extension install successfully and there were no error outputs in the console, but there is still no extension panel on the webpage?
 </summary>
 
-> A: You need to make sure that your WebUI version is [22bcc7b](https://github.com/AUTOMATIC1111/stable-diffusion-webui/commit/22bcc7be428c94e9408f589966c2040187245d81) or higher. If your WebUI version is lower than this, you need to update WebUI.
+> A: You need to make sure that your WebUI version is [3715ece](https://github.com/AUTOMATIC1111/stable-diffusion-webui/commit/3715ece) or higher. If your WebUI version is lower than this, you need to update WebUI.
+> ![](https://s1.imagehub.cc/images/2023/06/07/minimum_version_webui.png)
 </details>
 
 <details>
@@ -389,7 +390,8 @@ Q: 显示错误消息："连接到后台接口服务失败，请手动再刷新�
 Q: 为什么扩展安装成功了，控制台也没有错误输出，但网页中就是没有扩展的面板？
 </summary>
 
-> A: 你需要确保你的WebUI版本是 [22bcc7b（2023年第13周）](https://github.com/AUTOMATIC1111/stable-diffusion-webui/commit/22bcc7be428c94e9408f589966c2040187245d81) 及更高。如果你的WebUI版本低于此版本，你需要更新WebUI。
+> A: 你需要确保你的WebUI版本是 [3715ece（2023年第7周）](https://github.com/AUTOMATIC1111/stable-diffusion-webui/commit/3715ece) 及更高。如果你的WebUI版本低于此版本，你需要更新WebUI。
+> ![](https://s1.imagehub.cc/images/2023/06/07/minimum_version_webui.png)
 </details>
 
 <details>
