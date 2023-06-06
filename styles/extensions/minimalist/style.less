@@ -1,0 +1,285 @@
+.physton-gradio-container {
+    // .common-popup-close
+    --commonPopupClose-background: var(--ppf-fm-formatList-background-color);
+    --commonPopupClose-box-shadow: var(--ppf-fm-formatList-box-shadow);
+    --commonPopupClose-padding: 6px;
+
+    // .common-popup-close .icon-svg-close
+    --commonPopupClose-iconSvgClose-height: 14px;
+    --commonPopupClose-iconSvgClose-color: #fff;
+
+    // .common-popup-main-background
+    --commonPopupMainBackground-box-shadow: 0 0 2px 0 var(--physton-common-blue);
+
+    // .physton-prompt .prompt-header .prompt-header-extend .extend-content .extend-btn-group .extend-btn-item .setting-box
+    --pp-ph-phe-ec-ebg-ebi-settingBox-box-shadow: 0 0 2px 0 var(--physton-common-blue);
+
+    // .physton-prompt .prompt-tags .prompt-tags-list .prompt-tag .prompt-tag-main:hover .prompt-tag-edit, .btn-tag-extend
+    --pp-pt-dsb-ptl-pt-ptmh-pte-btnTagExtend-box-shadow: 0 0 2px 0 var(--physton-common-blue);
+
+    // .physton-prompt .prompt-tags .prompt-tags-list .prompt-tag .prompt-tag-main .btn-tag-extend
+    --pp-pt-dsb-ptl-pt-ptm-btnTagExtend-box-shadow: 0 0 2px 0 var(--physton-common-blue);
+
+    // .physton-prompt
+    --pp-margin: -17px 0 0 0;
+
+    // .physton-prompt .prompt-tags .prompt-tags-list .prompt-tag .prompt-local-language
+    --pp-pt-dsb-ptl-pt-promptLocalLanguage-margin-top: 0;
+
+    // .physton-prompt .prompt-tags .prompt-local-language
+    --pp-pt-pll-iconSvgTranslate-height: 14px;
+    --pp-pt-pll-iconSvgLoading-height: 14px;
+
+    // .physton-prompt .prompt-tags .prompt-tags-list .prompt-tag .prompt-local-language .local-language
+    --pp-pt-dsb-ptl-pt-pll-localLanguage-font-size: 12px;
+
+    // .physton-prompt .prompt-tags .prompt-tags-list .prompt-tag
+    --pp-pt-dsb-ptl-promptTag-margin-bottom: 4px;
+    --pp-pt-dsb-ptl-promptTag-margin-right: 6px;
+
+    // .physton-prompt-favorite, .physton-prompt-history .popup-tab-content .content-list .clear-btn
+    --ppfpph-ptc-cl-clearBtn-border-bottom: #565656;
+
+    // .physton-prompt-favorite, .physton-prompt-history .popup-tab-content .content-list .content-item .item-header .item-header-left .item-header-index
+    --ppfpph-ptc-cl-ci-ih-ihl-itemHeaderIndex-background: #4b4b4f;
+
+    // .physton-prompt-favorite, .physton-prompt-history .popup-tab-content .content-list .content-item .item-header .item-header-left .item-header-name .header-name-input
+    --ppfpph-ptc-cl-ci-ih-ihl-ihn-headerNameInput-background: #4a4a4a;
+    --ppfpph-ptc-cl-ci-ih-ihl-ihn-headerNameInput-color: #fff;
+
+    .physton-prompt .prompt-tags .prompt-tags-list .prompt-tag .prompt-tag-main .prompt-tag-edit .prompt-tag-value {
+        border-right: 0;
+    }
+
+    // .physton-prompt .prompt-tags .prompt-append-list .prompt-append-group .tags-detail
+    --pp-pt-pal-pag-tagsDetail-color: #b3b3b3;
+
+    // .physton-prompt .prompt-tags .prompt-append-list .prompt-append-group .tags-detail .tags-list .tags-item .item-tag-value
+    --pp-pt-pal-pag-td-tl-ti-itemTagValue-background: rgba(255, 255, 255, 0.12);
+    --pp-pt-pal-pag-td-tl-ti-itemTagValue-color: #fff;
+
+    .physton-prompt .prompt-append-list .prompt-append-group .tags-detail {
+        background: rgba(30, 30, 30, 0.9);
+    }
+
+    // .physton-prompt-favorite, .physton-prompt-history .popup-detail
+    --ppfpph-popupDetail-color: #b3b3b3;
+
+    // .physton-prompt-favorite, .physton-prompt-history .popup-detail .popup-item-tags .item-tag .item-tag-value
+    --ppfpph-pd-pit-it-itemTagValue-background: rgba(255, 255, 255, 0.12);
+    --ppfpph-pd-pit-it-itemTagValue-color: #fff;
+
+    .physton-prompt-favorite .popup-detail, .physton-prompt-history .popup-detail {
+        background: rgba(30, 30, 30, 0.9);
+    }
+
+    &.light {
+        // 浅色主题
+
+        // .physton-prompt .prompt-header .prompt-unfold .icon-svg-unfold
+        --pp-ph-pu-iconSvgUnfold-color: #4d4f4d;
+
+        // .physton-prompt .prompt-header .prompt-header-extend .extend-content .extend-btn-group .extend-btn-item .setting-box
+        --pp-ph-phe-ec-ebg-ebi-settingBox-background: #fefefe;
+        --pp-ph-phe-ec-ebg-ebi-settingBox-box-shadow: 0 0 3px 0 #747474;
+
+        // .physton-prompt .prompt-header .extend-btn-item
+        --pp-ph-ebi-iconSvgI18n-color: #4d4f4d;
+        --pp-ph-ebi-iconSvgSetting-color: #4d4f4d;
+        --pp-ph-ebi-iconSvgHistory-color: #4d4f4d;
+        --pp-ph-ebi-iconSvgFavorite-color: #4d4f4d;
+        --pp-ph-ebi-iconSvgTranslate-color: #4d4f4d;
+        --pp-ph-ebi-iconSvgEnglish-color: #4d4f4d;
+        --pp-ph-ebi-iconSvgCopy-color: #4d4f4d;
+        --pp-ph-ebi-iconSvgRemove-color: #4d4f4d;
+        --pp-ph-ebi-iconSvgChatgpt-color: #4d4f4d;
+
+        // .physton-prompt .prompt-header .setting-box
+        --pp-ph-sb-iconSvgApi-color: #4d4f4d;
+        --pp-ph-sb-iconSvgFormat-color: #4d4f4d;
+        --pp-ph-sb-iconSvgTheme-color: #4d4f4d;
+        --pp-ph-sb-iconSvgTranslate-color: #4d4f4d;
+        --pp-ph-sb-iconSvgEnglish-color: #4d4f4d;
+        --pp-ph-sb-iconSvgRemoveSpace-color: #4d4f4d;
+        --pp-ph-sb-iconSvgTooltip-color: #4d4f4d;
+
+        // .physton-prompt .prompt-header
+        --pp-ph-iconSvgInput-color: #4d4f4d;
+
+        // .physton-prompt .prompt-header .prompt-append-list
+        //--pp-ph-pal-iconSvgWrap-color: #4d4f4d;
+        //--pp-ph-pal-iconSvgHistory-color: #4d4f4d;
+        //--pp-ph-pal-iconSvgFavorite-color: #4d4f4d;
+
+        // .physton-prompt .prompt-tags .prompt-local-language
+        --pp-pt-pll-iconSvgTranslate-color: #b9b9b9;
+
+        // .physton-prompt .prompt-tags .prompt-tags-list .prompt-tag .prompt-local-language .local-language
+        --pp-pt-dsb-ptl-pt-pll-localLanguage-color: #b9b9b9;
+
+        // .physton-prompt .prompt-tags .drop-select-btns
+        --pp-pt-dsb-iconSvgCopy-color: #ffffff;
+        --pp-pt-dsb-iconSvgDisabled-color: #ffffff;
+        --pp-pt-dsb-iconSvgEnable-color: #ffffff;
+        --pp-pt-dsb-iconSvgFavoriteNo-color: #ffffff;
+        --pp-pt-dsb-iconSvgRemove-color: #ffffff;
+
+        // .physton-prompt .prompt-tags .drop-select-btns
+        --pp-pt-dropSelectBtns-background: #7daef3e6;
+        --pp-pt-dropSelectBtns-box-shadow: 0 0 3px 0 #006dfe;
+
+        // .physton-prompt .prompt-tags .drop-select-btns .btns-title
+        --pp-pt-dsb-btnsTitle-color: #3c3c3c;
+
+        // .physton-prompt .prompt-tags .prompt-tag-edit
+        --pp-pt-pte-iconSvgWrap-color: #4d4f4d;
+
+        // .physton-prompt .prompt-tags .prompt-tags-list .prompt-tag .prompt-tag-main .prompt-tag-edit .prompt-tag-value
+        --pp-pt-dsb-ptl-pt-ptm-pte-promptTagValue-background: transparent;
+        --pp-pt-dsb-ptl-pt-ptm-pte-promptTagValue-color: #3c3c3c;
+
+        // .physton-prompt .prompt-tags .prompt-tags-list .prompt-tag .prompt-tag-main .prompt-tag-edit .prompt-tag-value:hover
+        --pp-pt-dsb-ptl-pt-ptm-pte-promptTagValueHover-background: transparent;
+        --pp-pt-dsb-ptl-pt-ptm-pte-promptTagValueHover-border-color: rgba(0, 0, 0, 0.1);
+
+        // .physton-prompt .prompt-tags .btn-tag-delete
+        --pp-pt-btd-iconSvgClose-color: #565656;
+
+        // .physton-prompt .prompt-tags .prompt-tags-list .prompt-tag .prompt-tag-main .prompt-tag-edit .btn-tag-delete
+        --pp-pt-dsb-ptl-pt-ptm-pte-btnTagDelete-background: transparent;
+
+        // .physton-prompt .prompt-tags .prompt-tags-list .prompt-tag .prompt-tag-main .prompt-tag-edit .btn-tag-delete:hover
+        --pp-pt-dsb-ptl-pt-ptm-pte-btnTagDeleteHover-bbackground: transparent;
+
+        // .physton-prompt .prompt-tags .btn-tag-extend
+        --pp-pt-bte-iconSvgWeightParenthesesInc-color: #ffffff;
+        --pp-pt-bte-iconSvgWeightParenthesesDec-color: #ffffff;
+        --pp-pt-bte-iconSvgWeightBracketsInc-color: #ffffff;
+        --pp-pt-bte-iconSvgWeightBracketsDec-color: #ffffff;
+        --pp-pt-bte-iconSvgEnglish-color: #ffffff;
+        --pp-pt-bte-iconSvgCopy-color: #ffffff;
+        --pp-pt-bte-iconSvgDisabled-color: #ffffff;
+        --pp-pt-bte-iconSvgEnable-color: #ffffff;
+        --pp-pt-bte-iconSvgWrap-color: #ffffff;
+        --pp-pt-bte-iconSvgFavoriteNo-color: #ffffff;
+
+        // .physton-prompt .prompt-tags .prompt-tags-list .prompt-tag .prompt-tag-main .btn-tag-extend
+        --pp-pt-dsb-ptl-pt-ptm-btnTagExtend-box-shadow: 0 0 3px 0px #006dfe;
+
+        // .physton-prompt .prompt-tags .prompt-tags-list .prompt-tag .prompt-tag-main:hover .prompt-tag-edit, .btn-tag-extend
+        --pp-pt-dsb-ptl-pt-ptmh-pte-btnTagExtend-box-shadow: 0 0 3px 0px #006dfe;
+
+        // .physton-prompt .prompt-tags .prompt-tags-list .prompt-tag .prompt-tag-main .btn-tag-extend > button:hover
+        --pp-pt-dsb-ptl-pt-ptm-bte-buttonHover-background: #b3d8ff;
+
+        // .physton-prompt .prompt-tags .btn-tag-delete
+        .physton-prompt .prompt-tags .btn-tag-delete:hover {
+            --pp-pt-btd-iconSvgClose-color: #d81e06;
+        }
+
+        .physton-prompt {
+            .prompt-tags {
+                .prompt-tags-list {
+                    .prompt-tag-main {
+                        .btn-tag-extend {
+                            background: #7daef3e6 !important;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &.dark {
+        // 深色主题
+
+        // .physton-prompt .prompt-header .prompt-unfold .icon-svg-unfold
+        --pp-ph-pu-iconSvgUnfold-color: #b3b3b3;
+
+        // .physton-prompt .prompt-header .extend-btn-item
+        --pp-ph-ebi-iconSvgI18n-color: #b3b3b3;
+        --pp-ph-ebi-iconSvgSetting-color: #b3b3b3;
+        --pp-ph-ebi-iconSvgHistory-color: #b3b3b3;
+        --pp-ph-ebi-iconSvgFavorite-color: #b3b3b3;
+        --pp-ph-ebi-iconSvgTranslate-color: #b3b3b3;
+        --pp-ph-ebi-iconSvgEnglish-color: #b3b3b3;
+        --pp-ph-ebi-iconSvgCopy-color: #b3b3b3;
+        --pp-ph-ebi-iconSvgRemove-color: #b3b3b3;
+        --pp-ph-ebi-iconSvgChatgpt-color: #b3b3b3;
+
+        // .physton-prompt .prompt-header .setting-box
+        --pp-ph-sb-iconSvgApi-color: #b3b3b3;
+        --pp-ph-sb-iconSvgFormat-color: #b3b3b3;
+        --pp-ph-sb-iconSvgTheme-color: #b3b3b3;
+        --pp-ph-sb-iconSvgTranslate-color: #b3b3b3;
+        --pp-ph-sb-iconSvgEnglish-color: #b3b3b3;
+        --pp-ph-sb-iconSvgRemoveSpace-color: #b3b3b3;
+        --pp-ph-sb-iconSvgTooltip-color: #b3b3b3;
+
+        // .physton-prompt .prompt-header
+        --pp-ph-iconSvgInput-color: #b3b3b3;
+
+        // .physton-prompt .prompt-header .prompt-append-list
+        //--pp-ph-pal-iconSvgWrap-color: #b3b3b3;
+        //--pp-ph-pal-iconSvgHistory-color: #b3b3b3;
+        //--pp-ph-pal-iconSvgFavorite-color: #b3b3b3;
+
+        // .physton-prompt .prompt-tags .prompt-local-language
+        --pp-pt-pll-iconSvgTranslate-color: #686868;
+
+        // .physton-prompt .prompt-tags .prompt-tags-list .prompt-tag .prompt-local-language .local-language
+        --pp-pt-dsb-ptl-pt-pll-localLanguage-color: #686868;
+
+        // .physton-prompt .prompt-tags .prompt-tag-edit
+        --pp-pt-pte-iconSvgWrap-color: #b3b3b3;
+
+        // .physton-prompt .prompt-tags .prompt-tags-list .prompt-tag .prompt-tag-main .prompt-tag-edit .prompt-tag-value
+        --pp-pt-dsb-ptl-pt-ptm-pte-promptTagValue-background: transparent;
+        --pp-pt-dsb-ptl-pt-ptm-pte-promptTagValue-color: #bdc5cf;
+
+        // .physton-prompt .prompt-tags .prompt-tags-list .prompt-tag .prompt-tag-main .prompt-tag-edit .prompt-tag-value:hover
+        --pp-pt-dsb-ptl-pt-ptm-pte-promptTagValueHover-background: transparent;
+        --pp-pt-dsb-ptl-pt-ptm-pte-promptTagValueHover-border-color: rgba(0, 0, 0, 0.1);
+
+        // .physton-prompt .prompt-tags .prompt-tags-list .prompt-tag .prompt-tag-main .prompt-tag-edit .btn-tag-delete
+        --pp-pt-dsb-ptl-pt-ptm-pte-btnTagDelete-border: 1px solid rgba(255, 255, 255, 0.08);
+
+        // .physton-prompt .prompt-tags .btn-tag-delete
+        --pp-pt-btd-iconSvgClose-color: #bdbdbd;
+
+        // .physton-prompt .prompt-tags .prompt-tags-list .prompt-tag .prompt-tag-main .prompt-tag-edit .btn-tag-delete
+        --pp-pt-dsb-ptl-pt-ptm-pte-btnTagDelete-background: transparent;
+
+        // .physton-prompt .prompt-tags .prompt-tags-list .prompt-tag .prompt-tag-main .prompt-tag-edit .btn-tag-delete:hover
+        --pp-pt-dsb-ptl-pt-ptm-pte-btnTagDeleteHover-bbackground: transparent;
+
+        // .physton-prompt .prompt-tags .btn-tag-extend
+        --pp-pt-bte-iconSvgWeightParenthesesInc-color: #efefef;
+        --pp-pt-bte-iconSvgWeightParenthesesDec-color: #efefef;
+        --pp-pt-bte-iconSvgWeightBracketsInc-color: #efefef;
+        --pp-pt-bte-iconSvgWeightBracketsDec-color: #efefef;
+        --pp-pt-bte-iconSvgEnglish-color: #efefef;
+        --pp-pt-bte-iconSvgCopy-color: #efefef;
+        --pp-pt-bte-iconSvgDisabled-color: #efefef;
+        --pp-pt-bte-iconSvgEnable-color: #efefef;
+        --pp-pt-bte-iconSvgWrap-color: #efefef;
+        --pp-pt-bte-iconSvgFavoriteNo-color: #efefef;
+
+        // .physton-prompt .prompt-tags .btn-tag-delete
+        .physton-prompt .prompt-tags .btn-tag-delete:hover {
+            --pp-pt-btd-iconSvgClose-color: #d81e06;
+        }
+
+        .physton-prompt {
+            .prompt-tags {
+                .prompt-tags-list {
+                    .prompt-tag-main {
+                        .btn-tag-extend {
+                            background: rgba(28, 28, 28, .9) !important;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
