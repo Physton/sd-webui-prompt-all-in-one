@@ -222,7 +222,7 @@ export default {
                 if (res.success) {
                     this.promptResult = res.result
                 } else {
-                    this.$toastr.error(err.message || err)
+                    this.$toastr.error(res.message || 'error')
                 }
                 this.genIng = false
             }).catch(err => {
