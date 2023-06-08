@@ -8,6 +8,9 @@ export default {
         }
     },
     mounted() {
+        common.gradioApp().addEventListener('mousemove', () => {
+            this.$refs.highlightPrompt.hide()
+        })
     },
     methods: {
         _setTag(tag) {
@@ -174,6 +177,8 @@ export default {
             let tag = this.tags.find(tag => tag.id === id)
             if (!tag) return false
             tag.isFavorite = this.isFavorite(tag.id)
+
+            this.$refs.highlightPrompt.show(tag)
         },
         onTagClick(id) {
             let tag = this.tags.find(tag => tag.id === id)
