@@ -21,6 +21,8 @@ sd-webui-prompt-all-in-one is an extension based on [stable-diffusion-webui](htt
 
 </div>
 
+---
+
 The localized language interface is currently available in `简体中文` `繁體中文` `English` ` Русский` `日本語` `한국어` ` Français` `Deutsch` ` Español` `Português` `Italiano` `العربية`,
 the UI interfaces of other countries are displayed in English. and the translation function supports the majority of countries worldwide.
 
