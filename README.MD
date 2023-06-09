@@ -7,19 +7,19 @@
 [![GitHub license](https://img.shields.io/github/license/Physton/sd-webui-prompt-all-in-one?style=plastic)](https://github.com/Physton/sd-webui-prompt-all-in-one/blob/master/LICENSE.md)
 [![GitHub commits](https://img.shields.io/github/last-commit/Physton/sd-webui-prompt-all-in-one?style=plastic)](https://github.com/Physton/sd-webui-prompt-all-in-one/commits/main)
 
-<div align="center">
-
-Installation tutorial, detailed feature introduction, usage instructions, frequently asked questions, and more can be found in the [Wiki](https://github.com/Physton/sd-webui-prompt-all-in-one/wiki#english).
-
-安装教程、功能详解、使用方法、常见问题等等，详见：[文档](https://github.com/Physton/sd-webui-prompt-all-in-one/wiki#简体中文)。
-
-</div>
-
 sd-webui-prompt-all-in-one is an extension based on [stable-diffusion-webui](https://github.com/AUTOMATIC1111/stable-diffusion-webui) that aims to improve the user experience of the prompt/negative prompt input box. It has a more intuitive and powerful input interface, provides automatic translation, history and collection functions, and supports multiple languages to meet the needs of different users.
 
 *sd-webui-prompt-all-in-one 是一个基于 [stable-diffusion-webui](https://github.com/AUTOMATIC1111/stable-diffusion-webui) 的扩展，旨在提高提示词/反向提示词输入框的使用体验。它拥有更直观、强大的输入界面功能，它提供了自动翻译、历史记录和收藏等功能，它支持多种语言，满足不同用户的需求。*
 
 ---
+
+<div align="center">
+
+### Installation tutorial, detailed feature introduction, usage instructions, frequently asked questions, and more can be found in the [Wiki](https://github.com/Physton/sd-webui-prompt-all-in-one/wiki#english).
+
+### 安装教程、功能详解、使用方法、常见问题等等，详见：[文档](https://github.com/Physton/sd-webui-prompt-all-in-one/wiki#简体中文)。
+
+</div>
 
 The localized language interface is currently available in `简体中文` `繁體中文` `English` ` Русский` `日本語` `한국어` ` Français` `Deutsch` ` Español` `Português` `Italiano` `العربية`,
 the UI interfaces of other countries are displayed in English. and the translation function supports the majority of countries worldwide.
