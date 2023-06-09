@@ -20,6 +20,38 @@ from scripts.gen_openai import gen_openai
 
 VERSION = '0.0.1'
 
+try:
+    from modules.shared import cmd_opts
+    if cmd_opts.data_dir:
+        extension_dir = os.path.dirname(os.path.abspath(__file__)) + '/../'
+        extension_dir = os.path.normpath(extension_dir) + os.path.sep
+        data_dir = os.path.normpath(cmd_opts.data_dir) + os.path.sep
+        webui_dir = os.path.normpath(Path().absolute()) + os.path.sep
+        if not extension_dir.startswith(webui_dir):
+            find = False
+            if cmd_opts.gradio_allowed_path:
+                for path in cmd_opts.gradio_allowed_path:
+                    path = os.path.normpath(path) + os.path.sep
+                    if path == extension_dir:
+                        find = path
+                        break
+                    elif extension_dir.startswith(path):
+                        find = path
+                        break
+                    else:
+                        pass
+            if not find:
+                message = f'''
+\033[1;31m[sd-webui-prompt-all-in-one]
+As you have set the --data-dir parameter and have not added the extension path to the --gradio-allowed-path parameter, the extension may not function properly. Please add the following startup parameter:
+由于你设置了 --data-dir 参数，并且没有将本扩展路径加入到 --gradio-allowed-path 参数中，所以本扩展可能无法正常运行。请添加启动参数：
+\033[1;32m--gradio-allowed-path="{extension_dir}"
+\033[0m
+                '''
+                print(message)
+except Exception as e:
+    pass
+
 def on_app_started(_: gr.Blocks, app: FastAPI):
     st = storage()
     hi = history()
