@@ -125,18 +125,16 @@ the UI interfaces of other countries are displayed in English. and the translati
 
 ## Donate
 
-Donation list / *捐赠列表*：[DONATE.MD](DONATE.MD)
+[Donation list / *捐赠列表*](https://github.com/Physton/sd-webui-prompt-all-in-one/wiki/50.Donate#donation-list--捐赠列表)
 
 ### Buy me a coffee / *请我喝杯咖啡*
 
-- ko-fi：[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/physton)
-- Paypal: [https://paypal.me/physton](https://paypal.me/physton)
-
-
-- 爱发电：[https://afdian.net/a/physton](https://afdian.net/a/physton)
-- 支付宝 `physton@163.com`
-- 微信赞赏
-
-    ![](https://s1.imagehub.cc/images/2023/06/06/donate-wechat.jpeg)
+|        |                                                                                  |
+|--------|----------------------------------------------------------------------------------|
+| ko-fi  | [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/physton) |
+| Paypal | [https://paypal.me/physton](https://paypal.me/physton)                           |
+| 爱发电    | [https://afdian.net/a/physton](https://afdian.net/a/physton)                     |
+| 支付宝    | `physton@163.com`                                                                |
+| 微信赞赏   | ![](https://s1.imagehub.cc/images/2023/06/06/donate-wechat.jpeg)                 |
 
 Developed by: https://www.physton.com
