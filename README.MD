@@ -37,6 +37,8 @@ the UI interfaces of other countries are displayed in English. and the translati
 > 如果你觉得这个扩展有帮助，请在Github上给我一颗星！
 > 你也可以请我喝杯咖啡: [donate](#donate)
 
+> Telegram: [https://t.me/promptAIO](https://t.me/promptAIO)
+> 
 > QQ群：820700336
 
 - [Demo / *演示*](#demo--演示)
