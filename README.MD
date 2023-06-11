@@ -19,7 +19,7 @@ sd-webui-prompt-all-in-one is an extension based on [stable-diffusion-webui](htt
 
 ### 安装教程、功能详解、使用方法、常见问题等等，详见：[文档](https://github.com/Physton/sd-webui-prompt-all-in-one/wiki/00.首页)。
 
-### 安裝教程、功能詳解、使用方法、常見問題等等，詳見：[文檔](hhttps://github.com/Physton/sd-webui-prompt-all-in-one/wiki/00.首頁)。
+### 安裝教程、功能詳解、使用方法、常見問題等等，詳見：[文檔](https://github.com/Physton/sd-webui-prompt-all-in-one/wiki/00.首頁)。
 
 </div>
 
@@ -45,13 +45,13 @@ the UI interfaces of other countries are displayed in English. and the translati
 
 - [Demo / *演示*](#demo--演示)
 
-- [Wiki](https://github.com/Physton/sd-webui-prompt-all-in-one/wiki) / [文档](https://github.com/Physton/sd-webui-prompt-all-in-one/wiki/00.首页) / [文檔](hhttps://github.com/Physton/sd-webui-prompt-all-in-one/wiki/00.首頁)
+- [Wiki](https://github.com/Physton/sd-webui-prompt-all-in-one/wiki) / [文档](https://github.com/Physton/sd-webui-prompt-all-in-one/wiki/00.首页) / [文檔](https://github.com/Physton/sd-webui-prompt-all-in-one/wiki/00.首頁)
 
 - [Installation](https://github.com/Physton/sd-webui-prompt-all-in-one/wiki/01.Installation) / [安装](https://github.com/Physton/sd-webui-prompt-all-in-one/wiki/01.安装) / [安裝](https://github.com/Physton/sd-webui-prompt-all-in-one/wiki/01.安裝)
 
 - [Extension update description (important)](https://github.com/Physton/sd-webui-prompt-all-in-one/wiki/31.ExtensionUpdateDescription) / [扩展更新说明](https://github.com/Physton/sd-webui-prompt-all-in-one/wiki/31.扩展更新说明) / [擴展更新說明（重要）](https://github.com/Physton/sd-webui-prompt-all-in-one/wiki/31.擴展更新說明)
 
-- [Contributing](https://github.com/Physton/sd-webui-prompt-all-in-one/wiki/32.Contributin) / [帮助开发](https://github.com/Physton/sd-webui-prompt-all-in-one/wiki/32.帮助开发) / [幫助開發](https://github.com/Physton/sd-webui-prompt-all-in-one/wiki/32.幫助開發)
+- [Contributing](https://github.com/Physton/sd-webui-prompt-all-in-one/wiki/32.Contributing) / [帮助开发](https://github.com/Physton/sd-webui-prompt-all-in-one/wiki/32.帮助开发) / [幫助開發](https://github.com/Physton/sd-webui-prompt-all-in-one/wiki/32.幫助開發)
 
 - [Custom Theme](https://github.com/Physton/sd-webui-prompt-all-in-one/wiki/32.Contributing#custom-theme) / [自定义主题](https://github.com/Physton/sd-webui-prompt-all-in-one/wiki/32.帮助开发#自定义主题) / [自定義主題](https://github.com/Physton/sd-webui-prompt-all-in-one/wiki/32.幫助開發#自定義主題)
 
