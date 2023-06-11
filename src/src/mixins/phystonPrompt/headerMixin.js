@@ -290,7 +290,7 @@ export default {
                 console.log(tags, localValue)
                 if (localValue) {
                     // 去除末尾的逗号
-                    tags = tags.replace(/,\s*$/, '')
+                    tags = tags.replace(/\s*,\s*$/, '').trim()
                     if (common.hasBrackets(tags)) {
                         tags = common.replaceBrackets(tags)
                     }
@@ -500,6 +500,8 @@ export default {
             setTimeout(() => {
                 let tags = this.$refs.promptTagAppend.value.replace(/,\s*$/, '')
                 this.$refs.promptTagAppend.value = ''
+                // 去除末尾的逗号
+                tags = tags.replace(/\s*,\s*$/, '').trim()
                 if (common.hasBrackets(tags)) {
                     tags = common.replaceBrackets(tags)
                 }
