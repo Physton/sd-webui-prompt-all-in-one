@@ -34,7 +34,7 @@ Translation supports almost all national languages, but the UI interface of most
 
 > If you find this extension helpful, please give me a star on Github!
 > You could also buy me a coffee: [donate](#donate)
-
+> 
 > 如果你觉得这个扩展有帮助，请在Github上给我一颗星！
 > 你也可以请我喝杯咖啡: [donate](#donate)
 
