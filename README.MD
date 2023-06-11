@@ -19,14 +19,11 @@ sd-webui-prompt-all-in-one is an extension based on [stable-diffusion-webui](htt
 
 ### 安装教程、功能详解、使用方法、常见问题等等，详见：[文档](https://github.com/Physton/sd-webui-prompt-all-in-one/wiki/00.首页)。
 
-### 安裝教程、功能詳解、使用方法、常見問題等等，詳見：[文檔](https://github.com/Physton/sd-webui-prompt-all-in-one/wiki/00.首頁)。
-
 </div>
 
 ---
 
-The localized language interface is currently available in `简体中文` `繁體中文` `English` ` Русский` `日本語` `한국어` ` Français` `Deutsch` ` Español` `Português` `Italiano` `العربية`,
-the UI interfaces of other countries are displayed in English. and the translation function supports the majority of countries worldwide.
+The localized language interface is currently available in `简体中文` `繁體中文` `English` ` Русский` `日本語` `한국어` ` Français` `Deutsch` ` Español` `Português` `Italiano` `العربية`, the UI interfaces of other countries are displayed in English. and the translation function supports the majority of countries worldwide.
 
 目前支持以下语言的本地化语言界面：`简体中文` `繁體中文` `English` ` Русский` `日本語` `한국어` ` Français` `Deutsch` ` Español` `Português` `Italiano` `العربية`，其他国家的UI界面均显示为英文。翻译功能支持目前世界上绝大多数国家。
 
