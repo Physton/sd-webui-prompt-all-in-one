@@ -306,11 +306,14 @@ export default {
                     }
                     let indexes = []
                     tags.forEach(tag => {
+                        let index = -1
                         if (tag === "\n") {
-                            indexes.push(this._appendTag("\n", "\n", false, -1, 'wrap'))
+                            index = this._appendTag("\n", "\n", false, -1, 'wrap')
                         } else {
-                            indexes.push(this._appendTag(tag))
+                            index = this._appendTag(tag)
+                            console.log(tag, index)
                         }
+                        if (index !== -1) indexes.push(index)
                     })
                     this.updatePrompt() // 先更新再翻译
                     if (this.autoTranslateToEnglish || this.autoTranslateToLocal) {

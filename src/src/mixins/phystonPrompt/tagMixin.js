@@ -114,6 +114,7 @@ export default {
             return tag
         },
         _appendTag(value, localValue = '', disabled = false, index = -1, type = 'text') {
+            if (value === '') return -1
             // 唯一数：当前时间戳+随机数
             const id = Date.now() + (Math.random() * 1000000).toFixed(0)
             let tag = {
