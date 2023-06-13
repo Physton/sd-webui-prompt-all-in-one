@@ -15,11 +15,13 @@ sd-webui-prompt-all-in-one is an extension based on [stable-diffusion-webui](htt
 
 <div align="center">
 
-### Installation tutorial, detailed feature introduction, usage instructions, frequently asked questions, and more can be found in the <a href="https://physton.github.io/sd-webui-prompt-all-in-one-assets/#/Installation" target="_blank">Wiki</a>.
+### Installation tutorial, detailed feature introduction, usage instructions, frequently asked questions, and more can be found in the [Wiki](https://physton.github.io/sd-webui-prompt-all-in-one-assets/#/Installation).
 
-### 安装教程、功能详解、使用方法、常见问题等等，详见：<a href="https://physton.github.io/sd-webui-prompt-all-in-one-assets/#/zh-cn/Installation" target="_blank">文档</a>。
+### Перевод на русский: Инструкции по установке, подробное описание функций, методы использования, часто задаваемые вопросы и многое другое можно найти в [документации](https://physton.github.io/sd-webui-prompt-all-in-one-assets/#/ru/Installation).
 
-### 安裝教程、功能詳解、使用方法、常見問題等等，詳見：<a href="https://physton.github.io/sd-webui-prompt-all-in-one-assets/#/zh-tw/Installation" target="_blank">文檔</a>。
+### 安装教程、功能详解、使用方法、常见问题等等，详见：[文档](https://physton.github.io/sd-webui-prompt-all-in-one-assets/#/zh-cn/Installation)。
+
+### 安裝教程、功能詳解、使用方法、常見問題等等，詳見：[文檔](https://physton.github.io/sd-webui-prompt-all-in-one-assets/#/zh-tw/Installation)。
 
 </div>
 
@@ -36,29 +38,27 @@ Translation supports almost all national languages, but the UI interface of most
 
 > If you find this extension helpful, please give me a star on Github!
 > You could also buy me a coffee: [donate](#donate)
-> 
+>
 > 如果你觉得这个扩展有帮助，请在Github上给我一颗星！
 > 你也可以请我喝杯咖啡: [donate](#donate)
 
 > Telegram: [https://t.me/promptAIO](https://t.me/promptAIO)
-> 
+>
 > QQ群：820700336
 
 ----
 
-- [Demo / *演示*](#demo--演示)
+| English | Русский | 简体中文 | 繁體中文 |
+| :-----: | :-----: | :-----: | :-----: |
+| [Wiki](https://physton.github.io/sd-webui-prompt-all-in-one-assets/#/Installation) | [документация](https://physton.github.io/sd-webui-prompt-all-in-one-assets/#/ru/Installation) | [文档](https://physton.github.io/sd-webui-prompt-all-in-one-assets/#/zh-cn/Installation) | [文檔](https://physton.github.io/sd-webui-prompt-all-in-one-assets/#/zh-tw/Installation)
+| [Installation](https://physton.github.io/sd-webui-prompt-all-in-one-assets/#/Installation) | [Установка](https://physton.github.io/sd-webui-prompt-all-in-one-assets/#/ru/Installation) | [安装](https://physton.github.io/sd-webui-prompt-all-in-one-assets/#/zh-cn/Installation) | [安裝](https://physton.github.io/sd-webui-prompt-all-in-one-assets/#/zh-tw/Installation)
+| [Extension update description](https://physton.github.io/sd-webui-prompt-all-in-one-assets/#/ExtensionUpdateDescription) | [Обновление расширения](https://physton.github.io/sd-webui-prompt-all-in-one-assets/#/ru/ExtensionUpdateDescription) | [扩展更新说明](https://physton.github.io/sd-webui-prompt-all-in-one-assets/#/zh-cn/ExtensionUpdateDescription) | [擴展更新說明](https://physton.github.io/sd-webui-prompt-all-in-one-assets/#/zh-tw/ExtensionUpdateDescription) |
+| [Contributing](https://physton.github.io/sd-webui-prompt-all-in-one-assets/#/Contributing) | [Помощь в разработке](https://physton.github.io/sd-webui-prompt-all-in-one-assets/#/ru/Contributing) | [帮助开发](https://physton.github.io/sd-webui-prompt-all-in-one-assets/#/zh-cn/Contributing) | [幫助開發](https://physton.github.io/sd-webui-prompt-all-in-one-assets/#/zh-tw/Contributing) |
+| [Custom Theme](https://physton.github.io/sd-webui-prompt-all-in-one-assets/#/Contributing?id=custom-theme) | [Настройка темы](https://physton.github.io/sd-webui-prompt-all-in-one-assets/#/ru/Contributing?id=Настройка-темы) | [自定义主题](https://physton.github.io/sd-webui-prompt-all-in-one-assets/#/zh-cn/Contributing?id=自定义主题) | [自定義主題](https://physton.github.io/sd-webui-prompt-all-in-one-assets/#/zh-tw/Contributing?id=自定義主題) |
+| [FAQ](https://physton.github.io/sd-webui-prompt-all-in-one-assets/#/FAQ) | [Часто задаваемые вопросы](https://physton.github.io/sd-webui-prompt-all-in-one-assets/#/ru/FAQ) | [常见问题](https://physton.github.io/sd-webui-prompt-all-in-one-assets/#/zh-cn/FAQ) | [常見問題](https://physton.github.io/sd-webui-prompt-all-in-one-assets/#/zh-tw/FAQ) |
+| [Donate](#donate) | [Пожертвование](#donate) | [捐赠](#donate) | [捐贈](#donate) |
 
-- [Installation (English)](https://physton.github.io/sd-webui-prompt-all-in-one-assets/#/Installation) / [安装（简体中文）](https://physton.github.io/sd-webui-prompt-all-in-one-assets/#/zh-cn/Installation) / [安裝（繁體中文）](https://physton.github.io/sd-webui-prompt-all-in-one-assets/#/zh-tw/Installation)
-
-- [Extension update description (English)](https://physton.github.io/sd-webui-prompt-all-in-one-assets/#/ExtensionUpdateDescription) / [扩展更新说明（简体中文）](https://physton.github.io/sd-webui-prompt-all-in-one-assets/#/zh-cn/ExtensionUpdateDescription) / [擴展更新說明（繁體中文）](https://physton.github.io/sd-webui-prompt-all-in-one-assets/#/zh-tw/ExtensionUpdateDescription)
-
-- [Contributing (English)](https://physton.github.io/sd-webui-prompt-all-in-one-assets/#/Contributing) / [帮助开发（简体中文）](https://physton.github.io/sd-webui-prompt-all-in-one-assets/#/zh-cn/Contributing) / [幫助開發（繁體中文）](https://physton.github.io/sd-webui-prompt-all-in-one-assets/#/zh-tw/Contributing)
-
-- [Custom Theme (English)](https://physton.github.io/sd-webui-prompt-all-in-one-assets/#/Contributing?id=custom-theme) / [自定义主题（简体中文）](https://physton.github.io/sd-webui-prompt-all-in-one-assets/#/zh-cn/Contributing?id=自定义主题) / [自定義主題（繁體中文）](https://physton.github.io/sd-webui-prompt-all-in-one-assets/#/zh-tw/Contributing?id=自定義主題)
-
-- [FAQ (English)](https://physton.github.io/sd-webui-prompt-all-in-one-assets/#/FAQ) / [常见问题（简体中文）](https://physton.github.io/sd-webui-prompt-all-in-one-assets/#/zh-cn/FAQ) / [常見問題（繁體中文）](https://physton.github.io/sd-webui-prompt-all-in-one-assets/#/zh-tw/FAQ)
-
-- [Donate / *捐赠*](#Donate)
+----
 
 ## Demo / *演示*
 
@@ -134,12 +134,12 @@ Translation supports almost all national languages, but the UI interface of most
 
 ### Buy me a coffee / *请我喝杯咖啡*
 
-|        |                                                                                  |
-|--------|----------------------------------------------------------------------------------|
-| ko-fi  | [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/physton) |
-| Paypal | [https://paypal.me/physton](https://paypal.me/physton)                           |
-| 爱发电    | [https://afdian.net/a/physton](https://afdian.net/a/physton)                     |
-| 支付宝    | `physton@163.com`                                                                |
-| 微信赞赏   | ![](https://s1.imagehub.cc/images/2023/06/06/donate-wechat.jpeg)                 |
+| | |
+| :---: | :---: |
+| ko-fi | [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/physton) |
+| Paypal | [https://paypal.me/physton](https://paypal.me/physton) |
+| 爱发电 | [https://afdian.net/a/physton](https://afdian.net/a/physton) |
+| 支付宝 | `physton@163.com` |
+| 微信赞赏 | ![](https://s1.imagehub.cc/images/2023/06/06/donate-wechat.jpeg) |
 
 Developed by: https://www.physton.com
