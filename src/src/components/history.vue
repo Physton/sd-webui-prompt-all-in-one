@@ -121,7 +121,7 @@ export default {
     },
     methods: {
         formatTime(time) {
-            return common.formatTime(time, false)
+            return common.formatTime(time * 1000, false)
         },
         getHistories(historyKey) {
             if (!historyKey) return

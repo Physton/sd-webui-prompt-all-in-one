@@ -60,6 +60,11 @@
        /* 功能设置图标样式*/
        fill: var(--body-text-color);
 }
+.physton-prompt .prompt-header .setting-box .icon-svg-about svg path{
+
+       /* 功能设置图标样式*/
+       fill: var(--body-text-color);
+}
 .physton-prompt .prompt-header .setting-box .icon-svg-theme svg path{
 
     fill: var(--body-text-color);
@@ -95,6 +100,11 @@
 
     height: auto;
     width: 22px; 
+}
+.physton-prompt .prompt-header .setting-box .icon-svg-about svg {
+
+    height: auto;
+    width: 22px;
 }
 
 

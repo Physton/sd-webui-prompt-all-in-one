@@ -36,6 +36,10 @@
                             :loras="loras"
                             :lycos="lycos"
                             :embeddings="embeddings"
+                            :version="version"
+                            :latest-version="latestVersion"
+                            :is-latest-version="isLatestVersion"
+                            @click:show-about="onShowAbout"
             ></physton-prompt>
         </template>
         <translate-setting ref="translateSetting" v-model:language-code="languageCode"
@@ -77,6 +81,9 @@
         <chatgpt-prompt ref="chatgptPrompt" v-model:language-code="languageCode"
                         :translate-apis="translateApis" :languages="languages"
                         @use="onUseChatgpt" />
+        <about ref="about" v-model:language-code="languageCode"
+               :translate-apis="translateApis" :languages="languages"
+               :version="version" :latest-version="latestVersion" :is-latest-version="isLatestVersion" />
 
         <div class="physton-paste-popup" v-if="showPastePopup" @click="closePastePopup">
             <div class="paste-popup-main" @click.stop>
@@ -109,10 +116,12 @@ import ExtensionCss from "@/components/extensionCss.vue";
 import PromptFormat from "@/components/promptFormat.vue";
 import PackagesState from "@/components/packagesState.vue";
 import ChatgptPrompt from "@/components/chatgptPrompt.vue";
+import About from "@/components/about.vue";
 
 export default {
     name: 'App',
     components: {
+        About,
         ChatgptPrompt,
         PackagesState,
         PromptFormat,
@@ -242,6 +251,10 @@ export default {
 
             python: '',
             packagesState: [],
+
+            version: '',
+            latestVersion: '',
+            isLatestVersion: true,
         }
     },
     watch: {
@@ -533,7 +546,14 @@ export default {
 
                 this.handlePaste()
 
+                this.gradioAPI.getVersion().then(res => {
+                    this.version = res.version
+                    this.latestVersion = res.latest_version
+                    this.isLatestVersion = res.version === res.latest_version
+                })
+
                 // todo: test
+                // this.$refs.about.open()
                 // this.$refs.chatgptPrompt.open()
                 // this.$refs.promptFormat.open()
                 // this.$refs.translateSetting.open(this.translateApi)
@@ -721,6 +741,9 @@ export default {
             const item = this.prompts.find(item => item.id == this.chatgptCurrentPrompt)
             if (!item) return
             this.$refs[item.id][0].useChatgpt(prompt)
+        },
+        onShowAbout() {
+            this.$refs.about.open()
         },
     },
 }

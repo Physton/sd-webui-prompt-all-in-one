@@ -55,7 +55,7 @@
     fill: #596572;
   }
   /*图标尺寸*/
-  .physton-gradio-container.dark .physton-prompt .prompt-header .setting-box .icon-svg-api svg,.physton-gradio-container.dark .physton-prompt .prompt-header .setting-box .icon-svg-format svg, .physton-gradio-container.dark .physton-prompt .prompt-header .setting-box .icon-svg-theme svg, .physton-gradio-container.dark .physton-prompt .prompt-header .setting-box .icon-svg-remove-space svg, .physton-gradio-container.dark .physton-prompt .prompt-header .setting-box .icon-svg-tooltip svg {
+  .physton-gradio-container.dark .physton-prompt .prompt-header .setting-box .icon-svg-api svg,.physton-gradio-container.dark .physton-prompt .prompt-header .setting-box .icon-svg-format svg, .physton-gradio-container.dark .physton-prompt .prompt-header .setting-box .icon-svg-theme svg, .physton-gradio-container.dark .physton-prompt .prompt-header .setting-box .icon-svg-remove-space svg, .physton-gradio-container.dark .physton-prompt .prompt-header .setting-box .icon-svg-tooltip svg, .physton-gradio-container.dark .physton-prompt .prompt-header .setting-box .icon-svg-about svg {
     width: auto;
     height: 18px;
   }
@@ -538,7 +538,7 @@
     fill: #565656c2;
   }
   /*图标尺寸*/
-  .physton-gradio-container.light .physton-prompt .prompt-header .setting-box .icon-svg-api svg, .physton-gradio-container.light .physton-prompt .prompt-header .setting-box .icon-svg-format svg, .physton-gradio-container.light .physton-prompt .prompt-header .setting-box .icon-svg-theme svg, .physton-gradio-container.light .physton-prompt .prompt-header .setting-box .icon-svg-remove-space svg, .physton-gradio-container.light .physton-prompt .prompt-header .setting-box .icon-svg-tooltip svg {
+  .physton-gradio-container.light .physton-prompt .prompt-header .setting-box .icon-svg-api svg, .physton-gradio-container.light .physton-prompt .prompt-header .setting-box .icon-svg-format svg, .physton-gradio-container.light .physton-prompt .prompt-header .setting-box .icon-svg-theme svg, .physton-gradio-container.light .physton-prompt .prompt-header .setting-box .icon-svg-remove-space svg, .physton-gradio-container.light .physton-prompt .prompt-header .setting-box .icon-svg-tooltip svg, .physton-gradio-container.light .physton-prompt .prompt-header .setting-box .icon-svg-about svg {
     width: auto;
     height: 18px;
   }

@@ -117,7 +117,7 @@ export default {
     },
     methods: {
         formatTime(time) {
-            return common.formatTime(time, false)
+            return common.formatTime(time * 1000, false)
         },
         getFavorites(favoriteKey) {
             if (!favoriteKey) return

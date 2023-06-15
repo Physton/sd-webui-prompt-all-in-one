@@ -18,8 +18,7 @@ from scripts.get_extra_networks import get_extra_networks
 from scripts.packages import get_packages_state, install_package
 from scripts.gen_openai import gen_openai
 from scripts.get_lang import get_lang
-
-VERSION = '0.0.1'
+from scripts.get_version import get_git_commit_version, get_git_remote_versions, get_latest_version
 
 try:
     from modules.shared import cmd_opts
@@ -59,7 +58,16 @@ def on_app_started(_: gr.Blocks, app: FastAPI):
 
     @app.get("/physton_prompt/get_version")
     async def _get_version():
-        return {"version": VERSION}
+        return {
+            'version': get_git_commit_version(),
+            'latest_version': get_latest_version(),
+        }
+
+    @app.get("/physton_prompt/get_remote_versions")
+    async def _get_remote_versions(page: int = 1, per_page: int = 100):
+        return {
+            'versions': get_git_remote_versions(page, per_page),
+        }
 
     @app.get("/physton_prompt/get_config")
     async def _get_config():

@@ -416,7 +416,7 @@ export default {
      * @returns {string}
      */
     formatTime(time, hasYear = true) {
-        let now = new Date(time * 1000);
+        let now = new Date(time);
         let year = now.getFullYear();
         let month = now.getMonth() + 1;
         if (month < 10) month = "0" + month;

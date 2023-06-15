@@ -16,7 +16,11 @@ export default class GradioAPI {
     }
 
     async getVersion() {
-        return (await this.api.get("/get_version")).data.version
+        return (await this.api.get("/get_version")).data
+    }
+
+    async getRemoteVersions(page = 1, per_page = 100) {
+        return (await this.api.get("/get_remote_versions", {params: {page, per_page}})).data.versions
     }
 
     async getConfig() {
