@@ -3,13 +3,13 @@ import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
 import time
 import json
-from scripts.translate import translate
-from scripts.get_i18n import get_i18n
-from scripts.get_translate_apis import get_translate_apis
-from scripts.storage import storage
+from scripts.physton_prompt.translate import translate
+from scripts.physton_prompt.get_i18n import get_i18n
+from scripts.physton_prompt.get_translate_apis import get_translate_apis
+from scripts.physton_prompt.storage import Storage
 
 i18n = get_i18n()
-st = storage()
+st = Storage()
 text = 'Hello World, I am a boy'
 
 tested_file = os.path.join(os.path.dirname(__file__), 'tested.json')

@@ -1,7 +1,0 @@
-translators
-fastapi
-hashlib
-openai
-boto3
-aliyun-python-sdk-core
-aliyun-python-sdk-alimt

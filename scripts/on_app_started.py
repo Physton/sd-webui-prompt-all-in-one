@@ -5,23 +5,24 @@ from pathlib import Path
 from modules import script_callbacks, extra_networks, prompt_parser
 from fastapi import FastAPI, Body, Request, Response
 from fastapi.responses import FileResponse
-from scripts.storage import storage
-from scripts.get_extensions import get_extensions
-from scripts.get_token_counter import get_token_counter
-from scripts.get_i18n import get_i18n
-from scripts.get_translate_apis import get_translate_apis
-from scripts.translate import translate
-from scripts.history import history
-from scripts.csv import get_csvs, get_csv
-from scripts.styles import getStyleFullPath, getExtensionCssList
-from scripts.get_extra_networks import get_extra_networks
-from scripts.packages import get_packages_state, install_package
-from scripts.gen_openai import gen_openai
-from scripts.get_lang import get_lang
-from scripts.get_version import get_git_commit_version, get_git_remote_versions, get_latest_version
+from scripts.physton_prompt.storage import Storage
+from scripts.physton_prompt.get_extensions import get_extensions
+from scripts.physton_prompt.get_token_counter import get_token_counter
+from scripts.physton_prompt.get_i18n import get_i18n
+from scripts.physton_prompt.get_translate_apis import get_translate_apis
+from scripts.physton_prompt.translate import translate
+from scripts.physton_prompt.history import History
+from scripts.physton_prompt.csv import get_csvs, get_csv
+from scripts.physton_prompt.styles import get_style_full_path, get_extension_css_list
+from scripts.physton_prompt.get_extra_networks import get_extra_networks
+from scripts.physton_prompt.packages import get_packages_state, install_package
+from scripts.physton_prompt.gen_openai import gen_openai
+from scripts.physton_prompt.get_lang import get_lang
+from scripts.physton_prompt.get_version import get_git_commit_version, get_git_remote_versions, get_latest_version
 
 try:
     from modules.shared import cmd_opts
+
     if cmd_opts.data_dir:
         extension_dir = os.path.dirname(os.path.abspath(__file__)) + '/../'
         extension_dir = os.path.normpath(extension_dir) + os.path.sep
@@ -52,9 +53,10 @@ As you have set the --data-dir parameter and have not added the extension path t
 except Exception as e:
     pass
 
+
 def on_app_started(_: gr.Blocks, app: FastAPI):
-    st = storage()
-    hi = history()
+    st = Storage()
+    hi = History()
 
     @app.get("/physton_prompt/get_version")
     async def _get_version():
@@ -179,7 +181,7 @@ def on_app_started(_: gr.Blocks, app: FastAPI):
 
     @app.get("/physton_prompt/get_histories")
     async def _get_histories(type: str):
-        return {"histories": hi.get_histoies(type)}
+        return {"histories": hi.get_histories(type)}
 
     @app.get("/physton_prompt/get_favorites")
     async def _get_favorites(type: str):
@@ -285,7 +287,8 @@ def on_app_started(_: gr.Blocks, app: FastAPI):
         return {"success": hi.remove_histories(data['type'])}
 
     @app.post("/physton_prompt/translate")
-    async def _translate(text: str = Body(...), from_lang: str = Body(...), to_lang: str = Body(...), api: str = Body(...), api_config: dict = Body(...)):
+    async def _translate(text: str = Body(...), from_lang: str = Body(...), to_lang: str = Body(...),
+                         api: str = Body(...), api_config: dict = Body(...)):
         return translate(text, from_lang, to_lang, api, api_config)
 
     @app.post("/physton_prompt/translates")
@@ -316,14 +319,14 @@ def on_app_started(_: gr.Blocks, app: FastAPI):
 
     @app.get("/physton_prompt/styles")
     async def _styles(file: str):
-        file_path = getStyleFullPath(file)
+        file_path = get_style_full_path(file)
         if not os.path.exists(file_path):
             return Response(status_code=404)
         return FileResponse(file_path, filename=os.path.basename(file_path))
 
     @app.get("/physton_prompt/get_extension_css_list")
     async def _get_extension_css_list():
-        return {"css_list": getExtensionCssList()}
+        return {"css_list": get_extension_css_list()}
 
     @app.get("/physton_prompt/get_extra_networks")
     async def _get_extra_networks():
@@ -340,6 +343,7 @@ def on_app_started(_: gr.Blocks, app: FastAPI):
             return {"success": True, 'result': gen_openai(data['messages'], data['api_config'])}
         except Exception as e:
             return {"success": False, 'message': str(e)}
+
 
 try:
     script_callbacks.on_app_started(on_app_started)

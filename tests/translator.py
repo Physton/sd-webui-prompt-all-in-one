@@ -5,19 +5,19 @@ sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
 from dotenv import load_dotenv
 load_dotenv(os.path.join(os.path.dirname(__file__), '.env'))
 
-from scripts.translator.microsoft_translator import MicrosoftTranslator
-from scripts.translator.google_tanslator import GoogleTranslator
-from scripts.translator.openai_translator import OpenaiTranslator
-from scripts.translator.amazon_translator import AmazonTranslator
-from scripts.translator.deepl_translator import DeeplTranslator
-from scripts.translator.baidu_translator import BaiduTranslator
-from scripts.translator.youdao_translator import YoudaoTranslator
-from scripts.translator.alibaba_translator import AlibabaTranslator
-from scripts.translator.tencent_translator import TencentTranslator
-from scripts.translator.translators_translator import TranslatorsTranslator
-from scripts.translator.yandex_translator import YandexTranslator
+from scripts.physton_prompt.translator.microsoft_translator import MicrosoftTranslator
+from scripts.physton_prompt.translator.google_tanslator import GoogleTranslator
+from scripts.physton_prompt.translator.openai_translator import OpenaiTranslator
+from scripts.physton_prompt.translator.amazon_translator import AmazonTranslator
+from scripts.physton_prompt.translator.deepl_translator import DeeplTranslator
+from scripts.physton_prompt.translator.baidu_translator import BaiduTranslator
+from scripts.physton_prompt.translator.youdao_translator import YoudaoTranslator
+from scripts.physton_prompt.translator.alibaba_translator import AlibabaTranslator
+from scripts.physton_prompt.translator.tencent_translator import TencentTranslator
+from scripts.physton_prompt.translator.translators_translator import TranslatorsTranslator
+from scripts.physton_prompt.translator.yandex_translator import YandexTranslator
 
-from scripts.translate import translate
+from scripts.physton_prompt.translate import translate
 
 text = 'Hello World'
 texts = [
