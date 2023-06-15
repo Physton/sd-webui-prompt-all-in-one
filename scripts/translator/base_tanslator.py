@@ -4,6 +4,7 @@ from math import ceil
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from collections import OrderedDict
+from scripts.get_lang import get_lang
 
 class BaseTranslator(ABC):
     from_lang = None
@@ -22,20 +23,20 @@ class BaseTranslator(ABC):
                     find = item
                     break
         if not find:
-            raise Exception('translate api not found')
+            raise Exception(get_lang('translate_api_not_support'))
         self.api_item = find
 
     def set_from_lang(self, from_lang):
         from_lang = self.api_item['support'].get(from_lang, False)
         if not from_lang:
-            raise Exception('translate language not support')
+            raise Exception(get_lang('translate_language_not_support'))
         self.from_lang = from_lang
         return self
 
     def set_to_lang(self, to_lang):
         to_lang = self.api_item['support'].get(to_lang, False)
         if not to_lang:
-            raise Exception('translate language not support')
+            raise Exception(get_lang('translate_language_not_support'))
         self.to_lang = to_lang
         return self
 

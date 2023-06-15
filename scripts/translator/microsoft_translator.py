@@ -1,6 +1,7 @@
 from scripts.translator.base_tanslator import BaseTranslator
 import uuid
 import requests
+from scripts.get_lang import get_lang
 
 class MicrosoftTranslator(BaseTranslator):
     def __init__(self):
@@ -16,9 +17,9 @@ class MicrosoftTranslator(BaseTranslator):
         api_key = self.api_config.get('api_key', '')
         region = self.api_config.get('region', '')
         if not api_key:
-            raise Exception("api_key is required")
+            raise Exception(get_lang('is_required', {'0': 'API Key'}))
         if not region:
-            raise Exception("region is required")
+            raise Exception(get_lang('is_required', {'0': 'Region'}))
         params = {
             'api-version': '3.0',
             'from': self.from_lang,
@@ -43,7 +44,7 @@ class MicrosoftTranslator(BaseTranslator):
         if 'error' in result:
             raise Exception(result['error']['message'])
         if len(result) == 0:
-            raise Exception("No response from Microsoft")
+            raise Exception(get_lang('no_response_from', {'0': 'Microsoft'}))
 
         if isinstance(text, list):
             return [item['translations'][0]['text'] for item in result]

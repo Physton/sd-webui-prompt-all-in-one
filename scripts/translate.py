@@ -1,5 +1,6 @@
 import json
 import hashlib
+from scripts.get_lang import get_lang
 from scripts.get_translate_apis import get_translate_apis
 from scripts.translator.alibaba_translator import AlibabaTranslator
 from scripts.translator.amazon_translator import AmazonTranslator
@@ -40,13 +41,13 @@ def translate(text, from_lang, to_lang, api, api_config = {}):
                 find = item
                 break
     if not find:
-        return _translate_result(False, 'translate api not found', '')
+        return _translate_result(False, get_lang('translate_api_not_found'), '')
 
     try:
         texts = []
         if isinstance(text, list):
             if len(text) < 1:
-                return _translate_result(False, 'translate text is empty', '')
+                return _translate_result(False, get_lang('translate_text_is_empty'), '')
             for item in text:
                 texts.append(None)
             for index in range(len(text)):
@@ -63,7 +64,7 @@ def translate(text, from_lang, to_lang, api, api_config = {}):
         else:
             text = text.strip()
             if text == '':
-                return _translate_result(False, 'translate text is empty', '')
+                return _translate_result(False, get_lang('translate_text_is_empty'), '')
             cache_name = _cache_name(text)
             if cache_name in caches:
                 return _translate_result(True, '', caches[cache_name])
@@ -93,7 +94,7 @@ def translate(text, from_lang, to_lang, api, api_config = {}):
             translator = TranslatorsTranslator(api)
             translator.set_translator(find['translator'])
         else:
-            return _translate_result(False, 'translate api not support', '')
+            return _translate_result(False, get_lang('translate_api_not_support'), '')
 
         translator.set_from_lang(from_lang)
         translator.set_to_lang(to_lang)

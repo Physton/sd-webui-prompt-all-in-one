@@ -1,6 +1,7 @@
 from scripts.translator.base_tanslator import BaseTranslator
 import json
 from math import ceil
+from scripts.get_lang import get_lang
 
 class AlibabaTranslator(BaseTranslator):
     def __init__(self):
@@ -11,11 +12,11 @@ class AlibabaTranslator(BaseTranslator):
         access_key_secret = self.api_config.get('access_key_secret', '')
         region = self.api_config.get('region', 'cn-shanghai')
         if not access_key_id:
-            raise Exception("access_key_id is required")
+            raise Exception(get_lang('is_required', {'0': 'Access Key ID'}))
         if not access_key_secret:
-            raise Exception("access_key_secret is required")
+            raise Exception(get_lang('is_required', {'0': 'Access Key Secret'}))
         if not region:
-            raise Exception("region is required")
+            raise Exception(get_lang('is_required', {'0': 'Region ID'}))
         return access_key_id, access_key_secret, region
 
     def translate(self, text):
@@ -36,11 +37,11 @@ class AlibabaTranslator(BaseTranslator):
         response = client.do_action_with_exception(request)
         result = json.loads(response)
         if 'Code' not in result:
-            raise Exception("No response from Alibaba")
+            raise Exception(get_lang('no_response_from', {'0': 'Alibaba'}))
         if result['Code'] != '200':
             raise Exception(result['Message'])
         if 'Translated' not in result['Data']:
-            raise Exception("No response from Alibaba")
+            raise Exception(get_lang('no_response_from', {'0': 'Alibaba'}))
         return result['Data']['Translated']
 
     def translate_batch(self, texts):
@@ -79,7 +80,7 @@ class AlibabaTranslator(BaseTranslator):
             response = client.do_action_with_exception(request)
             result = json.loads(response)
             if 'Code' not in result:
-                raise Exception("No response from Alibaba")
+                raise Exception(get_lang('no_response_from', {'0': 'Alibaba'}))
             if result['Code'] != '200':
                 raise Exception(result['Message'])
             for item in result['TranslatedList']:

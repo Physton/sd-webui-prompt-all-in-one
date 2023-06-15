@@ -1,5 +1,6 @@
 from scripts.translator.base_tanslator import BaseTranslator
 import requests
+from scripts.get_lang import get_lang
 
 class GoogleTranslator(BaseTranslator):
     def __init__(self):
@@ -11,7 +12,7 @@ class GoogleTranslator(BaseTranslator):
         url = 'https://translation.googleapis.com/language/translate/v2/'
         api_key = self.api_config.get('api_key', '')
         if not api_key:
-            raise Exception("api_key is required")
+            raise Exception(get_lang('is_required', {'0': 'API Key'}))
         params = {
             'key': api_key,
             'q': text,
@@ -24,7 +25,7 @@ class GoogleTranslator(BaseTranslator):
         if 'error' in result:
             raise Exception(result['error']['message'])
         if 'data' not in result:
-            raise Exception("No response from Google")
+            raise Exception(get_lang('no_response_from', {'0': 'Google'}))
         if 'translations' not in result['data']:
-            raise Exception("No response from Google")
+            raise Exception(get_lang('no_response_from', {'0': 'Google'}))
         return result['data']['translations'][0]['translatedText']

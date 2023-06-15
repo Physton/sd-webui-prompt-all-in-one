@@ -17,6 +17,7 @@ from scripts.styles import getStyleFullPath, getExtensionCssList
 from scripts.get_extra_networks import get_extra_networks
 from scripts.packages import get_packages_state, install_package
 from scripts.gen_openai import gen_openai
+from scripts.get_lang import get_lang
 
 VERSION = '0.0.1'
 
@@ -72,8 +73,10 @@ def on_app_started(_: gr.Blocks, app: FastAPI):
     @app.post("/physton_prompt/install_package")
     async def _install_package(request: Request):
         data = await request.json()
-        if 'name' not in data or 'package' not in data:
-            return {"result": "name or package is required"}
+        if 'name' not in data:
+            return {"result": get_lang('is_required', {'0': 'name'})}
+        if 'package' not in data:
+            return {"result": get_lang('is_required', {'0': 'package'})}
         return {"result": install_package(data['name'], data['package'])}
 
     @app.get("/physton_prompt/get_extensions")
@@ -83,8 +86,10 @@ def on_app_started(_: gr.Blocks, app: FastAPI):
     @app.post("/physton_prompt/token_counter")
     async def _token_counter(request: Request):
         data = await request.json()
-        if 'text' not in data or 'steps' not in data:
-            return {"success": False, "message": "text or steps is required"}
+        if 'text' not in data:
+            return {"result": get_lang('is_required', {'0': 'text'})}
+        if 'steps' not in data:
+            return {"result": get_lang('is_required', {'0': 'steps'})}
         return get_token_counter(data['text'], data['steps'])
 
     @app.get("/physton_prompt/get_data")
@@ -102,8 +107,10 @@ def on_app_started(_: gr.Blocks, app: FastAPI):
     @app.post("/physton_prompt/set_data")
     async def _set_data(request: Request):
         data = await request.json()
-        if 'key' not in data or 'data' not in data:
-            return {"success": False, "message": "key or data is required"}
+        if 'key' not in data:
+            return {"success": False, "message": get_lang('is_required', {'0': 'key'})}
+        if 'data' not in data:
+            return {"success": False, "message": get_lang('is_required', {'0': 'data'})}
         st.set(data['key'], data['data'])
         return {"success": True}
 
@@ -111,7 +118,7 @@ def on_app_started(_: gr.Blocks, app: FastAPI):
     async def _set_datas(request: Request):
         data = await request.json()
         if not isinstance(data, dict):
-            return {"success": False, "message": "data is not dict"}
+            return {"success": False, "message": get_lang('is_not_dict', {'0': 'data'})}
         for key in data:
             st.set(key, data[key])
         return {"success": True}
@@ -123,8 +130,10 @@ def on_app_started(_: gr.Blocks, app: FastAPI):
     @app.post("/physton_prompt/push_data_list")
     async def _push_data_list(request: Request):
         data = await request.json()
-        if 'key' not in data or 'item' not in data:
-            return {"success": False, "message": "key or item is required"}
+        if 'key' not in data:
+            return {"success": False, "message": get_lang('is_required', {'0': 'key'})}
+        if 'item' not in data:
+            return {"success": False, "message": get_lang('is_required', {'0': 'item'})}
         st.list_push(data['key'], data['item'])
         return {"success": True}
 
@@ -132,21 +141,23 @@ def on_app_started(_: gr.Blocks, app: FastAPI):
     async def _pop_data_list(request: Request):
         data = await request.json()
         if 'key' not in data:
-            return {"success": False, "message": "key is required"}
+            return {"success": False, "message": get_lang('is_required', {'0': 'key'})}
         return {"success": True, 'item': st.list_pop(data['key'])}
 
     @app.post("/physton_prompt/shift_data_list")
     async def _shift_data_list(request: Request):
         data = await request.json()
         if 'key' not in data:
-            return {"success": False, "message": "key is required"}
+            return {"success": False, "message": get_lang('is_required', {'0': 'key'})}
         return {"success": True, 'item': st.list_shift(data['key'])}
 
     @app.post("/physton_prompt/remove_data_list")
     async def _remove_data_list(request: Request):
         data = await request.json()
-        if 'key' not in data or 'index' not in data:
-            return {"success": False, "message": "key or index is required"}
+        if 'key' not in data:
+            return {"success": False, "message": get_lang('is_required', {'0': 'key'})}
+        if 'index' not in data:
+            return {"success": False, "message": get_lang('is_required', {'0': 'index'})}
         st.list_remove(data['key'], data['index'])
         return {"success": True}
 
@@ -154,7 +165,7 @@ def on_app_started(_: gr.Blocks, app: FastAPI):
     async def _clear_data_list(request: Request):
         data = await request.json()
         if 'key' not in data:
-            return {"success": False, "message": "key is required"}
+            return {"success": False, "message": get_lang('is_required', {'0': 'key'})}
         st.list_clear(data['key'])
         return {"success": True}
 
@@ -169,16 +180,24 @@ def on_app_started(_: gr.Blocks, app: FastAPI):
     @app.post("/physton_prompt/push_history")
     async def _push_history(request: Request):
         data = await request.json()
-        if 'type' not in data or 'tags' not in data or 'prompt' not in data:
-            return {"success": False, "message": "type or tags or prompt is required"}
+        if 'type' not in data:
+            return {"success": False, "message": get_lang('is_required', {'0': 'type'})}
+        if 'tags' not in data:
+            return {"success": False, "message": get_lang('is_required', {'0': 'tags'})}
+        if 'prompt' not in data:
+            return {"success": False, "message": get_lang('is_required', {'0': 'prompt'})}
         hi.push_history(data['type'], data['tags'], data['prompt'], data.get('name', ''))
         return {"success": True}
 
     @app.post("/physton_prompt/push_favorite")
     async def _push_favorite(request: Request):
         data = await request.json()
-        if 'type' not in data or 'tags' not in data or 'prompt' not in data:
-            return {"success": False, "message": "type or tags or prompt is required"}
+        if 'type' not in data:
+            return {"success": False, "message": get_lang('is_required', {'0': 'type'})}
+        if 'tags' not in data:
+            return {"success": False, "message": get_lang('is_required', {'0': 'tags'})}
+        if 'prompt' not in data:
+            return {"success": False, "message": get_lang('is_required', {'0': 'prompt'})}
         hi.push_favorite(data['type'], data['tags'], data['prompt'], data.get('name', ''))
         return {"success": True}
 
@@ -189,50 +208,72 @@ def on_app_started(_: gr.Blocks, app: FastAPI):
     @app.post("/physton_prompt/set_history")
     async def _set_history(request: Request):
         data = await request.json()
-        if 'type' not in data or 'id' not in data or 'tags' not in data or 'prompt' not in data or 'name' not in data:
-            return {"success": False, "message": "type or id or tags or prompt is required"}
+        if 'type' not in data:
+            return {"success": False, "message": get_lang('is_required', {'0': 'type'})}
+        if 'id' not in data:
+            return {"success": False, "message": get_lang('is_required', {'0': 'id'})}
+        if 'tags' not in data:
+            return {"success": False, "message": get_lang('is_required', {'0': 'tags'})}
+        if 'prompt' not in data:
+            return {"success": False, "message": get_lang('is_required', {'0': 'prompt'})}
+        if 'name' not in data:
+            return {"success": False, "message": get_lang('is_required', {'0': 'name'})}
         return {"success": hi.set_history(data['type'], data['id'], data['tags'], data['prompt'], data['name'])}
 
     @app.post("/physton_prompt/set_history_name")
     async def _set_history_name(request: Request):
         data = await request.json()
-        if 'type' not in data or 'id' not in data or 'name' not in data:
-            return {"success": False, "message": "type or id or name is required"}
+        if 'type' not in data:
+            return {"success": False, "message": get_lang('is_required', {'0': 'type'})}
+        if 'id' not in data:
+            return {"success": False, "message": get_lang('is_required', {'0': 'id'})}
+        if 'name' not in data:
+            return {"success": False, "message": get_lang('is_required', {'0': 'name'})}
         return {"success": hi.set_history_name(data['type'], data['id'], data['name'])}
 
     @app.post("/physton_prompt/set_favorite_name")
     async def _set_favorite_name(request: Request):
         data = await request.json()
-        if 'type' not in data or 'id' not in data or 'name' not in data:
-            return {"success": False, "message": "type or id or name is required"}
+        if 'type' not in data:
+            return {"success": False, "message": get_lang('is_required', {'0': 'type'})}
+        if 'id' not in data:
+            return {"success": False, "message": get_lang('is_required', {'0': 'id'})}
+        if 'name' not in data:
+            return {"success": False, "message": get_lang('is_required', {'0': 'name'})}
         return {"success": hi.set_favorite_name(data['type'], data['id'], data['name'])}
 
     @app.post("/physton_prompt/dofavorite")
     async def _dofavorite(request: Request):
         data = await request.json()
-        if 'type' not in data or 'id' not in data:
-            return {"success": False, "message": "type or id is required"}
+        if 'type' not in data:
+            return {"success": False, "message": get_lang('is_required', {'0': 'type'})}
+        if 'id' not in data:
+            return {"success": False, "message": get_lang('is_required', {'0': 'id'})}
         return {"success": hi.dofavorite(data['type'], data['id'])}
 
     @app.post("/physton_prompt/unfavorite")
     async def _unfavorite(request: Request):
         data = await request.json()
-        if 'type' not in data or 'id' not in data:
-            return {"success": False, "message": "type or id is required"}
+        if 'type' not in data:
+            return {"success": False, "message": get_lang('is_required', {'0': 'type'})}
+        if 'id' not in data:
+            return {"success": False, "message": get_lang('is_required', {'0': 'id'})}
         return {"success": hi.unfavorite(data['type'], data['id'])}
 
     @app.post("/physton_prompt/delete_history")
     async def _delete_history(request: Request):
         data = await request.json()
-        if 'type' not in data or 'id' not in data:
-            return {"success": False, "message": "type or id is required"}
+        if 'type' not in data:
+            return {"success": False, "message": get_lang('is_required', {'0': 'type'})}
+        if 'id' not in data:
+            return {"success": False, "message": get_lang('is_required', {'0': 'id'})}
         return {"success": hi.remove_history(data['type'], data['id'])}
 
     @app.post("/physton_prompt/delete_histories")
     async def _delete_histories(request: Request):
         data = await request.json()
         if 'type' not in data:
-            return {"success": False, "message": "type is required"}
+            return {"success": False, "message": get_lang('is_required', {'0': 'type'})}
         return {"success": hi.remove_histories(data['type'])}
 
     @app.post("/physton_prompt/translate")
@@ -242,8 +283,16 @@ def on_app_started(_: gr.Blocks, app: FastAPI):
     @app.post("/physton_prompt/translates")
     async def _translates(request: Request):
         data = await request.json()
-        if 'texts' not in data or 'from_lang' not in data or 'to_lang' not in data or 'api' not in data or 'api_config' not in data:
-            return {"success": False, "message": "texts or from_lang or to_lang or api or api_config is required"}
+        if 'texts' not in data:
+            return {"success": False, "message": get_lang('is_required', {'0': 'texts'})}
+        if 'from_lang' not in data:
+            return {"success": False, "message": get_lang('is_required', {'0': 'from_lang'})}
+        if 'to_lang' not in data:
+            return {"success": False, "message": get_lang('is_required', {'0': 'to_lang'})}
+        if 'api' not in data:
+            return {"success": False, "message": get_lang('is_required', {'0': 'api'})}
+        if 'api_config' not in data:
+            return {"success": False, "message": get_lang('is_required', {'0': 'api_config'})}
         return translate(data['texts'], data['from_lang'], data['to_lang'], data['api'], data['api_config'])
 
     @app.get("/physton_prompt/get_csvs")
@@ -275,8 +324,10 @@ def on_app_started(_: gr.Blocks, app: FastAPI):
     @app.post("/physton_prompt/gen_openai")
     async def _gen_openai(request: Request):
         data = await request.json()
-        if 'messages' not in data or 'api_config' not in data:
-            return {"success": False, "message": "messages or api_config is required"}
+        if 'messages' not in data:
+            return {"success": False, "message": get_lang('is_required', {'0': 'messages'})}
+        if 'api_config' not in data:
+            return {"success": False, "message": get_lang('is_required', {'0': 'api_config'})}
         try:
             return {"success": True, 'result': gen_openai(data['messages'], data['api_config'])}
         except Exception as e:

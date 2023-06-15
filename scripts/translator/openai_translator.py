@@ -1,5 +1,6 @@
 from scripts.translator.base_tanslator import BaseTranslator
 import json
+from scripts.get_lang import get_lang
 
 class OpenaiTranslator(BaseTranslator):
     def __init__(self):
@@ -16,7 +17,7 @@ class OpenaiTranslator(BaseTranslator):
         openai.api_key = self.api_config.get('api_key', '')
         model = self.api_config.get('model', 'gpt-3.5-turbo')
         if not openai.api_key:
-            raise Exception("api_key is required")
+            raise Exception(get_lang('is_required', {'0': 'API Key'}))
 
         body = []
         if isinstance(text, list):
@@ -36,7 +37,7 @@ class OpenaiTranslator(BaseTranslator):
         ]
         completion = openai.ChatCompletion.create(model=model, messages=messages, timeout=60)
         if len(completion.choices) == 0:
-            raise Exception("No response from OpenAI")
+            raise Exception(get_lang('no_response_from', {'0': 'OpenAI'}))
         content = completion.choices[0].message.content
         result_json = ''
         try:
@@ -44,7 +45,7 @@ class OpenaiTranslator(BaseTranslator):
             start = content.index('[')
             end = content.rindex(']')
             if start == -1 or end == -1:
-                raise Exception("OpenAI response error")
+                raise Exception(get_lang('response_error', {'0': 'OpenAI'}))
             result_json = '['+ content[start+1:end] +']'
             # 解析json
             result = json.loads(result_json)
@@ -53,7 +54,7 @@ class OpenaiTranslator(BaseTranslator):
             else:
                 return result[0]['text']
         except Exception as e:
-            raise Exception("OpenAI response error")
+            raise Exception(get_lang('response_error', {'0': 'OpenAI'}))
 
     def translate_batch(self, texts):
         return self.translate(texts)

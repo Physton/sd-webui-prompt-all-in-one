@@ -1,4 +1,5 @@
 import launch
+from scripts.get_lang import get_lang
 
 packages = {
     "chardet": "chardet",
@@ -34,9 +35,9 @@ def install_package(name, package):
     try:
         launch.run_pip(f"install {package}", f"sd-webui-prompt-all-in-one: {name}")
         result['state'] = True
-        result['message'] = f'install {package} success!'
+        result['message'] = get_lang('install_success', {'0': package})
     except Exception as e:
         print(e)
         print(f'Warning: Failed to install {package}, some preprocessors may not work.')
-        result['message'] = f'Error: install {package} failed!\n' + str(e)
+        result['message'] = get_lang('install_failed', {'0': package}) + '\n' + str(e)
     return result

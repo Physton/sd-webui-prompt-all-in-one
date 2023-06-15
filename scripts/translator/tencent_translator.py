@@ -2,6 +2,7 @@ from scripts.translator.base_tanslator import BaseTranslator
 import requests
 import hashlib, hmac, json, time
 from datetime import datetime
+from scripts.get_lang import get_lang
 
 class TencentTranslator(BaseTranslator):
     def __init__(self):
@@ -12,11 +13,11 @@ class TencentTranslator(BaseTranslator):
         secret_key = self.api_config.get('secret_key', '')
         region = self.api_config.get('region', 'ap-shanghai')
         if not secret_id:
-            raise Exception("secret_id is required")
+            raise Exception(get_lang('is_required', {'0': 'Secret ID'}))
         if not secret_key:
-            raise Exception("secret_key is required")
+            raise Exception(get_lang('is_required', {'0': 'Secret Key'}))
         if not region:
-            raise Exception("region is required")
+            raise Exception(get_lang('is_required', {'0': 'Region'}))
         return secret_id, secret_key, region
 
     def translate(self, text):
@@ -33,9 +34,9 @@ class TencentTranslator(BaseTranslator):
         response = requests.post(res['url'], json=params, timeout=10, headers=res['headers'])
         result = response.json()
         if 'Response' not in result:
-            raise Exception("No response from Tencent")
+            raise Exception(get_lang('no_response_from', {'0': 'Tencent'}))
         if 'TargetText' not in result['Response']:
-            raise Exception("No response from Tencent")
+            raise Exception(get_lang('no_response_from', {'0': 'Tencent'}))
         return result['Response']['TargetText']
 
     def translate_batch(self, texts):
@@ -52,9 +53,9 @@ class TencentTranslator(BaseTranslator):
         response = requests.post(res['url'], json=params, timeout=10, headers=res['headers'])
         result = response.json()
         if 'Response' not in result:
-            raise Exception("No response from Tencent")
+            raise Exception(get_lang('no_response_from', {'0': 'Tencent'}))
         if 'TargetTextList' not in result['Response']:
-            raise Exception("No response from Tencent")
+            raise Exception(get_lang('no_response_from', {'0': 'Tencent'}))
         return result['Response']['TargetTextList']
 
 

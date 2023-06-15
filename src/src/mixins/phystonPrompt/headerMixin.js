@@ -311,7 +311,6 @@ export default {
                             index = this._appendTag("\n", "\n", false, -1, 'wrap')
                         } else {
                             index = this._appendTag(tag)
-                            console.log(tag, index)
                         }
                         if (index !== -1) indexes.push(index)
                     })

@@ -2,6 +2,7 @@ from scripts.translator.base_tanslator import BaseTranslator
 import requests
 import hashlib
 import random
+from scripts.get_lang import get_lang
 
 class BaiduTranslator(BaseTranslator):
     def __init__(self):
@@ -14,9 +15,9 @@ class BaiduTranslator(BaseTranslator):
         app_id = self.api_config.get('app_id', '')
         app_secret = self.api_config.get('app_secret', '')
         if not app_id:
-            raise Exception("app_id is required")
+            raise Exception(get_lang('is_required', {'0': 'APP ID'}))
         if not app_secret:
-            raise Exception("app_secret is required")
+            raise Exception(get_lang('is_required', {'0': 'APP Secret'}))
         salt = random.randint(32768, 65536)
         send_text = text
         if isinstance(text, list):
@@ -36,7 +37,7 @@ class BaiduTranslator(BaseTranslator):
         if 'error_code' in result:
             raise Exception(result['error_msg'])
         if 'trans_result' not in result:
-            raise Exception("No response from Baidu")
+            raise Exception(get_lang('no_response_from', {'0': 'Baidu'}))
         translated_text = []
         for item in result['trans_result']:
             translated_text.append(item['dst'])

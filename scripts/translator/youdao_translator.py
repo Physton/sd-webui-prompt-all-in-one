@@ -3,6 +3,7 @@ import requests
 import hashlib
 import random
 import time
+from scripts.get_lang import get_lang
 
 class YoudaoTranslator(BaseTranslator):
     def __init__(self):
@@ -21,9 +22,9 @@ class YoudaoTranslator(BaseTranslator):
         app_id = self.api_config.get('app_id', '')
         app_secret = self.api_config.get('app_secret', '')
         if not app_id:
-            raise Exception("app_id is required")
+            raise Exception(get_lang('is_required', {'0': 'App ID'}))
         if not app_secret:
-            raise Exception("app_secret is required")
+            raise Exception(get_lang('is_required', {'0': 'App Secret'}))
         curtime = str(int(time.time()))
         salt = random.randint(32768, 65536)
         if isinstance(text, list):
@@ -50,21 +51,21 @@ class YoudaoTranslator(BaseTranslator):
         response = requests.post(url, params=params, timeout=10, headers=headers)
         result = response.json()
         if 'errorCode' not in result:
-            raise Exception("No response from Youdao")
+            raise Exception(get_lang('no_response_from', {'0': 'Youdao'}))
         if result['errorCode'] != '0':
             raise Exception(f'errorCode: {result["errorCode"]}')
         if isinstance(text, list):
             if 'translateResults' not in result:
-                raise Exception("No response from Youdao")
+                raise Exception(get_lang('no_response_from', {'0': 'Youdao'}))
             results = []
             for item in result['translateResults']:
                 if 'translation' not in item:
-                    raise Exception("No response from Youdao")
+                    raise Exception(get_lang('no_response_from', {'0': 'Youdao'}))
                 results.append(item['translation'])
             return results
         else:
             if 'translation' not in result:
-                raise Exception("No response from Youdao")
+                raise Exception(get_lang('no_response_from', {'0': 'Youdao'}))
             return result['translation'][0]
 
     def translate_batch(self, texts):
