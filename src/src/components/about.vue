@@ -23,7 +23,7 @@
                             <div class="version-sha"><a :href="commitUrl(item.version)" target="_blank">{{ formatVersion(item.version) }}</a></div>
                             <div class="version-date">{{ item.date }}</div>
                         </div>
-                        <div class="version-msg">{{ item.message }}</div>
+                        <div class="version-msg" v-html="message(item.message)"></div>
                     </div>
                 </div>
             </div>
@@ -123,6 +123,14 @@ export default {
         formatVersion(version) {
             if (!version) return this.getLang('unknown_version')
             return version.slice(0, 7)
+        },
+        message(text) {
+            text = common.escapeHtml(text)
+            text = text.replace(/Former-commit-id: [a-z0-9]{40}/g, '')
+            text = text.trim()
+            text = text.replace("\n", '<br/>')
+            text = text.replace(/#(\d+)/g, '<a href="https://github.com/Physton/sd-webui-prompt-all-in-one/issues/$1" target="_blank">#$1</a>')
+            return text
         },
     },
 }
