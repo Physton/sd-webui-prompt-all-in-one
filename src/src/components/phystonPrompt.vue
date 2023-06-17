@@ -255,6 +255,9 @@
                                               :ref="'promptTagEdit-' + tag.id"
                                               :placeholder="getLang('enter_to_save')"
                                               :value="tag.value"
+                                              @mousedown.stop=""
+                                              @mousemove.stop=""
+                                              @mouseup.stop=""
                                               @blur="onTagInputBlur(tag.id)"
                                               @keydown="onTagInputKeyDown(tag.id, $event)"
                                               @change="onTagInputChange(tag.id, $event)"></textarea>
