@@ -266,7 +266,8 @@
                                            @change="onTagInputChange(tag.id, $event)">-->
                                 </template>
                                 <div class="btn-tag-delete" :ref="'promptTagDelete-' + tag.id"
-                                     @click="onDeleteTagClick(tag.id)">
+                                     @click="onDeleteTagClick(tag.id)" @mousedown.stop=""
+                                     @mousemove.stop="" @mouseup.stop="">
                                     <icon-svg name="close"/>
                                 </div>
                             </div>
