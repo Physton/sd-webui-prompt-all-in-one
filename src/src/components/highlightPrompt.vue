@@ -1,5 +1,5 @@
 <template>
-    <div class="physton-highlight-prompt" ref="highlightPrompt"></div>
+    <div class="physton-highlight-prompt" ref="highlightPrompt" @click="hide"></div>
 </template>
 <script>
 import common from "@/utils/common";
@@ -21,6 +21,7 @@ export default {
             scrollTop: 0,
             showTimeId: 0,
             hideTimeId: 0,
+            lastHighLightTag: null,
         }
     },
     watch: {
@@ -29,6 +30,8 @@ export default {
     },
     methods: {
         show(tag) {
+            if (this.lastHighLightTag && this.lastHighLightTag.value === tag.value) return
+            this.lastHighLightTag = tag
             if (this.showTimeId) clearTimeout(this.showTimeId)
             this.showTimeId = setTimeout(() => {
                 this._show(tag)
@@ -87,6 +90,7 @@ export default {
             this.$refs.highlightPrompt.scrollTop = this.scrollTop
         },
         hide() {
+            this.lastHighLightTag = null
             if (this.showTimeId) clearTimeout(this.showTimeId)
             if (this.hideTimeId) clearTimeout(this.hideTimeId)
             this.hideTimeId = setTimeout(() => {

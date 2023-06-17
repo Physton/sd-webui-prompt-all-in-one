@@ -229,8 +229,7 @@
                 <div class="prompt-tags-list" ref="promptTagsList">
                     <div v-for="(tag, index) in tags" :key="tag.id" :class="['prompt-tag', tag.disabled ? 'disabled': '', tag.type === 'wrap' ? 'wrap-tag' : '']"
                          :ref="'promptTag-' + tag.id" :data-id="tag.id">
-                        <div class="prompt-tag-main" @mouseenter="onTagMouseEnter(tag.id)"
-                             @mousedown.stop="" @mousemove.stop="" @mouseup.stop="">
+                        <div class="prompt-tag-main" @mouseenter="onTagMouseEnter(tag.id)" @mousemove.stop="onTagMouseMove(tag.id)">
                             <div class="prompt-tag-edit">
                                 <template v-if="tag.type === 'wrap'">
                                     <div class="prompt-tag-value"

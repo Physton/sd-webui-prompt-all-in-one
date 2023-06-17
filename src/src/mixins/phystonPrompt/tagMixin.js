@@ -178,7 +178,10 @@ export default {
             let tag = this.tags.find(tag => tag.id === id)
             if (!tag) return false
             tag.isFavorite = this.isFavorite(tag.id)
-
+        },
+        onTagMouseMove(id) {
+            let tag = this.tags.find(tag => tag.id === id)
+            if (!tag) return false
             this.$refs.highlightPrompt.show(tag)
         },
         onTagClick(id) {
