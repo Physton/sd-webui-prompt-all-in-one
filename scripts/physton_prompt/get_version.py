@@ -82,7 +82,7 @@ def get_latest_version():
     current_version = get_git_commit_version()
     # if not current_version:
     # return current_version
-    versions = get_git_remote_versions(1, 10, True)
+    versions = get_git_remote_versions(1, 10, False)
     if len(versions) < 1:
         return current_version
     return versions[0]['version']
