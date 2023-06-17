@@ -878,10 +878,15 @@ export default {
                 }
 
                 let setLoading = (tag, loading) => {
-                    if (tag.toLocal) {
+                    if (this.canOneTranslate) {
                         this.loading[tag.id + '_local'] = loading
-                    } else {
                         this.loading[tag.id + '_en'] = loading
+                    } else {
+                        if (tag.toLocal) {
+                            this.loading[tag.id + '_local'] = loading
+                        } else {
+                            this.loading[tag.id + '_en'] = loading
+                        }
                     }
                 }
 
