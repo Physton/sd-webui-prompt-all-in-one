@@ -42,8 +42,6 @@ Translation supports almost all national languages, but the UI interface of most
 > 如果你觉得这个扩展有帮助，请在Github上给我一颗星！
 > 你也可以请我喝杯咖啡: [donate](#donate)
 
-> Telegram: [https://t.me/promptAIO](https://t.me/promptAIO)
->
 > QQ群：820700336
 
 ----
