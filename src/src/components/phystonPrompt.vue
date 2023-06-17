@@ -270,7 +270,8 @@
                                     <icon-svg name="close"/>
                                 </div>
                             </div>
-                            <div class="btn-tag-extend" v-show="(tag.type === 'text' || !tag.type)">
+                            <div class="btn-tag-extend" v-show="(tag.type === 'text' || !tag.type)" @mousedown.stop=""
+                                 @mousemove.stop="" @mouseup.stop="">
                                 <vue-number-input class="input-number" :model-value="tag.weightNum" center controls
                                                   :min="0" :step="0.1" size="small"
                                                   @update:model-value="onTagWeightNumChange(tag.id, $event)"></vue-number-input>
