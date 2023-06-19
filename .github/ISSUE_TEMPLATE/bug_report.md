@@ -12,9 +12,9 @@ assignees: ''
 Note: Any posts that do not follow this template will be closed immediately. I won't be able to address your issue if the information below is not provided.
 
 Please mark "x" inside the square brackets to indicate that you have read the following information.
-- [ ] I confirm that I have searched for a solution to this issue in the [FAQ](https://physton.github.io/sd-webui-prompt-all-in-one-assets/#/FAQ) and couldn't find a solution.
+- [ ] I confirm that I have searched for a solution to this issue in the [FAQ](https://physton.github.io/sd-webui-prompt-all-in-one-assets/FAQ.html) and couldn't find a solution.
 - [ ] I confirm that I have searched for this issue in the [Issues](https://github.com/Physton/sd-webui-prompt-all-in-one/issues) list (including closed ones) and couldn't find a solution.
-- [ ] I confirm that I have read the [Wiki](https://physton.github.io/sd-webui-prompt-all-in-one-assets/#/Installation) and couldn't find a solution.
+- [ ] I confirm that I have read the [Wiki](https://physton.github.io/sd-webui-prompt-all-in-one-assets/) and couldn't find a solution.
 
 **Describe the Issue**
 Please describe the problem you encountered here.
