@@ -400,7 +400,9 @@ export default {
         common.loadCSS('main.min.css', 'physton-prompt-main', true)
 
         const urlParams = new URLSearchParams(window.location.search);
-        const theme = urlParams.get("__theme")
+        let theme = urlParams.get("__theme") || 'dark'
+        // 如果不是 dark 和 light，默认设置为 dark
+        theme = ['dark', 'light'].includes(theme) ? theme : 'dark'
         if (!common.gradioApp().classList.contains(theme)) {
             common.gradioApp().classList.add(theme)
         }
