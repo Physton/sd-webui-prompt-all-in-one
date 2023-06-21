@@ -1,6 +1,6 @@
 ---
 name: Bug report
-about: Bug report
+about: ⚠️️If you don't use this template to provide bug feedback, I won't address your issue.
 title: "[Bug] "
 labels: ''
 assignees: ''
@@ -8,8 +8,6 @@ assignees: ''
 ---
 
 **Issue Feedback**
-
-Note: Any posts that do not follow this template will be closed immediately. I won't be able to address your issue if the information below is not provided.
 
 Please mark "x" inside the square brackets to indicate that you have read the following information.
 - [ ] I confirm that I have searched for a solution to this issue in the [FAQ](https://physton.github.io/sd-webui-prompt-all-in-one-assets/FAQ.html) and couldn't find a solution.
