@@ -40,6 +40,8 @@
                             :latest-version="latestVersion"
                             :is-latest-version="isLatestVersion"
                             @click:show-about="onShowAbout"
+                            :theme="theme"
+                            @click:switch-theme="onSwitchTheme"
             ></physton-prompt>
         </template>
         <translate-setting ref="translateSetting" v-model:language-code="languageCode"
@@ -254,6 +256,8 @@ export default {
             version: '',
             latestVersion: '',
             isLatestVersion: true,
+
+            theme: 'dark',
         }
     },
     watch: {
@@ -402,8 +406,9 @@ export default {
         let theme = urlParams.get("__theme") || 'dark'
         // 如果不是 dark 和 light，默认设置为 dark
         theme = ['dark', 'light'].includes(theme) ? theme : 'dark'
-        if (!common.gradioApp().classList.contains(theme)) {
-            common.gradioApp().classList.add(theme)
+        this.theme = theme
+        if (!common.gradioApp().classList.contains(this.theme)) {
+            common.gradioApp().classList.add(this.theme)
         }
 
         this.gradioAPI.getConfig().then(res => {
@@ -745,6 +750,26 @@ export default {
         },
         onShowAbout() {
             this.$refs.about.open()
+        },
+        onSwitchTheme() {
+            /*if (common.gradioApp().classList.contains(this.theme)) {
+                common.gradioApp().classList.remove(this.theme)
+            }*/
+            this.theme = this.theme === 'dark' ? 'light' : 'dark'
+            // 判断当前 url 是否有参数 __theme，如果有则替换，没有则添加
+            let currentUrl = window.location.href
+            let url = new URL(currentUrl)
+            let params = new URLSearchParams(url.search)
+            if (params.has('__theme')) {
+                params.set('__theme', this.theme);
+            } else {
+                params.append('__theme', this.theme);
+            }
+            let newUrl = url.origin + url.pathname + '?' + params.toString()
+            /*if (!common.gradioApp().classList.contains(this.theme)) {
+                common.gradioApp().classList.add(this.theme)
+            }*/
+            window.location.href = newUrl
         },
     },
 }

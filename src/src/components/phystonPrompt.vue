@@ -32,6 +32,11 @@
                                          @click="$emit('click:selectTheme', $event)">
                                         <icon-svg class="hover-scale-120" name="theme"/>
                                     </div>
+                                    <div class="extend-btn-item"
+                                         v-tooltip="getLang(theme === 'dark' ? 'switch_to_light_theme': 'switch_to_dark_theme')"
+                                         @click="$emit('click:switchTheme', $event)">
+                                        <icon-svg class="hover-scale-120" :name="theme === 'dark' ? 'sun': 'moon'"/>
+                                    </div>
                                     <div :class="['extend-btn-item', isLatestVersion ? '' : 'red-dot']" v-tooltip="getLang('about_desc')"
                                          @click="$emit('click:showAbout', $event)">
                                         <icon-svg class="hover-scale-120" name="about"/>
@@ -490,8 +495,12 @@ export default {
             type: Boolean,
             default: true,
         },
+        theme: {
+            type: String,
+            default: 'dark',
+        },
     },
-    emits: ['update:languageCode', 'update:autoTranslate', 'update:autoTranslateToEnglish', 'update:autoTranslateToLocal', 'update:autoRemoveSpace', 'update:autoRemoveLastComma', 'update:autoKeepWeightZero', 'update:autoKeepWeightOne', 'update:hideDefaultInput', 'update:hidePanel', 'update:enableTooltip', 'update:translateApi', 'click:translateApi', 'click:promptFormat', 'click:selectTheme', 'click:showAbout', 'click:selectLanguage', 'click:showHistory', 'click:showFavorite', 'refreshFavorites', 'click:showChatgpt'],
+    emits: ['update:languageCode', 'update:autoTranslate', 'update:autoTranslateToEnglish', 'update:autoTranslateToLocal', 'update:autoRemoveSpace', 'update:autoRemoveLastComma', 'update:autoKeepWeightZero', 'update:autoKeepWeightOne', 'update:hideDefaultInput', 'update:hidePanel', 'update:enableTooltip', 'update:translateApi', 'click:translateApi', 'click:promptFormat', 'click:selectTheme', 'click:switchTheme', 'click:showAbout', 'click:selectLanguage', 'click:showHistory', 'click:showFavorite', 'refreshFavorites', 'click:showChatgpt'],
     data() {
         return {
             prompt: '',

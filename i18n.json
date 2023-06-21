@@ -117,7 +117,9 @@
                 "version": "版本",
                 "unknown_version": "未知版本",
                 "has_new_version": "有新的版本，请及时更新",
-                "wiki_desc": "安装教程、功能详解、使用方法、常见问题等等，详见："
+                "wiki_desc": "安装教程、功能详解、使用方法、常见问题等等，详见：",
+                "switch_to_light_theme": "切换到浅色主题",
+                "switch_to_dark_theme": "切换到深色主题"
             }
         },
         {
@@ -236,7 +238,9 @@
                 "version": "版本",
                 "unknown_version": "未知版本",
                 "has_new_version": "有新的版本，請及時更新",
-                "wiki_desc": "安裝教程、功能詳解、使用方法、常見問題等等，詳見："
+                "wiki_desc": "安裝教程、功能詳解、使用方法、常見問題等等，詳見：",
+                "switch_to_light_theme": "切換到淺色主題",
+                "switch_to_dark_theme": "切換到深色主題"
             }
         },
         {
@@ -355,7 +359,9 @@
                 "version": "版本",
                 "unknown_version": "未知版本",
                 "has_new_version": "有新的版本，請及時更新",
-                "wiki_desc": "安裝教程、功能詳解、使用方法、常見問題等等，詳見："
+                "wiki_desc": "安裝教程、功能詳解、使用方法、常見問題等等，詳見：",
+                "switch_to_light_theme": "切換到淺色主題",
+                "switch_to_dark_theme": "切換到深色主題"
             }
         },
         {
@@ -474,7 +480,9 @@
                 "version": "Version",
                 "unknown_version": "Unknown Version",
                 "has_new_version": "There is a new version available, please update",
-                "wiki_desc": "Installation tutorial, detailed features, usage instructions, frequently asked questions, etc. See:"
+                "wiki_desc": "Installation tutorial, detailed features, usage instructions, frequently asked questions, etc. See:",
+                "switch_to_light_theme": "Switch to Light Theme",
+                "switch_to_dark_theme": "Switch to Dark Theme"
             }
         },
         {
@@ -604,7 +612,9 @@
                 "version": "الإصدار",
                 "unknown_version": "إصدار غير معروف",
                 "has_new_version": "هناك إصدار جديد متاح، يرجى التحديث في الوقت المناسب",
-                "wiki_desc": "دليل التثبيت، التفاصيل الكاملة للميزات، تعليمات الاستخدام، الأسئلة الشائعة، وما إلى ذلك. انظر:"
+                "wiki_desc": "دليل التثبيت، التفاصيل الكاملة للميزات، تعليمات الاستخدام، الأسئلة الشائعة، وما إلى ذلك. انظر:",
+                "switch_to_light_theme": "التبديل إلى النمط الفاتح",
+                "switch_to_dark_theme": "التبديل إلى النمط الداكن"
             }
         },
         {
@@ -822,7 +832,9 @@
                 "version": "Version",
                 "unknown_version": "Version inconnue",
                 "has_new_version": "Une nouvelle version est disponible, veuillez mettre à jour",
-                "wiki_desc": "Tutoriel d'installation, fonctionnalités détaillées, instructions d'utilisation, questions fréquentes, etc. Voir :"
+                "wiki_desc": "Tutoriel d'installation, fonctionnalités détaillées, instructions d'utilisation, questions fréquentes, etc. Voir :",
+                "switch_to_light_theme": "Passer au thème clair",
+                "switch_to_dark_theme": "Passer au thème sombre"
             }
         },
         {
@@ -955,7 +967,9 @@
                 "version": "Version",
                 "unknown_version": "Unbekannte Version",
                 "has_new_version": "Es ist eine neue Version verfügbar, bitte aktualisieren",
-                "wiki_desc": "Installationsanleitung, detaillierte Funktionen, Verwendungshinweise, häufig gestellte Fragen usw. Siehe:"
+                "wiki_desc": "Installationsanleitung, detaillierte Funktionen, Verwendungshinweise, häufig gestellte Fragen usw. Siehe:",
+                "switch_to_light_theme": "Zum hellen Thema wechseln",
+                "switch_to_dark_theme": "Zum dunklen Thema wechseln"
             }
         },
         {
@@ -1138,7 +1152,9 @@
                 "version": "Versione",
                 "unknown_version": "Versione sconosciuta",
                 "has_new_version": "È disponibile una nuova versione, si prega di aggiornare",
-                "wiki_desc": "Tutorial di installazione, funzionalità dettagliate, istruzioni per l'uso, domande frequenti, ecc. Vedi:"
+                "wiki_desc": "Tutorial di installazione, funzionalità dettagliate, istruzioni per l'uso, domande frequenti, ecc. Vedi:",
+                "switch_to_light_theme": "Passa al tema chiaro",
+                "switch_to_dark_theme": "Passa al tema scuro"
             }
         },
         {
@@ -1256,7 +1272,9 @@
                 "version": "バージョン",
                 "unknown_version": "不明のバージョン",
                 "has_new_version": "新しいバージョンがあります。更新してください",
-                "wiki_desc": "インストールチュートリアル、詳細な機能、使用方法、よくある質問などはこちらを参照してください："
+                "wiki_desc": "インストールチュートリアル、詳細な機能、使用方法、よくある質問などはこちらを参照してください：",
+                "switch_to_light_theme": "ライトテーマに切り替える",
+                "switch_to_dark_theme": "ダークテーマに切り替える"
             }
         },
         {
@@ -1399,7 +1417,9 @@
                 "version": "버전",
                 "unknown_version": "알 수 없는 버전",
                 "has_new_version": "새로운 버전이 있습니다. 업데이트하세요",
-                "wiki_desc": "설치 안내서, 자세한 기능, 사용 방법, 자주 묻는 질문 등은 다음을 참조하세요:"
+                "wiki_desc": "설치 안내서, 자세한 기능, 사용 방법, 자주 묻는 질문 등은 다음을 참조하세요:",
+                "switch_to_light_theme": "밝은 테마로 전환",
+                "switch_to_dark_theme": "어두운 테마로 전환"
             }
         },
         {
@@ -1632,7 +1652,9 @@
                 "version": "Versão",
                 "unknown_version": "Versão desconhecida",
                 "has_new_version": "Há uma nova versão disponível, por favor atualize",
-                "wiki_desc": "Tutorial de instalação, recursos detalhados, instruções de uso, perguntas frequentes, etc. Veja:"
+                "wiki_desc": "Tutorial de instalação, recursos detalhados, instruções de uso, perguntas frequentes, etc. Veja:",
+                "switch_to_light_theme": "Mudar para o tema claro",
+                "switch_to_dark_theme": "Mudar para o tema escuro"
             }
         },
         {
@@ -1765,7 +1787,9 @@
                 "version": "Версия",
                 "unknown_version": "Неизвестная версия",
                 "has_new_version": "Доступна новая версия, пожалуйста, обновитесь",
-                "wiki_desc": "Инструкция по установке, подробные функции, инструкции по использованию, часто задаваемые вопросы и т. д. Смотрите:"
+                "wiki_desc": "Инструкция по установке, подробные функции, инструкции по использованию, часто задаваемые вопросы и т. д. Смотрите:",
+                "switch_to_light_theme": "Переключиться на светлую тему",
+                "switch_to_dark_theme": "Переключиться на темную тему"
             }
         },
         {
@@ -1913,7 +1937,9 @@
                 "version": "Versión",
                 "unknown_version": "Versión desconocida",
                 "has_new_version": "Hay una nueva versión disponible, por favor actualiza",
-                "wiki_desc": "Tutorial de instalación, características detalladas, instrucciones de uso, preguntas frecuentes, etc. Ver:"
+                "wiki_desc": "Tutorial de instalación, características detalladas, instrucciones de uso, preguntas frecuentes, etc. Ver:",
+                "switch_to_light_theme": "Cambiar a tema claro",
+                "switch_to_dark_theme": "Cambiar a tema oscuro"
             }
         },
         {
