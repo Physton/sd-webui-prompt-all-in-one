@@ -82,8 +82,7 @@
                         :translate-apis="translateApis" :languages="languages"
                         @use="onUseChatgpt" />
         <about ref="about" v-model:language-code="languageCode"
-               :translate-apis="translateApis" :languages="languages"
-               :version="version" :latest-version="latestVersion" :is-latest-version="isLatestVersion" />
+               :translate-apis="translateApis" :languages="languages" />
 
         <div class="physton-paste-popup" v-if="showPastePopup" @click="closePastePopup">
             <div class="paste-popup-main" @click.stop>
@@ -548,11 +547,11 @@ export default {
 
                 this.handlePaste()
 
-                this.gradioAPI.getVersion().then(res => {
+                /*this.gradioAPI.getVersion().then(res => {
                     this.version = res.version
                     this.latestVersion = res.latest_version
                     this.isLatestVersion = res.version === res.latest_version
-                })
+                })*/
 
                 // todo: test
                 // this.$refs.about.open()
