@@ -583,6 +583,18 @@ export default {
             let value = this.textarea.value.trim()
             if (value === this.prompt.trim()) return
             let tags = common.splitTags(value)
+
+            let disabledTags = []
+            this.tags.forEach((tag, index) => {
+                if (tag.disabled) {
+                    disabledTags.push({tag, index})
+                }
+            })
+            disabledTags.forEach(({tag, index}) => {
+                // 插入到 tags 中
+                tags.splice(index, 0, tag.value)
+            })
+
             let indexes = []
             let oldTags = this.tags
             this.tags = []
