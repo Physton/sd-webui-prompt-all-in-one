@@ -126,8 +126,12 @@
                             "url": "https://www.bing.com/Translator"
                         },
                         {
-                            "title": "[github]translators",
+                            "title": "[github] translators",
                             "url": "https://github.com/UlionTse/translators"
+                        },
+                        {
+                            "title": "[prompt-all-in-one WIKI] Translation API Description / 翻译接口说明",
+                            "url": "https://physton.github.io/sd-webui-prompt-all-in-one-assets/TranslationApiConfiguration.html#translation-api-description"
                         }
                     ],
                     "config": [
@@ -287,8 +291,12 @@
                             "url": "https://translate.google.com/"
                         },
                         {
-                            "title": "[github]translators",
+                            "title": "[github] translators",
                             "url": "https://github.com/UlionTse/translators"
+                        },
+                        {
+                            "title": "[prompt-all-in-one WIKI] Translation API Description / 翻译接口说明",
+                            "url": "https://physton.github.io/sd-webui-prompt-all-in-one-assets/TranslationApiConfiguration.html#translation-api-description"
                         }
                     ],
                     "config": [
@@ -435,8 +443,12 @@
                             "url": "https://itranslate.com/webapp"
                         },
                         {
-                            "title": "[github]translators",
+                            "title": "[github] translators",
                             "url": "https://github.com/UlionTse/translators"
+                        },
+                        {
+                            "title": "[prompt-all-in-one WIKI] Translation API Description / 翻译接口说明",
+                            "url": "https://physton.github.io/sd-webui-prompt-all-in-one-assets/TranslationApiConfiguration.html#translation-api-description"
                         }
                     ]
                 },
@@ -539,8 +551,12 @@
                             "url": "https://lingvanex.com/demo"
                         },
                         {
-                            "title": "[github]translators",
+                            "title": "[github] translators",
                             "url": "https://github.com/UlionTse/translators"
+                        },
+                        {
+                            "title": "[prompt-all-in-one WIKI] Translation API Description / 翻译接口说明",
+                            "url": "https://physton.github.io/sd-webui-prompt-all-in-one-assets/TranslationApiConfiguration.html#translation-api-description"
                         }
                     ]
                 },
@@ -646,8 +662,12 @@
                             "url": "https://www.modernmt.com/translate"
                         },
                         {
-                            "title": "[github]translators",
+                            "title": "[github] translators",
                             "url": "https://github.com/UlionTse/translators"
+                        },
+                        {
+                            "title": "[prompt-all-in-one WIKI] Translation API Description / 翻译接口说明",
+                            "url": "https://physton.github.io/sd-webui-prompt-all-in-one-assets/TranslationApiConfiguration.html#translation-api-description"
                         }
                     ]
                 },
@@ -720,8 +740,12 @@
                             "url": "https://www.systran.net/translate/"
                         },
                         {
-                            "title": "[github]translators",
+                            "title": "[github] translators",
                             "url": "https://github.com/UlionTse/translators"
+                        },
+                        {
+                            "title": "[prompt-all-in-one WIKI] Translation API Description / 翻译接口说明",
+                            "url": "https://physton.github.io/sd-webui-prompt-all-in-one-assets/TranslationApiConfiguration.html#translation-api-description"
                         }
                     ]
                 },
@@ -761,8 +785,12 @@
                             "url": "https://www.translate.com/machine-translation"
                         },
                         {
-                            "title": "[github]translators",
+                            "title": "[github] translators",
                             "url": "https://github.com/UlionTse/translators"
+                        },
+                        {
+                            "title": "[prompt-all-in-one WIKI] Translation API Description / 翻译接口说明",
+                            "url": "https://physton.github.io/sd-webui-prompt-all-in-one-assets/TranslationApiConfiguration.html#translation-api-description"
                         }
                     ]
                 },
@@ -798,8 +826,12 @@
                             "url": "https://translate.argosopentech.com/"
                         },
                         {
-                            "title": "[github]translators",
+                            "title": "[github] translators",
                             "url": "https://github.com/UlionTse/translators"
+                        },
+                        {
+                            "title": "[prompt-all-in-one WIKI] Translation API Description / 翻译接口说明",
+                            "url": "https://physton.github.io/sd-webui-prompt-all-in-one-assets/TranslationApiConfiguration.html#translation-api-description"
                         }
                     ]
                 },
@@ -833,8 +865,12 @@
                             "url": "https://papago.naver.com/"
                         },
                         {
-                            "title": "[github]translators",
+                            "title": "[github] translators",
                             "url": "https://github.com/UlionTse/translators"
+                        },
+                        {
+                            "title": "[prompt-all-in-one WIKI] Translation API Description / 翻译接口说明",
+                            "url": "https://physton.github.io/sd-webui-prompt-all-in-one-assets/TranslationApiConfiguration.html#translation-api-description"
                         }
                     ]
                 },
@@ -880,8 +916,12 @@
                             "url": "https://www.reverso.net/text-translation"
                         },
                         {
-                            "title": "[github]translators",
+                            "title": "[github] translators",
                             "url": "https://github.com/UlionTse/translators"
+                        },
+                        {
+                            "title": "[prompt-all-in-one WIKI] Translation API Description / 翻译接口说明",
+                            "url": "https://physton.github.io/sd-webui-prompt-all-in-one-assets/TranslationApiConfiguration.html#translation-api-description"
                         }
                     ]
                 },
@@ -913,8 +953,12 @@
                             "url": "https://translateme.network/"
                         },
                         {
-                            "title": "[github]translators",
+                            "title": "[github] translators",
                             "url": "https://github.com/UlionTse/translators"
+                        },
+                        {
+                            "title": "[prompt-all-in-one WIKI] Translation API Description / 翻译接口说明",
+                            "url": "https://physton.github.io/sd-webui-prompt-all-in-one-assets/TranslationApiConfiguration.html#translation-api-description"
                         }
                     ]
                 },
@@ -937,8 +981,12 @@
                             "url": "https://elia.eus/translator"
                         },
                         {
-                            "title": "[github]translators",
+                            "title": "[github] translators",
                             "url": "https://github.com/UlionTse/translators"
+                        },
+                        {
+                            "title": "[prompt-all-in-one WIKI] Translation API Description / 翻译接口说明",
+                            "url": "https://physton.github.io/sd-webui-prompt-all-in-one-assets/TranslationApiConfiguration.html#translation-api-description"
                         }
                     ]
                 },
@@ -961,8 +1009,12 @@
                             "url": "https://judic.io/en/translate"
                         },
                         {
-                            "title": "[github]translators",
+                            "title": "[github] translators",
                             "url": "https://github.com/UlionTse/translators"
+                        },
+                        {
+                            "title": "[prompt-all-in-one WIKI] Translation API Description / 翻译接口说明",
+                            "url": "https://physton.github.io/sd-webui-prompt-all-in-one-assets/TranslationApiConfiguration.html#translation-api-description"
                         }
                     ]
                 },
@@ -1074,8 +1126,12 @@
                             "url": "https://translate.alibaba.com/"
                         },
                         {
-                            "title": "[github]translators",
+                            "title": "[github] translators",
                             "url": "https://github.com/UlionTse/translators"
+                        },
+                        {
+                            "title": "[prompt-all-in-one WIKI] Translation API Description / 翻译接口说明",
+                            "url": "https://physton.github.io/sd-webui-prompt-all-in-one-assets/TranslationApiConfiguration.html#translation-api-description"
                         }
                     ]
                 },
@@ -1187,8 +1243,12 @@
                             "url": "https://fanyi.baidu.com/"
                         },
                         {
-                            "title": "[github]translators",
+                            "title": "[github] translators",
                             "url": "https://github.com/UlionTse/translators"
+                        },
+                        {
+                            "title": "[prompt-all-in-one WIKI] Translation API Description / 翻译接口说明",
+                            "url": "https://physton.github.io/sd-webui-prompt-all-in-one-assets/TranslationApiConfiguration.html#translation-api-description"
                         }
                     ]
                 },
@@ -1228,8 +1288,12 @@
                             "url": "https://fanyi.sogou.com/"
                         },
                         {
-                            "title": "[github]translators",
+                            "title": "[github] translators",
                             "url": "https://github.com/UlionTse/translators"
+                        },
+                        {
+                            "title": "[prompt-all-in-one WIKI] Translation API Description / 翻译接口说明",
+                            "url": "https://physton.github.io/sd-webui-prompt-all-in-one-assets/TranslationApiConfiguration.html#translation-api-description"
                         }
                     ]
                 },
@@ -1267,8 +1331,12 @@
                             "url": "https://transmart.qq.com/"
                         },
                         {
-                            "title": "[github]translators",
+                            "title": "[github] translators",
                             "url": "https://github.com/UlionTse/translators"
+                        },
+                        {
+                            "title": "[prompt-all-in-one WIKI] Translation API Description / 翻译接口说明",
+                            "url": "https://physton.github.io/sd-webui-prompt-all-in-one-assets/TranslationApiConfiguration.html#translation-api-description"
                         }
                     ]
                 },
@@ -1289,8 +1357,12 @@
                             "url": "https://ai.youdao.com/product-fanyi-text.s"
                         },
                         {
-                            "title": "[github]translators",
+                            "title": "[github] translators",
                             "url": "https://github.com/UlionTse/translators"
+                        },
+                        {
+                            "title": "[prompt-all-in-one WIKI] Translation API Description / 翻译接口说明",
+                            "url": "https://physton.github.io/sd-webui-prompt-all-in-one-assets/TranslationApiConfiguration.html#translation-api-description"
                         }
                     ]
                 },
@@ -1404,8 +1476,12 @@
                             "url": "https://www.iciba.com/fy"
                         },
                         {
-                            "title": "[github]translators",
+                            "title": "[github] translators",
                             "url": "https://github.com/UlionTse/translators"
+                        },
+                        {
+                            "title": "[prompt-all-in-one WIKI] Translation API Description / 翻译接口说明",
+                            "url": "https://physton.github.io/sd-webui-prompt-all-in-one-assets/TranslationApiConfiguration.html#translation-api-description"
                         }
                     ]
                 },
@@ -1445,8 +1521,12 @@
                             "url": "https://www.cloudtranslation.com/#/translate"
                         },
                         {
-                            "title": "[github]translators",
+                            "title": "[github] translators",
                             "url": "https://github.com/UlionTse/translators"
+                        },
+                        {
+                            "title": "[prompt-all-in-one WIKI] Translation API Description / 翻译接口说明",
+                            "url": "https://physton.github.io/sd-webui-prompt-all-in-one-assets/TranslationApiConfiguration.html#translation-api-description"
                         }
                     ]
                 },
@@ -1470,14 +1550,18 @@
                             "url": "https://fanyi.caiyunapp.com/"
                         },
                         {
-                            "title": "[github]translators",
+                            "title": "[github] translators",
                             "url": "https://github.com/UlionTse/translators"
+                        },
+                        {
+                            "title": "[prompt-all-in-one WIKI] Translation API Description / 翻译接口说明",
+                            "url": "https://physton.github.io/sd-webui-prompt-all-in-one-assets/TranslationApiConfiguration.html#translation-api-description"
                         }
                     ]
                 },
                 {
                     "key": "myMemory_free",
-                    "name": "[Free] [builtin] MyMemory [5,000 chars/day]",
+                    "name": "[Free] [builtin] MyMemory ﹍﹍﹍﹍﹍﹍﹍ [5,000 chars/day]",
                     "concurrent": 999,
                     "support": {
                         "zh_CN": "zh-Hans",
@@ -1600,6 +1684,10 @@
                         {
                             "title": "MyMemory Usage Limits [5000 chars/day]",
                             "url": "https://mymemory.translated.net/doc/usagelimits.php"
+                        },
+                        {
+                            "title": "[prompt-all-in-one WIKI] Translation API Description / 翻译接口说明",
+                            "url": "https://physton.github.io/sd-webui-prompt-all-in-one-assets/TranslationApiConfiguration.html#translation-api-description"
                         }
                     ]
                 }
@@ -1610,7 +1698,7 @@
             "children": [
                 {
                     "key": "google",
-                    "name": "[ApiKey] Google [500,000 chars/month]",
+                    "name": "[ApiKey] Google ﹍﹍﹍﹍﹍﹍﹍ [500,000 chars/month]",
                     "concurrent": 10,
                     "support": {
                         "zh_CN": "zh-CN",
@@ -1722,6 +1810,10 @@
                         {
                             "title": "【中文】申请教程 by TTime",
                             "url": "https://ttime.timerecord.cn/pages/2448b0/"
+                        },
+                        {
+                            "title": "[prompt-all-in-one WIKI] Translation API Description / 翻译接口说明",
+                            "url": "https://physton.github.io/sd-webui-prompt-all-in-one-assets/TranslationApiConfiguration.html#translation-api-description"
                         }
                     ],
                     "config": [
@@ -1867,6 +1959,14 @@
                         {
                             "title": "【中文】申请教程 by Pot",
                             "url": "https://pot.pylogmon.com/docs/tutorial/api/openai"
+                        },
+                        {
+                            "title": "[prompt-all-in-one WIKI] Translation API Description / 翻译接口说明",
+                            "url": "https://physton.github.io/sd-webui-prompt-all-in-one-assets/TranslationApiConfiguration.html#translation-api-description"
+                        },
+                        {
+                            "title": "[prompt-all-in-one WIKI] Configure ChatGPT / 配置ChatGPT",
+                            "url": "https://physton.github.io/sd-webui-prompt-all-in-one-assets/UsingChatgptToGeneratePrompts.html#configure-chatgpt"
                         }
                     ],
                     "config": [
@@ -1907,7 +2007,7 @@
                 },
                 {
                     "key": "microsoft",
-                    "name": "[ApiKey] Microsoft [2,000,000 chars/month]",
+                    "name": "[ApiKey] Microsoft ﹍﹍﹍﹍﹍﹍﹍ [2,000,000 chars/month]",
                     "concurrent": 999,
                     "support": {
                         "zh_CN": "zh-Hans",
@@ -2032,6 +2132,10 @@
                         {
                             "title": "【中文】申请教程 by BobTranslate",
                             "url": "https://bobtranslate.com/service/translate/microsoft.html"
+                        },
+                        {
+                            "title": "[prompt-all-in-one WIKI] Translation API Description / 翻译接口说明",
+                            "url": "https://physton.github.io/sd-webui-prompt-all-in-one-assets/TranslationApiConfiguration.html#translation-api-description"
                         }
                     ],
                     "config": [
@@ -2050,7 +2154,7 @@
                 },
                 {
                     "key": "amazon",
-                    "name": "[ApiKey] Amazon [2,000,000 chars/month]",
+                    "name": "[ApiKey] Amazon ﹍﹍﹍﹍﹍﹍﹍ [2,000,000 chars/month]",
                     "concurrent": 999,
                     "support": {
                         "zh_CN": "zh",
@@ -2138,6 +2242,10 @@
                         {
                             "title": "【中文】申请教程 by BobTranslate",
                             "url": "https://bobtranslate.com/service/translate/amazon.html"
+                        },
+                        {
+                            "title": "[prompt-all-in-one WIKI] Translation API Description / 翻译接口说明",
+                            "url": "https://physton.github.io/sd-webui-prompt-all-in-one-assets/TranslationApiConfiguration.html#translation-api-description"
                         }
                     ],
                     "config": [
@@ -2191,7 +2299,7 @@
                 },
                 {
                     "key": "deepl",
-                    "name": "DeepL [500,000 chars/month]",
+                    "name": "[ApiKey] DeepL ﹍﹍﹍﹍﹍﹍﹍ [500,000 chars/month]",
                     "concurrent": 999,
                     "support": {
                         "bg_BG": "BG",
@@ -2246,6 +2354,10 @@
                         {
                             "title": "【中文】申请教程 by Pot",
                             "url": "https://pot.pylogmon.com/docs/tutorial/api/deepl"
+                        },
+                        {
+                            "title": "[prompt-all-in-one WIKI] Translation API Description / 翻译接口说明",
+                            "url": "https://physton.github.io/sd-webui-prompt-all-in-one-assets/TranslationApiConfiguration.html#translation-api-description"
                         }
                     ],
                     "config": [
@@ -2346,6 +2458,10 @@
                         {
                             "title": "[official] Creating API keys | Yandex Cloud - Documentation",
                             "url": "https://cloud.yandex.com/en/docs/iam/operations/api-key/create"
+                        },
+                        {
+                            "title": "[prompt-all-in-one WIKI] Translation API Description / 翻译接口说明",
+                            "url": "https://physton.github.io/sd-webui-prompt-all-in-one-assets/TranslationApiConfiguration.html#translation-api-description"
                         }
                     ],
                     "config": [
@@ -2358,7 +2474,7 @@
                 },
                 {
                     "key": "myMemory",
-                    "name": "[ApiKey] MyMemory [50,000 chars/day]",
+                    "name": "[ApiKey] MyMemory ﹍﹍﹍﹍﹍﹍﹍ [50,000 chars/day]",
                     "concurrent": 10,
                     "support": {
                         "zh_CN": "zh-Hans",
@@ -2473,6 +2589,10 @@
                         {
                             "title": "MyMemory: API key generator",
                             "url": "https://mymemory.translated.net/doc/keygen.php"
+                        },
+                        {
+                            "title": "[prompt-all-in-one WIKI] Translation API Description / 翻译接口说明",
+                            "url": "https://physton.github.io/sd-webui-prompt-all-in-one-assets/TranslationApiConfiguration.html#translation-api-description"
                         }
                     ],
                     "config": [
@@ -2485,7 +2605,7 @@
                 },
                 {
                     "key": "baidu",
-                    "name": "[ApiKey] Baidu / 百度翻译 [50,000 chars/month]",
+                    "name": "[ApiKey] Baidu / 百度翻译 ﹍﹍﹍﹍﹍﹍﹍ [50,000 chars/month]",
                     "concurrent": 1,
                     "support": {
                         "zh_CN": "zh",
@@ -2534,6 +2654,10 @@
                         {
                             "title": "【中文】申请教程 by Pot",
                             "url": "https://pot.pylogmon.com/docs/tutorial/api/baidu"
+                        },
+                        {
+                            "title": "[prompt-all-in-one WIKI] Translation API Description / 翻译接口说明",
+                            "url": "https://physton.github.io/sd-webui-prompt-all-in-one-assets/TranslationApiConfiguration.html#translation-api-description"
                         }
                     ],
                     "config": [
@@ -2551,7 +2675,7 @@
                 },
                 {
                     "key": "alibaba",
-                    "name": "[ApiKey] Alibaba / 阿里翻译 [1,000,000 chars/month]",
+                    "name": "[ApiKey] Alibaba / 阿里翻译 ﹍﹍﹍﹍﹍﹍﹍ [1,000,000 chars/month]",
                     "concurrent": 50,
                     "support": {
                         "zh_CN": "zh",
@@ -2666,6 +2790,10 @@
                         {
                             "title": "【中文】申请教程 by Pot",
                             "url": "https://pot.pylogmon.com/docs/tutorial/api/alibaba/"
+                        },
+                        {
+                            "title": "[prompt-all-in-one WIKI] Translation API Description / 翻译接口说明",
+                            "url": "https://physton.github.io/sd-webui-prompt-all-in-one-assets/TranslationApiConfiguration.html#translation-api-description"
                         }
                     ],
                     "config": [
@@ -2822,6 +2950,10 @@
                         {
                             "title": "【中文】申请教程 by TTime",
                             "url": "https://ttime.timerecord.cn/pages/43750c/"
+                        },
+                        {
+                            "title": "[prompt-all-in-one WIKI] Translation API Description / 翻译接口说明",
+                            "url": "https://physton.github.io/sd-webui-prompt-all-in-one-assets/TranslationApiConfiguration.html#translation-api-description"
                         }
                     ],
                     "config": [
@@ -2839,7 +2971,7 @@
                 },
                 {
                     "key": "tencent",
-                    "name": "[ApiKey] Tencent / 腾讯翻译 [5,000,000 chars/month]",
+                    "name": "[ApiKey] Tencent / 腾讯翻译 ﹍﹍﹍﹍﹍﹍﹍ [5,000,000 chars/month]",
                     "concurrent": 5,
                     "support": {
                         "zh_CN": "zh",
@@ -2878,6 +3010,10 @@
                         {
                             "title": "【中文】申请教程 by Pot",
                             "url": "https://pot.pylogmon.com/docs/tutorial/api/tencent"
+                        },
+                        {
+                            "title": "[prompt-all-in-one WIKI] Translation API Description / 翻译接口说明",
+                            "url": "https://physton.github.io/sd-webui-prompt-all-in-one-assets/TranslationApiConfiguration.html#translation-api-description"
                         }
                     ],
                     "config": [
@@ -3036,6 +3172,10 @@
                         {
                             "title": "【中文】申请教程 by TTime",
                             "url": "https://ttime.timerecord.cn/pages/cc1bc7/"
+                        },
+                        {
+                            "title": "[prompt-all-in-one WIKI] Translation API Description / 翻译接口说明",
+                            "url": "https://physton.github.io/sd-webui-prompt-all-in-one-assets/TranslationApiConfiguration.html#translation-api-description"
                         }
                     ],
                     "config": [
@@ -3048,7 +3188,7 @@
                 },
                 {
                     "key": "caiyun",
-                    "name": "[ApiKey] Caiyun / 彩云小译 [1,000,000 chars/month]",
+                    "name": "[ApiKey] Caiyun / 彩云小译 ﹍﹍﹍﹍﹍﹍﹍ [1,000,000 chars/month]",
                     "concurrent": 999,
                     "support": {
                         "zh_CN": "zh",
@@ -3072,6 +3212,10 @@
                         {
                             "title": "【中文】申请教程 by Pot",
                             "url": "https://pot.pylogmon.com/docs/tutorial/api/caiyun"
+                        },
+                        {
+                            "title": "[prompt-all-in-one WIKI] Translation API Description / 翻译接口说明",
+                            "url": "https://physton.github.io/sd-webui-prompt-all-in-one-assets/TranslationApiConfiguration.html#translation-api-description"
                         }
                     ],
                     "config": [
@@ -3084,7 +3228,7 @@
                 },
                 {
                     "key": "volcengine",
-                    "name": "[ApiKey] VolcEngine / 火山翻译 [2,000,000 chars/month]",
+                    "name": "[ApiKey] VolcEngine / 火山翻译 ﹍﹍﹍﹍﹍﹍﹍ [2,000,000 chars/month]",
                     "concurrent": 10,
                     "support": {
                         "zh_CN": "zh",
@@ -3185,6 +3329,10 @@
                         {
                             "title": "【中文】申请教程 by Pot",
                             "url": "https://pot.pylogmon.com/docs/tutorial/api/volcengine"
+                        },
+                        {
+                            "title": "[prompt-all-in-one WIKI] Translation API Description / 翻译接口说明",
+                            "url": "https://physton.github.io/sd-webui-prompt-all-in-one-assets/TranslationApiConfiguration.html#translation-api-description"
                         }
                     ],
                     "config": [
