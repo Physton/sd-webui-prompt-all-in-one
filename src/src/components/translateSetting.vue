@@ -8,7 +8,7 @@
                         <select v-model="apiKey">
                             <optgroup v-for="typeGroup in supportApi" :key="typeGroup.type"
                                       :label="getLang(typeGroup.type)">
-                                <option v-for="item in typeGroup.children" :key="item.key" :value="item.key">
+                                <option v-for="item in typeGroup.children" :key="item.key" :value="item.key" :disabled="item.disabled">
                                     {{ getItemName(item) }}
                                 </option>
                             </optgroup>
@@ -137,7 +137,10 @@ Github: Physton/sd-webui-prompt-all-in-one`,
             if (!this.translateApis || this.translateApis.length <= 0) return []
             let api = JSON.parse(JSON.stringify(this.translateApis))
             api.forEach(group => {
-                group.children = group.children.filter(item => item.support[this.languageCode])
+                // group.children = group.children.filter(item => item.support[this.languageCode])
+                group.children.forEach(item => {
+                    item.disabled = !item.support[this.languageCode]
+                })
             })
             return api
         },

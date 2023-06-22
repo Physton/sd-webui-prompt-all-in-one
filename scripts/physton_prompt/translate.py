@@ -14,6 +14,7 @@ from scripts.physton_prompt.translator.translators_translator import Translators
 from scripts.physton_prompt.translator.yandex_translator import YandexTranslator
 from scripts.physton_prompt.translator.youdao_translator import YoudaoTranslator
 from scripts.physton_prompt.translator.mymemory_translator import MyMemoryTranslator
+from scripts.physton_prompt.translator.niutrans_translator import NiutransTranslator
 
 caches = {}
 
@@ -98,6 +99,8 @@ def translate(text, from_lang, to_lang, api, api_config=None):
             translator = TencentTranslator()
         elif api == 'myMemory_free' or api == 'myMemory':
             translator = MyMemoryTranslator()
+        elif api == 'niutrans':
+            translator = NiutransTranslator()
         elif 'type' in find and find['type'] == 'translators':
             translator = TranslatorsTranslator(api)
             translator.set_translator(find['translator'])

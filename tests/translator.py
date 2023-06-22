@@ -17,6 +17,7 @@ from scripts.physton_prompt.translator.tencent_translator import TencentTranslat
 from scripts.physton_prompt.translator.translators_translator import TranslatorsTranslator
 from scripts.physton_prompt.translator.yandex_translator import YandexTranslator
 from scripts.physton_prompt.translator.mymemory_translator import MyMemoryTranslator
+from scripts.physton_prompt.translator.niutrans_translator import NiutransTranslator
 
 from scripts.physton_prompt.translate import translate
 from scripts.physton_prompt.get_i18n import get_i18n
@@ -129,6 +130,13 @@ def test_mymemory():
     print(translate(text, 'en_US', 'zh_TW', 'myMemory_free', api_config))
     print(translate(texts, 'en_US', 'zh_CN', 'myMemory_free', api_config))
 
+def test_niutrans():
+    api_config = {
+        'api_key': os.getenv('NIUTRANS_API_KEY')
+    }
+    print(translate(text, 'en_US', 'zh_TW', 'niutrans', api_config))
+    print(translate(texts, 'en_US', 'zh_CN', 'niutrans', api_config))
+
 def test_languages():
     i18n = get_i18n()
     languages = []
@@ -142,4 +150,4 @@ def test_languages():
         print(translate(text, 'en_US', lang, 'myMemory_free'))
         pass
 
-test_mymemory()
+test_niutrans()
