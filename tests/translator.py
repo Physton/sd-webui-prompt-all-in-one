@@ -144,6 +144,15 @@ def test_caiyun():
     print(translate(text, 'en_US', 'zh_CN', 'caiyun', api_config))
     print(translate(texts, 'en_US', 'zh_CN', 'caiyun', api_config))
 
+
+def test_volcengine():
+    api_config = {
+        'access_key_id': os.getenv('VOLCENGINE_ACCESS_KEY_ID'),
+        'access_key_secret': os.getenv('VOLCENGINE_ACCESS_KEY_SECRET'),
+    }
+    print(translate(text, 'en_US', 'zh_TW', 'volcengine', api_config))
+    print(translate(texts, 'en_US', 'zh_TW', 'volcengine', api_config))
+
 def test_languages():
     i18n = get_i18n()
     languages = []
@@ -157,4 +166,4 @@ def test_languages():
         print(translate(text, 'en_US', lang, 'myMemory_free'))
         pass
 
-test_caiyun()
+test_volcengine()

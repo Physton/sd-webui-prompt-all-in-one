@@ -3081,6 +3081,136 @@
                             "type": "input"
                         }
                     ]
+                },
+                {
+                    "key": "volcengine",
+                    "name": "[ApiKey] VolcEngine / 火山翻译 [2,000,000 chars/month]",
+                    "concurrent": 10,
+                    "support": {
+                        "zh_CN": "zh",
+                        "zh_HK": "zh-Hant",
+                        "zh_TW": "zh-Hant",
+                        "en_US": "en",
+                        "en_GB": "en",
+                        "af_ZA": "af",
+                        "sq_AL": "sq",
+                        "am_ET": "am",
+                        "ar_SA": "ar",
+                        "hy_AM": "hy",
+                        "az_Latn_AZ": "az",
+                        "bn_BD": "bn",
+                        "ba_RU": "ba",
+                        "bs_Latn_BA": "bs",
+                        "bg_BG": "bg",
+                        "ca_ES": "ca",
+                        "hr_HR": "hr",
+                        "cs_CZ": "cs",
+                        "da_DK": "da",
+                        "nl_NL": "nl",
+                        "et_EE": "et",
+                        "fj_FJ": "fj",
+                        "fi_FI": "fi",
+                        "fr_FR": "fr",
+                        "fr_CA": "fr",
+                        "gl_ES": "gl",
+                        "ka_GE": "ka",
+                        "de_DE": "de",
+                        "el_GR": "el",
+                        "gu_IN": "gu",
+                        "ht_HT": "ht",
+                        "he_IL": "he",
+                        "hi_IN": "hi",
+                        "id_ID": "id",
+                        "iu_CA": "iu",
+                        "iu_Latn_CA": "iu",
+                        "it_IT": "it",
+                        "ja_JP": "ja",
+                        "kn_IN": "kn",
+                        "km_KH": "km",
+                        "ko_KR": "ko",
+                        "lo_LA": "lo",
+                        "lv_LV": "lv",
+                        "lt_LT": "lt",
+                        "mk_MK": "mk",
+                        "ms_Latn_MY": "ms",
+                        "ml_IN": "ml",
+                        "mr_IN": "mr",
+                        "mn_Cyrl_MN": "mn",
+                        "mn_Mong_CN": "mn",
+                        "my_MM": "my",
+                        "no_NO": "no",
+                        "fa_IR": "fa",
+                        "pl_PL": "pl",
+                        "pt_BR": "pt",
+                        "pt_PT": "pt",
+                        "pa_Guru_IN": "pa",
+                        "ro_RO": "ro",
+                        "ru_RU": "ru",
+                        "sm_Latn_WS": "sm",
+                        "sr_Cyrl_RS": "sr",
+                        "sr_Latn_RS": "sr",
+                        "sk_SK": "sk",
+                        "sl_SI": "sl",
+                        "so_SO": "so",
+                        "es_ES": "es",
+                        "sw_KE": "sw",
+                        "sv_SE": "sv",
+                        "ty_PF": "ty",
+                        "ta_IN": "ta",
+                        "tt_Latn_RU": "tt",
+                        "te_IN": "te",
+                        "th_TH": "th",
+                        "ti_ET": "ti",
+                        "to_TO": "to",
+                        "tr_TR": "tr",
+                        "uk_UA": "uk",
+                        "ur_PK": "ur",
+                        "vi_VN": "vi",
+                        "cy_GB": "cy",
+                        "zu_ZA": "zu"
+                    },
+                    "help": [
+                        {
+                            "title": "[official] 火山翻译",
+                            "url": "https://www.volcengine.com/docs/4640/130872"
+                        },
+                        {
+                            "title": "【中文】申请教程 by BobTranslate",
+                            "url": "https://bobtranslate.com/service/translate/volcengine.html"
+                        },
+                        {
+                            "title": "【中文】申请教程 by TTime",
+                            "url": "https://ttime.timerecord.cn/pages/5f5d10/"
+                        },
+                        {
+                            "title": "【中文】申请教程 by Pot",
+                            "url": "https://pot.pylogmon.com/docs/tutorial/api/volcengine"
+                        }
+                    ],
+                    "config": [
+                        {
+                            "key": "access_key_id",
+                            "title": "Access Key ID",
+                            "type": "input"
+                        },
+                        {
+                            "key": "access_key_secret",
+                            "title": "Secret Access Key",
+                            "type": "input"
+                        },
+                        {
+                            "key": "region",
+                            "title": "Region",
+                            "type": "select",
+                            "default": "cn-north-1",
+                            "options": [
+                                "cn-beijing",
+                                "cn-shanghai",
+                                "cn-guangzhou",
+                                "cn-north-1"
+                            ]
+                        }
+                    ]
                 }
             ]
         }
