@@ -2920,7 +2920,7 @@
                 },
                 {
                     "key": "niutrans",
-                    "name": "[ApiKey] Niutrans / 小牛翻译 [200,000 chars/day]",
+                    "name": "[ApiKey] Niutrans / 小牛翻译",
                     "concurrent": 40,
                     "support": {
                         "zh_CN": "zh",
@@ -3042,6 +3042,42 @@
                         {
                             "key": "api_key",
                             "title": "API Key",
+                            "type": "input"
+                        }
+                    ]
+                },
+                {
+                    "key": "caiyun",
+                    "name": "[ApiKey] Caiyun / 彩云小译 [1,000,000 chars/month]",
+                    "concurrent": 999,
+                    "support": {
+                        "zh_CN": "zh",
+                        "en_US": "en",
+                        "en_GB": "en",
+                        "ja_JP": "ja"
+                    },
+                    "help": [
+                        {
+                            "title": "[official] 彩云小译",
+                            "url": "https://docs.caiyunapp.com/blog/2018/09/03/lingocloud-api/"
+                        },
+                        {
+                            "title": "【中文】申请教程 by BobTranslate",
+                            "url": "https://bobtranslate.com/service/translate/caiyun.html"
+                        },
+                        {
+                            "title": "【中文】申请教程 by TTime",
+                            "url": "https://ttime.timerecord.cn/pages/52d78a/"
+                        },
+                        {
+                            "title": "【中文】申请教程 by Pot",
+                            "url": "https://pot.pylogmon.com/docs/tutorial/api/caiyun"
+                        }
+                    ],
+                    "config": [
+                        {
+                            "key": "token",
+                            "title": "Token",
                             "type": "input"
                         }
                     ]

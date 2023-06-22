@@ -137,6 +137,13 @@ def test_niutrans():
     print(translate(text, 'en_US', 'zh_TW', 'niutrans', api_config))
     print(translate(texts, 'en_US', 'zh_CN', 'niutrans', api_config))
 
+def test_caiyun():
+    api_config = {
+        'token': os.getenv('CAIYUN_TOKEN')
+    }
+    print(translate(text, 'en_US', 'zh_CN', 'caiyun', api_config))
+    print(translate(texts, 'en_US', 'zh_CN', 'caiyun', api_config))
+
 def test_languages():
     i18n = get_i18n()
     languages = []
@@ -150,4 +157,4 @@ def test_languages():
         print(translate(text, 'en_US', lang, 'myMemory_free'))
         pass
 
-test_niutrans()
+test_caiyun()

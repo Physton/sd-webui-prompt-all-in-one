@@ -28,6 +28,8 @@ class NiutransTranslator(BaseTranslator):
         if not response.text:
             raise Exception(get_lang('response_is_empty', {'0': 'niutrans'}))
         result = response.json()
+        if 'error_msg' in result:
+            raise Exception(result['error_msg'])
         if 'tgt_text' not in result:
             raise Exception(get_lang('no_response_from', {'0': 'niutrans'}))
         return result['tgt_text']
