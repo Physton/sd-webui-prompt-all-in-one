@@ -16,10 +16,12 @@ from scripts.physton_prompt.translator.alibaba_translator import AlibabaTranslat
 from scripts.physton_prompt.translator.tencent_translator import TencentTranslator
 from scripts.physton_prompt.translator.translators_translator import TranslatorsTranslator
 from scripts.physton_prompt.translator.yandex_translator import YandexTranslator
+from scripts.physton_prompt.translator.mymemory_translator import MyMemoryTranslator
 
 from scripts.physton_prompt.translate import translate
+from scripts.physton_prompt.get_i18n import get_i18n
 
-text = 'Hello World'
+text = 'project'
 texts = [
     'Hello World',
     '1 girl', '2 girl', '3 girl', '4 girl', '5 girl',
@@ -120,4 +122,24 @@ def test_yandex():
     print(translate(text, 'en_US', 'zh_CN', 'yandex', api_config))
     print(translate(texts, 'en_US', 'zh_CN', 'yandex', api_config))
 
-test_yandex()
+def test_mymemory():
+    api_config = {
+        'api_key': 'aa2f171466652c4c7f56',
+    }
+    print(translate(text, 'en_US', 'zh_TW', 'myMemory_free', api_config))
+    print(translate(texts, 'en_US', 'zh_CN', 'myMemory_free', api_config))
+
+def test_languages():
+    i18n = get_i18n()
+    languages = []
+    for item in i18n['languages']:
+        if item['code'] == 'en_US':
+            continue
+        languages.append(item['code'])
+
+    for lang in languages:
+        print(f'lang: {lang} => ')
+        print(translate(text, 'en_US', lang, 'myMemory_free'))
+        pass
+
+test_mymemory()

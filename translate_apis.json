@@ -6,7 +6,7 @@
             "children": [
                 {
                     "key": "bing_free",
-                    "name": "[Free] Microsoft Bing, America",
+                    "name": "[Free] [translators] Microsoft Bing",
                     "type": "translators",
                     "translator": "bing",
                     "concurrent": 999,
@@ -122,7 +122,7 @@
                     },
                     "help": [
                         {
-                            "title": "Bing - Microsoft, America",
+                            "title": "Bing - Microsoft",
                             "url": "https://www.bing.com/Translator"
                         },
                         {
@@ -185,7 +185,7 @@
                 },
                 {
                     "key": "google_free",
-                    "name": "[Free] Google, America",
+                    "name": "[Free] [translators] Google",
                     "type": "translators",
                     "translator": "google",
                     "concurrent": 999,
@@ -283,7 +283,7 @@
                     },
                     "help": [
                         {
-                            "title": "Google - Google, America",
+                            "title": "Google",
                             "url": "https://translate.google.com/"
                         },
                         {
@@ -345,7 +345,7 @@
                 },
                 {
                     "key": "itranslate_free",
-                    "name": "[Free] iTranslate, Austria",
+                    "name": "[Free] [translators] iTranslate",
                     "type": "translators",
                     "translator": "itranslate",
                     "concurrent": 999,
@@ -431,7 +431,7 @@
                     },
                     "help": [
                         {
-                            "title": "iTranslate - Itranslate, Austria",
+                            "title": "iTranslate",
                             "url": "https://itranslate.com/webapp"
                         },
                         {
@@ -442,7 +442,7 @@
                 },
                 {
                     "key": "lingvanex_free",
-                    "name": "[Free] Lingvanex, Cyprus",
+                    "name": "[Free] [translators] Lingvanex",
                     "type": "translators",
                     "translator": "lingvanex",
                     "concurrent": 999,
@@ -535,7 +535,7 @@
                     },
                     "help": [
                         {
-                            "title": "Lingvanex - Lingvanex, Cyprus",
+                            "title": "Lingvanex",
                             "url": "https://lingvanex.com/demo"
                         },
                         {
@@ -546,7 +546,7 @@
                 },
                 {
                     "key": "modernMt_free",
-                    "name": "[Free] ModernMt / Translated, Italy",
+                    "name": "[Free] [translators] ModernMt / Translated",
                     "type": "translators",
                     "translator": "modernMt",
                     "concurrent": 999,
@@ -642,7 +642,7 @@
                     },
                     "help": [
                         {
-                            "title": "ModernMt - Modernmt / Translated, Italy",
+                            "title": "Modernmt / Translated",
                             "url": "https://www.modernmt.com/translate"
                         },
                         {
@@ -653,7 +653,7 @@
                 },
                 {
                     "key": "sysTran_free",
-                    "name": "[Free] SysTran, France",
+                    "name": "[Free] [translators] SysTran",
                     "type": "translators",
                     "translator": "sysTran",
                     "concurrent": 999,
@@ -716,7 +716,7 @@
                     },
                     "help": [
                         {
-                            "title": "SysTran - SysTran, France",
+                            "title": "SysTran",
                             "url": "https://www.systran.net/translate/"
                         },
                         {
@@ -727,7 +727,7 @@
                 },
                 {
                     "key": "translateCom_free",
-                    "name": "[Free] TranslateCom, America",
+                    "name": "[Free] [translators] TranslateCom",
                     "type": "translators",
                     "translator": "translateCom",
                     "concurrent": 999,
@@ -757,7 +757,7 @@
                     },
                     "help": [
                         {
-                            "title": "TranslateCom - TranslateCom, America",
+                            "title": "TranslateCom",
                             "url": "https://www.translate.com/machine-translation"
                         },
                         {
@@ -768,7 +768,7 @@
                 },
                 {
                     "key": "argos_free",
-                    "name": "[Free] Argos / Libre, America",
+                    "name": "[Free] [translators] Argos / Libre",
                     "type": "translators",
                     "translator": "argos",
                     "concurrent": 999,
@@ -794,7 +794,7 @@
                     },
                     "help": [
                         {
-                            "title": "Argos - Argos / Libre, America",
+                            "title": "Argos / Libre",
                             "url": "https://translate.argosopentech.com/"
                         },
                         {
@@ -805,7 +805,7 @@
                 },
                 {
                     "key": "papago_free",
-                    "name": "[Free] Papago / Naver, South Korea",
+                    "name": "[Free] [translators] Papago / Naver",
                     "type": "translators",
                     "translator": "papago",
                     "concurrent": 999,
@@ -829,7 +829,7 @@
                     },
                     "help": [
                         {
-                            "title": "Papago - Naver, South Korea",
+                            "title": "Papago - Naver",
                             "url": "https://papago.naver.com/"
                         },
                         {
@@ -840,7 +840,7 @@
                 },
                 {
                     "key": "reverso_free",
-                    "name": "[Free] Reverso, France",
+                    "name": "[Free] [translators] Reverso",
                     "type": "translators",
                     "translator": "reverso",
                     "concurrent": 999,
@@ -876,7 +876,7 @@
                     },
                     "help": [
                         {
-                            "title": "Reverso - Reverso, France",
+                            "title": "Reverso",
                             "url": "https://www.reverso.net/text-translation"
                         },
                         {
@@ -887,7 +887,7 @@
                 },
                 {
                     "key": "translateMe_free",
-                    "name": "[Free] TranslateMe / Neosus, Lithuania",
+                    "name": "[Free] [translators] TranslateMe / Neosus",
                     "type": "translators",
                     "translator": "translateMe",
                     "concurrent": 999,
@@ -909,7 +909,7 @@
                     },
                     "help": [
                         {
-                            "title": "TranslateMe - TranslateMe / Neosus, Lithuania",
+                            "title": "TranslateMe / Neosus",
                             "url": "https://translateme.network/"
                         },
                         {
@@ -920,7 +920,7 @@
                 },
                 {
                     "key": "elia_free",
-                    "name": "[Free] Elia / Elhuyar, Spain",
+                    "name": "[Free] [translators] Elia / Elhuyar",
                     "type": "translators",
                     "translator": "elia",
                     "concurrent": 999,
@@ -933,7 +933,7 @@
                     },
                     "help": [
                         {
-                            "title": "Elia - Elhuyar, Spain",
+                            "title": "Elia - Elhuyar",
                             "url": "https://elia.eus/translator"
                         },
                         {
@@ -944,7 +944,7 @@
                 },
                 {
                     "key": "judic_free",
-                    "name": "[Free] Judic / CrossLang, Belgium",
+                    "name": "[Free] [translators] Judic / CrossLang",
                     "type": "translators",
                     "translator": "judic",
                     "concurrent": 999,
@@ -957,7 +957,7 @@
                     },
                     "help": [
                         {
-                            "title": "Judic - CrossLang, Belgium",
+                            "title": "Judic - CrossLang",
                             "url": "https://judic.io/en/translate"
                         },
                         {
@@ -968,7 +968,7 @@
                 },
                 {
                     "key": "alibaba_free",
-                    "name": "[Free] Alibaba / 阿里翻译, China",
+                    "name": "[Free] [translators] Alibaba / 阿里翻译",
                     "type": "translators",
                     "translator": "alibaba",
                     "concurrent": 999,
@@ -1070,7 +1070,7 @@
                     },
                     "help": [
                         {
-                            "title": "Alibaba/阿里翻译 - Alibaba, China",
+                            "title": "Alibaba/阿里翻译 - Alibaba",
                             "url": "https://translate.alibaba.com/"
                         },
                         {
@@ -1081,7 +1081,7 @@
                 },
                 {
                     "key": "baidu_free",
-                    "name": "[Free] Baidu / 百度翻译, China",
+                    "name": "[Free] [translators] Baidu / 百度翻译",
                     "type": "translators",
                     "translator": "baidu",
                     "concurrent": 1,
@@ -1183,7 +1183,7 @@
                     },
                     "help": [
                         {
-                            "title": "Baidu/百度翻译 - Baidu, China",
+                            "title": "Baidu/百度翻译 - Baidu",
                             "url": "https://fanyi.baidu.com/"
                         },
                         {
@@ -1194,7 +1194,7 @@
                 },
                 {
                     "key": "sogou_free",
-                    "name": "[Free] Sogou / 搜狗翻译, China",
+                    "name": "[Free] [translators] Sogou / 搜狗翻译",
                     "type": "translators",
                     "translator": "sogou",
                     "concurrent": 999,
@@ -1224,7 +1224,7 @@
                     },
                     "help": [
                         {
-                            "title": "Sogou/搜狗翻译 - Tencent, China",
+                            "title": "Sogou/搜狗翻译 - Tencent",
                             "url": "https://fanyi.sogou.com/"
                         },
                         {
@@ -1235,7 +1235,7 @@
                 },
                 {
                     "key": "qqTranSmart_free",
-                    "name": "[Free] QQTranSmart / 腾讯交互翻译, China",
+                    "name": "[Free] [translators] QQTranSmart / 腾讯交互翻译",
                     "type": "translators",
                     "translator": "qqTranSmart",
                     "concurrent": 999,
@@ -1263,7 +1263,7 @@
                     },
                     "help": [
                         {
-                            "title": "QQTranSmart/腾讯交互翻译 - Tencent, China",
+                            "title": "QQTranSmart/腾讯交互翻译 - Tencent",
                             "url": "https://transmart.qq.com/"
                         },
                         {
@@ -1274,7 +1274,7 @@
                 },
                 {
                     "key": "youdao_free",
-                    "name": "[Free] Youdao / 有道翻译, China",
+                    "name": "[Free] [translators] Youdao / 有道翻译",
                     "type": "translators",
                     "translator": "youdao",
                     "concurrent": 1,
@@ -1285,7 +1285,7 @@
                     },
                     "help": [
                         {
-                            "title": "Youdao/有道翻译 - NetEase, China",
+                            "title": "Youdao/有道翻译 - NetEase",
                             "url": "https://ai.youdao.com/product-fanyi-text.s"
                         },
                         {
@@ -1296,7 +1296,7 @@
                 },
                 {
                     "key": "iciba_free",
-                    "name": "[Free] Iciba / 爱词霸, China",
+                    "name": "[Free] [translators] Iciba / 爱词霸",
                     "type": "translators",
                     "translator": "iciba",
                     "concurrent": 999,
@@ -1400,7 +1400,7 @@
                     },
                     "help": [
                         {
-                            "title": "Iciba/爱词霸 - Kingsoft / Xiaomi, China",
+                            "title": "Iciba/爱词霸 - Kingsoft / Xiaomi",
                             "url": "https://www.iciba.com/fy"
                         },
                         {
@@ -1411,7 +1411,7 @@
                 },
                 {
                     "key": "cloudYi_free",
-                    "name": "[Free] CloudYi / 深圳云译, China",
+                    "name": "[Free] [translators] CloudYi / 深圳云译",
                     "type": "translators",
                     "translator": "cloudYi",
                     "concurrent": 999,
@@ -1441,7 +1441,7 @@
                     },
                     "help": [
                         {
-                            "title": "CloudYi/深圳云译 - Xiamen University / CloudTranslation, China",
+                            "title": "CloudYi/深圳云译 - Xiamen University / CloudTranslation",
                             "url": "https://www.cloudtranslation.com/#/translate"
                         },
                         {
@@ -1452,7 +1452,7 @@
                 },
                 {
                     "key": "caiyun_free",
-                    "name": "[Free] Caiyun / 彩云翻译, China",
+                    "name": "[Free] [translators] Caiyun / 彩云翻译",
                     "type": "translators",
                     "translator": "caiyun",
                     "concurrent": 999,
@@ -1466,12 +1466,140 @@
                     },
                     "help": [
                         {
-                            "title": "Caiyun/彩云翻译 - ColorfulClouds, China",
+                            "title": "Caiyun/彩云翻译 - ColorfulClouds",
                             "url": "https://fanyi.caiyunapp.com/"
                         },
                         {
                             "title": "[github]translators",
                             "url": "https://github.com/UlionTse/translators"
+                        }
+                    ]
+                },
+                {
+                    "key": "myMemory_free",
+                    "name": "[Free] [builtin] MyMemory [5,000 chars/day]",
+                    "concurrent": 999,
+                    "support": {
+                        "zh_CN": "zh-Hans",
+                        "zh_HK": "zh-yue",
+                        "zh_TW": "zh-Hant",
+                        "en_US": "en",
+                        "en_GB": "en",
+                        "af_ZA": "af",
+                        "sq_AL": "sq",
+                        "am_ET": "am",
+                        "ar_SA": "ar",
+                        "hy_AM": "hy",
+                        "as_IN": "as",
+                        "az_Latn_AZ": "az",
+                        "bn_BD": "bn",
+                        "ba_RU": "ba",
+                        "eu_ES": "eu",
+                        "bs_Latn_BA": "bs",
+                        "bg_BG": "bg",
+                        "ca_ES": "ca",
+                        "hr_HR": "hr",
+                        "cs_CZ": "cs",
+                        "da_DK": "da",
+                        "prs_AF": "prs",
+                        "dv_MV": "dv",
+                        "nl_NL": "nl",
+                        "et_EE": "et",
+                        "fo_FO": "fo",
+                        "fj_FJ": "fj",
+                        "fil_PH": "fil",
+                        "fi_FI": "fi",
+                        "fr_FR": "fr",
+                        "fr_CA": "fr-ca",
+                        "gl_ES": "gl",
+                        "ka_GE": "ka",
+                        "de_DE": "de",
+                        "el_GR": "el",
+                        "gu_IN": "gu",
+                        "ht_HT": "ht",
+                        "he_IL": "he",
+                        "hi_IN": "hi",
+                        "mww_Latn_US": "mww",
+                        "hu_HU": "hu",
+                        "is_IS": "is",
+                        "id_ID": "id",
+                        "ikt_CA": "ikt",
+                        "iu_CA": "iu",
+                        "iu_Latn_CA": "iu",
+                        "ga_IE": "ga",
+                        "it_IT": "it",
+                        "ja_JP": "ja",
+                        "kn_IN": "kn",
+                        "kk_KZ": "kk",
+                        "km_KH": "km",
+                        "ko_KR": "ko",
+                        "ku_Arab_IQ": "ku",
+                        "ku_Latn_TR": "kmr",
+                        "ky_KG": "ky",
+                        "lo_LA": "lo",
+                        "lv_LV": "lv",
+                        "lt_LT": "lt",
+                        "mk_MK": "mk",
+                        "mg_MG": "mg",
+                        "ms_Latn_MY": "ms",
+                        "ml_IN": "ml",
+                        "mt_MT": "mt",
+                        "mi_NZ": "mi",
+                        "mr_IN": "mr",
+                        "mn_Cyrl_MN": "mn",
+                        "mn_Mong_CN": "mn",
+                        "my_MM": "my",
+                        "ne_NP": "ne",
+                        "no_NO": "nb",
+                        "or_IN": "or",
+                        "ps_AF": "ps",
+                        "fa_IR": "fa",
+                        "pl_PL": "pl",
+                        "pt_BR": "pt-BR",
+                        "pt_PT": "pt-PT",
+                        "pa_Guru_IN": "pa",
+                        "otq_Latn_MX": "otq",
+                        "ro_RO": "ro",
+                        "ru_RU": "ru",
+                        "sm_Latn_WS": "sm",
+                        "sr_Cyrl_RS": "sr-Cyrl",
+                        "sr_Latn_RS": "sr-Latn",
+                        "sk_SK": "sk",
+                        "sl_SI": "sl",
+                        "so_SO": "so",
+                        "es_ES": "es",
+                        "sw_KE": "sw",
+                        "sv_SE": "sv",
+                        "ty_PF": "ty",
+                        "ta_IN": "ta",
+                        "tt_Latn_RU": "tt",
+                        "te_IN": "te",
+                        "th_TH": "th",
+                        "bo_CN": "bo",
+                        "ti_ET": "ti",
+                        "to_TO": "to",
+                        "tr_TR": "tr",
+                        "uk_UA": "uk",
+                        "ur_PK": "ur",
+                        "ug_Arab_CN": "ug",
+                        "uz_Latn_UZ": "uz",
+                        "vi_VN": "vi",
+                        "cy_GB": "cy",
+                        "yua_MX": "yua",
+                        "zu_ZA": "zu"
+                    },
+                    "help": [
+                        {
+                            "title": "MyMemory",
+                            "url": "https://mymemory.translated.net/"
+                        },
+                        {
+                            "title": "MyMemory API Documentation",
+                            "url": "https://mymemory.translated.net/doc/spec.php"
+                        },
+                        {
+                            "title": "MyMemory Usage Limits [5000 chars/day]",
+                            "url": "https://mymemory.translated.net/doc/usagelimits.php"
                         }
                     ]
                 }
@@ -1482,7 +1610,7 @@
             "children": [
                 {
                     "key": "google",
-                    "name": "[ApiKey] Google",
+                    "name": "[ApiKey] Google [500,000 chars/month]",
                     "concurrent": 10,
                     "support": {
                         "zh_CN": "zh-CN",
@@ -1735,6 +1863,10 @@
                         {
                             "title": "【中文】申请教程 by TTime",
                             "url": "https://ttime.timerecord.cn/pages/bc2a83/"
+                        },
+                        {
+                            "title": "【中文】申请教程 by Pot",
+                            "url": "https://pot.pylogmon.com/docs/tutorial/api/openai"
                         }
                     ],
                     "config": [
@@ -1775,7 +1907,7 @@
                 },
                 {
                     "key": "microsoft",
-                    "name": "[ApiKey] Microsoft",
+                    "name": "[ApiKey] Microsoft [2,000,000 chars/month]",
                     "concurrent": 999,
                     "support": {
                         "zh_CN": "zh-Hans",
@@ -1918,7 +2050,7 @@
                 },
                 {
                     "key": "amazon",
-                    "name": "[ApiKey] Amazon",
+                    "name": "[ApiKey] Amazon [2,000,000 chars/month]",
                     "concurrent": 999,
                     "support": {
                         "zh_CN": "zh",
@@ -2059,7 +2191,7 @@
                 },
                 {
                     "key": "deepl",
-                    "name": "DeepL",
+                    "name": "DeepL [500,000 chars/month]",
                     "concurrent": 999,
                     "support": {
                         "bg_BG": "BG",
@@ -2110,6 +2242,10 @@
                         {
                             "title": "【中文】申请教程 by TTime",
                             "url": "https://ttime.timerecord.cn/pages/5216d6/"
+                        },
+                        {
+                            "title": "【中文】申请教程 by Pot",
+                            "url": "https://pot.pylogmon.com/docs/tutorial/api/deepl"
                         }
                     ],
                     "config": [
@@ -2221,8 +2357,135 @@
                     ]
                 },
                 {
+                    "key": "myMemory",
+                    "name": "[ApiKey] MyMemory [50,000 chars/day]",
+                    "concurrent": 10,
+                    "support": {
+                        "zh_CN": "zh-Hans",
+                        "zh_HK": "zh-yue",
+                        "zh_TW": "zh-Hant",
+                        "en_US": "en",
+                        "en_GB": "en",
+                        "af_ZA": "af",
+                        "sq_AL": "sq",
+                        "am_ET": "am",
+                        "ar_SA": "ar",
+                        "hy_AM": "hy",
+                        "as_IN": "as",
+                        "az_Latn_AZ": "az",
+                        "bn_BD": "bn",
+                        "ba_RU": "ba",
+                        "eu_ES": "eu",
+                        "bs_Latn_BA": "bs",
+                        "bg_BG": "bg",
+                        "ca_ES": "ca",
+                        "hr_HR": "hr",
+                        "cs_CZ": "cs",
+                        "da_DK": "da",
+                        "prs_AF": "prs",
+                        "dv_MV": "dv",
+                        "nl_NL": "nl",
+                        "et_EE": "et",
+                        "fo_FO": "fo",
+                        "fj_FJ": "fj",
+                        "fil_PH": "fil",
+                        "fi_FI": "fi",
+                        "fr_FR": "fr",
+                        "fr_CA": "fr-ca",
+                        "gl_ES": "gl",
+                        "ka_GE": "ka",
+                        "de_DE": "de",
+                        "el_GR": "el",
+                        "gu_IN": "gu",
+                        "ht_HT": "ht",
+                        "he_IL": "he",
+                        "hi_IN": "hi",
+                        "mww_Latn_US": "mww",
+                        "hu_HU": "hu",
+                        "is_IS": "is",
+                        "id_ID": "id",
+                        "ikt_CA": "ikt",
+                        "iu_CA": "iu",
+                        "iu_Latn_CA": "iu",
+                        "ga_IE": "ga",
+                        "it_IT": "it",
+                        "ja_JP": "ja",
+                        "kn_IN": "kn",
+                        "kk_KZ": "kk",
+                        "km_KH": "km",
+                        "ko_KR": "ko",
+                        "ku_Arab_IQ": "ku",
+                        "ku_Latn_TR": "kmr",
+                        "ky_KG": "ky",
+                        "lo_LA": "lo",
+                        "lv_LV": "lv",
+                        "lt_LT": "lt",
+                        "mk_MK": "mk",
+                        "mg_MG": "mg",
+                        "ms_Latn_MY": "ms",
+                        "ml_IN": "ml",
+                        "mt_MT": "mt",
+                        "mi_NZ": "mi",
+                        "mr_IN": "mr",
+                        "mn_Cyrl_MN": "mn",
+                        "mn_Mong_CN": "mn",
+                        "my_MM": "my",
+                        "ne_NP": "ne",
+                        "no_NO": "nb",
+                        "or_IN": "or",
+                        "ps_AF": "ps",
+                        "fa_IR": "fa",
+                        "pl_PL": "pl",
+                        "pt_BR": "pt-BR",
+                        "pt_PT": "pt-PT",
+                        "pa_Guru_IN": "pa",
+                        "otq_Latn_MX": "otq",
+                        "ro_RO": "ro",
+                        "ru_RU": "ru",
+                        "sm_Latn_WS": "sm",
+                        "sr_Cyrl_RS": "sr-Cyrl",
+                        "sr_Latn_RS": "sr-Latn",
+                        "sk_SK": "sk",
+                        "sl_SI": "sl",
+                        "so_SO": "so",
+                        "es_ES": "es",
+                        "sw_KE": "sw",
+                        "sv_SE": "sv",
+                        "ty_PF": "ty",
+                        "ta_IN": "ta",
+                        "tt_Latn_RU": "tt",
+                        "te_IN": "te",
+                        "th_TH": "th",
+                        "bo_CN": "bo",
+                        "ti_ET": "ti",
+                        "to_TO": "to",
+                        "tr_TR": "tr",
+                        "uk_UA": "uk",
+                        "ur_PK": "ur",
+                        "ug_Arab_CN": "ug",
+                        "uz_Latn_UZ": "uz",
+                        "vi_VN": "vi",
+                        "cy_GB": "cy",
+                        "yua_MX": "yua",
+                        "zu_ZA": "zu"
+                    },
+                    "help": [
+                        {
+                            "title": "MyMemory: API key generator",
+                            "url": "https://mymemory.translated.net/doc/keygen.php"
+                        }
+                    ],
+                    "config": [
+                        {
+                            "key": "api_key",
+                            "title": "API Key",
+                            "type": "input"
+                        }
+                    ]
+                },
+                {
                     "key": "baidu",
-                    "name": "[ApiKey] Baidu / 百度翻译",
+                    "name": "[ApiKey] Baidu / 百度翻译 [50,000 chars/month]",
                     "concurrent": 1,
                     "support": {
                         "zh_CN": "zh",
@@ -2267,6 +2530,10 @@
                         {
                             "title": "【中文】申请教程 by TTime",
                             "url": "https://ttime.timerecord.cn/pages/4596af/"
+                        },
+                        {
+                            "title": "【中文】申请教程 by Pot",
+                            "url": "https://pot.pylogmon.com/docs/tutorial/api/baidu"
                         }
                     ],
                     "config": [
@@ -2284,7 +2551,7 @@
                 },
                 {
                     "key": "alibaba",
-                    "name": "[ApiKey] Alibaba / 阿里翻译",
+                    "name": "[ApiKey] Alibaba / 阿里翻译 [1,000,000 chars/month]",
                     "concurrent": 50,
                     "support": {
                         "zh_CN": "zh",
@@ -2395,6 +2662,10 @@
                         {
                             "title": "【中文】申请教程 by TTime",
                             "url": "https://ttime.timerecord.cn/pages/635309/"
+                        },
+                        {
+                            "title": "【中文】申请教程 by Pot",
+                            "url": "https://pot.pylogmon.com/docs/tutorial/api/alibaba/"
                         }
                     ],
                     "config": [
@@ -2568,7 +2839,7 @@
                 },
                 {
                     "key": "tencent",
-                    "name": "[ApiKey] Tencent / 腾讯翻译",
+                    "name": "[ApiKey] Tencent / 腾讯翻译 [5,000,000 chars/month]",
                     "concurrent": 5,
                     "support": {
                         "zh_CN": "zh",
@@ -2603,6 +2874,10 @@
                         {
                             "title": "【中文】申请教程 by TTime",
                             "url": "https://ttime.timerecord.cn/pages/e2d1b5/"
+                        },
+                        {
+                            "title": "【中文】申请教程 by Pot",
+                            "url": "https://pot.pylogmon.com/docs/tutorial/api/tencent"
                         }
                     ],
                     "config": [
