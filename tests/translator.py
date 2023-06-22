@@ -124,7 +124,7 @@ def test_yandex():
 
 def test_mymemory():
     api_config = {
-        'api_key': 'aa2f171466652c4c7f56',
+        'api_key': os.getenv('MYMEMORY_API_KEY'),
     }
     print(translate(text, 'en_US', 'zh_TW', 'myMemory_free', api_config))
     print(translate(texts, 'en_US', 'zh_CN', 'myMemory_free', api_config))
