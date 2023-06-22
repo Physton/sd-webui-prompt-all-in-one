@@ -1,115 +1,620 @@
-语种代号    语种中文名
-zh    中文(简体)
-zh-Hant    中文(繁体)
-tn    札那语
-vi    越南语
-iu    伊努克提图特语
-it    意大利语
-id    印尼语
-hi    印地语
-en    英语
-ho    希里莫图语
-he    希伯来语
-es    西班牙语
-el    现代希腊语
-uk    乌克兰语
-ur    乌尔都语
-tk    土库曼语
-tr    土耳其语
-ti    提格里尼亚语
-ty    塔希提语
-tl    他加禄语
-to    汤加语
-th    泰语
-ta    泰米尔语
-te    泰卢固语
-sl    斯洛文尼亚语
-sk    斯洛伐克语
-ss    史瓦帝语
-eo    世界语
-sm    萨摩亚语
-sg    桑戈语
-st    塞索托语
-sv    瑞典语
-ja    日语
-tw    契维语
-qu    奇楚瓦语
-pt    葡萄牙语
-pa    旁遮普语
-no    挪威语
-nb    挪威布克莫尔语
-nr    南恩德贝勒语
-my    缅甸语
-bn    孟加拉语
-mn    蒙古语
-mh    马绍尔语
-mk    马其顿语
-ml    马拉亚拉姆语
-mr    马拉提语
-ms    马来语
-lu    卢巴卡丹加语
-ro    罗马尼亚语
-lt    立陶宛语
-lv    拉脱维亚语
-lo    老挝语
-kj    宽亚玛语
-hr    克罗地亚语
-kn    坎纳达语
-ki    基库尤语
-cs    捷克语
-ca    加泰隆语
-nl    荷兰语
-ko    韩语
-ht    海地克里奥尔语
-gu    古吉拉特语
-ka    格鲁吉亚语
-kl    格陵兰语
-km    高棉语
-lg    干达语
-kg    刚果语
-fi    芬兰语
-fj    斐济语
-fr    法语
-ru    俄语
-ng    恩敦加语
-de    德语
-tt    鞑靼语
-da    丹麦语
-ts    聪加语
-cv    楚瓦什语
-fa    波斯语
-bs    波斯尼亚语
-pl    波兰语
-bi    比斯拉玛语
-nd    北恩德贝勒语
-ba    巴什基尔语
-bg    保加利亚语
-az    阿塞拜疆语
-ar    阿拉伯语
-af    阿非利堪斯语
-sq    阿尔巴尼亚语
-ab    阿布哈兹语
-os    奥塞梯语
-ee    埃维语
-et    爱沙尼亚语
-ay    艾马拉语
-lzh    中文（文言文）
-am    阿姆哈拉语
-ckb    中库尔德语
-cy    威尔士语
-gl    加利西亚语
-ha    豪萨语
-hy    亚美尼亚语
-ig    伊博语
-kmr    北库尔德语
-ln    林加拉语
-nso    北索托语
-ny    齐切瓦语
-om    奥洛莫语
-sn    绍纳语
-so    索马里语
-sr    塞尔维亚语
-sw    斯瓦希里语
-xh    科萨语
-yo    约鲁巴语
-zu    祖鲁语
+[
+    {
+        "key": "deepl_free",
+        "name": "[Free] DeepL, Germany",
+        "type": "translators",
+        "translator": "deepl",
+        "support": {
+            "bg_BG": "bg",
+            "cs_CZ": "cs",
+            "da_DK": "da",
+            "de_DE": "de",
+            "el_GR": "el",
+            "en_GB": "en",
+            "en_US": "en",
+            "es_ES": "es",
+            "et_EE": "et",
+            "fi_FI": "fi",
+            "fr_FR": "fr",
+            "hu_HU": "hu",
+            "id_ID": "id",
+            "it_IT": "it",
+            "ja_JP": "ja",
+            "ko_KR": "ko",
+            "lt_LT": "lt",
+            "lv_LV": "lv",
+            "no_NO": "nb",
+            "nl_NL": "nl",
+            "pl_PL": "pl",
+            "pt_BR": "pt",
+            "pt_PT": "pt",
+            "ro_RO": "ro",
+            "ru_RU": "ru",
+            "sk_SK": "sk",
+            "sl_SI": "sl",
+            "sv_SE": "sv",
+            "tr_TR": "tr",
+            "uk_UA": "uk",
+            "zh_CN": "zh"
+        },
+        "help": [
+            {
+                "title": "DeepL - Deepl, Germany",
+                "url": "https://www.deepl.com/translator"
+            },
+            {
+                "title": "[github]translators",
+                "url": "https://github.com/UlionTse/translators"
+            }
+        ]
+    },
+    {
+        "key": "myMemory_free",
+        "name": "[Free] MyMemory, Italy",
+        "type": "translators",
+        "translator": "myMemory",
+        "support": {
+            "zh_CN": "zh-CN",
+            "zh_HK": "zh-TW",
+            "zh_TW": "zh-TW",
+            "en_US": "en-GB",
+            "en_GB": "en-GB",
+            "af_ZA": "af-ZA",
+            "sq_AL": "sq-AL",
+            "am_ET": "am-ET",
+            "ar_SA": "ar-SA",
+            "hy_AM": "hy-AM",
+            "as_IN": false,
+            "az_Latn_AZ": "az-AZ",
+            "bn_BD": "bn-IN",
+            "ba_RU": false,
+            "eu_ES": "eu-ES",
+            "bs_Latn_BA": "bs-BA",
+            "bg_BG": "bg-BG",
+            "ca_ES": "ca-ES",
+            "hr_HR": "hr-HR",
+            "cs_CZ": "cs-CZ",
+            "da_DK": "da-DK",
+            "prs_AF": false,
+            "dv_MV": "dv-MV",
+            "nl_NL": "nl-NL",
+            "et_EE": "et-EE",
+            "fo_FO": "fo-FO",
+            "fj_FJ": false,
+            "fil_PH": false,
+            "fi_FI": "fi-FI",
+            "fr_FR": "fr-FR",
+            "fr_CA": "fr-FR",
+            "gl_ES": "gl-ES",
+            "ka_GE": "ka-GE",
+            "de_DE": "de-DE",
+            "el_GR": "el-GR",
+            "gu_IN": "gu-IN",
+            "ht_HT": "ht-HT",
+            "he_IL": "he-IL",
+            "hi_IN": "hi-IN",
+            "mww_Latn_US": false,
+            "hu_HU": "hu-HU",
+            "is_IS": "is-IS",
+            "id_ID": "id-ID",
+            "ikt_CA": false,
+            "iu_CA": false,
+            "iu_Latn_CA": false,
+            "ga_IE": "ga-IE",
+            "it_IT": "it-IT",
+            "ja_JP": "ja-JP",
+            "kn_IN": "kn-IN",
+            "kk_KZ": "kk-KZ",
+            "km_KH": "km-KM",
+            "tlh_Latn": false,
+            "tlh_Piqd": false,
+            "ko_KR": "ko-KR",
+            "ku_Arab_IQ": "ckb-IQ",
+            "ku_Latn_TR": "ku-TR",
+            "ky_KG": "ky-KG",
+            "lo_LA": "lo-LA",
+            "lv_LV": "lv-LV",
+            "lt_LT": "lt-LT",
+            "mk_MK": "mk-MK",
+            "mg_MG": "mg-MG",
+            "ms_Latn_MY": "ms-MY",
+            "ml_IN": false,
+            "mt_MT": "mt-MT",
+            "mi_NZ": "mi-NZ",
+            "mr_IN": false,
+            "mn_Cyrl_MN": "mn-MN",
+            "mn_Mong_CN": "mn-MN",
+            "my_MM": "my-MM",
+            "ne_NP": "ne-NP",
+            "no_NO": "no-NO",
+            "or_IN": false,
+            "ps_AF": "ps-PK",
+            "fa_IR": "fa-IR",
+            "pl_PL": "pl-PL",
+            "pt_BR": "pt-PT",
+            "pt_PT": "pt-PT",
+            "pa_Guru_IN": "pa-IN",
+            "otq_Latn_MX": false,
+            "ro_RO": "ro-RO",
+            "ru_RU": "ru-RU",
+            "sm_Latn_WS": "sm-WS",
+            "sr_Cyrl_RS": "sr-RS",
+            "sr_Latn_RS": "sr-RS",
+            "sk_SK": "sk-SK",
+            "sl_SI": "sl-SI",
+            "so_SO": "so-SO",
+            "es_ES": "es-ES",
+            "sw_KE": "sw-SZ",
+            "sv_SE": "sv-SE",
+            "ty_PF": false,
+            "ta_IN": "ta-LK",
+            "tt_Latn_RU": false,
+            "te_IN": "te-IN",
+            "th_TH": "th-TH",
+            "bo_CN": "bo-CN",
+            "ti_ET": "ti-TI",
+            "to_TO": "to-TO",
+            "tr_TR": "tr-TR",
+            "uk_UA": "uk-UA",
+            "ur_PK": "ur-PK",
+            "ug_Arab_CN": false,
+            "uz_Latn_UZ": "uz-UZ",
+            "vi_VN": "vi-VN",
+            "cy_GB": "cy-GB",
+            "yua_MX": false,
+            "zu_ZA": "zu-ZA"
+        },
+        "help": [
+            {
+                "title": "MyMemory - Translated, Italy",
+                "url": "https://mymemory.translated.net/"
+            },
+            {
+                "title": "[github]translators",
+                "url": "https://github.com/UlionTse/translators"
+            }
+        ]
+    },
+    {
+        "key": "yandex_free",
+        "name": "[Free] Yandex, Russia",
+        "type": "translators",
+        "translator": "yandex",
+        "support": {
+            "zh_CN": "zh",
+            "zh_HK": false,
+            "zh_TW": false,
+            "en_US": "en",
+            "en_GB": "en",
+            "af_ZA": "af",
+            "sq_AL": "sq",
+            "am_ET": "am",
+            "ar_SA": "ar",
+            "hy_AM": "hy",
+            "as_IN": false,
+            "az_Latn_AZ": "az",
+            "bn_BD": "bn",
+            "ba_RU": "ba",
+            "eu_ES": "eu",
+            "bs_Latn_BA": "bs",
+            "bg_BG": "bg",
+            "ca_ES": "ca",
+            "hr_HR": "hr",
+            "cs_CZ": "cs",
+            "da_DK": "da",
+            "prs_AF": false,
+            "dv_MV": false,
+            "nl_NL": "nl",
+            "et_EE": "et",
+            "fo_FO": false,
+            "fj_FJ": false,
+            "fil_PH": false,
+            "fi_FI": "fi",
+            "fr_FR": "fr",
+            "fr_CA": false,
+            "gl_ES": "gl",
+            "ka_GE": "ka",
+            "de_DE": "de",
+            "el_GR": "el",
+            "gu_IN": "gu",
+            "ht_HT": "ht",
+            "he_IL": "he",
+            "hi_IN": "hi",
+            "mww_Latn_US": false,
+            "hu_HU": "hu",
+            "is_IS": "is",
+            "id_ID": "id",
+            "ikt_CA": false,
+            "iu_CA": false,
+            "iu_Latn_CA": false,
+            "ga_IE": "ga",
+            "it_IT": "it",
+            "ja_JP": "ja",
+            "kn_IN": "kn",
+            "kk_KZ": "kk",
+            "km_KH": "km",
+            "tlh_Latn": false,
+            "tlh_Piqd": false,
+            "ko_KR": "ko",
+            "ku_Arab_IQ": false,
+            "ku_Latn_TR": false,
+            "ky_KG": "ky",
+            "lo_LA": "lo",
+            "lv_LV": "lv",
+            "lt_LT": "lt",
+            "mk_MK": "mk",
+            "mg_MG": "mg",
+            "ms_Latn_MY": "ms",
+            "ml_IN": "ml",
+            "mt_MT": "mt",
+            "mi_NZ": "mi",
+            "mr_IN": "mr",
+            "mn_Cyrl_MN": "mn",
+            "mn_Mong_CN": "mn",
+            "my_MM": "my",
+            "ne_NP": "ne",
+            "no_NO": "no",
+            "or_IN": false,
+            "ps_AF": false,
+            "fa_IR": "fa",
+            "pl_PL": "pl",
+            "pt_BR": "pt-BR",
+            "pt_PT": "pt",
+            "pa_Guru_IN": "pa",
+            "otq_Latn_MX": false,
+            "ro_RO": "ro",
+            "ru_RU": "ru",
+            "sm_Latn_WS": false,
+            "sr_Cyrl_RS": "sr",
+            "sr_Latn_RS": "sr-Latn",
+            "sk_SK": "sk",
+            "sl_SI": "sl",
+            "so_SO": false,
+            "es_ES": "es",
+            "sw_KE": "sw",
+            "sv_SE": "sv",
+            "ty_PF": false,
+            "ta_IN": "ta",
+            "tt_Latn_RU": "tt",
+            "te_IN": "te",
+            "th_TH": "th",
+            "bo_CN": false,
+            "ti_ET": false,
+            "to_TO": false,
+            "tr_TR": "tr",
+            "uk_UA": "uk",
+            "ur_PK": "ur",
+            "ug_Arab_CN": false,
+            "uz_Latn_UZ": "uz",
+            "vi_VN": "vi",
+            "cy_GB": "cy",
+            "yua_MX": false,
+            "zu_ZA": "zu"
+        },
+        "help": [
+            {
+                "title": "Yandex - Yandex, Russia",
+                "url": "https://translate.yandex.com/"
+            },
+            {
+                "title": "[github]translators",
+                "url": "https://github.com/UlionTse/translators"
+            }
+        ]
+    },
+    {
+        "key": "niutrans_free",
+        "name": "[Free] Niutrans / 小牛翻译, China",
+        "type": "translators",
+        "translator": "niutrans",
+        "support": {
+            "zh_CN": "zh",
+            "zh_HK": "cht",
+            "zh_TW": "cht",
+            "en_US": "en",
+            "en_GB": "en",
+            "af_ZA": "af",
+            "sq_AL": "sq",
+            "am_ET": "am",
+            "ar_SA": "ar",
+            "hy_AM": "hy",
+            "as_IN": false,
+            "az_Latn_AZ": "az",
+            "bn_BD": "bn",
+            "ba_RU": "ba",
+            "eu_ES": "eu",
+            "bs_Latn_BA": "bs",
+            "bg_BG": "bg",
+            "ca_ES": "ca",
+            "hr_HR": "hr",
+            "cs_CZ": "cs",
+            "da_DK": "da",
+            "prs_AF": false,
+            "dv_MV": "dv",
+            "nl_NL": "nl",
+            "et_EE": "et",
+            "fo_FO": "fo",
+            "fj_FJ": "fj",
+            "fil_PH": "fil",
+            "fi_FI": "fi",
+            "fr_FR": "fr",
+            "fr_CA": "fr",
+            "gl_ES": "gl",
+            "ka_GE": "ka",
+            "de_DE": "de",
+            "el_GR": "el",
+            "gu_IN": "gu",
+            "ht_HT": "ht",
+            "he_IL": "he",
+            "hi_IN": "hi",
+            "mww_Latn_US": "mww",
+            "hu_HU": "hu",
+            "is_IS": "is",
+            "id_ID": "id",
+            "ikt_CA": false,
+            "iu_CA": false,
+            "iu_Latn_CA": false,
+            "ga_IE": "ga",
+            "it_IT": "it",
+            "ja_JP": "ja",
+            "kn_IN": "kn",
+            "kk_KZ": "kk",
+            "km_KH": "km",
+            "tlh_Latn": false,
+            "tlh_Piqd": false,
+            "ko_KR": "ko",
+            "ku_Arab_IQ": "ku",
+            "ku_Latn_TR": false,
+            "ky_KG": "ky",
+            "lo_LA": "lo",
+            "lv_LV": "lv",
+            "lt_LT": "lt",
+            "mk_MK": "mk",
+            "mg_MG": "mg",
+            "ms_Latn_MY": "ms",
+            "ml_IN": "ml",
+            "mt_MT": "mt",
+            "mi_NZ": "mi",
+            "mr_IN": "mr",
+            "mn_Cyrl_MN": "mn",
+            "mn_Mong_CN": "mn",
+            "my_MM": "my",
+            "ne_NP": "ne",
+            "no_NO": "no",
+            "or_IN": "or",
+            "ps_AF": "ps",
+            "fa_IR": "fa",
+            "pl_PL": "pl",
+            "pt_BR": "pt",
+            "pt_PT": "pt",
+            "pa_Guru_IN": "pa",
+            "otq_Latn_MX": "otq",
+            "ro_RO": "ro",
+            "ru_RU": "ru",
+            "sm_Latn_WS": "sm",
+            "sr_Cyrl_RS": "sr",
+            "sr_Latn_RS": "sr",
+            "sk_SK": "sk",
+            "sl_SI": "sl",
+            "so_SO": "so",
+            "es_ES": "es",
+            "sw_KE": "sw",
+            "sv_SE": "sv",
+            "ty_PF": "ty",
+            "ta_IN": "ta",
+            "tt_Latn_RU": "tt",
+            "te_IN": "te",
+            "th_TH": "th",
+            "bo_CN": false,
+            "ti_ET": "ti",
+            "to_TO": "to",
+            "tr_TR": "tr",
+            "uk_UA": "uk",
+            "ur_PK": "ur",
+            "ug_Arab_CN": false,
+            "uz_Latn_UZ": "uz",
+            "vi_VN": "vi",
+            "cy_GB": "cy",
+            "yua_MX": "yua",
+            "zu_ZA": "zu"
+        },
+        "help": [
+            {
+                "title": "Niutrans/小牛翻译 - Northeastern University / Niutrans, China",
+                "url": "https://niutrans.com/trans"
+            },
+            {
+                "title": "[github]translators",
+                "url": "https://github.com/UlionTse/translators"
+            }
+        ]
+    },
+    {
+        "key": "qqFanyi_free",
+        "name": "[Free] QQFanyi / 腾讯翻译君, China",
+        "type": "translators",
+        "translator": "qqFanyi",
+        "support": {
+            "zh_CN": "zh",
+            "fr_FR": "fr",
+            "es_ES": "es",
+            "it_IT": "it",
+            "de_DE": "de",
+            "tr_TR": "tr",
+            "ru_RU": "ru",
+            "pt_PT": "pt",
+            "vi_VN": "vi",
+            "id_ID": "id",
+            "th_TH": "th",
+            "ms_Latn_MY": "ms",
+            "ar_SA": "ar",
+            "hi_IN": "hi"
+        },
+        "help": [
+            {
+                "title": "QQFanyi/腾讯翻译君 - Tencent, China",
+                "url": "https://fanyi.qq.com/"
+            },
+            {
+                "title": "[github]translators",
+                "url": "https://github.com/UlionTse/translators"
+            }
+        ]
+    },
+    {
+        "key": "volcEngine_free",
+        "name": "[Free] VolcEngine / 火山翻译, China",
+        "type": "translators",
+        "translator": "volcEngine",
+        "support": {
+            "zh_CN": "zh",
+            "zh_HK": "zh-Hant",
+            "zh_TW": "zh-Hant",
+            "en_US": "en",
+            "en_GB": "en",
+            "af_ZA": "af",
+            "sq_AL": "sq",
+            "am_ET": "am",
+            "ar_SA": "ar",
+            "hy_AM": "hy",
+            "as_IN": false,
+            "az_Latn_AZ": "az",
+            "bn_BD": "bn",
+            "ba_RU": "ba",
+            "eu_ES": false,
+            "bs_Latn_BA": "bs",
+            "bg_BG": "bg",
+            "ca_ES": "ca",
+            "hr_HR": "hr",
+            "cs_CZ": "cs",
+            "da_DK": "da",
+            "prs_AF": false,
+            "dv_MV": false,
+            "nl_NL": "nl",
+            "et_EE": "et",
+            "fo_FO": false,
+            "fj_FJ": "fj",
+            "fil_PH": false,
+            "fi_FI": "fi",
+            "fr_FR": "fr",
+            "fr_CA": "fr",
+            "gl_ES": "gl",
+            "ka_GE": "ka",
+            "de_DE": "de",
+            "el_GR": "el",
+            "gu_IN": "gu",
+            "ht_HT": "ht",
+            "he_IL": "he",
+            "hi_IN": "hi",
+            "mww_Latn_US": false,
+            "hu_HU": "hu",
+            "is_IS": false,
+            "id_ID": "id",
+            "ikt_CA": false,
+            "iu_CA": "iu",
+            "iu_Latn_CA": "iu",
+            "ga_IE": false,
+            "it_IT": "it",
+            "ja_JP": "ja",
+            "kn_IN": "kn",
+            "kk_KZ": false,
+            "km_KH": "km",
+            "tlh_Latn": false,
+            "tlh_Piqd": false,
+            "ko_KR": "ko",
+            "ku_Arab_IQ": false,
+            "ku_Latn_TR": "kmr",
+            "ky_KG": false,
+            "lo_LA": "lo",
+            "lv_LV": "lv",
+            "lt_LT": "lt",
+            "mk_MK": "mk",
+            "mg_MG": false,
+            "ms_Latn_MY": "ms",
+            "ml_IN": "ml",
+            "mt_MT": false,
+            "mi_NZ": false,
+            "mr_IN": "mr",
+            "mn_Cyrl_MN": "mn",
+            "mn_Mong_CN": "mn",
+            "my_MM": "my",
+            "ne_NP": false,
+            "no_NO": "no",
+            "or_IN": false,
+            "ps_AF": false,
+            "fa_IR": "fa",
+            "pl_PL": "pl",
+            "pt_BR": "pt",
+            "pt_PT": "pt",
+            "pa_Guru_IN": "pa",
+            "otq_Latn_MX": false,
+            "ro_RO": "ro",
+            "ru_RU": "ru",
+            "sm_Latn_WS": "sm",
+            "sr_Cyrl_RS": "sr",
+            "sr_Latn_RS": "sr",
+            "sk_SK": "sk",
+            "sl_SI": "sl",
+            "so_SO": "so",
+            "es_ES": "es",
+            "sw_KE": "sw",
+            "sv_SE": "sv",
+            "ty_PF": "ty",
+            "ta_IN": "ta",
+            "tt_Latn_RU": "tt",
+            "te_IN": "te",
+            "th_TH": "th",
+            "bo_CN": false,
+            "ti_ET": "ti",
+            "to_TO": "to",
+            "tr_TR": "tr",
+            "uk_UA": "uk",
+            "ur_PK": "ur",
+            "ug_Arab_CN": false,
+            "uz_Latn_UZ": false,
+            "vi_VN": "vi",
+            "cy_GB": "cy",
+            "yua_MX": false,
+            "zu_ZA": "zu"
+        },
+        "help": [
+            {
+                "title": "VolcEngine/火山翻译 - Bytedance, China",
+                "url": "https://translate.volcengine.com/"
+            },
+            {
+                "title": "[github]translators",
+                "url": "https://github.com/UlionTse/translators"
+            }
+        ]
+    },
+    {
+        "key": "yeekit_free",
+        "name": "[Free] Yeekit / 中译语通, China",
+        "type": "translators",
+        "translator": "yeekit",
+        "support": {
+            "ar_SA": "ar",
+            "ru_RU": "ru",
+            "de_DE": "de",
+            "fr_FR": "fr",
+            "ko_KR": "ko",
+            "pt_BR": "pt",
+            "pt_PT": "pt",
+            "ja_JP": "ja",
+            "es_ES": "es",
+            "en_US": "en",
+            "zh_CN": "zh"
+        },
+        "help": [
+            {
+                "title": "Yeekit/中译语通 - CTC, China",
+                "url": "https://www.yeekit.com/site/translate"
+            },
+            {
+                "title": "[github]translators",
+                "url": "https://github.com/UlionTse/translators"
+            }
+        ]
+    }
+]
