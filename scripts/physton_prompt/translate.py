@@ -17,6 +17,7 @@ from scripts.physton_prompt.translator.mymemory_translator import MyMemoryTransl
 from scripts.physton_prompt.translator.niutrans_translator import NiutransTranslator
 from scripts.physton_prompt.translator.caiyun_translator import CaiyunTranslator
 from scripts.physton_prompt.translator.volcengine_translator import VolcengineTranslator
+from scripts.physton_prompt.translator.mbart50_translator import MBart50Translator
 
 caches = {}
 
@@ -107,6 +108,8 @@ def translate(text, from_lang, to_lang, api, api_config=None):
             translator = CaiyunTranslator()
         elif api == 'volcengine':
             translator = VolcengineTranslator()
+        elif api == 'mbart50':
+            translator = MBart50Translator()
         elif 'type' in find and find['type'] == 'translators':
             translator = TranslatorsTranslator(api)
             translator.set_translator(find['translator'])

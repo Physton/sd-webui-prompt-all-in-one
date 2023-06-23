@@ -174,4 +174,9 @@ export default class GradioAPI {
     async genOpenAI(messages, api_config) {
         return (await this.api.post("/gen_openai", {messages, api_config})).data
     }
+
+    async mbart50Initialize() {
+        const config = {timeout: 100000000000}
+        return (await this.api.post("/mbart50_initialize", {}, config)).data
+    }
 }

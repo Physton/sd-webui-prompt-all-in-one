@@ -38,6 +38,22 @@
                         </select>
                     </div>
                 </div>
+                <div class="setting-line" v-if="apiItem.key === 'mbart50'">
+                    <div class="line-title">{{ getLang('initialize') }}</div>
+                    <div class="line-content">
+                        <div class="hover-scale-120 test-btn" @click="onMbart50Initialize">
+                            <icon-svg v-if="mbart50Loading" name="loading"/>
+                            <template v-else>{{ getLang('initialize') }}</template>
+                        </div>
+                        <p class="common-red" v-html="getLang('download_model_desc')"></p>
+                    </div>
+                </div>
+                <div class="setting-line" v-if="apiItem.key === 'mbart50' && mbart50Message">
+                    <div class="line-title"></div>
+                    <div class="line-content">
+                        <div :class="[mbart50Success ? '' : 'common-red']">{{ mbart50Message }}</div>
+                    </div>
+                </div>
                 <div class="setting-line">
                     <div class="line-title">{{ getLang('translate_test') }}</div>
                     <div class="line-content">
@@ -63,6 +79,10 @@
                 <div class="setting-line">
                     <div class="line-title">TagComplete</div>
                     <div class="line-content">
+                        <div class="help-list">
+                            <div class="help-item">[?] <a href="https://physton.github.io/sd-webui-prompt-all-in-one-assets/TranslationApiConfiguration.html#tagcomplete-translation-enhancement" target="_blank">[Wiki] TagComplete Translation enhancement</a>
+                            </div>
+                        </div>
                         <div v-html="getLang('tagcomplete_translate_desc')"></div>
                         <div class="common-red" v-html="getLang('tagcomplete_translate_desc2')"></div>
                         <div class="line-row">
@@ -127,6 +147,10 @@ Github: Physton/sd-webui-prompt-all-in-one`,
             tagCompleteFileKey: '',
             tagCompleteResults: [],
             onlyCsvOnAutoValue: false,
+
+            mbart50Loading: false,
+            mbart50Success: false,
+            mbart50Message: '',
         }
     },
     computed: {
@@ -197,6 +221,8 @@ Github: Physton/sd-webui-prompt-all-in-one`,
             this.loading = false
             this.tagCompleteFileKey = this.tagCompleteFile
             this.onlyCsvOnAutoValue = this.onlyCsvOnAuto
+            this.mbart50Success = false
+            this.mbart50Message = ''
             this.refreshCSVs()
         },
         getItemName(item) {
@@ -305,6 +331,23 @@ Github: Physton/sd-webui-prompt-all-in-one`,
                 }).catch(err => {
                     this.$toastr.error(err)
                 })
+            })
+        },
+        onMbart50Initialize() {
+            this.mbart50Loading = true
+            this.mbart50Success = false
+            this.mbart50Message = ''
+            this.gradioAPI.mbart50Initialize().then(res => {
+                this.mbart50Loading = false
+                if (res.success) {
+                    this.mbart50Success = true
+                    this.mbart50Message = this.getLang('initialize_finished')
+                } else {
+                    this.mbart50Message = this.getLang('initialize_failed') + ': ' + res.message
+                }
+            }).catch(err => {
+                this.mbart50Loading = false
+                this.mbart50Message = err.message
             })
         },
     },

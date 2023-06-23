@@ -19,6 +19,7 @@ from scripts.physton_prompt.packages import get_packages_state, install_package
 from scripts.physton_prompt.gen_openai import gen_openai
 from scripts.physton_prompt.get_lang import get_lang
 from scripts.physton_prompt.get_version import get_git_commit_version, get_git_remote_versions, get_latest_version
+from scripts.physton_prompt.mbart50 import initialize as mbart50_initialize, translate as mbart50_translate
 
 try:
     from modules.shared import cmd_opts
@@ -343,6 +344,21 @@ def on_app_started(_: gr.Blocks, app: FastAPI):
             return {"success": True, 'result': gen_openai(data['messages'], data['api_config'])}
         except Exception as e:
             return {"success": False, 'message': str(e)}
+
+    @app.post("/physton_prompt/mbart50_initialize")
+    async def _mbart50_initialize(request: Request):
+        try:
+            mbart50_initialize(True)
+            return {"success": True}
+        except Exception as e:
+            return {"success": False, 'message': str(e)}
+
+    try:
+        translate_api = st.get('translateApi')
+        if translate_api == 'mbart50':
+            mbart50_initialize()
+    except Exception:
+        pass
 
 
 try:
