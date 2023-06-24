@@ -36,6 +36,7 @@
                         <select v-if="config.type == 'select'" v-model="config.value">
                             <option v-for="option in config.options" :value="option">{{ option }}</option>
                         </select>
+                        <div v-if="config.desc" v-html="config.desc"></div>
                     </div>
                 </div>
                 <div class="setting-line" v-if="apiItem.key === 'mbart50'">

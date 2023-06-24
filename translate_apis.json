@@ -348,6 +348,13 @@
                                 "IW",
                                 "FA"
                             ]
+                        },
+                        {
+                            "key": "host",
+                            "title": "Host",
+                            "desc": "<ul><li>https://translate.google.com</li><li>https://translate.amz.wang</li><li>...</li></ul>",
+                            "type": "input",
+                            "default": "https://translate.google.com"
                         }
                     ]
                 },
@@ -1856,6 +1863,7 @@
                         {
                             "key": "api_base",
                             "title": "API Base",
+                            "desc": "<ul><li>https://api.openai.com/v1</li><li>https://api.openai-proxy.com/v1</li><li>https://chatai.1rmb.tk/v1</li><li>...</li></ul>",
                             "type": "input",
                             "default": "https://api.openai.com/v1"
                         },
