@@ -1878,7 +1878,9 @@ class Caiyun(Tse):
 
     def decrypt(self, cipher_text: str) -> str:
         _ciphertext = ''.join(list(map(lambda k: self.decrypt_dictionary[k], cipher_text)))
+        ## modifyd
         return base64.b64decode(_ciphertext).decode('utf-8', errors='ignore')
+        ## modifyd
 
     @Tse.time_stat
     @Tse.check_query
