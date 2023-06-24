@@ -1,0 +1,6 @@
+requests
+PyExecJS
+lxml
+tqdm
+pathos
+cryptography
