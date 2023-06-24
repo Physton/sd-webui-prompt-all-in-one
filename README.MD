@@ -52,7 +52,7 @@ sd-webui-prompt-all-in-one is an extension based on [stable-diffusion-webui](htt
 2. `API KEY Required`: You need to apply for an API KEY on your own. The application methods for different interfaces will appear after switching to the corresponding interface. ⚠️⚠️⚠️ **Most of them are `free`!**
     > `需要API KEY`：需要自行申请API KEY。不同接口的申请方法，在切换到对应接口后，会出现对应的申请教程。⚠️⚠️⚠️**它们大部分都是 `免费` 的！**
 3. `Offline Translation`: During initialization, automatic download of language models is required. If your network environment is poor, it may not be able to complete the automatic download and initialization.
-  > `离线翻译`：在初始化时需要自动下载语言模型。如果你的网络环境不好，可能无法完成自动下载并初始化。
+   > `离线翻译`：在初始化时需要自动下载语言模型。如果你的网络环境不好，可能无法完成自动下载并初始化。
 
 ## Wiki / *文档*
 
