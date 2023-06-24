@@ -3325,6 +3325,10 @@
                             "url": "https://huggingface.co/facebook/mbart-large-50-many-to-one-mmt"
                         },
                         {
+                            "title": "[prompt-all-in-one Wiki] documentation / offline download / 说明文档 / 离线下载",
+                            "url": "https://physton.github.io/sd-webui-prompt-all-in-one-assets/OfflineTranslation.html#facebook-mbart-large-50-many-to-one-mmt"
+                        },
+                        {
                             "title": "[prompt-all-in-one Wiki] Translation API Description / 翻译接口说明",
                             "url": "https://physton.github.io/sd-webui-prompt-all-in-one-assets/TranslationApiConfiguration.html#translation-api-description"
                         }

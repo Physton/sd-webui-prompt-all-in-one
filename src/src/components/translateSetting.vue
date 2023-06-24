@@ -47,6 +47,7 @@
                             <template v-else>{{ getLang('initialize') }}</template>
                         </div>
                         <p class="common-red" v-html="getLang('download_model_desc')"></p>
+                        <p class="common-red" v-html="getLang('download_model_desc2')"></p>
                     </div>
                 </div>
                 <div class="setting-line" v-if="apiItem.key === 'mbart50' && mbart50Message">
