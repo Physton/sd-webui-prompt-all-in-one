@@ -403,12 +403,12 @@ export default {
         common.loadCSS('main.min.css', 'physton-prompt-main', true)
 
         const urlParams = new URLSearchParams(window.location.search);
-        let theme = urlParams.get("__theme") || 'dark'
-        // 如果不是 dark 和 light，默认设置为 dark
-        theme = ['dark', 'light'].includes(theme) ? theme : 'dark'
-        this.theme = theme
-        if (!common.gradioApp().classList.contains(this.theme)) {
-            common.gradioApp().classList.add(this.theme)
+        let theme = urlParams.get("__theme")
+        if (['dark', 'light'].includes(theme)) {
+            this.theme = theme
+            if (!common.gradioApp().classList.contains(this.theme)) {
+                common.gradioApp().classList.add(this.theme)
+            }
         }
 
         this.gradioAPI.getConfig().then(res => {
@@ -500,7 +500,11 @@ export default {
                 localStorage.setItem('phystonPromptEnableTooltip', this.enableTooltip ? 'true' : 'false')
                 this.updateTippyState()
                 if (data.translateApi !== null) {
-                    this.translateApi = data.translateApi
+                    if (data.translateApi === 'alibaba_free') {
+                        this.gradioAPI.setData('translateApi', this.translateApi)
+                    } else {
+                        this.translateApi = data.translateApi
+                    }
                 }
                 if (data.tagCompleteFile !== null) {
                     this.tagCompleteFile = data.tagCompleteFile
