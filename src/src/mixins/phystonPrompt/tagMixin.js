@@ -82,6 +82,22 @@ export default {
                     if (embeddingName !== false) {
                         tag.isEmbedding = true
                         tag.value = embeddingName
+                    } else {
+                        // 判断是否被括号包裹的embedding
+
+                        let value = tag.value
+                        const bracket = common.hasBrackets(value)
+                        if ((bracket[0] === '(' && bracket[1] === ')') || bracket[0] === '[' && bracket[1] === ']') {
+                            // 移除括号
+                            value = common.setLayers(value, 0, bracket[0], bracket[1])
+                            // 移除权重数
+                            value = value.replace(common.weightNumRegex, '$1')
+                            const embeddingName = this.embeddingExists(value)
+                            if (embeddingName !== false) {
+                                tag.isEmbedding = true
+                                // tag.value = embeddingName
+                            }
+                        }
                     }
                 }
             }
