@@ -10,9 +10,9 @@ assignees: ''
 **Issue Feedback**
 
 Please mark "x" inside the square brackets to indicate that you have read the following information.
-- [ ] I confirm that I have searched for a solution to this issue in the [FAQ](https://aiodoc.netlify.app/FAQ.html) and couldn't find a solution.
+- [ ] I confirm that I have searched for a solution to this issue in the [FAQ](https://aiodoc.physton.com/FAQ.html) and couldn't find a solution.
 - [ ] I confirm that I have searched for this issue in the [Issues](https://github.com/Physton/sd-webui-prompt-all-in-one/issues) list (including closed ones) and couldn't find a solution.
-- [ ] I confirm that I have read the [Wiki](https://aiodoc.netlify.app/) and couldn't find a solution.
+- [ ] I confirm that I have read the [Wiki](https://aiodoc.physton.com/) and couldn't find a solution.
 
 **Describe the Issue**
 Please describe the problem you encountered here.

@@ -16,13 +16,13 @@ sd-webui-prompt-all-in-one is an extension based on [stable-diffusion-webui](htt
 
 <div align="center">
 
-#### Installation tutorial, detailed feature introduction, usage instructions, frequently asked questions, and more can be found in the [Wiki](https://aiodoc.netlify.app/).
+#### Installation tutorial, detailed feature introduction, usage instructions, frequently asked questions, and more can be found in the [Wiki](https://aiodoc.physton.com/).
 
-#### Перевод на русский: Инструкции по установке, подробное описание функций, методы использования, часто задаваемые вопросы и многое другое можно найти в [документации](https://aiodoc.netlify.app/ru/).
+#### Перевод на русский: Инструкции по установке, подробное описание функций, методы использования, часто задаваемые вопросы и многое другое можно найти в [документации](https://aiodoc.physton.com/ru/).
 
-#### 安装教程、功能详解、使用方法、常见问题等等，详见：[文档](https://aiodoc.netlify.app/zh-CN/)。
+#### 安装教程、功能详解、使用方法、常见问题等等，详见：[文档](https://aiodoc.physton.com/zh-CN/)。
 
-#### 安裝教程、功能詳解、使用方法、常見問題等等，詳見：[文檔](https://aiodoc.netlify.app/zh-TW/)。
+#### 安裝教程、功能詳解、使用方法、常見問題等等，詳見：[文檔](https://aiodoc.physton.com/zh-TW/)。
 
 </div>
 
@@ -42,7 +42,7 @@ sd-webui-prompt-all-in-one is an extension based on [stable-diffusion-webui](htt
 >
 > 仓库地址：[https://gitee.com/physton/sd-webui-prompt-all-in-one.git](https://gitee.com/physton/sd-webui-prompt-all-in-one.git)
 >
-> 文档地址：[https://aiodoc.netlify.app/](https://aiodoc.netlify.app/zh-CN/)
+> 文档地址：[https://aiodoc.physton.com/](https://aiodoc.physton.com/zh-CN/)
 
 ----
 
@@ -59,13 +59,13 @@ sd-webui-prompt-all-in-one is an extension based on [stable-diffusion-webui](htt
 
 | English | Русский | 简体中文 | 繁體中文 |
 | :-----: | :-----: | :-----: | :-----: |
-| [Wiki](https://aiodoc.netlify.app/) | [документация](https://aiodoc.netlify.app/ru/) | [文档](https://aiodoc.netlify.app/zh-CN/) | [文檔](https://aiodoc.netlify.app/zh-TW/)
-| [Installation](https://aiodoc.netlify.app/Installation.html) | [Установка](https://aiodoc.netlify.app/ru/Installation.html) | [安装](https://aiodoc.netlify.app/zh-CN/Installation.html) | [安裝](https://aiodoc.netlify.app/zh-TW/Installation.html)
-| [Extension update description](https://aiodoc.netlify.app/ExtensionUpdateDescription.html) | [Обновление расширения](https://aiodoc.netlify.app/ru/ExtensionUpdateDescription.html) | [扩展更新说明](https://aiodoc.netlify.app/zh-CN/ExtensionUpdateDescription.html) | [擴展更新說明](https://aiodoc.netlify.app/zh-TW/ExtensionUpdateDescription.html) |
-| [Translation API Description](https://aiodoc.netlify.app/TranslationApiConfiguration.html#translation-api-description) | [Описание интерфейса перевода](https://aiodoc.netlify.app/ru/TranslationApiConfiguration.html#открытие-окна-настроики-api-перевода) | [翻译接口说明](https://aiodoc.netlify.app/zh-CN/TranslationApiConfiguration.html#翻译接口说明) | [翻譯接口說明](https://aiodoc.netlify.app/zh-TW/TranslationApiConfiguration.html#翻譯接口說明) |
-| [Contributing](https://aiodoc.netlify.app/Contributing.html) | [Помощь в разработке](https://aiodoc.netlify.app/ru/Contributing.html) | [帮助开发](https://aiodoc.netlify.app/zh-CN/Contributing.html) | [幫助開發](https://aiodoc.netlify.app/zh-TW/Contributing.html) |
-| [Custom Theme](https://aiodoc.netlify.app/Contributing.html#custom-theme) | [Настройка темы](https://aiodoc.netlify.app/ru/Contributing.html#настроика-темы) | [自定义主题](https://aiodoc.netlify.app/zh-CN/Contributing.html#自定义主题) | [自定義主題](https://aiodoc.netlify.app/zh-TW/Contributing.html#自定義主題) |
-| [FAQ](https://aiodoc.netlify.app/FAQ.html) | [Часто задаваемые вопросы](https://aiodoc.netlify.app/ru/FAQ.html) | [常见问题](https://aiodoc.netlify.app/zh-CN/FAQ.html) | [常見問題](https://aiodoc.netlify.app/zh-TW/FAQ.html) |
+| [Wiki](https://aiodoc.physton.com/) | [документация](https://aiodoc.physton.com/ru/) | [文档](https://aiodoc.physton.com/zh-CN/) | [文檔](https://aiodoc.physton.com/zh-TW/)
+| [Installation](https://aiodoc.physton.com/Installation.html) | [Установка](https://aiodoc.physton.com/ru/Installation.html) | [安装](https://aiodoc.physton.com/zh-CN/Installation.html) | [安裝](https://aiodoc.physton.com/zh-TW/Installation.html)
+| [Extension update description](https://aiodoc.physton.com/ExtensionUpdateDescription.html) | [Обновление расширения](https://aiodoc.physton.com/ru/ExtensionUpdateDescription.html) | [扩展更新说明](https://aiodoc.physton.com/zh-CN/ExtensionUpdateDescription.html) | [擴展更新說明](https://aiodoc.physton.com/zh-TW/ExtensionUpdateDescription.html) |
+| [Translation API Description](https://aiodoc.physton.com/TranslationApiConfiguration.html#translation-api-description) | [Описание интерфейса перевода](https://aiodoc.physton.com/ru/TranslationApiConfiguration.html#открытие-окна-настроики-api-перевода) | [翻译接口说明](https://aiodoc.physton.com/zh-CN/TranslationApiConfiguration.html#翻译接口说明) | [翻譯接口說明](https://aiodoc.physton.com/zh-TW/TranslationApiConfiguration.html#翻譯接口說明) |
+| [Contributing](https://aiodoc.physton.com/Contributing.html) | [Помощь в разработке](https://aiodoc.physton.com/ru/Contributing.html) | [帮助开发](https://aiodoc.physton.com/zh-CN/Contributing.html) | [幫助開發](https://aiodoc.physton.com/zh-TW/Contributing.html) |
+| [Custom Theme](https://aiodoc.physton.com/Contributing.html#custom-theme) | [Настройка темы](https://aiodoc.physton.com/ru/Contributing.html#настроика-темы) | [自定义主题](https://aiodoc.physton.com/zh-CN/Contributing.html#自定义主题) | [自定義主題](https://aiodoc.physton.com/zh-TW/Contributing.html#自定義主題) |
+| [FAQ](https://aiodoc.physton.com/FAQ.html) | [Часто задаваемые вопросы](https://aiodoc.physton.com/ru/FAQ.html) | [常见问题](https://aiodoc.physton.com/zh-CN/FAQ.html) | [常見問題](https://aiodoc.physton.com/zh-TW/FAQ.html) |
 | [Donate](#donate) | [Пожертвование](#donate) | [捐赠](#donate) | [捐贈](#donate) |
 
 ## Demo / *演示*
@@ -145,7 +145,7 @@ Translation supports almost all national languages, but the UI interface of most
 
 ## Donate
 
-[Donation list / *捐赠列表*](https://aiodoc.netlify.app/Donate.html)
+[Donation list / *捐赠列表*](https://aiodoc.physton.com/Donate.html)
 
 ### Buy me a coffee / *请我喝杯咖啡*
 
