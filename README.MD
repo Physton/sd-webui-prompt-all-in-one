@@ -6,6 +6,7 @@
 [![GitHub issues closed](https://img.shields.io/github/issues-closed/Physton/sd-webui-prompt-all-in-one?style=flat-square)](https://github.com/Physton/sd-webui-prompt-all-in-one/issues?q=is%3Aissue+is%3Aclosed)
 [![GitHub license](https://img.shields.io/github/license/Physton/sd-webui-prompt-all-in-one?style=flat-square)](https://github.com/Physton/sd-webui-prompt-all-in-one/blob/master/LICENSE.md)
 [![GitHub commits](https://img.shields.io/github/last-commit/Physton/sd-webui-prompt-all-in-one?style=flat-square)](https://github.com/Physton/sd-webui-prompt-all-in-one/commits/main)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/1441a696-a1a4-4ad7-b520-4abfd96acc76/deploy-status)](https://app.netlify.com/sites/aiodoc/deploys)
 
 sd-webui-prompt-all-in-one is an extension based on [stable-diffusion-webui](https://github.com/AUTOMATIC1111/stable-diffusion-webui) that aims to improve the user experience of the prompt/negative prompt input box. It has a more intuitive and powerful input interface, provides automatic translation, history and collection functions, and supports multiple languages to meet the needs of different users.
 
@@ -15,13 +16,13 @@ sd-webui-prompt-all-in-one is an extension based on [stable-diffusion-webui](htt
 
 <div align="center">
 
-#### Installation tutorial, detailed feature introduction, usage instructions, frequently asked questions, and more can be found in the [Wiki](https://physton.github.io/sd-webui-prompt-all-in-one-assets/).
+#### Installation tutorial, detailed feature introduction, usage instructions, frequently asked questions, and more can be found in the [Wiki](https://aiodoc.netlify.app/).
 
-#### Перевод на русский: Инструкции по установке, подробное описание функций, методы использования, часто задаваемые вопросы и многое другое можно найти в [документации](https://physton.github.io/sd-webui-prompt-all-in-one-assets/ru/).
+#### Перевод на русский: Инструкции по установке, подробное описание функций, методы использования, часто задаваемые вопросы и многое другое можно найти в [документации](https://aiodoc.netlify.app/ru/).
 
-#### 安装教程、功能详解、使用方法、常见问题等等，详见：[文档](https://physton.gitee.io/sd-webui-prompt-all-in-one-assets/zh-CN/)。
+#### 安装教程、功能详解、使用方法、常见问题等等，详见：[文档](https://aiodoc.netlify.app/zh-CN/)。
 
-#### 安裝教程、功能詳解、使用方法、常見問題等等，詳見：[文檔](https://physton.github.io/sd-webui-prompt-all-in-one-assets/zh-TW/)。
+#### 安裝教程、功能詳解、使用方法、常見問題等等，詳見：[文檔](https://aiodoc.netlify.app/zh-TW/)。
 
 </div>
 
@@ -41,7 +42,7 @@ sd-webui-prompt-all-in-one is an extension based on [stable-diffusion-webui](htt
 >
 > 仓库地址：[https://gitee.com/physton/sd-webui-prompt-all-in-one.git](https://gitee.com/physton/sd-webui-prompt-all-in-one.git)
 >
-> 文档地址：[https://physton.gitee.io/sd-webui-prompt-all-in-one-assets/](https://physton.gitee.io/sd-webui-prompt-all-in-one-assets/zh-CN/)
+> 文档地址：[https://aiodoc.netlify.app/](https://aiodoc.netlify.app/zh-CN/)
 
 ----
 
@@ -58,13 +59,13 @@ sd-webui-prompt-all-in-one is an extension based on [stable-diffusion-webui](htt
 
 | English | Русский | 简体中文 | 繁體中文 |
 | :-----: | :-----: | :-----: | :-----: |
-| [Wiki](https://physton.github.io/sd-webui-prompt-all-in-one-assets/) | [документация](https://physton.github.io/sd-webui-prompt-all-in-one-assets/ru/) | [文档](https://physton.gitee.io/sd-webui-prompt-all-in-one-assets/zh-CN/) | [文檔](https://physton.github.io/sd-webui-prompt-all-in-one-assets/zh-TW/)
-| [Installation](https://physton.github.io/sd-webui-prompt-all-in-one-assets/Installation.html) | [Установка](https://physton.github.io/sd-webui-prompt-all-in-one-assets/ru/Installation.html) | [安装](https://physton.gitee.io/sd-webui-prompt-all-in-one-assets/zh-CN/Installation.html) | [安裝](https://physton.github.io/sd-webui-prompt-all-in-one-assets/zh-TW/Installation.html)
-| [Extension update description](https://physton.github.io/sd-webui-prompt-all-in-one-assets/ExtensionUpdateDescription.html) | [Обновление расширения](https://physton.github.io/sd-webui-prompt-all-in-one-assets/ru/ExtensionUpdateDescription.html) | [扩展更新说明](https://physton.gitee.io/sd-webui-prompt-all-in-one-assets/zh-CN/ExtensionUpdateDescription.html) | [擴展更新說明](https://physton.github.io/sd-webui-prompt-all-in-one-assets/zh-TW/ExtensionUpdateDescription.html) |
-| [Translation API Description](https://physton.github.io/sd-webui-prompt-all-in-one-assets/TranslationApiConfiguration.html#translation-api-description) | [Описание интерфейса перевода](https://physton.github.io/sd-webui-prompt-all-in-one-assets/ru/TranslationApiConfiguration.html#открытие-окна-настроики-api-перевода) | [翻译接口说明](https://physton.gitee.io/sd-webui-prompt-all-in-one-assets/zh-CN/TranslationApiConfiguration.html#翻译接口说明) | [翻譯接口說明](https://physton.github.io/sd-webui-prompt-all-in-one-assets/zh-TW/TranslationApiConfiguration.html#翻譯接口說明) |
-| [Contributing](https://physton.github.io/sd-webui-prompt-all-in-one-assets/Contributing.html) | [Помощь в разработке](https://physton.github.io/sd-webui-prompt-all-in-one-assets/ru/Contributing.html) | [帮助开发](https://physton.gitee.io/sd-webui-prompt-all-in-one-assets/zh-CN/Contributing.html) | [幫助開發](https://physton.github.io/sd-webui-prompt-all-in-one-assets/zh-TW/Contributing.html) |
-| [Custom Theme](https://physton.github.io/sd-webui-prompt-all-in-one-assets/Contributing.html#custom-theme) | [Настройка темы](https://physton.github.io/sd-webui-prompt-all-in-one-assets/ru/Contributing.html#настроика-темы) | [自定义主题](https://physton.gitee.io/sd-webui-prompt-all-in-one-assets/zh-CN/Contributing.html#自定义主题) | [自定義主題](https://physton.github.io/sd-webui-prompt-all-in-one-assets/zh-TW/Contributing.html#自定義主題) |
-| [FAQ](https://physton.github.io/sd-webui-prompt-all-in-one-assets/FAQ.html) | [Часто задаваемые вопросы](https://physton.github.io/sd-webui-prompt-all-in-one-assets/ru/FAQ.html) | [常见问题](https://physton.gitee.io/sd-webui-prompt-all-in-one-assets/zh-CN/FAQ.html) | [常見問題](https://physton.github.io/sd-webui-prompt-all-in-one-assets/zh-TW/FAQ.html) |
+| [Wiki](https://aiodoc.netlify.app/) | [документация](https://aiodoc.netlify.app/ru/) | [文档](https://aiodoc.netlify.app/zh-CN/) | [文檔](https://aiodoc.netlify.app/zh-TW/)
+| [Installation](https://aiodoc.netlify.app/Installation.html) | [Установка](https://aiodoc.netlify.app/ru/Installation.html) | [安装](https://aiodoc.netlify.app/zh-CN/Installation.html) | [安裝](https://aiodoc.netlify.app/zh-TW/Installation.html)
+| [Extension update description](https://aiodoc.netlify.app/ExtensionUpdateDescription.html) | [Обновление расширения](https://aiodoc.netlify.app/ru/ExtensionUpdateDescription.html) | [扩展更新说明](https://aiodoc.netlify.app/zh-CN/ExtensionUpdateDescription.html) | [擴展更新說明](https://aiodoc.netlify.app/zh-TW/ExtensionUpdateDescription.html) |
+| [Translation API Description](https://aiodoc.netlify.app/TranslationApiConfiguration.html#translation-api-description) | [Описание интерфейса перевода](https://aiodoc.netlify.app/ru/TranslationApiConfiguration.html#открытие-окна-настроики-api-перевода) | [翻译接口说明](https://aiodoc.netlify.app/zh-CN/TranslationApiConfiguration.html#翻译接口说明) | [翻譯接口說明](https://aiodoc.netlify.app/zh-TW/TranslationApiConfiguration.html#翻譯接口說明) |
+| [Contributing](https://aiodoc.netlify.app/Contributing.html) | [Помощь в разработке](https://aiodoc.netlify.app/ru/Contributing.html) | [帮助开发](https://aiodoc.netlify.app/zh-CN/Contributing.html) | [幫助開發](https://aiodoc.netlify.app/zh-TW/Contributing.html) |
+| [Custom Theme](https://aiodoc.netlify.app/Contributing.html#custom-theme) | [Настройка темы](https://aiodoc.netlify.app/ru/Contributing.html#настроика-темы) | [自定义主题](https://aiodoc.netlify.app/zh-CN/Contributing.html#自定义主题) | [自定義主題](https://aiodoc.netlify.app/zh-TW/Contributing.html#自定義主題) |
+| [FAQ](https://aiodoc.netlify.app/FAQ.html) | [Часто задаваемые вопросы](https://aiodoc.netlify.app/ru/FAQ.html) | [常见问题](https://aiodoc.netlify.app/zh-CN/FAQ.html) | [常見問題](https://aiodoc.netlify.app/zh-TW/FAQ.html) |
 | [Donate](#donate) | [Пожертвование](#donate) | [捐赠](#donate) | [捐贈](#donate) |
 
 ## Demo / *演示*
@@ -144,13 +145,12 @@ Translation supports almost all national languages, but the UI interface of most
 
 ## Donate
 
-[Donation list / *捐赠列表*](https://physton.github.io/sd-webui-prompt-all-in-one-assets/Donate.html)
+[Donation list / *捐赠列表*](https://aiodoc.netlify.app/Donate.html)
 
 ### Buy me a coffee / *请我喝杯咖啡*
 
-| | |
-| :---: | :---: |
 | ko-fi | [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/physton) |
+| :---: | :---: |
 | Paypal | [https://paypal.me/physton](https://paypal.me/physton) |
 | 爱发电 | [https://afdian.net/a/physton](https://afdian.net/a/physton) |
 | 支付宝 | `physton@163.com` |

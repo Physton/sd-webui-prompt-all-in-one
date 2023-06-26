@@ -127,7 +127,7 @@
                 "model_not_initialized": "模型未初始化",
                 "model_is_loading": "模型正在加载中...",
                 "download_model_desc": "<p>如果以前未下载过模型，程序将从 Hugging Face 自动下载模型。</p><p>模型有几G大小，对网络环境要求较高。</p><p>下载时间较长，请耐心等待，如果下载失败，请重新初始化。</p><p>你可以前往控制台查看详细日志和进度。</p><p>模型文件将下载到目录：extensions\\sd-webui-prompt-all-in-one\\models</p>",
-                "download_model_desc2": "<p class='common-red'>如果你没有较好的网络环境，或者需要离线下载，请查看：</p><p><a href='https://physton.github.io/sd-webui-prompt-all-in-one-assets/zh-CN/OfflineTranslation.html' target='_blank'>https://physton.github.io/sd-webui-prompt-all-in-one-assets/zh-CN/OfflineTranslation.html</a></p>"
+                "download_model_desc2": "<p class='common-red'>如果你没有较好的网络环境，或者需要离线下载，请查看：</p><p><a href='https://aiodoc.netlify.app/zh-CN/OfflineTranslation.html' target='_blank'>https://aiodoc.netlify.app/zh-CN/OfflineTranslation.html</a></p>"
             }
         },
         {
@@ -256,7 +256,7 @@
                 "model_not_initialized": "模型未初始化",
                 "model_is_loading": "模型正在載入中...",
                 "download_model_desc": "<p>如果以前未下載過模型，程式將從 Hugging Face 自動下載模型。</p><p>模型有幾G大小，對網絡環境要求較高。</p><p>下載時間較長，請耐心等待，如果下載失敗，請重新初始化。</p><p>你可以前往控制台查看詳細日誌和進度。</p><p>模型文件將下載到目錄：extensions\\sd-webui-prompt-all-in-one\\models</p>",
-                "download_model_desc2": "<p class='common-red'>如果你沒有較好的網絡環境，或者需要離線下載，請查看：</p><p><a href='https://physton.github.io/sd-webui-prompt-all-in-one-assets/zh-TW/OfflineTranslation.html' target='_blank'>https://physton.github.io/sd-webui-prompt-all-in-one-assets/zh-TW/OfflineTranslation.html</a></p>"
+                "download_model_desc2": "<p class='common-red'>如果你沒有較好的網絡環境，或者需要離線下載，請查看：</p><p><a href='https://aiodoc.netlify.app/zh-TW/OfflineTranslation.html' target='_blank'>https://aiodoc.netlify.app/zh-TW/OfflineTranslation.html</a></p>"
             }
         },
         {
@@ -385,7 +385,7 @@
                 "model_not_initialized": "模型未初始化",
                 "model_is_loading": "模型正在載入中...",
                 "download_model_desc": "<p>如果以前未下載過模型，程式將從 Hugging Face 自動下載模型。</p><p>模型有幾G大小，對網絡環境要求較高。</p><p>下載時間較長，請耐心等待，如果下載失敗，請重新初始化。</p><p>你可以前往控制台查看詳細日誌和進度。</p><p>模型檔案將下載到目錄：extensions\\sd-webui-prompt-all-in-one\\models</p>",
-                "download_model_desc2": "<p class='common-red'>如果你沒有較好的網絡環境，或者需要離線下載，請查看：</p><p><a href='https://physton.github.io/sd-webui-prompt-all-in-one-assets/zh-TW/OfflineTranslation.html' target='_blank'>https://physton.github.io/sd-webui-prompt-all-in-one-assets/zh-TW/OfflineTranslation.html</a></p>"
+                "download_model_desc2": "<p class='common-red'>如果你沒有較好的網絡環境，或者需要離線下載，請查看：</p><p><a href='https://aiodoc.netlify.app/zh-TW/OfflineTranslation.html' target='_blank'>https://aiodoc.netlify.app/zh-TW/OfflineTranslation.html</a></p>"
             }
         },
         {
@@ -514,7 +514,7 @@
                 "model_not_initialized": "Model Not Initialized",
                 "model_is_loading": "Model is Loading...",
                 "download_model_desc": "<p>If the model has not been downloaded before, the program will automatically download the model from Hugging Face.</p><p>The model is several gigabytes in size and requires a high-speed internet connection.</p><p>The download may take a while, please be patient. If the download fails, please reinitialize.</p><p>You can check detailed logs and progress in the console.</p><p>The model files will be downloaded to the directory: extensions\\sd-webui-prompt-all-in-one\\models</p>",
-                "download_model_desc2": "<p class='common-red'>If you do not have a good network environment or need to download offline, please view:</p><p><a href='https://physton.github.io/sd-webui-prompt-all-in-one-assets/OfflineTranslation.html' target='_blank'>https://physton.github.io/sd-webui-prompt-all-in-one-assets/OfflineTranslation.html</a></p>"
+                "download_model_desc2": "<p class='common-red'>If you do not have a good network environment or need to download offline, please view:</p><p><a href='https://aiodoc.netlify.app/OfflineTranslation.html' target='_blank'>https://aiodoc.netlify.app/OfflineTranslation.html</a></p>"
             }
         },
         {
@@ -654,7 +654,7 @@
                 "model_not_initialized": "النموذج غير مهيأ",
                 "model_is_loading": "جاري تحميل النموذج...",
                 "download_model_desc": "<p>إذا لم يتم تنزيل النموذج من قبل، سيقوم البرنامج بتنزيل النموذج تلقائيًا من Hugging Face.</p><p>النموذج بحجم عدة جيجابايت ويتطلب اتصال إنترنت عالي السرعة.</p><p>قد يستغرق التنزيل وقتًا طويلاً، يرجى الانتظار بصبر. إذا فشل التنزيل، يُرجى إعادة التهيئة.</p><p>يمكنك التحقق من السجلات والتقدم التفصيلي في وحدة التحكم.</p><p>سيتم تنزيل ملفات النموذج إلى الدليل: extensions\\sd-webui-prompt-all-in-one\\models</p>",
-                "download_model_desc2": "<p class='common-red'>إذا لم يكن لديك بيئة شبكة جيدة أو إذا كنت بحاجة إلى التنزيل دون اتصال، يرجى التحقق:</p><p><a href='https://physton.github.io/sd-webui-prompt-all-in-one-assets/OfflineTranslation.html' target='_blank'>https://physton.github.io/sd-webui-prompt-all-in-one-assets/OfflineTranslation.html</a></p>"
+                "download_model_desc2": "<p class='common-red'>إذا لم يكن لديك بيئة شبكة جيدة أو إذا كنت بحاجة إلى التنزيل دون اتصال، يرجى التحقق:</p><p><a href='https://aiodoc.netlify.app/OfflineTranslation.html' target='_blank'>https://aiodoc.netlify.app/OfflineTranslation.html</a></p>"
             }
         },
         {
@@ -882,7 +882,7 @@
                 "model_not_initialized": "Modèle non initialisé",
                 "model_is_loading": "Chargement du modèle en cours...",
                 "download_model_desc": "<p>Si le modèle n'a pas été téléchargé auparavant, le programme le téléchargera automatiquement depuis Hugging Face.</p><p>Le modèle est de plusieurs gigaoctets et nécessite une connexion Internet haut débit.</p><p>Le téléchargement peut prendre un certain temps, veuillez patienter. Si le téléchargement échoue, veuillez réinitialiser.</p><p>Vous pouvez consulter les journaux détaillés et l'avancement dans la console.</p><p>Les fichiers du modèle seront téléchargés dans le répertoire : extensions\\sd-webui-prompt-all-in-one\\models</p>",
-                "download_model_desc2": "<p class='common-red'>Si vous n'avez pas un bon environnement réseau ou si vous avez besoin de télécharger hors ligne, veuillez vérifier :</p><p><a href='https://physton.github.io/sd-webui-prompt-all-in-one-assets/OfflineTranslation.html' target='_blank'>https://physton.github.io/sd-webui-prompt-all-in-one-assets/OfflineTranslation.html</a></p>"
+                "download_model_desc2": "<p class='common-red'>Si vous n'avez pas un bon environnement réseau ou si vous avez besoin de télécharger hors ligne, veuillez vérifier :</p><p><a href='https://aiodoc.netlify.app/OfflineTranslation.html' target='_blank'>https://aiodoc.netlify.app/OfflineTranslation.html</a></p>"
             }
         },
         {
@@ -1025,7 +1025,7 @@
                 "model_not_initialized": "Modell nicht initialisiert",
                 "model_is_loading": "Modell wird geladen...",
                 "download_model_desc": "<p>Wenn das Modell zuvor nicht heruntergeladen wurde, lädt das Programm das Modell automatisch von Hugging Face herunter.</p><p>Das Modell ist mehrere Gigabyte groß und erfordert eine schnelle Internetverbindung.</p><p>Der Download kann eine Weile dauern, bitte haben Sie Geduld. Wenn der Download fehlschlägt, initialisieren Sie bitte erneut.</p><p>Sie können detaillierte Protokolle und den Fortschritt in der Konsole überprüfen.</p><p>Die Modelldateien werden in das Verzeichnis heruntergeladen: extensions\\sd-webui-prompt-all-in-one\\models</p>",
-                "download_model_desc2": "<p class='common-red'>Wenn Sie keine gute Netzwerkumgebung haben oder offline herunterladen müssen, überprüfen Sie bitte:</p><p><a href='https://physton.github.io/sd-webui-prompt-all-in-one-assets/OfflineTranslation.html' target='_blank'>https://physton.github.io/sd-webui-prompt-all-in-one-assets/OfflineTranslation.html</a></p>"
+                "download_model_desc2": "<p class='common-red'>Wenn Sie keine gute Netzwerkumgebung haben oder offline herunterladen müssen, überprüfen Sie bitte:</p><p><a href='https://aiodoc.netlify.app/OfflineTranslation.html' target='_blank'>https://aiodoc.netlify.app/OfflineTranslation.html</a></p>"
             }
         },
         {
@@ -1218,7 +1218,7 @@
                 "model_not_initialized": "Modello non inizializzato",
                 "model_is_loading": "Caricamento del modello in corso...",
                 "download_model_desc": "<p>Se il modello non è stato scaricato in precedenza, il programma lo scaricherà automaticamente da Hugging Face.</p><p>Il modello ha una dimensione di diverse gigabyte e richiede una connessione Internet ad alta velocità.</p><p>Il download potrebbe richiedere del tempo, si prega di attendere. Se il download non riesce, ripetere l'inizializzazione.</p><p>È possibile controllare i log dettagliati e il progresso nella console.</p><p>I file del modello verranno scaricati nella directory: extensions\\sd-webui-prompt-all-in-one\\models</p>",
-                "download_model_desc2": "<p class='common-red'>Se non hai una buona connessione di rete o hai bisogno di scaricare offline, controlla:</p><p><a href='https://physton.github.io/sd-webui-prompt-all-in-one-assets/OfflineTranslation.html' target='_blank'>https://physton.github.io/sd-webui-prompt-all-in-one-assets/OfflineTranslation.html</a></p>"
+                "download_model_desc2": "<p class='common-red'>Se non hai una buona connessione di rete o hai bisogno di scaricare offline, controlla:</p><p><a href='https://aiodoc.netlify.app/OfflineTranslation.html' target='_blank'>https://aiodoc.netlify.app/OfflineTranslation.html</a></p>"
             }
         },
         {
@@ -1346,7 +1346,7 @@
                 "model_not_initialized": "モデルが初期化されていません",
                 "model_is_loading": "モデルを読み込んでいます...",
                 "download_model_desc": "<p>以前にモデルがダウンロードされていない場合、プログラムはHugging Faceからモデルを自動的にダウンロードします。</p><p>モデルのサイズは数ギガバイトあり、高速なインターネット接続が必要です。</p><p>ダウンロードには時間がかかる場合がありますので、お待ちください。ダウンロードに失敗した場合は、再初期化してください。</p><p>詳細なログと進捗状況はコンソールで確認できます。</p><p>モデルファイルは次のディレクトリにダウンロードされます：extensions\\sd-webui-prompt-all-in-one\\models</p>",
-                "download_model_desc2": "<p class='common-red'>良好なネットワーク環境がない場合やオフラインでダウンロードする必要がある場合は、次を確認してください：</p><p><a href='https://physton.github.io/sd-webui-prompt-all-in-one-assets/OfflineTranslation.html' target='_blank'>https://physton.github.io/sd-webui-prompt-all-in-one-assets/OfflineTranslation.html</a></p>"
+                "download_model_desc2": "<p class='common-red'>良好なネットワーク環境がない場合やオフラインでダウンロードする必要がある場合は、次を確認してください：</p><p><a href='https://aiodoc.netlify.app/OfflineTranslation.html' target='_blank'>https://aiodoc.netlify.app/OfflineTranslation.html</a></p>"
             }
         },
         {
@@ -1499,7 +1499,7 @@
                 "model_not_initialized": "모델이 초기화되지 않음",
                 "model_is_loading": "모델을 불러오는 중...",
                 "download_model_desc": "<p>이전에 모델을 다운로드하지 않은 경우 프로그램이 Hugging Face에서 모델을 자동으로 다운로드합니다.</p><p>모델은 몇 기가바이트 크기이며 고속 인터넷 연결이 필요합니다.</p><p>다운로드에는 시간이 걸릴 수 있으므로 잠시 기다려주십시오. 다운로드에 실패한 경우 초기화를 다시 진행하십시오.</p><p>자세한 로그와 진행 상황은 콘솔에서 확인할 수 있습니다.</p><p>모델 파일은 다음 디렉터리에 다운로드됩니다: extensions\\sd-webui-prompt-all-in-one\\models</p>",
-                "download_model_desc2": "<p class='common-red'>좋은 네트워크 환경이 없거나 오프라인으로 다운로드해야 하는 경우 다음을 확인하십시오:</p><p><a href='https://physton.github.io/sd-webui-prompt-all-in-one-assets/OfflineTranslation.html' target='_blank'>https://physton.github.io/sd-webui-prompt-all-in-one-assets/OfflineTranslation.html</a></p>"
+                "download_model_desc2": "<p class='common-red'>좋은 네트워크 환경이 없거나 오프라인으로 다운로드해야 하는 경우 다음을 확인하십시오:</p><p><a href='https://aiodoc.netlify.app/OfflineTranslation.html' target='_blank'>https://aiodoc.netlify.app/OfflineTranslation.html</a></p>"
             }
         },
         {
@@ -1742,7 +1742,7 @@
                 "model_not_initialized": "Modelo Não Inicializado",
                 "model_is_loading": "A Carregar o Modelo...",
                 "download_model_desc": "<p>Se o modelo ainda não foi descarregado anteriormente, o programa irá descarregar automaticamente o modelo da Hugging Face.</p><p>O modelo tem vários gigabytes de tamanho e requer uma ligação à Internet de alta velocidade.</p><p>O descarregamento pode demorar algum tempo, por favor tenha paciência. Se o descarregamento falhar, por favor reinicialize.</p><p>Pode verificar os registos detalhados e o progresso na consola.</p><p>Os ficheiros do modelo serão descarregados para o diretório: extensions\\sd-webui-prompt-all-in-one\\models</p>",
-                "download_model_desc2": "<p class='common-red'>Se você não tem um bom ambiente de rede ou precisa baixar offline, por favor verifique:</p><p><a href='https://physton.github.io/sd-webui-prompt-all-in-one-assets/OfflineTranslation.html' target='_blank'>https://physton.github.io/sd-webui-prompt-all-in-one-assets/OfflineTranslation.html</a></p>"
+                "download_model_desc2": "<p class='common-red'>Se você não tem um bom ambiente de rede ou precisa baixar offline, por favor verifique:</p><p><a href='https://aiodoc.netlify.app/OfflineTranslation.html' target='_blank'>https://aiodoc.netlify.app/OfflineTranslation.html</a></p>"
             }
         },
         {
@@ -1885,7 +1885,7 @@
                 "model_not_initialized": "Модель не инициализирована",
                 "model_is_loading": "Загрузка модели...",
                 "download_model_desc": "<p>Если модель ранее не была загружена, программа автоматически загрузит модель с Hugging Face.</p><p>Модель имеет размер несколько гигабайт и требует высокоскоростного интернет-соединения.</p><p>Загрузка может занять некоторое время, пожалуйста, подождите. Если загрузка не удалась, повторите инициализацию.</p><p>Вы можете проверить подробные журналы и прогресс в консоли.</p><p>Файлы модели будут загружены в каталог: extensions\\sd-webui-prompt-all-in-one\\models</p>",
-                "download_model_desc2": "<p class='common-red'>Если у вас нет хорошей сетевой среды или вам нужно выполнить загрузку в автономном режиме, проверьте:</p><p><a href='https://physton.github.io/sd-webui-prompt-all-in-one-assets/ru/OfflineTranslation.html' target='_blank'>https://physton.github.io/sd-webui-prompt-all-in-one-assets/ru/OfflineTranslation.html</a></p>"
+                "download_model_desc2": "<p class='common-red'>Если у вас нет хорошей сетевой среды или вам нужно выполнить загрузку в автономном режиме, проверьте:</p><p><a href='https://aiodoc.netlify.app/ru/OfflineTranslation.html' target='_blank'>https://aiodoc.netlify.app/ru/OfflineTranslation.html</a></p>"
             }
         },
         {
@@ -2043,7 +2043,7 @@
                 "model_not_initialized": "Modelo no inicializado",
                 "model_is_loading": "Cargando modelo...",
                 "download_model_desc": "<p>Si el modelo no se ha descargado anteriormente, el programa lo descargará automáticamente desde Hugging Face.</p><p>El modelo tiene varios gigabytes de tamaño y requiere una conexión a Internet de alta velocidad.</p><p>La descarga puede tardar un tiempo, por favor, ten paciencia. Si la descarga falla, por favor, reinicializa.</p><p>Puedes consultar los registros detallados y el progreso en la consola.</p><p>Los archivos del modelo se descargarán en el directorio: extensions\\sd-webui-prompt-all-in-one\\models</p>",
-                "download_model_desc2": "<p class='common-red'>Si no tienes un buen entorno de red o necesitas descargar sin conexión, por favor verifica:</p><p><a href='https://physton.github.io/sd-webui-prompt-all-in-one-assets/OfflineTranslation.html' target='_blank'>https://physton.github.io/sd-webui-prompt-all-in-one-assets/OfflineTranslation.html</a></p>"
+                "download_model_desc2": "<p class='common-red'>Si no tienes un buen entorno de red o necesitas descargar sin conexión, por favor verifica:</p><p><a href='https://aiodoc.netlify.app/OfflineTranslation.html' target='_blank'>https://aiodoc.netlify.app/OfflineTranslation.html</a></p>"
             }
         },
         {

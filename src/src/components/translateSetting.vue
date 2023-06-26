@@ -82,7 +82,7 @@
                     <div class="line-title">TagComplete</div>
                     <div class="line-content">
                         <div class="help-list">
-                            <div class="help-item">[?] <a href="https://physton.github.io/sd-webui-prompt-all-in-one-assets/TranslationApiConfiguration.html#tagcomplete-translation-enhancement" target="_blank">[Wiki] TagComplete Translation enhancement</a>
+                            <div class="help-item">[?] <a href="https://aiodoc.netlify.app/TranslationApiConfiguration.html#tagcomplete-translation-enhancement" target="_blank">[Wiki] TagComplete Translation enhancement</a>
                             </div>
                         </div>
                         <div v-html="getLang('tagcomplete_translate_desc')"></div>

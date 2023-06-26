@@ -15,7 +15,7 @@
                     <span>{{ getLang('version') }}: <a :href="commitUrl(version)" target="_blank">{{ formatVersion(version) }}</a></span>
                     <span class="has-new-version" v-if="!isLatestVersion && latestVersion">&nbsp;&nbsp;&nbsp;&nbsp;({{ getLang('has_new_version') }}: <a :href="commitUrl(latestVersion)" target="_blank">{{ formatVersion(latestVersion) }}</a>)</span>
                 </p>
-                <p>{{ getLang('wiki_desc') }} <a href="https://physton.github.io/sd-webui-prompt-all-in-one-assets/" target="_blank">Wiki</a></p>
+                <p>{{ getLang('wiki_desc') }} <a href="https://aiodoc.netlify.app/" target="_blank">Wiki</a></p>
                 <div class="version-list">
                     <icon-svg v-if="loading" name="loading"/>
                     <div class="version-item" v-for="(item) in versions" :key="item.version">
