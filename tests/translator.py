@@ -153,6 +153,24 @@ def test_volcengine():
     print(translate(text, 'en_US', 'zh_TW', 'volcengine', api_config))
     print(translate(texts, 'en_US', 'zh_TW', 'volcengine', api_config))
 
+def test_iflytekV1():
+    api_config = {
+        'app_id': os.getenv('IFLYTEK_APP_ID'),
+        'api_secret': os.getenv('IFLYTEK_API_SECRET'),
+        'api_key': os.getenv('IFLYTEK_API_KEY'),
+    }
+    print(translate(text, 'en_US', 'zh_CN', 'iflytekV1', api_config))
+    print(translate(texts, 'en_US', 'zh_CN', 'iflytekV1', api_config))
+
+def test_iflytekV2():
+    api_config = {
+        'app_id': os.getenv('IFLYTEK_APP_ID'),
+        'api_secret': os.getenv('IFLYTEK_API_SECRET'),
+        'api_key': os.getenv('IFLYTEK_API_KEY'),
+    }
+    print(translate(text, 'en_US', 'zh_CN', 'iflytekV2', api_config))
+    print(translate(texts, 'en_US', 'zh_CN', 'iflytekV2', api_config))
+
 def test_languages():
     i18n = get_i18n()
     languages = []
@@ -166,4 +184,4 @@ def test_languages():
         print(translate(text, 'en_US', lang, 'myMemory_free'))
         pass
 
-test_volcengine()
+test_iflytekV2()
