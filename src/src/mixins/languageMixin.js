@@ -1,4 +1,5 @@
-import common from "@/utils/common";
+import common from "@/utils/common"
+import Papa from 'papaparse'
 
 export default {
     props: {
@@ -104,9 +105,19 @@ export default {
                 }
 
                 this.gradioAPI.getCSV(tagCompleteFile).then(res => {
-                    // 解析csv
-                    res = res.replace(/\r/g, '\n')
+                    res = Papa.parse(res, {
+                        header: false,
+                        skipEmptyLines: true,
+                    })
+                    res.data.forEach(line => {
+                        if (line.length < 2) return
+                        let en = line[0].trim()
+                        let local = line[1].trim()
+                        if (en === '' || local === '') return
+                        setData(en, local)
+                    })
 
+                    /*res = res.replace(/\r/g, '\n')
                     let lines = res.split('\n')
                     lines.forEach(line => {
                         if (line === '') return
@@ -117,7 +128,7 @@ export default {
                         let local = items[1].trim()
                         if (en === '' || local === '') return
                         setData(en, local)
-                    })
+                    })*/
                     window.tagCompleteFileLoading[tagCompleteFile] = false
                     window.tagCompleteFileCache[tagCompleteFile] = data
                     resolve(data)

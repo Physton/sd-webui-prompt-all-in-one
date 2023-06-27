@@ -1010,6 +1010,15 @@ export default {
                             if (res.success) {
                                 let translated_text = res.translated_text
                                 translated_text.forEach((translateText, index) => {
+                                    // 去除最后的 .
+                                    translateText = translateText.replace(/\.$/, '').trim()
+                                    if (common.isEnglish(translateText)) {
+                                        // 如果首字母是大写，转为小写（全部是大写，不转换）
+                                        if (translateText !== translateText.toUpperCase()) {
+                                            translateText = translateText.toLowerCase()
+                                        }
+                                    }
+
                                     let tag = group.tags[index]
                                     if (translateText !== '') setTag(tag, translateText)
                                     setLoading(tag, false)

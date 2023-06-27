@@ -10,6 +10,7 @@
   "dependencies": {
     "autosize-input": "^1.0.2",
     "axios": "^1.4.0",
+    "papaparse": "^5.4.1",
     "sortablejs": "^1.15.0",
     "tippy.js": "^6.3.7",
     "toastr": "^2.1.4",
