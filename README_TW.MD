@@ -33,11 +33,7 @@ sd-webui-prompt-all-in-one 是一個基於 [stable-diffusion-webui](https://gith
 
 ----
 
-> 中國用戶鏡像地址：
->
-> 倉庫地址：[https://gitee.com/physton/sd-webui-prompt-all-in-one.git](https://gitee.com/physton/sd-webui-prompt-all-in-one.git)
->
-> 文檔地址：[https://aiodoc.physton.com/](https://aiodoc.physton.com/zh-TW/)
+> 中國用戶鏡像地址：[https://gitee.com/physton/sd-webui-prompt-all-in-one.git](https://gitee.com/physton/sd-webui-prompt-all-in-one.git)
 
 ----
 
