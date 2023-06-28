@@ -11,7 +11,7 @@
                         {{ getLang('today_not_show') }}
                     </label>
                 </div>
-                <div class="state-body-name">sd-webui-prompt-all-in-one</div>
+                <div class="state-body-name">{{ globals.shortName }}</div>
                 <div class="state-body-language" @click="$emit('click:selectLanguage', $event)">
                     <icon-svg name="i18n"/>
                     <div>Language: {{ langName }}</div>

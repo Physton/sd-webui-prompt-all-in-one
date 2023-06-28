@@ -1,4 +1,5 @@
 import splitTags from "@/utils/splitTags";
+import globals from "../../globals";
 
 export default {
     loraRegex: /^\<lora:\s*([^\:]+)\s*(:)?\s*([0-9\.]+)?\>$/,
@@ -226,12 +227,34 @@ export default {
      */
     getLang(key, languageCode, languages) {
         if (languages[languageCode] && languages[languageCode].lang && languages[languageCode].lang[key]) {
-            return languages[languageCode].lang[key]
+            return this.replaceGlobals(languages[languageCode].lang[key], languageCode)
         } else if (languages['en_US'] && languages['en_US'].lang && languages['en_US'].lang[key]) {
-            return languages['en_US'].lang[key]
+            return this.replaceGlobals(languages['en_US'].lang[key], 'en_US')
         } else {
-            return key
+            return this.replaceGlobals(key, languageCode)
         }
+    },
+
+    replaceGlobals(text, languageCode) {
+        for (let key in globals) {
+            let value = globals[key]
+            if (key === 'docs') {
+                switch (languageCode) {
+                    case 'zh_CN':
+                        value += '/zh-CN'
+                        break
+                    case 'zh_HK':
+                    case 'zh_TW':
+                        value += '/zh-TW'
+                        break
+                    case 'ru_RU':
+                        value += '/ru'
+                        break
+                }
+            }
+            text = text.replace(new RegExp(`{{${key}}}`, 'g'), value)
+        }
+        return text
     },
 
     /**

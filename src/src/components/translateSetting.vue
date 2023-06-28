@@ -82,7 +82,7 @@
                     <div class="line-title">TagComplete</div>
                     <div class="line-content">
                         <div class="help-list">
-                            <div class="help-item">[?] <a href="https://aiodoc.physton.com/TranslationApiConfiguration.html#tagcomplete-translation-enhancement" target="_blank">[Wiki] TagComplete Translation enhancement</a>
+                            <div class="help-item">[?] <a :href="globals.docs + '/TranslationApiConfiguration.html#tagcomplete-translation-enhancement'" target="_blank">[Wiki] TagComplete Translation enhancement</a>
                             </div>
                         </div>
                         <div v-html="getLang('tagcomplete_translate_desc')"></div>
@@ -131,12 +131,7 @@ export default {
     props: {},
     data() {
         return {
-            testText: `Hi, this extension is developed by Physton. Welcome to use it!
-If you have any suggestions or opinions, please feel free to raise an issue or PR on Github.
-If you find this extension helpful, please give me a star on Github!
-
-Developed by: Physton
-Github: Physton/sd-webui-prompt-all-in-one`,
+            testText: '',
             translateSuccess: false,
             errorMessage: '',
             translatedText: '',
@@ -216,6 +211,13 @@ Github: Physton/sd-webui-prompt-all-in-one`,
     },
     methods: {
         open(apiKey) {
+            this.testText = `Hi, this extension is developed by Physton. Welcome to use it!
+If you have any suggestions or opinions, please feel free to raise an issue or PR on Github.
+If you find this extension helpful, please give me a star on Github!
+
+Developed by: Physton
+Github: {{name}}`
+            this.testText = common.replaceGlobals(this.testText)
             this.apiKey = apiKey
             this.isOpen = true
             this.errorMessage = ''

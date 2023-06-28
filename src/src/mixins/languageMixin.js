@@ -1,5 +1,6 @@
 import common from "@/utils/common"
 import Papa from 'papaparse'
+import globals from "../../globals";
 
 export default {
     props: {
@@ -35,6 +36,7 @@ export default {
     data() {
         return {
             cancelMultiTranslate: false,
+            globals: globals
         }
     },
     computed: {
@@ -51,6 +53,9 @@ export default {
     methods: {
         getLang(key) {
             return common.getLang(key, this.languageCode, this.languages)
+        },
+        replaceGlobals(text) {
+            return common.replaceGlobals(text, this.languageCode)
         },
         getCSV(tagCompleteFile = null, reload = false) {
             window.tagCompleteFileCache = window.tagCompleteFileCache || {}

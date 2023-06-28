@@ -5,7 +5,7 @@
                 <icon-svg name="close"/>
             </div>
             <div class="about-body" @click.stop>
-                <p class="body-title"><a href="https://github.com/Physton/sd-webui-prompt-all-in-one" target="_blank">sd-webui-prompt-all-in-one</a></p>
+                <p class="body-title"><a :href="globals.github" target="_blank">{{ globals.name }}</a></p>
                 <p>
                     <a v-for="(item) in icons" :key="item.title" :href="item.url" target="_blank">
                         <img :src="item.image" :alt="item.title" />
@@ -15,7 +15,7 @@
                     <span>{{ getLang('version') }}: <a :href="commitUrl(version)" target="_blank">{{ formatVersion(version) }}</a></span>
                     <span class="has-new-version" v-if="!isLatestVersion && latestVersion">&nbsp;&nbsp;&nbsp;&nbsp;({{ getLang('has_new_version') }}: <a :href="commitUrl(latestVersion)" target="_blank">{{ formatVersion(latestVersion) }}</a>)</span>
                 </p>
-                <p>{{ getLang('wiki_desc') }} <a href="https://aiodoc.physton.com/" target="_blank">Wiki</a></p>
+                <p>{{ getLang('wiki_desc') }} <a :href="replaceGlobals('{{docs}}')" target="_blank">Wiki</a></p>
                 <div class="version-list">
                     <icon-svg v-if="loading" name="loading"/>
                     <div class="version-item" v-for="(item) in versions" :key="item.version">
@@ -62,43 +62,44 @@ export default {
             isOpen: false,
             loading: false,
             versions: [],
-            icons: [
-                {
-                    'title': 'GitHub stars',
-                    'url': 'https://github.com/Physton/sd-webui-prompt-all-in-one/stargazers',
-                    'image': 'https://img.shields.io/github/stars/Physton/sd-webui-prompt-all-in-one?style=flat-square',
-                },
-                {
-                    'title': 'GitHub forks',
-                    'url': 'https://github.com/Physton/sd-webui-prompt-all-in-one/network/members',
-                    'image': 'https://img.shields.io/github/forks/Physton/sd-webui-prompt-all-in-one?style=flat-square',
-                },
-                {
-                    'title': 'GitHub issues',
-                    'url': 'https://github.com/Physton/sd-webui-prompt-all-in-one/issues',
-                    'image': 'https://img.shields.io/github/issues/Physton/sd-webui-prompt-all-in-one?style=flat-square',
-                },
-                {
-                    'title': 'GitHub issues closed',
-                    'url': 'https://github.com/Physton/sd-webui-prompt-all-in-one/issues?q=is%3Aissue+is%3Aclosed',
-                    'image': 'https://img.shields.io/github/issues-closed/Physton/sd-webui-prompt-all-in-one?style=flat-square',
-                },
-                {
-                    'title': 'GitHub license',
-                    'url': 'https://github.com/Physton/sd-webui-prompt-all-in-one/blob/master/LICENSE.md',
-                    'image': 'https://img.shields.io/github/license/Physton/sd-webui-prompt-all-in-one?style=flat-square',
-                },
-                {
-                    'title': 'GitHub commits',
-                    'url': 'https://github.com/Physton/sd-webui-prompt-all-in-one/commits/main',
-                    'image': 'https://img.shields.io/github/last-commit/Physton/sd-webui-prompt-all-in-one?style=flat-square',
-                },
-            ]
+            icons: [],
         }
     },
     emits: ['use'],
     computed: {},
     mounted() {
+        this.icons = [
+            {
+                'title': 'GitHub stars',
+                'url': this.globals.github + '/stargazers',
+                'image': 'https://img.shields.io/github/stars/' + this.globals.name + '?style=flat-square',
+            },
+            {
+                'title': 'GitHub forks',
+                'url': this.globals.github + '/network/members',
+                'image': 'https://img.shields.io/github/forks/' + this.globals.name + '?style=flat-square',
+            },
+            {
+                'title': 'GitHub issues',
+                'url': this.globals.github + '/issues',
+                'image': 'https://img.shields.io/github/issues/' + this.globals.name + '?style=flat-square',
+            },
+            {
+                'title': 'GitHub issues closed',
+                'url': this.globals.github + '/issues?q=is%3Aissue+is%3Aclosed',
+                'image': 'https://img.shields.io/github/issues-closed/' + this.globals.name + '?style=flat-square',
+            },
+            {
+                'title': 'GitHub license',
+                'url': this.globals.github + '/blob/master/LICENSE.md',
+                'image': 'https://img.shields.io/github/license/' + this.globals.name + '?style=flat-square',
+            },
+            {
+                'title': 'GitHub commits',
+                'url': this.globals.github + '/commits/main',
+                'image': 'https://img.shields.io/github/last-commit/' + this.globals.name + '?style=flat-square',
+            },
+        ]
     },
     methods: {
         open() {
@@ -130,7 +131,7 @@ export default {
             this.isOpen = false
         },
         commitUrl(version) {
-            return 'https://github.com/Physton/sd-webui-prompt-all-in-one/commit/' + version
+            return this.globals.github + '/commit/' + version
         },
         formatVersion(version) {
             if (!version) return this.getLang('unknown_version')
@@ -141,7 +142,7 @@ export default {
             text = text.replace(/Former-commit-id: [a-z0-9]{40}/g, '')
             text = text.trim()
             text = text.replace("\n", '<br/>')
-            text = text.replace(/#(\d+)/g, '<a href="https://github.com/Physton/sd-webui-prompt-all-in-one/issues/$1" target="_blank">#$1</a>')
+            text = text.replace(/#(\d+)/g, '<a href="' + this.globals.github + '/issues/$1" target="_blank">#$1</a>')
             return text
         },
     },

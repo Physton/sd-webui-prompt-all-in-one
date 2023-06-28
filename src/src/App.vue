@@ -118,6 +118,7 @@ import PromptFormat from "@/components/promptFormat.vue";
 import PackagesState from "@/components/packagesState.vue";
 import ChatgptPrompt from "@/components/chatgptPrompt.vue";
 import About from "@/components/about.vue";
+import globals from "../globals";
 
 export default {
     name: 'App',
@@ -433,7 +434,7 @@ export default {
             this.languages = languages
             this.init()
         }).catch(err => {
-            this.$toastr.error("Connection to backend API service failed. Please manually refresh the webpage. If it still doesn't work, please restart the WebUI.<br/>连接到后台接口服务失败，请手动再刷新一次网页。如果还是不行，请重启WebUI。<br/><br/>" + err.message, "sd-webui-prompt-all-in-one", {timeOut: 20000})
+            this.$toastr.error("Connection to backend API service failed. Please manually refresh the webpage. If it still doesn't work, please restart the WebUI.<br/>连接到后台接口服务失败，请手动再刷新一次网页。如果还是不行，请重启WebUI。<br/><br/>" + err.message, globals.shortName, {timeOut: 20000})
             console.log(err)
         })
     },
