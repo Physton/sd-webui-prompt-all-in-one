@@ -315,6 +315,8 @@
     --pp-ph-phe-ec-inputTagAppend-width: 80%;
     --pp-ph-phe-ec-inputTagAppend-text-align: left;
     --pp-ph-phe-ec-inputTagAppend-resize: none;
+    --pp-ph-phe-ec-inputTagAppend-min-height: unset;
+    --pp-ph-phe-ec-inputTagAppend-max-height: unset;
 
     // .physton-prompt .prompt-header .prompt-header-extend .extend-content .input-tag-append:focus
     --pp-ph-phe-ec-inputTagAppendFocus-box-shadow: none;
@@ -1356,6 +1358,8 @@
 
     // .physton-prompt-translate-setting .translate-setting-main .setting-line .line-content .onlyCsvOnAuto span
     --ppts-tsm-sl-lc-ocoa-span-color: #ff9f37;
+    --ppts-tsm-sl-lc-ocoa-span-white-space: break-spaces;
+    --ppts-tsm-sl-lc-ocoa-span-word-break: break-all;
 
     // .physton-prompt-translate-setting .translate-setting-main .setting-line .line-content .line-row
     --ppts-tsm-sl-lc-lineRow-display: flex;
@@ -2233,6 +2237,8 @@
                     width: var(--pp-ph-phe-ec-inputTagAppend-width);
                     text-align: var(--pp-ph-phe-ec-inputTagAppend-text-align);
                     resize: var(--pp-ph-phe-ec-inputTagAppend-resize);
+                    min-height: var(--pp-ph-phe-ec-inputTagAppend-min-height);
+                    max-height: var(--pp-ph-phe-ec-inputTagAppend-max-height);
 
                     &:focus {
                         box-shadow: var(--pp-ph-phe-ec-inputTagAppendFocus-box-shadow) !important;
@@ -3480,6 +3486,8 @@
 
                     span {
                         color: var(--ppts-tsm-sl-lc-ocoa-span-color);
+                        white-space: var(--ppts-tsm-sl-lc-ocoa-span-white-space);
+                        word-break: var(--ppts-tsm-sl-lc-ocoa-span-word-break);
                     }
                 }
 
@@ -3946,6 +3954,17 @@
 .physton-highlight-prompt {
     background: var(--physton-highlight-prompt-background);
 }
+
+.physton-prompt-lobehub {
+    #tabs > .tabitem.gradio-tabitem {
+        overflow: unset;
+    }
+
+    .app.gradio-container {
+        overflow: unset;
+    }
+}
+
 
 
 .physton-gradio-container {

@@ -411,6 +411,14 @@ export default {
             }
         }
 
+        // sd-webui-lobe-theme
+        setTimeout(() => {
+            if (document.querySelector('meta[content="LobeHub"]')) {
+                common.gradioApp().classList.add("physton-prompt-lobehub")
+            }
+        }, 3000)
+
+
         this.gradioAPI.getConfig().then(res => {
             console.log('config:', res)
             this.languageCode = res.i18n.default
