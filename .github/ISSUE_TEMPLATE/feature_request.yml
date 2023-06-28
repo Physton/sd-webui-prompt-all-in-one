@@ -1,0 +1,22 @@
+name: 'Feature request'
+description: 'Feature request'
+title: '[Feature] '
+body:
+  - type: textarea
+    attributes:
+      label: 'Is this feature related to existing issues?'
+      description: If it is, please list the links or describe the issues here.
+  - type: textarea
+    attributes:
+      label: 'What feature do you want or what suggestions do you have?'
+      description: Please let me know.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: 'Are there any similar competitors that can be referenced?'
+      description: You can provide links or screenshots of reference products.
+  - type: textarea
+    attributes:
+      label: 'Additional information'
+      description: Feel free to share any other considerations you have.

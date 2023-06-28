@@ -1,0 +1,22 @@
+name: '功能建议'
+description: '功能建议'
+title: '[Feature] '
+body:
+  - type: textarea
+    attributes:
+      label: '这个功能与现有的问题有关吗？'
+      description: 如果有关，请在此列出链接或者描述问题。
+  - type: textarea
+    attributes:
+      label: '你想要什么功能或者有什么建议？'
+      description: 尽管告诉我。
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: '有没有可以参考的同类竞品？'
+      description: 可以给出参考产品的链接或者截图。
+  - type: textarea
+    attributes:
+      label: '其他信息'
+      description: 可以说说你的其他考虑。

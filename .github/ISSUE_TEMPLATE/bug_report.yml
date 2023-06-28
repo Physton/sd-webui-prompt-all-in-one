@@ -1,0 +1,75 @@
+name: 'Bug report'
+description: "❗️❗️❗️If you don't use this template to provide bug feedback, I won't address your issue."
+title: '[Bug] '
+body:
+  - type: checkboxes
+    attributes:
+      label: 'Issue Feedback'
+      description: Please check the box below to indicate that you are aware of the relevant information.
+      options:
+          - label: I confirm that I have searched for a solution to this issue in the [FAQ](https://aiodoc.physton.com/FAQ.html) and couldn't find a solution.
+            required: true
+          - label: I confirm that I have searched for this issue in the [Issues](https://github.com/Physton/sd-webui-prompt-all-in-one/issues) list (including closed ones) and couldn't find a solution.
+            required: true
+          - label: I confirm that I have read the [Wiki](https://aiodoc.physton.com/) and couldn't find a solution.
+            required: true
+  - type: textarea
+    attributes:
+      label: 'Describe the Issue'
+      description: Please describe the problem you encountered here.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: 'Steps to Reproduce'
+      description: Please let me know the steps you took to trigger the issue.
+  - type: textarea
+    attributes:
+      label: 'Screenshot or log'
+      description: Please provide console screenshots or screenshots of the issue if possible.
+  - type: dropdown
+    attributes:
+      label: 'OS'
+      options:
+        - Windows
+        - macOS
+        - Ubuntu
+        - Other Linux
+        - Other
+    validations:
+      required: true
+  - type: dropdown
+    attributes:
+      label: 'Browser'
+      options:
+        - Chrome
+        - Edge
+        - Safari
+        - Firefox
+        - Other
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: Stable Diffusion WebUI version
+      placeholder: e.g. b6af0a3, 1.3.1
+    validations:
+      required: false
+  - type: input
+    attributes:
+      label: Extension version
+      placeholder: e.g. e0498a1
+    validations:
+      required: false
+  - type: input
+    attributes:
+      label: Python version
+      placeholder: e.g. 3.10.11
+    validations:
+      required: false
+  - type: input
+    attributes:
+      label: Gradio version
+      placeholder: e.g. 3.31.0
+    validations:
+      required: false
