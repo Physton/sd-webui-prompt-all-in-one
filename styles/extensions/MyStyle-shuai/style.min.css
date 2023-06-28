@@ -33,7 +33,7 @@
     border-bottom: 1px dashed #3741518c;
     color: #9ea7ae;
     background-color: #1f293794;
-    height: 41px;
+    /*height: 41px;*/
     padding-left: 8px;
     padding-right: 8px;
     padding-top: 2px;
@@ -515,7 +515,7 @@
     border-bottom: 1px dashed #37415130;
     color: #9ea7ae;
     background-color: rgb(243 243 243 / 59%);
-    height: 41px;
+    /*height: 41px;*/
     padding-left: 8px;
     padding-right: 8px;
     padding-top: 2px;
@@ -971,3 +971,11 @@
   .physton-gradio-container.light .physton-prompt .prompt-tags .prompt-tags-list .prompt-tag .prompt-tag-main:hover .btn-tag-extend, .physton-gradio-container.light .physton-prompt .prompt-tags .prompt-tags-list .prompt-tag .prompt-tag-main:hover .prompt-tag-edit {
     box-shadow: 0 0 5px 0 #1e1e1e33;
   }
+
+
+.physton-gradio-container.dark.physton-prompt-lobehub .physton-prompt {
+  margin: 10px 0 12px 0;
+}
+.physton-gradio-container.light.physton-prompt-lobehub .physton-prompt {
+  margin: 10px 0 12px 0;
+}

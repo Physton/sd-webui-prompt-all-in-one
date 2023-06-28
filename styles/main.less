@@ -135,7 +135,8 @@
 
     // .physton-prompt .prompt-header
     --pp-promptHeader-margin: 0;
-    --pp-promptHeader-padding: 5px 10px;
+    //--pp-promptHeader-padding: 5px 10px;
+    --pp-promptHeader-padding: 0 10px;
     --pp-promptHeader-display: flex;
     --pp-promptHeader-justify-content: flex-start;
     --pp-promptHeader-align-items: center;
@@ -143,6 +144,7 @@
     --pp-promptHeader-flex-wrap: wrap;
 
     // .physton-prompt .prompt-header>*
+    --pp-promptHeaderAny-margin: 5px 0;
     --pp-promptHeaderAny-margin-right: 10px;
 
     // .physton-prompt .prompt-header>*:last-child
@@ -2096,6 +2098,7 @@
         flex-wrap: var(--pp-promptHeader-flex-wrap);
 
         > * {
+            margin: var(--pp-promptHeaderAny-margin);
             margin-right: var(--pp-promptHeaderAny-margin-right);
 
             &:last-child {
