@@ -199,6 +199,25 @@ export default {
     },
 
     /**
+     * 是否是同一种语言
+     * @param code1 {string}
+     * @param code2 {string}
+     */
+    isSameLang(code1, code2) {
+        if (code1 === code2) return true
+        let code1Lower = code1.toLowerCase()
+        let code2Lower = code2.toLowerCase()
+        if (code1Lower === code2Lower) return true
+        code1 = code1.replace('-', '_')
+        code2 = code2.replace('-', '_')
+        if (code1 === code2) return true
+        code1 = code1.split('_')[0]
+        code2 = code2.split('_')[0]
+        if (code1 === code2) return true
+        return false
+    },
+
+    /**
      * 获取语言
      * @param key {string}
      * @param languageCode {string}
@@ -510,10 +529,20 @@ export default {
         parent2.insertBefore(ele1, next2)
     },
 
+    /**
+     * 插入元素
+     * @param newNode {Element}
+     * @param referenceNode {Element}
+     */
     insertBefore(newNode, referenceNode) {
         referenceNode.parentNode.insertBefore(newNode, referenceNode);
     },
 
+    /**
+     * 插入元素
+     * @param newNode {Element}
+     * @param referenceNode {Element}
+     */
     insertAfter(newNode, referenceNode) {
         if (referenceNode.nextSibling) {
             referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);

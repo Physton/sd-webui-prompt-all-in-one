@@ -461,6 +461,19 @@ export default {
                     if (findLang) {
                         this.languageCode = data.languageCode
                         this.$forceUpdate()
+                        this.gradioAPI.setData('languageCode', this.languageCode)
+                    }
+                } else {
+                    let browserLang = navigator.language || navigator.userLanguage || ''
+                    if (browserLang) {
+                        for (let key in this.languages) {
+                            if (common.isSameLang(this.languages[key].code, browserLang)) {
+                                this.languageCode = this.languages[key].code
+                                this.$forceUpdate()
+                                this.gradioAPI.setData('languageCode', this.languageCode)
+                                break
+                            }
+                        }
                     }
                 }
                 this.canOneTranslate = common.canOneTranslate(this.languageCode)
