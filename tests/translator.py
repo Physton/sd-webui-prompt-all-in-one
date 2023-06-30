@@ -184,4 +184,4 @@ def test_languages():
         print(translate(text, 'en_US', lang, 'myMemory_free'))
         pass
 
-test_iflytekV2()
+test_translators()
