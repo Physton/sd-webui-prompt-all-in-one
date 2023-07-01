@@ -522,11 +522,12 @@ export default {
                 localStorage.setItem('phystonPromptEnableTooltip', this.enableTooltip ? 'true' : 'false')
                 this.updateTippyState()
                 if (data.translateApi !== null) {
-                    if (data.translateApi === 'alibaba_free') {
+                    this.translateApi = data.translateApi
+                    /*if (data.translateApi === 'alibaba_free') {
                         this.gradioAPI.setData('translateApi', this.translateApi)
                     } else {
                         this.translateApi = data.translateApi
-                    }
+                    }*/
                 }
                 if (data.tagCompleteFile !== null) {
                     this.tagCompleteFile = data.tagCompleteFile
