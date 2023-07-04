@@ -221,17 +221,40 @@ Light theme
     */
     background: rgba(112, 112, 112, 0);
 }
- 
+
+.physton-prompt .prompt-header .prompt-header-extend .extend-content input[type=checkbox]{
+margin-bottom: 8px!important;
+
+}
+.physton-prompt{
+    background-color: #ffffff21 !important ;
+    border-radius: 5px;
+}
+.physton-prompt .prompt-header .icon-svg-input svg{
+    fill: var(--body-text-color);   
+     display:none;
+}
+.physton-prompt .prompt-header .icon-svg-input:before {
+    /* 功能设置图标样式*/
+    background-image: url(/physton_prompt/styles?file=extensions/Webui/images/code.svg);
+    background-size: 100% 100%;
+    content: "";
+    display: inline-block;
+    height: 17px !important;
+    width: 17px !important;
+}
+
+
 .physton-prompt .prompt-header .prompt-header-extend .extend-content .input-tag-append{
     /*输入框默认颜色 */
     border-radius: 15px !important;
-    border: 1px solid var(--body-text-color);
+    border: 1px solid #ffffff2c;
 }
 
 .physton-prompt .prompt-header .prompt-header-extend .extend-content .input-tag-append:focus{
   /*输入集焦时的样式*/
     outline: none; 
-    border: 1px solid #1296db;
+    border: 1px solid #1296db !important;
 }
 
 .physton-gradio-container.dark .physton-prompt .prompt-header .prompt-header-extend .extend-content .input-tag-append {
