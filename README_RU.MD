@@ -139,5 +139,5 @@ sd-webui-prompt-all-in-one - это расширение, основанное �
 | :---: | :---: |
 | Paypal | [https://paypal.me/physton](https://paypal.me/physton) |
 | 爱发电 | [https://afdian.net/a/physton](https://afdian.net/a/physton) |
-| 支付宝 | `physton@163.com` |
-| 微信赞赏 | ![](https://s1.imagehub.cc/images/2023/06/06/donate-wechat.jpeg) |
+| 支付宝 | ![](https://s1.imagehub.cc/images/2023/07/05/alipay.jpeg) |
+| 微信赞赏 | ![](https://s1.imagehub.cc/images/2023/07/05/wechat.jpeg) |
