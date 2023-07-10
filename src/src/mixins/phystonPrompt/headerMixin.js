@@ -37,6 +37,10 @@ export default {
                     "children": []
                 }*/
             ],
+
+            favorites: [],
+            autoInputPrompt: 'disabled',
+            autoInputPromptKey: '',
         }
     },
     computed: {
@@ -48,6 +52,7 @@ export default {
         }
     },
     mounted() {
+        this.initAutoInputPrompt()
         let temp = [
             {
                 'name': 'txt2img',
@@ -510,6 +515,56 @@ export default {
                 this._appendTag(tags, text)
                 this.updateTags()
             }, 300)
+        },
+        onSettingBoxMouseEnter() {
+            this.favorites = typeof window.phystonPromptfavorites === 'object' ? window.phystonPromptfavorites : []
+        },
+        getCurrentTypeFavorites() {
+            let favorites = []
+            this.favorites.forEach(favorite => {
+                if (this.neg) {
+                    if (favorite.type !== 'negative_prompt') return
+                } else {
+                    if (favorite.type !== 'prompt') return
+                }
+                favorites.push(favorite)
+            })
+            return favorites
+        },
+        onAutoInputPromptChange() {
+            this.gradioAPI.setData(this.autoInputPromptKey, this.autoInputPrompt).then(() => {
+                this.$toastr.success(this.getLang('success'))
+            }).catch(() => {
+                this.$toastr.error(this.getLang('failed'))
+            })
+        },
+        initAutoInputPrompt() {
+            this.autoInputPromptKey = 'autoInputPrompt-' + this.name
+            this.gradioAPI.getData(this.autoInputPromptKey).then(res => {
+                if (res === null) return
+                this.autoInputPrompt = res
+                if (this.autoInputPrompt === 'last') {
+                    this.gradioAPI.getLatestHistory(this.historyKey).then(res => {
+                        this.useHistory(res)
+                    })
+                } else {
+                    const getFavorites = () => {
+                        if (typeof window.phystonPromptfavorites === 'object' && window.phystonPromptfavorites.length > 0) {
+                            for (let item of window.phystonPromptfavorites) {
+                                for (let favorite of item.list) {
+                                    if (favorite.id === this.autoInputPrompt) {
+                                        this.useFavorite(favorite)
+                                        return
+                                    }
+                                }
+                            }
+                            return
+                        }
+                        setTimeout(getFavorites, 100)
+                    }
+                    setTimeout(getFavorites, 100)
+                }
+            })
         },
     }
 }

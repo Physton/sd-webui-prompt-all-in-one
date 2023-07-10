@@ -16,7 +16,7 @@
                             </div>
                             <div :class="['extend-btn-item', isLatestVersion ? '' : 'red-dot']">
                                 <icon-svg class="hover-scale-120" name="setting" v-tooltip="getLang('setting_desc')"/>
-                                <div class="setting-box">
+                                <div class="setting-box" @mouseenter="onSettingBoxMouseEnter">
                                     <div v-if="translateApiItem.name && !isEnglish" class="extend-btn-item"
                                          v-tooltip="getLang('translate_api') + ': ' + translateApiItem.name"
                                          @click="$emit('click:translateApi', $event)">
@@ -87,6 +87,19 @@
                                                    :checked="enableTooltip"
                                                    @change="$emit('update:enableTooltip', $event.target.checked)">
                                             <icon-svg name="tooltip"/>
+                                        </label>
+                                    </div>
+                                    <div class="gradio-checkbox">
+                                        <label v-tooltip="getLang('auto_input_prompt')">
+                                            <select v-model="autoInputPrompt" @change="onAutoInputPromptChange">
+                                                <option value="disabled">{{ getLang('auto_input_prompt') }}: {{ getLang('disabled') }}</option>
+                                                <option value="last">{{ getLang('last_input_prompt') }}</option>
+                                                <optgroup v-for="(item) in getCurrentTypeFavorites()" :key="item.key" :label="getLang('favorite') + ' / ' + getLang(item.name)">
+                                                    <option v-for="(favorite) in item.list" :value="favorite.id">
+                                                        {{ favorite.name || favorite.prompt.substring(0, 40) }}
+                                                    </option>
+                                                </optgroup>
+                                            </select>
                                         </label>
                                     </div>
                                 </div>
