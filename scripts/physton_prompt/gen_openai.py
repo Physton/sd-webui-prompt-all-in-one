@@ -1,8 +1,10 @@
 from scripts.physton_prompt.get_lang import get_lang
+from scripts.physton_prompt.get_translate_apis import unprotected_translate_api_config
 
 
 def gen_openai(messages, api_config):
     import openai
+    api_config = unprotected_translate_api_config('chatgpt_key', api_config)
     openai.api_base = api_config.get('api_base', 'https://api.openai.com/v1')
     openai.api_key = api_config.get('api_key', '')
     model = api_config.get('model', 'gpt-3.5-turbo')

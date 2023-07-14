@@ -154,15 +154,16 @@ export default {
                         configs[item.key] = res.chatgpt_key[item.key] || item.default || ''
                     }
                 } else {
-                    if (res['translate_api.openai'] && res['translate_api.openai'].api_key) {
+                    /*if (res['translate_api.openai'] && res['translate_api.openai'].api_key) {
                         for (const item of api.config) {
                             configs[item.key] = res['translate_api.openai'][item.key] || item.default || ''
                         }
-                    } else {
-                        for (const item of api.config) {
-                            configs[item.key] = item.default || ''
-                        }
+                    } else {*/
+                    for (const item of api.config) {
+                        configs[item.key] = item.default || ''
                     }
+                    /*}*/
+                    // this.gradioAPI.setData('chatgpt_key', configs)
                 }
                 if (!configs['api_key']) {
                     this.hidePanels['api'] = false

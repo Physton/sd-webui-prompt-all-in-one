@@ -1,7 +1,7 @@
 import json
 import hashlib
 from scripts.physton_prompt.get_lang import get_lang
-from scripts.physton_prompt.get_translate_apis import get_translate_apis
+from scripts.physton_prompt.get_translate_apis import get_translate_apis, unprotected_translate_api_config
 from scripts.physton_prompt.translator.alibaba_translator import AlibabaTranslator
 from scripts.physton_prompt.translator.amazon_translator import AmazonTranslator
 from scripts.physton_prompt.translator.baidu_translator import BaiduTranslator
@@ -37,8 +37,7 @@ def translate(text, from_lang, to_lang, api, api_config=None):
             "translated_text": translated_text,
             "from_lang": from_lang,
             "to_lang": to_lang,
-            "api": api,
-            "api_config": api_config
+            "api": api
         }
 
     def _cache_name(text):
@@ -124,7 +123,7 @@ def translate(text, from_lang, to_lang, api, api_config=None):
 
         translator.set_from_lang(from_lang)
         translator.set_to_lang(to_lang)
-        translator.set_api_config(api_config)
+        translator.set_api_config(unprotected_translate_api_config('translate_api.' + api, api_config))
 
         if isinstance(text, list):
             translate_texts = []

@@ -1827,7 +1827,8 @@
                         {
                             "key": "api_key",
                             "title": "API Key",
-                            "type": "input"
+                            "type": "input",
+                            "privacy": true
                         }
                     ]
                 },
@@ -1987,7 +1988,8 @@
                         {
                             "key": "api_key",
                             "title": "API Key",
-                            "type": "input"
+                            "type": "input",
+                            "privacy": true
                         },
                         {
                             "key": "model",
@@ -2150,7 +2152,8 @@
                         {
                             "key": "api_key",
                             "title": "API Key",
-                            "type": "input"
+                            "type": "input",
+                            "privacy": true
                         },
                         {
                             "key": "region",
@@ -2260,12 +2263,14 @@
                         {
                             "key": "api_key_id",
                             "title": "API Key ID",
-                            "type": "input"
+                            "type": "input",
+                            "privacy": true
                         },
                         {
                             "key": "api_key_secret",
                             "title": "API Key Secret",
-                            "type": "input"
+                            "type": "input",
+                            "privacy": true
                         },
                         {
                             "key": "region",
@@ -2372,7 +2377,8 @@
                         {
                             "key": "api_key",
                             "title": "API Key",
-                            "type": "input"
+                            "type": "input",
+                            "privacy": true
                         }
                     ]
                 },
@@ -2476,7 +2482,8 @@
                         {
                             "key": "api_key",
                             "title": "API Key",
-                            "type": "input"
+                            "type": "input",
+                            "privacy": true
                         }
                     ]
                 },
@@ -2607,7 +2614,8 @@
                         {
                             "key": "api_key",
                             "title": "API Key",
-                            "type": "input"
+                            "type": "input",
+                            "privacy": true
                         }
                     ]
                 },
@@ -2672,12 +2680,14 @@
                         {
                             "key": "app_id",
                             "title": "APP ID",
-                            "type": "input"
+                            "type": "input",
+                            "privacy": true
                         },
                         {
                             "key": "app_secret",
                             "title": "APP Secret",
-                            "type": "input"
+                            "type": "input",
+                            "privacy": true
                         }
                     ]
                 },
@@ -2808,12 +2818,14 @@
                         {
                             "key": "access_key_id",
                             "title": "Access Key ID",
-                            "type": "input"
+                            "type": "input",
+                            "privacy": true
                         },
                         {
                             "key": "access_key_secret",
                             "title": "Access Key Secret",
-                            "type": "input"
+                            "type": "input",
+                            "privacy": true
                         },
                         {
                             "key": "region",
@@ -2968,12 +2980,14 @@
                         {
                             "key": "app_id",
                             "title": "App ID",
-                            "type": "input"
+                            "type": "input",
+                            "privacy": true
                         },
                         {
                             "key": "app_secret",
                             "title": "App Secret",
-                            "type": "input"
+                            "type": "input",
+                            "privacy": true
                         }
                     ]
                 },
@@ -3028,12 +3042,14 @@
                         {
                             "key": "secret_id",
                             "title": "Secret ID",
-                            "type": "input"
+                            "type": "input",
+                            "privacy": true
                         },
                         {
                             "key": "secret_key",
                             "title": "Secret Key",
-                            "type": "input"
+                            "type": "input",
+                            "privacy": true
                         },
                         {
                             "key": "region",
@@ -3190,7 +3206,8 @@
                         {
                             "key": "api_key",
                             "title": "API Key",
-                            "type": "input"
+                            "type": "input",
+                            "privacy": true
                         }
                     ]
                 },
@@ -3230,7 +3247,8 @@
                         {
                             "key": "token",
                             "title": "Token",
-                            "type": "input"
+                            "type": "input",
+                            "privacy": true
                         }
                     ]
                 },
@@ -3347,12 +3365,14 @@
                         {
                             "key": "access_key_id",
                             "title": "Access Key ID",
-                            "type": "input"
+                            "type": "input",
+                            "privacy": true
                         },
                         {
                             "key": "access_key_secret",
                             "title": "Secret Access Key",
-                            "type": "input"
+                            "type": "input",
+                            "privacy": true
                         },
                         {
                             "key": "region",
@@ -3460,17 +3480,20 @@
                         {
                             "key": "app_id",
                             "title": "APP ID",
-                            "type": "input"
+                            "type": "input",
+                            "privacy": true
                         },
                         {
                             "key": "api_secret",
                             "title": "API Secret",
-                            "type": "input"
+                            "type": "input",
+                            "privacy": true
                         },
                         {
                             "key": "api_key",
                             "title": "API Key",
-                            "type": "input"
+                            "type": "input",
+                            "privacy": true
                         }
                     ]
                 },
@@ -3544,17 +3567,20 @@
                         {
                             "key": "app_id",
                             "title": "APP ID",
-                            "type": "input"
+                            "type": "input",
+                            "privacy": true
                         },
                         {
                             "key": "api_secret",
                             "title": "API Secret",
-                            "type": "input"
+                            "type": "input",
+                            "privacy": true
                         },
                         {
                             "key": "api_key",
                             "title": "API Key",
-                            "type": "input"
+                            "type": "input",
+                            "privacy": true
                         }
                     ]
                 }

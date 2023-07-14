@@ -53,6 +53,8 @@ class Storage:
         filename = self.__get_data_filename(key)
         if not os.path.exists(filename):
             return None
+        if os.path.getsize(filename) == 0:
+            return None
         try:
             import launch
             if not launch.is_installed("chardet"):
@@ -65,8 +67,12 @@ class Storage:
                     encoding = chardet.detect(data).get('encoding')
                     data = json.loads(data.decode(encoding))
         except Exception as e:
-            print(e)
-            return None
+            try:
+                with open(filename, 'r') as f:
+                    data = json.load(f)
+            except Exception as e:
+                print(e)
+                return None
         return data
 
     def __set(self, key, data):

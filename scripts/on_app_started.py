@@ -9,7 +9,7 @@ from scripts.physton_prompt.storage import Storage
 from scripts.physton_prompt.get_extensions import get_extensions
 from scripts.physton_prompt.get_token_counter import get_token_counter
 from scripts.physton_prompt.get_i18n import get_i18n
-from scripts.physton_prompt.get_translate_apis import get_translate_apis
+from scripts.physton_prompt.get_translate_apis import get_translate_apis, privacy_translate_api_config, unprotected_translate_api_config
 from scripts.physton_prompt.translate import translate
 from scripts.physton_prompt.history import History
 from scripts.physton_prompt.csv import get_csvs, get_csv
@@ -105,7 +105,9 @@ def on_app_started(_: gr.Blocks, app: FastAPI):
 
     @app.get("/physton_prompt/get_data")
     async def _get_data(key: str):
-        return {"data": st.get(key)}
+        data = st.get(key)
+        data = privacy_translate_api_config(key, data)
+        return {"data": data}
 
     @app.get("/physton_prompt/get_datas")
     async def _get_datas(keys: str):
@@ -113,6 +115,7 @@ def on_app_started(_: gr.Blocks, app: FastAPI):
         datas = {}
         for key in keys:
             datas[key] = st.get(key)
+            datas[key] = privacy_translate_api_config(key, datas[key])
         return {"datas": datas}
 
     @app.post("/physton_prompt/set_data")
@@ -122,6 +125,7 @@ def on_app_started(_: gr.Blocks, app: FastAPI):
             return {"success": False, "message": get_lang('is_required', {'0': 'key'})}
         if 'data' not in data:
             return {"success": False, "message": get_lang('is_required', {'0': 'data'})}
+        data['data'] = unprotected_translate_api_config(data['key'], data['data'])
         st.set(data['key'], data['data'])
         return {"success": True}
 
@@ -131,6 +135,7 @@ def on_app_started(_: gr.Blocks, app: FastAPI):
         if not isinstance(data, dict):
             return {"success": False, "message": get_lang('is_not_dict', {'0': 'data'})}
         for key in data:
+            data[key] = unprotected_translate_api_config(key, data[key])
             st.set(key, data[key])
         return {"success": True}
 
@@ -288,9 +293,19 @@ def on_app_started(_: gr.Blocks, app: FastAPI):
         return {"success": hi.remove_histories(data['type'])}
 
     @app.post("/physton_prompt/translate")
-    async def _translate(text: str = Body(...), from_lang: str = Body(...), to_lang: str = Body(...),
-                         api: str = Body(...), api_config: dict = Body(...)):
-        return translate(text, from_lang, to_lang, api, api_config)
+    async def _translate(request: Request):
+        data = await request.json()
+        if 'text' not in data:
+            return {"success": False, "message": get_lang('is_required', {'0': 'text'})}
+        if 'from_lang' not in data:
+            return {"success": False, "message": get_lang('is_required', {'0': 'from_lang'})}
+        if 'to_lang' not in data:
+            return {"success": False, "message": get_lang('is_required', {'0': 'to_lang'})}
+        if 'api' not in data:
+            return {"success": False, "message": get_lang('is_required', {'0': 'api'})}
+        if 'api_config' not in data:
+            return {"success": False, "message": get_lang('is_required', {'0': 'api_config'})}
+        return translate(data['text'], data['from_lang'], data['to_lang'], data['api'], data['api_config'])
 
     @app.post("/physton_prompt/translates")
     async def _translates(request: Request):
