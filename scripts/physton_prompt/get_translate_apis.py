@@ -64,6 +64,9 @@ def privacy_translate_api_config(data_key, data):
     if not find:
         return data
     api_item = find
+    if 'config' not in api_item or not api_item['config']:
+        return data
+
     for config in api_item['config']:
         # 如果有 privacy 的属性并且为 True
         if 'privacy' in config and config['privacy'] and config['type'] == 'input':
@@ -96,6 +99,8 @@ def unprotected_translate_api_config(data_key, data):
     if not find:
         return data
     api_item = find
+    if 'config' not in api_item or not api_item['config']:
+        return data
 
     storage_data = st.get(data_key)
 
