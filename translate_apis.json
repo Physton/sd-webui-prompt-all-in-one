@@ -1494,9 +1494,9 @@
                 },
                 {
                     "key": "cloudYi_free",
-                    "name": "[Free] [translators] CloudYi / 深圳云译",
+                    "name": "[Free] [translators] CloudTranslation / 深圳云译",
                     "type": "translators",
-                    "translator": "cloudYi",
+                    "translator": "cloudTranslation",
                     "concurrent": 999,
                     "support": {
                         "zh_CN": "zh-cn",
@@ -1524,7 +1524,7 @@
                     },
                     "help": [
                         {
-                            "title": "CloudYi/深圳云译 - Xiamen University / CloudTranslation",
+                            "title": "CloudTranslation/深圳云译 - Xiamen University / CloudTranslation",
                             "url": "https://www.cloudtranslation.com/#/translate"
                         },
                         {

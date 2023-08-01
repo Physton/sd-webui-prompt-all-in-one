@@ -61,11 +61,11 @@ ApiKwargsType = Union[str, int, float, bool, dict]
 
 __all__ = [
     'translate_text', 'translate_html', 'translators_pool',
-    'alibaba', 'apertium', 'argos', 'baidu', 'bing', 'caiyun', 'cloudYi', 'deepl', 'elia', 'google',
+    'alibaba', 'apertium', 'argos', 'baidu', 'bing', 'caiyun', 'cloudTranslation', 'deepl', 'elia', 'google',
     'iciba', 'iflytek', 'iflyrec', 'itranslate', 'judic', 'languageWire', 'lingvanex', 'mglip', 'mirai', 'modernMt',
     'myMemory', 'niutrans', 'papago', 'qqFanyi', 'qqTranSmart', 'reverso', 'sogou', 'sysTran', 'tilde', 'translateCom',
     'translateMe', 'utibet', 'volcEngine', 'yandex', 'yeekit', 'youdao',
-    '_alibaba', '_apertium', '_argos', '_baidu', '_bing', '_caiyun', '_cloudYi', '_deepl', '_elia', '_google',
+    '_alibaba', '_apertium', '_argos', '_baidu', '_bing', '_caiyun', '_cloudTranslation', '_deepl', '_elia', '_google',
     '_iciba', '_iflytek', '_iflyrec', '_itranslate', '_judic', '_languageWire', '_lingvanex', '_mglip', '_mirai', '_modernMt',
     '_myMemory', '_niutrans', '_papago', '_qqFanyi', '_qqTranSmart', '_reverso', '_sogou', '_sysTran', '_tilde', '_translateCom',
     '_translateMe', '_utibet', '_volcEngine', '_yandex', '_yeekit', '_youdao',
@@ -82,7 +82,7 @@ class Tse:
         self.all_begin_time = time.time()
         self.default_session_freq = int(1e3)
         self.default_session_seconds = 1.5e3
-        self.transform_en_translator_pool = ('itranslate', 'lingvanex', 'myMemory', 'apertium', 'cloudYi', 'translateMe')
+        self.transform_en_translator_pool = ('itranslate', 'lingvanex', 'myMemory', 'apertium', 'cloudTranslation', 'translateMe')
         self.auto_pool = ('auto', 'detect', 'auto-detect', 'all')
         self.zh_pool = ('zh', 'zh-CN', 'zh-cn', 'zh-CHS', 'zh-Hans', 'zh-Hans_CN', 'cn', 'chi', 'Chinese')
 
@@ -226,12 +226,7 @@ class Tse:
 
     @staticmethod
     def check_query(func):
-        def check_query_text(query_text: str,
-                             if_ignore_empty_query: bool,
-                             if_ignore_limit_of_length: bool,
-                             limit_of_length: int
-                             ) -> str:
-
+        def check_query_text(query_text: str, if_ignore_empty_query: bool, if_ignore_limit_of_length: bool, limit_of_length: int) -> str:
             if not isinstance(query_text, str):
                 raise TranslatorError
 
@@ -1449,7 +1444,7 @@ class AlibabaV1(Tse):
         s = self.get_timestamp()
         o = ''.join([e, hex(s)[2:]])
         for _ in range(1, 10):
-            a = hex(int(0 * 1e10))[2:]  # int->str: 16, '0x'
+            a = hex(int(random.random() * 1e10))[2:]  # int->str: 16, '0x'
             o += a
         return o[:42]
 
@@ -2731,7 +2726,7 @@ class Reverso(Tse):
         self.host_url = 'https://www.reverso.net/text-translation'
         self.api_url = 'https://api.reverso.net/translate/v1/translation'
         self.language_url = None
-        self.language_pattern = 'https://cdn.reverso.net/trans/v(\\d).(\\d).(\\d)/main.js'
+        self.language_pattern = 'https://cdn.reverso.net/trans/v(\\d+).(\\d+).(\\d+)/main.js'
         self.host_headers = self.get_headers(self.host_url, if_api=False)
         self.api_headers = self.get_headers(self.host_url, if_api=True, if_json_for_api=True)
         self.session = None
@@ -4104,7 +4099,7 @@ class Tilde(Tse):
         return data if is_detail_result else data['translation']
 
 
-class CloudYi(Tse):
+class cloudTranslationV1(Tse):
     def __init__(self):
         super().__init__()
         self.begin_time = time.time()
@@ -4139,7 +4134,7 @@ class CloudYi(Tse):
 
     @Tse.time_stat
     @Tse.check_query
-    def cloudYi_api(self, query_text: str, from_language: str = 'auto', to_language: str = 'en', **kwargs: ApiKwargsType) -> Union[str, dict]:
+    def cloudTranslation_api(self, query_text: str, from_language: str = 'auto', to_language: str = 'en', **kwargs: ApiKwargsType) -> Union[str, dict]:
         """
         https://www.cloudtranslation.com/#/translate
         :param query_text: str, must.
@@ -4191,11 +4186,12 @@ class CloudYi(Tse):
             from_language = r.json()['data']['language']
         from_language, to_language = from_language.lower(), to_language.lower()  # must lower
         from_language, to_language = self.check_language(from_language, to_language, self.language_map, output_zh=self.output_zh,
-                                                         output_en_translator='cloudYi', output_en=self.output_en)
+                                                         output_en_translator='cloudTranslation', output_en=self.output_en)
 
         domains = self.langpair_domain.get(f'{from_language}_{to_language}')
         if not domains:
             raise TranslatorError
+
         if use_domain not in domains:
             use_domain = domains[0]
 
@@ -4211,6 +4207,116 @@ class CloudYi(Tse):
         time.sleep(sleep_seconds)
         self.query_count += 1
         return data if is_detail_result else data['data']['translation']
+
+
+class cloudTranslationV2(Tse):
+    def __init__(self):
+        super().__init__()
+        self.begin_time = time.time()
+        self.host_url = 'https://online.cloudtranslation.com'
+        self.api_url = 'https://online.cloudtranslation.com/api/v1.0/request_translate/try_translate'
+        self.get_lang_url = 'https://online.cloudtranslation.com/api/v1.0/site/get_all_language_and_domain'
+        self.detect_lang_url = 'https://online.cloudtranslation.com/api/v1.0/request_translate/langid'
+        self.get_cookie_url = 'https://online.cloudtranslation.com/api/v1.0/site/sites_language_list'
+        self.host_headers = self.get_headers(self.host_url, if_api=False, if_referer_for_host=True)
+        self.api_headers = self.get_headers(self.host_url, if_api=True, if_json_for_api=True)
+        self.session = None
+        self.language_map = None
+        self.langpair_domain = None
+        self.professional_field = None
+        self.query_count = 0
+        self.output_zh = 'zh-cn'
+        self.output_en = 'en-us'
+        self.output_auto = 'all'
+        self.input_limit = int(5e3)
+        self.default_from_language = self.output_zh
+
+    @Tse.debug_language_map
+    def get_language_map(self, d_lang_map: dict, **kwargs: LangMapKwargsType) -> dict:
+        return {k: [it['language_code'] for it in item] for k, item in d_lang_map['data']['src_to_tgt'].items()}
+
+    def get_langpair_domain(self, d_lang_map: dict) -> dict:
+        return {k: [it['domain_code'] for it in item] for k, item in d_lang_map['data']['language_pair_to_domain'].items()}
+
+    def get_professional_field_list(self, d_lang_map: dict) -> set:
+        return {it['domain_code'] for _, item in d_lang_map['data']['language_pair_to_domain'].items() for it in item}
+
+    @Tse.time_stat
+    @Tse.check_query
+    def cloudTranslation_api(self, query_text: str, from_language: str = 'auto', to_language: str = 'en', **kwargs: ApiKwargsType) -> Union[str, dict]:
+        """
+        https://online.cloudtranslation.com
+        :param query_text: str, must.
+        :param from_language: str, default 'auto'.
+        :param to_language: str, default 'en'.
+        :param **kwargs:
+                :param timeout: float, default None.
+                :param proxies: dict, default None.
+                :param sleep_seconds: float, default 0.
+                :param is_detail_result: bool, default False.
+                :param if_ignore_limit_of_length: bool, default False.
+                :param limit_of_length: int, default 20000.
+                :param if_ignore_empty_query: bool, default False.
+                :param update_session_after_freq: int, default 1000.
+                :param update_session_after_seconds: float, default 1500.
+                :param if_show_time_stat: bool, default False.
+                :param show_time_stat_precision: int, default 2.
+                :param if_print_warning: bool, default True.
+                :param professional_field: str, default 'general'.
+        :return: str or dict
+        """
+
+        use_domain = kwargs.get('professional_field', 'general')
+        timeout = kwargs.get('timeout', None)
+        proxies = kwargs.get('proxies', None)
+        sleep_seconds = kwargs.get('sleep_seconds', 0)
+        if_print_warning = kwargs.get('if_print_warning', True)
+        is_detail_result = kwargs.get('is_detail_result', False)
+        update_session_after_freq = kwargs.get('update_session_after_freq', self.default_session_freq)
+        update_session_after_seconds = kwargs.get('update_session_after_seconds', self.default_session_seconds)
+        self.check_input_limit(query_text, self.input_limit)
+
+        not_update_cond_freq = 1 if self.query_count % update_session_after_freq != 0 else 0
+        not_update_cond_time = 1 if time.time() - self.begin_time < update_session_after_seconds else 0
+        if not (self.session and self.language_map and not_update_cond_freq and not_update_cond_time):
+            self.begin_time = time.time()
+            self.session = requests.Session()
+            _ = self.session.get(self.host_url, headers=self.host_headers, timeout=timeout, proxies=proxies)
+            _ = self.session.get(self.get_cookie_url, headers=self.api_headers, timeout=timeout, proxies=proxies)
+            d_lang_map = self.session.get(self.get_lang_url, headers=self.api_headers, timeout=timeout, proxies=proxies).json()
+            debug_lang_kwargs = self.debug_lang_kwargs(from_language, to_language, self.default_from_language, if_print_warning)
+            self.language_map = self.get_language_map(d_lang_map, **debug_lang_kwargs)
+            self.langpair_domain = self.get_langpair_domain(d_lang_map)
+            self.professional_field = self.get_professional_field_list(d_lang_map)
+
+        if from_language == 'auto':
+            payload = {'text': query_text}
+            r = self.session.post(self.detect_lang_url, json=payload, headers=self.api_headers, timeout=timeout, proxies=proxies)
+            from_language = r.json()['data']['language']
+        from_language, to_language = from_language.lower(), to_language.lower()  # must lower
+        from_language, to_language = self.check_language(from_language, to_language, self.language_map, output_zh=self.output_zh,
+                                                         output_en_translator='cloudTranslation', output_en=self.output_en)
+
+        domains = self.langpair_domain.get(f'{from_language}_{to_language}')
+        if not domains:
+            raise TranslatorError
+
+        if use_domain not in domains:
+            use_domain = domains[0]
+
+        payload = {
+            'type': 'text',
+            'text': query_text,
+            'domain': use_domain,
+            'src_lang': from_language,
+            'tgt_lang': to_language,
+        }
+        r = self.session.post(self.api_url, json=payload, headers=self.api_headers, timeout=timeout, proxies=proxies)
+        r.raise_for_status()
+        data = r.json()
+        time.sleep(sleep_seconds)
+        self.query_count += 1
+        return data if is_detail_result else json.loads(data['data']['data'])['translation']
 
 
 class SysTran(Tse):
@@ -4905,8 +5011,8 @@ class TranslatorsServer:
         self.bing = self._bing.bing_api
         self._caiyun = Caiyun()
         self.caiyun = self._caiyun.caiyun_api
-        self._cloudYi = CloudYi()
-        self.cloudYi = self._cloudYi.cloudYi_api
+        self._cloudTranslation = cloudTranslationV2()
+        self.cloudTranslation = self._cloudTranslation.cloudTranslation_api
         self._deepl = Deepl()
         self.deepl = self._deepl.deepl_api
         self._elia = Elia()
@@ -4967,7 +5073,7 @@ class TranslatorsServer:
         self.youdao = self._youdao.youdao_api
         self._translators_dict = {
             'alibaba': self._alibaba, 'apertium': self._apertium, 'argos': self._argos, 'baidu': self._baidu, 'bing': self._bing,
-            'caiyun': self._caiyun, 'cloudYi': self._cloudYi, 'deepl': self._deepl, 'elia': self._elia, 'google': self._google,
+            'caiyun': self._caiyun, 'cloudTranslation': self._cloudTranslation, 'deepl': self._deepl, 'elia': self._elia, 'google': self._google,
             'iciba': self._iciba, 'iflytek': self._iflytek, 'iflyrec': self._iflyrec, 'itranslate': self._itranslate, 'judic': self._judic,
             'languageWire': self._languageWire, 'lingvanex': self._lingvanex, 'niutrans': self._niutrans, 'mglip': self._mglip, 'mirai': self._mirai,
             'modernMt': self._modernMt, 'myMemory': self._myMemory, 'papago': self._papago, 'qqFanyi': self._qqFanyi, 'qqTranSmart': self._qqTranSmart,
@@ -4977,7 +5083,7 @@ class TranslatorsServer:
         }
         self.translators_dict = {
             'alibaba': self.alibaba, 'apertium': self.apertium, 'argos': self.argos, 'baidu': self.baidu, 'bing': self.bing,
-            'caiyun': self.caiyun, 'cloudYi': self.cloudYi, 'deepl': self.deepl, 'elia': self.elia, 'google': self.google,
+            'caiyun': self.caiyun, 'cloudTranslation': self.cloudTranslation, 'deepl': self.deepl, 'elia': self.elia, 'google': self.google,
             'iciba': self.iciba, 'iflytek': self.iflytek, 'iflyrec': self.iflyrec, 'itranslate': self.itranslate, 'judic': self.judic,
             'languageWire': self.languageWire, 'lingvanex': self.lingvanex, 'niutrans': self.niutrans, 'mglip': self.mglip, 'mirai': self.mirai,
             'modernMt': self.modernMt, 'myMemory': self.myMemory, 'papago': self.papago, 'qqFanyi': self.qqFanyi, 'qqTranSmart': self.qqTranSmart,
@@ -4985,33 +5091,6 @@ class TranslatorsServer:
             'translateMe': self.translateMe, 'utibet': self.utibet, 'volcEngine': self.volcEngine, 'yandex': self.yandex, 'yeekit': self.yeekit,
             'youdao': self.youdao,
         }
-
-        ## modifyd
-        # self._alibabaV1 = AlibabaV1()
-        # self.alibabaV1 = self._alibabaV1.alibaba_api
-        # self.translators_dict['alibabaV1'] = self.alibabaV1
-
-        # self._baiduV2 = BaiduV2()
-        # self.baiduV2 = self._baiduV2.baidu_api
-        # self.translators_dict['baiduV2'] = self.baiduV2
-
-        # self._googleV1 = GoogleV1(server_region=self.server_region)
-        # self.googleV1 = self._googleV1.google_api
-        # self.translators_dict['googleV1'] = self.googleV1
-
-        # self._IflytekV1 = IflytekV1()
-        # self.iflytekV1 = self._IflytekV1.iflytek_api
-        # self.translators_dict['iflytekV1'] = self.iflytekV1
-
-        # self._youdaoV1 = YoudaoV1()
-        # self.youdaoV1 = self._youdaoV1.youdao_api
-        # self.translators_dict['youdaoV1'] = self.youdaoV1
-
-        # self._youdaoV2 = YoudaoV2()
-        # self.youdaoV2 = self._youdaoV2.youdao_api
-        # self.translators_dict['youdaoV2'] = self.youdaoV2
-        ## modifyd
-
         self.translators_pool = list(self.translators_dict.keys())
         self.not_en_langs = {'utibet': 'ti', 'mglip': 'mon'}
         self.not_zh_langs = {'languageWire': 'fr', 'tilde': 'fr', 'elia': 'fr', 'apertium': 'spa'}
@@ -5036,7 +5115,7 @@ class TranslatorsServer:
         :param if_use_preacceleration: bool, default False.
         :param **kwargs:
                 :param is_detail_result: bool, default False.
-                :param professional_field: str, support alibaba(), baidu(), caiyun(), cloudYi(), elia(), sysTran(), youdao(), volcEngine() only.
+                :param professional_field: str, support alibaba(), baidu(), caiyun(), cloudTranslation(), elia(), sysTran(), youdao(), volcEngine() only.
                 :param timeout: float, default None.
                 :param proxies: dict, default None.
                 :param sleep_seconds: float, default 0.
@@ -5083,7 +5162,7 @@ class TranslatorsServer:
         :param if_use_preacceleration: bool, default False.
         :param **kwargs:
                 :param is_detail_result: bool, default False.
-                :param professional_field: str, support alibaba(), baidu(), caiyun(), cloudYi(), elia(), sysTran(), youdao(), volcEngine() only.
+                :param professional_field: str, support alibaba(), baidu(), caiyun(), cloudTranslation(), elia(), sysTran(), youdao(), volcEngine() only.
                 :param timeout: float, default None.
                 :param proxies: dict, default None.
                 :param sleep_seconds: float, default 0.
@@ -5203,8 +5282,8 @@ _bing = tss._bing
 bing = tss.bing
 _caiyun = tss._caiyun
 caiyun = tss.caiyun
-_cloudYi = tss._cloudYi
-cloudYi = tss.cloudYi
+_cloudTranslation = tss._cloudTranslation
+cloudTranslation = tss.cloudTranslation
 _deepl = tss._deepl
 deepl = tss.deepl
 _elia = tss._elia
