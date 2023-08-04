@@ -25,9 +25,15 @@
                 </div>
                 <div class="format-item">
                     <input class="format-checkbox" type="checkbox"
-                           :checked="autoKeepWeightOne"
-                           @change="$emit('update:autoKeepWeightOne', $event.target.checked)">
-                    <div class="format-desc" v-html="getLang('is_keep_weight_one')"></div>
+                           :checked="autoBreakBeforeWrap"
+                           @change="$emit('update:autoBreakBeforeWrap', $event.target.checked)">
+                    <div class="format-desc" v-html="getLang('is_break_before_wrap')"></div>
+                </div>
+                <div class="format-item">
+                    <input class="format-checkbox" type="checkbox"
+                           :checked="autoBreakAfterWrap"
+                           @change="$emit('update:autoBreakAfterWrap', $event.target.checked)">
+                    <div class="format-desc" v-html="getLang('is_break_after_wrap')"></div>
                 </div>
             </div>
         </div>
@@ -58,13 +64,21 @@ export default {
             type: Boolean,
             default: false,
         },
+        autoBreakBeforeWrap: {
+            type: Boolean,
+            default: false,
+        },
+        autoBreakAfterWrap: {
+            type: Boolean,
+            default: false,
+        },
     },
     data() {
         return {
             isOpen: false,
         }
     },
-    emits: ['update:autoRemoveSpace', 'update:autoRemoveLastComma', 'update:autoKeepWeightZero', 'update:autoKeepWeightOne'],
+    emits: ['update:autoRemoveSpace', 'update:autoRemoveLastComma', 'update:autoKeepWeightZero', 'update:autoKeepWeightOne', 'update:autoBreakBeforeWrap', 'update:autoBreakAfterWrap'],
     computed: {},
     mounted() {
     },

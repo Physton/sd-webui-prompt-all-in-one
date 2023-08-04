@@ -129,10 +129,12 @@ export default {
     /**
      * 分割标签
      * @param tags {string}
+     * @param autoBreakBeforeWrap {boolean}
+     * @param autoBreakAfterWrap {boolean}
      * @returns {string[]}
      */
-    splitTags(tags) {
-        return splitTags(tags)
+    splitTags(tags, autoBreakBeforeWrap = false, autoBreakAfterWrap = false) {
+        return splitTags(tags, autoBreakBeforeWrap, autoBreakAfterWrap)
     },
 
     /**

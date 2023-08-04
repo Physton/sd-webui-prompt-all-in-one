@@ -158,21 +158,25 @@ export default {
             let tag = this.tags.find(tag => tag.id === id)
             if (!tag) return ''
             let value = tag.value
-            value = common.escapeHtml(value)
-            if (tag.incWeight > 0) {
-                value = common.setLayers(value, 0, '(', ')')
-                value = '<div class="character">' + value + '</div>'
-                let start = '<div class="weight-character">' + '('.repeat(tag.incWeight) + '</div>'
-                let end = '<div class="weight-character">' + ')'.repeat(tag.incWeight) + '</div>'
-                value = start + value + end
-            } else if (tag.decWeight > 0) {
-                value = common.setLayers(value, 0, '[', ']')
-                value = '<div class="character">' + value + '</div>'
-                let start = '<div class="weight-character">' + '['.repeat(tag.decWeight) + '</div>'
-                let end = '<div class="weight-character">' + ']'.repeat(tag.decWeight) + '</div>'
-                value = start + value + end
+            if (value === 'BREAK' && (this.autoBreakBeforeWrap || this.autoBreakAfterWrap)) {
+                value = '<div class="break-character">---------------------</div> <div class="character">BREAK</div> <div class="break-character">---------------------</div>'
             } else {
-                value = '<div class="character">' + value + '</div>'
+                value = common.escapeHtml(value)
+                if (tag.incWeight > 0) {
+                    value = common.setLayers(value, 0, '(', ')')
+                    value = '<div class="character">' + value + '</div>'
+                    let start = '<div class="weight-character">' + '('.repeat(tag.incWeight) + '</div>'
+                    let end = '<div class="weight-character">' + ')'.repeat(tag.incWeight) + '</div>'
+                    value = start + value + end
+                } else if (tag.decWeight > 0) {
+                    value = common.setLayers(value, 0, '[', ']')
+                    value = '<div class="character">' + value + '</div>'
+                    let start = '<div class="weight-character">' + '['.repeat(tag.decWeight) + '</div>'
+                    let end = '<div class="weight-character">' + ']'.repeat(tag.decWeight) + '</div>'
+                    value = start + value + end
+                } else {
+                    value = '<div class="character">' + value + '</div>'
+                }
             }
             return value
         },

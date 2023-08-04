@@ -307,7 +307,7 @@ export default {
                         tags = common.replaceBrackets(tags)
                         tags = [tags]
                     } else {
-                        tags = common.splitTags(tags)
+                        tags = common.splitTags(tags, this.autoBreakBeforeWrap, this.autoBreakAfterWrap)
                     }
                     let indexes = []
                     tags.forEach(tag => {

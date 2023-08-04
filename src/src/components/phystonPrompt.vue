@@ -37,7 +37,8 @@
                                          @click="$emit('click:switchTheme', $event)">
                                         <icon-svg class="hover-scale-120" :name="theme === 'dark' ? 'sun': 'moon'"/>
                                     </div>
-                                    <div :class="['extend-btn-item', isLatestVersion ? '' : 'red-dot']" v-tooltip="getLang('about_desc')"
+                                    <div :class="['extend-btn-item', isLatestVersion ? '' : 'red-dot']"
+                                         v-tooltip="getLang('about_desc')"
                                          @click="$emit('click:showAbout', $event)">
                                         <icon-svg class="hover-scale-120" name="about"/>
                                     </div>
@@ -92,9 +93,12 @@
                                     <div class="gradio-checkbox">
                                         <label v-tooltip="getLang('auto_input_prompt')">
                                             <select v-model="autoInputPrompt" @change="onAutoInputPromptChange">
-                                                <option value="disabled">{{ getLang('auto_input_prompt') }}: {{ getLang('disabled') }}</option>
+                                                <option value="disabled">{{ getLang('auto_input_prompt') }}:
+                                                    {{ getLang('disabled') }}
+                                                </option>
                                                 <option value="last">{{ getLang('last_input_prompt') }}</option>
-                                                <optgroup v-for="(item) in getCurrentTypeFavorites()" :key="item.key" :label="getLang('favorite') + ' / ' + getLang(item.name)">
+                                                <optgroup v-for="(item) in getCurrentTypeFavorites()" :key="item.key"
+                                                          :label="getLang('favorite') + ' / ' + getLang(item.name)">
                                                     <option v-for="(favorite) in item.list" :value="favorite.id">
                                                         {{ favorite.name || favorite.prompt.substring(0, 40) }}
                                                     </option>
@@ -130,17 +134,21 @@
                                     <div class="extend-btn-item"
                                          v-tooltip="getLang('one_translate_all_keywords')"
                                          @click="onTranslatesToLocalClick">
-                                        <icon-svg v-if="!loading['all_local']" class="hover-scale-120" name="translate"/>
+                                        <icon-svg v-if="!loading['all_local']" class="hover-scale-120"
+                                                  name="translate"/>
                                         <icon-svg v-if="loading['all_local']" class="hover-scale-120" name="loading"/>
                                     </div>
                                 </template>
                                 <template v-else>
-                                    <div class="extend-btn-item" v-tooltip="getLang('translate_keywords_to_local_language')"
-                                 @click="onTranslatesToLocalClick">
-                                        <icon-svg v-if="!loading['all_local']" class="hover-scale-120" name="translate"/>
+                                    <div class="extend-btn-item"
+                                         v-tooltip="getLang('translate_keywords_to_local_language')"
+                                         @click="onTranslatesToLocalClick">
+                                        <icon-svg v-if="!loading['all_local']" class="hover-scale-120"
+                                                  name="translate"/>
                                         <icon-svg v-if="loading['all_local']" class="hover-scale-120" name="loading"/>
                                     </div>
-                                    <div class="extend-btn-item" v-tooltip="getLang('translate_all_keywords_to_english')"
+                                    <div class="extend-btn-item"
+                                         v-tooltip="getLang('translate_all_keywords_to_english')"
                                          @click="onTranslatesToEnglishClick">
                                         <icon-svg v-if="!loading['all_en']" class="hover-scale-120" name="english"/>
                                         <icon-svg v-if="loading['all_en']" class="hover-scale-120" name="loading"/>
@@ -240,14 +248,18 @@
                     </div>
                 </div>
             </div>
-            <div :class="['prompt-tags', droping ? 'droping': '', (dropIsSelecting || (dropIsEnd && dropTags.length)) ? 'selecting' : '']" ref="promptTags"
-                 @mousedown="onDropMouseDown"
-                 @mousemove="onDropMouseMove"
-                 @mouseup="onDropMouseUp">
+            <div
+                :class="['prompt-tags', droping ? 'droping': '', (dropIsSelecting || (dropIsEnd && dropTags.length)) ? 'selecting' : '']"
+                ref="promptTags"
+                @mousedown="onDropMouseDown"
+                @mousemove="onDropMouseMove"
+                @mouseup="onDropMouseUp">
                 <div class="prompt-tags-list" ref="promptTagsList">
-                    <div v-for="(tag, index) in tags" :key="tag.id" :class="['prompt-tag', tag.disabled ? 'disabled': '', tag.type === 'wrap' ? 'wrap-tag' : '']"
+                    <div v-for="(tag, index) in tags" :key="tag.id"
+                         :class="['prompt-tag', tag.disabled ? 'disabled': '', tag.type === 'wrap' ? 'wrap-tag' : '']"
                          :ref="'promptTag-' + tag.id" :data-id="tag.id">
-                        <div class="prompt-tag-main" @mouseenter="onTagMouseEnter(tag.id)" @mousemove.stop="onTagMouseMove(tag.id)">
+                        <div class="prompt-tag-main" @mouseenter="onTagMouseEnter(tag.id)"
+                             @mousemove.stop="onTagMouseMove(tag.id)">
                             <div class="prompt-tag-edit">
                                 <template v-if="tag.type === 'wrap'">
                                     <div class="prompt-tag-value"
@@ -266,7 +278,8 @@
                                          :class="tag.classes"
                                          :ref="'promptTagValue-' + tag.id"
                                          v-tooltip="getLang('click_to_edit') + '<br/>' + getLang('dblclick_to_disable') + '<br/>' + getLang('drop_to_order')"
-                                         @click="onTagClick(tag.id, $event)" @dblclick="onTagDblclick(tag.id)" v-html="renderTag(tag.id)">
+                                         @click="onTagClick(tag.id, $event)" @dblclick="onTagDblclick(tag.id)"
+                                         v-html="renderTag(tag.id)">
                                     </div>
                                     <textarea v-show="editing[tag.id]" type="text"
                                               class="scroll-hide svelte-4xt1ch input-tag-edit"
@@ -354,7 +367,9 @@
                             <div class="local-language">{{ tag.localValue }}</div>
                         </div>
                     </div>
-                    <div v-for="(tag, index) in tags" :key="tag.id" :class="['prompt-wrap', tag.type === 'wrap' ? 'wrap-tag' : '']" :data-id="tag.id" ref="promptTagWrap"
+                    <div v-for="(tag, index) in tags" :key="tag.id"
+                         :class="['prompt-wrap', tag.type === 'wrap' ? 'wrap-tag' : '']" :data-id="tag.id"
+                         ref="promptTagWrap"
                          @mousedown.stop="" @mousemove.stop="" @mouseup.stop=""></div>
                 </div>
                 <!--<div class="prompt-append">
@@ -362,8 +377,10 @@
                            v-model="appendTag" :placeholder="getLang('please_enter_new_keyword')"
                            v-tooltip="getLang('enter_to_add')" @keydown="onAppendTagKeyDown">
                 </div>-->
-                <div class="drop-select-bg" ref="dropSelectBg" :style="{'display': dropIsStart ? 'block': 'none'}"></div>
-                <div class="drop-select-box" ref="dropSelectBox" :style="{'display': dropIsSelecting ? 'block': 'none', top: dropArea.top + 'px', 'left': dropArea.left + 'px', 'width': dropArea.width + 'px', 'height': dropArea.height + 'px'}"></div>
+                <div class="drop-select-bg" ref="dropSelectBg"
+                     :style="{'display': dropIsStart ? 'block': 'none'}"></div>
+                <div class="drop-select-box" ref="dropSelectBox"
+                     :style="{'display': dropIsSelecting ? 'block': 'none', top: dropArea.top + 'px', 'left': dropArea.left + 'px', 'width': dropArea.width + 'px', 'height': dropArea.height + 'px'}"></div>
                 <div class="drop-select-btns" ref="dropSelectBtns"
                      :style="{'display': dropIsEnd && dropTags.length ? 'flex': 'none', top: (dropEndY - 32) + 'px', 'left': dropEndX + 'px'}"
                      @mousedown.stop="" @mousemove.stop="" @mouseup.stop="">
@@ -386,7 +403,7 @@
                 </div>
             </div>
         </div>
-        <highlight-prompt ref="highlightPrompt" :textarea="textarea" :hide-default-input="hideDefaultInput" />
+        <highlight-prompt ref="highlightPrompt" :textarea="textarea" :hide-default-input="hideDefaultInput"/>
     </div>
 </template>
 
@@ -457,6 +474,14 @@ export default {
             default: false,
         },
         autoKeepWeightOne: {
+            type: Boolean,
+            default: false,
+        },
+        autoBreakBeforeWrap: {
+            type: Boolean,
+            default: false,
+        },
+        autoBreakAfterWrap: {
             type: Boolean,
             default: false,
         },
@@ -595,7 +620,7 @@ export default {
             }
             let value = this.textarea.value.trim()
             if (value === this.prompt.trim()) return
-            let tags = common.splitTags(value)
+            let tags = common.splitTags(value, this.autoBreakBeforeWrap, this.autoBreakAfterWrap)
 
             let disabledTags = []
             this.tags.forEach((tag, index) => {
@@ -689,11 +714,14 @@ export default {
 
                     let nextTag = null
                     let nextIsWarp = false
+                    let nextIsBreak = false
                     // 获取下一个按钮
                     if (index + 1 < length) {
                         nextTag = tags[index + 1]
                         if (typeof nextTag['type'] === 'string' && nextTag.type === 'wrap') {
                             nextIsWarp = true
+                        } else if (nextTag.value === 'BREAK') {
+                            nextIsBreak = true
                         }
                     }
 
@@ -711,7 +739,11 @@ export default {
                     }
 
                     if (tag.value === 'BREAK') {
-                        splitSymbol = ' '
+                        if (nextIsWarp) {
+                            splitSymbol = ''
+                        } else {
+                            splitSymbol = ' '
+                        }
                     }
 
                     if (this.autoRemoveLastComma && index + 1 === length) {
@@ -729,6 +761,46 @@ export default {
             return prompts.join('')
         },
         updatePrompt() {
+            let insertWrapIndexes = []
+            let length = this.tags.length
+            for (let i = 0; i < length; i++) {
+                let tag = this.tags[i]
+                if (tag.value === 'BREAK') {
+                    if (this.autoBreakBeforeWrap) {
+                        // 如果是在“BREAK”关键词前面加换行符
+                        // 判断上一个是否换行符
+                        if (i - 1 >= 0) {
+                            let prevTag = this.tags[i - 1]
+                            if (typeof prevTag['type'] === 'string' && prevTag.type === 'wrap') {
+                                // 上一个已经是换行了
+                            } else {
+                                insertWrapIndexes.push(i)
+                            }
+                        }
+                    }
+                    if (this.autoBreakAfterWrap) {
+                        // 如果是在“BREAK”关键词后面加换行符
+                        // 判断下一个是否换行符
+                        if (i + 1 < length) {
+                            let nextTag = this.tags[i + 1]
+                            if (typeof nextTag['type'] === 'string' && nextTag.type === 'wrap') {
+                                // 下一个已经是换行了
+                            } else {
+                                insertWrapIndexes.push(i + 1)
+                            }
+                        }
+                    }
+                }
+            }
+            for (let i = 0; i < insertWrapIndexes.length; i++) {
+                let index = insertWrapIndexes[i] + i
+                this._appendTag("\n", "\n", false, index, 'wrap')
+            }
+            if (insertWrapIndexes.length) {
+                this.updateTags()
+                return
+            }
+
             this.prompt = this.genPrompt()
             this.textarea.value = this.prompt
             common.hideCompleteResults(this.textarea)
@@ -892,7 +964,7 @@ export default {
             this.useHistory(favorite)
         },
         useChatgpt(prompt) {
-            let tags = common.splitTags(prompt)
+            let tags = common.splitTags(prompt, this.autoBreakBeforeWrap, this.autoBreakAfterWrap)
             this.tags = []
             tags.forEach(tag => {
                 this._appendTag(tag, '', false, -1, 'text')

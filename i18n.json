@@ -130,7 +130,9 @@
                 "download_model_desc2": "<p class='common-red'>如果你没有较好的网络环境，或者需要离线下载，请查看：</p><p><a href='{{docs}}/OfflineTranslation.html' target='_blank'>{{docs}}/OfflineTranslation.html</a></p>",
                 "auto_input_prompt": "当网页加载后自动填充提示词",
                 "disabled": "禁止",
-                "last_input_prompt": "最后输入的提示词"
+                "last_input_prompt": "最后输入的提示词",
+                "is_break_before_wrap": "是否在 “BREAK” 关键词前面加换行符。<br/>勾选后自动添加换行符。<br/>取消勾选将不做任何处理。",
+                "is_break_after_wrap": "是否在 “BREAK” 关键词后面加换行符。<br/>勾选后自动添加换行符。<br/>取消勾选将不做任何处理。"
             }
         },
         {
@@ -262,7 +264,9 @@
                 "download_model_desc2": "<p class='common-red'>如果你沒有較好的網絡環境，或者需要離線下載，請查看：</p><p><a href='{{docs}}/OfflineTranslation.html' target='_blank'>{{docs}}/OfflineTranslation.html</a></p>",
                 "auto_input_prompt": "當網頁載入後自動填充提示詞",
                 "disabled": "禁止",
-                "last_input_prompt": "最後輸入的提示詞"
+                "last_input_prompt": "最後輸入的提示詞",
+                "is_break_before_wrap": "是否在“BREAK”關鍵詞前面加換行符。<br/>勾選後自動添加換行符。<br/>取消勾選將不做任何處理。",
+                "is_break_after_wrap": "是否在“BREAK”關鍵詞後面加換行符。<br/>勾選後自動添加換行符。<br/>取消勾選將不做任何處理。"
             }
         },
         {
@@ -394,7 +398,9 @@
                 "download_model_desc2": "<p class='common-red'>如果你沒有較好的網絡環境，或者需要離線下載，請查看：</p><p><a href='{{docs}}/OfflineTranslation.html' target='_blank'>{{docs}}/OfflineTranslation.html</a></p>",
                 "auto_input_prompt": "當網頁載入後自動填充提示詞",
                 "disabled": "禁止",
-                "last_input_prompt": "最後輸入的提示詞"
+                "last_input_prompt": "最後輸入的提示詞",
+                "is_break_before_wrap": "是否在「BREAK」關鍵詞前面加換行符。<br/>勾選後自動添加換行符。<br/>取消勾選將不做任何處理。",
+                "is_break_after_wrap": "是否在「BREAK」關鍵詞後面加換行符。<br/>勾選後自動添加換行符。<br/>取消勾選將不做任何處理。"
             }
         },
         {
@@ -526,7 +532,9 @@
                 "download_model_desc2": "<p class='common-red'>If you do not have a good network environment or need to download offline, please view:</p><p><a href='{{docs}}/OfflineTranslation.html' target='_blank'>{{docs}}/OfflineTranslation.html</a></p>",
                 "auto_input_prompt": "Auto-fill prompt when the webpage loads",
                 "disabled": "Disabled",
-                "last_input_prompt": "Last input prompt"
+                "last_input_prompt": "Last input prompt",
+                "is_break_before_wrap": "Whether to add a line break before the \"BREAK\" keyword.<br/>When selected, a line break will be automatically added.<br/>Deselecting will not perform any action.",
+                "is_break_after_wrap": "Whether to add a line break after the \"BREAK\" keyword.<br/>When selected, a line break will be automatically added.<br/>Deselecting will not perform any action."
             }
         },
         {
@@ -669,7 +677,9 @@
                 "download_model_desc2": "<p class='common-red'>إذا لم يكن لديك بيئة شبكة جيدة أو إذا كنت بحاجة إلى التنزيل دون اتصال، يرجى التحقق:</p><p><a href='{{docs}}/OfflineTranslation.html' target='_blank'>{{docs}}/OfflineTranslation.html</a></p>",
                 "auto_input_prompt": "تعبئة تلقائية للتلميح عند تحميل الصفحة",
                 "disabled": "معطل",
-                "last_input_prompt": "آخر تلميح مدخل"
+                "last_input_prompt": "آخر تلميح مدخل",
+                "is_break_before_wrap": "هل ترغب في إضافة فاصلة قبل كلمة \"BREAK\".<br/>عند تحديدها، سيتم إضافة فاصلة تلقائيًا.<br/>عند إلغاء التحديد، لن يتم أي تغيير.",
+                "is_break_after_wrap": "هل ترغب في إضافة فاصلة بعد كلمة \"BREAK\".<br/>عند تحديدها، سيتم إضافة فاصلة تلقائيًا.<br/>عند إلغاء التحديد، لن يتم أي تغيير."
             }
         },
         {
@@ -900,7 +910,9 @@
                 "download_model_desc2": "<p class='common-red'>Si vous n'avez pas un bon environnement réseau ou si vous avez besoin de télécharger hors ligne, veuillez vérifier :</p><p><a href='{{docs}}/OfflineTranslation.html' target='_blank'>{{docs}}/OfflineTranslation.html</a></p>",
                 "auto_input_prompt": "Prompt de remplissage automatique lorsque la page se charge",
                 "disabled": "Désactivé",
-                "last_input_prompt": "Dernier prompt d'entrée"
+                "last_input_prompt": "Dernier prompt d'entrée",
+                "is_break_before_wrap": "Ajouter un saut de ligne avant le mot clé \"BREAK\".<br/>Lorsqu'il est sélectionné, un saut de ligne sera automatiquement ajouté.<br/>La désélection n'effectuera aucune action.",
+                "is_break_after_wrap": "Ajouter un saut de ligne après le mot clé \"BREAK\".<br/>Lorsqu'il est sélectionné, un saut de ligne sera automatiquement ajouté.<br/>La désélection n'effectuera aucune action."
             }
         },
         {
@@ -1046,7 +1058,9 @@
                 "download_model_desc2": "<p class='common-red'>Wenn Sie keine gute Netzwerkumgebung haben oder offline herunterladen müssen, überprüfen Sie bitte:</p><p><a href='{{docs}}/OfflineTranslation.html' target='_blank'>{{docs}}/OfflineTranslation.html</a></p>",
                 "auto_input_prompt": "Automatischer Eingabeaufforderung beim Laden der Webseite",
                 "disabled": "Deaktiviert",
-                "last_input_prompt": "Letzte Eingabeaufforderung"
+                "last_input_prompt": "Letzte Eingabeaufforderung",
+                "is_break_before_wrap": "Ob vor dem Schlüsselwort \"BREAK\" ein Zeilenumbruch hinzugefügt werden soll.<br/>Wenn ausgewählt, wird automatisch ein Zeilenumbruch hinzugefügt.<br/>Durch Abwählen wird keine Aktion durchgeführt.",
+                "is_break_after_wrap": "Ob nach dem Schlüsselwort \"BREAK\" ein Zeilenumbruch hinzugefügt werden soll.<br/>Wenn ausgewählt, wird automatisch ein Zeilenumbruch hinzugefügt.<br/>Durch Abwählen wird keine Aktion durchgeführt."
             }
         },
         {
@@ -1242,7 +1256,9 @@
                 "download_model_desc2": "<p class='common-red'>Se non hai una buona connessione di rete o hai bisogno di scaricare offline, controlla:</p><p><a href='{{docs}}/OfflineTranslation.html' target='_blank'>{{docs}}/OfflineTranslation.html</a></p>",
                 "auto_input_prompt": "Prompt di riempimento automatico quando la pagina si carica",
                 "disabled": "Disabilitato",
-                "last_input_prompt": "Ultimo prompt di input"
+                "last_input_prompt": "Ultimo prompt di input",
+                "is_break_before_wrap": "Se aggiungere un'interruzione di riga prima della parola chiave \"BREAK\".<br/>Quando selezionato, verrà aggiunta automaticamente un'interruzione di riga.<br/>La deselezione non eseguirà alcuna azione.",
+                "is_break_after_wrap": "Se aggiungere un'interruzione di riga dopo la parola chiave \"BREAK\".<br/>Quando selezionato, verrà aggiunta automaticamente un'interruzione di riga.<br/>La deselezione non eseguirà alcuna azione."
             }
         },
         {
@@ -1373,7 +1389,9 @@
                 "download_model_desc2": "<p class='common-red'>良好なネットワーク環境がない場合やオフラインでダウンロードする必要がある場合は、次を確認してください：</p><p><a href='{{docs}}/OfflineTranslation.html' target='_blank'>{{docs}}/OfflineTranslation.html</a></p>",
                 "auto_input_prompt": "ウェブページの読み込み時に自動入力プロンプト",
                 "disabled": "無効",
-                "last_input_prompt": "最後の入力プロンプト"
+                "last_input_prompt": "最後の入力プロンプト",
+                "is_break_before_wrap": "「BREAK」キーワードの前に改行を追加するかどうか。<br/>選択すると自動的に改行が追加されます。<br/>選択を解除すると何も行われません。",
+                "is_break_after_wrap": "「BREAK」キーワードの後に改行を追加するかどうか。<br/>選択すると自動的に改行が追加されます。<br/>選択を解除すると何も行われません。"
             }
         },
         {
@@ -1529,7 +1547,9 @@
                 "download_model_desc2": "<p class='common-red'>좋은 네트워크 환경이 없거나 오프라인으로 다운로드해야 하는 경우 다음을 확인하십시오:</p><p><a href='{{docs}}/OfflineTranslation.html' target='_blank'>{{docs}}/OfflineTranslation.html</a></p>",
                 "auto_input_prompt": "웹 페이지 로드시 자동 입력 프롬프트",
                 "disabled": "비활성화됨",
-                "last_input_prompt": "마지막 입력 프롬프트"
+                "last_input_prompt": "마지막 입력 프롬프트",
+                "is_break_before_wrap": "\"BREAK\" 키워드 앞에 줄 바꿈을 추가하시겠습니까?<br/>선택하면 자동으로 줄 바꿈이 추가됩니다.<br/>선택 취소 시 아무 작업도 수행되지 않습니다.",
+                "is_break_after_wrap": "\"BREAK\" 키워드 뒤에 줄 바꿈을 추가하시겠습니까?<br/>선택하면 자동으로 줄 바꿈이 추가됩니다.<br/>선택 취소 시 아무 작업도 수행되지 않습니다."
             }
         },
         {
@@ -1775,7 +1795,9 @@
                 "download_model_desc2": "<p class='common-red'>Se você não tem um bom ambiente de rede ou precisa baixar offline, por favor verifique:</p><p><a href='{{docs}}/OfflineTranslation.html' target='_blank'>{{docs}}/OfflineTranslation.html</a></p>",
                 "auto_input_prompt": "Prompt de preenchimento automático quando a página carrega",
                 "disabled": "Desativado",
-                "last_input_prompt": "Último prompt de entrada"
+                "last_input_prompt": "Último prompt de entrada",
+                "is_break_before_wrap": "Se deseja adicionar uma quebra de linha antes da palavra-chave \"BREAK\".<br/>Quando selecionado, uma quebra de linha será adicionada automaticamente.<br/>Desmarcar não executará nenhuma ação.",
+                "is_break_after_wrap": "Se deseja adicionar uma quebra de linha após a palavra-chave \"BREAK\".<br/>Quando selecionado, uma quebra de linha será adicionada automaticamente.<br/>Desmarcar não executará nenhuma ação."
             }
         },
         {
@@ -1921,7 +1943,9 @@
                 "download_model_desc2": "<p class='common-red'>Если у вас нет хорошей сетевой среды или вам нужно выполнить загрузку в автономном режиме, проверьте:</p><p><a href='{{docs}}/OfflineTranslation.html' target='_blank'>{{docs}}/OfflineTranslation.html</a></p>",
                 "auto_input_prompt": "Автоматическое заполнение при загрузке веб-страницы",
                 "disabled": "Отключено",
-                "last_input_prompt": "Последний запрос на ввод"
+                "last_input_prompt": "Последний запрос на ввод",
+                "is_break_before_wrap": "Добавить перенос строки перед ключевым словом \"BREAK\".<br/>При выборе автоматически будет добавлен перенос строки.<br/>Снятие выбора не приведет к выполнению никаких действий.",
+                "is_break_after_wrap": "Добавить перенос строки после ключевого слова \"BREAK\".<br/>При выборе автоматически будет добавлен перенос строки.<br/>Снятие выбора не приведет к выполнению никаких действий."
             }
         },
         {
@@ -2082,7 +2106,9 @@
                 "download_model_desc2": "<p class='common-red'>Si no tienes un buen entorno de red o necesitas descargar sin conexión, por favor verifica:</p><p><a href='{{docs}}/OfflineTranslation.html' target='_blank'>{{docs}}/OfflineTranslation.html</a></p>",
                 "auto_input_prompt": "Indicación de relleno automático cuando se carga la página",
                 "disabled": "Deshabilitado",
-                "last_input_prompt": "Última indicación de entrada"
+                "last_input_prompt": "Última indicación de entrada",
+                "is_break_before_wrap": "Si agregar un salto de línea antes de la palabra clave \"BREAK\".<br/>Cuando está seleccionado, se agregará automáticamente un salto de línea.<br/>Si no está seleccionado, no se realizará ninguna acción.",
+                "is_break_after_wrap": "Si agregar un salto de línea después de la palabra clave \"BREAK\".<br/>Cuando está seleccionado, se agregará automáticamente un salto de línea.<br/>Si no está seleccionado, no se realizará ninguna acción."
             }
         },
         {

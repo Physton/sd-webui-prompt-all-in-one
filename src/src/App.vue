@@ -18,6 +18,8 @@
                             v-model:auto-remove-last-comma="autoRemoveLastComma"
                             v-model:auto-keep-weight-zero="autoKeepWeightZero"
                             v-model:auto-keep-weight-one="autoKeepWeightOne"
+                            v-model:auto-break-before-wrap="autoBreakBeforeWrap"
+                            v-model:auto-break-after-wrap="autoBreakAfterWrap"
                             :hide-default-input="item.hideDefaultInput"
                             @update:hide-default-input="onUpdateHideDefaultInput(item.id, $event)"
                             :hide-panel="item.hidePanel"
@@ -62,7 +64,9 @@
                        v-model:auto-remove-space="autoRemoveSpace"
                        v-model:auto-remove-last-comma="autoRemoveLastComma"
                        v-model:auto-keep-weight-zero="autoKeepWeightZero"
-                       v-model:auto-keep-weight-one="autoKeepWeightOne"></prompt-format>
+                       v-model:auto-keep-weight-one="autoKeepWeightOne"
+                       v-model:auto-break-before-wrap="autoBreakBeforeWrap"
+                       v-model:auto-break-after-wrap="autoBreakAfterWrap"></prompt-format>
         <history ref="history" v-model:language-code="languageCode"
                  :translate-apis="translateApis" :languages="languages"
                  v-model:tag-complete-file="tagCompleteFile"
@@ -229,6 +233,8 @@ export default {
             autoRemoveLastComma: false,
             autoKeepWeightZero: false,
             autoKeepWeightOne: false,
+            autoBreakBeforeWrap: false,
+            autoBreakAfterWrap: false,
             // hideDefaultInput: false,
             enableTooltip: true,
             tagCompleteFile: '',
@@ -310,6 +316,9 @@ export default {
                 if (!this.startWatchSave) return
                 console.log('onAutoRemoveSpaceChange', val)
                 this.gradioAPI.setData('autoRemoveSpace', val).then(data => {
+                    this.prompts.forEach(item => {
+                        this.$refs[item.id][0].updatePrompt()
+                    })
                 }).catch(err => {
                 })
             },
@@ -320,6 +329,9 @@ export default {
                 if (!this.startWatchSave) return
                 console.log('onAutoRemoveLastCommaChange', val)
                 this.gradioAPI.setData('autoRemoveLastComma', val).then(data => {
+                    this.prompts.forEach(item => {
+                        this.$refs[item.id][0].updatePrompt()
+                    })
                 }).catch(err => {
                 })
             },
@@ -340,6 +352,32 @@ export default {
                 if (!this.startWatchSave) return
                 console.log('onAutoKeepWeightOneChange', val)
                 this.gradioAPI.setData('autoKeepWeightOne', val).then(data => {
+                }).catch(err => {
+                })
+            },
+            immediate: false,
+        },
+        autoBreakBeforeWrap: {
+            handler: function (val, oldVal) {
+                if (!this.startWatchSave) return
+                console.log('onAutoBreakBeforeWrap', val)
+                this.gradioAPI.setData('autoBreakBeforeWrap', val).then(data => {
+                    this.prompts.forEach(item => {
+                        this.$refs[item.id][0].updatePrompt()
+                    })
+                }).catch(err => {
+                })
+            },
+            immediate: false,
+        },
+        autoBreakAfterWrap: {
+            handler: function (val, oldVal) {
+                if (!this.startWatchSave) return
+                console.log('onAutoBreakAfterWrap', val)
+                this.gradioAPI.setData('autoBreakAfterWrap', val).then(data => {
+                    this.prompts.forEach(item => {
+                        this.$refs[item.id][0].updatePrompt()
+                    })
                 }).catch(err => {
                 })
             },
@@ -444,7 +482,7 @@ export default {
         },
         init() {
             this.loadExtraNetworks()
-            let dataListsKeys = ['languageCode', 'autoTranslate', 'autoTranslateToEnglish', 'autoTranslateToLocal', 'autoRemoveSpace', 'autoRemoveLastComma', 'autoKeepWeightZero', 'autoKeepWeightOne', /*'hideDefaultInput', */'translateApi', 'enableTooltip', 'tagCompleteFile', 'onlyCsvOnAuto', 'extensionSelect.minimalist']
+            let dataListsKeys = ['languageCode', 'autoTranslate', 'autoTranslateToEnglish', 'autoTranslateToLocal', 'autoRemoveSpace', 'autoRemoveLastComma', 'autoKeepWeightZero', 'autoKeepWeightOne', 'autoBreakBeforeWrap', 'autoBreakAfterWrap', /*'hideDefaultInput', */'translateApi', 'enableTooltip', 'tagCompleteFile', 'onlyCsvOnAuto', 'extensionSelect.minimalist']
             this.prompts.forEach(item => {
                 dataListsKeys.push(item.hideDefaultInputKey)
                 dataListsKeys.push(item.hidePanelKey)
@@ -512,6 +550,12 @@ export default {
                 }
                 if (data.autoKeepWeightOne !== null) {
                     this.autoKeepWeightOne = data.autoKeepWeightOne
+                }
+                if (data.autoBreakBeforeWrap !== null) {
+                    this.autoBreakBeforeWrap = data.autoBreakBeforeWrap
+                }
+                if (data.autoBreakAfterWrap !== null) {
+                    this.autoBreakAfterWrap = data.autoBreakAfterWrap
                 }
                 /*if (data.hideDefaultInput !== null) {
                     this.hideDefaultInput = data.hideDefaultInput
