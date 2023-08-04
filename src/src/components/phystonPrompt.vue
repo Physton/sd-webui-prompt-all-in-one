@@ -710,6 +710,10 @@ export default {
                         }
                     }
 
+                    if (tag.value === 'BREAK') {
+                        splitSymbol = ' '
+                    }
+
                     if (this.autoRemoveLastComma && index + 1 === length) {
                         // 如果是最后一个，那么就不需要加逗号
                         splitSymbol = ''

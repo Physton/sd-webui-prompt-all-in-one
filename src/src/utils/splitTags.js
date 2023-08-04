@@ -64,7 +64,24 @@ export default (tags) => {
                     endBracketChar = brackets[char]
                     temp += char
                 } else {
-                    temp += char
+                    if (char === " " && temp.trim() === 'BREAK') {
+                        result.push(temp.trim())
+                        bracketCount = 0
+                        startBracketChar = ''
+                        endBracketChar = ''
+                        temp = ''
+                    } else {
+                        temp += char
+                        if (temp.endsWith(' BREAK')) {
+                            temp = temp.substring(0, temp.length - ' BREAK'.length)
+                            result.push(temp.trim())
+                            result.push('BREAK')
+                            bracketCount = 0
+                            startBracketChar = ''
+                            endBracketChar = ''
+                            temp = ''
+                        }
+                    }
                 }
             } else {
                 // 前面有括号
