@@ -589,18 +589,25 @@ export default {
         this.$nextTick(() => {
             this.initSortable()
             // autoSizeInput(this.$refs.promptTagAppend)
-            let times = [1000, 3000, 5000, 10000]
+            let times = [1000, 3000, 5000, 10000, 20000, 30000]
             let isBind = false
             times.forEach((time) => {
                 if (isBind) return
                 setTimeout(() => {
+                    // console.log(this.name, '1111111111111111111111')
                     if (isBind) return
+                    // console.log(this.name, '3333333333333333333333')
                     if (typeof addAutocompleteToArea !== 'function') return
+                    // console.log(this.name, '4444444444444444444444')
                     if (typeof TAC_CFG !== 'object') return
+                    // console.log(this.name, '5555555555555555555555')
                     if (!TAC_CFG) return
+                    // console.log(this.name, '6666666666666666666666')
                     if (!TAC_CFG['activeIn']) return
+                    // console.log(this.name, '7777777777777777777777')
                     isBind = true
                     addAutocompleteToArea(this.$refs.promptTagAppend)
+                    // console.log(this.name, '2222222222222222222222')
                 }, time)
             })
             this.init()
@@ -614,10 +621,16 @@ export default {
             // this.textarea.addEventListener('change', this.onTextareaChange)
         },
         onTextareaChange(event) {
-            const autocompleteResults = this.textarea.parentElement.getElementsByClassName('autocompleteResults')
-            if (autocompleteResults.length > 0 && autocompleteResults[0].style.display !== 'none') {
-                return
+            const autocompleteParent = this.textarea.parentElement.getElementsByClassName('autocompleteParent')
+            if (autocompleteParent.length) {
+                if (autocompleteParent[0].style.display !== 'none') return
+            } else {
+                const autocompleteResults = this.textarea.parentElement.getElementsByClassName('autocompleteResults')
+                if (autocompleteResults.length > 0) {
+                    if (autocompleteResults[0].style.display !== 'none') return
+                }
             }
+
             let value = this.textarea.value.trim()
             if (value === this.prompt.trim()) return
             let tags = common.splitTags(value, this.autoBreakBeforeWrap, this.autoBreakAfterWrap)
