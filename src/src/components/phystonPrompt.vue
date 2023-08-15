@@ -420,13 +420,13 @@
                             <div v-for="(group, subIndex) in item.groups" :key="subIndex" :class="['sub-group-main', subIndex == subGroupTagsActive ? 'active' : '']">
                                 <div class="group-tags" v-if="subIndex == subGroupTagsActive">
                                     <div class="tag-item" v-for="(local, en) in group.tags"
-                                        v-tooltip="getGroupTagTooltip(local, en)" unaffected="true"
+                                        v-tooltip="getGroupTagTooltip(local, en)"
                                         @click="onClickGroupTag(local, en)" v-html="renderGroupTag(local, en, item.name, group.name)">
                                     </div>
                                 </div>
                                 <div class="tags-footer">
                                     <div class="tags-color">
-                                        <div>标签颜色:</div>
+                                        <div>{{ getLang('tags_color') }}:</div>
                                         <div class="tags-color-picker hover-scale-120"
                                              v-tooltip="groupTagsColor[getTagsColorKey(item.name, group.name)]"
                                              unaffected="true">

@@ -139,7 +139,8 @@
                 "hide_group_tags": "隐藏分组标签",
                 "tags-copyright": "提示词整合来源 路过银河(知乎)、未知作者(Google Drive)、互联网等等，感谢这些作者的无私奉献！",
                 "reset_default_color": "重置为默认颜色",
-                "clear_color": "清除颜色"
+                "clear_color": "清除颜色",
+                "tags_color": "标签颜色"
             }
         },
         {
@@ -280,7 +281,8 @@
                 "hide_group_tags": "隱藏分組標籤",
                 "tags-copyright": "提示詞整合來源 路过银河(知乎)、未知作者(Google Drive)、互聯網等等，感謝這些作者的無私奉獻！",
                 "reset_default_color": "重置為預設顏色",
-                "clear_color": "清除顏色"
+                "clear_color": "清除顏色",
+                "tags_color": "標籤顏色"
             }
         },
         {
@@ -421,7 +423,8 @@
                 "hide_group_tags": "隱藏分組標籤",
                 "tags-copyright": "提示詞整合來源 路过银河(知乎)、未知作者(Google Drive)、互聯網等等，感謝這些作者的無私奉獻！",
                 "reset_default_color": "重置為預設顏色",
-                "clear_color": "清除顏色"
+                "clear_color": "清除顏色",
+                "tags_color": "標籤顏色"
             }
         },
         {
@@ -562,7 +565,8 @@
                 "hide_group_tags": "Hide Group Tags",
                 "tags-copyright": "Prompt words integration source from 路过银河(Zhihu)、unknown author(Google Drive)、internet, etc. Thanks to these selfless contributors!",
                 "reset_default_color": "Reset to Default Color",
-                "clear_color": "Clear Color"
+                "clear_color": "Clear Color",
+                "tags_color": "Tags Color"
             }
         },
         {
@@ -714,7 +718,8 @@
                 "hide_group_tags": "إخفاء علامات المجموعة",
                 "tags-copyright": "مصدر دمج كلمات التلميح من 路过银河(Zhihu)، مؤلف غير معروف (جوجل درايف)، الإنترنت، وما إلى ذلك. شكرًا لهؤلاء المساهمين الذين يعملون بلا مقابل!",
                 "reset_default_color": "إعادة تعيين اللون الافتراضي",
-                "clear_color": "مسح اللون"
+                "clear_color": "مسح اللون",
+                "tags_color": "لون العلامات"
             }
         },
         {
@@ -954,7 +959,8 @@
                 "hide_group_tags": "Masquer les balises de groupe",
                 "tags-copyright": "Source d'intégration des mots d'invite provenant de 路过银河(Zhihu)、auteur inconnu(Google Drive)、internet, etc. Merci à ces contributeurs altruistes !",
                 "reset_default_color": "Réinitialiser la couleur par défaut",
-                "clear_color": "Effacer la couleur"
+                "clear_color": "Effacer la couleur",
+                "tags_color": "Couleur des étiquettes"
             }
         },
         {
@@ -1109,7 +1115,8 @@
                 "hide_group_tags": "Gruppentags ausblenden",
                 "tags-copyright": "Quelle für die Integration von Hinweiswörtern von 路过银河(Zhihu)、unbekannter Autor(Google Drive)、Internet usw. Vielen Dank an diese selbstlosen Beitragenden!",
                 "reset_default_color": "Auf Standardfarbe zurücksetzen",
-                "clear_color": "Farbe löschen"
+                "clear_color": "Farbe löschen",
+                "tags_color": "Tag-Farbe"
             }
         },
         {
@@ -1314,7 +1321,8 @@
                 "hide_group_tags": "Nascondi tag di gruppo",
                 "tags-copyright": "Fonte di integrazione delle parole di suggerimento da 路过银河(Zhihu)、autore sconosciuto(Google Drive)、internet, ecc. Grazie a questi generosi contributori!",
                 "reset_default_color": "Ripristina colore predefinito",
-                "clear_color": "Cancella colore"
+                "clear_color": "Cancella colore",
+                "tags_color": "Colore dei tag"
             }
         },
         {
@@ -1454,7 +1462,8 @@
                 "hide_group_tags": "グループタグを非表示",
                 "tags-copyright": "プロンプトの単語統合元 路过银河(Zhihu)、不明な作者(Google Drive)、インターネットなど、これらの無私の貢献者に感謝します！",
                 "reset_default_color": "デフォルトの色にリセット",
-                "clear_color": "色をクリア"
+                "clear_color": "色をクリア",
+                "tags_color": "タグの色"
             }
         },
         {
@@ -1619,7 +1628,8 @@
                 "hide_group_tags": "그룹 태그 숨기기",
                 "tags-copyright": "프롬프트 단어 통합 출처: 路过银河(Zhihu)、알 수 없는 작성자(Google Drive)、인터넷 등. 이러한 무비한 기여자들에게 감사드립니다!",
                 "reset_default_color": "기본 색상으로 재설정",
-                "clear_color": "색상 지우기"
+                "clear_color": "색상 지우기",
+                "tags_color": "태그 색상"
             }
         },
         {
@@ -1874,7 +1884,8 @@
                 "hide_group_tags": "Ocultar etiquetas de grupo",
                 "tags-copyright": "Fonte de integração de palavras-chave de 路过银河(Zhihu)、autor desconhecido(Google Drive)、internet, etc. Obrigado a esses contribuidores altruístas!",
                 "reset_default_color": "Redefinir para cor padrão",
-                "clear_color": "Limpar cor"
+                "clear_color": "Limpar cor",
+                "tags_color": "Cor das tags"
             }
         },
         {
@@ -2029,7 +2040,8 @@
                 "hide_group_tags": "Скрыть групповые теги",
                 "tags-copyright": "Источник интеграции ключевых слов от 路过银河(Zhihu)、неизвестный автор(Google Drive)、интернет и т.д. Благодарим этих бескорыстных участников!",
                 "reset_default_color": "Сбросить настройки цвета",
-                "clear_color": "Очистить цвет"
+                "clear_color": "Очистить цвет",
+                "tags_color": "Цвет тегов"
             }
         },
         {
@@ -2199,7 +2211,8 @@
                 "hide_group_tags": "Ocultar etiquetas de grupo",
                 "tags-copyright": "Fuente de integración de palabras clave de 路过银河(Zhihu)、autor desconocido(Google Drive)、internet, etc. ¡Gracias a estos generosos colaboradores!",
                 "reset_default_color": "Restablecer a color predeterminado",
-                "clear_color": "Borrar color"
+                "clear_color": "Borrar color",
+                "tags_color": "Color de las etiquetas"
             }
         },
         {
