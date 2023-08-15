@@ -129,6 +129,10 @@ Translation supports almost all national languages, but the UI interface of most
 
   ![](https://s1.imagehub.cc/images/2023/06/06/demo.custom_theme.gif)
 
+- [One-Click Keyword Addition](https://aiodoc.physton.com/GroupTags.html)
+
+  ![](https://s1.imagehub.cc/images/2023/08/15/demo.group_tags.gif)
+
 ## Donate
 
 [Donation list](https://aiodoc.physton.com/Donate.html)

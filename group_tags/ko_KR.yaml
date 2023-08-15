@@ -1,0 +1,4412 @@
+# 👍힌트 키워드 출처 통합: 路过银河(zhihu), 알려지지 않은 저자(Google Drive), 인터넷 등등, 이러한 저자들의 무한한 공헌에 감사드립니다!
+#
+# ⚠️본 파일의 내용을 수정하지 않는 것이 좋습니다. 이 파일의 작성자는 주기적으로 업데이트할 수 있으며, 파일을 수정하면 업데이트 시 충돌이 발생할 수 있습니다.
+# ⚠️사용자 정의 키워드 그룹이 필요한 경우, 이 파일을 복사하여 custom.yaml으로 이름을 변경한 후 custom.yaml에서 수정하십시오.
+# ⚠️플러그인은 custom.yaml 파일을 우선적으로 읽습니다. custom.yaml 파일이 없으면 이 파일을 읽습니다.
+#
+# ⚠️전문적인 텍스트 편집기(예: Visual Studio Code)를 사용하여 이 파일을 편집하는 것이 좋습니다. 인코딩 및 형식 오류를 피할 수 있습니다.
+# ⚠️Windows 기본 메모장을 사용하여 이 파일을 편집하지 마십시오.
+# ⚠️수정한 후에는 https://www.yamllint.com/ 에서 내용 형식을 확인할 수 있습니다.
+
+# 콘텐츠 형식:
+# - name: 1차 분류 이름
+#   groups: 2차 분류 목록
+#     - name: 2차 분류 이름
+#       color: 키워드 텍스트의 기본 색상 (비워둘 수 있음), CSS 색상 코드 예시: #ff0000, red, rgb(255,0,0), rgba(255,0,0,1), hsl(0,100%,50%), hsla(0,100%,50%,1)
+#       tags: 키워드 목록
+#         - 영어 키워드: 로컬라이즈된 번역
+#         - 영어 키워드: 로컬라이즈된 번역
+#         ...
+
+# 이 콘텐츠의 로컬라이즈된 번역은 기계 번역을 통해 제공되었으며, 정확하지 않을 수 있습니다. 오류를 발견하신 경우 Github로 이동하여 PR을 제출하여 수정해주시기 바랍니다.
+# 분류 오류, 키워드 오류, 키워드 번역 오류 등의 문제가 있을 경우 Github로 이동하여 Issue를 제출하여 피드백해주시기 바랍니다.
+
+- name: 인물
+  groups:
+    - name: 개체
+      color: rgba(255, 123, 2, .4)
+      tags:
+        1girl: 1소녀
+        1boy: 1소년
+        2girls: 2소녀
+        2boys: 2소년
+        3girls: 3소녀
+        3boys: 3소년
+        girl: 소녀
+        boy: 소년
+        solo: 혼자
+        multiple_girls: 여러 소녀
+        little_girl: 작은 소녀
+        little_boy: 작은 소년
+        shota: 쇼타
+        loli: 로리
+        kawaii: 귀여운
+        mesugaki: 암컷 악마
+        adorable_girl: 사랑스러운 소녀
+        bishoujo: 미소녀
+        gyaru: 갸루
+        sisters: 자매
+        ojousama: 아가씨
+        female: 여성
+        mature_female: 성숙한 여성
+        mature: 성숙한
+        female_pervert: 여성 변태
+        male: 남성
+        milf: 성숙한 여성
+        otoko_no_ko: 남자처럼 생긴 여자
+        crossdressing: 남장
+
+    - name: 신분
+      color: rgba(255, 123, 2, .4)
+      tags:
+        lifeguard: 구명원
+        boxer: 복싱 선수
+        scientist: 과학자
+        athletes: 운동선수
+        office lady: 직장 여성
+        monk: 승려
+        crobat: 공중곡예사
+        nun: 수녀
+        nurse: 간호사
+        stewardess: 승무원
+        student: 학생
+        waitress: 여성 서비스원
+        teacher: 선생님
+        racer: 레이서
+        police: 경찰
+        soldier: 군인
+        cheerleader: 치어리더
+        actor: 남자 배우
+        actress: 여자 배우
+        spy: 스파이
+        agent: 요원
+        assassin: 암살자
+        poet: 시인
+        samurai: 사무라이
+        dancing girl: 무도하는 소녀
+        motorcyclist: 오토바이 타는 사람
+        hacker: 해커
+        magician: 마술사
+        detective: 탐정
+        doll: 인형
+        maid: 하녀
+        pilot: 조종사
+        diver: 잠수사
+        bar censor: 바 관리자
+        missionary: 선교사
+        firefighter: 소방관
+        goalkeeper: 골키퍼
+        chef: 요리사
+        astronaut: 우주비행사
+        cashier: 계산원
+        mailman: 우편배달원
+        barista: 바리스타
+        the hermit: 은둔자
+        makihitsuji: 양치기
+        office_lady: 사무직 여성
+        race_queen: 레이스 퀸
+        queen: 여왕
+        doctor: 의사
+        knight: 기사
+        housemaid: 하녀
+        dancer: 무용수
+        ballerina: 발레리나
+        gym_leader: 체육관 리더
+        trap: 남자로 변장한 여자
+        female: 여자
+        harem: 후궁
+        idol: 아이돌
+        male: 남자
+        priest: 신부
+        cleric: 성직자(기독교)
+        wa_maid: 일본식 하녀
+        yaoi: 야오이
+        yuri: 유리
+        albino: 백색증 환자
+        amputee: 절단 수술을 받은 사람
+
+    - name: 2차원 캐릭터
+      color: rgba(255, 123, 2, .4)
+      tags:
+        pokemon: 포켓몬
+        teddy bear: 테디 베어
+        mario: 마리오
+        pikachu: 피카츄
+        neon genesis evangelion: 신세기 에반게리온
+        hatsune miku: 하츠네 미쿠
+        harry potter: 해리 포터
+        doraemon: 도라에몽
+        saint seiya: 성검전설
+        gojou satoru: 五条悟
+        avengers: 어벤져스
+        mazinger: 마징가
+        captain america: 캡틴 아메리카
+        crayon shin-chan: 크레용 신짱
+        slam dunk: 슬램덩크
+        sun wukong: 손오공
+        witch: 마녀
+        miko: 미코
+        ninja: 닌자
+        vampire: 흡혈귀
+        knight: 기사
+        magical_girl: 마법소녀
+        orc: 오크
+        druid: 드루이드
+        elf: 요정
+        fairy: 요정
+        furry: 수인
+        mermaid: 인어
+        kamen rider: 가면라이더
+        magister: 마도사
+        spider-man: 스파이더맨
+        santa alter: 산타 오르타
+        monster_girl: 괴물 소녀
+        cat_girl: 고양이 소녀
+        dog_girl: 개 소녀
+        fox_girl: 여우 소녀
+        kitsune: 여우요괴
+        kyuubi: 구미호
+        raccoon_girl: 너구리 소녀
+        wolf_girl: 늑대 소녀
+        bunny_girl: 토끼 소녀
+        horse_girl: 말 소녀
+        cow_girl: 소 소녀
+        dragon_girl: 용 소녀
+        centaur: 인간말
+        slime_musume: 슬라임 소녀
+        spider_girl: 거미 소녀
+        dominatrix: 여왕(SM에서)
+        sailor_senshi: 세일러 문
+        mecha: 메카
+        mecha_musume: 메카 소녀
+        humanoid_robot_: 인간형 로봇
+        cyborg: 사이보그
+        angel: 천사
+        devil: 악마
+        dark_elf: 다크 엘프
+        imp: 작은 악마
+        succubus: 서큐버스
+        giantess: 거인 여자
+        minigirl: 소형 소녀
+        monster: 괴물
+        multiple girls: 다수의 소녀
+        no humans: 인간이 아님
+
+    - name: 나이
+      color: rgba(255, 123, 2, .4)
+      tags:
+        toddler: 유아
+        kindergartener: 유치원생
+        child: 어린이
+        underage: 미성년자
+        teenager: 십대(13-19)
+        teen: 십대(13-19)
+        early teen: 초기 십대(11-15)
+        adult: 성인
+        elder: 노인
+        old: 노년
+        loli: 로리
+        shota: 쇼타
+
+    - name: 피부
+      color: rgba(255, 123, 2, .4)
+      tags:
+        white_skin: 백피부
+        pale_skin: 창백한 피부
+        fair_skin: 고운 피부
+        brown_skin: 갈색 피부
+        deep_skin: 짙은 피부
+        dark_skin: 검은 피부
+        black_skin: 검은 피부
+        shiny_skin: 빛나는 피부
+        white_marble_glowing_skin: 흰 대리석 빛나는 피부
+        tattoo: 문신
+        tan: 썬탠
+        tanlines: 썬탠 자국
+        oil: 기름진 피부
+
+    - name: 체형
+      color: rgba(255, 123, 2, .4)
+      tags:
+        skinny: 마른
+        plump: 통통한
+        curvy: 아찔한 체형
+        gyaru: 갸루(일본 스타일)
+        pregnant: 임신한
+        fat: 비만
+        thin: 가늘은
+        slender: 날씬한
+        glamor: 매력적인
+        tall: 키가 큰
+        petite: 작은
+        chibi: 귀여운
+        muscular: 근육질
+
+    - name: 얼굴형
+      color: rgba(255, 123, 2, .4)
+      tags:
+        slender face: 날씬한 얼굴
+        round face: 둥근 얼굴
+        oval face: 알약 모양 얼굴
+        baby face: 아기 얼굴
+        inverted triangle face: 역삼각형 얼굴
+        heart shaped face: 하트 모양 얼굴
+        diamond face: 다이아몬드 얼굴
+        square face: 사각 얼굴
+        long face: 긴 얼굴
+        triangular face: 삼각형 얼굴
+
+    - name: 머리카락
+      color: rgba(255, 123, 2, .4)
+      tags:
+        white hair: 흰 머리카락
+        blonde hair: 금발 머리카락
+        silver hair: 은색 머리카락
+        grey hair: 회색 머리카락
+        purple hair: 보라색 머리카락
+        red hair: 빨간 머리카락
+        yellow hair: 노란 머리카락
+        green hair: 초록 머리카락
+        blue hair: 파란 머리카락
+        black hair: 검은 머리카락
+        brown hair: 갈색 머리카락
+        straight_hair: 직진 머리카락
+        short hair: 짧은 머리카락
+        curly hair: 곱슬머리
+        long hair: 긴 머리카락
+        pony-tail: 포니테일
+        bunches: 두 묶음
+        streaked hair: 염색한 머리카락
+        grey gradient hair: 회색 그라데이션 머리카락
+        light brown hair: 밝은 갈색
+        two-tone hair: 두 가지 색상의 머리카락
+        multicolored hair: 다색 머리카락
+        high ponytail: 높은 포니테일
+        twintails: 두 번째 꼬리
+        braided ponytail: 땋은 포니테일
+        ponytail: 포니테일
+        short ponytail: 짧은 포니테일
+        twin braids: 두 가닥 땋은 머리카락
+        medium hair: 중간 길이 머리카락
+        very long hair: 아주 긴 머리카락
+        braided bangs: 땋은 앞머리
+        swept bangs: 쓸어 올린 앞머리
+        hair between eyes: 눈 사이의 머리카락
+        bob cut: 밥 컷
+        hime cut: 히메 컷
+        crossed bangs: 교차한 앞머리
+        bangs: 앞머리
+        blunt bangs: 뽀족한 앞머리
+        air bangs: 공기 앞머리
+        hair wings: 날개 모양의 머리카락
+        long bangs: 긴 앞머리
+        side_blunt_bangs: 측면 뽀족한 앞머리
+        centre parting bangs: 가운데로 가르는 앞머리
+        asymmetric bangs: 비대칭 앞머리
+        disheveled hair: 헝클어진 머리
+        wavy hair: 파도 모양의 머리카락
+        hair in takes: 묶음 머리
+        hair pink flowers: 분홍색 꽃 머리
+        ahoge: 아호게
+        antenna hair: 안테나 머리
+        Side ponytail: 측면 포니테일
+        forehead: 이마
+        drill hair: 드릴 머리
+        hair bun: 머리둥근
+        double bun: 두 개의 머리둥근
+        messy hair: 엉망진창인 머리
+        hair_flaps: 머리털
+
+    - name: 얼굴
+      color: rgba(255, 123, 2, .4)
+      tags:
+        makeup: 메이크업
+        fundoshi: 파운데이션
+        eyeshadow: 아이섀도우
+        lipstick: 립스틱
+        mascara: 마스카라
+        long_eyelashes: 긴 속눈썹
+        red_lips_: 빨간 입술
+        facepaint: 얼굴 페인트
+        lipgloss: 립글로스
+        colored_eyelashes: 컬러 속눈썹
+        blush: 볼터치
+        light_blush: 연한 볼터치
+        anime_style_blush: 애니메이션 스타일 볼터치
+        nose_blush: 코볼터치
+        nosebleed: 코피
+        bruise_on_face: 얼굴에 멍
+        facial_mark: 얼굴 표식
+        forehead_mark: 이마 표식
+        anger_vein: 화난 표정
+        mole: 점
+        mole_under_eye: 눈 밑의 점
+        freckles: 주근깨
+        food_on_face: 음식이 얼굴에 묻음
+        rice_on_face: 얼굴에 밥
+        cream_on_face: 얼굴에 크림
+        mustache: 콧수염
+        goatee: 염소 수염
+        whisker_markings: 수염 자국
+        scar: 흉터
+        scar_across_eye: 눈을 가로지르는 흉터
+        smoking_pipe: 담배파이프
+        tattoo: 타투
+
+    - name: 귀
+      color: rgba(255, 123, 2, .4)
+      tags:
+        elf ears: 엘프 귀
+        fake animal ears: 가짜 동물 귀
+        cat ears: 고양이 귀
+        dog ears: 개 귀
+        fox ears: 여우 귀
+        bunny ears: 토끼 귀
+        bear ears: 곰 귀
+        wolf ears: 늑대 귀
+        horse ears: 말 귀
+        cow ears: 소 귀
+        mouse ears: 쥐 귀
+        pig ears: 돼지 귀
+        sheep ears: 양 귀
+        deer ears: 사슴 귀
+        goat ears: 염소 귀
+        antelope ears: 영양 귀
+        rhino ears: 코뿔소 귀
+        elephant ears: 코끼리 귀
+        bat ears: 박쥐 귀
+        dragon ears: 용 귀
+        demon ears: 악마 귀
+        angel ears: 천사 귀
+        alien ears: 외계인 귀
+        ear_blush: 귀 홍조
+        ear_ornament: 귀 장식
+        ear_piercing: 귀에 구멍 뚫기
+        animal_ears: 동물 귀
+        ears_down: 귀 내려놓음
+        fake_animal_ears: 가짜 동물 귀
+        floppy_ears: 너덜너덜한 귀
+        animal_ear_fluff: 동물 귀 털
+        fox_ears: 여우 귀
+        cat_ears: 고양이 귀
+        lion_ears: 사자 귀
+        jaguar_ears: 표범 귀
+        tiger_ears: 호랑이 귀
+        dog_ears: 개 귀
+        coyote_ears: 코요테 귀
+        bunny_ears: 토끼 귀
+        horse_ears: 말 귀
+        pointy_ears: 뾰족한 귀
+        long_pointy_ears: 긴 뾰족한 귀
+        mouse_ears: 쥐 귀
+        raccoon_ears: 너구리 귀
+        squirrel_ears: 다람쥐 귀
+        bear_ears: 곰 귀
+        panda_ears: 판다 귀
+        bat_ears: 박쥐 귀
+        robot_ears: 로봇 귀
+        extra_ears: 추가 귀
+        ears_through_headwear: 모자나 머리 장식을 통과하는 귀
+        alpaca_ears: 알파카 귀
+        horns: 뿔
+        fake_horns: 가짜 뿔
+        dragon_horns: 용 뿔
+        oni_horns: 오니 뿔
+        antlers: 사슴 뿔
+        curled_horns: 꼬인 뿔
+        goat_horns: 염소 뿔
+        hair_on_horn: 뿔 위의 털
+
+    - name: 눈썹
+      color: rgba(255, 123, 2, .4)
+      tags:
+        thick eyebrows: 두꺼운 눈썹
+        cocked eyebrow: 눈썹을 찌푸림
+        short eyebrows: 짧은 눈썹
+        v-shaped eyebrows: V자형 눈썹
+
+    - name: 눈
+      color: rgba(255, 123, 2, .4)
+      tags:
+        blue eyes: 파란 눈
+        red eyes: 빨간 눈
+        brown eyes: 갈색 눈
+        green eyes: 초록 눈
+        purple eyes: 보라 눈
+        yellow eyes: 노란 눈
+        pink eyes: 분홍 눈
+        black eyes: 검은 눈
+        aqua eyes: 아쿠아 눈
+        orange eyes: 주황 눈
+        grey eyes: 회색 눈
+        multicolored eyes: 다색 눈
+        white eyes: 흰 눈
+        gradient eyes: 그라데이션 눈
+        closed eyes: 눈 감음
+        half-closed eyes: 반쯤 감은 눈
+        crying with eyes open: 눈 뜨고 울음
+        narrowed eyes: 눈을 가늘게 뜸
+        hidden eyes: 눈 숨김
+        heart-shaped eyes: 하트 모양 눈
+        button eyes: 단추 눈
+        cephalopod eyes: 조개류 눈
+        eyes visible through hair: 머리카락 사이로 보이는 눈
+        glowing eyes: 빛나는 눈
+        empty eyes: 빈 눈
+        rolling eyes: 눈 굴리기
+        cross eyed: 졸린 눈
+        blank eyes: 텅 빈 눈
+        no eyes: 눈 없음
+        sparkling eyes: 반짝이는 눈
+        extra eyes: 추가 눈
+        crazy eyes: 미친 눈
+        solid circle eyes: 실선 원 눈
+        solid oval eyes: 실선 타원 눈
+        uneven eyes: 불규칙한 눈
+        blood from eyes: 눈에서 피 흐름
+        eyeshadow: 아이섀도우
+        red eyeshadow: 빨간색 아이섀도우
+        blue eyeshadow: 파란색 아이섀도우
+        purple eyeshadow: 보라색 아이섀도우
+        pink eyeshadow: 분홍색 아이섀도우
+        green eyeshadow: 초록색 아이섀도우
+        bags under eyes: 눈밑 처짐
+        ringed eyes: 눈썹 주변
+        covered eyes: 눈 가리기
+        covering eyes: 눈 가리기
+        shading eyes: 눈 가리기
+        devil eyes: 악마 눈
+        slit pupils: 고양이 눈
+        bloodshot eyes: 충혈된 눈
+        tsurime: 눈끝 올림
+        tareme: 눈끝 내림
+        constricted pupils: 동공 수축
+        devil pupils: 악마의 눈동자
+        snake pupils: 뱀 눈동자
+        pupils sparkling: 눈동자 반짝임
+        flower-shaped pupils: 꽃 모양 눈동자
+        heart-shaped pupils: 하트 모양 눈동자
+        heterochromia: 이색 눈동자
+        color contact lenses: 컬러 콘택트 렌즈
+        longeyelashes: 긴 속눈썹
+        colored eyelashes: 컬러 속눈썹
+        mole under eye: 눈 아래 점
+        light_eyes: 밝은 눈
+        glowing_eye: 빛나는 눈
+        shiny_eyes: 반짝이는 눈
+        sparkling_eyes: 반짝이는 눈
+        gradient_eyes: 그라데이션 눈
+        anime_style_eyes: 애니메이션 스타일 눈
+        water_eyes: 물빛 눈
+        beautiful_detailed_eyes: 아름다운 디테일이 있는 눈
+        solid_oval_eyes_: 솔리드 타원 눈
+        solid_circle_pupils: 솔리드 원 눈동자
+        blush_stickers: 블러셔 스티커
+        heart_in_eye: 눈 속에 하트
+        evil_eyes: 악마 같은 눈
+        crazy_eyes: 미친 듯한 눈
+        empty_eyes: 빛이 없는 눈
+        covered_eyes: 가려진 눈
+        hollow_eyes: 별 모양 눈동자
+        multicolored_eyes: 다채로운 눈
+        ringed_eyes: 눈썹 주변
+        sanpaku: 삼백증 (동공이 치우쳐 있는 상태)
+        mismatched_sclera: 눈자리가 맞지 않음
+        eye_relfection: 눈 반사 (효과 없음)
+        mechanical_eye: 기계 눈
+        cephalopod_eyes: 조개류 눈
+        clock_eyes: 시계 눈
+        compound_eyes: 복합 눈
+        fisheye: 물고기 눈
+        devil_eyes: 악마의 눈
+        bloodshot_eyes: 핏줄이 돋은 눈
+        blood_from_eyes: 눈에서 피 흐름
+        aqua_eyes: 청색 눈
+        solid_eyes: 확고한 눈
+        sparkling_anime_eyes: 반짝이는 애니메이션 눈
+        blue_eyes: 파란 눈
+        brown_eyes: 갈색 눈
+        closed_eyes: 눈 감은 상태
+        crying_with_eyes_open: 눈 뜨고 울음
+        extra_eyes: 여러 개의 눈
+        eye_contact: 눈빛 소통
+        eye_of_horus: 호루스의 눈
+        eyeball: 눈알
+        eyeliner: 아이라이너
+        eyes: 눈
+        glint: 강한 감정이 반영된 눈빛
+        glowing_eyes: 빛나는 두 눈
+        half-closed_eye: 반쯤 감은 눈 (한쪽)
+        half-closed_eyes: 반쯤 감은 눈 (양쪽)
+        horizontal_pupils:
+        jitome: 경멸하는 눈빛
+        light_brown_eyes: 밝은 갈색 눈
+        no_eyes: 눈 그려지지 않음
+        one-eyed: 눈 반사
+        reflective_eyes:
+        silver_eyes: 은색 눈
+        spiral_eyes: 소용돌이 눈
+        third_eye: 세 번째 눈
+        uneven_eyes: 크기가 다른 눈
+        flaming_eye: 불꽃 눈
+        eyes_closed: 눈 감음
+        half_closed_eyes: 반쯤 감은 눈 (양쪽)
+        narrowed_eyes: 눈을 가늘게 뜸
+        squinting: 눈을 가늘게 뜨고 보기
+        tears: 눈물
+        sharp_eyes: 날카로운 눈
+        slanted_eyes: 날카로운 눈
+        upturned_eyes: 올라간 눈
+        cross-eyed: 졸린 눈
+        hair_over_eyes: 머리카락이 눈을 가리고 있음
+        eyes_visible_through_hair: 머리카락 사이로 눈이 보임
+        hair_over_one_eye: 머리카락이 한쪽 눈을 가림
+        one_eye_covered: 한쪽 눈이 가려짐
+        bags_under_eyes: 눈밑 처짐
+        eyepatch: 안대
+        medical_eyepatch: 의료용 안대
+        scar_across_eye: 눈 위에 흉터
+        no_blindfold: 가리개(눈 가리는 요소) 제외
+        no_eyepatch: 안대 제외
+        ahegao: 아헤가오
+
+    - name: 동공
+      color: rgba(255, 123, 2, .4)
+      tags:
+        pupils: 동공
+        bright_pupils: 밝은 동공
+        heterochromia: 이색 동공
+        slit_pupils: 세로 동공/고양이 눈
+        snake_pupils: 동공 반짝임
+        symbol-shaped_pupils: 심볼 모양 동공
+        heart-shaped_pupils: 하트 모양 동공
+        diamond-shaped_pupils: 다이아몬드 모양 동공
+        star-shaped_pupils: 별 모양 동공
+        dilated_pupils: 동공 확장
+        no_pupils: 동공 없음
+        ringed_eyes: 회전하는 눈
+        constricted_pupils: 수축한 동공 (효과 없음)
+        star_in_eye: 눈 속의 별
+        x-shaped_pupils: X자 모양 동공
+        horizontal_pupils: 수평 동공
+        dashed_eyes: 점선 눈
+        butterfly-shaped_pupils: 나비 모양 동공
+        rectangular_pupils: 직사각형 동공
+        square_pupils: 사각형 동공
+        dot_pupils: 점 동공
+        extra_pupils: 추가 동공
+        mismatched_pupils: 맞지 않는 동공
+        "+_+": 십자 모양 눈
+        cross-shaped_pupils: 십자 모양 동공 (효과 없음)
+        purple_pupils: 보라색 동공
+        orange_pupils: 주황색 동공
+        blue_pupils: 파란색 동공
+        symbol_in_eye: 눈 속에 심볼
+
+    - name: 코
+      color: rgba(255, 123, 2, .4)
+      tags:
+        pointed nose: 뾰족한 코
+        small nose: 작은 코
+        big nose: 큰 코
+        no_nose: 코 없음
+        dot_nose: 점 모양 코
+        nose_bubble: 코 거품
+        smelling: 냄새를 맡음
+        nose: 코
+        nosebleed: 코피
+        snot: 콧물
+        snout: 동물의 입코부위
+
+    - name: 입
+      color: rgba(255, 123, 2, .4)
+      tags:
+        chestnut mouth: 밤색 입
+        thick lips: 두꺼운 입술
+        puffy lips: 부풀어 오른 입술
+        lipstick: 립스틱
+        heart-shaped mouth: 하트 모양 입
+        pout: 삐죽한 입
+        open mouth: 입 벌림
+        closed mouth: 입 닫음
+        shark mouth: 상어 입
+        parted lips: 벌린 입
+        mole under mouth: 아래 입술에 점
+        open_mouth: 입 벌림
+        gasping: 숨을 헐떡임 (입 벌림)
+        Slightly_open_mouth: 약간 벌린 입
+        wavy_mouth: 파도 모양 입
+        close_mouth: 입 닫음
+        dot_mouth: 점 모양 입
+        no_mouth: 입 없음
+        gag: 입 막음
+        gnaw: 깨물음
+        :3: 고양이 입
+        :o: 입 벌림
+        :>: V자 모양 입
+        parted_lips: 입술 벌림
+        bit_gag: 입 막음
+        chestnut_mouth: 밤색 입
+        cleave_gag: 입 막음
+        closed_mouth: 입 닫음
+        covered_mouth: 입 가림
+        extra_mouth: 여러 개의 입
+        hair_in_mouth: 입 안에 머리카락
+        hair_tie_in_mouth: 머리카락을 입에 물고 있음
+        homu: 입술을 삐죽거림
+        lips: 입술
+        mouth: 입
+        mouth_hold: 입으로 잡음
+        oral: 입으로
+        pacifier: 유모차
+        Pouted lips: 내밀은 입술
+        sideways_mouth: 측면 얼굴에 입을 그림
+        spoon_in_mouth: 숟가락을 입에 놓음
+        triangle_mouth: 삼각형 입
+        saliva: 침
+        drooling: 침 흘림
+        mouth_drool: 입술에 침 모양의 틈
+
+    - name: 이빨
+      color: rgba(255, 123, 2, .4)
+      tags:
+        teeth: 이빨
+        upper_teeth: 윗니
+        fang: 송곳니
+        skin_fang: 피부색 송곳니
+        round_teeth: 둥근 이빨
+        sharp_teeth: 날카로운 이빨
+        clenched_teeth: 이빨 깨물기
+        tongue: 혀
+        buck_teeth: 톱니모양 이빨
+        fang_out: 송곳니 드러냄
+        fangs: 송곳니
+        spiked_club: 가시 돌맹이
+        tooth: 이
+        toothbrush: 칫솔
+        tusks: 엄니
+        shark_mouth: 상어 이빨
+
+    - name: 혀
+      color: rgba(255, 123, 2, .4)
+      tags:
+        :q: 혀를 윗입술에 대다
+        :p: 혀를 아랫입술에 대다
+        ;p: 눈 깜빡이면서 혀를 내밀다
+        french_kiss: 프렌치 키스
+        long_tongue: 긴 혀
+        oral_invitation: 사정을 맞이하기 위해 혀를 내밀다
+        tongue: 혀
+        tongue_out: 혀 내밀기
+        uvula: 작은 혀, 입천장, 혀뼈
+
+    - name: 손톱
+      color: rgba(255, 123, 2, .4)
+      tags:
+        fingernails: 손톱
+        toenails: 발톱
+        nail_polish: 네일 폴리쉬
+        toenail_polish: 발톱 폴리쉬
+        black_nails: 검은색 손톱
+        red_nails: 빨간색 손톱
+        pink_nails: 분홍색 손톱
+        long_fingernails: 긴 손톱
+        nail: 손톱
+        multicolored_nails: 다채로운 손톱
+        nail_art: 네일 아트
+        brown_vest: 갈색 조끼
+
+    - name: 어깨
+      color: rgba(255, 123, 2, .4)
+      tags:
+        bare shoulders: 벌거숭이 어깨
+        collarbonea: 쇄골
+        armpits: 겨드랑이
+        armpit_crease: 겨드랑이 주름
+
+    - name: 가슴
+      color: rgba(255, 123, 2, .4)
+      tags:
+        chest: 가슴
+        flat chest: 납작한 가슴(A컵)
+        small_breasts: 작은 가슴(B컵)
+        medium breasts: 중간 크기 가슴(C컵)
+        big breasts: 큰 가슴(D컵)
+        huge breasts: 거대한 가슴(E컵)
+        gigantic breasts: 엄청나게 큰 가슴(F컵)
+        between breasts: 가슴 사이
+        breasts apart: 가슴이 분리됨
+        hanging breasts: 가슴이 늘어짐
+        bouncing breasts: 가슴이 튀김
+        cleavage: 가슴 간격
+        areola: 유두
+        nipples: 유두
+        pectorals: 흉근
+        large_pectorals: 큰 흉근
+        unbuttoned clothes: 옷을 풀어놓은 가슴
+
+    - name: 허리
+      color: rgba(255, 123, 2, .4)
+      tags:
+        narrow_waist: 좁은 허리
+        slender_waist: 날씬한 허리
+
+    - name: 배
+      color: rgba(255, 123, 2, .4)
+      tags:
+        midriff: 배
+        belly: 배
+        absolute_territory: 복근
+        inflation: 부풀어 오른 배
+        navel: 배꼽
+        groin: 사타구니
+        pregnant: 임신
+
+    - name: 날개
+      color: rgba(255, 123, 2, .4)
+      tags:
+        wings: 날개
+        bat_wings: 박쥐 날개
+        butterfly_wings: 나비 날개
+        black_wings: 검은 날개
+        demon_wings: 악마의 날개
+        asymmetrical_wings: 비대칭 날개
+        detached_wings: 본체와 연결되지 않은 날개
+        fairy_wings: 요정의 날개
+        fake_wings: 가짜 날개
+        fiery_wings: 불타는 날개
+        insect_wings: 곤충 날개
+        large_wings: 큰 날개
+        low_wings: 허리에 있는 날개
+        mini_wings: 작은 날개
+        multicolored_wings: 다양한 색상의 날개
+        multiple_wings: 여러 쌍의 날개
+        no_wings: 날개 없음
+        winged_helmet: 날개 달린 헬멧
+
+- name: 의류
+  groups:
+    - name: 정장
+      color: rgba(230, 84, 128, .4)
+      tags:
+        suit: 정장
+        tuxedo: 꼬리 재킷
+        formal_dress: 정장
+        evening_gown: 이브닝 가운
+        canonicals: 야간 의상
+        cocktail_dress: 칵테일 드레스
+        gown: 여성 한복
+        japanese_clothes: 일본의 옷
+        kimono: 기모노
+        sleeveless_kimono: 민소매 기모노
+        short_kimono: 짧은 기모노
+        print_kimono: 프린트 기모노
+        furisode: 푸리소데 (기모노의 일부)
+        obi: 동의 (기모노 액세서리)
+        sash: 띠
+        cheongsam: 청숨
+        china_dress: 중국복
+        print_cheongsam: 프린트 청숨
+        pelvic_curtain: 청숨류 옷의 앞치마
+        wedding_dress: 웨딩 드레스
+        uchikake: 우치카케 (일본 결혼식 의상)
+        school_uniform: 교복
+        sailor: 선원복
+        serafuku: 선원복
+        summer_uniform: 여름 교복
+        kindergarten_uniform: 유치원 교복
+        police_uniform: 경찰복
+        naval_uniform: 해군복
+        military_uniform: 군복
+        ss_uniform/nazi_uniform: 나치 군복
+        maid: 메이드복
+        stile_uniform: 하녀의 군복
+        miko: 미코복
+        overalls: 작업복
+        business_suit: 비즈니스 정장
+        nurse: 간호사복
+        chef_uniform: 요리사 유니폼
+        labcoat: 백색 작업복
+        cheerleader: 치어리더복
+        band_uniform: 밴드 유니폼
+        space_suit: 우주복
+        leotard: 레오타드
+        domineering: 수녀복
+
+    - name: 스타일
+      color: rgba(230, 84, 128, .4)
+      tags:
+        china_dress: 중국 의상
+        chinese_style: 중국 스타일
+        traditional_clothes: 전통 의상|민속 의상
+        japanese_clothes: 일본 스타일 의상
+        hanten_(clothes): 한텐 (일본 의상)
+        hanbok: 한복
+        korean_clothes: 한국 의상
+        western: 서부 스타일
+        german_clothes: 독일 의상
+        gothic: 고딕 스타일
+        lolita: 로리타 스타일
+        gothic_lolita: 고딕 로리타 스타일
+        byzantine_fashion: 비잔틴 패션
+        Tropical: 열대 특징의
+        indian_style: 인도 스타일
+        Ao_Dai: 베트남 교복 (아오 다이)
+        ainu_clothes: 아이누인의 의상
+        arabian_clothes: 아랍 의상
+        egyptian_clothes: 이집트 스타일 의상
+        costume: 의상
+        animal_costume: 동물 시리즈 의상 (모피 의상)
+        bunny_costume: 토끼 의상
+        adapted_costume: 원작 의상 변형
+        cat_costume: 고양이 시리즈 의상
+        dog_costume: 개 시리즈 의상
+        bear_costume: 곰 의상
+        embellished_costume: 장식된 의상
+        santa_costume: 산타 의상
+        halloween_costume: 할로윈 의상
+        kourindou_tengu_costume: 칸린도우 텐구 의상
+        alternate_costume: 원작과 다른 옷
+        costume_switch: 옷 갈아입기
+        meme_attire: 밈 의상
+
+    - name: 캐주얼 의상
+      color: rgba(230, 84, 128, .4)
+      tags:
+        casual: 캐주얼
+        loungewear: 루지웨어
+        hoodie: 후드티
+        homewear: 홈웨어
+        pajamas: 잠옷
+        nightgown: 잠옷
+        sleepwear: 잠옷
+        babydoll: 베이비돌 잠옷
+        print_pajamas: 프린트 잠옷
+        polka_dot_pajamas: 점박이 잠옷
+        yukata: 유카타
+        chinese_clothes: 중국복
+        hanfu: 한복
+        Taoist robe: 도복
+        robe: 가운
+        robe_of_blending: 혼합 가운
+        cloak: 망토
+        hooded_cloak: 후드 망토
+        winter_clothes: 겨울 옷
+        down jacket: 패딩
+        santa: 산타복
+        harem_outfit: 하렘복
+        shrug_(clothing): 어깨를 으쓱하는 (의상)
+
+    - name: 운동복
+      color: rgba(230, 84, 128, .4)
+      tags:
+        sportswear: 운동복
+        gym_uniform: 체육복
+        athletic_leotard: 체조복
+        tennis_uniform: 테니스 유니폼
+        baseball_uniform: 야구 유니폼
+        letterman_jacket: 운동부 재킷
+        volleyball_uniform: 배구 유니폼
+        biker_clothes: 자전거 운동복
+        bikesuit: 자전거 복장
+        wrestling_outfit: 씨름복
+        dougi: 도복
+
+    - name: 수영복
+      color: rgba(230, 84, 128, .4)
+      tags:
+        swimsuit: 수영복
+        swimwear: 수영복
+        wet_swimsuit: 젖은 수영복
+        school_swimsuit: 학교 수영복
+        new_school_swimsuit: 신형 학교 수영복
+        old_school_swimsuit: 구형 학교 수영복
+        competition_school_swimsuit: 경쟁용 학교 수영복
+        competition_swimsuit: 경쟁용 수영복
+        casual_one-piece_swimsuit: 일반 원피스 수영복
+        front_zipper_swimsuit: 앞지퍼 수영복
+        highleg_swimsuit: 하이레그 수영복
+        one-piece_swimsuit: 원피스 수영복
+        swimsuit_of_perpetual_summer: 영원한 여름의 수영복 (FGO 학생복)
+        bikini: 비키니
+        highleg_bikini: 하이웨이스트 비키니
+        lowleg_bikini: 로웨스트 비키니
+        slingshot_swimsuit: V자 비키니
+        sailor_bikini: 선원복 비키니
+        shell_bikini: 조개 비키니
+        sports_bikini: 스포츠 비키니
+        string_bikini: 스트링 비키니
+        strapless_bikini: 민소매 비키니
+        side-tie_bikini: 사이드 타이 비키니
+        front-tie_bikini_top: 앞 묶음 비키니 탑
+        multi-strapped_bikini: 다중 스트랩 비키니
+        thong_bikini: T자 비키니
+        front-tie_bikini: 앞 묶음 비키니
+        frilled_bikini: 프릴 비키니
+        o-ring_bikini: O링이 달린 비키니
+        eyepatch_bikini: 안대 비키니
+        layered_bikini: 레이어드 비키니
+        bow_bikini: 리본이 달린 비키니
+        frilled_swimsuit: 프릴 수영복
+        polka_dot_swimsuit: 점박이 수영복
+        striped_swimsuit: 줄무늬 수영복
+        striped_bikini: 줄무늬 비키니
+        plaid_bikini: 체크 비키니
+        polka_dot_bikini: 점박이 비키니
+        print_bikini: 프린트 비키니
+        american_flag_bikini: 미국 국기 비키니
+        german_flag_bikini: 독일 국기 비키니
+        impossible_swimsuit: 인체 그림 같은 수영복
+        bikini_top: 비키니 탑만
+        bikini_top_only: 비키니 탑만
+        bikini_top_removed: 비키니 탑 벗김
+        bikini_bottom_only: 비키니 하의만
+        bikini_bottom: 비키니 하의
+        untied_bikini: 풀린 비키니
+        bikini_aside: 삼각형 비키니
+        swimsuit_aside: 수영복 삼각형
+        swimsuit_under_clothes: 옷 아래에 입은 수영복
+        torn_swimsuit: 찢어진 수영복
+        bikini_skirt: 비키니 스커트
+        swim_briefs: 남성용 수영복
+        swim_cap: 수영 모자
+        swim_trunks: 남성용 수영 팬츠
+
+    - name: 교복
+      color: rgba(230, 84, 128, .4)
+      tags:
+        adapted_uniform: 변형된 교복
+        anzio_military_uniform: 안치오 군복
+        anzio_school_uniform: 안치오 교복
+        aria_company_uniform: 아리아 회사 교복
+        ashford_academy_uniform: 애쉬포드 학원 교복
+        bc_freedom_military_uniform: BC 자유학원 군복
+        chaldea_uniform: 캘데아 교복
+        chi-hatan_military_uniform: 치하탄 학원 군복
+        fleur_de_lapin_uniform: 플뢰르 드 라팡 제복
+        garreg_mach_monastery_uniform: 가르그 막 수도원 교복
+        gem_uniform_(houseki_no_kuni): 보석의 나라 제복
+        hanasakigawa_school_uniform: 하나사키가와 여자학원 교복
+        hikarizaka_private_high_school_uniform: 히카리자카 사립 고등학교 교복
+        homurahara_academy_uniform: 호무라하라 학원 교복
+        kamiyama_high_school_uniform: 카미야마 고등학교 교복
+        keizoku_military_uniform: 계속 고등학교 군복
+        kita_high_school_uniform: 키타 고등학교 교복
+        kiyosumi_school_uniform: 키요스미 고등학교 교복
+        luna_nova_school_uniform: 루나노바 마법학교 교복
+        meiji_schoolgirl_uniform: 메이지 시대 여학생 교복
+        mitakihara_school_uniform: 미타키하라 중학교 교복
+        nami_junior_high_school_uniform: 나미 중학교 교복
+        nanairogaoka_middle_school_uniform: 나나이로가오카 중학교 교복
+        nanamori_school_uniform: 나나모리 중학교 교복
+        naoetsu_high_school_uniform: 나오에츠 고등학교 교복
+        national_shin_ooshima_school_uniform: 신오오시마 국립학교 교복
+        ooarai_military_uniform: 오아라이 연대 군복
+        ooarai_school_uniform: 오아라이 연대 교복
+        otonokizaka_school_uniform: 음노키자카 여자학교 교복
+        paradis_military_uniform: 파라디스 섬 군복
+        polar_chaldea_uniform: 극지 캘데아 교복
+        pravda_military_uniform: 프라브다 연대 군복
+        pravda_school_uniform: 프라브다 연대 교복
+        rabbit_house_uniform: 토끼 하우스 제복
+        raimon_soccer_uniform: 라이몬 축구 교복
+        ryouou_school_uniform: 료오우 학원 교복
+        sailor_senshi_uniform: 세일러 전사 제복
+        sakugawa_school_uniform: 사구와 중학교 교복
+        sakuragaoka_high_school_uniform: 사쿠라가오카 여자고등학교 교복
+        saunders_military_uniform: 산더스 연대 군복
+        saunders_school_uniform: 산더스 연대 교복
+        seishou_elementary_school_uniform: 세이쇼 대부초등학교 교복
+        shinda_sekai_sensen_uniform: 사후 세계 전선 제복
+        shuuchiin_academy_uniform: 슈우치인 학원 교복
+        shuujin_academy_uniform: 슈진 학원 교복
+        st._gloriana's_military_uniform: 세인트 글로리아나 군복
+        st._gloriana's_school_uniform: 세인트 글로리아나 여학원 교복
+        starlight_academy_uniform: 스타라이트 학원 교복
+        tokisadame_school_uniform: 토키사다메 고교 교복
+        tokiwadai_school_uniform: 토키와다이 중학교 교복
+        tomoeda_elementary_school_uniform: 토모에다 초등학교 교복
+        tsab_ground_military_uniform: TSAB 지상군 군복
+        u.a._school_uniform: 우.에이. 고등학교 교복
+        uranohoshi_school_uniform: 우라노호시 여자학원 교복
+        yasogami_school_uniform: 야소가미 고등학교 교복
+        mismatched_bikini: 쌍둥이 비키니
+        multicolored_bikini: 다색 비키니
+
+    - name: 상의
+      color: rgba(230, 84, 128, .4)
+      tags:
+        blouse: 여성용 블라우스
+        white_shirt: 흰 셔츠
+        collared_shirt: 칼라 셔츠
+        dress_shirt: 드레스 셔츠
+        sailor_shirt: 선원복 셔츠
+        cropped_shirt: 크롭트 셔츠
+        t-shirt: 티셔츠
+        casual T-shirts: 캐주얼 티셔츠
+        short sleeve T-shirts: 반팔 티셔츠
+        off-shoulder_shirt: 어깨 노출 셔츠
+        shrug_(clothing): 어깨를 으쓱하는 (의상)
+        cardigan: 카디건
+        criss-cross_halter: 십자 끈 헬터넥
+        frilled_shirt: 프릴 셔츠
+        sweatshirt: 스웨트셔츠
+        hawaiian_shirt: 하와이안 셔츠
+        hoodie: 후드티
+        Impossible shirt: 비현실적인 셔츠
+        kappougi: (요리할 때 입는) 가운
+        plaid_shirt: 체크 셔츠
+        polo_shirt: 폴로 셔츠
+        print_shirt: 프린트 셔츠
+        shirt: 셔츠
+        sleeveless_hoodie: 민소매 후드티
+        sleeveless_shirt: 민소매 셔츠
+        striped_shirt: 줄무늬 셔츠
+        tank_top: 탱크탑
+        vest: 조끼
+        waistcoat: 조끼
+        camisole: 캐미솔
+        tied_shirt: 묶은 셔츠
+        undershirt: 속옷
+        crop_top: 크롭 탑
+        highleg: 높은 허벅지 스타일의 의상
+        clothing_cutout: 의상의 구멍
+        back_cutout: 등 노출 상의
+        cleavage_cutout: 가슴 노출 상의
+        navel_cutout: 배꼽 노출 상의
+        midriff: 배 노출 상의
+        heart_cutout: 하트 모양 개구
+        torn_clothes: 찢어진 옷
+        torn_shirt: 찢어진 셔츠
+        undressing: 옷을 벗는 중
+        clothes_down: 옷을 내림
+        shirt_lift: 셔츠를 올림
+        shirt_pull: 셔츠를 당김
+        shirt_tucked_in: 셔츠를 바지에 넣음
+        clothes_tug: 옷을 잡아당김
+        shirt_tug: 셔츠를 잡아당김
+        untucked_shirt: 넣지 않은 셔츠
+        lifted_by_self: 자신이 옷을 들어올림
+        untied: 자신이 옷을 벗음
+        open_clothes: 열린 옷
+        unbuttoned shirt: 단추를 풀은 셔츠
+        button_gap: 단추 사이 간격 (풀리지 않음)
+        partially_unbuttoned: 일부 단추를 풀은
+        partially_unzipped: 일부 상단 지퍼를 열은
+        clothes_removed: 벗은 옷
+        shirt_removed: 벗은 셔츠
+        wardrobe_error: 옷이 미끄러짐
+        undersized_clothes: 사이즈가 작은 옷
+        tight: 꽉 조여진 옷
+        wedgie: 엉덩이에 끼는 (속옷으로 인한)
+        wardrobe_malfunction: 옷이 예기치 않게 망가짐
+        taut_shirt: 팽팽한 셔츠
+        taut_clothes: 팽팽한 옷
+        underbust: 가슴 아래 조여진
+        oversized_clothes: 크기가 큰 옷
+        oversized_shirt: 크기가 큰 셔츠
+        borrowed_garments: 남자친구의 옷
+        strap_slip: 옷 끈이 미끄러짐 (노출로 이어짐)
+        wet_shirt: 젖은 셔츠
+        clothes_theft: 옷을 훔침
+
+    - name: 외투
+      color: rgba(230, 84, 128, .4)
+      tags:
+        blazer: 블레이저
+        overcoat: 외투
+        double-breasted: 더블 브레스트(더블 버튼
+        long_coat: 롱 코트
+        haori: 하오리(한 종류의 넓은 상의)
+        winter_coat: 겨울 코트
+        hooded_coat: 후드 코트
+        fur_coat: 모피 코트
+        fur-trimmed_coat: 모피 장식 코트
+        duffel_coat: 더플 코트
+        fishnet_top: 어망 상의
+        parka: 파카
+        jacket: 재킷
+        jacket_partially_removed: 재킷 일부 제거
+        jacket_removed: 재킷 제거
+        open_jacket: 오픈 재킷(넓은 다리와 함께)
+        cropped_jacket: 크롭 재킷
+        track_jacket: 트랙 재킷
+        hooded_track_jacket: 후드 트랙 재킷
+        military_jacket: 군복 재킷
+        camouflage_jacket: 카모플라주 재킷
+        leather_jacket: 가죽 재킷
+        letterman_jacket: 레터맨 재킷
+        bomber_jacket: 폭격기 재킷
+        denim_jacket: 데님 재킷
+        loating_jacket: 캐주얼 재킷
+        fur-trimmed_jacket: 모피 장식 재킷
+        two-tone_jacket: 이중 색상 재킷
+        trench_coat: 트렌치 코트
+        furisode: 풍선소마(한복의 일부)
+        windbreaker: 바람막이
+        raincoat: 우비
+        hagoromo: 깃옷
+        tunic: 허리띠 외투
+        cape: 망토
+        capelet: 어깨를 덮는 작은 망토
+        winter_clothes: 겨울 옷
+        sweater: 스웨터
+        pullover_sweaters: 풀오버 스웨터
+        ribbed_sweater: 리브드 스웨터
+        sweater_vest: 스웨터 조끼
+        backless_sweater: 백리스 스웨터
+        aran_sweater: 아란 스웨터
+        beige_sweater: 베이지 스웨터
+        brown_sweater: 갈색 스웨터
+        hooded_sweater: 후드 스웨터
+        off-shoulder_sweater: 어깨 노출 스웨터
+        striped_sweater: 줄무늬 스웨터
+        virgin_killer_sweater: 버진 킬러 스웨터
+        down_jacket: 다운 재킷
+        puffer_jacket: 패딩 재킷
+
+    - name: 기타
+      color: rgba(230, 84, 128, .4)
+      tags:
+        transparent: 투명한
+        burnt_clothes: 탄 총 옷
+        dissolving_clothes: 녹아버린 옷
+        dirty_clothes: 더러운 옷
+        expressive_clothes: 표현력이 풍부한 옷
+        impossible_clothes: 비현실적인 포장 정도의 옷
+        living_clothes: 생체 옷
+        leotard_under_clothes: 속옷으로 입은 레오타드
+        multicolored_clothes: 다색 옷
+        ofuda_on_clothes: 옷에 붙은 부적
+        wringing_clothes: 옷을 비틀기
+        clothesline: 옷걸이
+        shiny_clothes: 광택이 있는 옷
+        kariginu: 사냥복
+        front-tie_top: 앞에서 매는 옷
+        jacket_on_shoulders: 어깨에 재킷을 걸쳐
+        short_jumpsuit: 반바지 점프수트
+        harness: 어깨끈; 매듭
+        rigging: 선체
+        aiguillette: 어깨끈
+
+    - name: 허리
+      color: rgba(230, 84, 128, .4)
+      tags:
+        apron: 앞치마
+        waist_apron: 허리 앞치마
+        maid_apron: 메이드 앞치마
+        bow tied at the waist: 허리에 매는 리본
+        waist_cape: 허리에 매는 작은 망토
+        clothes_around_waist: 허리에 있는 옷
+        jacket_around_waist: 허리에 매는 재킷
+        sweater_around_waist: 허리에 매는 스웨터
+        loincloth: 허리 둘레 천
+        bustier: 부스티에
+        corset: 코르셋
+        girdle: 허리띠
+
+    - name: 갑옷
+      color: rgba(230, 84, 128, .4)
+      tags:
+        armor: 갑옷
+        bikini_armor: 비키니 갑옷
+        full_armor: 전체 갑옷 착용
+        plate_armor: 판금 갑옷
+        japanese_armor: 일본 갑옷
+        kusazuri: 배 갑옷|풀주(일본식 하반신 갑옷)
+        power_armor: 동력 갑옷
+        mecha: 메카
+        helmet: 헬멧
+        kabuto: 헬멧(일본식)
+        off-shoulder_armor: 어깨 없는 갑옷
+        shoulder_armor: 어깨 갑옷
+        muneate: 일본 궁도 보호 가슴갑옷
+        breastplate: 흉갑
+        faulds: 배갑
+        greaves: 정강이갑
+        shin_guards: 정강이갑
+        armored_boots: 장갑이 있는 부츠
+
+    - name: 치마
+      color: rgba(230, 84, 128, .4)
+      tags:
+        dress: 드레스
+        microdress: 미니 드레스
+        long_dress: 롱 드레스
+        off-shoulder_dress: 어깨 노출 드레스
+        strapless_dress: 미착용 드레스
+        backless_dress: 등 노출 드레스
+        halter_dress: 목에 묶는 드레스
+        sundress: 썬드레스(여름용 민소매 드레스)
+        sleeveless_dress: 민소매 드레스
+        sailor_dress: 선원복 스타일의 드레스
+        summer_dress: 여름용 긴 드레스
+        china_dress: 중국 의상
+        pinafore_dress: 앞치마 드레스
+        sweater_dress: 앞치마 드레스
+        wedding_dress: 웨딩 드레스
+        armored_dress: 전투복 드레스
+        frilled_dress: 프릴 드레스
+        lace-trimmed_dress: 레이스 장식 드레스
+        collared_dress: 카라 있는 드레스
+        fur-trimmed_dress: 모피 장식 드레스
+        layered_dress: 층을 이룬 드레스
+        pleated_dress: 주름 장식 드레스
+        taut_dress: 팽팽한 드레스
+        pencil_dress: 연필 스커트
+        impossible_dress: 지나치게 타이트한 옷
+        multicolored_dress: 다색 드레스
+        striped_dress: 줄무늬 드레스
+        checkered_skirt: 체크무늬 스커트
+        plaid_dress: 체크무늬 드레스
+        ribbed_dress: 리브드 드레스
+        polka_dot_dress: 점자 드레스
+        print_dress: 프린트 드레스
+        vertical-striped_dress: 세로 줄무늬 드레스
+        see-through_dress: 비치는 드레스
+        skirt: 스커트
+        microskirt: 미니 스커트
+        miniskirt: 미니 스커트
+        skirt_suit: 스커트 정장
+        bikini_skirt: 비키니 스커트
+        pleated_skirt: 주름 스커트
+        pencil_skirt: 펜슬 스커트
+        bubble_skirt: 버블 스커트
+        tutu: 투투(발레 드레스)
+        ballgown: 볼 가운(공식 드레스)
+        pettiskirt: 페티코트(아동용 버블 스커트)
+        showgirl_skirt: 쇼걸 의상
+        Medium length skirt: 중간 길이 스커트
+        beltskirt: 벨트 스커트
+        denim_skirt: 데님 스커트
+        suspender_skirt: 끈 스커트
+        skirt_set: 상의와 매치되는 스커트
+        long_skirt: 롱 스커트
+        summer_long_skirt: 여름용 롱 스커트
+        overskirt: 겉치마
+        hakama_skirt: 하카마(일본식 스커트)
+        high-waist_skirt: 높은 허리 스커트
+        kimono_skirt: 기모노 스커트
+        suspender_long_skirt: 끈 스커트; 치마
+        chiffon_skirt: 쉬폰 스커트
+        frilled_skirt: 프릴 스커트
+        fur-trimmed_skirt: 모피 장식 스커트
+        lace_skirt: 레이스 스커트
+        lace-trimmed_skirt: 레이스 장식 스커트
+        ribbon-trimmed_skirt: 리본 장식 스커트
+        layered_skirt: 층을 이룬 반스커트
+        print_skirt: 프린트 스커트
+        multicolored_skirt: 다색 스커트
+        striped_skirt: 줄무늬 스커트
+        vertical-striped_skirt: 세로 줄무늬 스커트
+        plaid_skirt: 체크무늬 스커트
+        flared_skirt: 플레어 스커트
+        floral_skirt: 꽃무늬 스커트
+
+    - name: 치마와 상호작용
+      color: rgba(230, 84, 128, .4)
+      tags:
+        skirt_hold: 우아하게 치마를 들고 있음
+        skirt_tug: 치마를 잡고 당김
+        dress_tug: 드레스를 눌러 잡음
+        skirt_lift: 치마를 들어올림
+        skirt_around_one_leg: 한 다리에 치마를 걸침
+        skirt_removed: 벗은 치마
+        dress_removed: 벗은 드레스
+        open_skirt: 열린 치마
+
+    - name: 바지
+      color: rgba(230, 84, 128, .4)
+      tags:
+        dress_bow: 드레스에 달린 리본
+        dressing_another: 옷을 입히는 중
+        shorts_under_skirt: 치마 아래에 반바지를 입음
+        side_slit: 측면 틈
+        shorts: 반바지
+        micro_shorts: 미니 반바지
+        short_shorts: 숏 팬츠
+        hot_pants: 핫 팬츠
+        cutoffs: 숏 팬츠
+        striped_shorts: 줄무늬 반바지
+        suspender_shorts: 끈 반바지
+        denim_shorts: 데님 반바지
+        puffy_shorts: 퍼프 반바지
+        dolphin_shorts: 돌고래 반바지
+        dolfin_shorts: 돌고래 반바지
+        tight_pants: 타이트한 바지/운동복
+        crotchless_pants: 사창 바지(타이트)
+        track_pants: 운동 바지
+        yoga_pants: 요가 바지
+        bike_shorts: 자전거 반바지
+        gym_shorts: 체육 반바지
+        pants: 바지
+        puffy_pants: 퍼프 바지/와이드 바지
+        pumpkin_pants: 호박 바지
+        hakama_pants: 하카마 바지
+        harem_pants: 하렘 바지
+        bloomers: 블루머
+        buruma: 여성용 블루머
+        jeans: 청바지
+        cargo_pants: 카고 바지
+        camouflage_pants: 카모플라주 바지
+        capri_pants: 카프리 바지
+        chaps: 챕(가죽 바지)
+        jumpsuit: (특히 여성용) 점프수트
+        lowleg_pants: 저허리 바지
+        plaid_pants: 체크무늬 바지
+        single_pantsleg: 한쪽 다리 긴 바지
+        striped_pants: 줄무늬 바지
+
+    - name: 바지와 상호작용
+      color: rgba(230, 84, 128, .4)
+      tags:
+        asymmetrical_legwear: 비대칭 바지
+        leotard_aside: 레오타드의 밑바닥을 한 쪽으로 접음
+        open_fly: 열린 바지 지퍼
+        pants_down: 바지를 내림
+        pants_rolled_up: 바지를 롤업
+        pants_tucked_in: 바지를 넣음
+        torn_jeans: 찢어진 청바지
+        torn_pants: 찢어진 바지
+        torn_shorts: 찢어진 반바지
+
+    - name: 양말
+      color: rgba(230, 84, 128, .4)
+      tags:
+        bodystocking: 올인원 양말
+        pantyhose: 팬티 스타킹|스타킹
+        leggings: 레깅스
+        legwear: 다리에 착용되는 의복(스타킹이나 긴 양말을 포괄)
+        thighhighs: 허벅지까지 오는 양말
+        kneehighs: 무릎까지 오는 양말
+        socks: 양말
+        bare_legs: 맨 다리
+        black_bodystocking: 검은색 올인원 양말
+        white_bodystocking: 흰색 올인원 양말
+        stocking_under_clothes: 옷 아래에 있는 스타킹
+        black_pantyhose: 검은색 스타킹
+        white_pantyhose: 흰색 스타킹
+        thighband_pantyhose: 허벅지 밴드가 있는 스타킹
+        pantylines: 딱딱한 스타킹(선으로 표시)
+        single_leg_pantyhose: 한쪽 다리에만 착용하는 스타킹
+        panties_under_pantyhose: 스타킹 안에 속옷을 입음
+        fishnets: 어망 양말(소재)
+        stirrup_legwear: 스타킹
+        toeless_legwear: 발가락이 드러난 양말
+        mismatched_legwear: 다른 색상의 양말
+        two-tone_legwear: 이중 색상 양말
+        asymmetrical_legwear: 비대칭 양말
+        uneven_legwear: 긴 양말
+        white_thighhighs: 흰색 허벅지까지 오는 양말
+        black_thighhighs: 검은색 허벅지까지 오는 양말
+        pink_thighhighs: 분홍색 허벅지까지 오는 양말
+        suspenders: 삭스 홀더
+        garter_straps: 가터 스트랩
+        torn_legwear: 찢어진 양말
+        torn_thighhighs: 찢어진 허벅지까지 오는 양말
+        see-through_legwear_: 투명한 양말
+        frilled_legwear: 프릴 양말
+        lace-trimmed_legwear: 레이스 장식 양말
+        seamed_legwear: 줄무늬가 있는 양말
+        back-seamed_legwear: 가운데 검은 줄이 있는 양말
+        animal_ear_legwear: 동물 귀가 달린 허벅지까지 오는 양말
+        striped_legwear: 줄무늬 양말
+        vertical-striped_legwear: 세로 줄무늬 양말
+        polka_dot_legwear: 점자 양말
+        print_legwear: 프린트 양말
+        legwear_under_shorts: 반바지 위에 양말을 입음
+        over-kneehighs: 무릎 위 양말
+        bobby_socks: 바비 양말(흰색 양말)
+        tabi: 일본식 두꺼운 단추 양말(타비)
+        loose_socks: 바지 양말
+        ankle_socks: 발목 양말
+        leg_warmers: 다리 보호대|다리 워머
+        single_sock: 한쪽 양말
+        striped_socks: 줄무늬 양말
+
+    - name: 양말과 상호작용
+      color: rgba(230, 84, 128, .4)
+      tags:
+        leg_cutout: 양말에 구멍이 있음
+        thighhighs_under_boots: 부츠 위에 허벅지까지 오는 양말을 신음
+        adjusting_legwear: 양말을 정리함
+        pantyhose_pull: 내린 스타킹
+        socks_removed: 양말을 벗음
+        sock_pull: 양말을 당김(짧은 양말)
+        thighhighs_pull: 양말을 당김(긴 양말)
+
+    - name: 기타
+      color: rgba(230, 84, 128, .4)
+      tags:
+        garters: 가터
+        leg_garter: 다리 가터
+        garter_straps: 스타킹의 가터 스트랩
+        thigh_strap: 허벅지 끈
+        thigh_ribbon: 허벅지 리본
+        leg_ribbon: 다리 리본
+        bandaid_on_leg: 다리에 반창고
+        bandaged_leg: 붕대로 감싼 다리
+        ankle_lace-up: 발목 끈
+        thigh_holster: 허벅지 홀스터
+        bandaid_on_knee: 무릎에 반창고
+        argyle_legwear: 아가일 패턴 양말
+        bow_legwear: 리본이 달린 양말
+        arm_garter: 팔 가터
+
+    - name: 재질
+      color: rgba(230, 84, 128, .4)
+      tags:
+        armored: 갑옷의
+        canvas: 캔버스의
+        denim: 데님
+        fluffy: 푹신한
+        fur: 모피
+        latex: 라텍스
+        leather: 가죽의
+        see-through: 투명한
+        spandex: 스판덱스
+        tight: 타이트한
+
+    - name: 장식
+      color: rgba(230, 84, 128, .4)
+      tags:
+        frilled: 주름 장식
+        center_frills: 중앙 주름 장식
+        crease: 주름이 있는
+        layered: 층으로 이루어진
+        lace: 레이스
+        fur_trim: 털 장식
+        fur-trimmed: 털 장식이 있는
+        fine_fabric_emphasis: 소재 강조
+        latex_thighhighs: 라텍스 소재의 오버 무릎 양말
+        see-through_thighhighs: 투명한 오버 무릎 양말
+        ass_cutout: 엉덩이를 드러내는 의상
+        asymmetrical_clothes: 비대칭 의상
+        back_bow: (의상) 등 뒤에 달린 리본
+        costume_switch: 의상 교체
+        cross-laced_clothes: 교차하는 레이스 장식의 의상
+        double_vertical_stripe: 의상에 두 개의 수직 줄무늬
+        halter_top: 목 뒤를 묶는 상의 의상
+        multicolored_legwear: 다채로운 색상의 다리 의상
+        navy_blue_legwear: 진청색 다리 의상
+        nontraditional_miko: 변형된 일본 의상
+        side_cutout: 측면이 개방된 의상
+        side_slit: 측면에 틈이 있는 의상
+        sideless_outfit: 측면이 없는 의상
+        single_kneehigh: 한쪽 다리에 착용하는 너무 무릎 위의 의상
+        single_vertical_stripe: 한쪽 의상에 있는 수직 줄무늬
+        turtleneck: 넥이 높은 의상
+        two-sided_fabric: 양면 스타일의 의상
+        o-ring: O형 링이 있는 의류
+        o-ring_top: O형 링이 있는 상의
+        fringe_trim: 가닥 장식(스카프 끝)
+        loose_belt: 헐렁한 벨트(의류)
+        pom_pom_(clothes): 작은 모피 공(의류 장식)
+        drawstring: 의류의 끈
+        full-length_zipper: 전신 길이의 지퍼가 있는 의상
+        gathers: 주름 장식(의류)
+        gusset: 의류에 달린 안감
+        breast_pocket: 가슴 주머니
+
+    - name: 패턴
+      color: rgba(230, 84, 128, .4)
+      tags:
+        argyle: 아가일 무늬
+        checkered: 체크무늬
+        colored_stripes: 다채로운 줄무늬
+        diagonal_stripes: 대각선 줄무늬
+        horizontal_stripes: 수평 줄무늬
+        multicolored_stripes: 다채로운 줄무늬
+        polka_dot_: 점무늬
+        ribbed: 골지무늬
+        striped: 줄무늬
+        unmoving_pattern: 연속적인 패턴
+        vertical_stripes: 수직 줄무늬
+        plaid: 격자무늬
+        animal_print: 동물 무늬
+        cat_print: 고양이 무늬
+        bear_print: 곰 무늬
+        bird_print: 새 무늬
+        bunny_print: 토끼 무늬
+        cow_print: 젖소 무늬
+        dragon_print: 용 무늬
+        fish_print: 물고기 무늬
+        frog_print: 개구리 무늬
+        shark_print: 상어 무늬
+        snake_print: 뱀 무늬
+        zebra_print: 얼룩말 무늬
+        tiger_print: 호랑이 무늬
+        leopard_print: 표범 무늬
+        jaguar_print: 재규어 무늬
+        bat_print: 박쥐 무늬
+        aardwolf_print: 아드볼프 무늬
+        african_wild_dog_print: 아프리카 들개 무늬
+        cheetah_print: 치타 무늬
+        dog_print: 개 무늬
+        fox_print: 여우 무늬
+        giraffe_print: 기린 무늬
+        panda_print: 판다 무늬
+        sand_cat_print: 사막고양이 무늬
+        whale_print: 고래 무늬
+        white_tiger_print: 백호 무늬
+        goldfish_print: 금붕어 무늬
+        wing_print: 날개 무늬
+        spider_web_print: 거미줄 무늬
+        butterfly_print: 나비 무늬
+        floral_print: 꽃무늬
+        leaf_print: 잎 무늬
+        clover_print: 클로버 무늬
+        maple_leaf_print: 단풍잎 무늬
+        rose_print: 장미 무늬
+        strawberry_print: 딸기 무늬
+        cherry_print: 체리 무늬
+        bamboo_print: 대나무 무늬
+        carrot_print: 당근 무늬
+        hibiscus_print: 히비스커스 무늬
+        jack-o'-lantern_print: 호박 등 무늬
+        petal_print: 꽃잎 무늬
+        sunflower_print: 해바라기 무늬
+        watermelon_print: 수박 무늬
+        sky_print: 하늘 무늬
+        cloud_print: 구름 무늬
+        lightning_bolt_print: 번개 무늬
+        rainbow_print: 무지개 무늬
+        snowflake_print: 눈송이 무늬
+        starry_sky_print: 별무리 무늬
+        crescent_print: 초승달 무늬
+        star_print: 별 무늬
+        star_(symbol): 별 모양 기호
+        moon_print: 달 무늬
+        sun_print: 태양 무늬
+        character_print: 문자 무늬
+        clothes_writing_: 의류에 쓰인 글
+        anchor_print: 닻 무늬
+        cherry_blossom_print: 벚꽃 무늬
+        musical_note_print: 음표 무늬
+        triangle_print: 삼각형 무늬
+        arrow_print: 화살표 무늬
+        wave_print: 파도 무늬
+        peace_symbol: ☮(조조부 의상에 있음)
+        heart_print: 하트 모양 패턴|하트 무늬
+        flame_print: 불꽃 무늬
+        hitodama_print: 히토다마 무늬
+        paw_print: 발자국 무늬
+        skeleton_print: 해골 무늬
+        skull_print: 해골 무늬
+        sparkle_print: 반짝이는 무늬
+        yin_yang_print: 음양 무늬
+        cross_print: 십자가 요소 패턴
+        camoflage: 카모플라주
+        flag_print: 국기 무늬
+        bone_print: 뼈 무늬
+        ghost_print: 유령 무늬
+        mushroom_print: 버섯 무늬
+        onigiri_print: 오니기리 무늬
+        cat_ear: 고양이 귀 스타일
+        cat_ear_cutout: 고양이 귀 스타일의 구멍이 있는 것
+
+    - name: 신발
+      color: rgba(230, 84, 128, .4)
+      tags:
+        barefoot: 맨발
+        no_shoes: 신발 없음
+        shoes_removed: 벗은 신발
+        single_shoe: 한쪽 신발
+        the_only_shoe: 한쪽 신발
+        black_loafers: 블랙 로퍼(작은 가죽 구두)
+        shoes: 운동화
+        uwabaki: 실내화
+        platform_footwear: 플랫폼 신발
+        high_heels: 하이힐
+        stiletto_heels: 가는 뒷꿈치의 하이힐
+        strappy_heels: 끈이 있는 하이힐
+        platform_heels_: 플랫폼 하이힐
+        rudder_footwear: C형 함선 소녀 전용 신발
+        sandals: 샌들
+        barefoot_sandals: 맨발 샌들
+        clog_sandals: 나무 깔창 샌들
+        geta: 겨울용 나무 깔창
+        slippers: 슬리퍼
+        skates: 스케이트
+        roller_skates: 롤러 스케이트
+        animal_feet: 동물 발
+        animal_slippers: 동물 슬리퍼
+        anklet: 발목 장식
+        shackles: 족쇄
+        brown_footwear: 갈색 신발
+        cross-laced_footwear: 교차하는 끈이 있는 신발
+        loafers: 로퍼
+        mary_janes: 메리 제인 신발
+        mismatched_footwear: 다른 색상의 신발
+        pointy_footwear: 날카로운 모양의 신발
+        pumps: 저고리에 맞춘 하이힐
+        sandals_removed: 벗은 샌들
+        shoe_soles: 신발 밑창
+        shoelaces: 신발 끈
+        sneakers: 운동화
+        winged_footwear: 날개가 달린 신발
+        zouri: 일본식 초승달 모양의 신발
+
+    - name: 부츠
+      color: rgba(230, 84, 128, .4)
+      tags:
+        boots: 부츠
+        boots_removed: 벗은 부츠
+        thigh_boots: 허벅지 부츠
+        knee_boots: 무릎 위 부츠 (말 부츠)
+        cross-laced_footwear: 신발 끈이 있는 부츠
+        ankle_boots: 발목 부츠
+        high_heel_boots: 고무 힐 부츠
+        toeless_boots: 발가락이 드러난 부츠
+        lace-up_boots: 끈으로 묶는 부츠
+        fur-trimmed_boots: 모피 장식 부츠
+        snow_boots: 눈 부츠
+        anklet: 발목 장식
+        rubber_boots: 고무 부츠
+        santa_boots: 산타 부츠
+        leather_boots: 가죽 부츠
+        thighhighs_under_boots: 부츠 아래의 장거리 양말
+        combat_boots: 전투 부츠
+        doc_martens: 닥터 마틴 부츠
+        rain_boots: 비 부츠
+        belt_boots: 벨트 부츠
+        fur_boots: 낮은 굽의 캐주얼 가죽 부츠
+        single_boot: 한 쪽 발에는 부츠를 신지 않음
+
+    - name: 신발 밑창
+      color: rgba(230, 84, 128, .4)
+      tags:
+        shoe_soles: 신발 밑창
+        arched_soles: 아치형 밑창
+        paw_print_soles: 발자국이 있는 밑창
+        horseshoe: 말굽
+
+    - name: 칼라
+      color: rgba(230, 84, 128, .4)
+      tags:
+        sailor_collar: 선원 칼라
+        fur_collar: 모피 칼라
+        frilled_collar: 프릴 칼라
+        popped_collar: 세운 칼라
+        choker: 목걸이
+        black_choker: 검은색 목걸이
+        belt_collar: 벨트 칼라
+        frilled_choker: 프릴 목걸이
+        neckerchief: 넥타이
+        red_neckerchief: 빨간색 넥타이
+        necktie: 넥타이
+        short_necktie: 짧은 넥타이
+        white_necktie: 흰색 넥타이
+        bowtie: 보타이
+        headphones_around_neck: 목에 걸친 헤드폰
+        goggles_around_neck: 목에 걸친 고글
+        neck_bell: 목에 걸린 종
+        neck_ruff: 칼라
+        v-neck: V넥
+        towel_around_neck: 목에 걸친 수건
+        loose_necktie: 헐렁한 넥타이
+        neck_tattoo: 목 타투
+        ascot: 넥타이 모양 넓은 칼라
+        ribbon_choker: 리본 목걸이
+        maebari/pasties: 암걸이/유방용품
+        latex: 라텍스
+        torn_clothes: 찢어진 옷
+        iron_cross: 철 십자가 훈장
+        chinese_knot: 중국 매듭
+        cross_necklace: 십자가 목걸이
+        bead_necklace: 구슬 목걸이
+        pearl_necklace: 진주 목걸이
+        heart_necklace: 하트 모양 목걸이
+        carrot_necklace: 당근 목걸이
+        chain_necklace: 체인 목걸이
+        magatama_necklace: 마가타마 목걸이
+        tooth_necklace: 이빨 목걸이
+        key_necklace: 열쇠 목걸이
+        anchor_necklace: 닻 목걸이
+        skull_necklace: 해골 목걸이
+        shell_necklace: 조개껍질 목걸이
+        gold_necklace: 금 목걸이
+        crescent_necklace: 초승달 목걸이
+        ring_necklace: 반지 목걸이
+        feather_necklace: 깃털 목걸이
+        bone_necklace: 뼈 목걸이
+        ankh_necklace: 안크 십자가 목걸이
+        multiple_necklaces: 여러 개의 목걸이
+        bullet_necklace: 총알 목걸이
+        holding_necklace: 손에 들고 있는 목걸이
+        necklace_removed: 목걸이를 제거함
+        brown_neckwear: 갈색 칼라 장식
+        checkered_neckwear: 체크무늬 칼라
+        diagonal-striped_neckwear: 대각선 줄무늬 칼라
+        halterneck: 목에 매는 끈
+        mole_on_neck: 목에 점이 있음
+        neck: 목
+        neck_ribbon: 목에 묶인 리본
+        neck_ring: 목걸이
+        necklace: 목걸이
+        plaid_neckwear: 격자무늬 칼라
+        plunging_neckline: 깊은 V넥
+        print_neckwear: 프린트 칼라
+        sleeveless_turtleneck: 민소매 목도리
+        star_necklace: 별 모양 목걸이
+        striped_neckwear: 줄무늬 칼라
+        turtleneck_sweater: 목도리 달린 스웨터
+        undone_necktie: 풀린 넥타이
+        whistle_around_neck: 목에 걸친 휘파람
+
+    - name: 스카프
+      color: rgba(230, 84, 128, .4)
+      tags:
+        plaid_scarf: 격자무늬 스카프
+        striped_scarf: 줄무늬 스카프
+        print_scarf: 프린트 스카프
+        vertical-striped_scarf: 세로 줄무늬 스카프
+        polka_dot_scarf: 점 스카프
+        argyle_scarf: 아가일 스카프
+        beige_scarf: 베이지 스카프
+        scarf_bow: 스카프 리본
+        fur_scarf: 모피 스카프
+        naked_scarf: 벗은 스카프
+        multicolored_scarf: 다색 스카프
+        floating_scarf: 떠다니는 스카프
+        long_scarf: 긴 스카프
+        arm_scarf: 팔 스카프
+        scarf_on_head: 머리에 두른 스카프
+        scarf_over_mouth: 입에 덮은 스카프
+        scarf_removed: 벗은 스카프
+        adjusting_scarf: 스카프 조절
+        holding_scarf: 손에 든 스카프
+        scarf_pull: 스카프 잡아당기기
+        brown_scarf: 갈색 스카프
+        scarf: 스카프
+
+    - name: 안경
+      color: rgba(230, 84, 128, .4)
+      tags:
+        glasses: 안경
+        eyewear: 안경
+        monocle: 단안경
+        under-rim_eyewear: 안경테 아래 안경
+        rimless_eyewear: 무테 안경
+        semi-rimless_eyewear: 반무테 안경
+        red-framed_eyewear: 빨간 테 안경
+        round_eyewear: 둥근 테 안경
+        black-framed_eyewear: 검정 테 안경
+        tinted_eyewear: 색안경
+        medical_eyepatch: 의료용 안대
+        bandage_over_one_eye: 한쪽 눈에 반창고를 감은 안대
+        crooked_eyewear: 비스듬한 안경
+        eyewear_removed: 안경을 벗음
+        sunglasses: 선글라스
+        goggles: 고글
+        blindfold: 눈가리개
+        eyepatch: 안대 (한쪽 눈)
+        visor: 얼굴 보호대 | 썬캡의 채광판
+        bespectacled: 안경을 쓴
+        blue-framed_eyewear: 파란 테 안경
+        brown-framed_eyewear: 갈색 테 안경
+        coke-bottle_glasses: 유리병처럼 두꺼운 원형 안경
+        no_eyewear: 안경을 벗은
+        opaque_glasses: 불투명한 안경
+        over-rim_eyewear: 위쪽 반무테 안경
+
+    - name: 가면
+      color: rgba(230, 84, 128, .4)
+      tags:
+        mask: 가면
+        half_mask: 반 가면
+        masked: 가면을 쓴
+        mask_lift: 가면을 올림
+        mask_on_head: 머리 위에 올린 가면
+        mask_removed: 벗은 가면
+        mouth_mask: 입 마스크
+        surgical_mask: 수술용 마스크
+        plague_doctor_mask: 역병 의사 마스크
+        gas_mask: 가스 마스크
+        visor: 얼굴 보호대
+        helmet: 헬멧
+        fox_mask: 여우 가면
+        diving_mask: 다이빙 마스크
+        diving_mask_on_head: 머리에 착용하는 다이빙 마스크
+        oni_mask: 오니 가면
+        tengu_mask: 텐구 가면
+        ninja_mask: 닌자 가면
+        skull_mask: 해골 가면
+        hockey_mask: 하키 마스크
+        bird_mask: 새 가면
+        stone_mask: 돌 가면
+        horse_mask: 말 가면
+        masquerade_mask: 마스커레이드 가면
+        domino_mask: 도미노 가면
+
+    - name: 팔
+      color: rgba(230, 84, 128, .4)
+      tags:
+        long_sleeves: 긴 소매
+        short_sleeves: 짧은 소매
+        wide_sleeves: 넓은 소매
+        furisode: 풍도
+        detached_sleeves: 분리형 소매
+        single_sleeve: 한쪽 소매
+        sleeveless: 민소매
+        asymmetrical_sleeves: 비대칭 소매
+        puffy_sleeves: 퍼프 소매
+        puffy_long_sleeves: 퍼프 긴 소매
+        puffy_short_sleeves: 퍼프 짧은 소매
+        frilled_sleeves: 주름 소매
+        juliet_sleeves: 줄리엣 소매
+        bandaged_arm: 밴드로 감싼 팔
+        raglan_sleeves: 래글런 소매
+        vambraces: 팔뚝 방어구
+        layered_sleeves: 겹겹이 쌓인 소매
+        fur-trimmed_sleeves: 모피 장식 소매
+        see-through_sleeves: 비침 소매
+        torn_sleeves: 찢어진 소매
+        sleeves_past_fingers: 소매가 손가락을 넘어감
+        sleeves_past_wrists: 소매가 손목을 넘어감
+        sleeves_past_elbows: 소매가 팔꿈치를 넘어감
+        sleeves_pushed_up: 소매를 올림
+        arm_out_of_sleeve: 소매 밖으로 나온 팔
+        uneven_sleeves: 균일하지 않은 소매
+        mismatched_sleeves: 맞지 않는 소매
+        sleeve_rolled_up: 소매를 올려서 말림
+        sleeves_rolled_up: 한쪽 소매를 올려서 말림
+        feather-trimmed_sleeves: 깃털 장식 소매
+        hands_in_opposite_sleeves: 손을 교차하여 소매 안에 넣음
+        lace-trimmed_sleeves: 레이스 장식 소매
+        pinching_sleeves: 소매를 집어서 조여봄
+        puffy_detached_sleeves: 퍼프 소매를 분리함
+        ribbed_sleeves: 골지 소매
+        single_detached_sleeve: 한쪽 소매를 분리하지 않은 소매
+        sleeves_folded_up: 소매를 접어서 말림
+        striped_sleeves: 줄무늬 소매
+        wrist_cuffs: 소매와 분리된 손목 커프스
+        armband: 소매받침(팔띠)
+        armlet: 팔찌
+
+    - name: 손
+      color: rgba(230, 84, 128, .4)
+      tags:
+        bandage: 붕대
+        leash: 가죽끈
+        arm_tattoo: 팔 문신
+        number_tattoo: 숫자 문신
+        bead_bracelet: 구슬 팔찌
+        bracelet: 팔찌
+        flower_bracelet: 꽃 팔찌
+        spiked_bracelet: 쐐기 팔찌
+        wrist_cuffs: 손목 장식
+        wristband: 팔띠
+        bracer: 팔 보호대
+        cuffs: 소매
+        bound_wrists: 손목 묶음
+        wrist_scrunchie: 손목 스크런치
+        handcuffs: 수갑
+        shackles: 족쇄
+        chains: 사슬
+        chain_leash: 사슬 끈
+
+    - name: 장갑
+      color: rgba(230, 84, 128, .4)
+      tags:
+        gloves: 장갑
+        gloves_removed: 장갑 벗음
+        no_gloves: 장갑 없음
+        single_glove: 한쪽 장갑
+        single_elbow_glove: 팔꿈치까지 착용한 한쪽 장갑
+        long_gloves: 긴 장갑
+        elbow_gloves: 팔꿈치 장갑
+        bridal_gauntlets: 신부 장갑
+        half_gloves: 짧은 장갑|반 장갑
+        fingerless_gloves: 손가락이 노출된 장갑
+        partially_fingerless_gloves: 일부 손가락이 노출된 장갑
+        paw_gloves: 발톱 장갑(손가락 분리형 장갑)
+        mittens: 손가락이 연결된 장갑(두 손가락 장갑)
+        baseball_mitt: 야구 장갑
+        fur-trimmed_gloves: 모피 장식 장갑
+        latex_gloves: 라텍스 장갑
+        lace-trimmed_gloves: 레이스 장식 장갑
+        leather_gloves: 가죽 장갑
+        frilled_gloves: 주름 장식 장갑
+        mismatched_gloves: 색이 다른 장갑
+        multicolored_gloves: 다색 장갑
+        asymmetrical_gloves: 비대칭 장갑
+        brown_gloves: 갈색 장갑
+        oven_mitts: 오븐 장갑
+        print_gloves: 프린트 장갑
+        striped_gloves: 줄무늬 장갑
+        torn_gloves: 찢어진 장갑
+
+    - name: 귀걸이
+      color: rgba(230, 84, 128, .4)
+      tags:
+        cross_earrings: 십자가 귀걸이
+        crystal_earrings: 크리스탈 귀걸이
+        earrings: 귀걸이
+        flower_earrings: 꽃 귀걸이
+        heart_earrings: 하트 귀걸이
+        hoop_earrings: 후프 귀걸이
+        multiple_earrings: 다중 귀걸이
+        pill_earrings: 알약 모양 귀걸이
+        single_earring: 한쪽 귀걸이
+        skull_earrings: 해골 귀걸이
+        star_earrings: 별 모양 귀걸이
+
+    - name: 헤어 악세서리
+      color: rgba(230, 84, 128, .4)
+      tags:
+        halo: 헤일로
+        mechanical_halo: 기계식 헤일로
+        headwear: 헤어 악세서리
+        headpiece: 헤어 악세서리
+        headwear_removed: 헤어 악세서리 제거됨
+        head_wreath: 머리 화관
+        crown: 왕관
+        mini_crown: 미니 왕관
+        tiara: 티아라
+        diadem: 위와 동일
+        tilted_headwear: 기울어진 헤어 악세서리
+        head_fins: 머리 지느러미
+        maid_headdress: 메이드 헤드드레스
+        bridal_veil: 신부 베일
+        headband: 헤어밴드
+        helmet: 헬멧
+        alternate_headwear: 다른 디자인의 헤어 악세서리
+        fur-trimmed_headwear: 모피 장식 헤어 악세서리
+        goggles_on_headwear: 모자 위의 고글
+        earphones: 이어폰
+        earmuffs: 귀마개
+        ears_through_headwear: 헤어 악세서리로 귀가 통과함
+        xx_on_head: 머리 위에 xx
+        leaf_on_head: 머리 위의 잎
+        topknot: 머리 맨 위에 묶은 머리스타일
+        suigintou: 수이긴토우(캐릭터 이름)
+        triangular_headpiece: 삼각형 모양의 헤어 악세서리
+        forehead_protector: 이마 보호대
+        radio_antenna: 라디오 안테나
+        animal_hood: 동물 귀 후드
+        arrow_(symbol): 화살표
+        axe: 도끼
+        bald: 대머리
+        bandana: 반다나
+        bob_cut: 밥 컷
+        bone: 뼈
+        bowl_cut: 사발 머리
+        circlet: 작은 왕관
+        double_bun: 두 개의 빵머리
+        double_dildo: 이중 딜도
+        drill: 드릴
+        faucet: 수도꼭지
+        hachimaki: 하치마키(머리띠)
+        hair_behind_ear: 귀 뒤로 된 머리
+        hair_bell: 머리에 달린 종
+        hair_bun: 머리 빵머리
+        hair_down: 풀어진 머리
+        hair_flaps: 흔들리는 머리
+        hair_flip: 머리 치기
+        hair_flower: 머리에 꽃 장식
+        hair_spread_out: 퍼진 머리
+        hair_up: 머리 올림
+        helm: 헬멧을 쓴
+        helmet_removed: 헬멧을 벗은
+        horned_helmet: 뿔 모양 헬멧
+        japari_bun: 자파리 번(머리스타일)
+        kerchief: 머리수건
+        mami_mogu_mogu: 마미 모구 모구(캐릭터 이름)
+        mob_cap: 모브 캡(머리띠 스타일)
+        one_side_up: 한 쪽으로 올린 머리
+        owl: 부엉이
+        pier: 부두
+        pillow: 베게
+        raised_fist: 올린 주먹
+        skull_and_crossbones: 해골과 십자 뼈
+        stone: 돌
+        turban: 터번
+        twin_drills: 두 개의 드릴 머리스타일
+        updo: 머리를 위로 말린 스타일
+        wet_hair: 젖은 머리
+        headdress: 머리 장식(일반적인 용어)
+        adjusting_headwear: 헤어 악세서리 정리 중
+        bear_hair_ornament: 곰 머리 장식
+        brown_headwear: 갈색 헤어 악세서리
+        horned_headwear: 뿔 모양 헤어 악세서리
+        horns_through_headwear: 뿔을 통과한 헤어 악세서리
+        no_headwear: 헤어 악세서리 없음
+        object_on_head: 머리 위에 헤어 악세서리가 아닌 물체
+        print_headwear: 인쇄된 헤어 악세서리
+        bone_hair_ornament: 뼈 모양 장식품
+        bunny_hair_ornament: 토끼 모양 장식품
+        horn_ornament: 뿔 위에 장식품
+        animal_on_head: 머리 위에 동물
+        behind-the-head_headphones: 뒤로 끼는 헤드폰
+        bird_on_head: 머리 위의 새
+        cat_ear_headphones: 고양이 귀 스타일 헤드폰
+        cat_on_head: 머리 위에 고양이
+        eyewear_on_head: 머리 위에 안경
+        forehead: 이마
+        forehead_jewel: 이마에 보석
+        forehead_kiss: 이마에 키스
+        forehead_mark: 이마에 문양
+        forehead-to-forehead: 이마를 맞대는
+        goggles_on_head: 머리 위에 고글
+        head: 머리
+        head_bump: 머리에 부딪힌
+        head_down: 머리를 숙인
+        head_mounted_display: 머리에 장착된 디스플레이
+        head_out_of_frame: 머리 일부가 프레임 밖으로 나옴
+        head_rest: 머리를 기대는
+        head_tilt: 머리를 기울인
+        head_wings: 머리 위에 날개
+        headgear: 머리 장식(일부 공상 과학 요소 포함)
+        headphones: 헤드폰
+        heads-up_display: HUD(게임 및 공상 과학 스타일)
+        headset: 헤드셋
+        inter_headset: EVA 신경 연결기
+        on_head: 머리 위에
+        person_on_head: 머리 위에 작은 인형
+        single_head_wing: 한 쪽 머리에 날개
+
+    - name: 모자
+      color: rgba(230, 84, 128, .4)
+      tags:
+        hat: 모자
+        no_hat: 모자 없음
+        large_hat: 큰 모자
+        mini_hat: 미니 모자
+        witch_hat: 마녀 모자
+        mini_witch_hat: 미니 마녀 모자
+        wizard_hat: 마법사 모자
+        party_hat: 파티 모자
+        jester_cap: 어릿광대 모자
+        tokin_hat: 대형 모자
+        top_hat: 탑햇
+        mini_top_hat: 미니 탑햇
+        bowler_hat: 볼러 모자
+        pillbox_hat: 핀 모자
+        cloche_hat: 클로슈 모자
+        side_cap: 사이드 모자
+        military_hat: 군모
+        beret: 베레모
+        garrison_cap: 가리슨 모자
+        police_hat: 경찰 모자
+        nurse_cap: 간호사 모자
+        chef_hat: 요리사 모자
+        school_hat: 교복 모자
+        pirate_hat: 해적 모자
+        cabbie_hat: 택시 운전사 모자
+        bucket_hat: 양궁 모자
+        hardhat: 안전모
+        straw_hat: 대나무 모자
+        sun_hat: 해몽 모자
+        rice_hat: 두건
+        animal_hat: 동물 모자
+        fur_hat: 모피 모자
+        hat_with_ears: 귀가 달린 모자
+        bobblehat: 볼펜 모자
+        pillow_hat: 베개 모자
+        pumpkin_hat: 호박 모자
+        baseball_cap: 야구 모자
+        flat_cap: 플랫 캡
+        torn_hat: 찢어진 모자
+        mob_cap: 평민 모자
+        newsboy_cap: 보이 모자
+        bowknot_over_white_beret: 흰색 베레모 위의 리본
+        backwards_hat: 뒤집어진 모자
+        bowl_hat: 그릇 모양 모자
+        cat_hat: 고양이 귀 모자
+        chat_log: 채팅창 스타일
+        cowboy_hat: 카우보이 모자
+        dixie_cup_hat: 개방형 모자
+        hat_bow: 리본이 달린 모자
+        hat_feather: 깃털이 달린 모자
+        hat_flower: 꽃이 달린 모자
+        hat_ornament: 장식이 달린 모자
+        hat_over_one_eye: 모자가 한 쪽 눈을 가리고 있음
+        hat_removed: 모자를 벗음
+        hat_ribbon: 리본이 달린 모자
+        hat_tip: 모자 덮개를 꼭 집어 쥼
+        hatching_(texture): 음영 처리 (질감)
+        hatsune_miku_(cosplay): 하츠네 미쿠 (코스프레)
+        is_that_so: 그러다니까요
+        porkpie_hat: 포크파이 모자
+        sailor_hat: 선원 모자
+        santa_hat: 산타 모자
+        sideways_hat: 모자 덮개를 측면으로 치움
+        what: 작가가 발작
+        what_if: 다른 세계선
+
+    - name: 헤어 액세서리
+      color: rgba(230, 84, 128, .4)
+      tags:
+        hair_ribbon: 헤어 리본
+        hairband: 헤어 밴드
+        hair_tie: 헤어 고리
+        lolita_hairband: 로리타 헤어 밴드
+        frilled_hairband: 프릴 헤어 밴드
+        lace-trimmed_hairband: 레이스 장식 헤어 밴드
+        hair_bobbles: 헤어 고리
+        hair_ornament: 헤어 장식
+        hair_flower: 헤어 꽃
+        x_hair_ornament: X 모양 헤어 장식
+        hair_bow: 헤어 리본
+        frog_hair_ornament: 개구리 헤어 장식
+        heart_hair_ornament: 하트 모양 헤어 장식
+        butterfly_hair_ornament: 나비 헤어 장식
+        star_hair_ornament: 별 모양 헤어 장식
+        food-themed_hair_ornament: 음식 테마 헤어 장식
+        anchor_hair_ornament: 닻 모양 헤어 장식
+        bat_hair_ornament: 박쥐 헤어 장식
+        carrot_hair_ornament: 당근 헤어 장식
+        cat_hair_ornament: 고양이 테마 헤어 장식
+        clover_hair_ornament: 클로버 헤어 장식
+        crescent_hair_ornament: 초승달 헤어 장식
+        cross_hair_ornament: 십자 헤어 장식
+        d-pad_hair_ornament: 방향키 헤어 장식
+        fish_hair_ornament: 물고기 헤어 장식
+        hairpods: 머리 위에 무선 블루투스 같은 헤어 장식
+        leaf_hair_ornament: 잎사귀 헤어 장식
+        musical_note_hair_ornament: 음표 헤어 장식
+        pumpkin_hair_ornament: 호박 헤어 장식
+        skull_hair_ornament: 해골 헤어 장식
+        snake_hair_ornament: 뱀 헤어 장식
+        snowflake_hair_ornament: 눈꽃 헤어 장식
+        strawberry_hair_ornament: 딸기 헤어 장식
+        sunflower_hair_ornament: 해바라기 헤어 장식
+        hairpin: 머리핀
+        hairclip: 헤어 클립
+        hair_tubes: 헤어 튜브
+        hair_stick: 헤어 스틱
+        hair_bun: 머리 꽂이
+        single_hair_bun: 단일 머리 꽂이
+        hair_bell: 헤어 벨
+        hair_rings: 헤어 링
+
+    - name: 작은 장식
+      color: rgba(230, 84, 128, .4)
+      tags:
+        ring: 반지
+        wedding_band: 결혼 반지
+        earrings: 귀걸이
+        single_earring: 한쪽 귀걸이
+        stud_earrings: 스터드 귀걸이
+        necklace: 목걸이
+        jewelry: 보석류
+        crystal: 크리스탈
+        brooch: 브로치
+        gem: 보석
+        chest_jewel: 가슴 앞 보석
+        forehead_jewel: 이마 앞 보석
+        tassel: 태슬
+        belly_chain_: 배 체인
+        lace: 레이스
+        ribbon: 리본
+        stitches: 수놓은 장식
+        scarf: 스카프
+        bandaid: 밴드 에이드
+        collar: 칼라
+        belt: 벨트
+        steam: 스팀
+        bell: 종
+        amulet: 부적
+        emblem: 엠블럼
+        flag_print: 깃발 인쇄
+        anchor_symbol: 닻 기호
+        cross: 십자
+        diffraction_spikes: 회절 스파이크
+        iron_cross: 철제 십자
+        latin_cross: 라틴 십자
+        lace-trimmed_hairband: 레이스 장식 헤어 밴드
+        ankle_lace-up: 발목 끈
+        st._gloriana's_(emblem): 세인트 글로리아나 교 여학교 엠블럼
+        heart_lock_(kantai_collection): 하트 잠금장치 (함대 컬렉션)
+        garters: 가터벨트
+        thigh_strap: 허벅지 스트랩
+        thigh_ribbon: 허벅지 리본
+        leg_garter: 다리 가터
+        garter_straps: 스타킹 가터의 스트랩
+        leg_ribbon: 다리 리본
+        bandaid_on_leg: 다리에 밴드 에이드
+        bandaged_leg: 붕대로 감싼 다리
+        arm_garter: 팔 가터
+        joints: 관절
+        kneepits: 무릎
+        knee_pads: 무릎 보호대
+        thigh_holster: 허벅지 홀스터
+        bandaid_on_knee: 무릎에 밴드 에이드
+
+    - name: 보석류
+      color: rgba(230, 84, 128, .4)
+      tags:
+        bracelet: 팔찌
+        choker: 체인 목걸이
+        metal collar: 금속 목걸이
+        ring: 반지
+        wristband: 팔찌
+        pendant: 펜던트
+        brooch: 브로치
+        hoop earrings: 후프 귀걸이
+        bangle: 팔찌
+        stud earrings: 스터드 귀걸이
+        sunburst: 태양 모양 보석
+        pearl bracelet: 진주 팔찌
+        drop earrings: 드롭 귀걸이
+        puppet rings: 인형 반지
+        corsage: 코르사주
+        sapphire brooch: 사파이어 브로치
+        jewelry: 보석류
+        necklace: 목걸이
+
+- name: 표정 동작
+  groups:
+    - name: 웃음
+      color: rgba(241, 229, 140, .4)
+      tags:
+        smile: 웃음
+        laughing: 크게 웃음
+        kind_smile: 행복한 웃음
+        :d: 행복한 웃음_:D😀
+        ;d: 눈 깜빡이며 웃음_:D
+        grin: 이빨을 드러낸 웃음
+        teasing_smile: 놀림을 받아 웃음, 입을 벌리고 웃음
+        seductive_smile: 매혹적인 웃음
+        smirk: 어리석게 웃음, 자기만족스러운 웃음
+        giggling: 킥킥 웃음
+        smug: 자만스러운
+        naughty_face: 장난스러운 얼굴
+        evil smile: 사악한 웃음
+        crazy_smile: 미친듯이 웃음
+        happy: 행복|행복한
+        happy_birthday: 생일 축하합니다
+        happy_halloween: 할로윈을 즐겁게 보내세요
+        happy_new_year: 새해 복 많이 받으세요
+        happy_tears: 행복한 눈물
+        happy_valentine: 발렌타인데이를 즐겁게 보내세요
+
+    - name: 울음
+      color: rgba(241, 229, 140, .4)
+      tags:
+        sad: 슬픈
+        tear: 흐느낌
+        crying: 크게 울음
+        crying_with_eyes_open: 눈을 뜨고 울음
+        streaming_tears: 눈물이 흐름
+        teardrop: 눈물 방울
+        tearing_clothes: 옷을 찢음
+        tearing_up: 울고 싶은 표정
+        tears: 눈물
+        wiping_tears: 눈물을 닦음
+        badmood: 기분이 나쁜
+
+    - name: 우울
+      color: rgba(241, 229, 140, .4)
+      tags:
+        frustrated: 낙담한
+        frustrated_brow: 낙담한 이마
+        annoyed: 괴로운
+        anguish: 고뇌
+        sigh: 한숨
+        gloom: 우울한
+        disappointed: 실망한
+        despair: 절망
+
+    - name: 경멸
+      color: rgba(241, 229, 140, .4)
+      tags:
+        disgust: 혐오(쓰레기 같은 시선)
+        disdain: 경멸
+        contempt: 경멸
+        shaded_face: 얼굴에 그림자가 있음, 경멸과 함께
+        jitome: 경멸적인 시선
+        frown: 미간을 찌푸림/이마를 찡그림
+        wince: 미간을 찌푸리고 이마를 찡그림(성교 전)
+        furrowed_brow: 이마 주름
+        fear_kubrick: 두려워하는 시선
+        laughing: 웃고 있는
+
+    - name: 화남
+      color: rgba(241, 229, 140, .4)
+      tags:
+        angry: 화난
+        glaring: 몹시 노려보는
+        serious: 진지한 (화난 것과 비슷)
+        kubrick_stare: 옆으로 돌아서 응시하는
+        evil: 사악한
+        sulking: 화난_떠는
+        screaming: 비명을 지르는|큰 소리로 외치는
+        shouting: 소리 지르는
+
+    - name: 기타 표정
+      color: rgba(241, 229, 140, .4)
+      tags:
+        expressionless: 표정이 없는
+        sleepy: 졸린
+        drunk: 취한
+        bored: 지루한
+        confused: 혼란스러운
+        thinking: 생각하는
+        lonely: 외로운
+        light_blush: 약간 얼굴이 붉은
+        blush: 얼굴이 붉은
+        shy: 수줍은
+        embarrass: 수줍은(당황한)
+        facepalm: 얼굴을 메는
+        flustered: 당황한
+        sweat: 땀을 흘리는
+        scared: 무서워하는
+        ahegao: 아헤가오
+        endured_face: 참는 표정
+        restrained: 참는
+        dark_persona: 어둠에 빠진
+        crazy: 미친
+        exhausted: 지친
+        Tsundere: 츤데레
+        yandere: 야애니
+        multiple_persona: 다중 인격
+        Jekyll_and_Hyde: 다중 인격
+        twitching: 경련
+        spasm: 경련
+        trembling: 떨림
+        rape_face: 강간 얼굴
+        rolling_eyes: 눈을 돌림(오르가즘 눈)
+        envy: 질투
+        female_orgasm: 절정
+        heavy_breathing: 숨이 터지는, 효과 없을 수도 있음
+        naughty: 장난스러운
+        expressions: 표정 차분(대략)
+        moaning: 신음
+        scowl: 업신여기는 눈빛
+
+    - name: 기본 동작
+      color: rgba(241, 229, 140, .4)
+      tags:
+        standing: 서있기
+        on back: 누워있기
+        on stomach: 엎드려있기
+        kneeling: 무릎 꿇기
+        on_side: 옆으로 누워있기
+        on_stomach: 엎드려있기
+        top-down_bottom-up: 엎드린 엉덩이
+        the_pose: 엎드려 발을 들어올리기
+        bent_over: 엉덩이를 들어올리는 자세
+        upside-down: 거꾸로 뒤집힌 자세
+        reversal: 뒤집기
+        fighting_stance: 전투 자세
+        leaning_to_the_side: 한 쪽에 기대기
+        leaning: 몸을 기울이기|기울어지다
+        leaning_back: 몸을 뒤로 기울이기
+        leaning_on_object: 물체에 기대기
+        arched_back: 몸을 아치 모양으로 구부리기
+        leaning_forward: 몸을 앞으로 기울이기
+        afloat: 물 위에 뜨기
+        lying: 누워있기
+        fetal_position: 태아 자세로 누워있기
+        lying_on_person: 사람 위에 누워있기
+        lying_on_the_lake: 호수 위에 누워있기
+        lying_on_water: 물 위에 누워있기
+        on_back: 등으로 누워있기
+        prone_bone: 엎드려서 뒤로 들어가기
+        reclining: 기울어져 누워있기
+        sleeping_upright: (누워있지 않고) 서있는 자세로 자다
+        presenting: (부위를) 보여주기
+        spinning: 돌리기
+        posing: 자세 취하기
+        stylish_pose: 세련된 자세
+        public_indecency: 공공적인 외설
+        parody: 흉내 내기
+        in_container: 용기 안에
+        against_glass: 유리에 압착하기 (무효)
+        aiming: 조준하기
+        aiming_at_viewer: 독자를 조준하기
+        applying_makeup: 화장하기
+        bathing: 목욕하기
+        biting: 물기
+        bleeding: 피 흘리기
+        blowing: 불어불다
+        bowing: 인사하기
+        breathing_fire: 불을 뿜기
+        broom_riding: 비행 빗자루를 타기
+        brushing_teeth: 이를 닦기
+        bubble_blowing: 거품 불기
+        bullying: 괴롭히기
+        burning: 불태우기
+        cast: 던지기
+        chasing: 추격하기
+        cleaning: 청소하기
+        climbing: 등반하기
+        comforting: 위로하기
+        cooking: 요리하기
+        crying: 울기
+        cuddling: 포옹하기
+        dancing: 춤추기
+        diving: 잠수하기
+        dragging: 끌기
+        drawing: 그리기
+        drawing_bow: 활을 당기기
+        dreaming: 꿈꾸기
+        drinking: 마시기
+        driving: 운전하기
+        dropping: (실수로) 떨어뜨리기
+        drying: 말리기 (목욕 후)
+        dual_wielding: 양손에 무기를 들고 싸우기
+        exercise: 운동하기
+        fighting: 전투 중인
+        firing: 발사하기
+        fishing: 낚시하기
+        flapping: 퍼덕이는 동작
+        flashing: 드러내기
+        fleeing: 도망가는
+        flexing: 근육 자랑하기
+        flying: 날기
+        flying_kick: 날아차기
+        hair_brushing: 머리 빗기
+        hair_tucking: 머리를 넘기기
+        hanging: 매달리기
+        hitting: 치기
+        imagining: 상상하고 있는
+        jumping: 점프하기
+        kicking: 차기
+        licking: 핥기
+        licking_lips: 입술 핥기
+        lip_biting: 입술 물기
+        meditation: 명상하기
+        painting: 그림 그리기
+        Painting_(Action): 그림 그리기
+        playing_card: 카드 놀이하기
+        playing_games: 게임하기
+        playing_instrument: 악기 연주하기
+        pole_dancing: 폴댄스
+        praying: 기도하기
+        punching: 펀치하기
+        pushing: 밀기
+        railing: 손으로 받치기
+        reading: 읽기
+        riding: 타기
+        running: 달리기
+        sewing: 박음질하기
+        shopping: 쇼핑하기
+        showering: 샤워하기
+        sing: 노래 부르기
+        singing: 노래 부르기
+        slashing: 베기
+        sleeping: 잠자기
+        smelling: 냄새 맡기
+        smoking: 흡연하기
+        sneezing: 재채기하기
+        snowing: 눈이 내리기
+        soaking_feet: 발 담그기
+        soccer: 축구하기
+        spilling: 용기에서 액체를 쏟아내는 동작
+        spitting: 입에서 액체를 뱉는 동작
+        splashing: 물을 튀기기
+        standing_on_liquid: 물 위에 서기
+        standing_on_one_leg: 한 다리로 서기
+        standing_split: 서서 다리를 벌리기
+        steepled_fingers: 손가락 끝을 맞대기
+        strangling: 목을 조르기
+        sweeping: 쓸기
+        swimming: 수영하기
+        swing: 흔들기
+        tail_wagging: 꼬리 흔들기
+        taking_picture: 사진 찍기|셀카
+        talking: 대화하기
+        talking_on_phone: 전화하기
+        teasing: 놀리기
+        thinking: 생각하기
+        tickling: 간지럽히기
+        toilet_use: 화장실 사용하기
+        tossing_: 던지기
+        tripping: 넘어지기
+        trolling: 트롤링
+        twitching: 경련
+        tying: 매듭짓기
+        unsheathing: 칼집에서 뽑는
+        untying: 풀기
+        unzipping: 지퍼 열기
+        wading: 물에 발 담그기
+        waking_up: 깨어나기
+        walking: 걷기
+        walking_on_liquid: 액체 위를 걷기
+        washing: 씻기
+        whispering: 속삭이기
+        wrestling: 겨루기
+        writing: 쓰기
+        yawning: 하품하기
+        hiding: 숨기기
+
+    - name: 손 동작
+      color: rgba(241, 229, 140, .4)
+      tags:
+        arms_behind_back: 등 뒤로 손 놓기
+        arm_above_head: 손 머리 위에
+        arm_behind_head: 손 머리 뒤로
+        arms_crossed: 팔을 가슴 앞에서 교차하기
+        arm_support: 손으로 지지하기
+        armpits: 겨드랑이 보여주기
+        arms_up: 손들어올리기
+        hands_on_hips: 양손을 허리에 대기
+        arm_around_waist: 한 손으로 허리를 감기
+        caramelldansen: 유명한 손을 휘둘러 허리를 비틀기
+        hands_in_opposite_sleeves: 양손을 반대쪽 소매에 넣기
+        waving: 손 흔들기
+        crossed_arms: 팔 교차하기
+        outstretched_arms: 팔을 뻗기
+        v_arms: V자 모양으로 팔 흔들기
+        w_arms: W자 모양으로 팔 흔들기
+        salute: 경례하기
+        reaching: 목표를 향해 손 내밀기
+        reaching_out: 그림 밖으로 손 내밀기
+        stretch: 몸을 쭉 펴기
+        hugging_own_legs: 다리를 껴안기
+        arm_blade: 팔에 칼날
+        arm_grab: 팔 잡기
+        arm_held_back: 팔을 뒤로 당기기
+        arm_ribbon: 팔에 리본
+        bandaged_arm: 매듭으로 감싼 팔
+        bandaid_on_arm: 팔에 반창고 붙이기
+        bound_arms: 팔을 묶인 상태
+        convenient_arm: 중요 부위를 가리는 팔
+        extra_arms: 여러 개의 팔
+        locked_arms: 서로 팔을 맞대기
+        outstretched_arm: 팔을 뻗기
+        waving_arms: 팔을 흔들기
+        arm_at_side: 한 손을 옆에 내려놓기
+        arm_behind_back: 한 손을 등 뒤로 내려놓기
+        shou: 한 손을 머리 뒤에 올리기
+        arm_cannon: 손 포탄
+        arm_hug: 팔을 맞대기
+        arm_up: 손 들기
+        arms_at_sides: 양손을 옆에 내려놓기
+        arms_behind_head: 양손을 머리 뒤에 대기
+        hand_to_mouth: 손을 입가에 대기
+        shushing: 쉿 손 모양
+        cat_pose: 고양이 손 모양
+        claw_pose: 발톱 손 모양
+        paw_pose: 팔로 고양이 손 모양 (손목을 구부리기)
+        fox_shadow_puppet: 여우 손 모양
+        double_fox_shadow_puppet: 더블 여우 손 모양
+        finger_gun: 손가락 총 손 모양
+        v: 승리 손 모양
+        double_v: 더블 V
+        thumbs_up: 엄지손가락 올리기
+        index_finger_raised: 검지손가락 올리기
+        middle_finger: 국제 친선 손 모양
+        grimace: 찡그림
+        eyelid_pull: 찡그림
+        fingersmile: 손으로 웃는 얼굴 표현하기
+        wiping_tears: 눈물 닦기
+        finger_on_trigger: 방아쇠를 당기기 준비
+        pointing_at_self: 자기 자신을 가리키기
+        pointing_at_viewer: 시청자를 가리키기
+        pointing_up: 위쪽 가리키기
+        poking: 찌르기
+        hand_gesture: 손 모양
+        ok_sign: OK 손 모양
+        shading_eyes: 눈 가리기
+        finger_biting: 손가락 물기
+        finger_in_mouth: 손가락 입에 넣기
+        fingering_through_clothes: 옷 속에서 손가락 움직이기
+        fingers_together: 손가락 모아붙이기
+        hair_twirling: 손가락으로 머리 말기
+        hands_clasped: 양손 손가락 교차하기|양손을 꽉 쥐기
+        holding_hair: 머리를 쥐고 있기|손가락으로 머리 감기
+        pointing: 손가락으로 가리키기
+        sharp_fingernails: 날카로운 손톱
+        sleeves_past_fingers: 소매가 손가락을 덮음
+        spread_fingers: 손가락 벌리기
+        trigger_discipline: 방아쇠 위에 손가락 올리지 않기
+        w: 손가락을 W자 모양으로 벌리기
+        balancing: 균형을 잡은 자세
+        curvy: 매력적인 자세
+        multiple_views: 다양한 각도|자세
+        pose: 자세
+        ready_to_draw: 칼을 뽑을 준비 자세
+        trefoil: 엉덩이를 보여주는 자세
+        zombie_pose: 좀비 자세
+        beckoning: 손으로 부르기
+        bunching_hair: 머리를 쥐고 있기
+        carrying: 들기
+        carrying_over_shoulder: 어깨에 메기
+        carrying_under_arm: 겨드랑이에 끼고 들기
+        cheering: 응원하기
+        finger_to_mouth: 손 입가에 대기
+        cheek_pinching: 볼 두드리기
+        cheek_poking: 볼 찌르기
+        chin_stroking: 턱 문지르기
+        hair_pull: 머리를 당기기
+        covering_mouth: 입 가리기
+        covering_xx: xx 가리기
+        self_fondle: 자기 자신을 쓰다듬기
+        adjusting_thighhigh: 오버니트 조절하기
+        chin_rest: 턱을 받치기
+        head_rest: 머리를 받치기
+        take: 손에 들기
+        _sheet_grab: 시트 잡기
+        groping: 촉감을 주다
+        skirt_lift: 치마 올리기
+        crotch_grab: 손으로 crotch를 잡기
+        covering_chest_by_hand: 손으로 가슴 가리기
+        bangs_pinned_back: 앞머리를 올리기
+        clothes_lift: 옷 올리기
+        dress_lift: 드레스 올리기
+        kimono_lift: 키모노 올리기
+        lifted_by_another: 다른 사람에게 옷을 들려주기
+        lifted_by_self: 자신의 옷을 들려주기
+        shirt_lift: 셔츠를 당기기|올리기|채취하기
+        skirt_basket: 치마를 들어 올려 바구니 모양 만들기
+        skirt_flip: 치마를 들어 올리기 (긴장 상황)
+        bikini_lift: 비키니 올리기
+        leg_lift: 한 다리 들어 올리기
+        lifting_person: 사람 들어 올리기
+        strap_lift: 스트랩을 올려 당기기
+        wind_lift: 바람이 올라가는 효과|상승 기류
+        bikini_pull: 비키니를 당기기
+        cheek_pull: 볼 당기기
+        clothes_pull: 옷을 당기기
+        dress_pull: 드레스 앞부분을 벗기기
+        hair_pulled_back: 머리를 뒤로 당기기
+        kimono_pull: 키모노 벗기기
+        leotard_pull: 레오타드 벗기기
+        mask_pull: 마스크 당기기
+        pants_pull: 바지를 당기기
+        pulled_by_another: 다른 사람에게 당겨지기 (또는 옷을 당기기)
+        pulled_by_self: 자신의 옷을 당기기
+        pulling: 당기기
+        shirt_pull: 셔츠를 당기기
+        shorts_pull: 반바지 벗기기
+        skirt_pull: 치마를 당기기
+        swimsuit_pull: 수영복을 당기기
+        zipper_pull_tab: 지퍼를 당기는 손잡이
+        adjusting_clothes: 옷을 조정하기
+        adjusting_eyewear: 안경을 조정하기
+        adjusting_gloves: 장갑을 조정하기
+        adjusting_hair: 머리를 정리하기
+        adjusting_hat: 모자를 정리하기
+        adjusting_swimsuit: 수영복을 조정하기
+
+    - name: 손동작(무언가를 잡고 있는)
+      color: rgba(241, 229, 140, .4)
+      tags:
+        holding: 무언가를 잡고 있는
+        holding_animal: 동물을 안고 있는
+        holding_arrow: 활을 당기는
+        holding_axe: 도끼를 쥐고 있는
+        holding_bag: 가방을 들고 있는
+        holding_ball: 공을 안고 있는
+        holding_basket: 바구니를 들고 있는
+        holding_book: 책을 들고 있는
+        holding_bottle: 병을 들고 있는
+        holding_bouquet: 꽃다발을 손에 들고 있는
+        holding_bow_(weapon): 활(무기)을 들고 있는
+        holding_bowl: 그릇을 들고 있는
+        holding_box: 상자를 들고 있는
+        holding_breath: 숨을 참고 있는
+        holding_broom: 빗자루를 손에 들고 있는
+        holding_camera: 카메라를 손에 들고 있는
+        holding_can: 캔을 들고 있는
+        holding_candy: 사탕을 손에 들고 있는
+        holding_card: 카드를 손에 들고 있는
+        holding_cat: 고양이를 안고 있는
+        holding_chopsticks: 젓가락을 들고 있는
+        holding_cigarette: 담배를 입에 물고 있는
+        holding_clothes: 옷을 들고 있는
+        holding_condom: 콘돔을 들고 있는
+        holding_cup: 컵을 손에 들고 있는
+        holding_dagger: 단검을 손에 들고 있는
+        holding_doll: 인형을 안고 있는
+        holding_eyewear: 안경을 들고 있는|안경을 벗고 있는
+        holding_fan: 부채를 들고 있는
+        holding_flag: 깃발을 손에 들고 있는
+        holding_flower: 꽃을 들고 있는
+        holding_food: 음식을 들고 있는
+        holding_fork: 포크를 들고 있는
+        holding_fruit: 과일을 들고 있는
+        holding_gift: 선물을 들고 있는
+        holding_gun: 총을 들고 있는
+        holding_hands: 손을 잡고 있는
+        holding_hat: 모자를 들고 있는
+        holding_head: 손에 머리를 안고 있는
+        holding_helmet: 헬멧을 들고 있는
+        holding_innertube: 물패도를 들고 있는
+        holding_instrument: 악기를 들고 있는
+        holding_knife: 칼을 들고 있는
+        holding_leaf: 잎을 들고 있는
+        holding_lollipop: 막대사탕을 들고 있는
+        holding_mask: 가면을 들고 있는
+        holding_microphone: 마이크를 들고 있는
+        holding_needle: 바늘을 들고 있는
+        holding_own_foot: 자신의 발을 잡고 있는
+        holding_paintbrush: 붓을 손에 잡고 있는
+        holding_paper: 종이를 들고 있는
+        holding_pen: 펜을 쥐고 있는
+        holding_pencil: 연필을 손에 들고 있는
+        holding_phone: 핸드폰을 들고 있는
+        holding_pillow: 베개를 안고 있는
+        holding_pipe: 담배꽁초를 들고 있는
+        holding_pizza: 피자를 들고 있는
+        holding_plate: 접시를 들고 있는
+        holding_poke_ball: 포켓볼을 들고 있는
+        holding_pokemon: 포켓몬을 안고 있는
+        holding_polearm: 장창을 손에 들고 있는
+        holding_sack: 자루를 들고 있는
+        holding_scythe: 낫을 손에 들고 있는
+        holding_sheath: 칼집을 쥐고 있는
+        holding_shield: 방패를 들고 있는
+        holding_shoes: 신발을 들고 있는
+        holding_sign: 표지판을 들고 있는
+        holding_spear: 창을 손에 들고 있는
+        holding_spoon: 숟가락을 들고 있는
+        holding_staff: 지팡이를 들고 있는
+        holding_strap: 끈을 잡고 있는
+        holding_stuffed_animal: 봉제인형을 안고 있는
+        holding_stylus: 펜을 손에 들고 있는
+        holding_sword: 검을 손에 들고 있는
+        holding_syringe: 주사기를 손에 들고 있는
+        holding_towel: 수건을 들고 있는
+        holding_tray: 쟁반을 들고 있는
+        holding_umbrella: 우산을 펼쳐서 들고 있는
+        holding_wand: 지팡이를 쥐고 있는
+        holding_whip: 채찍을 쥐고 있는
+        arm_around_neck: 한 손으로 목을 감싸는
+        arms_around_neck: 양 손으로 목을 감싸는
+
+    - name: 손동작(어딘가에 놓는)
+      color: rgba(241, 229, 140, .4)
+      tags:
+        covering: 가리는 동작
+        covering_face: 얼굴 가리기
+        covering_ass: 엉덩이 가리기
+        covering_crotch: 음부 가리기
+        covering_eyes: 눈 가리기
+        covering_mouth: 입 막기
+        covering_nipples: 유두 가리기
+        hands_on_another's_: 상대방의 얼굴에 양 손 올리기
+        hands_on_another's_cheeks: 상대방의 뺨에 양 손 올리기
+        hands_on_ass: 엉덩이에 양 손 올리기
+        hands_on_feet: 발에 양 손 올리기
+        hands_on_headwear: 머리 위의 장식에 손 대기
+        hands_on_hilt: 칼의 손잡이에 양 손 올리기
+        hands_on_lap: 양 다리 사이에 손 올리기
+        hands_on_own_face: 얼굴에 손 올리기
+        hands_on_own_cheeks: 본인의 뺨에 손 올리기
+        hands_on_own_chest: 본인의 가슴에 손 올리기
+        hands_on_own_head: 본인의 머리에 손 올리기
+        hands_on_own_knees: 본인의 무릎에 손 올리기
+        hands_on_own_stomach: 본인의 배에 손 올리기
+        hands_on_own_thighs: 본인의 허벅지에 손 올리기
+        hands_on_another's_shoulders: 상대방의 어깨에 양 손 올리기
+        hands_on_hips: 양 손으로 허리를 꽉 쥐기|손을 허리에 올리기
+        hand_on_another's_: 손이 상대방의 얼굴에 닿기
+        hand_on_another's_cheek: 손이 상대방의 뺨에 닿기
+        hand_on_another's_chest: 손이 상대방의 가슴 앞에 닿기
+        hand_on_another's_chin: 손이 상대방의 턱을 받치기
+        hand_on_another's_head: 손이 상대방의 머리 위에 올리기
+        hand_on_another's_shoulder: 손이 상대방의 어깨에 올리기
+        hand_on_another's_stomach: 손이 상대방의 배 위에 올리기
+        hand_on_ass: 손이 엉덩이에 닿기
+        hand_on_head: 손이 머리 위에 올리기
+        hand_on_headwear: 손이 모자에 닿기
+        hand_on_hilt: 손이 칼의 손잡이에 닿기
+        hand_on_hip: 손이 허리에 걸치기|손을 허리에 올리기
+        hand_on_own_: 손이 얼굴에 닿기
+        hand_on_own_cheek: 손이 본인의 뺨에 닿기
+        hand_on_own_chest: 손이 본인의 가슴 앞에 닿기
+        hand_on_own_chin: 손이 본인의 턱에 닿기
+        hand_on_own_stomach: 손이 본인의 배 위에 닿기
+        hand_on_shoulder: 손이 어깨에 닿기
+        hand_in_another's_hair: 손이 상대방의 머리카락에 닿기
+        hand_in_hair: 손이 머리카락에 파묻히기
+        hand_in_pocket: 손이 주머니에 넣기
+
+    - name: 손동작(무언가를 붙잡고 있는)
+      color: rgba(241, 229, 140, .4)
+      tags:
+        ass_grab: 엉덩이를 붙잡기
+        flat_chest_grab: 작은 가슴을 붙잡기
+        grabbing: 붙잡기
+        grabbing_another's_ass: 상대방의 엉덩이를 붙잡기
+        grabbing_another's_hair: 상대방의 머리카락을 붙잡기
+        grabbing_from_behind: 뒤에서 가슴을 잡기|뒤에서 가슴을 붙잡기
+        grabbing_own_ass: 자신의 엉덩이를 붙잡기
+        guided_penetration: 남성의 성기를 붙잡고 자신에게 삽입하기
+        hair_grab: 머리카락을 붙잡기
+        leg_grab: 다리를 붙잡기
+        necktie_grab: 넥타이를 붙잡기
+        neckwear_grab: 목에 착용한 의상을 붙잡기
+        penis_grab: 음경을 붙잡기
+        pillow_grab: 베개를 붙잡기
+        sheet_grab: 시트를 붙잡기
+        tail_grab: 꼬리를 붙잡기
+        thigh_grab: 허벅지를 붙잡기
+        torso_grab: 상체를 붙잡기
+        wrist_grab: 손목을 붙잡기
+
+    - name: 다리 동작
+      color: rgba(241, 229, 140, .4)
+      tags:
+        legs_up: 한 다리 올리기
+        spread legs: 다리 벌리기
+        legs_together: 다리 모으기
+        crossed_legs: 교차 다리
+        m_legs: M자 다리 흔들기
+        standing_split,_leg_up: M자 다리 흔들기
+        curtsy: 절하는 자세 (메이드 인사)
+        hand_between_legs: 다리 사이의 손
+        open_stance: 편안한 자세
+        convenient_leg: 중요한 부분을 가려주는 다리
+        leg_lock: 다리로 잠그기
+        legs: 다리
+        legs_over_head: 다리를 머리 위로 올리기
+        squatting,_open_legs: 앉았다 일어나기, 다리 벌리기
+        knees_together_feet_apart: 무릎은 합치고 발은 벌리기
+        animal_on_lap: 무릎 위에 동물
+        hand_on_own_knee: 손을 자신의 무릎 위에 올리기
+        knee_up: 무릎 올리기
+        knees: 무릎
+        knees_to_chest: 무릎을 가슴에 대기
+        on_lap: 무릎 위에
+        sitting: 앉기
+        wariza: 오리 앉기
+        straddling: 가로막다
+        yokozuwari: 옆으로 앉기
+        sitting_backwards: 뒤로 앉기
+        sitting_in_tree: 나무 위에 앉기
+        sitting_on_xx: 물체 위에 앉기
+        butterfly_sitting: 나비 앉기
+        lotus_position: 책상 위에 앉기
+        sitting_on_railing: 난간 위에 앉기
+        sitting_on_rock: 바위 위에 앉기
+        sitting_on_stairs: 계단 위에 앉기
+        sitting_on_table: 탁자 위에 앉기
+        sitting_on_water: 물 위에 앉기
+        cushion: 좌쿠션
+        indian_style: 앉아서 다리를 꼬다
+        sitting_on_chair: 의자 위에 앉기
+        sidesaddle: 안장 위에 옆으로 앉기
+        sitting_on_bed: 침대 위에 앉기
+        sitting_on_desk: 책상 위에 앉기
+        sitting_on_lap: 대퇴부 위에 앉기
+        sitting_on_person: 사람 위에 앉기
+        upright_straddle: 마주 보며 앉는 자세
+        squatting: 앉았다 일어나기
+        one_knee: 한쪽 무릎
+        kneeling: 무릎 꿇기
+        all_fours: 네 발로 서기
+        gravure_pose: 그라비아 포즈
+        kicking: 발차기
+        high_kick: 높은 발차기
+        soaking_feet: 발 담그기
+        reclining: 기대기
+        hugging_own_legs: 자신의 다리를 껴안다
+        bare_legs: 맨 다리
+        between_legs: (강조) 두 다리 사이
+        cropped_legs: 일부분만 그린 다리
+        k/da_(league_of_legends): KDA 조합 (리그 오브 레전드)
+        leg_belt: 다리에 끈을 묶은 것
+        leg_hair: 다리털
+        leg_up: 다리 올리기
+        legs_apart: 다리 벌리기
+        lowleg: M자 다리 흔들기
+        mechanical_legs: 기계 다리
+        multiple_legs: 다리가 여러 개인 캐릭터
+        no_legs: 다리가 없음
+        no_legwear: 다리 아래가 벌어져 있음
+        tail_between_legs: 꼬리를 다리 사이로 넣음
+        barefoot: 맨발
+        foot_out_of_frame: 한 발이 사진에 없음
+        footprints: 발자국
+        dirty_feet: 발 그림이 잘못됨
+        feet: 발
+        feet_out_of_frame: 두 발이 사진에 없음
+        feet_up: 발을 들어 올리기
+        wrong_feet: 발 그림이 잘못됨
+        cameltoe: 낙타 발
+        pigeon-toed: 안으로 굽은 다리
+        tiptoes: 발끝에 세우기
+        toe-point: 발끝
+        amputee: 절단|한쪽 다리|사지 결손|절단된 소녀
+        ankle_strap: 발목에 끈
+        ankle_wrap: 발목을 감싸는 것
+        crossed_ankles: 교차된 발목
+        pince-nez: 코에 끼는 안경|다리가 없는 안경
+        folded: 다리를 들어 올리고 음부를 드러냄
+        thick_thighs: 두꺼운 허벅지
+        thigh_holster: 허벅지에 끈이나 도구 가방 또는 권총집
+
+    - name: 기타 동작
+      color: rgba(241, 229, 140, .4)
+      tags:
+        asymmetrical_docking: 가슴이 서로 닿음|가슴이 서로 밀착
+        back-to-back: 등이 맞닿음
+        cunnilingus: 음막을 핥기
+        eye_contact: 눈빛 교환
+        facing_another: 상대방을 마주보기
+        facing_away: 상대방과 얼굴을 붙임
+        feeding: 먹이 주기
+        finger_in_another's_mouth: 상대방의 입 안에 손가락 넣기
+        fingering: 손가락으로 자극하기
+        french_kiss: 프렌치 키스
+        giving: 건네주기
+        grinding: 허벅지로 마사지하기|엉덩이로 밀기
+        groping: 촉진
+        holding_hands: 손 잡기
+        hug: 포옹
+        imminent_kiss: 곧 키스할 예정
+        incoming_food: 음식을 건네주기
+        incoming_gift: 선물을 건네주기
+        interlocked_fingers: 손을 조여 맞물림
+        Kabedon: 벽에 등을 대기
+        lap_pillow: 무릎 베개
+        licking_penis: 음경 핥기
+        long_tongue: 긴 혀
+        mimikaki: 귀를 꼬집기
+        oral_invitation: 사정을 맞이하기 위해 혀를 내밀기
+        princess_carry: 공주 안고 다니기
+        shared_bathing: 함께 목욕하기
+        shared_food: 음식 공유하기|입으로 음식 건네주기
+        sitting_on_head: 머리 위에 앉기
+        sitting_on_shoulder: 어깨 위에 앉기
+        slapping: 얼굴을 때리기
+        spanking: 엉덩이를 때리기
+        special_feeling_(meme): 눈에 띄는 커플 신호
+        symmetrical_docking: 가슴이 밀착
+        tongue: 혀
+        tongue_out: 혀 내밀기
+        uvula: 구개 힘|구개 막|구개
+        ear_biting: 귀 물기
+        mixed_bathing: 혼합 목욕
+
+- name: 그림
+  groups:
+    - name: 화질
+      color: rgba(0, 255, 255, .4)
+      tags:
+        checkered: 체크무늬
+        lowres: 저해상도
+        highres: 고해상도
+        absurdres: 초고해상도
+        incredibly absurdres: 극고해상도
+        huge filesize: 초고해상도/대용량 파일
+        wallpaper: 배경화면
+        pixel art: 픽셀 아트
+        monochrome: 흑백 이미지
+        colorful: 다채로운
+
+    - name: 예술 스타일
+      color: rgba(0, 255, 255, .4)
+      tags:
+        artbook: 아트북
+        game cg: 게임 CG
+        comic: 만화
+        4koma: 4컷 만화
+        animated gif: 애니메이션 GIF
+        dakimakura: 담요
+        cosplay: 코스프레
+        crossover: 크로스오버
+        dark: 어둠의
+        light: 밝은
+        guro: 그로테스크
+        realistic: 현실적인
+        photo: 사진
+        real: 실제
+        landscape/scenery: 풍경
+        cityscape: 도시 풍경
+        science fiction: 공상 과학
+        original: 원작
+        parody: 패러디
+        personification: 의인화
+        optical illusion: 시각적 오류
+        fine art parody: 명화 모방
+        sketch: 스케치
+        traditional media: 전통 매체 (손그림)
+        watercolor (medium): 수채화
+        silhouette: 실루엣
+        cover: 표지
+        album: 앨범
+        sample: 샘플
+        back: 등장인물 뒷모습
+        bust: 상반신
+        profile: 측면
+        expressions: 표정
+        everyone: 한 작품의 중요 인물 모음
+        column lineup: 작은 그림들이 큰 그림을 이룸
+        transparent background: 투명한 배경
+        simple background: 단순한 배경
+        gradient background: 그라디언트 배경
+        zoom layer: 배경이 전경의 확대판
+        8 Bit Game: 8비트 게임
+        1980s anime: 80년대 애니메이션
+        disney movie: 디즈니 영화
+        goth: 고스 락
+        80s movie: 80년대 영화
+        bubble bobble: 버블 보블
+        style of Pixar: 픽사 애니메이션 스타일
+        Polaroid art: 폴라로이드 아트
+        Kaleidoscope Photography: 케일리도스코프 사진
+        opal render: 오팔 렌더링
+        chemigram: 화학 사진
+        Studio Ghibli: 스튜디오 지브리 스타일
+        dreamlike: 꿈 같은
+        (faux traditional media): 가짜 전통 매체 스타일
+        genshin impact: 원신
+        azur lane: 아즈르 레인
+        kantai collection: 함대 컬렉션
+        rebecca (cyberpunk): 레베카 (사이버펑크)
+        chainsaw man: 전기톱인간
+        Magic Vortex: 마법 소용돌이
+        ((dieselpunk)): 디젤펑크
+        magazine scan: 잡지 스캔
+        album cover: 앨범 표지
+        (lineart): 선화
+        synthwave: 신스웨이브
+        (illustration),(paper figure),(lococo),((impasto)),(shiny skin): 로코코
+
+    - name: 예술 유형
+      color: rgba(0, 255, 255, .4)
+      tags:
+        monochrome: 흑백 이미지
+        Collage: 콜라주 아트
+        Dalle de verre: 유리 색칠
+        pixel art: 픽셀 아트
+        Encaustic painting: 엔코스틱 페인팅
+        Ink wash painting: 수묵화
+        Mezzotint: 메조틴트
+        silhouette: 실루엣
+        illustration: 일러스트레이션
+        (((ink))), ((watercolor)): 수채화
+        illustration,(((ukiyoe))),((sketch)),((japanese_art)): 우키요에
+        ((wash painting)),((ink s...)): 중국풍
+        ((dyeing)),((oil painting)),((impasto)): 유화
+        (posing sketch), (monochrome): 흑백 스케치
+        sketch: 손으로 그린 스케치
+        (monochrome), (gray scale), (pencil sketch lines: 연필 스케치
+        (watercolor pencil): 수채 연필
+
+    - name: 예술 파도
+      color: rgba(0, 255, 255, .4)
+      tags:
+        ((art nouveau)): 아르 누보
+        ((classicism)): 고전주의
+        ((futurism)): 퓨처리즘
+        ((Dadaism)): 다다이즘
+        ((abstract art)): 추상 미술
+        ((ASCII art)): ASCII 아트
+
+    - name: 예술가 스타일
+      color: rgba(0, 255, 255, .4)
+      tags:
+        ((alphonse mucha)): 알폰스 무하
+        ((Monet style)): 모네 스타일
+
+    - name: 조명
+      color: rgba(0, 255, 255, .4)
+      tags:
+        rim light: 테두리 빛
+        Volumetric Lighting: 부피 조명
+        glowing neon lights: 발광하는 네온 빛
+        Cinematic Lighting: 영화 수준의 조명
+        lens flare: 렌즈 플레어
+        metallic luster: 금속 광택
+        moody lighting: 분위기 있는 조명
+        Tyndall effect: 틴달 효과
+        light leaks: 빛 색산
+        background light: 배경 조명
+        available light: 자연광
+
+    - name: 사실적인
+      color: rgba(0, 255, 255, .4)
+      tags:
+        realistic: 사실적인
+        highres: 두꺼운 페인트 (스타일)
+        photo_(medium): 사진 (스타일)
+        oil_painting: 유화
+        reality: 현실
+        polaroid: 폴라로이드 사진
+
+    - name: 스케치
+      color: rgba(0, 255, 255, .4)
+      tags:
+        sketch: 스케치
+        flat_color: 단색
+        monochrome: 흑백
+        spot_color: 단색
+        halftone: 반음조
+        greyscale: 그레이스케일
+        high_contrast: 고대비
+        partially_colored: 부분 채색
+        chromatic_aberration: 색차, 색 흐림
+        contour_deepening: 윤곽 강조
+        outline: 윤곽선
+        silhouette: 실루엣
+
+    - name: 붓
+      color: rgba(0, 255, 255, .4)
+      tags:
+        traditional_media: 전통 캔버스 (종이 등)
+        faux_traditional_media: 가짜 전통 매체 스타일
+        marker_(medium): 마커
+        copics: 마커 (중성 회색)
+        pencil_sketch_lines: 연필 스케치
+        graphite_(medium): 그래파이트 연필
+        colored_pencil_(medium): 색연필
+        millipen_(medium): 밀리펜
+        nib_pen_(medium): 그림용 펜
+        ballpoint_pen_(medium)_: 볼펜
+        pastel_color: 부드러운 색상
+        watercolor_(medium): 수채화
+        acrylic_paint_(medium): 아크릴 페인팅
+        contour_deepening: 선 굵게
+
+    - name: 색상
+      color: rgba(0, 255, 255, .4)
+      tags:
+        orange: 주황색
+        blue: 파란색
+        red: 빨간색
+        light_brown: 연한 갈색
+        dark_pink: 진한 핑크색
+        khaki: 카키색
+        blonde: 금발
+        brown: 갈색
+        black: 검은색
+        gray: 회색
+        darkgray: 짙은 회색
+        silver: 은색
+        lightgray: 연한 회색
+        gainsboro: 게인스보로
+        whitesmoke: 화이트 스모크
+        snow: 눈색
+        ghostwhite: 유령의 흰색
+        floralwhite: 화이트 꽃색
+        linen: 리넨색
+        antiquewhite: 안티크 화이트
+        papayawhip: 파파야 화이트
+        blanchedalmond: 블랜치드 알몬드
+        bisque: 비스크
+        moccasin: 모카신
+        navajowhite: 나바호 화이트
+        peachpuff: 복숭아색
+        mistyrose: 흐린 장미색
+        lavenderblush: 연보라색
+        seashell: 조개껍질색
+        oldlace: 올드 레이스
+        ivory: 상아색
+        honeydew: 꿀색
+        mintcream: 민트 크림색
+        azure: 하늘색
+        aliceblue: 앨리스 블루
+        lavender: 라벤더색
+        lightsteelblue: 연한 강철색
+        lightslategray: 연한 슬레이트 회색
+        slategray: 슬레이트 회색
+        steelblue: 강철색
+        royalblue: 로열 블루
+        midnightblue: 한밤중의 파랑색
+        navy: 해군색
+        darkblue: 짙은 파랑색
+        mediumblue: 중간 파랑색
+        dodgerblue: 도저 블루
+        cornflowerblue: 국화색
+        skyblue: 하늘색
+        lightblue: 연한 파랑색
+        powderblue: 파우더 블루
+        paleturquoise: 연한 청록색
+        lightcyan: 연한 청록색
+        cyan: 청록색
+        aquamarine: 아쿠아마린색
+        turquoise: 터쿠아즈색
+        mediumturquoise: 중간 터쿠아즈색
+        darkturquoise: 짙은 터쿠아즈색
+        lightseagreen: 연한 바다색
+        cadetblue: 카뎃 블루
+        darkcyan: 짙은 청록색
+        teal: 틸색
+        darkslategray: 짙은 슬레이트 회색
+        darkgreen: 짙은 녹색
+        green: 녹색
+        forestgreen: 숲색
+        seagreen: 바다색
+        mediumseagreen: 중간 바다색
+        mediumaquamarine: 중간 아쿠아마린색
+        darkseagreen: 짙은 바다색
+        palegreen: 연한 녹색
+        lightgreen: 연한 초록색
+        springgreen: 봄 초록색
+        mediumspringgreen: 중간 봄 초록색
+        lawngreen: 잔디색
+        chartreuse: 새끼노랑색
+        greenyellow: 녹색 노랑색
+        lime: 라임색
+        limegreen: 황록색
+        yellowgreen: 노란 녹색
+        darkolivegreen: 짙은 올리브색
+        olivedrab: 올리브색
+        olive: 올리브색
+        darkkhaki: 짙은 카키색
+        palegoldenrod: 연한 황금색
+        cornsilk: 옥수수색
+        beige: 베이지색
+        lightyellow: 연한 노란색
+        lightgoldenrodyellow: 연한 황금색
+        lemonchiffon: 레몬 시폰색
+        wheat: 밀색
+        burlywood: 버리우드색
+        tan: 황갈색
+        yellow: 노란색
+        gold: 금색
+        sandybrown: 모래갈색
+        darkorange: 짙은 주황색
+        goldenrod: 황금색
+        peru: 페루색
+        darkgoldenrod: 짙은 황금색
+        chocolate: 초콜릿색
+        sienna: 시에나색
+        saddlebrown: 안장 갈색
+        maroon: 청갈색
+        darkred: 짙은 빨간색
+        firebrick: 벽돌색
+        indianred: 인디안 레드색
+        rosybrown: 로지 브라운색
+        darksalmon: 짙은 연어색
+        lightcoral: 연한 코랄색
+        salmon: 연어색
+        lightsalmon: 연한 연어색
+        coral: 코랄색
+        tomato: 토마토색
+        orangered: 주황빨강색
+        crimson: 짙은 붉은색
+        mediumvioletred: 중간 보라빛 빨강색
+        deeppink: 짙은 분홍색
+        hotpink: 핫 핑크색
+        palevioletred: 연한 보라빛 빨강색
+        pink: 분홍색
+        lightpink: 연한 분홍색
+        thistle: 디스들색
+        magenta: 마젠타색
+        fuchsia: 후크샤색
+        violet: 보라색
+        plum: 자두색
+        orchid: 난초색
+        mediumorchid: 중간 난초색
+        darkorchid: 짙은 난초색
+        darkviolet: 짙은 보라색
+        darkmagenta: 짙은 마젠타색
+        purple: 보라색
+        indigo: 남색
+        darkslateblue: 짙은 슬레이트 파랑색
+        blueviolet: 파란 보라색
+        mediumpurple: 중간 보라색
+        slateblue: 슬레이트 파랑색
+        mediumslateblue: 중간 슬레이트 파랑색
+
+    - name: 배경
+      color: rgba(0, 255, 255, .4)
+      tags:
+        fantasy: 판타지 스타일
+        ban: 공상 과학
+        cyberpunk: 사이버펑크
+        depth_of_field: 초점 깊이 (그림 스타일)
+        blurry: 흐린 배경
+        blurry_foreground: 흐린 전경
+        simple_background: 단순한 배경
+        black_background: 검은색 배경
+        white_background: 흰색 배경
+        transparent_background: 투명 배경
+        beige_background: 베이지색 배경
+        brown_background: 갈색 배경
+        tan_background: 황갈색 배경
+        grey_background: 회색 배경
+        two-tone_background: 이중톤 배경
+        gradient_background: 그라디언트 배경
+        multicolored_background: 다채로운 배경
+        rainbow_background: 무지개 배경
+        abstract_background: 추상적인 배경
+        argyle_background: 아가일 배경
+        checkered_background: 체크무늬 배경
+        floral_background: 꽃무늬 배경
+        halftone_background: 점자 배경
+        heart_background: 하트 배경
+        honeycomb_background: 벌집 스타일 배경
+        plaid_background: 격자무늬 배경
+        polka_dot: 도트무늬 배경
+        striped_background: 줄무늬 배경
+        scenery: 풍경
+        landscape: 경치
+        foral_background: 꽃무늬 배경
+        crop_top_overhang: 상단 잘린 부분
+        starry_background: 별빛이 나는 배경
+        sparkle_background: 반짝이는 별빛이 나는 배경
+        cityscape: 도시 풍경
+        city_lights: 도시 조명
+        clock_background: 시계 배경
+        bubble_background: 거품 배경
+        border: 테두리
+        pillarboxed: 세로로 잘린 배경
+        rounded_corners: 배경이 둥근 모서리
+        viewfinder: 뷰파인더
+        windowboxed: 윈도우박스 배경
+        outside_border: 일부가 배경 프레임 밖에 있는
+        flashback: 회상 장면
+        wall_of_text: 글 배경
+        background_text: 배경 텍스트
+
+- name: 환경
+  groups:
+    - name: 계절
+      color: rgba(31, 144, 255, .4)
+      tags:
+        in spring: 봄
+        in summer: 여름
+        in autumn: 가을
+        in winter: 겨울
+        (autumn maple forest:1.3),(very few fallen leaves),(path): 가을 풍경
+
+    - name: 날씨
+      color: rgba(31, 144, 255, .4)
+      tags:
+        day: 낮
+        dusk: 황혼
+        night: 밤
+        rain: 비
+        in the rain: 비 내리는 중
+        rainy days: 비 오는 날
+        sunset: 일몰
+        cloudy: 흐림
+        full moon: 보름달
+        sun: 태양
+        moon: 달
+        full_moon: 보름달
+        stars: 별들
+        sky: 하늘
+        universe: 우주
+        snow,ice: 눈, 얼음
+        snowflakes: 눈송이
+        lighting: 번개
+        rainbow: 무지개
+        meteor shower: 유성우
+        cumulonimbus: 적란운
+
+    - name: 자연
+      color: rgba(31, 144, 255, .4)
+      tags:
+        nature: 자연
+        sea: 바다
+        ocean: 대양
+        beach: 해변
+        hills: 언덕
+        in a meadow: 초원에서
+        on the beach: 해변에서
+        underwater: 수중
+        over the sea: 바다 위에서
+        grove: 숲
+        on a desert: 사막 위에서
+        plateau: 고원
+        cliff: 절벽
+        canyon: 협곡
+        oasis: 오아시스
+        bamboo forest: 대나무 숲
+        glacier: 빙하
+        floating island: 떠다니는 섬
+        volcano: 화산
+        savanna: 대초원
+        waterfall: 폭포
+        stream: 시냇물
+        wasteland: 황무지
+        field: 들판
+        rice paddy: 논
+        wheat field: 밀밭
+        flower field: 꽃밭
+        flower sea: 꽃바다
+        space: 우주
+        starry sky: 별이 빛나는 하늘
+        lake: 호수
+        river: 강
+        onsen: 온천
+        flowers meadows: 꽃이 가득한 초원
+        Alps: 알프스 산맥
+        Dreamy forest: 환상적인 숲(환상적인 느낌, 빛 입자가 조용함)
+        mountain: 산맥
+        on a hill: 언덕 위에서
+        the top of the hill: 언덕 꼭대기
+        outdoors: 야외
+
+    - name: 물
+      color: rgba(31, 144, 255, .4)
+      tags:
+        ocean: 대해
+        dripping: 물방울
+        beach: 해변
+        lake: 호수
+        waterfall: 폭포
+        ripples: 잔물결
+        swirl: 소용돌이
+        waves: 파도
+        seashell: 조개껍질
+        seaweed: 해초
+
+    - name: 하늘
+      color: rgba(31, 144, 255, .4)
+      tags:
+        sky: 하늘
+        gradient_sky: 기울어진 하늘
+        night_sky: 밤하늘
+        starry_sky: 별이 빛나는 하늘
+        hyper_galaxy: 초음속 은하
+        star_(sky): 별(하늘의)
+        star_trail: 별빛 자국
+        sunset: 일몰
+        moon: 달
+        lunar: 달의, 월의
+        crescent: 초승달
+        crescent_moon: 새로운 달
+        full_moon: 보름달
+        moonlight: 달빛
+        scarlet_moon: 주홍 달
+        universe: 우주
+        space: 우주
+        planet: 행성
+        from_space_station: 우주 정거장에서
+        satellite: 인공위성
+
+    - name: 구름
+      color: rgba(31, 144, 255, .4)
+      tags:
+        cirrus: 백운
+        Cirrocumulus: 웅크리는 적운
+        Cirrostratus: 웅크리는 층운
+        Altocumulus: 중층운
+        Altostratus: 중층층운
+        stratus: 층운
+        Stratocumulus: 층층운
+        cumulus: 적운
+        Cumulonimbus: 적란운
+        Nimbostratus: 비층운
+        cirrus_fibratus: 섬세한 백운
+        cirrus_uncinus: 후크 모양 백운
+        cirrus_spissatus: 빽빽한 백운
+        cirrus_floccus: 솜털 모양 백운
+        cirrus_castellanus: 성 모양 백운
+        cirrus_intortus: 엉큰 백운
+        cirrocumulus: 웅크리는 적운 종류
+        cirrocumulus_stratiformis: 층상 웅크리는 적운
+        cirrocumulus_floccus: 솜털 모양 웅크리는 적운
+        cirrocumulus_castellanus: 성 모양 웅크리는 적운
+        cirrocumulus_lacunosus: 그물 모양 웅크리는 적운
+        cirrostratus: 웅크리는 층운 종류
+        cirrostratus_fibratus: 섬세한 웅크리는 층운
+        cirrostratus_nebulosus: 안개 모양 웅크리는 층운
+        altocumulus: 중층운 종류
+        altocumulus_strataformis: 층상 중층운
+        altocumulus_lenticularis: 렌즈 모양 중층운
+        altocumulus_castellanus: 성 모양 중층운
+        altocumulus_floccus: 솜털 모양 중층운
+        altocumulus_lacunosus: 그물 모양 중층운
+        altostratus: 중층층운 종류
+        altostratus_undulatus: 파도 모양 중층층운
+        altostratus_duplicates: 중복 중층층운
+        altostratus_pannus: 조각 중층층운
+        altostratus_translucidus: 투명 중층층운
+        altostratus_opacus: 불투명 중층층운
+        altostratus_radiatus: 방사형 중층층운
+        altostratus_mammatus: 유방 모양 중층층운
+        stratus_fractus: 파편 층운
+        stratus_nebulosus: 안개 층운
+        stratus_undulatus: 파도 모양 층운
+        stratocumulus: 층층운 종류
+        stratocumulus_stratiformis: 층상 층층운
+        stratocumulus_cumulogentis: 적란성 층층운
+        stratocumulus_castellanus: 성 모양 층층운
+        stratocumulus_lenticularis: 렌즈 모양 층층운
+        stratocumulus_lacunosus: 솜털 모양 층층운
+        cumulus_humilis: 희미한 적운
+        cumulus_mediocris: 보통 적운
+        cumulus_congestus: 짙은 적운
+        cumulus_fractus: 파편 적운
+        cumulonimbus: 적란운 종류
+        cumulonimbus_calvus: 대머리 적란운
+        cumulonimbus_capillatus: 머리카락 모양 적란운
+        cumulonimbus_incus: 모루 적란운
+
+    - name: 분위기
+      color: rgba(31, 144, 255, .4)
+      tags:
+        new year: 새해
+        year of the rabbit: 토끼 년
+        valentine: 발렌타인데이
+        lantern festival: 달맞이 축제
+        summer festival: 여름 축제
+        tanabata: 칠석
+        mid-autumn festival: 추석
+        halloween: 할로윈
+        christmas: 크리스마스
+        explosion: 폭발
+        water vapor: 수증기
+        fireworks: 불꽃놀이
+        ceiling window: 바닥 창문
+        colourful glass: 다채로운 유리
+        stain glass: 스테인드 글라스
+        Graffiti wall: 그래피티 벽
+        mosaic background: 모자이크 배경
+        liquid background, Sputtered water: 액체 배경
+        magic circles: 마법진
+        fluorescent mushroom forests background: 형광 버섯 숲
+        (((colorful bubble))): 다채로운 거품
+        in the ocean: 해변에서 일몰
+        against backlight at dusk: 황혼에 역광으로
+        golden hour lighting: 황금 시간대 조명
+        strong rim light: 강한 가장자리 빛
+        intense shadows: 강렬한 그림자
+
+- name: 장면
+  groups:
+    - name: 야외
+      color: rgba(159, 32, 240, .4)
+      tags:
+        castle: 성
+        city: 도시
+        waterpark: 워터파크
+        carousel: 회전목마
+        ferris wheel: 대관람차
+        aquarium: 수족관
+        zoo: 동물원
+        bowling alley: 볼링장
+        art gallery: 미술관
+        museum: 박물관
+        planetarium: 천문대
+        swimming pool: 수영장
+        stadium: 경기장
+        temple: 사원
+        bus stop: 버스 정류장
+        train station: 기차역
+        fountain: 분수
+        playground: 놀이터
+        market stall: 시장 장사
+        phone booth: 공중 전화부스
+        railroad tracks: 철도
+        airport: 공항
+        tunnel: 터널
+        skyscraper: 초고층 빌딩
+        cityscape: 도시 풍경
+        ruins: 폐허
+        greco-roman architecture: 그리스 로마 건축
+        east asian architecture: 동아시아 건축
+        torii: 토리
+        church: 교회
+        shop: 상점
+        street: 거리
+        cyberpunk city: 사이버펑크 도시
+        in the cyberpunk city: 사이버펑크 도시에서
+        chinese style architecture: 중국식 건축
+        gohei: 고배
+        bustling city: 번화한 도시
+        laboratory: 실험실
+        coffee house: 커피집
+        gym: 체육관
+        library: 도서관
+        prison: 감옥
+        engine room: 엔진실
+        handrail: 난간
+        neon lights: 네온 조명
+        street lamp: 가로등
+        road: 도로
+        shanty town/slum: 빈민가
+        warehouse: 창고
+        gothic architecture: 고딕 양식 건축
+        restaurant: 레스토랑
+        treehouse: 나무 위의 집
+        modern, Europe: 현대적인 유럽
+        industrial wind, Chinese architecture: 산업적인 중국 건축
+        building ruins: 건물 폐허
+        bar: 바
+        izakaya: 이자카야 (일본식 주점)
+        cafe: 카페
+        bakery: 빵집
+        convenience store: 편의점
+        supermarket: 슈퍼마켓
+        pharmacy: 약국
+        theater: 극장
+        movie theater: 영화관
+        workshop: 작업장
+        courtroom: 법정
+        park: 공원
+        trapeze: 공중 놀이기구
+        classroom: 교실
+        botanical garden: 식물원
+        amusement park: 놀이공원
+        Disney land: 디즈니랜드
+        arena: 경기장
+        wrestling ring: 겨루기 장소
+        auditorium: 강당
+        concert: 콘서트
+        Japanese hotel: 일본식 호텔
+        jail bars: 감옥 바
+        in the movie theatre: 영화관에서
+        stage: 무대
+        harbor: 항구
+        casino: 카지노
+        billiard: 당구대
+        dungeon: 지하 감옥
+        grave: 무덤
+        graveyard: 묘지
+        tombstone: 묘비
+        monolith: 거대한 돌
+        rappelling: 래플링
+        building: 건물
+        architecture: 건축
+        magnificent architecture: 웅장한 건축
+        Skyscraper: 초고층 빌딩
+        east_asian_architecture: 동아시아 건축
+        cathedral: 대성당
+        chinese style loft: 중국식 로프트
+        traditional chinese room: 전통 중국식 방
+        turret: 탑
+        tower: 탑
+        mosque: 모스크
+        reservoir: 저수지
+        railroad: 철도
+        railway: 철도
+        bridge: 다리
+        under bridge: 다리 아래
+        remains: 폐허
+        rubble ruins: 폐허
+
+    - name: 도시
+      color: rgba(159, 32, 240, .4)
+      tags:
+        city: 도시
+        cityscape: 도시 풍경
+        street: 거리
+        downtown: 시내
+        crowd: 군중
+        alley: 골목
+        in main street: 대로에서
+        intersection: 교차로
+        avenue: 대로
+        lawn: 잔디밭
+        road: 도로
+        path: 길
+        pavement: 포장도로
+        road sign: 도로 표지판
+        traffic cone: 교통 표지펀
+        lamppost: 가로등
+        power lines: 전선과 전봇대
+        fence: 울타리
+        railing: 난간
+        bench: 벤치
+        vending machine: 자동판매기
+
+    - name: 실내
+      color: rgba(159, 32, 240, .4)
+      tags:
+        indoor: 실내
+        bathroom: 욕실
+        toilet stall: 화장실 칸
+        otaku room: 오타쿠 방
+        cafeteria: 카페테리아
+        classroom: 교실
+        clubroom: 동아리방
+        bedroom: 침실
+        kitchen: 부엌
+        dormitory: 기숙사
+        dungeon: 지하감옥
+        infirmary: 진료실
+        stage: 무대
+        electrical room: 전기실
+        server room: 서버실
+        basement: 지하실
+        art room: 미술실
+        bathing: 목욕
+        stairs: 계단
+        greenhouse: 온실
+
+    - name: 바닥
+      color: rgba(159, 32, 240, .4)
+      tags:
+        floor: 바닥
+        tile floor: 타일 바닥
+
+    - name: 가구
+      color: rgba(159, 32, 240, .4)
+      tags:
+        bedroom: 침실
+        tatami: 다다미
+        bed: 침대
+        couch: 소파
+        kotatsu: 코타츠
+        fireplace: 벽난로
+        window_: 창문
+        sash: 창틀
+        curtains: 커튼
+        door: 문
+        sliding doors: 슬라이딩 문
+        clothes rack: 옷걸이
+        air conditioner: 에어컨
+        table: 탁자
+        school desk: 학교 책상
+        chair: 의자
+        armchair: 안락의자
+        lounge chair: 라운지 의자
+        beach chair: 해변 의자
+        folding chair: 접이식 의자
+        invisible chair: 투명 의자
+        office chair: 사무용 의자
+        wheelchair: 휠체어
+
+    - name: 침구
+      color: rgba(159, 32, 240, .4)
+      tags:
+        bed sheet: 침대 시트
+        mattress: 매트리스
+        futon: 이불
+        cushion: 쿠션
+        carpet: 카펫
+        pillow: 베개
+        dumpling hug pillow: 만두 안아베개
+        pillow hug: 안아베개
+        yes-no pillow: 예/아니오 베개
+        stuffed animal: 봉제 동물
+        stuffed bunny: 봉제 토끼
+        koakuma: 코아쿠마
+
+    - name: 욕실
+      color: rgba(159, 32, 240, .4)
+      tags:
+        bathroom: 욕실
+        bathtub: 욕조
+        rubber duck: 고무 오리
+        shower head: 샤워기
+        toilet: 화장실
+        squat toilet: 앉지 않는 화장실
+        soap: 비누
+        tiles: 타일
+
+- name: 물건
+  groups:
+    - name: 학용품
+      color: rgba(189, 182, 107, .4)
+      tags:
+        notebook: 노트북
+        paintbrush: 붓
+        pencil: 연필
+        book: 책
+        open_book: 열린 책
+        book_stack: 책 더미
+        bookshelf: 책장
+        school_bag: 가방
+        backpack: 배낭
+
+    - name: 디지털 기기
+      color: rgba(189, 182, 107, .4)
+      tags:
+        computer: 컴퓨터
+        mouse: 마우스
+        cellphone: 휴대폰
+        Smartphones: 스마트폰
+        handheld_game_console_: 휴대용 게임 콘솔
+        nintendo_3ds: 닌텐도 3DS
+        nintendo_ds: 닌텐도 DS
+        nintendo_switch: 닌텐도 스위치
+        buttons: 버튼
+        power_lines: 전원선
+        cable: 케이블
+
+    - name: 식기
+      color: rgba(189, 182, 107, .4)
+      tags:
+        pot: 냄비
+        teapot: 찻주전자
+        ladle: 국자
+        can: 캔
+        soda_can: 캔 음료
+        cup: 컵
+        plate: 접시
+        tray: 쟁반
+        bowl: 그릇
+        fork: 포크
+        chopsticks: 젓가락
+        spoon: 숟가락
+        drinking_glass: 유리잔
+        tumbler: 일반 유리컵
+        beer_mug: 맥주잔
+        gift_box: 선물 상자
+        heart-shaped_box: 하트 모양 상자
+        candle: 양초
+
+    - name: 악기
+      color: rgba(189, 182, 107, .4)
+      tags:
+        music: 음악
+        guitar: 기타
+        piano: 피아노
+        cello: 첼로
+        playing_instrument: 악기 연주
+        wind_chime: 풍경음
+
+    - name: 기타 물품
+      color: rgba(189, 182, 107, .4)
+      tags:
+        wristwatch: 손목시계
+        folding_fan: 접이식 부채
+        paper_fan: 종이 부채
+        uchiwa: 부채
+        umbrella: 우산
+        transparent_umbrella: 투명 우산
+        closed_umbrella: 접힌 우산
+        oil-paper_umbrella: 종이 우산
+        Parasol: 선글라스
+        basket: 바구니
+        bouquet: 꽃다발
+        bucket: 양동이
+        pail: 양동이
+        camera: 카메라
+        gohei: 구베이(악마를 쫓아내는 봉)
+        lantern/lamp: 랜턴
+        whip: 채찍
+        riding_crop: 말채찍
+        ofuda: 오부다(일본의 부적)
+        cane: 지팡이
+        wand: 지팡이
+        magic: 마법
+        trading_card: 트레이딩 카드
+        playing_card: 플레잉 카드
+        Cassette: 카세트
+        chess_piece: 체스말
+        coin: 동전
+        copper: 동전
+        hammer: 망치
+        microphone: 마이크
+        mimikaki: 귀지팡이
+        sack: 주머니
+        scales: 저울
+        chibi_inset: 치비 삽화
+        damaged: 손상된
+        diamond_(shape): 다이아몬드(모양)
+        gourd: 호박
+        holding_gift: 선물을 들고 있는
+        inlet: 입구
+        key: 열쇠
+        leash: 목줄
+        Lever: 레버
+        molecule: 분자
+        money: 돈
+        Painting_(Object): 그림(물건)
+        photo_(object): 사진(물체)
+        sand: 모래
+        stubble: 다발
+        trophy: 트로피
+        tube_top: 튜브 탑
+        water_bottle: 물병
+        lotion: 로션
+        lotion_bottle: 로션 병
+
+    - name: 무기
+      color: rgba(189, 182, 107, .4)
+      tags:
+        weapon: 무기
+        weapon_on_back: 등에 있는 무기
+        weapon_over_shoulder: 어깨 위의 무기
+        huge_weapon: 거대한 무기
+        planted_weapon: 땅에 꽂은 무기
+        broken_weapon: 부서진 무기
+        planted_sword: 세운 검
+        sword: 칼
+        scabbard: 칼집
+        unsheathing: 칼을 빼는
+        katana: 카타나
+        saber_(weapon): 사브르(무기)
+        scythe: 낫
+        nose_hatchet: 코 도끼
+        dagger: 단검
+        scissors: 가위
+        axe: 도끼
+        hatchet: 손도끼
+        stake: 말뚝
+        lance: 창
+        trident: 삼지창
+        bow_(weapon): 활
+        arrow: 화살
+        claw_(weapon): 발톱(무기)
+        rifle,: 소총
+        gun: 총
+        handgun: 권총
+        thompson_submachine_gun: 톰슨 기관단총
+        magazine_(weapon): 탄창(무기)
+        dynamite: 다이너마이트
+        bomb: 폭탄
+        track missiles: 유도 미사일
+        complex Trajectory: 복잡한 궤적
+        tank: 탱크
+        cannon: 대포
+        military_vehicle: 군용 차량
+        motorcycle: 오토바이
+        ship: 배
+        watercraft: 수상선
+        car: 자동차
+        machine: 기계
+        machinery: 기계 무장
+        mechanical_arms: 기계 팔
+        mechanization: 기계화
+        robot_ears: 로봇 귀
+        robot_joints: 로봇 관절
+        variable_fighter: 가변 싸우는 기체
+        sorcerer's_sutra_scroll: 마법사의 경전
+
+    - name: 음식
+      color: rgba(189, 182, 107, .4)
+      tags:
+        A_sushi_roll: 초밥 롤
+        apple: 사과
+        aubergine: 가지
+        burger: 버거
+        cake: 케이크
+        candy: 사탕
+        candy_apple: 사과 사탕
+        candy_cane: 사탕 지팡이
+        carrot: 당근
+        cigarette: 담배
+        coffee: 커피
+        cookie: 쿠키
+        cotton_candy_: 솜사탕
+        cream: 크림
+        dango: 당고
+        doughnut: 도넛
+        drink: 음료
+        egg: 계란
+        fruit: 과일
+        Gelatin: 젤리
+        ice_cream: 아이스크림
+        kafuu_chino: 카푸치노
+        makizushi: 매트초밥
+        meat: 고기
+        noodles: 면
+        obento: 도시락
+        onigiri: 주먹밥
+        pancake: 팬케이크
+        pasties: 페이스트리
+        peach: 복숭아
+        ramen: 라면
+        sake: 일본 전통주
+        taiyaki: 타이야키
+        tea: 차
+        teacup: 티컵
+        wagashi: 와가시
+        wine: 와인
+        jam: 잼
+        pocky: 포키
+        bottled_water: 물병
+        sweet_potato: 고구마
+        sweets: 과자
+        food: 음식
+        food_in_mouth: 입 안의 음식
+        food_on_: 얼굴에 음식
+        food_on_body: 몸에 음식
+        food_print: 음식 프린트
+        food_stand: 음식 판매대
+        in_food: (캐릭터) 음식 안에
+        chips: 감자칩
+        potato_chips: 감자칩
+        telstar: 텔스타 공
+        sundae: 선데
+
+    - name: 동물
+      color: rgba(189, 182, 107, .4)
+      tags:
+        reptile: 파충류
+        crow: 까마귀
+        bird: 새
+        penguin: 펭귄
+        chick: 병아리
+        manjuu_(azur_lane): 만주(아즈레인)
+        shell: 조개
+        wriggle_nightbug: 기생충
+        dragonfly: 잠자리
+        mammal: 포유류
+        wolf: 늑대
+        扶桑花: 말
+        whale: 고래
+        cat: 고양이
+        cat_teaser: 고양이 장난감
+        dog: 개
+        dog_tags: 개 태그
+        fox: 여우
+        bunny: 토끼
+        snow_bunny: 눈 토끼
+        stuffed_bunny: 토끼 인형
+        horse: 말
+        cow: 소
+        dragon: 용
+        loong: 중국 용
+        eastern_dragon: 동양 용
+        snake: 뱀
+        slime: 슬라임
+        bear: 곰
+        panda: 판다
+        teddy_bear: 테디베어
+        tiger: 호랑이
+        bat: 박쥐
+        hamster: 햄스터
+        mouse: 쥐
+        squirrel: 다람쥐
+
+    - name: 식물
+      color: rgba(189, 182, 107, .4)
+      tags:
+        plant: 식물
+        flower: 꽃
+        vase: 꽃병
+        bouquet: 꽃다발
+        flower_bloom: 꽃이 피는
+        plum_blossom: 매화
+        cherry_blossoms: 벚꽃
+        wisteria: 덩굴
+        hibiscus: 히비스커스
+        hydrangea: 수국
+        rose: 장미
+        spider_lily: 호접란
+        lily: 백합
+        lotus: 연꽃
+        bamboo: 대나무
+        entangled_plants: 뒤얽힌 식물
+        orchid: 난초
+        chrysanthemum: 국화
+        narcissu: 수선화
+        tree: 나무
+        branch: 나뭇가지
+        forest: 숲
+        pine_tree: 소나무
+        palm_tree: 야자수
+        maple_tree: 단풍나무
+        bush/shrub,: 덤불
+        christmas_tree: 크리스마스 트리
+        maple_leaf: 단풍잎
+        pumpkin: 호박
+        jack-o'-lantern: 할로윈 호박 등
+        spring_onion: 대파
+
+- name: 렌즈
+  groups:
+    - name: 렌즈
+      color: rgba(99, 201, 2, .4)
+      tags:
+        panorama: 파노라마
+        landscape: 풍경 렌즈(원경)
+        wide_shot: 파노라마 렌즈(광각 렌즈)
+        medium_shot: 중경 렌즈
+        mid_shot: 중경 렌즈
+        full_shot: 풀샷
+        bust: 반신
+        upper_body: 상반신
+        lower_body: 하반신
+        cowboy_shot: 상반신+허벅지(카우보이 렌즈)
+        portrait: 초상화(얼굴+어깨+가끔 가슴 추가)
+        profile: 측면 초상화(측면 얼굴 초상화)
+
+    - name: 근접 촬영 렌즈
+      color: rgba(99, 201, 2, .4)
+      tags:
+        close-up: 근접 촬영 렌즈
+        macro_shot: 매크로 렌즈
+        inset: 다른 촬영 렌즈 또는 이미지 삽입
+        cross-section: 단면도
+        x-ray: 엑스레이
+        solo_focus: 개별 인물에 초점(복잡한 장면에 적합)
+        xx_focus: xx에 초점
+        face_focus: 얼굴에 초점
+        eyes_focus: 눈에 초점
+        foot_focus: 발에 초점
+        hip_focus: 엉덩이에 초점
+        ass_focus: 엉덩이에 초점
+        vehicle_focus: 탈것에 초점
+        between_legs: (강조)다리 사이
+        between_breasts: (강조)가슴 사이
+        between_fingers: (강조)손가락 사이
+        peeking: espiando
+        peeking_out: espiando (postura)
+        peeping: espiando (énfasis en el ángulo de visión)
+        midriff_peek: 배꼽 훔쳐보기
+        armpit_peek: 겨드랑이 훔쳐보기
+        pussy_peek: 퍼시 훔쳐보기
+        panty_peek: 팬티 훔쳐보기
+        pantyshot: 팬티 노출
+        caught: 발각된
+
+    - name: 기타 구도
+      color: rgba(99, 201, 2, .4)
+      tags:
+        aerial: 공중
+        turn_one's_back: 등을 돌리다
+        upskirt: 치마 밑 시점
+        phone_screen: 휴대폰 화면
+        multiple_views: 다중 시점 분해
+        mirror selfie: 거울 셀카
+        three-quarter view: 3/4 시점
+
+    - name: 렌즈 각도
+      color: rgba(99, 201, 2, .4)
+      tags:
+        front view: 정면 시점
+        from_side: 측면 시점
+        from_above: 위쪽에서 ↘
+        from_below: 아래쪽에서 ↗
+        from_outside: 외부에서 내부로
+        from_back: 등 뒤 시점
+        from behind: 등 뒤 시점
+        dynamic_angle: 동적 각도
+        cinematic_angle: 영화 각도
+        dutch angle: 기울어진 각도
+        foreshortening: 원근법
+        fisheye: 원근 효과
+
+    - name: 효과
+      color: rgba(99, 201, 2, .4)
+      tags:
+        depth of field: 피사계심도 (인물과 배경 조화)
+        lens_flare: 렌즈 플레어
+        motion_blur: 움직임에 의한 흐림
+        motion_lines: 움직임을 나타내는 선
+        speed_lines: 속도 선
+        bokeh: 보케
+        chromatic_aberration: 색차
+        overexposure: 과노출
+        contour_deepening: 등고선 강조
+
+    - name: 주인공 동작
+      color: rgba(99, 201, 2, .4)
+      tags:
+        looking_at_viewer: 시청자를 바라보는
+        eye-contact: 눈빛 교감
+        eyeball: 응시하다
+        stare: 응시하다
+        looking_back: 뒤돌아보기
+        gradient: 인물 기울기
+        looking_down: 아래를 바라보는 인물 시점 ↘
+        looking_up: 위를 바라보는 인물 시점 ↗
+        facing_away: 다른 방향을 향한
+        looking_to_the_side: 측면을 바라보는
+        looking_away: 다른 방향을 바라보는
+        looking_ahead: 앞을 내다보는
+        looking_afar: 멀리 바라보는
+        looking_outside: 외부를 바라보는
+        head_tilt: 머리 기울이기
+        head_down: 머리 숙이기
+        sideways_glance: 살짝 옆으로 훔쳐보기
+        upshirt: 셔츠 아래로 훔쳐보기
+        upshorts: 치마 아래로 훔쳐보기
+        looking_at_another: 다른 사람을 바라보는
+        looking_at_phone: 핸드폰을 바라보는
+        looking_at_animal: 동물을 바라보는
+        looking_at_mirror: 거울을 보는
+        looking_at_hand: 손을 바라보는
+        looking_at_hands: 양손을 바라보는
+        looking_at_food: 음식을 바라보는
+        looking_at_screen: 화면을 바라보는
+
+- name: 한복(당풍)
+  groups:
+    - name: 상수
+      color: rgba(178, 33, 34, .4)
+      tags:
+        hanbok, tang style outfits,<lora:hanbokTang_v32:0.7>: 당풍
+        orange upper shan: 주황색 상수
+        red upper shan: 빨간색 상수
+        green upper shan: 초록색 상수
+        blue upper shan: 파란색 상수
+        pink upper shan: 분홍색 상수
+        yellow upper shan: 노란색 상수
+        white upper shan: 흰색 상수
+        light blue upper shan: 연한 파란색 상수
+        light green upper shan: 연한 초록색 상수
+        light red upper shan: 연한 빨간색 상수
+        cyan blue upper shan: 청록색 상수
+        light purple upper shan: 연한 보라색 상수
+        black with blue upper shan: 검은색과 파란색 상수
+        white with orange upper shan: 주황색과 흰색 상수
+        pink with black upper shan: 분홍색과 검은색 상수
+
+    - name: 장상수
+      color: rgba(178, 33, 34, .4)
+      tags:
+        orange long upper shan: 주황색
+        red long upper shan: 빨간색
+        green long upper shan: 초록색
+        blue long upper shan: 파란색
+        pink long upper shan: 분홍색
+        yellow long upper shan: 노란색
+        white long upper shan: 흰색
+        light blue long upper shan: 연한 파란색
+        light green long upper shan: 연한 초록색
+        light red long upper shan: 연한 빨간색
+        cyan blue long upper shan: 청록색
+        light purple long upper shan: 연한 보라색
+        black with blue long upper shan: 검은색과 파란색
+        white with orange long upper shan: 주황색과 흰색
+        pink with black long upper shan: 분홍색과 검은색
+
+    - name: 가슴 터진 치마
+      color: rgba(178, 33, 34, .4)
+      tags:
+        white chest po skirt: 흰색 터진 치마
+        red chest po skirt: 빨간색 터진 치마
+        green chest po skirt: 초록색 터진 치마
+        blue chest po skirt: 파란색 터진 치마
+        pink chest po skirt: 분홍색 터진 치마
+        purple chest po skirt: 보라색 터진 치마
+        multicolour chest po skirt: 다색 터진 치마
+        purple with white chest po skirt: 보라색과 흰색 터진 치마
+        white with yellow chest po skirt: 흰색과 노란색 터진 치마
+        blue with white chest po skirt: 하늘색 터진 치마
+        orange with white chest po skirt: 주황색과 흰색 터진 치마
+        green with white chest po skirt: 연두색 터진 치마
+        light orange with white chest po skirt: 연한 노란색과 흰색 터진 치마
+        pink with white chest po skirt: 분홍색과 흰색 터진 치마
+        white with pink chest po skirt: 흰색에 분홍색 터진 치마
+
+    - name: 가슴 주름 치마
+      color: rgba(178, 33, 34, .4)
+      tags:
+        white chest pleated skirt: 흰색 주름 치마
+        red chest pleated skirt: 빨간색 주름 치마
+        green chest pleated skirt: 초록색 주름 치마
+        blue chest pleated skirt: 파란색 주름 치마
+        pink chest pleated skirt: 분홍색 주름 치마
+        purple chest pleated skirt: 보라색 주름 치마
+        multicolour chest pleated skirt: 다색 주름 치마
+        purple with white chest pleated skirt: 보라색과 흰색 주름 치마
+        white with yellow chest pleated skirt: 흰색과 노란색 주름 치마
+        blue with white chest pleated skirt: 하늘색 주름 치마
+        orange with white chest pleated skirt: 주황색과 흰색 주름 치마
+        green with white chest pleated skirt: 연두색 주름 치마
+        light orange with white chest pleated skirt: 연한 노란색과 흰색 주름 치마
+        pink with white chest pleated skirt: 분홍색과 흰색 주름 치마
+        white with pink chest pleated skirt: 흰색에 분홍색 주름 치마
+
+    - name: 띠
+      color: rgba(178, 33, 34, .4)
+      tags:
+        green waistband: 초록색 띠
+        yellow waistband: 노란색 띠
+        red waistband: 빨간색 띠
+        pink waistband: 분홍색 띠
+        orange waistband: 주황색 띠
+        light blue waistband: 연한 파란색 띠
+        light green waistband: 연한 초록색 띠
+        green with yellow waistband: 노란색과 초록색 띠
+        purple with white waistband: 보라색과 흰색 띠
+        red with white waistband: 빨간색과 흰색 띠
+        red with black waistband: 빨간색과 검은색 띠
+        yellow with white waistband: 노란색과 흰색 띠
+
+    - name: 겉옷
+      color: rgba(178, 33, 34, .4)
+      tags:
+        white pibo: 흰색 겉옷
+        orange pibo: 주황색 겉옷
+        black pibo: 검은색 겉옷
+        pink pibo: 분홍색 겉옷
+        red pibo: 빨간색 겉옷
+        purple pibo: 보라색 겉옷
+        light green pibo: 연한 초록색 겉옷
+        white with yellow pibo: 노란색과 흰색 겉옷
+
+- name: 한복(송풍)
+  groups:
+    - name: 짧은 상의
+      color: rgba(178, 33, 34, .4)
+      tags:
+        hanbok, song style outfits,<lora:hanbokSong_v31:0.7>: 송풍
+        purple short shan: 보라색 짧은 상의
+        red short shan: 빨간색 짧은 상의
+        green short shan: 초록색 짧은 상의
+        blue short shan: 파란색 짧은 상의
+        pink short shan: 분홍색 짧은 상의
+        yellow short shan: 노란색 짧은 상의
+        white short shan: 흰색 짧은 상의
+        light blue short shan: 연한 파란색 짧은 상의
+        light green short shan: 연한 초록색 짧은 상의
+        light red short shan: 연한 빨간색 짧은 상의
+        cyan blue short shan: 청록색 짧은 상의
+        light purple short shan: 연한 보라색 짧은 상의
+        black with blue short shan: 검은색과 파란색 짧은 상의
+        white with yellow short shan: 노란색과 흰색 짧은 상의
+        light yellow with green with white short shan: 연한 노란색과 초록색과 흰색 짧은 상의
+
+    - name: 긴 상의
+      color: rgba(178, 33, 34, .4)
+      tags:
+        purple long shan: 보라색 긴 상의
+        red long shan: 빨간색 긴 상의
+        green long shan: 초록색 긴 상의
+        blue long shan: 파란색 긴 상의
+        pink long shan: 분홍색 긴 상의
+        yellow long shan: 노란색 긴 상의
+        white long shan: 흰색 긴 상의
+        light blue long shan: 연한 파란색 긴 상의
+        light green long shan: 연한 초록색 긴 상의
+        light red long shan: 연한 빨간색 긴 상의
+        cyan blue long shan: 청록색 긴 상의
+        light purple long shan: 연한 보라색 긴 상의
+        black with blue long shan: 검은색과 파란색 긴 상의
+        white with yellow long shan: 노란색과 흰색 긴 상의
+        light yellow with green with white long shan: 연한 노란색과 초록색과 흰색 긴 상의
+
+    - name: 주름 치마
+      color: rgba(178, 33, 34, .4)
+      tags:
+        white pleated skirt: 흰색 치마
+        red pleated skirt: 빨간색 치마
+        green pleated skirt: 초록색 치마
+        blue pleated skirt: 파란색 치마
+        pink pleated skirt: 분홍색 치마
+        light blue pleated skirt: 연한 파란색 치마
+        white golden pleated skirt: 흰색 금색 치마
+        gradient green pleated skirt: 그라데이션 초록색 치마
+        translucent white pleated skirt: 반투명 흰색 치마
+        red cyan gradient pleated skirt: 빨간색 청록색 그라데이션 치마
+        red green gradient pleated skirt: 빨간색 초록색 그라데이션 치마
+        green with white pleated skirt: 흰색 초록색 치마
+        light yellow with green with white pleated skirt: 연한 노란색 초록색 흰색 치마
+
+    - name: 송모
+      color: rgba(178, 33, 34, .4)
+      tags:
+        orange songmo: 주황색 송모
+        red songmo: 빨간색 송모
+        green songmo: 초록색 송모
+        blue songmo: 파란색 송모
+        pink songmo: 분홍색 송모
+        yellow songmo: 노란색 송모
+        white songmo: 흰색 송모
+        purple songmo: 보라색 송모
+        green floral songmo: 초록색 꽃무늬 송모
+        purple floral songmo: 보라색 꽃무늬 송모
+        cyan floral songmo: 청록색 꽃무늬 송모
+
+- name: 한복(명풍)
+  groups:
+    - name: 상의
+      color: rgba(178, 33, 34, .4)
+      tags:
+        hanbok, ming style outfits,<lora:hanbokMing_v31:0.7>: 명풍
+        short coat: 짧은 외투
+        long coat: 긴 외투
+
+    - name: 치마
+      color: rgba(178, 33, 34, .4)
+      tags:
+        mamian skirt: 마면 치마
+
+    - name: 칼라
+      color: rgba(178, 33, 34, .4)
+      tags:
+        overlapping collar: 교차 칼라
+        round collar: 둥근 칼라
+        standing collar: 선 칼라
+        square collar: 사각 칼라
+
+    - name: 장식
+      color: rgba(178, 33, 34, .4)
+      tags:
+        overlapping collar: 구름 어깨
+        embroidery: 자수
+        woven gold: 직조 금
+        makeup flower: 화장 꽃
+        bufu: 보복 의복

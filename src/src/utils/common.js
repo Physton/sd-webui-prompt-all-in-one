@@ -1,5 +1,8 @@
 import splitTags from "@/utils/splitTags";
 import globals from "../../globals";
+import tinycolor from "tinycolor2";
+
+const cache = {}
 
 export default {
     loraRegex: /^\<lora:\s*([^\:]+)\s*(:)?\s*([0-9\.]+)?\>$/,
@@ -596,5 +599,29 @@ export default {
             this.gradioContainer = document.body
             return document.body
         }
+    },
+
+    fitterInputColor(color, defaultColor = 'rgba(0,0,0,0)') {
+        let cacheKey = 'fitterInputColor:' + color + ':' + defaultColor
+        if (cache[cacheKey]) return cache[cacheKey]
+
+        if (!color || color === '' || color === 'default' || color === 'none' || color === 'null' || color === 'undefined' || color === 'false' || color === 'true') {
+            cache[cacheKey] = defaultColor
+            return defaultColor
+        }
+        if (!tinycolor(color).isValid()) {
+            cache[cacheKey] = defaultColor
+            return defaultColor
+        }
+        cache[cacheKey] = color
+        return color
+    },
+
+    isColorTransparent(color) {
+        let cacheKey = 'isColorTransparent:' + color
+        if (cache[cacheKey]) return cache[cacheKey]
+        let result = tinycolor(color).getAlpha() === 0
+        cache[cacheKey] = result
+        return result
     },
 }

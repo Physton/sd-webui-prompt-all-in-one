@@ -179,4 +179,8 @@ export default class GradioAPI {
         const config = {timeout: 100000000000}
         return (await this.api.post("/mbart50_initialize", {}, config)).data
     }
+
+    async getGroupTags(lang) {
+        return (await this.api.get("/get_group_tags", {params: {lang}})).data.tags
+    }
 }

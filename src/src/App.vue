@@ -44,6 +44,10 @@
                             @click:show-about="onShowAbout"
                             :theme="theme"
                             @click:switch-theme="onSwitchTheme"
+                            :group-tags="groupTags"
+                            :hide-group-tags="item.hideGroupTags"
+                            v-model:group-tags-color="groupTagsColor"
+                            @update:hide-group-tags="onUpdateHideGroupTags(item.id, $event)"
             ></physton-prompt>
         </template>
         <translate-setting ref="translateSetting" v-model:language-code="languageCode"
@@ -123,6 +127,8 @@ import PackagesState from "@/components/packagesState.vue";
 import ChatgptPrompt from "@/components/chatgptPrompt.vue";
 import About from "@/components/about.vue";
 import globals from "../globals";
+import jsYaml from "js-yaml";
+import {ref} from "vue";
 
 export default {
     name: 'App',
@@ -160,6 +166,8 @@ export default {
                     hideDefaultInput: false,
                     hidePanelKey: 'txt2ImgHidePanel',
                     hidePanel: false,
+                    hideGroupTagsKey: 'txt2ImgHideGroupTags',
+                    hideGroupTags: false,
                     id: 'phystonPrompt_txt2img_prompt'
                 },
                 {
@@ -179,6 +187,8 @@ export default {
                     hideDefaultInput: false,
                     hidePanelKey: 'txt2ImgNegHidePanel',
                     hidePanel: false,
+                    hideGroupTagsKey: 'txt2ImgNegHideGroupTags',
+                    hideGroupTags: false,
                     id: 'phystonPrompt_txt2img_neg_prompt'
                 },
                 {
@@ -198,6 +208,8 @@ export default {
                     hideDefaultInput: false,
                     hidePanelKey: 'img2ImgHidePanel',
                     hidePanel: false,
+                    hideGroupTagsKey: 'img2ImgHideGroupTags',
+                    hideGroupTags: false,
                     id: 'phystonPrompt_img2img_prompt'
                 },
                 {
@@ -217,6 +229,8 @@ export default {
                     hideDefaultInput: false,
                     hidePanelKey: 'img2ImgNegHidePanel',
                     hidePanel: false,
+                    hideGroupTagsKey: 'img2ImgNegHideGroupTags',
+                    hideGroupTags: false,
                     id: 'phystonPrompt_img2img_neg_prompt'
                 },
             ],
@@ -265,6 +279,9 @@ export default {
             isLatestVersion: true,
 
             theme: 'dark',
+
+            groupTags: [],
+            groupTagsColor: {},
         }
     },
     watch: {
@@ -276,6 +293,7 @@ export default {
                 this.gradioAPI.setData('languageCode', val).then(data => {
                 }).catch(err => {
                 })
+                this.loadGroupTags()
             },
             immediate: false,
         },
@@ -428,6 +446,17 @@ export default {
             },
             immediate: false,
         },
+        groupTagsColor: {
+            handler: function (val, oldVal) {
+                if (!this.startWatchSave) return
+                console.log('onGroupTagsColorChange', val, oldVal)
+                this.gradioAPI.setData('groupTagsColor', val).then(data => {
+                }).catch(err => {
+                })
+            },
+            deep: true,
+            immediate: false,
+        },
         onlyCsvOnAuto() {
             if (!this.startWatchSave) return
             console.log('onOnlyCsvOnAutoChange', this.onlyCsvOnAuto)
@@ -439,6 +468,7 @@ export default {
     mounted() {
         common.loadCSS('toastr.min.css', 'physton-prompt-toastr', true, true, false)
         common.loadCSS('tippy.css', 'physton-prompt-tippy', true, true, false)
+        common.loadCSS('vue3-colorpicker.css', 'physton-prompt-vue3-colorpicker', true, true, false)
         common.loadCSS('main.min.css', 'physton-prompt-main', true)
 
         const urlParams = new URLSearchParams(window.location.search);
@@ -482,10 +512,11 @@ export default {
         },
         init() {
             this.loadExtraNetworks()
-            let dataListsKeys = ['languageCode', 'autoTranslate', 'autoTranslateToEnglish', 'autoTranslateToLocal', 'autoRemoveSpace', 'autoRemoveLastComma', 'autoKeepWeightZero', 'autoKeepWeightOne', 'autoBreakBeforeWrap', 'autoBreakAfterWrap', /*'hideDefaultInput', */'translateApi', 'enableTooltip', 'tagCompleteFile', 'onlyCsvOnAuto', 'extensionSelect.minimalist']
+            let dataListsKeys = ['languageCode', 'autoTranslate', 'autoTranslateToEnglish', 'autoTranslateToLocal', 'autoRemoveSpace', 'autoRemoveLastComma', 'autoKeepWeightZero', 'autoKeepWeightOne', 'autoBreakBeforeWrap', 'autoBreakAfterWrap', /*'hideDefaultInput', */'translateApi', 'enableTooltip', 'tagCompleteFile', 'onlyCsvOnAuto', 'extensionSelect.minimalist', 'groupTagsColor']
             this.prompts.forEach(item => {
                 dataListsKeys.push(item.hideDefaultInputKey)
                 dataListsKeys.push(item.hidePanelKey)
+                dataListsKeys.push(item.hideGroupTagsKey)
             })
 
             this.gradioAPI.getDatas(dataListsKeys).then(data => {
@@ -596,6 +627,16 @@ export default {
                     this.gradioAPI.setData('extensionSelect.minimalist', true)
                 }
 
+                if (data.groupTagsColor !== null) {
+                    if (typeof data.groupTagsColor === 'object') {
+                        this.groupTagsColor = {}
+                        for (let key in data.groupTagsColor) {
+                            let color = data.groupTagsColor[key]
+                            this.groupTagsColor[key] = ref(common.fitterInputColor(color))
+                        }
+                    }
+                }
+
                 this.updateTranslateApiConfig()
                 this.$refs.extensionCss.init()
 
@@ -605,6 +646,9 @@ export default {
                     }
                     if (data[item.hidePanelKey] !== null) {
                         item.hidePanel = data[item.hidePanelKey]
+                    }
+                    if (data[item.hideGroupTagsKey] !== null) {
+                        item.hideGroupTags = data[item.hideGroupTagsKey]
                     }
                     item.$prompt = common.gradioApp().querySelector("#" + item.prompt)
                     item.$textarea = item.$prompt.getElementsByTagName("textarea")[0]
@@ -622,6 +666,7 @@ export default {
                 })
 
                 this.handlePaste()
+                this.loadGroupTags()
 
                 /*this.gradioAPI.getVersion().then(res => {
                     this.version = res.version
@@ -638,6 +683,23 @@ export default {
                     clientY: 150,
                     clientX: 283,
                 })*/
+            })
+        },
+        loadGroupTags() {
+            this.gradioAPI.getGroupTags(this.languageCode).then(data => {
+                if (!data || data === '') {
+                    this.groupTags = []
+                } else {
+                    try {
+                        this.groupTags = jsYaml.load(data)
+                        if (!Array.isArray(this.groupTags)) {
+                            this.groupTags = []
+                        }
+                    } catch (e) {
+                        console.log(e)
+                        this.groupTags = []
+                    }
+                }
             })
         },
         updateTippyState() {
@@ -777,6 +839,12 @@ export default {
             if (!item) return
             item.hidePanel = value
             this.gradioAPI.setData(item.hidePanelKey, item.hidePanel)
+        },
+        onUpdateHideGroupTags(id, value) {
+            const item = this.prompts.find(item => item.id == id)
+            if (!item) return
+            item.hideGroupTags = value
+            this.gradioAPI.setData(item.hideGroupTagsKey, item.hideGroupTags)
         },
         onShowHistory(id, e) {
             this.$refs.favorite.hide()

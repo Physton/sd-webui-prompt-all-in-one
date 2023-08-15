@@ -2,7 +2,7 @@
     <div class="physton-prompt" :name="name">
         <div :class="['prompt-main', hidePanel ? 'fold': '']" @click="onPromptMainClick">
             <div class="prompt-header">
-                <div class="prompt-unfold" @click="onUnfoldClick">
+                <div class="prompt-unfold" @click="onUnfoldClick" v-tooltip="getLang(hidePanel ? 'show_panel' : 'hide_panel')">
                     <icon-svg class="hover-scale-120" name="unfold"/>
                 </div>
                 <div class="prompt-header-title">{{ neg ? getLang('negative_prompt') : getLang('prompt') }}</div>
@@ -276,6 +276,7 @@
                                 <template v-else>
                                     <div v-show="!editing[tag.id]"
                                          :class="tag.classes"
+                                         :style="getTagColorStyle(tag)"
                                          :ref="'promptTagValue-' + tag.id"
                                          v-tooltip="getLang('click_to_edit') + '<br/>' + getLang('dblclick_to_disable') + '<br/>' + getLang('drop_to_order')"
                                          @click="onTagClick(tag.id, $event)" @dblclick="onTagDblclick(tag.id)"
@@ -402,6 +403,58 @@
                     </button>
                 </div>
             </div>
+            <div v-if="groupTags.length" :class="['show-group-tags', hideGroupTags ? 'hided': '']" @click="onClickHideGroupTags"
+                 v-tooltip="getLang(hideGroupTags ? 'show_group_tags' : 'hide_group_tags')">
+                <icon-svg class="hover-scale-120" name="unfold"/>
+            </div>
+            <div class="group-tabs" v-show="!hideGroupTags && groupTags.length">
+                <div class="group-header" ref="groupTabsHeader">
+                    <div v-for="(item, index) in groupTags" :key="index" :class="['group-tab', index == groupTagsActive ? 'active' : '']" @click="activeGroupTab(index)">{{ item.name }}</div>
+                </div>
+                <div class="group-body">
+                    <div v-for="(item, index) in groupTags" :key="index" :class="['group-main', index == groupTagsActive ? 'active' : '']">
+                        <div class="sub-group-header" v-if="index == groupTagsActive">
+                            <div class="sub-group-tab" v-for="(group, subIndex) in item.groups" :key="subIndex" :class="['sub-group-tab', subIndex == subGroupTagsActive ? 'active' : '']" @click="activeSubGroupTab(subIndex)">{{ group.name }}</div>
+                        </div>
+                        <div class="sub-group-body" v-if="index == groupTagsActive">
+                            <div v-for="(group, subIndex) in item.groups" :key="subIndex" :class="['sub-group-main', subIndex == subGroupTagsActive ? 'active' : '']">
+                                <div class="group-tags" v-if="subIndex == subGroupTagsActive">
+                                    <div class="tag-item" v-for="(local, en) in group.tags"
+                                        v-tooltip="getGroupTagTooltip(local, en)" unaffected="true"
+                                        @click="onClickGroupTag(local, en)" v-html="renderGroupTag(local, en, item.name, group.name)">
+                                    </div>
+                                </div>
+                                <div class="tags-footer">
+                                    <div class="tags-color">
+                                        <div>标签颜色:</div>
+                                        <div class="tags-color-picker hover-scale-120"
+                                             v-tooltip="groupTagsColor[getTagsColorKey(item.name, group.name)]"
+                                             unaffected="true">
+                                            <color-picker
+                                                :theme="theme == 'dark' ? 'black' : 'white'"
+                                                v-model:pureColor="groupTagsColor[getTagsColorKey(item.name, group.name)]"
+                                                @pureColorChange="onTagsColorChange(getTagsColorKey(item.name, group.name))"
+                                            />
+                                        </div>
+                                        <div class="tags-color-reset hover-scale-120"
+                                             v-tooltip="getLang('reset_default_color')"
+                                             @click="onClickResetTagsColor(getTagsColorKey(item.name, group.name))">
+                                            <icon-svg name="reset"/>
+                                        </div>
+                                        <div class="tags-color-clear hover-scale-120"
+                                             v-tooltip="getLang('clear_color')"
+                                             @click="onClickClearTagsColor(getTagsColorKey(item.name, group.name))">
+                                            <icon-svg name="clear"/>
+                                        </div>
+                                    </div>
+                                    <div class="tags-copyright">{{ getLang('tags-copyright') }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
         </div>
         <highlight-prompt ref="highlightPrompt" :textarea="textarea" :hide-default-input="hideDefaultInput"/>
     </div>
@@ -417,17 +470,20 @@ import VueNumberInput from '@/components/vue-number-input.vue'
 import HeaderMixin from "@/mixins/phystonPrompt/headerMixin"
 import DropMixin from "@/mixins/phystonPrompt/dropMixin"
 import TagMixin from "@/mixins/phystonPrompt/tagMixin"
+import GroupTagsMixin from "@/mixins/phystonPrompt/groupTagsMixin"
 import IconSvg from "@/components/iconSvg.vue"
-import HighlightPrompt from "@/components/highlightPrompt.vue";
+import HighlightPrompt from "@/components/highlightPrompt.vue"
+import {ColorPicker} from "vue3-colorpicker"
 
 export default {
     name: 'PhystonPrompt',
     components: {
         HighlightPrompt,
         VueNumberInput,
-        IconSvg
+        IconSvg,
+        ColorPicker,
     },
-    mixins: [LanguageMixin, HeaderMixin, DropMixin, TagMixin],
+    mixins: [LanguageMixin, HeaderMixin, DropMixin, TagMixin, GroupTagsMixin],
     props: {
         name: {
             type: String,
@@ -537,8 +593,20 @@ export default {
             type: String,
             default: 'dark',
         },
+        groupTags: {
+            type: Array,
+            default: () => [],
+        },
+        hideGroupTags: {
+            type: Boolean,
+            default: false,
+        },
+        groupTagsColor: {
+            type: Object,
+            default: () => ({}),
+        },
     },
-    emits: ['update:languageCode', 'update:autoTranslate', 'update:autoTranslateToEnglish', 'update:autoTranslateToLocal', 'update:autoRemoveSpace', 'update:autoRemoveLastComma', 'update:autoKeepWeightZero', 'update:autoKeepWeightOne', 'update:hideDefaultInput', 'update:hidePanel', 'update:enableTooltip', 'update:translateApi', 'click:translateApi', 'click:promptFormat', 'click:selectTheme', 'click:switchTheme', 'click:showAbout', 'click:selectLanguage', 'click:showHistory', 'click:showFavorite', 'refreshFavorites', 'click:showChatgpt'],
+    emits: ['update:languageCode', 'update:autoTranslate', 'update:autoTranslateToEnglish', 'update:autoTranslateToLocal', 'update:autoRemoveSpace', 'update:autoRemoveLastComma', 'update:autoKeepWeightZero', 'update:autoKeepWeightOne', 'update:hideDefaultInput', 'update:hidePanel', 'update:enableTooltip', 'update:translateApi', 'click:translateApi', 'click:promptFormat', 'click:selectTheme', 'click:switchTheme', 'click:showAbout', 'click:selectLanguage', 'click:showHistory', 'click:showFavorite', 'refreshFavorites', 'click:showChatgpt', 'update:hideGroupTags', 'update:groupTagsColor'],
     data() {
         return {
             prompt: '',

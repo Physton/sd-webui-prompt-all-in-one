@@ -3395,6 +3395,7 @@
                     "support": {
                         "zh_CN": "cn",
                         "zh_HK": "yue",
+                        "zh_TW": "yue",
                         "en_US": "en",
                         "en_GB": "en",
                         "af_ZA": "af",
@@ -3504,6 +3505,7 @@
                     "support": {
                         "zh_CN": "cn",
                         "zh_HK": "yue",
+                        "zh_TW": "yue",
                         "en_US": "en",
                         "en_GB": "en",
                         "ar_SA": "ar",

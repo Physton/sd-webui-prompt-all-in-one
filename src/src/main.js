@@ -21,11 +21,15 @@ onUiLoaded(() => {
         mounted(el, binding) {
             // data-tippy-content
             el.setAttribute('data-tippy-content', binding.value)
+            // 如果有 unaffected 属性，则不受 localStorage 控制
+            let unaffected = el.getAttribute('unaffected')
+            unaffected     = unaffected === null ? false : unaffected === 'true'
             const instance = tippy(el, {
                 placement: 'bottom',
                 theme: 'light',
                 allowHTML: true,
                 onCreate(instance, partialProps) {
+                    if (unaffected) return
                     const enable = localStorage.getItem('phystonPromptEnableTooltip') === 'true'
                     if (!enable) {
                         instance.disable()
@@ -33,7 +37,7 @@ onUiLoaded(() => {
                 },
             })
             el.$tippyInstance = instance
-            app.config.globalProperties.$tippyList.push(instance)
+            if (!unaffected) app.config.globalProperties.$tippyList.push(instance)
         },
         updated(el, binding) {
             el.setAttribute('data-tippy-content', binding.value)

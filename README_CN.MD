@@ -135,6 +135,10 @@ sd-webui-prompt-all-in-one 是一个基于 [stable-diffusion-webui](https://gith
 
   ![](https://s1.imagehub.cc/images/2023/06/06/demo.custom_theme.gif)
 
+- [一键添加关键词](https://aiodoc.physton.com/zh-CN/GroupTags.html)
+
+  ![](https://s1.imagehub.cc/images/2023/08/15/demo.group_tags.gif)
+
 ## 捐赠
 
 [捐赠列表](https://aiodoc.physton.com/zh-CN/Donate.html)

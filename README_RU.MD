@@ -129,6 +129,10 @@ sd-webui-prompt-all-in-one - это расширение, основанное �
 
   ![](https://s1.imagehub.cc/images/2023/06/06/demo.custom_theme.gif)
 
+- [Добавление ключевых слов в один клик](https://aiodoc.physton.com/ru/GroupTags.html)
+
+  ![](https://s1.imagehub.cc/images/2023/08/15/demo.group_tags.gif)
+
 ## Пожертвования
 
 [Список пожертвований](https://aiodoc.physton.com/ru/Donate.html)

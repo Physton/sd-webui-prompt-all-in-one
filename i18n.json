@@ -132,7 +132,14 @@
                 "disabled": "禁止",
                 "last_input_prompt": "最后输入的提示词",
                 "is_break_before_wrap": "是否在 “BREAK” 关键词前面加换行符。<br/>勾选后自动添加换行符。<br/>取消勾选将不做任何处理。",
-                "is_break_after_wrap": "是否在 “BREAK” 关键词后面加换行符。<br/>勾选后自动添加换行符。<br/>取消勾选将不做任何处理。"
+                "is_break_after_wrap": "是否在 “BREAK” 关键词后面加换行符。<br/>勾选后自动添加换行符。<br/>取消勾选将不做任何处理。",
+                "show_panel": "显示面板",
+                "hide_panel": "隐藏面板",
+                "show_group_tags": "显示分组标签",
+                "hide_group_tags": "隐藏分组标签",
+                "tags-copyright": "提示词整合来源 路过银河(知乎)、未知作者(Google Drive)、互联网等等，感谢这些作者的无私奉献！",
+                "reset_default_color": "重置为默认颜色",
+                "clear_color": "清除颜色"
             }
         },
         {
@@ -266,7 +273,14 @@
                 "disabled": "禁止",
                 "last_input_prompt": "最後輸入的提示詞",
                 "is_break_before_wrap": "是否在“BREAK”關鍵詞前面加換行符。<br/>勾選後自動添加換行符。<br/>取消勾選將不做任何處理。",
-                "is_break_after_wrap": "是否在“BREAK”關鍵詞後面加換行符。<br/>勾選後自動添加換行符。<br/>取消勾選將不做任何處理。"
+                "is_break_after_wrap": "是否在“BREAK”關鍵詞後面加換行符。<br/>勾選後自動添加換行符。<br/>取消勾選將不做任何處理。",
+                "show_panel": "顯示面板",
+                "hide_panel": "隱藏面板",
+                "show_group_tags": "顯示分組標籤",
+                "hide_group_tags": "隱藏分組標籤",
+                "tags-copyright": "提示詞整合來源 路過銀河(知乎)、未知作者(Google Drive)、互聯網等等，感謝這些作者的無私奉獻！",
+                "reset_default_color": "重置為預設顏色",
+                "clear_color": "清除顏色"
             }
         },
         {
@@ -400,7 +414,14 @@
                 "disabled": "禁止",
                 "last_input_prompt": "最後輸入的提示詞",
                 "is_break_before_wrap": "是否在「BREAK」關鍵詞前面加換行符。<br/>勾選後自動添加換行符。<br/>取消勾選將不做任何處理。",
-                "is_break_after_wrap": "是否在「BREAK」關鍵詞後面加換行符。<br/>勾選後自動添加換行符。<br/>取消勾選將不做任何處理。"
+                "is_break_after_wrap": "是否在「BREAK」關鍵詞後面加換行符。<br/>勾選後自動添加換行符。<br/>取消勾選將不做任何處理。",
+                "show_panel": "顯示面板",
+                "hide_panel": "隱藏面板",
+                "show_group_tags": "顯示分組標籤",
+                "hide_group_tags": "隱藏分組標籤",
+                "tags-copyright": "提示詞整合來源 路過銀河(知乎)、未知作者(Google Drive)、互聯網等等，感謝這些作者的無私奉獻！",
+                "reset_default_color": "重置為預設顏色",
+                "clear_color": "清除顏色"
             }
         },
         {
@@ -534,7 +555,14 @@
                 "disabled": "Disabled",
                 "last_input_prompt": "Last input prompt",
                 "is_break_before_wrap": "Whether to add a line break before the \"BREAK\" keyword.<br/>When selected, a line break will be automatically added.<br/>Deselecting will not perform any action.",
-                "is_break_after_wrap": "Whether to add a line break after the \"BREAK\" keyword.<br/>When selected, a line break will be automatically added.<br/>Deselecting will not perform any action."
+                "is_break_after_wrap": "Whether to add a line break after the \"BREAK\" keyword.<br/>When selected, a line break will be automatically added.<br/>Deselecting will not perform any action.",
+                "show_panel": "Show Panel",
+                "hide_panel": "Hide Panel",
+                "show_group_tags": "Show Group Tags",
+                "hide_group_tags": "Hide Group Tags",
+                "tags-copyright": "Prompt words integration source from 路过银河(知乎)、unknown author(Google Drive)、internet, etc. Thanks to these selfless contributors!",
+                "reset_default_color": "Reset to Default Color",
+                "clear_color": "Clear Color"
             }
         },
         {
@@ -679,7 +707,14 @@
                 "disabled": "معطل",
                 "last_input_prompt": "آخر تلميح مدخل",
                 "is_break_before_wrap": "هل ترغب في إضافة فاصلة قبل كلمة \"BREAK\".<br/>عند تحديدها، سيتم إضافة فاصلة تلقائيًا.<br/>عند إلغاء التحديد، لن يتم أي تغيير.",
-                "is_break_after_wrap": "هل ترغب في إضافة فاصلة بعد كلمة \"BREAK\".<br/>عند تحديدها، سيتم إضافة فاصلة تلقائيًا.<br/>عند إلغاء التحديد، لن يتم أي تغيير."
+                "is_break_after_wrap": "هل ترغب في إضافة فاصلة بعد كلمة \"BREAK\".<br/>عند تحديدها، سيتم إضافة فاصلة تلقائيًا.<br/>عند إلغاء التحديد، لن يتم أي تغيير.",
+                "show_panel": "عرض اللوحة",
+                "hide_panel": "إخفاء اللوحة",
+                "show_group_tags": "عرض علامات المجموعة",
+                "hide_group_tags": "إخفاء علامات المجموعة",
+                "tags-copyright": "مصدر دمج كلمات التلميح من لُطْفٍ بالمجرّة (زهو)، مؤلف غير معروف (جوجل درايف)، الإنترنت، وما إلى ذلك. شكرًا لهؤلاء المساهمين الذين يعملون بلا مقابل!",
+                "reset_default_color": "إعادة تعيين اللون الافتراضي",
+                "clear_color": "مسح اللون"
             }
         },
         {
@@ -912,7 +947,14 @@
                 "disabled": "Désactivé",
                 "last_input_prompt": "Dernier prompt d'entrée",
                 "is_break_before_wrap": "Ajouter un saut de ligne avant le mot clé \"BREAK\".<br/>Lorsqu'il est sélectionné, un saut de ligne sera automatiquement ajouté.<br/>La désélection n'effectuera aucune action.",
-                "is_break_after_wrap": "Ajouter un saut de ligne après le mot clé \"BREAK\".<br/>Lorsqu'il est sélectionné, un saut de ligne sera automatiquement ajouté.<br/>La désélection n'effectuera aucune action."
+                "is_break_after_wrap": "Ajouter un saut de ligne après le mot clé \"BREAK\".<br/>Lorsqu'il est sélectionné, un saut de ligne sera automatiquement ajouté.<br/>La désélection n'effectuera aucune action.",
+                "show_panel": "Afficher le panneau",
+                "hide_panel": "Masquer le panneau",
+                "show_group_tags": "Afficher les balises de groupe",
+                "hide_group_tags": "Masquer les balises de groupe",
+                "tags-copyright": "Source d'intégration des mots d'invite provenant de 路过银河(知乎)、auteur inconnu(Google Drive)、internet, etc. Merci à ces contributeurs altruistes !",
+                "reset_default_color": "Réinitialiser la couleur par défaut",
+                "clear_color": "Effacer la couleur"
             }
         },
         {
@@ -1060,7 +1102,14 @@
                 "disabled": "Deaktiviert",
                 "last_input_prompt": "Letzte Eingabeaufforderung",
                 "is_break_before_wrap": "Ob vor dem Schlüsselwort \"BREAK\" ein Zeilenumbruch hinzugefügt werden soll.<br/>Wenn ausgewählt, wird automatisch ein Zeilenumbruch hinzugefügt.<br/>Durch Abwählen wird keine Aktion durchgeführt.",
-                "is_break_after_wrap": "Ob nach dem Schlüsselwort \"BREAK\" ein Zeilenumbruch hinzugefügt werden soll.<br/>Wenn ausgewählt, wird automatisch ein Zeilenumbruch hinzugefügt.<br/>Durch Abwählen wird keine Aktion durchgeführt."
+                "is_break_after_wrap": "Ob nach dem Schlüsselwort \"BREAK\" ein Zeilenumbruch hinzugefügt werden soll.<br/>Wenn ausgewählt, wird automatisch ein Zeilenumbruch hinzugefügt.<br/>Durch Abwählen wird keine Aktion durchgeführt.",
+                "show_panel": "Panel anzeigen",
+                "hide_panel": "Panel ausblenden",
+                "show_group_tags": "Gruppentags anzeigen",
+                "hide_group_tags": "Gruppentags ausblenden",
+                "tags-copyright": "Quelle für die Integration von Hinweiswörtern von 路过银河(知乎)、unbekannter Autor(Google Drive)、Internet usw. Vielen Dank an diese selbstlosen Beitragenden!",
+                "reset_default_color": "Auf Standardfarbe zurücksetzen",
+                "clear_color": "Farbe löschen"
             }
         },
         {
@@ -1258,7 +1307,14 @@
                 "disabled": "Disabilitato",
                 "last_input_prompt": "Ultimo prompt di input",
                 "is_break_before_wrap": "Se aggiungere un'interruzione di riga prima della parola chiave \"BREAK\".<br/>Quando selezionato, verrà aggiunta automaticamente un'interruzione di riga.<br/>La deselezione non eseguirà alcuna azione.",
-                "is_break_after_wrap": "Se aggiungere un'interruzione di riga dopo la parola chiave \"BREAK\".<br/>Quando selezionato, verrà aggiunta automaticamente un'interruzione di riga.<br/>La deselezione non eseguirà alcuna azione."
+                "is_break_after_wrap": "Se aggiungere un'interruzione di riga dopo la parola chiave \"BREAK\".<br/>Quando selezionato, verrà aggiunta automaticamente un'interruzione di riga.<br/>La deselezione non eseguirà alcuna azione.",
+                "show_panel": "Mostra pannello",
+                "hide_panel": "Nascondi pannello",
+                "show_group_tags": "Mostra tag di gruppo",
+                "hide_group_tags": "Nascondi tag di gruppo",
+                "tags-copyright": "Fonte di integrazione delle parole di suggerimento da 路过银河(知乎)、autore sconosciuto(Google Drive)、internet, ecc. Grazie a questi generosi contributori!",
+                "reset_default_color": "Ripristina colore predefinito",
+                "clear_color": "Cancella colore"
             }
         },
         {
@@ -1391,7 +1447,14 @@
                 "disabled": "無効",
                 "last_input_prompt": "最後の入力プロンプト",
                 "is_break_before_wrap": "「BREAK」キーワードの前に改行を追加するかどうか。<br/>選択すると自動的に改行が追加されます。<br/>選択を解除すると何も行われません。",
-                "is_break_after_wrap": "「BREAK」キーワードの後に改行を追加するかどうか。<br/>選択すると自動的に改行が追加されます。<br/>選択を解除すると何も行われません。"
+                "is_break_after_wrap": "「BREAK」キーワードの後に改行を追加するかどうか。<br/>選択すると自動的に改行が追加されます。<br/>選択を解除すると何も行われません。",
+                "show_panel": "パネルを表示",
+                "hide_panel": "パネルを非表示",
+                "show_group_tags": "グループタグを表示",
+                "hide_group_tags": "グループタグを非表示",
+                "tags-copyright": "プロンプトの単語統合元 路过银河(知乎)、不明な作者(Google Drive)、インターネットなど、これらの無私の貢献者に感謝します！",
+                "reset_default_color": "デフォルトの色にリセット",
+                "clear_color": "色をクリア"
             }
         },
         {
@@ -1549,7 +1612,14 @@
                 "disabled": "비활성화됨",
                 "last_input_prompt": "마지막 입력 프롬프트",
                 "is_break_before_wrap": "\"BREAK\" 키워드 앞에 줄 바꿈을 추가하시겠습니까?<br/>선택하면 자동으로 줄 바꿈이 추가됩니다.<br/>선택 취소 시 아무 작업도 수행되지 않습니다.",
-                "is_break_after_wrap": "\"BREAK\" 키워드 뒤에 줄 바꿈을 추가하시겠습니까?<br/>선택하면 자동으로 줄 바꿈이 추가됩니다.<br/>선택 취소 시 아무 작업도 수행되지 않습니다."
+                "is_break_after_wrap": "\"BREAK\" 키워드 뒤에 줄 바꿈을 추가하시겠습니까?<br/>선택하면 자동으로 줄 바꿈이 추가됩니다.<br/>선택 취소 시 아무 작업도 수행되지 않습니다.",
+                "show_panel": "패널 표시",
+                "hide_panel": "패널 숨기기",
+                "show_group_tags": "그룹 태그 표시",
+                "hide_group_tags": "그룹 태그 숨기기",
+                "tags-copyright": "프롬프트 단어 통합 출처: 路过银河(知乎)、알 수 없는 작성자(Google Drive)、인터넷 등. 이러한 무비한 기여자들에게 감사드립니다!",
+                "reset_default_color": "기본 색상으로 재설정",
+                "clear_color": "색상 지우기"
             }
         },
         {
@@ -1797,7 +1867,14 @@
                 "disabled": "Desativado",
                 "last_input_prompt": "Último prompt de entrada",
                 "is_break_before_wrap": "Se deseja adicionar uma quebra de linha antes da palavra-chave \"BREAK\".<br/>Quando selecionado, uma quebra de linha será adicionada automaticamente.<br/>Desmarcar não executará nenhuma ação.",
-                "is_break_after_wrap": "Se deseja adicionar uma quebra de linha após a palavra-chave \"BREAK\".<br/>Quando selecionado, uma quebra de linha será adicionada automaticamente.<br/>Desmarcar não executará nenhuma ação."
+                "is_break_after_wrap": "Se deseja adicionar uma quebra de linha após a palavra-chave \"BREAK\".<br/>Quando selecionado, uma quebra de linha será adicionada automaticamente.<br/>Desmarcar não executará nenhuma ação.",
+                "show_panel": "Mostrar painel",
+                "hide_panel": "Ocultar painel",
+                "show_group_tags": "Mostrar etiquetas de grupo",
+                "hide_group_tags": "Ocultar etiquetas de grupo",
+                "tags-copyright": "Fonte de integração de palavras-chave de 路过银河(知乎)、autor desconhecido(Google Drive)、internet, etc. Obrigado a esses contribuidores altruístas!",
+                "reset_default_color": "Redefinir para cor padrão",
+                "clear_color": "Limpar cor"
             }
         },
         {
@@ -1945,7 +2022,14 @@
                 "disabled": "Отключено",
                 "last_input_prompt": "Последний запрос на ввод",
                 "is_break_before_wrap": "Добавить перенос строки перед ключевым словом \"BREAK\".<br/>При выборе автоматически будет добавлен перенос строки.<br/>Снятие выбора не приведет к выполнению никаких действий.",
-                "is_break_after_wrap": "Добавить перенос строки после ключевого слова \"BREAK\".<br/>При выборе автоматически будет добавлен перенос строки.<br/>Снятие выбора не приведет к выполнению никаких действий."
+                "is_break_after_wrap": "Добавить перенос строки после ключевого слова \"BREAK\".<br/>При выборе автоматически будет добавлен перенос строки.<br/>Снятие выбора не приведет к выполнению никаких действий.",
+                "show_panel": "Показать панель",
+                "hide_panel": "Скрыть панель",
+                "show_group_tags": "Показать групповые теги",
+                "hide_group_tags": "Скрыть групповые теги",
+                "tags-copyright": "Источник интеграции ключевых слов от 路过银河(知乎)、неизвестный автор(Google Drive)、интернет и т.д. Благодарим этих бескорыстных участников!",
+                "reset_default_color": "Сбросить настройки цвета",
+                "clear_color": "Очистить цвет"
             }
         },
         {
@@ -2108,7 +2192,14 @@
                 "disabled": "Deshabilitado",
                 "last_input_prompt": "Última indicación de entrada",
                 "is_break_before_wrap": "Si agregar un salto de línea antes de la palabra clave \"BREAK\".<br/>Cuando está seleccionado, se agregará automáticamente un salto de línea.<br/>Si no está seleccionado, no se realizará ninguna acción.",
-                "is_break_after_wrap": "Si agregar un salto de línea después de la palabra clave \"BREAK\".<br/>Cuando está seleccionado, se agregará automáticamente un salto de línea.<br/>Si no está seleccionado, no se realizará ninguna acción."
+                "is_break_after_wrap": "Si agregar un salto de línea después de la palabra clave \"BREAK\".<br/>Cuando está seleccionado, se agregará automáticamente un salto de línea.<br/>Si no está seleccionado, no se realizará ninguna acción.",
+                "show_panel": "Mostrar panel",
+                "hide_panel": "Ocultar panel",
+                "show_group_tags": "Mostrar etiquetas de grupo",
+                "hide_group_tags": "Ocultar etiquetas de grupo",
+                "tags-copyright": "Fuente de integración de palabras clave de 路过银河(知乎)、autor desconocido(Google Drive)、internet, etc. ¡Gracias a estos generosos colaboradores!",
+                "reset_default_color": "Restablecer a color predeterminado",
+                "clear_color": "Borrar color"
             }
         },
         {
