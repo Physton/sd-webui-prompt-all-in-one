@@ -14,9 +14,57 @@
    
     
 }
+.unequal-height.svelte-15lo0d8{
+  display: contents  !important;
+}
+.acss-1paqx2u {
+  display: none !important;
+}
+.physton-prompt .group-tabs .group-body .group-main .sub-group-main .tags-footer .tags-copyright{
+  display: none !important;
+}
+.physton-prompt .group-tabs .group-body .group-main .sub-group-main .group-tags .tag-item .tag-local{
+
+  border-radius: 8px 8px 0px 0px !important;
+}
+.physton-prompt .group-tabs .group-body .group-main .sub-group-main .group-tags .tag-item .tag-en{
+
+  border-radius: 0px 0px 8px 8px !important;
+}
+.physton-prompt .group-tabs .group-body .group-main .sub-group-header .sub-group-tab.active, .physton-prompt .group-tabs .group-body .group-main .sub-group-header .sub-group-tab:hover{
+  border-bottom: 1px solid #0c9e38d4;
+  color: #0c9e38d4;
+  font-weight: bold;
+
+}
+.physton-prompt .group-tabs .group-header .group-tab.active{
+  border-radius: 20px !important;
+  background: #171817;
+  color: #0c9e38d4;
+  
+}
+.physton-prompt .group-tabs .group-header .group-tab:hover
+{    border-radius: 20px !important;
+  background: #171817c2;
+  color: #649c75d4;
+}
+
+
+
+.physton-prompt .group-tabs .group-body .group-main .sub-group-header .sub-group-tab{
+  background: #1295db00;
+}   
+.physton-prompt .group-tabs .group-header .group-tab{
+  border-right: #17181700;
+}
+.physton-prompt .group-tabs .group-header{
+
+  padding: 5px 0 5px 5px;
+}
+
 
 /* ---------------------------------Helloai 整合包样式--------------------------------*/
- 
+
 #header .fwbiXl{
     justify-content: center;
 }
@@ -252,7 +300,7 @@ margin-bottom: 8px!important;
 }
 
 .physton-prompt .prompt-header .prompt-header-extend .extend-content .input-tag-append:focus{
-  /*输入集焦时的样式*/
+/*输入集焦时的样式*/
     outline: none; 
     border: 1px solid #1296db !important;
 }
@@ -268,4 +316,4 @@ margin-bottom: 8px!important;
 }
 
 
- 
+
