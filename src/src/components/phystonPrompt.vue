@@ -28,6 +28,11 @@
                                         <icon-svg class="hover-scale-120" name="format"/>
                                     </div>
                                     <div class="extend-btn-item"
+                                         v-tooltip="getLang('keywords_blacklist')"
+                                         @click="$emit('click:blacklist', $event)">
+                                        <icon-svg class="hover-scale-120" name="blacklist"/>
+                                    </div>
+                                    <div class="extend-btn-item"
                                          v-tooltip="getLang('theme_extension')"
                                          @click="$emit('click:selectTheme', $event)">
                                         <icon-svg class="hover-scale-120" name="theme"/>
@@ -613,8 +618,12 @@ export default {
             type: Object,
             default: () => ({}),
         },
+        blacklist: {
+            type: Object,
+            default: () => ({}),
+        },
     },
-    emits: ['update:languageCode', 'update:autoTranslate', 'update:autoTranslateToEnglish', 'update:autoTranslateToLocal', 'update:autoRemoveSpace', 'update:autoRemoveLastComma', 'update:autoKeepWeightZero', 'update:autoKeepWeightOne', 'update:hideDefaultInput', 'update:hidePanel', 'update:enableTooltip', 'update:translateApi', 'click:translateApi', 'click:promptFormat', 'click:selectTheme', 'click:switchTheme', 'click:showAbout', 'click:selectLanguage', 'click:showHistory', 'click:showFavorite', 'refreshFavorites', 'click:showChatgpt', 'update:hideGroupTags', 'update:groupTagsColor'],
+    emits: ['update:languageCode', 'update:autoTranslate', 'update:autoTranslateToEnglish', 'update:autoTranslateToLocal', 'update:autoRemoveSpace', 'update:autoRemoveLastComma', 'update:autoKeepWeightZero', 'update:autoKeepWeightOne', 'update:hideDefaultInput', 'update:hidePanel', 'update:enableTooltip', 'update:translateApi', 'click:translateApi', 'click:promptFormat', 'click:blacklist', 'click:selectTheme', 'click:switchTheme', 'click:showAbout', 'click:selectLanguage', 'click:showHistory', 'click:showFavorite', 'refreshFavorites', 'click:showChatgpt', 'update:hideGroupTags', 'update:groupTagsColor'],
     data() {
         return {
             prompt: '',

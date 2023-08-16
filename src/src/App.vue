@@ -29,6 +29,7 @@
                             :translate-api-config="translateApiConfig"
                             @click:translate-api="onTranslateApiClick"
                             @click:prompt-format="onPromptFormatClick"
+                            @click:blacklist="onBlacklistClick"
                             v-model:tag-complete-file="tagCompleteFile"
                             v-model:only-csv-on-auto="onlyCsvOnAuto"
                             @click:select-language="onSelectLanguageClick"
@@ -48,6 +49,7 @@
                             :hide-group-tags="item.hideGroupTags"
                             v-model:group-tags-color="groupTagsColor"
                             @update:hide-group-tags="onUpdateHideGroupTags(item.id, $event)"
+                            :blacklist="blacklist"
             ></physton-prompt>
         </template>
         <translate-setting ref="translateSetting" v-model:language-code="languageCode"
@@ -71,6 +73,10 @@
                        v-model:auto-keep-weight-one="autoKeepWeightOne"
                        v-model:auto-break-before-wrap="autoBreakBeforeWrap"
                        v-model:auto-break-after-wrap="autoBreakAfterWrap"></prompt-format>
+        <blacklist ref="blacklist" v-model:language-code="languageCode"
+                   :translate-apis="translateApis"
+                   :languages="languages"
+                   @update:blacklist="onUpdateBlacklist"></blacklist>
         <history ref="history" v-model:language-code="languageCode"
                  :translate-apis="translateApis" :languages="languages"
                  v-model:tag-complete-file="tagCompleteFile"
@@ -123,6 +129,7 @@ import History from "@/components/history.vue";
 import IconSvg from "@/components/iconSvg.vue";
 import ExtensionCss from "@/components/extensionCss.vue";
 import PromptFormat from "@/components/promptFormat.vue";
+import Blacklist from "@/components/blacklist.vue";
 import PackagesState from "@/components/packagesState.vue";
 import ChatgptPrompt from "@/components/chatgptPrompt.vue";
 import About from "@/components/about.vue";
@@ -137,6 +144,7 @@ export default {
         ChatgptPrompt,
         PackagesState,
         PromptFormat,
+        Blacklist,
         ExtensionCss,
         IconSvg,
         History,
@@ -282,6 +290,8 @@ export default {
 
             groupTags: [],
             groupTagsColor: {},
+
+            blacklist: {},
         }
     },
     watch: {
@@ -512,7 +522,7 @@ export default {
         },
         init() {
             this.loadExtraNetworks()
-            let dataListsKeys = ['languageCode', 'autoTranslate', 'autoTranslateToEnglish', 'autoTranslateToLocal', 'autoRemoveSpace', 'autoRemoveLastComma', 'autoKeepWeightZero', 'autoKeepWeightOne', 'autoBreakBeforeWrap', 'autoBreakAfterWrap', /*'hideDefaultInput', */'translateApi', 'enableTooltip', 'tagCompleteFile', 'onlyCsvOnAuto', 'extensionSelect.minimalist', 'groupTagsColor']
+            let dataListsKeys = ['languageCode', 'autoTranslate', 'autoTranslateToEnglish', 'autoTranslateToLocal', 'autoRemoveSpace', 'autoRemoveLastComma', 'autoKeepWeightZero', 'autoKeepWeightOne', 'autoBreakBeforeWrap', 'autoBreakAfterWrap', /*'hideDefaultInput', */'translateApi', 'enableTooltip', 'tagCompleteFile', 'onlyCsvOnAuto', 'extensionSelect.minimalist', 'groupTagsColor', 'blacklist']
             this.prompts.forEach(item => {
                 dataListsKeys.push(item.hideDefaultInputKey)
                 dataListsKeys.push(item.hidePanelKey)
@@ -637,6 +647,10 @@ export default {
                     }
                 }
 
+                if (data.blacklist !== null) {
+                    this.blacklist = data.blacklist
+                }
+
                 this.updateTranslateApiConfig()
                 this.$refs.extensionCss.init()
 
@@ -678,6 +692,7 @@ export default {
                 // this.$refs.about.open()
                 // this.$refs.chatgptPrompt.open()
                 // this.$refs.promptFormat.open()
+                // this.$refs.blacklist.open()
                 // this.$refs.translateSetting.open(this.translateApi)
                 /*this.onShowFavorite('phystonPrompt_txt2img_prompt', {
                     clientY: 150,
@@ -734,6 +749,9 @@ export default {
         },
         onPromptFormatClick(e) {
             this.$refs.promptFormat.open(e)
+        },
+        onBlacklistClick(e) {
+            this.$refs.blacklist.open(e)
         },
         onSelectLanguageClick(e) {
             this.$refs.selectLanguage.open(e)
@@ -909,6 +927,9 @@ export default {
                 common.gradioApp().classList.add(this.theme)
             }*/
             window.location.href = newUrl
+        },
+        onUpdateBlacklist(data) {
+            this.blacklist = data
         },
     },
 }

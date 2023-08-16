@@ -31,7 +31,14 @@ export default {
             })
         },
         _setTagHeight(tag) {
-            setTimeout(() => {
+            let maxNum = 10
+            let interval = setInterval(() => {
+                // console.log(maxNum, tag)
+                maxNum--
+                if (maxNum <= 0) clearInterval(interval)
+                if (!this.$refs['promptTagValue-' + tag.id]) return false
+                if (!this.$refs['promptTagValue-' + tag.id][0]) return false
+                clearInterval(interval)
                 let $tag = this.$refs['promptTagValue-' + tag.id][0]
                 let height = $tag.offsetHeight
                 $tag.parentNode.style.height = height + 'px'
@@ -41,7 +48,10 @@ export default {
                 if (this.$refs['promptTagDelete-' + tag.id]) {
                     this.$refs['promptTagDelete-' + tag.id][0].style.height = height + 'px'
                 }
-            }, 300)
+            }, 50)
+        },
+        _getTagType(tag) {
+
         },
         _setTagClass(tag) {
             tag.isLora = false
@@ -129,6 +139,23 @@ export default {
             if (localValue !== null) tag.localValue = localValue
             return tag
         },
+        _isTagBlacklist(tag) {
+            if (typeof tag['type'] === 'string' && tag.type === 'wrap') return false
+            if (tag.isLora) {
+                if (this.blacklist.lora && this.blacklist.lora.includes(tag.loraName)) return true
+            } else if (tag.isLyco) {
+                if (this.blacklist.lycoris && this.blacklist.lycoris.includes(tag.lycoName)) return true
+            } else if (tag.isEmbedding) {
+                if (this.blacklist.embedding && this.blacklist.embedding.includes(tag.value)) return true
+            } else {
+                if (this.neg) {
+                    if (this.blacklist.negative_prompt && this.blacklist.negative_prompt.includes(tag.value)) return true
+                } else {
+                    if (this.blacklist.prompt && this.blacklist.prompt.includes(tag.value)) return true
+                }
+            }
+            return false
+        },
         _appendTag(value, localValue = '', disabled = false, index = -1, type = 'text') {
             if (value === '') return -1
             // 唯一数：当前时间戳+随机数
@@ -143,6 +170,7 @@ export default {
             this._setTag(tag)
             // value           = common.setLayers(value, 0, '(', ')')
             // value           = common.setLayers(value, 0, '[', ']')
+            if (this._isTagBlacklist(tag)) return -1
             if (index >= 0) {
                 // 插入到指定位置
                 this.tags.splice(index, 0, tag)
