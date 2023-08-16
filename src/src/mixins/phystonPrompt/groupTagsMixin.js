@@ -46,6 +46,7 @@ export default {
         },
         onClickGroupTag(local, en) {
             this._appendTag(en, local, false, -1, 'text')
+            this.updateTags()
         },
         getGroupTagTooltip(local, en) {
             let html = ''
