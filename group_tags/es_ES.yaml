@@ -3,9 +3,11 @@
 # ⚠️Se recomienda no modificar el contenido de este archivo, ya que el autor puede actualizarlo periódicamente. Si se modifica este archivo, podría generar conflictos al actualizar.
 # ⚠️Si desea personalizar grupos de palabras clave, copie este archivo, cámbiele el nombre a "custom.yaml" y realice las modificaciones en "custom.yaml". El complemento leerá primero el archivo "custom.yaml" y, si no existe, leerá este archivo.
 #
-# ⚠️Si solo deseas agregar tu propio contenido después del archivo actual, puedes crear un archivo append.yaml.
-# ⚠️custom.yaml: Sobrescribe el archivo actual
-# ⚠️append.yaml: Agrega al final del archivo actual
+# ⚠️Si solo quieres agregar tu propio contenido antes del archivo actual, puedes crear un archivo prepend.yaml.
+# ⚠️Si solo quieres agregar tu propio contenido después del archivo actual, puedes crear un archivo append.yaml.
+# ⚠️custom.yaml: Sobreestcribe el archivo actual
+# ⚠️prepend.yaml: Agrega antes del archivo actual
+# ⚠️append.yaml: Agrega después del archivo actual
 #
 # ⚠️Se recomienda utilizar un editor de texto profesional (como Visual Studio Code) para editar este archivo y evitar problemas de codificación y formato incorrecto.
 # ⚠️No utilice el Bloc de notas de Windows para editar este archivo.

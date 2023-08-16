@@ -4,9 +4,11 @@
 # ⚠️Wenn Sie benutzerdefinierte Stichwortgruppen erstellen möchten, kopieren Sie bitte diese Datei, benennen Sie sie in "custom.yaml" um und bearbeiten Sie sie dann in der "custom.yaml".
 # ⚠️Das Plugin liest zuerst die "custom.yaml"-Datei. Wenn die "custom.yaml"-Datei nicht vorhanden ist, wird diese Datei gelesen.
 #
-# ⚠️Se desideri solo aggiungere il tuo contenuto dopo il file corrente, puoi creare un file append.yaml.
-# ⚠️custom.yaml: Sovrascrive il file corrente
-# ⚠️append.yaml: Aggiunge alla fine del file corrente
+# ⚠️Wenn Sie nur Ihren eigenen Inhalt vor der aktuellen Datei hinzufügen möchten, können Sie eine prepend.yaml-Datei erstellen.
+# ⚠️Wenn Sie nur Ihren eigenen Inhalt nach der aktuellen Datei hinzufügen möchten, können Sie eine append.yaml-Datei erstellen.
+# ⚠️custom.yaml: Überschreibt die aktuelle Datei
+# ⚠️prepend.yaml: Fügt vor der aktuellen Datei hinzu
+# ⚠️append.yaml: Fügt nach der aktuellen Datei hinzu
 #
 # ⚠️Wenn Sie nur Ihren eigenen Inhalt nach der aktuellen Datei hinzufügen möchten, können Sie eine append.yaml-Datei erstellen.
 # ⚠️custom.yaml: Überschreibt die aktuelle Datei

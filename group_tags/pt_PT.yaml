@@ -4,9 +4,11 @@
 # ⚠️Se você deseja personalizar as palavras-chave, copie este arquivo, renomeie-o para "custom.yaml" e faça as alterações no arquivo "custom.yaml".
 # ⚠️O plugin irá priorizar a leitura do arquivo "custom.yaml". Se o arquivo "custom.yaml" não existir, ele lerá este arquivo.
 #
-# ⚠️Se você deseja apenas adicionar seu próprio conteúdo após o arquivo atual, você pode criar um arquivo append.yaml.
+# ⚠️Se desejar apenas adicionar seu próprio conteúdo antes do arquivo atual, você pode criar um arquivo prepend.yaml.
+# ⚠️Se desejar apenas adicionar seu próprio conteúdo após o arquivo atual, você pode criar um arquivo append.yaml.
 # ⚠️custom.yaml: Substitui o arquivo atual
-# ⚠️append.yaml: Acrescenta ao final do arquivo atual
+# ⚠️prepend.yaml: Adiciona antes do arquivo atual
+# ⚠️append.yaml: Adiciona após o arquivo atual
 #
 # ⚠️Recomendamos o uso de um editor de texto profissional (como o Visual Studio Code) para editar este arquivo, a fim de evitar problemas de codificação e formatação.
 # ⚠️Não use o Bloco de Notas padrão do Windows para editar este arquivo.

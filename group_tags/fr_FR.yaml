@@ -4,9 +4,11 @@
 # ⚠️Si vous souhaitez personnaliser les groupes de mots-clés, veuillez copier ce fichier, le renommer en "custom.yaml" et apporter les modifications dans "custom.yaml".
 # ⚠️Le plug-in lira en priorité le fichier "custom.yaml". S'il n'existe pas, il lira ce fichier.
 #
+# ⚠️Si vous souhaitez uniquement ajouter votre propre contenu avant le fichier actuel, vous pouvez créer un fichier prepend.yaml.
 # ⚠️Si vous souhaitez uniquement ajouter votre propre contenu après le fichier actuel, vous pouvez créer un fichier append.yaml.
 # ⚠️custom.yaml: Remplace le fichier actuel
-# ⚠️append.yaml: Ajoute à la suite du fichier actuel
+# ⚠️prepend.yaml: Ajoute avant le fichier actuel
+# ⚠️append.yaml: Ajoute après le fichier actuel
 #
 # ⚠️Il est recommandé d'utiliser un éditeur de texte professionnel (comme Visual Studio Code) pour modifier ce fichier afin d'éviter les problèmes de codage et de formatage incorrects.
 # ⚠️N'utilisez pas le Bloc-notes intégré de Windows pour modifier ce fichier.

@@ -16,9 +16,19 @@ def get_group_tags(lang):
         return ''
 
     tags = ''
+
+    try:
+        prepend_file = _get_tags_filename('prepend')
+        with open(prepend_file, 'r', encoding='utf8') as f:
+            prepend = f.read()
+        tags += prepend + "\n\n"
+    except:
+        pass
+
     try:
         with open(tags_file, 'r', encoding='utf8') as f:
-            tags = f.read()
+            data = f.read()
+        tags += data + "\n\n"
     except:
         pass
 
@@ -26,7 +36,7 @@ def get_group_tags(lang):
         append_file = _get_tags_filename('append')
         with open(append_file, 'r', encoding='utf8') as f:
             append = f.read()
-        tags += "\n\n" + append
+        tags += append + "\n\n"
     except:
         pass
 

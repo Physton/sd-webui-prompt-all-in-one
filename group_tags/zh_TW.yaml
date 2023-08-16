@@ -4,8 +4,10 @@
 # ⚠️如需要自定義關鍵詞組，請複製本檔案，重命名為 custom.yaml，然後在 custom.yaml 中修改。
 # ⚠️插件將優先讀取 custom.yaml 檔案，如果 custom.yaml 檔案不存在，則讀取本檔案。
 #
+# ⚠️如果只想要再當前檔案前面追加自己的內容，可以建立 prepend.yaml 檔案。
 # ⚠️如果只想要再當前檔案後面追加自己的內容，可以建立 append.yaml 檔案。
 # ⚠️custom.yaml: 覆蓋當前檔案
+# ⚠️prepend.yaml: 追加到當前檔案前面
 # ⚠️append.yaml: 追加到當前檔案後面
 #
 # ⚠️建議使用專業的文本編輯器（如 Visual Studio Code）編輯本檔案，以避免編碼和格式錯誤的問題。
