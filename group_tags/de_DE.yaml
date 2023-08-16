@@ -1,12 +1,20 @@
-# 👍 Hinweis zur Integration von Stichworten: 路过银河 (Zhihu), Unbekannter Autor (Google Drive), Internet usw. Vielen Dank an diese altruistischen Autoren!
+# 👍Hinweis zur Integration von Stichworten: 路过银河 (Zhihu), Unbekannter Autor (Google Drive), Internet usw. Vielen Dank an diese altruistischen Autoren!
 #
-# ⚠️ Es wird empfohlen, den Inhalt dieser Datei nicht zu ändern, da der Autor dieser Datei möglicherweise regelmäßige Updates vornimmt. Wenn Sie diese Datei ändern, kann es zu Konflikten bei Updates kommen.
-# ⚠️ Wenn Sie benutzerdefinierte Stichwortgruppen erstellen möchten, kopieren Sie bitte diese Datei, benennen Sie sie in "custom.yaml" um und bearbeiten Sie sie dann in der "custom.yaml".
-# ⚠️ Das Plugin liest zuerst die "custom.yaml"-Datei. Wenn die "custom.yaml"-Datei nicht vorhanden ist, wird diese Datei gelesen.
+# ⚠️Es wird empfohlen, den Inhalt dieser Datei nicht zu ändern, da der Autor dieser Datei möglicherweise regelmäßige Updates vornimmt. Wenn Sie diese Datei ändern, kann es zu Konflikten bei Updates kommen.
+# ⚠️Wenn Sie benutzerdefinierte Stichwortgruppen erstellen möchten, kopieren Sie bitte diese Datei, benennen Sie sie in "custom.yaml" um und bearbeiten Sie sie dann in der "custom.yaml".
+# ⚠️Das Plugin liest zuerst die "custom.yaml"-Datei. Wenn die "custom.yaml"-Datei nicht vorhanden ist, wird diese Datei gelesen.
 #
-# ⚠️ Es wird empfohlen, einen professionellen Texteditor (wie Visual Studio Code) zu verwenden, um diese Datei zu bearbeiten, um Codierungs- und Formatierungsfehler zu vermeiden.
-# ⚠️ Verwenden Sie bitte nicht den in Windows enthaltenen Notepad zur Bearbeitung dieser Datei.
-# ⚠️ Nach der Bearbeitung können Sie die Formatierung des Inhalts auf https://www.yamllint.com/ überprüfen.
+# ⚠️Se desideri solo aggiungere il tuo contenuto dopo il file corrente, puoi creare un file append.yaml.
+# ⚠️custom.yaml: Sovrascrive il file corrente
+# ⚠️append.yaml: Aggiunge alla fine del file corrente
+#
+# ⚠️Wenn Sie nur Ihren eigenen Inhalt nach der aktuellen Datei hinzufügen möchten, können Sie eine append.yaml-Datei erstellen.
+# ⚠️custom.yaml: Überschreibt die aktuelle Datei
+# ⚠️append.yaml: Fügt ihn am Ende der aktuellen Datei hinzu
+#
+# ⚠️Es wird empfohlen, einen professionellen Texteditor (wie Visual Studio Code) zu verwenden, um diese Datei zu bearbeiten, um Codierungs- und Formatierungsfehler zu vermeiden.
+# ⚠️Verwenden Sie bitte nicht den in Windows enthaltenen Notepad zur Bearbeitung dieser Datei.
+# ⚠️Nach der Bearbeitung können Sie die Formatierung des Inhalts auf https://www.yamllint.com/ überprüfen.
 
 # Format des Inhalts:
 # - name: Name der ersten Kategorie

@@ -1,12 +1,16 @@
-# 👍 Palavras-chave integradas de várias fontes: "路过银河" (Zhihu), autor desconhecido (Google Drive), internet, etc. Agradecemos a esses autores por sua generosa contribuição!
+# 👍Palavras-chave integradas de várias fontes: "路过银河" (Zhihu), autor desconhecido (Google Drive), internet, etc. Agradecemos a esses autores por sua generosa contribuição!
 #
-# ⚠️ Recomendamos não modificar o conteúdo deste arquivo, pois o autor pode atualizá-lo periodicamente e fazer alterações pode causar conflitos durante as atualizações.
-# ⚠️ Se você deseja personalizar as palavras-chave, copie este arquivo, renomeie-o para "custom.yaml" e faça as alterações no arquivo "custom.yaml".
-# ⚠️ O plugin irá priorizar a leitura do arquivo "custom.yaml". Se o arquivo "custom.yaml" não existir, ele lerá este arquivo.
+# ⚠️Recomendamos não modificar o conteúdo deste arquivo, pois o autor pode atualizá-lo periodicamente e fazer alterações pode causar conflitos durante as atualizações.
+# ⚠️Se você deseja personalizar as palavras-chave, copie este arquivo, renomeie-o para "custom.yaml" e faça as alterações no arquivo "custom.yaml".
+# ⚠️O plugin irá priorizar a leitura do arquivo "custom.yaml". Se o arquivo "custom.yaml" não existir, ele lerá este arquivo.
 #
-# ⚠️ Recomendamos o uso de um editor de texto profissional (como o Visual Studio Code) para editar este arquivo, a fim de evitar problemas de codificação e formatação.
-# ⚠️ Não use o Bloco de Notas padrão do Windows para editar este arquivo.
-# ⚠️ Após a modificação, você pode verificar se o formato do conteúdo está correto em https://www.yamllint.com/.
+# ⚠️Se você deseja apenas adicionar seu próprio conteúdo após o arquivo atual, você pode criar um arquivo append.yaml.
+# ⚠️custom.yaml: Substitui o arquivo atual
+# ⚠️append.yaml: Acrescenta ao final do arquivo atual
+#
+# ⚠️Recomendamos o uso de um editor de texto profissional (como o Visual Studio Code) para editar este arquivo, a fim de evitar problemas de codificação e formatação.
+# ⚠️Não use o Bloco de Notas padrão do Windows para editar este arquivo.
+# ⚠️Após a modificação, você pode verificar se o formato do conteúdo está correto em https://www.yamllint.com/.
 
 # Formato do conteúdo:
 # - name: Nome da categoria principal

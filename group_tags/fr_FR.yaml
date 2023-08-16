@@ -1,12 +1,16 @@
-# 👍 Fusion des mots-clés sources : "路过银河" (zhihu), auteur inconnu (Google Drive), Internet, etc. Nous remercions ces auteurs pour leur contribution désintéressée !
+# 👍Fusion des mots-clés sources : "路过银河" (zhihu), auteur inconnu (Google Drive), Internet, etc. Nous remercions ces auteurs pour leur contribution désintéressée !
 #
-# ⚠️ Il est conseillé de ne pas modifier le contenu de ce fichier, car l'auteur de ce fichier peut le mettre à jour de manière irrégulière. Si vous modifiez ce fichier, cela peut entraîner des conflits lors des mises à jour.
-# ⚠️ Si vous souhaitez personnaliser les groupes de mots-clés, veuillez copier ce fichier, le renommer en "custom.yaml" et apporter les modifications dans "custom.yaml".
-# ⚠️ Le plug-in lira en priorité le fichier "custom.yaml". S'il n'existe pas, il lira ce fichier.
+# ⚠️Il est conseillé de ne pas modifier le contenu de ce fichier, car l'auteur de ce fichier peut le mettre à jour de manière irrégulière. Si vous modifiez ce fichier, cela peut entraîner des conflits lors des mises à jour.
+# ⚠️Si vous souhaitez personnaliser les groupes de mots-clés, veuillez copier ce fichier, le renommer en "custom.yaml" et apporter les modifications dans "custom.yaml".
+# ⚠️Le plug-in lira en priorité le fichier "custom.yaml". S'il n'existe pas, il lira ce fichier.
 #
-# ⚠️ Il est recommandé d'utiliser un éditeur de texte professionnel (comme Visual Studio Code) pour modifier ce fichier afin d'éviter les problèmes de codage et de formatage incorrects.
-# ⚠️ N'utilisez pas le Bloc-notes intégré de Windows pour modifier ce fichier.
-# ⚠️ Après modification, vous pouvez vérifier la validité du format du contenu sur https://www.yamllint.com/.
+# ⚠️Si vous souhaitez uniquement ajouter votre propre contenu après le fichier actuel, vous pouvez créer un fichier append.yaml.
+# ⚠️custom.yaml: Remplace le fichier actuel
+# ⚠️append.yaml: Ajoute à la suite du fichier actuel
+#
+# ⚠️Il est recommandé d'utiliser un éditeur de texte professionnel (comme Visual Studio Code) pour modifier ce fichier afin d'éviter les problèmes de codage et de formatage incorrects.
+# ⚠️N'utilisez pas le Bloc-notes intégré de Windows pour modifier ce fichier.
+# ⚠️Après modification, vous pouvez vérifier la validité du format du contenu sur https://www.yamllint.com/.
 
 # Format du contenu :
 # - name: Nom de la catégorie de premier niveau

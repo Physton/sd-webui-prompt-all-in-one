@@ -4,6 +4,10 @@
 # ⚠️如需要自定义关键词组，请复制本文件，重命名为 custom.yaml，然后在 custom.yaml 中修改。
 # ⚠️插件将优先读取 custom.yaml 文件，如果 custom.yaml 文件不存在，则读取本文件。
 #
+# ⚠️如果只想要再当前文件后面追加自己的内容，可以建立 append.yaml 文件。
+# ⚠️custom.yaml: 覆盖当前文件
+# ⚠️append.yaml: 追加到当前文件后面
+#
 # ⚠️建议使用专业的文本编辑器（如 Visual Studio Code）编辑本文件，以避免编码和格式错误的问题。
 # ⚠️请勿使用 Windows 自带的记事本编辑本文件。
 # ⚠️修改后可以前往 https://www.yamllint.com/ 检查内容格式是否正确。

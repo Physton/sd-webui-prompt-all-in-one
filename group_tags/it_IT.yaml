@@ -1,12 +1,16 @@
-# 👍 Suggerimenti integrati da varie fonti come "路过银河" (Zhihu), autore sconosciuto (Google Drive), Internet, ecc. Ringrazio questi autori per il loro altruismo!
+# 👍Suggerimenti integrati da varie fonti come "路过银河" (Zhihu), autore sconosciuto (Google Drive), Internet, ecc. Ringrazio questi autori per il loro altruismo!
 #
-# ⚠️ Si consiglia di non modificare il contenuto di questo file, poiché l'autore potrebbe aggiornarlo periodicamente e le modifiche potrebbero causare conflitti durante gli aggiornamenti.
-# ⚠️ Se si desidera personalizzare i gruppi di parole chiave, copiare questo file, rinominarlo come "custom.yaml" e apportare le modifiche nel file "custom.yaml".
-# ⚠️ Il plugin leggerà prima il file "custom.yaml" e, se non esiste, leggerà questo file.
+# ⚠️Si consiglia di non modificare il contenuto di questo file, poiché l'autore potrebbe aggiornarlo periodicamente e le modifiche potrebbero causare conflitti durante gli aggiornamenti.
+# ⚠️Se si desidera personalizzare i gruppi di parole chiave, copiare questo file, rinominarlo come "custom.yaml" e apportare le modifiche nel file "custom.yaml".
+# ⚠️Il plugin leggerà prima il file "custom.yaml" e, se non esiste, leggerà questo file.
 #
-# ⚠️ Si consiglia di utilizzare un editor di testo professionale (come Visual Studio Code) per modificare questo file, per evitare problemi di codifica e formattazione errata.
-# ⚠️ Non utilizzare il Blocco note predefinito di Windows per modificare questo file.
-# ⚠️ Dopo la modifica, è possibile verificare la correttezza della formattazione del contenuto su https://www.yamllint.com/.
+# ⚠️Se desideri solo aggiungere il tuo contenuto dopo il file corrente, puoi creare un file append.yaml.
+# ⚠️custom.yaml: Sovrascrive il file corrente
+# ⚠️append.yaml: Aggiunge alla fine del file corrente
+#
+# ⚠️Si consiglia di utilizzare un editor di testo professionale (come Visual Studio Code) per modificare questo file, per evitare problemi di codifica e formattazione errata.
+# ⚠️Non utilizzare il Blocco note predefinito di Windows per modificare questo file.
+# ⚠️Dopo la modifica, è possibile verificare la correttezza della formattazione del contenuto su https://www.yamllint.com/.
 
 # Formato del contenuto:
 # - name: Nome della categoria di primo livello

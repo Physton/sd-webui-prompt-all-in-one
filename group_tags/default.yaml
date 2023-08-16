@@ -4,6 +4,10 @@
 # ⚠️If you need to customize keyword groups, please copy this file, rename it to custom.yaml, and make modifications in custom.yaml.
 # ⚠️The plugin will prioritize reading the custom.yaml file. If the custom.yaml file does not exist, it will read this file.
 #
+# ⚠️If you only want to append your own content after the current file, you can create an append.yaml file.
+# ⚠️custom.yaml: Overwrite the current file
+# ⚠️append.yaml: Append to the current file
+#
 # ⚠️It is recommended to use a professional text editor (such as Visual Studio Code) to edit this file to avoid encoding and formatting errors.
 # ⚠️Please do not use Notepad, the default text editor in Windows, to edit this file.
 # ⚠️After modification, you can go to https://www.yamllint.com/ to check if the content format is correct.
