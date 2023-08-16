@@ -24,8 +24,14 @@
   display: none !important;
 }
 .physton-prompt .group-tabs .group-body .group-main .sub-group-main .group-tags .tag-item .tag-local{
-
+    max-width: 90px;
   border-radius: 8px 8px 0px 0px !important;
+}
+.physton-prompt .group-tabs .group-body .group-main .sub-group-main .group-tags .tag-item .tag-en{
+    max-width: 90px;
+}
+.physton-prompt .show-group-tags .icon-svg-unfold svg path{
+    full: #9e2323;
 }
 .physton-prompt .group-tabs .group-body .group-main .sub-group-main .group-tags .tag-item .tag-en{
 
@@ -42,6 +48,41 @@
   background: #171817;
   color: #0c9e38d4;
   
+}
+.physton-prompt .show-group-tags .icon-svg-unfold:before{
+
+      /*
+    切换标签图标 
+    Change icon
+    */
+    background-image: url(/physton_prompt/styles?file=extensions/Webui/images/d.svg);
+    background-size: 100% 100%;
+    content: "";
+    display: inline-block;
+    width: 20px;
+    height: 20px; 
+   
+} 
+.physton-prompt .show-group-tags .icon-svg-unfold:before svg path{
+
+    full: #fff;
+}
+
+
+.physton-prompt .show-group-tags .icon-svg-unfold{
+    color: var(--checkbox-label-text-color-selected); 
+ 
+}
+
+
+.physton-prompt .show-group-tags .icon-svg-unfold svg{
+    display:none; 
+}
+
+
+
+.physton-gradio-container.dark .physton-prompt .prompt-tags .prompt-tags-list .prompt-tag .prompt-tag-main .btn-tag-extend{
+    background: var(--pp-pt-gt-groupHeader-background); 
 }
 .physton-prompt .group-tabs .group-header .group-tab:hover
 {    border-radius: 20px !important;
@@ -60,8 +101,8 @@
 .physton-prompt .group-tabs .group-header{
 
   padding: 5px 0 5px 5px;
+  border-radius: 0px;
 }
-
 
 /* ---------------------------------Helloai 整合包样式--------------------------------*/
 
@@ -182,9 +223,6 @@
     Hide the original icon
     */
     display: none
-}
-.physton-prompt .prompt-tags .prompt-tags-list .prompt-tag .prompt-tag-main .prompt-tag-edit .prompt-tag-value{
-    color:#1296db;
 }
 
 
