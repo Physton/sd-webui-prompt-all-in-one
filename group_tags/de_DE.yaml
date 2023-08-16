@@ -4201,12 +4201,16 @@
         looking_at_food: Auf das Essen schauen
         looking_at_screen: Auf den Bildschirm schauen
 
-- name: Hanfu (Tang-Stil)
+- name: Hanfu
   groups:
-    - name: Shangshan
+    - name: "Tang-Stil:"
       color: rgba(178, 33, 34, .4)
       tags:
         hanfu, tang style outfits,<lora:hanfuTang_v32:0.7>: Tang-Stil
+
+    - name: Shangshan
+      color: rgba(178, 33, 34, .4)
+      tags:
         orange upper shan: Orange Oberbekleidung
         red upper shan: Rote Oberbekleidung
         green upper shan: Grüne Oberbekleidung
@@ -4308,12 +4312,16 @@
         light green pibo: Hellgrüner Pibo
         white with yellow pibo: Weißer Pibo mit gelbem Pibo
 
-- name: Hanfu (Song-Stil)
-  groups:
-    - name: Duanshan
+    - type: wrap
+
+    - name: "Song-Stil:"
       color: rgba(178, 33, 34, .4)
       tags:
         hanfu, song style outfits,<lora:hanfuSong_v31:0.7>: Song-Stil
+
+    - name: Duanshan
+      color: rgba(178, 33, 34, .4)
+      tags:
         purple short shan: Violette Kurzoberteil
         red short shan: Rotes Kurzoberteil
         green short shan: Grünes Kurzoberteil
@@ -4381,12 +4389,16 @@
         purple floral songmo: Violetter floraler Songmo
         cyan floral songmo: Cyanblauer floraler Songmo
 
-- name: Hanfu (Ming-Stil)
-  groups:
-    - name: Oberbekleidung
+    - type: wrap
+
+    - name: "Ming-Stil:"
       color: rgba(178, 33, 34, .4)
       tags:
         hanfu, ming style outfits,<lora:hanfuMing_v31:0.7>: Ming-Stil
+
+    - name: Oberbekleidung
+      color: rgba(178, 33, 34, .4)
+      tags:
         short coat: Kurze Jacke
         long coat: Lange Jacke
 

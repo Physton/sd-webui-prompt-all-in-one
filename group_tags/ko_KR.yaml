@@ -4200,12 +4200,16 @@
         looking_at_food: 음식을 바라보는
         looking_at_screen: 화면을 바라보는
 
-- name: 한복(당풍)
+- name: 한복
   groups:
-    - name: 상수
+    - name: "당풍:"
       color: rgba(178, 33, 34, .4)
       tags:
         hanbok, tang style outfits,<lora:hanbokTang_v32:0.7>: 당풍
+
+    - name: 상수
+      color: rgba(178, 33, 34, .4)
+      tags:
         orange upper shan: 주황색 상수
         red upper shan: 빨간색 상수
         green upper shan: 초록색 상수
@@ -4307,12 +4311,16 @@
         light green pibo: 연한 초록색 겉옷
         white with yellow pibo: 노란색과 흰색 겉옷
 
-- name: 한복(송풍)
-  groups:
-    - name: 짧은 상의
+    - type: wrap
+
+    - name: "송풍:"
       color: rgba(178, 33, 34, .4)
       tags:
         hanbok, song style outfits,<lora:hanbokSong_v31:0.7>: 송풍
+
+    - name: 짧은 상의
+      color: rgba(178, 33, 34, .4)
+      tags:
         purple short shan: 보라색 짧은 상의
         red short shan: 빨간색 짧은 상의
         green short shan: 초록색 짧은 상의
@@ -4380,12 +4388,16 @@
         purple floral songmo: 보라색 꽃무늬 송모
         cyan floral songmo: 청록색 꽃무늬 송모
 
-- name: 한복(명풍)
-  groups:
-    - name: 상의
+    - type: wrap
+
+    - name: "명풍:"
       color: rgba(178, 33, 34, .4)
       tags:
         hanbok, ming style outfits,<lora:hanbokMing_v31:0.7>: 명풍
+
+    - name: 상의
+      color: rgba(178, 33, 34, .4)
+      tags:
         short coat: 짧은 외투
         long coat: 긴 외투
 

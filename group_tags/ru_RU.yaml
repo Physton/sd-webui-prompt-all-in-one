@@ -4201,12 +4201,16 @@
         looking_at_food: Смотреть на еду
         looking_at_screen: Смотреть на экран
 
-- name: Китайская одежда (стиль Тан)
+- name: Китайская одежда
   groups:
+    - name: "стиль Тан:"
+      color: rgba(178, 33, 34, .4)
+      tags:
+        hanfu, tang style outfits,<lora:hanfuTang_v32:0.7>: стиль Тан
+
     - name: Шань
       color: rgba(178, 33, 34, .4)
       tags:
-        hanfu, tang style outfits,<lora:hanfuTang_v32:0.7>: Тань
         orange upper shan: Оранжевый верхний Шань
         red upper shan: Красный верхний Шань
         green upper shan: Зеленый верхний Шань
@@ -4308,12 +4312,16 @@
         light green pibo: Светло-зеленое покрывало
         white with yellow pibo: Бело-желтое покрывало
 
-- name: Китайская одежда (стиль Сун)
-  groups:
+    - type: wrap
+
+    - name: "стиль Сун:"
+      color: rgba(178, 33, 34, .4)
+      tags:
+        hanfu, song style outfits,<lora:hanfuSong_v31:0.7>: стиль Сун
+
     - name: Короткая рубашка
       color: rgba(178, 33, 34, .4)
       tags:
-        hanfu, song style outfits,<lora:hanfuSong_v31:0.7>: Сунь
         purple short shan: Фиолетовая короткая рубашка
         red short shan: Красная короткая рубашка
         green short shan: Зеленая короткая рубашка
@@ -4381,12 +4389,16 @@
         purple floral songmo: Фиолетовый цветочный суньмао
         cyan floral songmo: Голубой цветочный суньмао
 
-- name: Китайская одежда (стиль Минь)
-  groups:
+    - type: wrap
+
+    - name: "стиль Минь:"
+      color: rgba(178, 33, 34, .4)
+      tags:
+        hanfu, ming style outfits,<lora:hanfuMing_v31:0.7>: стиль Минь
+
     - name: Верхняя одежда
       color: rgba(178, 33, 34, .4)
       tags:
-        hanfu, ming style outfits,<lora:hanfuMing_v31:0.7>: Минь
         short coat: Короткий плащ
         long coat: Длинный плащ
 

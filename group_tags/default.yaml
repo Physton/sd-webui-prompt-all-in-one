@@ -4196,12 +4196,16 @@
         looking_at_food:
         looking_at_screen:
 
-- name: Hanfu (Tang style)
+- name: Hanfu
   groups:
-    - name: Upper shan
+    - name: "Tang style:"
       color: rgba(178, 33, 34, .4)
       tags:
         hanfu, tang style outfits,<lora:hanfuTang_v32:0.7>:
+
+    - name: Upper shan
+      color: rgba(178, 33, 34, .4)
+      tags:
         orange upper shan:
         red upper shan:
         green upper shan:
@@ -4303,12 +4307,16 @@
         light green pibo:
         white with yellow pibo:
 
-- name: Hanfu (Song style)
-  groups:
-    - name: Short shan
+    - type: wrap
+
+    - name: "Song style:"
       color: rgba(178, 33, 34, .4)
       tags:
         hanfu, song style outfits,<lora:hanfuSong_v31:0.7>:
+
+    - name: Short shan
+      color: rgba(178, 33, 34, .4)
+      tags:
         purple short shan:
         red short shan:
         green short shan:
@@ -4376,12 +4384,16 @@
         purple floral songmo:
         cyan floral songmo:
 
-- name: Hanfu (Ming style)
-  groups:
-    - name: Coat
+    - type: wrap
+
+    - name: "Ming style:"
       color: rgba(178, 33, 34, .4)
       tags:
         hanfu, ming style outfits,<lora:hanfuMing_v31:0.7>:
+
+    - name: Coat
+      color: rgba(178, 33, 34, .4)
+      tags:
         short coat:
         long coat:
 

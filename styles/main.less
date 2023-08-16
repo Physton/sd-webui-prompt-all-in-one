@@ -974,6 +974,11 @@
     // .physton-prompt .prompt-tags .group-tabs .group-body .group-main .sub-group-header .sub-group-tab:hover.active
     --pp-pt-gt-gb-gm-sgh-subGroupTabHoverActive-border-bottom: 2px solid @common-blue;
 
+    // .physton-prompt .prompt-tags .group-tabs .group-body .group-main .sub-group-header .sub-group-tab-wrap
+    --pp-pt-gt-gb-gm-sgh-subGroupTabWrap-flex-basis: 100%;
+    --pp-pt-gt-gb-gm-sgh-subGroupTabWrap-height: 0;
+    --pp-pt-gt-gb-gm-sgh-subGroupTabWrap-overflow: hidden;
+
     // .physton-prompt .prompt-tags .group-tabs .group-body .group-main .sub-group-main
     --pp-pt-gt-gb-gm-subGroupMain-display: none;
 
@@ -3196,6 +3201,12 @@
                         &:hover, &.active {
                             border-bottom: var(--pp-pt-gt-gb-gm-sgh-subGroupTabHoverActive-border-bottom);
                         }
+                    }
+
+                    .sub-group-tag-wrap {
+                        flex-basis: var(--pp-pt-gt-gb-gm-sgh-subGroupTabWrap-flex-basis);
+                        height: var(--pp-pt-gt-gb-gm-sgh-subGroupTabWrap-height);
+                        overflow: var(--pp-pt-gt-gb-gm-sgh-subGroupTabWrap-overflow);
                     }
                 }
 

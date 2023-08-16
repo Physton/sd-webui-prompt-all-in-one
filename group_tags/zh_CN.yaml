@@ -4202,12 +4202,16 @@
         looking_at_food: 看食物
         looking_at_screen: 看着屏幕
 
-- name: 汉服(唐风)
+- name: 汉服
   groups:
-    - name: 上杉
+    - name: "唐风:"
       color: rgba(178, 33, 34, .4)
       tags:
         hanfu, tang style outfits,<lora:hanfuTang_v32:0.7>: 唐风
+
+    - name: 上杉
+      color: rgba(178, 33, 34, .4)
+      tags:
         orange upper shan: 橙色上杉
         red upper shan: 红色上杉
         green upper shan: 绿色上杉
@@ -4309,12 +4313,16 @@
         light green pibo: 浅绿披帛
         white with yellow pibo: 黄白披帛
 
-- name: 汉服(宋风)
-  groups:
-    - name: 短衫
+    - type: wrap
+
+    - name: "宋风:"
       color: rgba(178, 33, 34, .4)
       tags:
         hanfu, song style outfits,<lora:hanfuSong_v31:0.7>: 宋风
+
+    - name: 短衫
+      color: rgba(178, 33, 34, .4)
+      tags:
         purple short shan: 紫色短杉
         red short shan: 红色短杉
         green short shan: 绿色短杉
@@ -4382,12 +4390,16 @@
         purple floral songmo: 紫碎花宋抹
         cyan floral songmo: 青碎花宋抹
 
-- name: 汉服(明风)
-  groups:
-    - name: 上衣
+    - type: wrap
+
+    - name: "明风:"
       color: rgba(178, 33, 34, .4)
       tags:
         hanfu, ming style outfits,<lora:hanfuMing_v31:0.7>: 明风
+
+    - name: 上衣
+      color: rgba(178, 33, 34, .4)
+      tags:
         short coat: 短袄
         long coat: 长袄
 

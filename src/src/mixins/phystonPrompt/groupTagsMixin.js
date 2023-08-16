@@ -14,6 +14,7 @@ export default {
             handler() {
                 for (let item of this.groupTags) {
                     for (let group of item.groups) {
+                        if (group.type && group.typ == 'wrap') continue
                         let key = this.getTagsColorKey(item.name, group.name)
                         if (!this.groupTagsColor[key]) {
                             this.groupTagsColor[key] = ref(common.fitterInputColor(group.color))
@@ -56,9 +57,8 @@ export default {
             html += en
             return html
         },
-        renderGroupTag(local, en, groupName = '', subGroupName = '') {
-            let html = ''
-            let style = ''
+        getGroupTagStyle(groupName, subGroupName) {
+            let style = {}
             let colorKey = this.getTagsColorKey(groupName, subGroupName)
             let color = ''
             if (this.groupTagsColor[colorKey]) {
@@ -69,15 +69,9 @@ export default {
                 }
             }
             if (color) {
-                style = 'style="background: ' + color + '"'
+                style = {background: color}
             }
-            if (local && local !== en) {
-                html += '<div class="tag-local" ' + style + '>' + local + '</div>'
-                html += '<div class="tag-en">' + en + '</div>'
-            } else {
-                html += '<div class="tag-local" ' + style + '>' + en + '</div>'
-            }
-            return html
+            return style
         },
         getTagsColorKey(groupName, subGroupName) {
             return groupName + '||' + subGroupName
@@ -88,6 +82,7 @@ export default {
         onClickResetTagsColor(key) {
             for (let item of this.groupTags) {
                 for (let group of item.groups) {
+                    if (group.type && group.typ == 'wrap') continue
                     let key2 = this.getTagsColorKey(item.name, group.name)
                     if (key === key2) {
                         this.groupTagsColor[key] = ref(common.fitterInputColor(group.color))

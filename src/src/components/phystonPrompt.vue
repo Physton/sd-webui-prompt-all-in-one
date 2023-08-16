@@ -414,14 +414,22 @@
                 <div class="group-body">
                     <div v-for="(item, index) in groupTags" :key="index" :class="['group-main', index == groupTagsActive ? 'active' : '']">
                         <div class="sub-group-header" v-if="index == groupTagsActive">
-                            <div class="sub-group-tab" v-for="(group, subIndex) in item.groups" :key="subIndex" :class="['sub-group-tab', subIndex == subGroupTagsActive ? 'active' : '']" @click="activeSubGroupTab(subIndex)">{{ group.name }}</div>
+                            <div v-for="(group, subIndex) in item.groups"
+                                 :key="subIndex"
+                                 :class="[group.type && group.type === 'wrap' ? 'sub-group-tag-wrap': 'sub-group-tab', subIndex == subGroupTagsActive ? 'active' : '']"
+                                 @click="activeSubGroupTab(subIndex)">{{ group.name }}</div>
                         </div>
                         <div class="sub-group-body" v-if="index == groupTagsActive">
                             <div v-for="(group, subIndex) in item.groups" :key="subIndex" :class="['sub-group-main', subIndex == subGroupTagsActive ? 'active' : '']">
                                 <div class="group-tags" v-if="subIndex == subGroupTagsActive">
                                     <div class="tag-item" v-for="(local, en) in group.tags"
                                         v-tooltip="getGroupTagTooltip(local, en)"
-                                        @click="onClickGroupTag(local, en)" v-html="renderGroupTag(local, en, item.name, group.name)">
+                                        @click="onClickGroupTag(local, en)">
+                                        <template v-if="local && local != en">
+                                            <div class="tag-local" :style="getGroupTagStyle(item.name, group.name)">{{ local }}</div>
+                                            <div class="tag-en">{{ en }}</div>
+                                        </template>
+                                        <div v-else class="tag-local" :style="getGroupTagStyle(item.name, group.name)">{{ en }}</div>
                                     </div>
                                 </div>
                                 <div class="tags-footer">

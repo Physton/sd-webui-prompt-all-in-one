@@ -4202,12 +4202,16 @@
         looking_at_food: Guardare il cibo
         looking_at_screen: Guardare lo schermo
 
-- name: Hanfu (Stile Tang)
+- name: Hanfu
   groups:
-    - name: Shan superiore
+    - name: "Stile Tang:"
       color: rgba(178, 33, 34, .4)
       tags:
         hanfu, abiti in stile Tang,<lora:hanfuTang_v32:0.7>: Stile Tang
+
+    - name: Shan superiore
+      color: rgba(178, 33, 34, .4)
+      tags:
         orange upper shan: Shan superiore arancione
         red upper shan: Shan superiore rosso
         green upper shan: Shan superiore verde
@@ -4309,12 +4313,16 @@
         light green pibo: Pibo verde chiaro
         white with yellow pibo: Pibo bianco con giallo
 
-- name: Hanfu (Stile Song)
-  groups:
-    - name: Camicia corta
+    - type: wrap
+
+    - name: "Stile Song:"
       color: rgba(178, 33, 34, .4)
       tags:
         hanfu, abiti in stile Song,<lora:hanfuSong_v31:0.7>: Stile Song
+
+    - name: Camicia corta
+      color: rgba(178, 33, 34, .4)
+      tags:
         purple short shan: Shan corto viola
         red short shan: Shan corto rosso
         green short shan: Shan corto verde
@@ -4382,12 +4390,16 @@
         purple floral songmo: Songmo viola floreale
         cyan floral songmo: Songmo ciano floreale
 
-- name: Hanfu (Stile Ming)
-  groups:
-    - name: Giacca
+    - type: wrap
+
+    - name: "Stile Ming:"
       color: rgba(178, 33, 34, .4)
       tags:
         hanfu, abiti in stile Ming,<lora:hanfuMing_v31:0.7>: Stile Ming
+
+    - name: Giacca
+      color: rgba(178, 33, 34, .4)
+      tags:
         short coat: Giacca corta
         long coat: Giacca lunga
 
