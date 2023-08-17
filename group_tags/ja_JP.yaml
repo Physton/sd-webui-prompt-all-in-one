@@ -4320,3 +4320,74 @@
         woven gold: 織り金
         makeup flower: メイクアップフラワー
         bufu: 補服
+
+- name: ネガティブなプロンプト
+  groups:
+    - name: 画像
+      color:
+      tags:
+        NSFW: 仕事に適していない
+        logo: ロゴ
+        text: テキスト
+        blurry: ぼやけた
+        low quality: 低品質
+        bad anatomy: 悪い解剖学
+        sketches: スケッチ
+        lowres: 低解像度
+        normal quality: 通常の品質
+        monochrome: モノクローム
+        grayscale: グレースケール
+        worstquality: 最悪の品質
+        signature: 署名
+        watermark: ウォーターマーク
+        cropped: 切り抜かれた
+        bad proportions: 悪い比率
+        out of focus: ピント外れ
+        username: ユーザー名
+
+    - name: 人物
+      color:
+      tags:
+        Multiple people: 複数人
+        (AS-YoungV2-Neg:1.3): 大人を削除
+        (AS-Adult-Neg:1.3): 若者を削除
+        bad body: 体の形が悪い
+        long body: 体が長い
+        (fat:1.2): 肥満
+        long neck: 首が長い
+        deformed: 変形した
+        mutated: 突然変異した
+        mutation: 突然変異
+        ugly: 醜い
+        disfigured: 変形した
+        poorly drawn face: 顔の描き方が下手な
+        skin blemishes: 皮膚の欠点
+        skin spots: 皮膚の斑点
+        acnes: ニキビ
+        missing limb: 欠損した肢体
+        malformed limbs: 異常な形状の肢体
+        floating limbs: 浮遊した肢体
+        disconnected limbs: 切断された肢体
+        extra limb: 追加の肢体
+        extra arms: 追加の腕
+        mutated hands: 突然変異した手
+        poorly drawn hands: 手の描き方が下手な
+        malformed hands: 異常な形状の手
+        mutated hands and fingers: 突然変異した手と指
+        bad hands: 悪い手
+        missing fingers: 指が欠損した
+        fused fingers: 指が融合した
+        too many fingers: 指が多すぎる
+        extra legs: 追加の足
+        bad feet: 悪い足
+        cross-eyed: 斜視
+
+    - name: Embeddings
+      color:
+      tags:
+        AS-YoungV2-neg:
+        BadDream:
+        badhandv4:
+        BadNegAnatomyV1-neg:
+        EasyNegative:
+        FastNegativeV2:

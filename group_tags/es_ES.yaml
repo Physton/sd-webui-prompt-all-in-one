@@ -4428,3 +4428,74 @@
         woven gold: Hilo dorado tejido
         makeup flower: Flor maquillada
         bufu: Bufu
+
+- name: Palabra clave negativa
+  groups:
+    - name: Imágenes
+      color:
+      tags:
+        NSFW: No apto para el trabajo
+        logo: Logotipo
+        text: Texto
+        blurry: Borroso
+        low quality: Baja calidad
+        bad anatomy: Mala anatomía
+        sketches: Bocetos
+        lowres: Baja resolución
+        normal quality: Calidad normal
+        monochrome: Monocromo
+        grayscale: Escala de grises
+        worstquality: Peor calidad
+        signature: Firma
+        watermark: Marca de agua
+        cropped: Recortado
+        bad proportions: Malas proporciones
+        out of focus: Fuera de foco
+        username: Nombre de usuario
+
+    - name: Personas
+      color:
+      tags:
+        Multiple people: Múltiples personas
+        (AS-YoungV2-Neg:1.3): Eliminar adultos
+        (AS-Adult-Neg:1.3): Eliminar jóvenes
+        bad body: Mal cuerpo
+        long body: Cuerpo largo
+        (fat:1.2): Sobrepeso
+        long neck: Cuello largo
+        deformed: Deformado
+        mutated: Mutado
+        mutation: Mutación
+        ugly: Feo
+        disfigured: Desfigurado
+        poorly drawn face: Rostro mal dibujado
+        skin blemishes: Imperfecciones en la piel
+        skin spots: Manchas en la piel
+        acnes: Acné
+        missing limb: Extremidad faltante
+        malformed limbs: Extremidades malformadas
+        floating limbs: Extremidades flotantes
+        disconnected limbs: Extremidades desconectadas
+        extra limb: Extremidad adicional
+        extra arms: Brazos adicionales
+        mutated hands: Manos mutadas
+        poorly drawn hands: Manos mal dibujadas
+        malformed hands: Manos malformadas
+        mutated hands and fingers: Manos y dedos mutados
+        bad hands: Malas manos
+        missing fingers: Dedos faltantes
+        fused fingers: Dedos fusionados
+        too many fingers: Demasiados dedos
+        extra legs: Piernas adicionales
+        bad feet: Pies malos
+        cross-eyed: Bizco
+
+    - name: Embeddings
+      color:
+      tags:
+        AS-YoungV2-neg:
+        BadDream:
+        badhandv4:
+        BadNegAnatomyV1-neg:
+        EasyNegative:
+        FastNegativeV2:

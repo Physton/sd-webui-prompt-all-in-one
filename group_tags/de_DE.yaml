@@ -4433,3 +4433,74 @@
         woven gold: Gewebtes Gold
         makeup flower: Schminkblume
         bufu: Bufu
+
+- name: Negativ Eingabeaufforderung
+  groups:
+    - name: Bild
+      color:
+      tags:
+        NSFW: Nicht sicher für die Arbeit
+        logo: Logo
+        text: Text
+        blurry: Unscharf
+        low quality: Niedrige Qualität
+        bad anatomy: Schlechte Anatomie
+        sketches: Skizzen
+        lowres: Niedrige Auflösung
+        normal quality: Normale Qualität
+        monochrome: Monochrom
+        grayscale: Graustufen
+        worstquality: Schlechteste Qualität
+        signature: Signatur
+        watermark: Wasserzeichen
+        cropped: Beschnitten
+        bad proportions: Schlechte Proportionen
+        out of focus: Unschärfe
+        username: Benutzername
+
+    - name: Person
+      color:
+      tags:
+        Multiple people: Mehrere Personen
+        (AS-YoungV2-Neg:1.3): Erwachsene entfernen
+        (AS-Adult-Neg:1.3): Jugendliche entfernen
+        bad body: Schlechter Körper
+        long body: Langer Körper
+        (fat:1.2): Übergewicht
+        long neck: Langer Hals
+        deformed: Verformt
+        mutated: Mutiert
+        mutation: Mutation
+        ugly: Hässlich
+        disfigured: Entstellt
+        poorly drawn face: Schlecht gezeichnetes Gesicht
+        skin blemishes: Hautunreinheiten
+        skin spots: Hautflecken
+        acnes: Akne
+        missing limb: Fehlendes Gliedmaß
+        malformed limbs: Missgebildete Gliedmaßen
+        floating limbs: Schwebende Gliedmaßen
+        disconnected limbs: Nicht verbundene Gliedmaßen
+        extra limb: Zusätzliches Gliedmaß
+        extra arms: Zusätzliche Arme
+        mutated hands: Mutierte Hände
+        poorly drawn hands: Schlecht gezeichnete Hände
+        malformed hands: Missgebildete Hände
+        mutated hands and fingers: Mutierte Hände und Finger
+        bad hands: Schlechte Hände
+        missing fingers: Fehlende Finger
+        fused fingers: Verschmolzene Finger
+        too many fingers: Zu viele Finger
+        extra legs: Zusätzliche Beine
+        bad feet: Schlechte Füße
+        cross-eyed: Schielen
+
+    - name: Embeddings
+      color:
+      tags:
+        AS-YoungV2-neg:
+        BadDream:
+        badhandv4:
+        BadNegAnatomyV1-neg:
+        EasyNegative:
+        FastNegativeV2:

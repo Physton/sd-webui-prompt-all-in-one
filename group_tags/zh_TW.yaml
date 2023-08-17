@@ -4506,3 +4506,74 @@
         (white hair),(((red streaked hair))), red eyes, (((full body))),(red hair), (((((Hold a red sword))))), (angry face),((Blood drop)),((Blood fog)),light shafts, soft focus, ((Splashing blood))),Long hair,((Bloodstain)),Fighting stance,{{{{{watercolor (medium)}}}},(((masterpiece))),((white clock)),((ultradetailed)),((Covered in blood)),flowing hair,Exquisite Flame,dynamic angle, floating, (shine), extremely delicate and beautiful girls, bright skin, lying red petals,Holy lighting: 血改法
         dramatic shadows,black and white,monochrome,{{comic}},cross necklace,Cassock: 留影術
         ((ink)),(water color),bloom effect,detailed beautiful grassland with petal,flower,butterfly,necklace,smile,petal,(((surrounded by heavy floating petal flow))): 飄花法
+
+- name: 反向提示詞
+  groups:
+    - name: 畫面
+      color:
+      tags:
+        NSFW: Not Safe For Work
+        logo: 商標
+        text: 文字
+        blurry: 模糊
+        low quality: 低品質
+        bad anatomy: 解剖錯誤
+        sketches: 素描
+        lowres: 低解析度
+        normal quality: 正常品質
+        monochrome: 單色
+        grayscale: 灰階
+        worstquality: 最差品質
+        signature: 簽名
+        watermark: 浮水印
+        cropped: 裁剪
+        bad proportions: 比例錯誤
+        out of focus: 焦點不清
+        username: 使用者名稱
+
+    - name: 人
+      color:
+      tags:
+        Multiple people: 多人
+        (AS-YoungV2-Neg:1.3): 移除成年人
+        (AS-Adult-Neg:1.3): 移除年輕人
+        bad body: 身體不好
+        long body: 身體過長
+        (fat:1.2): 肥胖
+        long neck: 長頸
+        deformed: 畸形
+        mutated: 變異的
+        mutation: 變異
+        ugly: 醜陋
+        disfigured: 毀容
+        poorly drawn face: 畫得不好的臉
+        skin blemishes: 皮膚瑕疵
+        skin spots: 皮膚斑點
+        acnes: 痤瘡
+        missing limb: 缺少肢體
+        malformed limbs: 畸形的肢體
+        floating limbs: 漂浮的肢體
+        disconnected limbs: 肢體不連貫
+        extra limb: 多餘的肢體
+        extra arms: 多餘的手臂
+        mutated hands: 變異的手
+        poorly drawn hands: 畫得不好的手
+        malformed hands: 畸形的手
+        mutated hands and fingers: 變異的手和手指
+        bad hands: 不好的手
+        missing fingers: 缺少手指
+        fused fingers: 融合的手指
+        too many fingers: 太多手指
+        extra legs: 多餘的腿
+        bad feet: 不好的腳
+        cross-eyed: 斗雞眼
+
+    - name: Embeddings
+      color:
+      tags:
+        AS-YoungV2-neg:
+        BadDream:
+        badhandv4:
+        BadNegAnatomyV1-neg:
+        EasyNegative:
+        FastNegativeV2:

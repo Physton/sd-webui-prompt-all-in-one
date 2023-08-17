@@ -4428,3 +4428,74 @@
         woven gold: 직조 금
         makeup flower: 화장 꽃
         bufu: 보복 의복
+
+- name: 부정적인 프롬프트
+  groups:
+    - name: 이미지
+      color:
+      tags:
+        NSFW: 직장에 적합하지 않음
+        logo: 로고
+        text: 텍스트
+        blurry: 흐릿한
+        low quality: 저품질
+        bad anatomy: 해부학 오류
+        sketches: 스케치
+        lowres: 저해상도
+        normal quality: 보통 품질
+        monochrome: 흑백
+        grayscale: 그레이스케일
+        worstquality: 최악의 품질
+        signature: 서명
+        watermark: 워터마크
+        cropped: 자른
+        bad proportions: 비정상적인 비율
+        out of focus: 초점이 흐려진
+        username: 사용자 이름
+
+    - name: 인물
+      color:
+      tags:
+        Multiple people: 다수의 사람
+        (AS-YoungV2-Neg:1.3): 성인 제거
+        (AS-Adult-Neg:1.3): 어린이 제거
+        bad body: 몸매가 나쁜
+        long body: 몸이 긴
+        (fat:1.2): 비만
+        long neck: 목이 긴
+        deformed: 변형된
+        mutated: 돌연변이된
+        mutation: 돌연변이
+        ugly: 추한
+        disfigured: 외모가 손상된
+        poorly drawn face: 얼굴이 서툴게 그려진
+        skin blemishes: 피부 결점
+        skin spots: 피부에 반점
+        acnes: 여드름
+        missing limb: 손실된 팔다리
+        malformed limbs: 비정상적인 형태의 팔다리
+        floating limbs: 떠다니는 팔다리
+        disconnected limbs: 분리된 팔다리
+        extra limb: 추가된 팔다리
+        extra arms: 추가된 팔
+        mutated hands: 돌연변이된 손
+        poorly drawn hands: 손이 서툴게 그려진
+        malformed hands: 비정상적인 형태의 손
+        mutated hands and fingers: 돌연변이된 손과 손가락
+        bad hands: 나쁜 손
+        missing fingers: 손가락이 없는
+        fused fingers: 합쳐진 손가락
+        too many fingers: 너무 많은 손가락
+        extra legs: 추가된 다리
+        bad feet: 나쁜 발
+        cross-eyed: 사시가 있는
+
+    - name: Embeddings
+      color:
+      tags:
+        AS-YoungV2-neg:
+        BadDream:
+        badhandv4:
+        BadNegAnatomyV1-neg:
+        EasyNegative:
+        FastNegativeV2:

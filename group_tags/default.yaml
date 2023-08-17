@@ -4424,3 +4424,74 @@
         woven gold:
         makeup flower:
         bufu:
+
+- name: Negative Prompt
+  groups:
+    - name: Image
+      color:
+      tags:
+        NSFW:
+        logo:
+        text:
+        blurry:
+        low quality:
+        bad anatomy:
+        sketches:
+        lowres:
+        normal quality:
+        monochrome:
+        grayscale:
+        worstquality:
+        signature:
+        watermark:
+        cropped:
+        bad proportions:
+        out of focus:
+        username:
+
+    - name: Person
+      color:
+      tags:
+        Multiple people:
+        (AS-YoungV2-Neg:1.3):
+        (AS-Adult-Neg:1.3):
+        bad body:
+        long body:
+        (fat:1.2):
+        long neck:
+        deformed:
+        mutated:
+        mutation:
+        ugly:
+        disfigured:
+        poorly drawn face:
+        skin blemishes:
+        skin spots:
+        acnes:
+        missing limb:
+        malformed limbs:
+        floating limbs:
+        disconnected limbs:
+        extra limb:
+        extra arms:
+        mutated hands:
+        poorly drawn hands:
+        malformed hands:
+        mutated hands and fingers:
+        bad hands: 
+        missing fingers:
+        fused fingers:
+        too many fingers:
+        extra legs:
+        bad feet:
+        cross-eyed:
+
+    - name: Embeddings
+      color:
+      tags:
+        AS-YoungV2-neg:
+        BadDream:
+        badhandv4:
+        BadNegAnatomyV1-neg:
+        EasyNegative:
+        FastNegativeV2:

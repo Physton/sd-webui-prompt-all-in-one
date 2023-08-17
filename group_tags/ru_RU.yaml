@@ -4429,3 +4429,74 @@
         woven gold: Плетение золотом
         makeup flower: Цветочный узор
         bufu: Буфу
+
+- name: Обратная подсказка
+  groups:
+    - name: Изображения
+      color:
+      tags:
+        NSFW: Нецензурный контент
+        logo: Логотип
+        text: Текст
+        blurry: Размытое
+        low quality: Низкое качество
+        bad anatomy: Неправильная анатомия
+        sketches: Эскизы
+        lowres: Низкое разрешение
+        normal quality: Обычное качество
+        monochrome: Монохромное
+        grayscale: Оттенки серого
+        worstquality: Худшее качество
+        signature: Подпись
+        watermark: Водяной знак
+        cropped: Обрезанное
+        bad proportions: Неправильные пропорции
+        out of focus: Не в фокусе
+        username: Имя пользователя
+
+    - name: Люди
+      color:
+      tags:
+        Multiple people: Несколько людей
+        (AS-YoungV2-Neg:1.3): Удалить взрослых
+        (AS-Adult-Neg:1.3): Удалить молодых
+        bad body: Плохое тело
+        long body: Длинное тело
+        (fat:1.2): Полный
+        long neck: Длинная шея
+        deformed: Деформированный
+        mutated: Мутировавший
+        mutation: Мутация
+        ugly: Уродливый
+        disfigured: Испорченный
+        poorly drawn face: Плохо нарисованное лицо
+        skin blemishes: Пятна на коже
+        skin spots: Веснушки
+        acnes: Прыщи
+        missing limb: Отсутствующая конечность
+        malformed limbs: Деформированные конечности
+        floating limbs: Плавающие конечности
+        disconnected limbs: Отсоединенные конечности
+        extra limb: Дополнительная конечность
+        extra arms: Дополнительные руки
+        mutated hands: Мутировавшие руки
+        poorly drawn hands: Плохо нарисованные руки
+        malformed hands: Деформированные руки
+        mutated hands and fingers: Мутировавшие руки и пальцы
+        bad hands: Плохие руки
+        missing fingers: Отсутствующие пальцы
+        fused fingers: Сросшиеся пальцы
+        too many fingers: Слишком много пальцев
+        extra legs: Дополнительные ноги
+        bad feet: Плохие ноги
+        cross-eyed: Косоглазый
+
+    - name: Embeddings
+      color:
+      tags:
+        AS-YoungV2-neg:
+        BadDream:
+        badhandv4:
+        BadNegAnatomyV1-neg:
+        EasyNegative:
+        FastNegativeV2:

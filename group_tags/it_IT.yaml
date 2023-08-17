@@ -4430,3 +4430,74 @@
         woven gold: Tessuto dorato
         makeup flower: Fiore truccato
         bufu: Bufu
+
+- name: Suggerimento inverso
+  groups:
+    - name: Immagine
+      color:
+      tags:
+        NSFW: Non adatto al lavoro
+        logo: Logo
+        text: Testo
+        blurry: Sfocato
+        low quality: Bassa qualità
+        bad anatomy: Anatomia sbagliata
+        sketches: Schizzi
+        lowres: Bassa risoluzione
+        normal quality: Qualità normale
+        monochrome: Monocromatico
+        grayscale: Scala di grigi
+        worstquality: Peggior qualità
+        signature: Firma
+        watermark: Filigrana
+        cropped: Ritagliato
+        bad proportions: Proporzioni sbagliate
+        out of focus: Fuori fuoco
+        username: Nome utente
+
+    - name: Persona
+      color:
+      tags:
+        Multiple people: Più persone
+        (AS-YoungV2-Neg:1.3): Rimuovere gli adulti
+        (AS-Adult-Neg:1.3): Rimuovere i giovani
+        bad body: Corpo sbagliato
+        long body: Corpo lungo
+        (fat:1.2): Obeso
+        long neck: Collo lungo
+        deformed: Deformato
+        mutated: Mutato
+        mutation: Mutazione
+        ugly: Brutto
+        disfigured: Sfigurato
+        poorly drawn face: Volto disegnato male
+        skin blemishes: Imperfezioni della pelle
+        skin spots: Macchie sulla pelle
+        acnes: Acne
+        missing limb: Arto mancante
+        malformed limbs: Arti malformati
+        floating limbs: Arti fluttuanti
+        disconnected limbs: Arti disconnessi
+        extra limb: Arto extra
+        extra arms: Braccia extra
+        mutated hands: Mani mutate
+        poorly drawn hands: Mani disegnate male
+        malformed hands: Mani malformate
+        mutated hands and fingers: Mani e dita mutate
+        bad hands: Mani sbagliate
+        missing fingers: Dita mancanti
+        fused fingers: Dita fuse
+        too many fingers: Troppo dita
+        extra legs: Gambe extra
+        bad feet: Piedi sbagliati
+        cross-eyed: Strabico
+
+    - name: Embeddings
+      color:
+      tags:
+        AS-YoungV2-neg:
+        BadDream:
+        badhandv4:
+        BadNegAnatomyV1-neg:
+        EasyNegative:
+        FastNegativeV2:

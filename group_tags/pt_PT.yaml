@@ -4430,3 +4430,74 @@
         woven gold: Tecido dourado
         makeup flower: Flor de maquiagem
         bufu: Bufu
+
+- name: Palavra-chave negativa
+  groups:
+    - name: Imagens
+      color:
+      tags:
+        NSFW: Não adequado para o trabalho
+        logo: Logotipo
+        text: Texto
+        blurry: Desfocado
+        low quality: Baixa qualidade
+        bad anatomy: Má anatomia
+        sketches: Esboços
+        lowres: Baixa resolução
+        normal quality: Qualidade normal
+        monochrome: Monocromático
+        grayscale: Tons de cinza
+        worstquality: Pior qualidade
+        signature: Assinatura
+        watermark: Marca d'água
+        cropped: Recortado
+        bad proportions: Proporções ruins
+        out of focus: Fora de foco
+        username: Nome de usuário
+
+    - name: Pessoas
+      color:
+      tags:
+        Multiple people: Múltiplas pessoas
+        (AS-YoungV2-Neg:1.3): Remover adultos
+        (AS-Adult-Neg:1.3): Remover jovens
+        bad body: Corpo ruim
+        long body: Corpo longo
+        (fat:1.2): Obeso
+        long neck: Pescoço longo
+        deformed: Deformado
+        mutated: Mutado
+        mutation: Mutação
+        ugly: Feio
+        disfigured: Desfigurado
+        poorly drawn face: Rosto mal desenhado
+        skin blemishes: Imperfeições na pele
+        skin spots: Manchas na pele
+        acnes: Acne
+        missing limb: Membro faltando
+        malformed limbs: Membros malformados
+        floating limbs: Membros flutuantes
+        disconnected limbs: Membros desconectados
+        extra limb: Membro extra
+        extra arms: Braços extras
+        mutated hands: Mãos mutadas
+        poorly drawn hands: Mãos mal desenhadas
+        malformed hands: Mãos malformadas
+        mutated hands and fingers: Mãos e dedos mutados
+        bad hands: Mãos ruins
+        missing fingers: Dedos faltando
+        fused fingers: Dedos fundidos
+        too many fingers: Muitos dedos
+        extra legs: Pernas extras
+        bad feet: Pés ruins
+        cross-eyed: Estrábico
+
+    - name: Embeddings
+      color:
+      tags:
+        AS-YoungV2-neg:
+        BadDream:
+        badhandv4:
+        BadNegAnatomyV1-neg:
+        EasyNegative:
+        FastNegativeV2:

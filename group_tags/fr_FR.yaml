@@ -4435,3 +4435,74 @@
         woven gold: Or tissé
         makeup flower: Fleur de maquillage
         bufu: Bufu
+
+- name: Mot d'indice négatif
+  groups:
+    - name: Image
+      color:
+      tags:
+        NSFW: Non approprié pour le travail
+        logo: Logo
+        text: Texte
+        blurry: Flou
+        low quality: Basse qualité
+        bad anatomy: Mauvaise anatomie
+        sketches: Croquis
+        lowres: Basse résolution
+        normal quality: Qualité normale
+        monochrome: Monochrome
+        grayscale: Niveaux de gris
+        worstquality: Pire qualité
+        signature: Signature
+        watermark: Filigrane
+        cropped: Recadré
+        bad proportions: Mauvaises proportions
+        out of focus: Hors de focus
+        username: Nom d'utilisateur
+
+    - name: Personne
+      color:
+      tags:
+        Multiple people: Plusieurs personnes
+        (AS-YoungV2-Neg:1.3): Retirer les adultes
+        (AS-Adult-Neg:1.3): Retirer les jeunes
+        bad body: Mauvais corps
+        long body: Corps long
+        (fat:1.2): Obèse
+        long neck: Long cou
+        deformed: Déformé
+        mutated: Muté
+        mutation: Mutation
+        ugly: Laid
+        disfigured: Défiguré
+        poorly drawn face: Visage mal dessiné
+        skin blemishes: Imperfections de la peau
+        skin spots: Taches sur la peau
+        acnes: Acné
+        missing limb: Membre manquant
+        malformed limbs: Membres malformés
+        floating limbs: Membres flottants
+        disconnected limbs: Membres déconnectés
+        extra limb: Membre supplémentaire
+        extra arms: Bras supplémentaires
+        mutated hands: Mains mutées
+        poorly drawn hands: Mains mal dessinées
+        malformed hands: Mains malformées
+        mutated hands and fingers: Mains et doigts mutés
+        bad hands: Mauvaises mains
+        missing fingers: Doigts manquants
+        fused fingers: Doigts fusionnés
+        too many fingers: Trop de doigts
+        extra legs: Jambes supplémentaires
+        bad feet: Mauvais pieds
+        cross-eyed: Strabisme
+
+    - name: Embeddings
+      color:
+      tags:
+        AS-YoungV2-neg:
+        BadDream:
+        badhandv4:
+        BadNegAnatomyV1-neg:
+        EasyNegative:
+        FastNegativeV2:
