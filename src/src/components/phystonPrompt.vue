@@ -427,7 +427,7 @@
                         <div class="sub-group-body" v-if="index == groupTagsActive">
                             <div v-for="(group, subIndex) in item.groups" :key="subIndex" :class="['sub-group-main', subIndex == subGroupTagsActive ? 'active' : '']">
                                 <div class="group-tags" v-if="subIndex == subGroupTagsActive">
-                                    <div class="tag-item" v-for="(local, en) in group.tags"
+                                    <div class="tag-item" ref="groupTagItem" v-for="(local, en) in group.tags"
                                         v-tooltip="getGroupTagTooltip(local, en)"
                                         @click="onClickGroupTag(local, en)">
                                         <template v-if="local && local != en">

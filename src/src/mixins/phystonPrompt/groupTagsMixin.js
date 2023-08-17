@@ -8,7 +8,15 @@ export default {
             subGroupTagsActive: 0,
         }
     },
-    watch: {},
+    watch: {
+        groupTags: {
+            handler() {
+                this._setGroupTagItemWidth()
+            },
+            deep: true,
+            immediate: true,
+        },
+    },
     methods: {
         activeGroupTab(index) {
             this.groupTagsActive = index
@@ -18,9 +26,26 @@ export default {
                 left: scrollLeft,
                 behavior: 'smooth'
             })
+            this._setGroupTagItemWidth()
         },
         activeSubGroupTab(index) {
             this.subGroupTagsActive = index
+            this._setGroupTagItemWidth()
+        },
+        _setGroupTagItemWidth() {
+            // this.$refs.groupTagItem
+            this.$nextTick(() => {
+                this.$refs.groupTagItem.forEach((item, index) => {
+                    item.style.width = 'auto'
+                })
+                let maxWidth = 0
+                this.$refs.groupTagItem.forEach((item, index) => {
+                    maxWidth = Math.max(maxWidth, item.offsetWidth)
+                })
+                this.$refs.groupTagItem.forEach((item, index) => {
+                    item.style.width = maxWidth + 'px'
+                })
+            })
         },
         onClickHideGroupTags() {
             this.$emit('update:hideGroupTags', !this.hideGroupTags)

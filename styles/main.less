@@ -996,6 +996,8 @@
     // .physton-prompt .prompt-tags .group-tabs .group-body .group-main .sub-group-main .group-tags .tag-item
     --pp-pt-gt-gb-gm-sgm-gt-tagItem-margin: 4px;
     --pp-pt-gt-gb-gm-sgm-gt-tagItem-cursor: pointer;
+    --pp-pt-gt-gb-gm-sgm-gt-tagItem-border-radius: 4px;
+    --pp-pt-gt-gb-gm-sgm-gt-tagItem-overflow: hidden;
 
     // .physton-prompt .prompt-tags .group-tabs .group-body .group-main .sub-group-main .group-tags .tag-item:hover
     --pp-pt-gt-gb-gm-sgm-gt-tagItemHover-background: rgba(0, 0, 0, .1);
@@ -1003,8 +1005,6 @@
     // .physton-prompt .prompt-tags .group-tabs .group-body .group-main .sub-group-main .group-tags .tag-item .tag-local
     --pp-pt-gt-gb-gm-sgm-gt-ti-tagLocal-padding: 4px 10px;
     --pp-pt-gt-gb-gm-sgm-gt-ti-tagLocal-background: rgba(0, 187, 255, .1);
-    --pp-pt-gt-gb-gm-sgm-gt-ti-tagLocal-border-top-left-radius: 4px;
-    --pp-pt-gt-gb-gm-sgm-gt-ti-tagLocal-border-bottom-left-radius: 4px;
     --pp-pt-gt-gb-gm-sgm-gt-ti-tagLocal-text-align: center;
     --pp-pt-gt-gb-gm-sgm-gt-ti-tagLocal-font-size: 14px;
     --pp-pt-gt-gb-gm-sgm-gt-ti-tagLocal-color: #2c2c2c;
@@ -1016,8 +1016,6 @@
     // .physton-prompt .prompt-tags .group-tabs .group-body .group-main .sub-group-main .group-tags .tag-item .tag-en
     --pp-pt-gt-gb-gm-sgm-gt-ti-tagEn-padding: 4px 10px;
     --pp-pt-gt-gb-gm-sgm-gt-ti-tagEn-background: rgba(0, 0, 0, .06);
-    --pp-pt-gt-gb-gm-sgm-gt-ti-tagEn-border-top-right-radius: 4px;
-    --pp-pt-gt-gb-gm-sgm-gt-ti-tagEn-border-bottom-right-radius: 4px;
     --pp-pt-gt-gb-gm-sgm-gt-ti-tagEn-text-align: center;
     --pp-pt-gt-gb-gm-sgm-gt-ti-tagEn-font-size: 12px;
     --pp-pt-gt-gb-gm-sgm-gt-ti-tagEn-color: #7f7f7f;
@@ -3300,6 +3298,8 @@
                         .tag-item {
                             margin: var(--pp-pt-gt-gb-gm-sgm-gt-tagItem-margin);
                             cursor: var(--pp-pt-gt-gb-gm-sgm-gt-tagItem-cursor);
+                            border-radius: var(--pp-pt-gt-gb-gm-sgm-gt-tagItem-border-radius);
+                            overflow: var(--pp-pt-gt-gb-gm-sgm-gt-tagItem-overflow);
 
                             &:hover {
                                 background: var(--pp-pt-gt-gb-gm-sgm-gt-tagItemHover-background);
@@ -3308,8 +3308,6 @@
                             .tag-local {
                                 padding: var(--pp-pt-gt-gb-gm-sgm-gt-ti-tagLocal-padding);
                                 background: var(--pp-pt-gt-gb-gm-sgm-gt-ti-tagLocal-background);
-                                border-top-left-radius: var(--pp-pt-gt-gb-gm-sgm-gt-ti-tagLocal-border-top-left-radius);
-                                border-bottom-left-radius: var(--pp-pt-gt-gb-gm-sgm-gt-ti-tagLocal-border-bottom-left-radius);
                                 text-align: var(--pp-pt-gt-gb-gm-sgm-gt-ti-tagLocal-text-align);
                                 font-size: var(--pp-pt-gt-gb-gm-sgm-gt-ti-tagLocal-font-size);
                                 color: var(--pp-pt-gt-gb-gm-sgm-gt-ti-tagLocal-color);
@@ -3322,8 +3320,6 @@
                             .tag-en {
                                 padding: var(--pp-pt-gt-gb-gm-sgm-gt-ti-tagEn-padding);
                                 background: var(--pp-pt-gt-gb-gm-sgm-gt-ti-tagEn-background);
-                                border-top-right-radius: var(--pp-pt-gt-gb-gm-sgm-gt-ti-tagEn-border-top-right-radius);
-                                border-bottom-right-radius: var(--pp-pt-gt-gb-gm-sgm-gt-ti-tagEn-border-bottom-right-radius);
                                 text-align: var(--pp-pt-gt-gb-gm-sgm-gt-ti-tagEn-text-align);
                                 font-size: var(--pp-pt-gt-gb-gm-sgm-gt-ti-tagEn-font-size);
                                 color: var(--pp-pt-gt-gb-gm-sgm-gt-ti-tagEn-color);
