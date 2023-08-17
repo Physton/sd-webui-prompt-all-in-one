@@ -783,8 +783,6 @@ export default {
                 }
             }
             this.groupTagsTranslateCache = data
-            console.log(this.groupTagsColorKeyCache)
-            console.log(this.groupTagsTranslateCache)
         },
         updateTippyState() {
             for (const $tippy of this.$tippyList) {

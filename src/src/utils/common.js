@@ -617,7 +617,7 @@ export default {
 
     isColorTransparent(color) {
         let cacheKey = 'isColorTransparent:' + color
-        if (localStorage[cacheKey]) return localStorage[cacheKey]
+        if (localStorage[cacheKey]) return localStorage[cacheKey] === 'true'
         let result = tinycolor(color).getAlpha() === 0
         localStorage[cacheKey] = result
         return result
