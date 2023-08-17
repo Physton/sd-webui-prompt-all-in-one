@@ -31,7 +31,20 @@ export default {
         onlyCsvOnAuto: {
             type: Boolean,
             default: false
-        }
+        },
+        groupTagsTranslate: {
+            type: Boolean,
+            default: true
+        },
+        groupTagsTranslateCache: {
+            type: Object,
+            default: () => {
+                return {
+                    toEn: new Map(),
+                    toLocal: new Map()
+                }
+            },
+        },
     },
     data() {
         return {
@@ -161,6 +174,21 @@ export default {
             text = text.trim().toLowerCase()
             if (res.toEn.has(text)) {
                 return res.toEn.get(text)
+            }
+            return ''
+        },
+        async translateToLocalByGroupTags(text) {
+            text = text.trim().toLowerCase()
+            if (this.groupTagsTranslateCache.toLocal.has(text)) {
+                let value = this.groupTagsTranslateCache.toLocal.get(text)
+                return value.join(' / ')
+            }
+            return ''
+        },
+        async translateToEnByGroupTags(text) {
+            text = text.trim().toLowerCase()
+            if (this.groupTagsTranslateCache.toEn.has(text)) {
+                return this.groupTagsTranslateCache.toEn.get(text)
             }
             return ''
         },

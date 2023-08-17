@@ -2,8 +2,6 @@ import splitTags from "@/utils/splitTags";
 import globals from "../../globals";
 import tinycolor from "tinycolor2";
 
-const cache = {}
-
 export default {
     loraRegex: /^\<lora:\s*([^\:]+)\s*(:)?\s*([0-9\.]+)?\>$/,
     lycoRegex: /^\<lyco:\s*([^\:]+)\s*(:)?\s*([0-9\.]+)?\>$/,
@@ -603,25 +601,29 @@ export default {
 
     fitterInputColor(color, defaultColor = 'rgba(0,0,0,0)') {
         let cacheKey = 'fitterInputColor:' + color + ':' + defaultColor
-        if (cache[cacheKey]) return cache[cacheKey]
+        if (localStorage[cacheKey]) return localStorage[cacheKey]
 
         if (!color || color === '' || color === 'default' || color === 'none' || color === 'null' || color === 'undefined' || color === 'false' || color === 'true') {
-            cache[cacheKey] = defaultColor
+            localStorage[cacheKey] = defaultColor
             return defaultColor
         }
         if (!tinycolor(color).isValid()) {
-            cache[cacheKey] = defaultColor
+            localStorage[cacheKey] = defaultColor
             return defaultColor
         }
-        cache[cacheKey] = color
+        localStorage[cacheKey] = color
         return color
     },
 
     isColorTransparent(color) {
         let cacheKey = 'isColorTransparent:' + color
-        if (cache[cacheKey]) return cache[cacheKey]
+        if (localStorage[cacheKey]) return localStorage[cacheKey]
         let result = tinycolor(color).getAlpha() === 0
-        cache[cacheKey] = result
+        localStorage[cacheKey] = result
         return result
+    },
+
+    getTagsColorKey(groupName, subGroupName) {
+        return groupName + '||' + subGroupName
     },
 }

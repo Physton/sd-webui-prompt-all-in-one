@@ -32,6 +32,7 @@
                             @click:blacklist="onBlacklistClick"
                             v-model:tag-complete-file="tagCompleteFile"
                             v-model:only-csv-on-auto="onlyCsvOnAuto"
+                            v-model:group-tags-translate="groupTagsTranslate"
                             @click:select-language="onSelectLanguageClick"
                             @click:select-theme="onSelectThemeClick"
                             @click:show-chatgpt="onShowChatgpt(item.id, $event)"
@@ -48,7 +49,9 @@
                             :group-tags="groupTags"
                             :hide-group-tags="item.hideGroupTags"
                             v-model:group-tags-color="groupTagsColor"
+                            :group-tags-color-key-cache="groupTagsColorKeyCache"
                             @update:hide-group-tags="onUpdateHideGroupTags(item.id, $event)"
+                            :group-tags-translate-cache="groupTagsTranslateCache"
                             :blacklist="blacklist"
             ></physton-prompt>
         </template>
@@ -57,6 +60,7 @@
                            @forceUpdate:translateApi="updateTranslateApiConfig"
                            v-model:tag-complete-file="tagCompleteFile"
                            v-model:only-csv-on-auto="onlyCsvOnAuto"
+                           v-model:group-tags-translate="groupTagsTranslate"
                            v-model:translate-api="translateApi"></translate-setting>
         <select-language ref="selectLanguage" v-model:language-code="languageCode"
                          :translate-apis="translateApis"
@@ -290,6 +294,12 @@ export default {
 
             groupTags: [],
             groupTagsColor: {},
+            groupTagsColorKeyCache: {},
+            groupTagsTranslate: true,
+            groupTagsTranslateCache: {
+                toEn: new Map(),
+                toLocal: new Map()
+            },
 
             blacklist: {},
         }
@@ -467,6 +477,16 @@ export default {
             deep: true,
             immediate: false,
         },
+        groupTagsTranslate: {
+            handler: function (val, oldVal) {
+                if (!this.startWatchSave) return
+                console.log('onGroupTagsTranslateChange', val, oldVal)
+                this.gradioAPI.setData('groupTagsTranslate', val).then(data => {
+                }).catch(err => {
+                })
+            },
+            immediate: false,
+        },
         onlyCsvOnAuto() {
             if (!this.startWatchSave) return
             console.log('onOnlyCsvOnAutoChange', this.onlyCsvOnAuto)
@@ -522,7 +542,7 @@ export default {
         },
         init() {
             this.loadExtraNetworks()
-            let dataListsKeys = ['languageCode', 'autoTranslate', 'autoTranslateToEnglish', 'autoTranslateToLocal', 'autoRemoveSpace', 'autoRemoveLastComma', 'autoKeepWeightZero', 'autoKeepWeightOne', 'autoBreakBeforeWrap', 'autoBreakAfterWrap', /*'hideDefaultInput', */'translateApi', 'enableTooltip', 'tagCompleteFile', 'onlyCsvOnAuto', 'extensionSelect.minimalist', 'groupTagsColor', 'blacklist']
+            let dataListsKeys = ['languageCode', 'autoTranslate', 'autoTranslateToEnglish', 'autoTranslateToLocal', 'autoRemoveSpace', 'autoRemoveLastComma', 'autoKeepWeightZero', 'autoKeepWeightOne', 'autoBreakBeforeWrap', 'autoBreakAfterWrap', /*'hideDefaultInput', */'translateApi', 'enableTooltip', 'tagCompleteFile', 'onlyCsvOnAuto', 'extensionSelect.minimalist', 'groupTagsColor', 'groupTagsTranslate', 'blacklist']
             this.prompts.forEach(item => {
                 dataListsKeys.push(item.hideDefaultInputKey)
                 dataListsKeys.push(item.hidePanelKey)
@@ -647,6 +667,10 @@ export default {
                     }
                 }
 
+                if (data.groupTagsTranslate !== null) {
+                    this.groupTagsTranslate = data.groupTagsTranslate
+                }
+
                 if (data.blacklist !== null) {
                     this.blacklist = data.blacklist
                 }
@@ -715,7 +739,52 @@ export default {
                         this.groupTags = []
                     }
                 }
+                this._handleGroupTags()
             })
+        },
+        _handleGroupTags() {
+            let data = {toEn: new Map(), toLocal: new Map()}
+            let setData = (en, local) => {
+                const texts = [
+                    en,
+                    en.replace(/\_/g, ' '),
+                    en.replace(/\-/g, ' '),
+                ]
+                texts.forEach((t) => {
+                    if (data.toLocal.has(t)) {
+                        let oldLocal = data.toLocal.get(t)
+                        if (!oldLocal.includes(local)) {
+                            oldLocal.push(local)
+                        }
+                    } else {
+                        data.toLocal.set(t, [local])
+                    }
+                })
+                data.toEn.set(local, en)
+            }
+            for (let item of this.groupTags) {
+                for (let group of item.groups) {
+                    if (group.type && group.typ == 'wrap') continue
+
+                    let key = common.getTagsColorKey(item.name, group.name)
+
+                    if (!this.groupTagsColor[key]) {
+                        this.groupTagsColor[key] = ref(common.fitterInputColor(group.color))
+                    }
+
+                    for (let en in group.tags) {
+                        if (!en) continue
+                        this.groupTagsColorKeyCache[en] = key
+
+                        let local = group.tags[en]
+                        if (!local || en == local) continue
+                        setData(en, local)
+                    }
+                }
+            }
+            this.groupTagsTranslateCache = data
+            console.log(this.groupTagsColorKeyCache)
+            console.log(this.groupTagsTranslateCache)
         },
         updateTippyState() {
             for (const $tippy of this.$tippyList) {

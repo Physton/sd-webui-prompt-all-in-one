@@ -148,7 +148,10 @@
                 "lora_blacklist_list": "Lora 黑名单列表",
                 "lycoris_blacklist_list": "Lycoris 黑名单列表",
                 "embedding_blacklist_list": "Embedding 黑名单列表",
-                "one_keyword_per_line": "每行一个关键词"
+                "one_keyword_per_line": "每行一个关键词",
+                "Keyword_group": "关键词组",
+                "enhance_translation_use_keyword_group": "使用关键词组增强翻译功能",
+                "enhance_translation_use_Keyword_group_desc": "<p>关键词组文件位于 group_tags 目录中。</p><p>启用该功能后，优先使用 yaml 文件中的内容进行翻译匹配。如果没有匹配到，再使用翻译接口进行翻译。</p><p>你可以前往 <a href='https://aiodoc.physton.com/GroupTags.html' target='_blank'>https://aiodoc.physton.com/GroupTags.html</a> 查看 group_tags 中文件的具体说明。</p>"
             }
         },
         {
@@ -298,7 +301,10 @@
                 "lora_blacklist_list": "Lora 黑名單列表",
                 "lycoris_blacklist_list": "Lycoris 黑名單列表",
                 "embedding_blacklist_list": "Embedding 黑名單列表",
-                "one_keyword_per_line": "每行一個關鍵詞"
+                "one_keyword_per_line": "每行一個關鍵詞",
+                "Keyword_group": "關鍵詞組",
+                "enhance_translation_use_keyword_group": "使用關鍵詞組增強翻譯功能",
+                "enhance_translation_use_Keyword_group_desc": "<p>關鍵詞組文件位於 group_tags 目錄中。</p><p>啟用該功能後，優先使用 yaml 文件中的內容進行翻譯匹配。如果沒有匹配到，再使用翻譯接口進行翻譯。</p><p>你可以前往 <a href='https://aiodoc.physton.com/GroupTags.html' target='_blank'>https://aiodoc.physton.com/GroupTags.html</a> 查看 group_tags 中文件的具體說明。</p>"
             }
         },
         {
@@ -448,7 +454,10 @@
                 "lora_blacklist_list": "Lora 黑名單清單",
                 "lycoris_blacklist_list": "Lycoris 黑名單清單",
                 "embedding_blacklist_list": "Embedding 黑名單清單",
-                "one_keyword_per_line": "每行一個關鍵字"
+                "one_keyword_per_line": "每行一個關鍵字",
+                "Keyword_group": "關鍵詞組",
+                "enhance_translation_use_keyword_group": "使用關鍵詞組增強翻譯功能",
+                "enhance_translation_use_Keyword_group_desc": "<p>關鍵詞組文件位於 group_tags 目錄中。</p><p>啟用該功能後，優先使用 yaml 文件中的內容進行翻譯匹配。如果沒有匹配到，再使用翻譯接口進行翻譯。</p><p>你可以前往 <a href='https://aiodoc.physton.com/GroupTags.html' target='_blank'>https://aiodoc.physton.com/GroupTags.html</a> 查看 group_tags 中文件的具體說明。</p>"
             }
         },
         {
@@ -598,7 +607,10 @@
                 "lora_blacklist_list": "Lora Blacklist",
                 "lycoris_blacklist_list": "Lycoris Blacklist",
                 "embedding_blacklist_list": "Embedding Blacklist",
-                "one_keyword_per_line": "One keyword per line"
+                "one_keyword_per_line": "One keyword per line",
+                "Keyword_group": "Keyword Group",
+                "enhance_translation_use_keyword_group": "Enhance Translation with Keyword Group",
+                "enhance_translation_use_Keyword_group_desc": "<p>The keyword group file is located in the group_tags directory.</p><p>When this feature is enabled, the contents in the YAML file are prioritized for translation matching. If no match is found, the translation interface is used.</p><p>You can visit <a href='https://aiodoc.physton.com/GroupTags.html' target='_blank'>https://aiodoc.physton.com/GroupTags.html</a> for specific instructions on the files in the group_tags directory.</p>"
             }
         },
         {
@@ -759,7 +771,10 @@
                 "lora_blacklist_list": "قائمة Lora السوداء",
                 "lycoris_blacklist_list": "قائمة Lycoris السوداء",
                 "embedding_blacklist_list": "قائمة Embedding السوداء",
-                "one_keyword_per_line": "كلمة رئيسية واحدة في كل سطر"
+                "one_keyword_per_line": "كلمة رئيسية واحدة في كل سطر",
+                "Keyword_group": "مجموعة الكلمات الرئيسية",
+                "enhance_translation_use_keyword_group": "استخدام مجموعة الكلمات الرئيسية لتعزيز الترجمة",
+                "enhance_translation_use_Keyword_group_desc": "<p>ملف مجموعة الكلمات الرئيسية موجود في دليل group_tags.</p><p>عند تمكين هذه الميزة، يتم إعطاء الأولوية لمحتويات ملف YAML لمطابقة الترجمة. إذا لم يتم العثور على تطابق، يتم استخدام واجهة الترجمة.</p><p>يمكنك زيارة <a href='https://aiodoc.physton.com/GroupTags.html' target='_blank'>https://aiodoc.physton.com/GroupTags.html</a> للحصول على تعليمات محددة حول الملفات في دليل group_tags.</p>"
             }
         },
         {
@@ -1008,7 +1023,10 @@
                 "lora_blacklist_list": "Liste noire Lora",
                 "lycoris_blacklist_list": "Liste noire Lycoris",
                 "embedding_blacklist_list": "Liste noire d'embedding",
-                "one_keyword_per_line": "Un mot-clé par ligne"
+                "one_keyword_per_line": "Un mot-clé par ligne",
+                "Keyword_group": "Groupe de mots-clés",
+                "enhance_translation_use_keyword_group": "Utiliser le groupe de mots-clés pour améliorer la traduction",
+                "enhance_translation_use_Keyword_group_desc": "<p>Le fichier du groupe de mots-clés est situé dans le répertoire group_tags.</p><p>Lorsque cette fonctionnalité est activée, les contenus du fichier YAML sont prioritaires pour la correspondance de traduction. Si aucune correspondance n'est trouvée, l'interface de traduction est utilisée.</p><p>Vous pouvez consulter <a href='https://aiodoc.physton.com/GroupTags.html' target='_blank'>https://aiodoc.physton.com/GroupTags.html</a> pour des instructions spécifiques sur les fichiers du répertoire group_tags.</p>"
             }
         },
         {
@@ -1172,7 +1190,10 @@
                 "lora_blacklist_list": "Schwarze Liste Lora",
                 "lycoris_blacklist_list": "Schwarze Liste Lycoris",
                 "embedding_blacklist_list": "Schwarze Liste der Einbettung",
-                "one_keyword_per_line": "Ein Schlüsselwort pro Zeile"
+                "one_keyword_per_line": "Ein Schlüsselwort pro Zeile",
+                "Keyword_group": "Schlüsselwortgruppe",
+                "enhance_translation_use_keyword_group": "Übersetzung mit Schlüsselwortgruppe verbessern",
+                "enhance_translation_use_Keyword_group_desc": "<p>Die Schlüsselwortgruppendatei befindet sich im Verzeichnis group_tags.</p><p>Wenn diese Funktion aktiviert ist, haben die Inhalte in der YAML-Datei Vorrang für die Übersetzungsübereinstimmung. Wenn keine Übereinstimmung gefunden wird, wird die Übersetzungs-Schnittstelle verwendet.</p><p>Sie können <a href='https://aiodoc.physton.com/GroupTags.html' target='_blank'>https://aiodoc.physton.com/GroupTags.html</a> besuchen, um spezifische Anweisungen zu den Dateien im Verzeichnis group_tags zu erhalten.</p>"
             }
         },
         {
@@ -1386,7 +1407,10 @@
                 "lora_blacklist_list": "Elenco nero di Lora",
                 "lycoris_blacklist_list": "Elenco nero di Lycoris",
                 "embedding_blacklist_list": "Elenco nero dell'embedding",
-                "one_keyword_per_line": "Una parola chiave per riga"
+                "one_keyword_per_line": "Una parola chiave per riga",
+                "Keyword_group": "Gruppo di parole chiave",
+                "enhance_translation_use_keyword_group": "Migliora la traduzione con il gruppo di parole chiave",
+                "enhance_translation_use_Keyword_group_desc": "<p>Il file del gruppo di parole chiave si trova nella directory group_tags.</p><p>Quando questa funzionalità è abilitata, i contenuti nel file YAML hanno la priorità per la corrispondenza di traduzione. Se non viene trovata alcuna corrispondenza, viene utilizzata l'interfaccia di traduzione.</p><p>Puoi visitare <a href='https://aiodoc.physton.com/GroupTags.html' target='_blank'>https://aiodoc.physton.com/GroupTags.html</a> per istruzioni specifiche sui file nella directory group_tags.</p>"
             }
         },
         {
@@ -1535,7 +1559,10 @@
                 "lora_blacklist_list": "Loraのブラックリスト",
                 "lycoris_blacklist_list": "Lycorisのブラックリスト",
                 "embedding_blacklist_list": "Embeddingのブラックリスト",
-                "one_keyword_per_line": "1行に1つのキーワード"
+                "one_keyword_per_line": "1行に1つのキーワード",
+                "Keyword_group": "キーワードグループ",
+                "enhance_translation_use_keyword_group": "キーワードグループを使用して翻訳を強化する",
+                "enhance_translation_use_Keyword_group_desc": "<p>キーワードグループファイルは、group_tagsディレクトリにあります。</p><p>この機能を有効にすると、翻訳のマッチングにはYAMLファイルの内容が優先されます。マッチが見つからない場合は、翻訳インターフェースが使用されます。</p><p>group_tagsディレクトリのファイルの具体的な説明については、<a href='https://aiodoc.physton.com/GroupTags.html' target='_blank'>https://aiodoc.physton.com/GroupTags.html</a>をご覧ください。</p>"
             }
         },
         {
@@ -1709,7 +1736,10 @@
                 "lora_blacklist_list": "Lora 블랙리스트",
                 "lycoris_blacklist_list": "Lycoris 블랙리스트",
                 "embedding_blacklist_list": "Embedding 블랙리스트",
-                "one_keyword_per_line": "한 줄에 하나의 키워드"
+                "one_keyword_per_line": "한 줄에 하나의 키워드",
+                "Keyword_group": "키워드 그룹",
+                "enhance_translation_use_keyword_group": "키워드 그룹을 사용하여 번역 개선",
+                "enhance_translation_use_Keyword_group_desc": "<p>키워드 그룹 파일은 group_tags 디렉터리에 있습니다.</p><p>이 기능을 활성화하면 YAML 파일의 내용이 번역 매칭에 우선적으로 사용됩니다. 일치하는 항목이 없는 경우 번역 인터페이스가 사용됩니다.</p><p>group_tags 디렉터리의 파일에 대한 구체적인 설명은 <a href='https://aiodoc.physton.com/GroupTags.html' target='_blank'>https://aiodoc.physton.com/GroupTags.html</a>을 참조하십시오.</p>"
             }
         },
         {
@@ -1973,7 +2003,10 @@
                 "lora_blacklist_list": "Lista negra de Lora",
                 "lycoris_blacklist_list": "Lista negra de Lycoris",
                 "embedding_blacklist_list": "Lista negra de Embedding",
-                "one_keyword_per_line": "Uma palavra-chave por linha"
+                "one_keyword_per_line": "Uma palavra-chave por linha",
+                "Keyword_group": "Grupo de palavras-chave",
+                "enhance_translation_use_keyword_group": "Melhorar a tradução com o grupo de palavras-chave",
+                "enhance_translation_use_Keyword_group_desc": "<p>O arquivo do grupo de palavras-chave está localizado no diretório group_tags.</p><p>Quando essa funcionalidade está ativada, o conteúdo do arquivo YAML tem prioridade para a correspondência de tradução. Se nenhuma correspondência for encontrada, a interface de tradução é usada.</p><p>Você pode visitar <a href='https://aiodoc.physton.com/GroupTags.html' target='_blank'>https://aiodoc.physton.com/GroupTags.html</a> para obter instruções específicas sobre os arquivos no diretório group_tags.</p>"
             }
         },
         {
@@ -2137,7 +2170,10 @@
                 "lora_blacklist_list": "Черный список Lora",
                 "lycoris_blacklist_list": "Черный список Lycoris",
                 "embedding_blacklist_list": "Черный список Embedding",
-                "one_keyword_per_line": "Одно ключевое слово на строку"
+                "one_keyword_per_line": "Одно ключевое слово на строку",
+                "Keyword_group": "Группа ключевых слов",
+                "enhance_translation_use_keyword_group": "Улучшить перевод с помощью группы ключевых слов",
+                "enhance_translation_use_Keyword_group_desc": "<p>Файл группы ключевых слов находится в каталоге group_tags.</p><p>При включении этой функции приоритет отдается содержимому файла YAML для соответствия перевода. Если соответствие не найдено, используется интерфейс перевода.</p><p>Вы можете посетить <a href='https://aiodoc.physton.com/GroupTags.html' target='_blank'>https://aiodoc.physton.com/GroupTags.html</a> для получения конкретных инструкций по файлам в каталоге group_tags.</p>"
             }
         },
         {
@@ -2316,7 +2352,10 @@
                 "lora_blacklist_list": "Lista negra de Lora",
                 "lycoris_blacklist_list": "Lista negra de Lycoris",
                 "embedding_blacklist_list": "Lista negra de Embedding",
-                "one_keyword_per_line": "Una palabra clave por línea"
+                "one_keyword_per_line": "Una palabra clave por línea",
+                "Keyword_group": "Grupo de palabras clave",
+                "enhance_translation_use_keyword_group": "Mejorar la traducción con el grupo de palabras clave",
+                "enhance_translation_use_Keyword_group_desc": "<p>El archivo del grupo de palabras clave se encuentra en el directorio group_tags.</p><p>Cuando esta función está habilitada, se priorizan los contenidos del archivo YAML para la coincidencia de traducción. Si no se encuentra ninguna coincidencia, se utiliza la interfaz de traducción.</p><p>Puedes visitar <a href='https://aiodoc.physton.com/GroupTags.html' target='_blank'>https://aiodoc.physton.com/GroupTags.html</a> para obtener instrucciones específicas sobre los archivos en el directorio group_tags.</p>"
             }
         },
         {

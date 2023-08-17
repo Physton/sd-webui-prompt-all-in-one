@@ -79,6 +79,16 @@
                     </div>
                 </div>
                 <div class="setting-line">
+                    <div class="line-title">{{ getLang('Keyword_group') }}</div>
+                    <div class="line-content">
+                        <div v-html="getLang('enhance_translation_use_Keyword_group_desc')"></div>
+                        <label class="onlyCsvOnAuto">
+                            <input class="hover-scale-120" type="checkbox" value="1" v-model="groupTagsTranslateValue">
+                            <span>{{ getLang('enhance_translation_use_keyword_group') }}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="setting-line">
                     <div class="line-title">TagComplete</div>
                     <div class="line-content">
                         <div class="help-list">
@@ -102,7 +112,7 @@
                         </label>
                     </div>
                 </div>
-                 <div class="setting-line" v-show="tagCompleteFileKey">
+                <div class="setting-line" v-show="tagCompleteFileKey">
                     <div class="line-title"></div>
                     <div class="line-content">
                         <div class="hover-scale-120 test-btn" @click="onTagCompleteTestClick">{{ getLang('test') }}</div>
@@ -145,6 +155,8 @@ export default {
             tagCompleteResults: [],
             onlyCsvOnAutoValue: false,
 
+            groupTagsTranslateValue: true,
+
             mbart50Loading: false,
             mbart50Success: false,
             mbart50Message: '',
@@ -172,7 +184,7 @@ export default {
         this.translatedText = ''
         this.loading = false
     },
-    emits: ['update:translateApi', 'forceUpdate:translateApi', 'update:tagCompleteFile', 'update:onlyCsvOnAuto'],
+    emits: ['update:translateApi', 'forceUpdate:translateApi', 'update:tagCompleteFile', 'update:onlyCsvOnAuto', 'update:groupTagsTranslate'],
     watch: {
         apiKey: {
             handler: function (val, oldVal) {
@@ -225,6 +237,7 @@ Github: {{name}}`
             this.loading = false
             this.tagCompleteFileKey = this.tagCompleteFile
             this.onlyCsvOnAutoValue = this.onlyCsvOnAuto
+            this.groupTagsTranslateValue = this.groupTagsTranslate
             this.mbart50Success = false
             this.mbart50Message = ''
             this.refreshCSVs()
@@ -314,6 +327,7 @@ Github: {{name}}`
             this.$emit('update:translateApi', this.apiKey)
             this.$emit('update:tagCompleteFile', this.tagCompleteFileKey)
             this.$emit('update:onlyCsvOnAuto', this.onlyCsvOnAutoValue)
+            this.$emit('update:groupTagsTranslate', this.groupTagsTranslateValue)
             this.gradioAPI.setData('translate_api.' + this.apiKey, configs).then(res => {
                 if (this.apiKey === this.translateApi) this.$emit('forceUpdate:translateApi')
             })

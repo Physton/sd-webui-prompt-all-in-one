@@ -6,29 +6,9 @@ export default {
         return {
             groupTagsActive: 0,
             subGroupTagsActive: 0,
-            groupTagsColorKeyCache: {},
         }
     },
-    watch: {
-        groupTags: {
-            handler() {
-                for (let item of this.groupTags) {
-                    for (let group of item.groups) {
-                        if (group.type && group.typ == 'wrap') continue
-                        let key = this.getTagsColorKey(item.name, group.name)
-                        if (!this.groupTagsColor[key]) {
-                            this.groupTagsColor[key] = ref(common.fitterInputColor(group.color))
-                        }
-                        for (let en in group.tags) {
-                            this.groupTagsColorKeyCache[en] = key
-                        }
-                    }
-                }
-            },
-            deep: true,
-            immediate: true,
-        },
-    },
+    watch: {},
     methods: {
         activeGroupTab(index) {
             this.groupTagsActive = index
@@ -59,7 +39,7 @@ export default {
         },
         getGroupTagStyle(groupName, subGroupName) {
             let style = {}
-            let colorKey = this.getTagsColorKey(groupName, subGroupName)
+            let colorKey = common.getTagsColorKey(groupName, subGroupName)
             let color = ''
             if (this.groupTagsColor[colorKey]) {
                 color = this.groupTagsColor[colorKey]
@@ -74,7 +54,7 @@ export default {
             return style
         },
         getTagsColorKey(groupName, subGroupName) {
-            return groupName + '||' + subGroupName
+            return common.getTagsColorKey(groupName, subGroupName)
         },
         onTagsColorChange(key) {
             this.$emit('update:groupTagsColor', this.groupTagsColor)
@@ -83,7 +63,7 @@ export default {
             for (let item of this.groupTags) {
                 for (let group of item.groups) {
                     if (group.type && group.typ == 'wrap') continue
-                    let key2 = this.getTagsColorKey(item.name, group.name)
+                    let key2 = common.getTagsColorKey(item.name, group.name)
                     if (key === key2) {
                         this.groupTagsColor[key] = ref(common.fitterInputColor(group.color))
                     }

@@ -618,6 +618,10 @@ export default {
             type: Object,
             default: () => ({}),
         },
+        groupTagsColorKeyCache: {
+            type: Object,
+            default: () => ({}),
+        },
         blacklist: {
             type: Object,
             default: () => ({}),
@@ -1228,10 +1232,11 @@ export default {
                     translateGroup()
                 }
 
-                if (this.tagCompleteFile) {
+                let translateByCSV = (tags) => {
                     // 开启了使用tagcomplete翻译
+                    console.log('translateByCSV', tags.map(tag => tag.value).join(', '))
                     let promises = []
-                    needTranslateTags.forEach(tag => {
+                    tags.forEach(tag => {
                         // 是否被括号包裹
                         const splitTag = common.splitTag(tag.value)
                         if (splitTag.value !== tag.value) {
@@ -1249,7 +1254,7 @@ export default {
                     Promise.all(promises).then(results => {
                         let needs = []
                         results.forEach((result, index) => {
-                            let tag = needTranslateTags[index]
+                            let tag = tags[index]
                             if (tag.splits) {
                                 // 如果被括号包裹，还原
                                 tag.value = tag.splits.left + tag.value + tag.splits.right
@@ -1265,6 +1270,7 @@ export default {
                                 setTag(tag, result)
                             }
                         })
+                        console.log('No translated keywords: ', needs.map(tag => tag.value).join(', '))
                         if (useNetwork) {
                             translate(needs)
                         } else {
@@ -1273,10 +1279,74 @@ export default {
                         }
                     }).catch(error => {
                         // 有一个错误，就不翻译了
-                        setLoadings(needTranslateTags, false)
+                        setLoadings(tags, false)
                         this.$toastr.error(error)
                         reject(error)
                     })
+                }
+
+                let translateByGroupTags = (tags) => {
+                    // 开启了使用关键词组翻译
+                    console.log('translateByGroupTags', tags.map(tag => tag.value).join(', '))
+                    let promises = []
+                    tags.forEach(tag => {
+                        // 是否被括号包裹
+                        const splitTag = common.splitTag(tag.value)
+                        if (splitTag.value !== tag.value) {
+                            tag.value = splitTag.value
+                            tag.splits = splitTag
+                        }
+                        if (tag.toLocal) {
+                            // 翻译到本地语言
+                            promises.push(this.translateToLocalByGroupTags(tag.value))
+                        } else {
+                            // 翻译到英文
+                            promises.push(this.translateToEnByGroupTags(tag.value))
+                        }
+                    })
+                    Promise.all(promises).then(results => {
+                        let needs = []
+                        results.forEach((result, index) => {
+                            let tag = tags[index]
+                            if (tag.splits) {
+                                // 如果被括号包裹，还原
+                                tag.value = tag.splits.left + tag.value + tag.splits.right
+                            }
+
+                            if (result === '') {
+                                needs.push(tag)
+                            } else {
+                                if (tag.splits) {
+                                    result = tag.splits.left + result + tag.splits.right
+                                }
+                                setLoading(tag, false)
+                                setTag(tag, result)
+                            }
+                        })
+                        console.log('No translated keywords: ', needs.map(tag => tag.value).join(', '))
+                        if (this.tagCompleteFile) {
+                            // 开启了使用tagcomplete翻译
+                            translateByCSV(needs)
+                        } else {
+                            if (useNetwork) {
+                                translate(needs)
+                            } else {
+                                setLoadings(needs, false)
+                                resolve()
+                            }
+                        }
+                    }).catch(error => {
+                        // 有一个错误，就不翻译了
+                        setLoadings(tags, false)
+                        this.$toastr.error(error)
+                        reject(error)
+                    })
+                }
+
+                if (this.groupTagsTranslate) {
+                    translateByGroupTags(needTranslateTags)
+                } else if (this.tagCompleteFile) {
+                    translateByCSV(needTranslateTags)
                 } else {
                     if (useNetwork) {
                         translate(needTranslateTags)
