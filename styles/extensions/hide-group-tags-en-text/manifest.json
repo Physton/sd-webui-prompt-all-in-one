@@ -1,0 +1,10 @@
+{
+  "name": "Hide the English label text in the keyword group",
+  "i18n": {
+    "zh_CN": "隐藏关键词组中的英语标签文本",
+    "zh_HK": "隱藏關鍵詞組中的英語標籤文本",
+    "zh_TW": "隱藏關鍵詞組中的英語標籤文本"
+  },
+  "author": "Physton",
+  "type": "enhance"
+}
