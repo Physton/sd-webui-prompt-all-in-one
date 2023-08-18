@@ -414,7 +414,11 @@
             </div>
             <div class="group-tabs" v-show="!hideGroupTags && groupTags.length">
                 <div class="group-header" ref="groupTabsHeader">
-                    <div v-for="(item, index) in groupTags" :key="index" :class="['group-tab', index == groupTagsActive ? 'active' : '']" @click="activeGroupTab(index)">{{ item.name }}</div>
+                    <div v-for="(item, index) in groupTags"
+                         :key="index"
+                         :class="['group-tab', index == groupTagsActive ? 'active' : '']"
+                         @click="activeGroupTab(index)"
+                         :data-name="item.name">{{ item.name }}</div>
                 </div>
                 <div class="group-body">
                     <div v-for="(item, index) in groupTags" :key="index" :class="['group-main', index == groupTagsActive ? 'active' : '']">
@@ -422,7 +426,8 @@
                             <div v-for="(group, subIndex) in item.groups"
                                  :key="subIndex"
                                  :class="[group.type && group.type === 'wrap' ? 'sub-group-tag-wrap': 'sub-group-tab', subIndex == subGroupTagsActive ? 'active' : '']"
-                                 @click="activeSubGroupTab(subIndex)">{{ group.name }}</div>
+                                 @click="activeSubGroupTab(subIndex)"
+                                 :data-name="group.name">{{ group.name }}</div>
                         </div>
                         <div class="sub-group-body" v-if="index == groupTagsActive">
                             <div v-for="(group, subIndex) in item.groups" :key="subIndex" :class="['sub-group-main', subIndex == subGroupTagsActive ? 'active' : '']">
