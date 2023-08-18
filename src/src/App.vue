@@ -762,16 +762,15 @@ export default {
                 })
                 data.toEn.set(local, en)
             }
-            for (let item of this.groupTags) {
-                for (let group of item.groups) {
-                    if (group.type && group.typ == 'wrap') continue
-
+            this.groupTags.forEach((item, index) => {
+                item.tabKey = 'groupTags-' + index
+                item.groups.forEach((group, subIndex) => {
+                    group.tabKey = 'subGroupTags-' + index + '-' + subIndex
+                    if (group.type && group.type == 'wrap') return
                     let key = common.getTagsColorKey(item.name, group.name)
-
                     if (!this.groupTagsColor[key]) {
                         this.groupTagsColor[key] = ref(common.fitterInputColor(group.color))
                     }
-
                     for (let en in group.tags) {
                         if (!en) continue
                         this.groupTagsColorKeyCache[en] = key
@@ -780,8 +779,8 @@ export default {
                         if (!local || en == local) continue
                         setData(en, local)
                     }
-                }
-            }
+                })
+            })
             this.groupTagsTranslateCache = data
         },
         updateTippyState() {

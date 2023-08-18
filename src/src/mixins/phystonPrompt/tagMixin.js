@@ -144,7 +144,6 @@ export default {
             return tag
         },
         _isTagBlacklist(tag) {
-            console.log(tag)
             if (typeof tag['type'] === 'string' && tag.type === 'wrap') return false
             if (tag.isLora) {
                 if (this.blacklist.lora && this.blacklist.lora.includes(tag.loraName)) return true

@@ -414,24 +414,52 @@
             </div>
             <div class="group-tabs" v-show="!hideGroupTags && groupTags.length">
                 <div class="group-header" ref="groupTabsHeader">
+                    <div :class="['group-tab', 'favorite' == groupTagsActive ? 'active' : '']"
+                         @click="activeGroupTab('favorite')"
+                         data-name="favorite">{{ getLang('favorite') }}</div>
+
                     <div v-for="(item, index) in groupTags"
                          :key="index"
-                         :class="['group-tab', index == groupTagsActive ? 'active' : '']"
+                         :class="['group-tab', item.tabKey == groupTagsActive ? 'active' : '']"
                          @click="activeGroupTab(index)"
                          :data-name="item.name">{{ item.name }}</div>
                 </div>
                 <div class="group-body">
-                    <div v-for="(item, index) in groupTags" :key="index" :class="['group-main', index == groupTagsActive ? 'active' : '']">
-                        <div class="sub-group-header" v-if="index == groupTagsActive">
+                    <div :class="['group-main', 'favorite' == groupTagsActive ? 'active' : '']">
+                        <div class="sub-group-header" v-if="'favorite' == groupTagsActive">
+                            <div v-for="(item) in getCurrentTypeFavorites()"
+                                 :key="item.key"
+                                 :class="['sub-group-tab', 'favorite-' + item.key == subGroupTagsActive ? 'active' : '']"
+                                 @click="activeSubGroupTab('favorite', item.key)"
+                                 :data-name="item.name">{{ getLang(item.name) }}</div>
+                        </div>
+                        <div class="sub-group-body" v-if="'favorite' == groupTagsActive">
+                            <div v-for="(item) in getCurrentTypeFavorites()"
+                                 :key="item.key"
+                                 :class="['sub-group-main', 'favorite-' + item.key == subGroupTagsActive ? 'active' : '']">
+                                <div class="group-tags" v-if="'favorite-' + item.key == subGroupTagsActive">
+                                    <div class="tag-item" ref="groupTagItem" v-for="(favorite) in item.list"
+                                        v-tooltip="getGroupTagTooltip(favorite.name, favorite.prompt)"
+                                        @click="onClickGroupTagFavorite(favorite)">
+                                        <div class="tag-local">{{ favorite.name == '' ? favorite.prompt : favorite.name  }}</div>
+                                        <div class="tag-en">{{ favorite.prompt }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div v-for="(item, index) in groupTags" :key="index" :class="['group-main', item.tabKey == groupTagsActive ? 'active' : '']">
+                        <div class="sub-group-header" v-if="item.tabKey == groupTagsActive">
                             <div v-for="(group, subIndex) in item.groups"
                                  :key="subIndex"
-                                 :class="[group.type && group.type === 'wrap' ? 'sub-group-tag-wrap': 'sub-group-tab', subIndex == subGroupTagsActive ? 'active' : '']"
-                                 @click="activeSubGroupTab(subIndex)"
+                                 :class="[group.type && group.type === 'wrap' ? 'sub-group-tag-wrap': 'sub-group-tab', group.tabKey == subGroupTagsActive ? 'active' : '']"
+                                 @click="activeSubGroupTab(index, subIndex)"
                                  :data-name="group.name">{{ group.name }}</div>
                         </div>
-                        <div class="sub-group-body" v-if="index == groupTagsActive">
-                            <div v-for="(group, subIndex) in item.groups" :key="subIndex" :class="['sub-group-main', subIndex == subGroupTagsActive ? 'active' : '']">
-                                <div class="group-tags" v-if="subIndex == subGroupTagsActive">
+                        <div class="sub-group-body" v-if="item.tabKey == groupTagsActive">
+                            <div v-for="(group, subIndex) in item.groups" :key="subIndex" :class="['sub-group-main', group.tabKey == subGroupTagsActive ? 'active' : '']">
+                                <div class="group-tags" v-if="group.tabKey == subGroupTagsActive">
                                     <div class="tag-item" ref="groupTagItem" v-for="(local, en) in group.tags"
                                         v-tooltip="getGroupTagTooltip(local, en)"
                                         @click="onClickGroupTag(local, en)">

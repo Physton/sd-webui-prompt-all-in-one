@@ -4,23 +4,50 @@ import {ref} from "vue"
 export default {
     data() {
         return {
-            groupTagsActive: 0,
-            subGroupTagsActive: 0,
+            groupTagsActive: '',
+            subGroupTagsActive: '',
         }
     },
     watch: {
         groupTags: {
             handler() {
+                if (!this.groupTagsActive || !this.subGroupTagsActive) {
+                    this.groupTagsActive = 'favorite'
+                    this.subGroupTagsActive = 'favorite-' + this.favoriteKey
+                    /*for (let item of this.groupTags) {
+                        this.groupTagsActive = item.tabKey
+                        for (let group of item.groups) {
+                            if (group.type && group.typ == 'wrap') continue
+                            this.subGroupTagsActive = group.tabKey
+                            break
+                        }
+                        break
+                    }*/
+                }
                 this._setGroupTagItemWidth()
             },
             deep: true,
             immediate: true,
         },
+        favorites: {
+            handler() {
+
+            },
+            deep: true,
+            immediate: true,
+        }
     },
     methods: {
         activeGroupTab(index) {
-            this.groupTagsActive = index
-            this.subGroupTagsActive = 0
+            if (index === 'favorite') {
+                this.groupTagsActive = 'favorite'
+                this.subGroupTagsActive = 'favorite-' + this.favoriteKey
+                index = 0
+            } else {
+                this.groupTagsActive = this.groupTags[index].tabKey
+                this.subGroupTagsActive = this.groupTags[index].groups[0].tabKey
+                index += 1
+            }
             let scrollLeft = this.$refs.groupTabsHeader.children[index].offsetLeft - this.$refs.groupTabsHeader.offsetWidth / 2 + this.$refs.groupTabsHeader.children[index].offsetWidth / 2
             this.$refs.groupTabsHeader.scrollTo({
                 left: scrollLeft,
@@ -28,13 +55,18 @@ export default {
             })
             this._setGroupTagItemWidth()
         },
-        activeSubGroupTab(index) {
-            this.subGroupTagsActive = index
+        activeSubGroupTab(index, subIndex) {
+            if (index === 'favorite') {
+                this.subGroupTagsActive = 'favorite-' + subIndex
+            } else {
+                this.subGroupTagsActive = this.groupTags[index].groups[subIndex].tabKey
+            }
             this._setGroupTagItemWidth()
         },
         _setGroupTagItemWidth() {
             // this.$refs.groupTagItem
             this.$nextTick(() => {
+                if (!this.$refs.groupTagItem) return
                 this.$refs.groupTagItem.forEach((item, index) => {
                     item.style.width = 'auto'
                 })
@@ -42,9 +74,11 @@ export default {
                 this.$refs.groupTagItem.forEach((item, index) => {
                     maxWidth = Math.max(maxWidth, item.offsetWidth)
                 })
-                this.$refs.groupTagItem.forEach((item, index) => {
-                    item.style.width = maxWidth + 'px'
-                })
+                if (maxWidth > 0) {
+                    this.$refs.groupTagItem.forEach((item, index) => {
+                        item.style.width = maxWidth + 'px'
+                    })
+                }
             })
         },
         onClickHideGroupTags() {
@@ -52,6 +86,12 @@ export default {
         },
         onClickGroupTag(local, en) {
             this._appendTag(en, local, false, -1, 'text')
+            this.updateTags()
+        },
+        onClickGroupTagFavorite(favorite) {
+            favorite.tags.forEach((tag) => {
+                this._appendTag(tag.value, tag.localValue, tag.disabled, -1, tag.type)
+            })
             this.updateTags()
         },
         getGroupTagTooltip(local, en) {

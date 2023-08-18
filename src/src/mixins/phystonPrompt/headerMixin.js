@@ -520,6 +520,7 @@ export default {
             this.favorites = typeof window.phystonPromptfavorites === 'object' ? window.phystonPromptfavorites : []
         },
         getCurrentTypeFavorites() {
+            this.favorites = typeof window.phystonPromptfavorites === 'object' ? window.phystonPromptfavorites : []
             let favorites = []
             this.favorites.forEach(favorite => {
                 if (this.neg) {
