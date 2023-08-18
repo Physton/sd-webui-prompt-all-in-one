@@ -23,32 +23,169 @@
 .physton-prompt .group-tabs .group-body .group-main .sub-group-main .tags-footer .tags-copyright{
   display: none !important;
 }
+.physton-prompt .group-tabs .group-body .group-main .sub-group-main .group-tags .tag-item{
+    max-width: 90px;   
+    border-radius:8px !important;
+}
 .physton-prompt .group-tabs .group-body .group-main .sub-group-main .group-tags .tag-item .tag-local{
-    max-width: 90px;
-  border-radius: 8px 8px 0px 0px !important;
+    padding: 6px 4px;
+    font-size: 9px;
 }
 .physton-prompt .group-tabs .group-body .group-main .sub-group-main .group-tags .tag-item .tag-en{
-    max-width: 90px;
+    padding: 6px 4px;
+    font-size: 8px;
 }
 .physton-prompt .show-group-tags .icon-svg-unfold svg path{
     full: #9e2323;
 }
-.physton-prompt .group-tabs .group-body .group-main .sub-group-main .group-tags .tag-item .tag-en{
 
-  border-radius: 0px 0px 8px 8px !important;
-}
-.physton-prompt .group-tabs .group-body .group-main .sub-group-header .sub-group-tab.active, .physton-prompt .group-tabs .group-body .group-main .sub-group-header .sub-group-tab:hover{
+.physton-prompt .group-tabs .group-body .group-main .sub-group-header .sub-group-tab.active,.physton-prompt .group-tabs .group-body .group-main .sub-group-header .sub-group-tab:hover{
   border-bottom: 1px solid #0c9e38d4;
   color: #0c9e38d4;
-  font-weight: bold;
-
 }
+.physton-prompt .group-tabs .group-body .group-main .sub-group-header .sub-group-tab:hover{
+  border-bottom: 1px solid #0c9e38d4;
+    color: #ffffffd4;
+    background:#41664bd4;
+}
+
+
+.physton-prompt .group-tabs .group-header{
+    background: rgb(80 80 80 / 50%);
+}
+
+.physton-prompt .group-tabs .group-body .group-main .sub-group-main .tags-footer .tags-color .vc-color-wrap,.physton-prompt .group-tabs .group-body .group-main .sub-group-main .tags-footer .tags-color .tags-color-reset,.physton-prompt .group-tabs .group-body .group-main .sub-group-main .tags-footer .tags-color .tags-color-clear{
+
+    border-radius: 5px;
+}
+@keyframes shine {
+    0% {
+        background-position-x: 400%;
+    }
+
+    50% {
+        background-position-x: 0%;
+    }
+
+    100% {
+        background-position-x: -400%;
+    }
+}
+
+
+
 .physton-prompt .group-tabs .group-header .group-tab.active{
   border-radius: 20px !important;
-  background: #171817;
-  color: #0c9e38d4;
-  
+  color: #20af33d4;
+  background: linear-gradient(-45deg, #1b1b1b 50%, #3a3a3a 60%, #1b1b1b 70%);
+  background-size: 600% 100%;
+  animation: shine 15s linear infinite;
 }
+
+.physton-prompt .group-tabs .group-header>div:before
+{  
+    background-size: 100% 100%;
+    display: inline-block;
+    width: 13px;
+    height: 13px; 
+    margin: 0px 6px 0px 0px;
+}
+
+.physton-prompt .group-tabs .group-header>div[data-name="开始"]:before
+{  
+    background-image: url(/physton_prompt/styles?file=extensions/Webui/images/开始.svg);
+    content: "";
+}
+
+.physton-prompt .group-tabs .group-header>div[data-name="人物"]:before
+{  
+    background-image: url(/physton_prompt/styles?file=extensions/Webui/images/人物.svg);
+    content: "";
+}
+.physton-prompt .group-tabs .group-header>div[data-name="服饰"]:before
+{  
+    background-image: url(/physton_prompt/styles?file=extensions/Webui/images/服饰.svg);
+    content: "";
+
+}
+.physton-prompt .group-tabs .group-header>div[data-name="表情动作"]:before
+{  
+    background-image: url(/physton_prompt/styles?file=extensions/Webui/images/表情动作.svg);
+    content: "";
+
+}
+.physton-prompt .group-tabs .group-header>div[data-name="画面"]:before
+{  
+    background-image: url(/physton_prompt/styles?file=extensions/Webui/images/画面.svg);
+    content: "";
+
+}
+.physton-prompt .group-tabs .group-header>div[data-name="画面"]:before
+{  
+    background-image: url(/physton_prompt/styles?file=extensions/Webui/images/画面.svg);
+    content: "";
+
+}
+.physton-prompt .group-tabs .group-header>div[data-name="环境"]:before
+{  
+    background-image: url(/physton_prompt/styles?file=extensions/Webui/images/环境.svg);
+    content: "";
+
+}
+
+.physton-prompt .group-tabs .group-header>div[data-name="场景"]:before
+{  
+    background-image: url(/physton_prompt/styles?file=extensions/Webui/images/场景.svg);
+    content: "";
+
+}
+  
+
+.physton-prompt .group-tabs .group-header>div[data-name="物品"]:before
+{  
+    background-image: url(/physton_prompt/styles?file=extensions/Webui/images/物品.svg);
+    content: "";
+
+}
+
+.physton-prompt .group-tabs .group-header>div[data-name="镜头"]:before
+{  
+    background-image: url(/physton_prompt/styles?file=extensions/Webui/images/镜头.svg);
+    content: "";
+
+}
+
+
+.physton-prompt .group-tabs .group-header>div[data-name="汉服"]:before
+{  
+    background-image: url(/physton_prompt/styles?file=extensions/Webui/images/汉服.svg);
+    content: "";
+
+}
+
+
+.physton-prompt .group-tabs .group-header>div[data-name="魔法系"]:before
+{  
+    background-image: url(/physton_prompt/styles?file=extensions/Webui/images/魔法系.svg);
+    content: "";
+
+}
+
+.physton-prompt .group-tabs .group-header>div[data-name="其它"]:before
+{  
+    background-image: url(/physton_prompt/styles?file=extensions/Webui/images/其它.svg);
+    content: "";
+
+}
+.physton-prompt .group-tabs .group-header>div[data-name="反向提示词"]:before
+{  
+    background-image: url(/physton_prompt/styles?file=extensions/Webui/images/反向提示词.svg);
+    content: "";
+
+}
+
+
+
 .physton-prompt .show-group-tags .icon-svg-unfold:before{
 
       /*
@@ -97,6 +234,7 @@
 }   
 .physton-prompt .group-tabs .group-header .group-tab{
   border-right: #17181700;
+  font-size: 15px;
 }
 .physton-prompt .group-tabs .group-header{
 
