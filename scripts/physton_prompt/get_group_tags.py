@@ -8,7 +8,16 @@ def _get_tags_filename(name):
 
 def get_group_tags(lang):
     tags_file = _get_tags_filename('custom')
-    if not os.path.exists(tags_file):
+    is_exists = os.path.exists(tags_file)
+    if is_exists:
+        try:
+            with open(tags_file, 'r', encoding='utf8') as f:
+                data = f.read()
+            is_exists = len(data.strip()) > 0
+        except:
+            is_exists = False
+
+    if not is_exists:
         tags_file = _get_tags_filename(lang)
         if not os.path.exists(tags_file):
             tags_file = _get_tags_filename('default')
