@@ -24,6 +24,18 @@ export default {
                 tag.incWeight = common.getTagIncWeight(tag.value)
                 tag.decWeight = common.getTagDecWeight(tag.value)
                 // const bracket = common.hasBrackets(tag.value)
+
+                tag.originalValue = tag.value
+                if (!tag.isLora && !tag.isLyco && !tag.isEmbedding) {
+                    let value = tag.value
+                    const bracket = common.hasBrackets(value)
+                    if ((bracket[0] === '(' && bracket[1] === ')') || bracket[0] === '[' && bracket[1] === ']') {
+                        // 移除括号
+                        value = common.setLayers(value, 0, bracket[0], bracket[1])
+                        // 移除权重数
+                        tag.originalValue = value.replace(common.weightNumRegex, '$1')
+                    }
+                }
             }
             this._setTagClass(tag)
             this.$nextTick(() => {
@@ -92,21 +104,13 @@ export default {
                     if (embeddingName !== false) {
                         tag.isEmbedding = true
                         tag.value = embeddingName
+                        tag.embeddingName = embeddingName
                     } else {
-                        // 判断是否被括号包裹的embedding
-
-                        let value = tag.value
-                        const bracket = common.hasBrackets(value)
-                        if ((bracket[0] === '(' && bracket[1] === ')') || bracket[0] === '[' && bracket[1] === ']') {
-                            // 移除括号
-                            value = common.setLayers(value, 0, bracket[0], bracket[1])
-                            // 移除权重数
-                            value = value.replace(common.weightNumRegex, '$1')
-                            const embeddingName = this.embeddingExists(value)
-                            if (embeddingName !== false) {
-                                tag.isEmbedding = true
-                                // tag.value = embeddingName
-                            }
+                        const embeddingName = this.embeddingExists(tag.originalValue)
+                        if (embeddingName !== false) {
+                            tag.isEmbedding = true
+                            // tag.value = embeddingName
+                            tag.embeddingName = embeddingName
                         }
                     }
                 }
@@ -140,18 +144,19 @@ export default {
             return tag
         },
         _isTagBlacklist(tag) {
+            console.log(tag)
             if (typeof tag['type'] === 'string' && tag.type === 'wrap') return false
             if (tag.isLora) {
                 if (this.blacklist.lora && this.blacklist.lora.includes(tag.loraName)) return true
             } else if (tag.isLyco) {
                 if (this.blacklist.lycoris && this.blacklist.lycoris.includes(tag.lycoName)) return true
             } else if (tag.isEmbedding) {
-                if (this.blacklist.embedding && this.blacklist.embedding.includes(tag.value)) return true
+                if (this.blacklist.embedding && this.blacklist.embedding.includes(tag.embeddingName)) return true
             } else {
                 if (this.neg) {
-                    if (this.blacklist.negative_prompt && this.blacklist.negative_prompt.includes(tag.value)) return true
+                    if (this.blacklist.negative_prompt && this.blacklist.negative_prompt.includes(tag.originalValue)) return true
                 } else {
-                    if (this.blacklist.prompt && this.blacklist.prompt.includes(tag.value)) return true
+                    if (this.blacklist.prompt && this.blacklist.prompt.includes(tag.originalValue)) return true
                 }
             }
             return false
