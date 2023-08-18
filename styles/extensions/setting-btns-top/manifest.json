@@ -1,0 +1,10 @@
+{
+  "name": "Move the settings button popup to the top",
+  "i18n": {
+    "zh_CN": "移动设置按钮弹窗到上方",
+    "zh_HK": "移動設置按鈕彈窗到上方",
+    "zh_TW": "移動設置按鈕彈窗到上方"
+  },
+  "author": "Physton",
+  "type": "enhance"
+}
