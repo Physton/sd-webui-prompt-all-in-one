@@ -146,16 +146,16 @@ export default {
         _isTagBlacklist(tag) {
             if (typeof tag['type'] === 'string' && tag.type === 'wrap') return false
             if (tag.isLora) {
-                if (this.blacklist.lora && this.blacklist.lora.includes(tag.loraName)) return true
+                if (this.blacklist.lora?.includes(tag.loraName.toLowerCase())) return true
             } else if (tag.isLyco) {
-                if (this.blacklist.lycoris && this.blacklist.lycoris.includes(tag.lycoName)) return true
+                if (this.blacklist.lycoris?.includes(tag.lycoName.toLowerCase())) return true
             } else if (tag.isEmbedding) {
-                if (this.blacklist.embedding && this.blacklist.embedding.includes(tag.embeddingName)) return true
+                if (this.blacklist.embedding?.includes(tag.embeddingName.toLowerCase())) return true
             } else {
                 if (this.neg) {
-                    if (this.blacklist.negative_prompt && this.blacklist.negative_prompt.includes(tag.originalValue)) return true
+                    if (this.blacklist.negative_prompt?.includes(tag.originalValue.toLowerCase())) return true
                 } else {
-                    if (this.blacklist.prompt && this.blacklist.prompt.includes(tag.originalValue)) return true
+                    if (this.blacklist.prompt?.includes(tag.originalValue.toLowerCase())) return true
                 }
             }
             return false

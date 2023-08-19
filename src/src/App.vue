@@ -672,7 +672,7 @@ export default {
                 }
 
                 if (data.blacklist !== null) {
-                    this.blacklist = data.blacklist
+                    this.blacklist = this._handleBlacklist(data.blacklist)
                 }
 
                 this.updateTranslateApiConfig()
@@ -994,8 +994,17 @@ export default {
             }*/
             window.location.href = newUrl
         },
+        _handleBlacklist(blacklist) {
+          blacklist = {...blacklist}
+          blacklist.prompt = blacklist.prompt?.slice().map(item => item.toLowerCase())
+          blacklist.negative_prompt = blacklist.negative_prompt?.slice().map(item => item.toLowerCase())
+          blacklist.lora = blacklist.lora?.slice().map(item => item.toLowerCase())
+          blacklist.lycoris = blacklist.lycoris?.slice().map(item => item.toLowerCase())
+          blacklist.embedding = blacklist.embedding?.slice().map(item => item.toLowerCase())
+          return blacklist
+        },
         onUpdateBlacklist(data) {
-            this.blacklist = data
+            this.blacklist = this._handleBlacklist(data)
         },
     },
 }
