@@ -28,8 +28,6 @@ sd-webui-prompt-all-in-one 是一个基于 [stable-diffusion-webui](https://gith
 
 > 如果你觉得这个扩展有帮助，请在Github上给我一颗星！
 > 你也可以请我喝杯咖啡: [donate](#捐赠)
->
-> QQ群：820700336
 
 ----
 
