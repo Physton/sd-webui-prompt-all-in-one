@@ -10,7 +10,7 @@
 
 <div align="center">
 
-### [🇺🇸 English](README.MD) | [🇷🇺 Русский](README_RU.MD) | [🇨🇳 简体中文](README_CN.MD) | [🇨🇳 繁體中文](README_TW.MD)
+### [🇺🇸 English](README.MD) | [🇷🇺 Русский](README_RU.MD) | [🇨🇳 简体中文](README_CN.MD) | [🇯🇵 日本語](README_JP.MD) | [🇰🇷 한국어](README_KR.MD) | [🇨🇳 繁體中文](README_TW.MD)
 
 </div>
 
@@ -161,9 +161,9 @@ sd-webui-prompt-all-in-one 是一个基于 [stable-diffusion-webui](https://gith
 
 ### 请我喝杯咖啡
 
-| ko-fi | [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/physton) |
-| :---: | :---: |
-| Paypal | [https://paypal.me/physton](https://paypal.me/physton) |
-| 爱发电 | [https://afdian.net/a/physton](https://afdian.net/a/physton) |
-| 支付宝 | ![](https://s1.imagehub.cc/images/2023/07/05/alipay.jpeg) |
-| 微信赞赏 | ![](https://s1.imagehub.cc/images/2023/07/05/wechat.jpeg) |
+| ko-fi (EN) | [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/physton) |
+|:-----------:| :----: |
+| Paypal (EN) | [https://paypal.me/physton](https://paypal.me/physton) |
+| 爱发电 (CN) | [https://afdian.net/a/physton](https://afdian.net/a/physton) |
+| 支付宝 (CN) | ![](https://s1.imagehub.cc/images/2023/07/05/alipay.jpeg) |
+| 微信赞赏 (CN) | ![](https://s1.imagehub.cc/images/2023/07/05/wechat.jpeg) |
