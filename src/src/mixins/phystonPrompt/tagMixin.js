@@ -78,10 +78,10 @@ export default {
                 const match = tag.value.match(common.loraRegex)
                 if (match) {
                     tag.isLora = true
+                    tag.loraName = match[1]
                     const loraName = this.loraExists(match[1])
                     if (loraName !== false) {
                         tag.loraExists = true
-                        tag.loraName = loraName
                     }
                 }
 
@@ -90,10 +90,10 @@ export default {
                     const match = tag.value.match(common.lycoRegex)
                     if (match) {
                         tag.isLyco = true
+                        tag.lycoName = match[1]
                         const lycoName = this.lycoExists(match[1])
                         if (lycoName !== false) {
                             tag.lycoExists = true
-                            tag.lycoName = lycoName
                         }
                     }
                 }
