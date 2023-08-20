@@ -512,8 +512,24 @@ export default {
 
         // sd-webui-lobe-theme
         setTimeout(() => {
-            if (document.querySelector('meta[content="LobeHub"]')) {
+            let hasLobeTheme = false
+            let hasKitchenTheme = false
+            if (localStorage.getItem("SD-LOBE-SETTING") || localStorage.getItem("SD-KITCHEN-SETTING")) {
+                let links = document.getElementsByTagName('link')
+                for (let i = 0; i < links.length; i++) {
+                    let link = links[i]
+                    if (link.href.includes('lobehub/')) {
+                        hasLobeTheme = true
+                        break
+                    } else if (link.href.includes('kitchen-theme')) {
+                        hasKitchenTheme = true
+                    }
+                }
+            }
+            if (hasLobeTheme) {
                 common.gradioApp().classList.add("physton-prompt-lobehub")
+            } else if (hasKitchenTheme) {
+                common.gradioApp().classList.add("physton-prompt-kitchen")
             }
         }, 3000)
 
