@@ -20,20 +20,19 @@ export default {
                 this.extraNetworks = res
                 res.forEach(extraNetwork => {
                     if (extraNetwork.name === 'textual inversion') {
-                        let list = []
+                        let list = {}
                         extraNetwork.items.forEach(item => {
-                            list.push(item.name)
+                            list[item.name.toLowerCase()] = item.name
                         })
                         this.embeddings = list
                     } else if (extraNetwork.name === 'lora' || extraNetwork.name === 'lycoris') {
-                        let list = []
+                        let list = {}
                         extraNetwork.items.forEach(item => {
-                            list.push(item.name)
+                            list[item.name.toLowerCase()] = item.name
                             if (item.output_name) {
-                                list.push(item.output_name)
+                                list[item.output_name.toLowerCase()] = item.name
                             }
                         })
-                        list = [...new Set(list)]
                         if (extraNetwork.name === 'lora') {
                             this.loras = list
                         } else {
@@ -47,10 +46,11 @@ export default {
             if (typeof this.extraNetworks !== 'object') return name
             for (let extraNetwork of this.extraNetworks) {
                 if (extraNetwork.name !== type) continue
+                const nameLowerCase = name.toLowerCase()
                 for (let item of extraNetwork.items) {
-                    if (item.name === name || item.output_name === name) {
-                        if (!item.civitai_info || !item.civitai_info.name) return name
-                        if (item.civitai_info.model && item.civitai_info.model.name && item.civitai_info.model.name !== item.civitai_info.name) {
+                    if (item.name.toLowerCase() === nameLowerCase || item.output_name.toLowerCase() === nameLowerCase) {
+                        if (!item.civitai_info?.name) return name
+                        if (item.civitai_info.model?.name && item.civitai_info.model.name !== item.civitai_info.name) {
                             return '[' + item.civitai_info.name + '] ' + item.civitai_info.model.name
                         } else {
                             return item.civitai_info.name
@@ -62,30 +62,15 @@ export default {
         },
         loraExists(name) {
             if (typeof this.loras !== 'object') return name
-            for (let key in this.loras) {
-                if (this.loras[key] === name) {
-                    return this.loras[key]
-                }
-            }
-            return false
+            return this.loras[name.toLowerCase()] ?? false
         },
         lycoExists(name) {
             if (typeof this.lycos !== 'object') return name
-            for (let key in this.lycos) {
-                if (this.lycos[key] === name) {
-                    return this.lycos[key]
-                }
-            }
-            return false
+            return this.lycos[name.toLowerCase()] ?? false
         },
         embeddingExists(name) {
             if (typeof this.embeddings !== 'object') return name
-            for (let key in this.embeddings) {
-                if (this.embeddings[key] === name) {
-                    return this.embeddings[key]
-                }
-            }
-            return false
+            return this.embeddings[name.toLowerCase()] ?? false
         },
     }
 }

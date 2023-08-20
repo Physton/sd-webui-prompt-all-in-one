@@ -129,11 +129,11 @@ export default {
             this.close()
         },
         onSaveClick() {
-            this.data.prompt = this.textarea.prompt.split('\n').filter(item => item)
-            this.data.negative_prompt = this.textarea.negative_prompt.split('\n').filter(item => item)
-            this.data.lora = this.textarea.lora.split('\n').filter(item => item)
-            this.data.lycoris = this.textarea.lycoris.split('\n').filter(item => item)
-            this.data.embedding = this.textarea.embedding.split('\n').filter(item => item)
+            this.data.prompt = this.textarea.prompt.split(/\s*\n\s*/).filter(item => item?.trim().length)
+            this.data.negative_prompt = this.textarea.negative_prompt.split(/\s*\n\s*/).filter(item => item?.trim().length)
+            this.data.lora = this.textarea.lora.split(/\s*\n\s*/).filter(item => item?.trim().length)
+            this.data.lycoris = this.textarea.lycoris.split(/\s*\n\s*/).filter(item => item?.trim().length)
+            this.data.embedding = this.textarea.embedding.split(/\s*\n\s*/).filter(item => item?.trim().length)
             this.gradioAPI.setData('blacklist', this.data)
             this.close()
             this.$emit('update:blacklist', this.data)
