@@ -5,6 +5,7 @@ export default {
     data() {
         return {
             tagClickTimeId: 0,
+            showExtendId: '',
         }
     },
     mounted() {
@@ -230,34 +231,84 @@ export default {
             let tag = this.tags.find(tag => tag.id === id)
             if (!tag) return false
             tag.isFavorite = this.isFavorite(tag.id)
+            if (this.hotkey.hover === 'extend') this.showExtendId = id
         },
         onTagMouseMove(id) {
             let tag = this.tags.find(tag => tag.id === id)
             if (!tag) return false
             this.$refs.highlightPrompt.show(tag)
         },
-        onTagClick(id) {
+        onTagMouseLeave(id) {
             let tag = this.tags.find(tag => tag.id === id)
             if (!tag) return false
+            if (this.hotkey.hover === 'extend') this.showExtendId = ''
+        },
+        onTagClick(id) {
             if (this.tagClickTimeId) clearTimeout(this.tagClickTimeId)
             this.tagClickTimeId = setTimeout(() => {
-                this.editing = {}
-                this.editing[tag.id] = true
-                this.$forceUpdate()
-                this.$nextTick(() => {
-                    const input = this.$refs['promptTagEdit-' + tag.id][0]
-                    input.focus()
-                    input.dispatchEvent(new Event('input'))
-                    // input.select()
-                })
+                switch (this.hotkey.click) {
+                    case 'edit':
+                        this._handleEditTag(id)
+                        break
+                    case 'disable':
+                        this._handleDisableTag(id)
+                        break
+                    case 'extend':
+                        this._handleHoverTag(id)
+                        break
+                }
                 clearTimeout(this.tagClickTimeId)
             }, 250)
         },
         onTagDblclick(id) {
+            clearTimeout(this.tagClickTimeId)
+            switch (this.hotkey.dblClick) {
+                case 'edit':
+                    this._handleEditTag(id)
+                    break
+                case 'disable':
+                    this._handleDisableTag(id)
+                    break
+                case 'extend':
+                    this._handleHoverTag(id)
+                    break
+            }
+        },
+        onTagRightClick(id, e) {
+            switch (this.hotkey.rightClick) {
+                case 'edit':
+                    this._handleEditTag(id)
+                    break
+                case 'disable':
+                    this._handleDisableTag(id)
+                    break
+                case 'extend':
+                    this._handleHoverTag(id)
+                    break
+            }
+        },
+        _handleEditTag(id) {
             let tag = this.tags.find(tag => tag.id === id)
             if (!tag) return false
-            clearTimeout(this.tagClickTimeId)
+            this.editing = {}
+            this.editing[tag.id] = true
+            this.$forceUpdate()
+            this.$nextTick(() => {
+                const input = this.$refs['promptTagEdit-' + tag.id][0]
+                input.focus()
+                input.dispatchEvent(new Event('input'))
+                // input.select()
+            })
+        },
+        _handleDisableTag(id) {
+            let tag = this.tags.find(tag => tag.id === id)
+            if (!tag) return false
             this.onDisabledTagClick(tag.id)
+        },
+        _handleHoverTag(id) {
+            let tag = this.tags.find(tag => tag.id === id)
+            if (!tag) return false
+            this.showExtendId = id
         },
         onTagInputBlur(id) {
             let tag = this.tags.find(tag => tag.id === id)

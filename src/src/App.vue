@@ -30,6 +30,7 @@
                             @click:translate-api="onTranslateApiClick"
                             @click:prompt-format="onPromptFormatClick"
                             @click:blacklist="onBlacklistClick"
+                            @click:hotkey="onHotkeyClick"
                             v-model:tag-complete-file="tagCompleteFile"
                             v-model:only-csv-on-auto="onlyCsvOnAuto"
                             v-model:group-tags-translate="groupTagsTranslate"
@@ -53,6 +54,7 @@
                             @update:hide-group-tags="onUpdateHideGroupTags(item.id, $event)"
                             :group-tags-translate-cache="groupTagsTranslateCache"
                             :blacklist="blacklist"
+                            :hotkey="hotkey"
             ></physton-prompt>
         </template>
         <translate-setting ref="translateSetting" v-model:language-code="languageCode"
@@ -81,6 +83,12 @@
                    :translate-apis="translateApis"
                    :languages="languages"
                    @update:blacklist="onUpdateBlacklist"></blacklist>
+        <hotkey ref="hotkey" v-model:language-code="languageCode"
+                :translate-apis="translateApis"
+                :languages="languages"
+                :default-hotkey="hotkey"
+                @update:hotkey="onUpdateHotkey"
+        ></hotkey>
         <history ref="history" v-model:language-code="languageCode"
                  :translate-apis="translateApis" :languages="languages"
                  v-model:tag-complete-file="tagCompleteFile"
@@ -140,10 +148,12 @@ import About from "@/components/about.vue";
 import globals from "../globals";
 import jsYaml from "js-yaml";
 import {ref} from "vue";
+import Hotkey from "@/components/hotkey.vue";
 
 export default {
     name: 'App',
     components: {
+        Hotkey,
         About,
         ChatgptPrompt,
         PackagesState,
@@ -302,6 +312,13 @@ export default {
             },
 
             blacklist: {},
+
+            hotkey: {
+                click: 'edit', // edit, disable, extend
+                dblClick: 'disable', // edit, disable, extend
+                rightClick: '', // edit, disable, extend
+                hover: 'extend', // extend
+            }
         }
     },
     watch: {
@@ -558,7 +575,7 @@ export default {
         },
         init() {
             this.loadExtraNetworks()
-            let dataListsKeys = ['languageCode', 'autoTranslate', 'autoTranslateToEnglish', 'autoTranslateToLocal', 'autoRemoveSpace', 'autoRemoveLastComma', 'autoKeepWeightZero', 'autoKeepWeightOne', 'autoBreakBeforeWrap', 'autoBreakAfterWrap', /*'hideDefaultInput', */'translateApi', 'enableTooltip', 'tagCompleteFile', 'onlyCsvOnAuto', 'extensionSelect.minimalist', 'groupTagsColor', 'groupTagsTranslate', 'blacklist']
+            let dataListsKeys = ['languageCode', 'autoTranslate', 'autoTranslateToEnglish', 'autoTranslateToLocal', 'autoRemoveSpace', 'autoRemoveLastComma', 'autoKeepWeightZero', 'autoKeepWeightOne', 'autoBreakBeforeWrap', 'autoBreakAfterWrap', /*'hideDefaultInput', */'translateApi', 'enableTooltip', 'tagCompleteFile', 'onlyCsvOnAuto', 'extensionSelect.minimalist', 'groupTagsColor', 'groupTagsTranslate', 'blacklist', 'hotkey']
             this.prompts.forEach(item => {
                 dataListsKeys.push(item.hideDefaultInputKey)
                 dataListsKeys.push(item.hidePanelKey)
@@ -691,6 +708,10 @@ export default {
                     this.blacklist = this._handleBlacklist(data.blacklist)
                 }
 
+                if (data.hotkey !== null) {
+                    this.hotkey = data.hotkey
+                }
+
                 this.updateTranslateApiConfig()
                 this.$refs.extensionCss.init()
 
@@ -733,6 +754,7 @@ export default {
                 // this.$refs.chatgptPrompt.open()
                 // this.$refs.promptFormat.open()
                 // this.$refs.blacklist.open()
+                // this.$refs.hotkey.open()
                 // this.$refs.translateSetting.open(this.translateApi)
                 /*this.onShowFavorite('phystonPrompt_txt2img_prompt', {
                     clientY: 150,
@@ -834,6 +856,9 @@ export default {
         },
         onBlacklistClick(e) {
             this.$refs.blacklist.open(e)
+        },
+        onHotkeyClick(e) {
+            this.$refs.hotkey.open(e)
         },
         onSelectLanguageClick(e) {
             this.$refs.selectLanguage.open(e)
@@ -1021,6 +1046,9 @@ export default {
         },
         onUpdateBlacklist(data) {
             this.blacklist = this._handleBlacklist(data)
+        },
+        onUpdateHotkey(data) {
+            this.hotkey = data
         },
     },
 }

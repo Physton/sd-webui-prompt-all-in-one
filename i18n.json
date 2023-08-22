@@ -151,7 +151,16 @@
                 "one_keyword_per_line": "每行一个关键词",
                 "Keyword_group": "关键词组",
                 "enhance_translation_use_keyword_group": "使用关键词组增强翻译功能",
-                "enhance_translation_use_Keyword_group_desc": "<p>关键词组文件位于 group_tags 目录中。</p><p>启用该功能后，优先使用 yaml 文件中的内容进行翻译匹配。如果没有匹配到，再使用翻译接口进行翻译。</p><p>你可以前往 <a href='https://aiodoc.physton.com/GroupTags.html' target='_blank'>https://aiodoc.physton.com/GroupTags.html</a> 查看 group_tags 中文件的具体说明。</p>"
+                "enhance_translation_use_Keyword_group_desc": "<p>关键词组文件位于 group_tags 目录中。</p><p>启用该功能后，优先使用 yaml 文件中的内容进行翻译匹配。如果没有匹配到，再使用翻译接口进行翻译。</p><p>你可以前往 <a href='https://aiodoc.physton.com/GroupTags.html' target='_blank'>https://aiodoc.physton.com/GroupTags.html</a> 查看 group_tags 中文件的具体说明。</p>",
+                "hotkey_setting": "快捷键设置",
+                "left_click_keyword_tag": "左键点击关键词标签",
+                "right_click_keyword_tag": "右键点击关键词标签",
+                "dblclick_keyword_tag": "双击点击关键词标签",
+                "hover_keyword_tag": "鼠标悬停关键词标签",
+                "edit_keyword": "编辑关键词",
+                "disable_enable_keyword": "禁用/启用关键词",
+                "show_keyword_extend_panel": "显示关键词扩展面板",
+                "none": "无"
             }
         },
         {
@@ -304,7 +313,16 @@
                 "one_keyword_per_line": "每行一個關鍵詞",
                 "Keyword_group": "關鍵詞組",
                 "enhance_translation_use_keyword_group": "使用關鍵詞組增強翻譯功能",
-                "enhance_translation_use_Keyword_group_desc": "<p>關鍵詞組文件位於 group_tags 目錄中。</p><p>啟用該功能後，優先使用 yaml 文件中的內容進行翻譯匹配。如果沒有匹配到，再使用翻譯接口進行翻譯。</p><p>你可以前往 <a href='https://aiodoc.physton.com/GroupTags.html' target='_blank'>https://aiodoc.physton.com/GroupTags.html</a> 查看 group_tags 中文件的具體說明。</p>"
+                "enhance_translation_use_Keyword_group_desc": "<p>關鍵詞組文件位於 group_tags 目錄中。</p><p>啟用該功能後，優先使用 yaml 文件中的內容進行翻譯匹配。如果沒有匹配到，再使用翻譯接口進行翻譯。</p><p>你可以前往 <a href='https://aiodoc.physton.com/GroupTags.html' target='_blank'>https://aiodoc.physton.com/GroupTags.html</a> 查看 group_tags 中文件的具體說明。</p>",
+                "hotkey_setting": "快捷鍵設定",
+                "left_click_keyword_tag": "左鍵點擊關鍵詞標籤",
+                "right_click_keyword_tag": "右鍵點擊關鍵詞標籤",
+                "dblclick_keyword_tag": "雙擊點擊關鍵詞標籤",
+                "hover_keyword_tag": "滑鼠懸停關鍵詞標籤",
+                "edit_keyword": "編輯關鍵詞",
+                "disable_enable_keyword": "禁用/啟用關鍵詞",
+                "show_keyword_extend_panel": "顯示關鍵詞擴展面板",
+                "none": "無"
             }
         },
         {
@@ -457,7 +475,16 @@
                 "one_keyword_per_line": "每行一個關鍵字",
                 "Keyword_group": "關鍵詞組",
                 "enhance_translation_use_keyword_group": "使用關鍵詞組增強翻譯功能",
-                "enhance_translation_use_Keyword_group_desc": "<p>關鍵詞組文件位於 group_tags 目錄中。</p><p>啟用該功能後，優先使用 yaml 文件中的內容進行翻譯匹配。如果沒有匹配到，再使用翻譯接口進行翻譯。</p><p>你可以前往 <a href='https://aiodoc.physton.com/GroupTags.html' target='_blank'>https://aiodoc.physton.com/GroupTags.html</a> 查看 group_tags 中文件的具體說明。</p>"
+                "enhance_translation_use_Keyword_group_desc": "<p>關鍵詞組文件位於 group_tags 目錄中。</p><p>啟用該功能後，優先使用 yaml 文件中的內容進行翻譯匹配。如果沒有匹配到，再使用翻譯接口進行翻譯。</p><p>你可以前往 <a href='https://aiodoc.physton.com/GroupTags.html' target='_blank'>https://aiodoc.physton.com/GroupTags.html</a> 查看 group_tags 中文件的具體說明。</p>",
+                "hotkey_setting": "快捷鍵設定",
+                "left_click_keyword_tag": "左鍵點擊關鍵字標籤",
+                "right_click_keyword_tag": "右鍵點擊關鍵字標籤",
+                "dblclick_keyword_tag": "雙擊點擊關鍵字標籤",
+                "hover_keyword_tag": "滑鼠懸停關鍵字標籤",
+                "edit_keyword": "編輯關鍵字",
+                "disable_enable_keyword": "禁用/啟用關鍵字",
+                "show_keyword_extend_panel": "顯示關鍵字擴展面板",
+                "none": "無"
             }
         },
         {
@@ -610,7 +637,16 @@
                 "one_keyword_per_line": "One keyword per line",
                 "Keyword_group": "Keyword Group",
                 "enhance_translation_use_keyword_group": "Enhance Translation with Keyword Group",
-                "enhance_translation_use_Keyword_group_desc": "<p>The keyword group file is located in the group_tags directory.</p><p>When this feature is enabled, the contents in the YAML file are prioritized for translation matching. If no match is found, the translation interface is used.</p><p>You can visit <a href='https://aiodoc.physton.com/GroupTags.html' target='_blank'>https://aiodoc.physton.com/GroupTags.html</a> for specific instructions on the files in the group_tags directory.</p>"
+                "enhance_translation_use_Keyword_group_desc": "<p>The keyword group file is located in the group_tags directory.</p><p>When this feature is enabled, the contents in the YAML file are prioritized for translation matching. If no match is found, the translation interface is used.</p><p>You can visit <a href='https://aiodoc.physton.com/GroupTags.html' target='_blank'>https://aiodoc.physton.com/GroupTags.html</a> for specific instructions on the files in the group_tags directory.</p>",
+                "hotkey_setting": "Hotkey Setting",
+                "left_click_keyword_tag": "Left Click Keyword Tag",
+                "right_click_keyword_tag": "Right Click Keyword Tag",
+                "dblclick_keyword_tag": "Double Click Keyword Tag",
+                "hover_keyword_tag": "Hover Keyword Tag",
+                "edit_keyword": "Edit Keyword",
+                "disable_enable_keyword": "Disable/Enable Keyword",
+                "show_keyword_extend_panel": "Show Keyword Extend Panel",
+                "none": "None"
             }
         },
         {
@@ -774,7 +810,16 @@
                 "one_keyword_per_line": "كلمة رئيسية واحدة في كل سطر",
                 "Keyword_group": "مجموعة الكلمات الرئيسية",
                 "enhance_translation_use_keyword_group": "استخدام مجموعة الكلمات الرئيسية لتعزيز الترجمة",
-                "enhance_translation_use_Keyword_group_desc": "<p>ملف مجموعة الكلمات الرئيسية موجود في دليل group_tags.</p><p>عند تمكين هذه الميزة، يتم إعطاء الأولوية لمحتويات ملف YAML لمطابقة الترجمة. إذا لم يتم العثور على تطابق، يتم استخدام واجهة الترجمة.</p><p>يمكنك زيارة <a href='https://aiodoc.physton.com/GroupTags.html' target='_blank'>https://aiodoc.physton.com/GroupTags.html</a> للحصول على تعليمات محددة حول الملفات في دليل group_tags.</p>"
+                "enhance_translation_use_Keyword_group_desc": "<p>ملف مجموعة الكلمات الرئيسية موجود في دليل group_tags.</p><p>عند تمكين هذه الميزة، يتم إعطاء الأولوية لمحتويات ملف YAML لمطابقة الترجمة. إذا لم يتم العثور على تطابق، يتم استخدام واجهة الترجمة.</p><p>يمكنك زيارة <a href='https://aiodoc.physton.com/GroupTags.html' target='_blank'>https://aiodoc.physton.com/GroupTags.html</a> للحصول على تعليمات محددة حول الملفات في دليل group_tags.</p>",
+                "hotkey_setting": "إعدادات مفاتيح الاختصار",
+                "left_click_keyword_tag": "وسم النقر الأيسر على الكلمة الرئيسية",
+                "right_click_keyword_tag": "وسم النقر الأيمن على الكلمة الرئيسية",
+                "dblclick_keyword_tag": "وسم النقر المزدوج على الكلمة الرئيسية",
+                "hover_keyword_tag": "وسم تحويم الماوس على الكلمة الرئيسية",
+                "edit_keyword": "تحرير الكلمة الرئيسية",
+                "disable_enable_keyword": "تعطيل/تمكين الكلمة الرئيسية",
+                "show_keyword_extend_panel": "عرض لوحة تمديد الكلمة الرئيسية",
+                "none": "لا شيء"
             }
         },
         {
@@ -1026,7 +1071,16 @@
                 "one_keyword_per_line": "Un mot-clé par ligne",
                 "Keyword_group": "Groupe de mots-clés",
                 "enhance_translation_use_keyword_group": "Utiliser le groupe de mots-clés pour améliorer la traduction",
-                "enhance_translation_use_Keyword_group_desc": "<p>Le fichier du groupe de mots-clés est situé dans le répertoire group_tags.</p><p>Lorsque cette fonctionnalité est activée, les contenus du fichier YAML sont prioritaires pour la correspondance de traduction. Si aucune correspondance n'est trouvée, l'interface de traduction est utilisée.</p><p>Vous pouvez consulter <a href='https://aiodoc.physton.com/GroupTags.html' target='_blank'>https://aiodoc.physton.com/GroupTags.html</a> pour des instructions spécifiques sur les fichiers du répertoire group_tags.</p>"
+                "enhance_translation_use_Keyword_group_desc": "<p>Le fichier du groupe de mots-clés est situé dans le répertoire group_tags.</p><p>Lorsque cette fonctionnalité est activée, les contenus du fichier YAML sont prioritaires pour la correspondance de traduction. Si aucune correspondance n'est trouvée, l'interface de traduction est utilisée.</p><p>Vous pouvez consulter <a href='https://aiodoc.physton.com/GroupTags.html' target='_blank'>https://aiodoc.physton.com/GroupTags.html</a> pour des instructions spécifiques sur les fichiers du répertoire group_tags.</p>",
+                "hotkey_setting": "Paramètres des raccourcis clavier",
+                "left_click_keyword_tag": "Balise de clic gauche pour le mot-clé",
+                "right_click_keyword_tag": "Balise de clic droit pour le mot-clé",
+                "dblclick_keyword_tag": "Balise de double-clic pour le mot-clé",
+                "hover_keyword_tag": "Balise de survol pour le mot-clé",
+                "edit_keyword": "Modifier le mot-clé",
+                "disable_enable_keyword": "Désactiver/Activer le mot-clé",
+                "show_keyword_extend_panel": "Afficher le panneau d'extension du mot-clé",
+                "none": "Aucun"
             }
         },
         {
@@ -1193,7 +1247,16 @@
                 "one_keyword_per_line": "Ein Schlüsselwort pro Zeile",
                 "Keyword_group": "Schlüsselwortgruppe",
                 "enhance_translation_use_keyword_group": "Übersetzung mit Schlüsselwortgruppe verbessern",
-                "enhance_translation_use_Keyword_group_desc": "<p>Die Schlüsselwortgruppendatei befindet sich im Verzeichnis group_tags.</p><p>Wenn diese Funktion aktiviert ist, haben die Inhalte in der YAML-Datei Vorrang für die Übersetzungsübereinstimmung. Wenn keine Übereinstimmung gefunden wird, wird die Übersetzungs-Schnittstelle verwendet.</p><p>Sie können <a href='https://aiodoc.physton.com/GroupTags.html' target='_blank'>https://aiodoc.physton.com/GroupTags.html</a> besuchen, um spezifische Anweisungen zu den Dateien im Verzeichnis group_tags zu erhalten.</p>"
+                "enhance_translation_use_Keyword_group_desc": "<p>Die Schlüsselwortgruppendatei befindet sich im Verzeichnis group_tags.</p><p>Wenn diese Funktion aktiviert ist, haben die Inhalte in der YAML-Datei Vorrang für die Übersetzungsübereinstimmung. Wenn keine Übereinstimmung gefunden wird, wird die Übersetzungs-Schnittstelle verwendet.</p><p>Sie können <a href='https://aiodoc.physton.com/GroupTags.html' target='_blank'>https://aiodoc.physton.com/GroupTags.html</a> besuchen, um spezifische Anweisungen zu den Dateien im Verzeichnis group_tags zu erhalten.</p>",
+                "hotkey_setting": "Tastenkürzel-Einstellung",
+                "left_click_keyword_tag": "Linksklick-Schlüsselwort-Tag",
+                "right_click_keyword_tag": "Rechtsklick-Schlüsselwort-Tag",
+                "dblclick_keyword_tag": "Doppelklick-Schlüsselwort-Tag",
+                "hover_keyword_tag": "Schweben über Schlüsselwort-Tag",
+                "edit_keyword": "Schlüsselwort bearbeiten",
+                "disable_enable_keyword": "Schlüsselwort deaktivieren/aktivieren",
+                "show_keyword_extend_panel": "Schlüsselwort-Erweiterungs-Panel anzeigen",
+                "none": "Keine"
             }
         },
         {
@@ -1410,7 +1473,16 @@
                 "one_keyword_per_line": "Una parola chiave per riga",
                 "Keyword_group": "Gruppo di parole chiave",
                 "enhance_translation_use_keyword_group": "Migliora la traduzione con il gruppo di parole chiave",
-                "enhance_translation_use_Keyword_group_desc": "<p>Il file del gruppo di parole chiave si trova nella directory group_tags.</p><p>Quando questa funzionalità è abilitata, i contenuti nel file YAML hanno la priorità per la corrispondenza di traduzione. Se non viene trovata alcuna corrispondenza, viene utilizzata l'interfaccia di traduzione.</p><p>Puoi visitare <a href='https://aiodoc.physton.com/GroupTags.html' target='_blank'>https://aiodoc.physton.com/GroupTags.html</a> per istruzioni specifiche sui file nella directory group_tags.</p>"
+                "enhance_translation_use_Keyword_group_desc": "<p>Il file del gruppo di parole chiave si trova nella directory group_tags.</p><p>Quando questa funzionalità è abilitata, i contenuti nel file YAML hanno la priorità per la corrispondenza di traduzione. Se non viene trovata alcuna corrispondenza, viene utilizzata l'interfaccia di traduzione.</p><p>Puoi visitare <a href='https://aiodoc.physton.com/GroupTags.html' target='_blank'>https://aiodoc.physton.com/GroupTags.html</a> per istruzioni specifiche sui file nella directory group_tags.</p>",
+                "hotkey_setting": "Impostazioni dei tasti di scelta rapida",
+                "left_click_keyword_tag": "Etichetta clic sinistro parola chiave",
+                "right_click_keyword_tag": "Etichetta clic destro parola chiave",
+                "dblclick_keyword_tag": "Etichetta doppio clic parola chiave",
+                "hover_keyword_tag": "Etichetta passaggio del mouse parola chiave",
+                "edit_keyword": "Modifica parola chiave",
+                "disable_enable_keyword": "Disabilita/Abilita parola chiave",
+                "show_keyword_extend_panel": "Mostra pannello estensione parola chiave",
+                "none": "Nessuno"
             }
         },
         {
@@ -1562,7 +1634,16 @@
                 "one_keyword_per_line": "1行に1つのキーワード",
                 "Keyword_group": "キーワードグループ",
                 "enhance_translation_use_keyword_group": "キーワードグループを使用して翻訳を強化する",
-                "enhance_translation_use_Keyword_group_desc": "<p>キーワードグループファイルは、group_tagsディレクトリにあります。</p><p>この機能を有効にすると、翻訳のマッチングにはYAMLファイルの内容が優先されます。マッチが見つからない場合は、翻訳インターフェースが使用されます。</p><p>group_tagsディレクトリのファイルの具体的な説明については、<a href='https://aiodoc.physton.com/GroupTags.html' target='_blank'>https://aiodoc.physton.com/GroupTags.html</a>をご覧ください。</p>"
+                "enhance_translation_use_Keyword_group_desc": "<p>キーワードグループファイルは、group_tagsディレクトリにあります。</p><p>この機能を有効にすると、翻訳のマッチングにはYAMLファイルの内容が優先されます。マッチが見つからない場合は、翻訳インターフェースが使用されます。</p><p>group_tagsディレクトリのファイルの具体的な説明については、<a href='https://aiodoc.physton.com/GroupTags.html' target='_blank'>https://aiodoc.physton.com/GroupTags.html</a>をご覧ください。</p>",
+                "hotkey_setting": "ホットキーの設定",
+                "left_click_keyword_tag": "左クリックキーワードタグ",
+                "right_click_keyword_tag": "右クリックキーワードタグ",
+                "dblclick_keyword_tag": "ダブルクリックキーワードタグ",
+                "hover_keyword_tag": "キーワードのホバー",
+                "edit_keyword": "キーワードの編集",
+                "disable_enable_keyword": "キーワードの無効化/有効化",
+                "show_keyword_extend_panel": "キーワード拡張パネルの表示",
+                "none": "なし"
             }
         },
         {
@@ -1739,7 +1820,16 @@
                 "one_keyword_per_line": "한 줄에 하나의 키워드",
                 "Keyword_group": "키워드 그룹",
                 "enhance_translation_use_keyword_group": "키워드 그룹을 사용하여 번역 개선",
-                "enhance_translation_use_Keyword_group_desc": "<p>키워드 그룹 파일은 group_tags 디렉터리에 있습니다.</p><p>이 기능을 활성화하면 YAML 파일의 내용이 번역 매칭에 우선적으로 사용됩니다. 일치하는 항목이 없는 경우 번역 인터페이스가 사용됩니다.</p><p>group_tags 디렉터리의 파일에 대한 구체적인 설명은 <a href='https://aiodoc.physton.com/GroupTags.html' target='_blank'>https://aiodoc.physton.com/GroupTags.html</a>을 참조하십시오.</p>"
+                "enhance_translation_use_Keyword_group_desc": "<p>키워드 그룹 파일은 group_tags 디렉터리에 있습니다.</p><p>이 기능을 활성화하면 YAML 파일의 내용이 번역 매칭에 우선적으로 사용됩니다. 일치하는 항목이 없는 경우 번역 인터페이스가 사용됩니다.</p><p>group_tags 디렉터리의 파일에 대한 구체적인 설명은 <a href='https://aiodoc.physton.com/GroupTags.html' target='_blank'>https://aiodoc.physton.com/GroupTags.html</a>을 참조하십시오.</p>",
+                "hotkey_setting": "단축키 설정",
+                "left_click_keyword_tag": "왼쪽 클릭 키워드 태그",
+                "right_click_keyword_tag": "오른쪽 클릭 키워드 태그",
+                "dblclick_keyword_tag": "더블 클릭 키워드 태그",
+                "hover_keyword_tag": "마우스 호버 키워드 태그",
+                "edit_keyword": "키워드 편집",
+                "disable_enable_keyword": "키워드 비활성화/활성화",
+                "show_keyword_extend_panel": "키워드 확장 패널 표시",
+                "none": "없음"
             }
         },
         {
@@ -2006,7 +2096,16 @@
                 "one_keyword_per_line": "Uma palavra-chave por linha",
                 "Keyword_group": "Grupo de palavras-chave",
                 "enhance_translation_use_keyword_group": "Melhorar a tradução com o grupo de palavras-chave",
-                "enhance_translation_use_Keyword_group_desc": "<p>O arquivo do grupo de palavras-chave está localizado no diretório group_tags.</p><p>Quando essa funcionalidade está ativada, o conteúdo do arquivo YAML tem prioridade para a correspondência de tradução. Se nenhuma correspondência for encontrada, a interface de tradução é usada.</p><p>Você pode visitar <a href='https://aiodoc.physton.com/GroupTags.html' target='_blank'>https://aiodoc.physton.com/GroupTags.html</a> para obter instruções específicas sobre os arquivos no diretório group_tags.</p>"
+                "enhance_translation_use_Keyword_group_desc": "<p>O arquivo do grupo de palavras-chave está localizado no diretório group_tags.</p><p>Quando essa funcionalidade está ativada, o conteúdo do arquivo YAML tem prioridade para a correspondência de tradução. Se nenhuma correspondência for encontrada, a interface de tradução é usada.</p><p>Você pode visitar <a href='https://aiodoc.physton.com/GroupTags.html' target='_blank'>https://aiodoc.physton.com/GroupTags.html</a> para obter instruções específicas sobre os arquivos no diretório group_tags.</p>",
+                "hotkey_setting": "Configuração de teclas de atalho",
+                "left_click_keyword_tag": "Tag de clique esquerdo para palavra-chave",
+                "right_click_keyword_tag": "Tag de clique direito para palavra-chave",
+                "dblclick_keyword_tag": "Tag de clique duplo para palavra-chave",
+                "hover_keyword_tag": "Tag de passar o mouse para palavra-chave",
+                "edit_keyword": "Editar palavra-chave",
+                "disable_enable_keyword": "Desativar/Ativar palavra-chave",
+                "show_keyword_extend_panel": "Mostrar painel de extensão de palavra-chave",
+                "none": "Nenhum"
             }
         },
         {
@@ -2173,7 +2272,16 @@
                 "one_keyword_per_line": "Одно ключевое слово на строку",
                 "Keyword_group": "Группа ключевых слов",
                 "enhance_translation_use_keyword_group": "Улучшить перевод с помощью группы ключевых слов",
-                "enhance_translation_use_Keyword_group_desc": "<p>Файл группы ключевых слов находится в каталоге group_tags.</p><p>При включении этой функции приоритет отдается содержимому файла YAML для соответствия перевода. Если соответствие не найдено, используется интерфейс перевода.</p><p>Вы можете посетить <a href='https://aiodoc.physton.com/GroupTags.html' target='_blank'>https://aiodoc.physton.com/GroupTags.html</a> для получения конкретных инструкций по файлам в каталоге group_tags.</p>"
+                "enhance_translation_use_Keyword_group_desc": "<p>Файл группы ключевых слов находится в каталоге group_tags.</p><p>При включении этой функции приоритет отдается содержимому файла YAML для соответствия перевода. Если соответствие не найдено, используется интерфейс перевода.</p><p>Вы можете посетить <a href='https://aiodoc.physton.com/GroupTags.html' target='_blank'>https://aiodoc.physton.com/GroupTags.html</a> для получения конкретных инструкций по файлам в каталоге group_tags.</p>",
+                "hotkey_setting": "Настройка горячих клавиш",
+                "left_click_keyword_tag": "Метка левого клика для ключевого слова",
+                "right_click_keyword_tag": "Метка правого клика для ключевого слова",
+                "dblclick_keyword_tag": "Метка двойного клика для ключевого слова",
+                "hover_keyword_tag": "Метка наведения курсора для ключевого слова",
+                "edit_keyword": "Редактировать ключевое слово",
+                "disable_enable_keyword": "Отключить/Включить ключевое слово",
+                "show_keyword_extend_panel": "Показать панель расширения ключевого слова",
+                "none": "Нет"
             }
         },
         {
@@ -2355,7 +2463,16 @@
                 "one_keyword_per_line": "Una palabra clave por línea",
                 "Keyword_group": "Grupo de palabras clave",
                 "enhance_translation_use_keyword_group": "Mejorar la traducción con el grupo de palabras clave",
-                "enhance_translation_use_Keyword_group_desc": "<p>El archivo del grupo de palabras clave se encuentra en el directorio group_tags.</p><p>Cuando esta función está habilitada, se priorizan los contenidos del archivo YAML para la coincidencia de traducción. Si no se encuentra ninguna coincidencia, se utiliza la interfaz de traducción.</p><p>Puedes visitar <a href='https://aiodoc.physton.com/GroupTags.html' target='_blank'>https://aiodoc.physton.com/GroupTags.html</a> para obtener instrucciones específicas sobre los archivos en el directorio group_tags.</p>"
+                "enhance_translation_use_Keyword_group_desc": "<p>El archivo del grupo de palabras clave se encuentra en el directorio group_tags.</p><p>Cuando esta función está habilitada, se priorizan los contenidos del archivo YAML para la coincidencia de traducción. Si no se encuentra ninguna coincidencia, se utiliza la interfaz de traducción.</p><p>Puedes visitar <a href='https://aiodoc.physton.com/GroupTags.html' target='_blank'>https://aiodoc.physton.com/GroupTags.html</a> para obtener instrucciones específicas sobre los archivos en el directorio group_tags.</p>",
+                "hotkey_setting": "Configuración de teclas de acceso rápido",
+                "left_click_keyword_tag": "Etiqueta de clic izquierdo para palabra clave",
+                "right_click_keyword_tag": "Etiqueta de clic derecho para palabra clave",
+                "dblclick_keyword_tag": "Etiqueta de doble clic para palabra clave",
+                "hover_keyword_tag": "Etiqueta de desplazamiento del mouse para palabra clave",
+                "edit_keyword": "Editar palabra clave",
+                "disable_enable_keyword": "Desactivar/Activar palabra clave",
+                "show_keyword_extend_panel": "Mostrar panel de extensión de palabra clave",
+                "none": "Ninguno"
             }
         },
         {

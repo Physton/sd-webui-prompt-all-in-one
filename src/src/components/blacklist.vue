@@ -42,30 +42,6 @@ export default {
     components: {IconSvg},
     mixins: [LanguageMixin],
     props: {
-        autoRemoveSpace: {
-            type: Boolean,
-            default: false,
-        },
-        autoRemoveLastComma: {
-            type: Boolean,
-            default: false,
-        },
-        autoKeepWeightZero: {
-            type: Boolean,
-            default: false,
-        },
-        autoKeepWeightOne: {
-            type: Boolean,
-            default: false,
-        },
-        autoBreakBeforeWrap: {
-            type: Boolean,
-            default: false,
-        },
-        autoBreakAfterWrap: {
-            type: Boolean,
-            default: false,
-        },
     },
     data() {
         return {

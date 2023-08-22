@@ -208,6 +208,9 @@
     --pp-ph-sb-iconSvgBlacklist-width: auto;
     --pp-ph-sb-iconSvgBlacklist-height: 22px;
     --pp-ph-sb-iconSvgBlacklist-color: #d81e06;
+    --pp-ph-sb-iconSvgHotkey-width: auto;
+    --pp-ph-sb-iconSvgHotkey-height: 22px;
+    --pp-ph-sb-iconSvgHotkey-color: #d81e06;
     --pp-ph-sb-iconSvgTheme-width: auto;
     --pp-ph-sb-iconSvgTheme-height: 22px;
     --pp-ph-sb-iconSvgTheme-color: #02b7fd;
@@ -1422,6 +1425,73 @@
     --ppb-bm-bb-sb-blacklistClose-border: 1px solid @common-blue;
     --ppb-bm-bb-sb-blacklistClose-border-radius: 4px;
 
+    // .physton-prompt-hotkey .hotkey-main
+    --pph-hotkeyMain-position: relative;
+
+    // .physton-prompt-hotkey .hotkey-main .hotkey-body
+    --pph-hm-hotkeyBody-display: flex;
+    --pph-hm-hotkeyBody-flex-wrap: wrap;
+    --pph-hm-hotkeyBody-width: 500px;
+    --pph-hm-hotkeyBody-position: relative;
+    --pph-hm-hotkeyBody-box-shadow: 0 0 3px @common-blue;
+    --pph-hm-hotkeyBody-border-radius: 6px 6px 4px 4px;
+    --pph-hm-hotkeyBody-background-color: #1e1e1ee6;
+    --pph-hm-hotkeyBody-transition: height .1s ease-in-out, width .1s ease-in-out;
+    --pph-hm-hotkeyBody-padding: 20px 40px;
+    --pph-hm-hotkeyBody-box-sizing: border-box;
+
+    // .physton-prompt-hotkey .hotkey-main .hotkey-body .hotkey-list
+    --pph-hm-hb-hotkeyList-width: 100%;
+
+    // .physton-prompt-hotkey .hotkey-main .hotkey-body .hotkey-list .hotkey-item
+    --pph-hm-hb-hl-hotkeyItem-display: flex;
+    --pph-hm-hb-hl-hotkeyItem-align-items: center;
+    --pph-hm-hb-hl-hotkeyItem-width: 100%;
+    --pph-hm-hb-hl-hotkeyItem-margin: 10px 0;
+
+    // .physton-prompt-hotkey .hotkey-main .hotkey-body .hotkey-list .hotkey-item .hotkey-title
+    --pph-hm-hb-hl-hi-hotkeyTitle-color: #fff;
+    --pph-hm-hb-hl-hi-hotkeyTitle-font-size: 14px;
+    --pph-hm-hb-hl-hi-hotkeyTitle-white-space: nowrap;
+
+    // .physton-prompt-hotkey .hotkey-main .hotkey-body .hotkey-list .hotkey-item .hotkey-select
+    --pph-hm-hb-hl-hi-hotkeySelect-margin-left: 20px;
+    --pph-hm-hb-hl-hi-hotkeySelect-background: rgba(30, 30, 30, .9);
+    --pph-hm-hb-hl-hi-hotkeySelect-border: 1px solid #3c3c3c;
+    --pph-hm-hb-hl-hi-hotkeySelect-padding: 4px;
+    --pph-hm-hb-hl-hi-hotkeySelect-width: 100%;
+    --pph-hm-hb-hl-hi-hotkeySelect-font-size: 14px;
+    --pph-hm-hb-hl-hi-hotkeySelect-color: #fff;
+    --pph-hm-hb-hl-hi-hotkeySelect-resize: none;
+
+    // .physton-prompt-hotkey .hotkey-main .hotkey-body .setting-btns
+    --pph-hm-hb-settingBtns-flex-basis: 100%;
+    --pph-hm-hb-settingBtns-display: flex;
+    --pph-hm-hb-settingBtns-justify-content: flex-end;
+    --pph-hm-hb-settingBtns-align-items: center;
+    --pph-hm-hb-settingBtns-margin-top: 10px;
+
+    // .physton-prompt-hotkey .hotkey-main .hotkey-body .setting-btns .hotkey-save
+    --pph-hm-hb-sb-hotkeySave-cursor: pointer;
+    --pph-hm-hb-sb-hotkeySave-display: inline-block;
+    --pph-hm-hb-sb-hotkeySave-padding: 0 40px;
+    --pph-hm-hb-sb-hotkeySave-height: 40px;
+    --pph-hm-hb-sb-hotkeySave-line-height: 40px;
+    --pph-hm-hb-sb-hotkeySave-color: #fff;
+    --pph-hm-hb-sb-hotkeySave-border-radius: 4px;
+    --pph-hm-hb-sb-hotkeySave-margin-right: 10px;
+
+    // .physton-prompt-hotkey .hotkey-main .hotkey-body .setting-btns .hotkey-close
+    --pph-hm-hb-sb-hotkeyClose-cursor: pointer;
+    --pph-hm-hb-sb-hotkeyClose-display: inline-block;
+    --pph-hm-hb-sb-hotkeyClose-padding: 0 40px;
+    --pph-hm-hb-sb-hotkeyClose-height: 40px;
+    --pph-hm-hb-sb-hotkeyClose-line-height: 40px;
+    --pph-hm-hb-sb-hotkeyClose-color: @common-blue;
+    --pph-hm-hb-sb-hotkeyClose-background: transparent;
+    --pph-hm-hb-sb-hotkeyClose-border: 1px solid @common-blue;
+    --pph-hm-hb-sb-hotkeyClose-border-radius: 4px;
+
     // .physton-packages-state
     --pps-z-index: 1999;
 
@@ -2401,6 +2471,7 @@
             .set-icon-svg(var(--pp-ph-sb-iconSvgApi-width), var(--pp-ph-sb-iconSvgApi-height), var(--pp-ph-sb-iconSvgApi-color), icon-svg-api);
             .set-icon-svg(var(--pp-ph-sb-iconSvgFormat-width), var(--pp-ph-sb-iconSvgFormat-height), var(--pp-ph-sb-iconSvgFormat-color), icon-svg-format);
             .set-icon-svg(var(--pp-ph-sb-iconSvgBlacklist-width), var(--pp-ph-sb-iconSvgBlacklist-height), var(--pp-ph-sb-iconSvgBlacklist-color), icon-svg-blacklist);
+            .set-icon-svg(var(--pp-ph-sb-iconSvgHotkey-width), var(--pp-ph-sb-iconSvgHotkey-height), var(--pp-ph-sb-iconSvgHotkey-color), icon-svg-hotkey);
             .set-icon-svg(var(--pp-ph-sb-iconSvgTheme-width), var(--pp-ph-sb-iconSvgTheme-height), var(--pp-ph-sb-iconSvgTheme-color), icon-svg-theme);
             .set-icon-svg(var(--pp-ph-sb-iconSvgTranslate-width), var(--pp-ph-sb-iconSvgTranslate-height), var(--pp-ph-sb-iconSvgTranslate-color), icon-svg-translate);
             .set-icon-svg(var(--pp-ph-sb-iconSvgEnglish-width), var(--pp-ph-sb-iconSvgEnglish-height), var(--pp-ph-sb-iconSvgEnglish-color), icon-svg-english);
@@ -2808,7 +2879,7 @@
                         }
 
                         .btn-tag-extend {
-                            display: var(--pp-pt-dsb-ptl-pt-ptmh-btnTagExtend-display);
+                            //display: var(--pp-pt-dsb-ptl-pt-ptmh-btnTagExtend-display);
                         }
                     }
 
@@ -3800,6 +3871,87 @@
                     background: var(--ppb-bm-bb-sb-blacklistClose-background);
                     border: var(--ppb-bm-bb-sb-blacklistClose-border);
                     border-radius: var(--ppb-bm-bb-sb-blacklistClose-border-radius);
+                }
+            }
+        }
+    }
+}
+
+.physton-prompt-hotkey {
+    .common-popup-bg();
+
+    .hotkey-main {
+        position: var(--pph-hotkeyMain-position);
+
+        .hotkey-body {
+            display: var(--pph-hm-hotkeyBody-display);
+            flex-wrap: var(--pph-hm-hotkeyBody-flex-wrap);
+            width: var(--pph-hm-hotkeyBody-width);
+            position: var(--pph-hm-hotkeyBody-position);
+            box-shadow: var(--pph-hm-hotkeyBody-box-shadow);
+            border-radius: var(--pph-hm-hotkeyBody-border-radius);
+            background-color: var(--pph-hm-hotkeyBody-background-color);
+            transition: var(--pph-hm-hotkeyBody-transition);
+            padding: var(--pph-hm-hotkeyBody-padding);
+            box-sizing: var(--pph-hm-hotkeyBody-box-sizing);
+
+            .hotkey-list {
+                width: var(--pph-hm-hb-hotkeyList-width);
+
+                .hotkey-item {
+                    display: var(--pph-hm-hb-hl-hotkeyItem-display);
+                    align-items: var(--pph-hm-hb-hl-hotkeyItem-align-items);
+                    width: var(--pph-hm-hb-hl-hotkeyItem-width);
+                    margin: var(--pph-hm-hb-hl-hotkeyItem-margin);
+
+                    .hotkey-title {
+                        color: var(--pph-hm-hb-hl-hi-hotkeyTitle-color);
+                        font-size: var(--pph-hm-hb-hl-hi-hotkeyTitle-font-size);
+                        white-space: var(--pph-hm-hb-hl-hi-hotkeyTitle-white-space);
+                    }
+
+                    .hotkey-select {
+                        margin-left: var(--pph-hm-hb-hl-hi-hotkeySelect-margin-left);
+                        background: var(--pph-hm-hb-hl-hi-hotkeySelect-background);
+                        border: var(--pph-hm-hb-hl-hi-hotkeySelect-border);
+                        padding: var(--pph-hm-hb-hl-hi-hotkeySelect-padding);
+                        width: var(--pph-hm-hb-hl-hi-hotkeySelect-width);
+                        font-size: var(--pph-hm-hb-hl-hi-hotkeySelect-font-size);
+                        color: var(--pph-hm-hb-hl-hi-hotkeySelect-color);
+                        resize: var(--pph-hm-hb-hl-hi-hotkeySelect-resize);
+                    }
+                }
+            }
+
+            .setting-btns {
+                flex-basis: var(--pph-hm-hb-settingBtns-flex-basis);
+                display: var(--pph-hm-hb-settingBtns-display);
+                justify-content: var(--pph-hm-hb-settingBtns-justify-content);
+                align-items: var(--pph-hm-hb-settingBtns-align-items);
+                margin-top: var(--pph-hm-hb-settingBtns-margin-top);
+
+                .hotkey-save {
+                    cursor: var(--pph-hm-hb-sb-hotkeySave-cursor);
+                    display: var(--pph-hm-hb-sb-hotkeySave-display);
+                    padding: var(--pph-hm-hb-sb-hotkeySave-padding);
+                    height: var(--pph-hm-hb-sb-hotkeySave-height);
+                    line-height: var(--pph-hm-hb-sb-hotkeySave-line-height);
+                    color: var(--pph-hm-hb-sb-hotkeySave-color);
+                    .common-colourful-background();
+                    border-radius: var(--pph-hm-hb-sb-hotkeySave-border-radius);
+                    margin-right: var(--pph-hm-hb-sb-hotkeySave-margin-right);
+                }
+
+                .hotkey-close {
+                    cursor: var(--pph-hm-hb-sb-hotkeyClose-cursor);
+                    display: var(--pph-hm-hb-sb-hotkeyClose-display);
+                    padding: var(--pph-hm-hb-sb-hotkeyClose-padding);
+                    height: var(--pph-hm-hb-sb-hotkeyClose-height);
+                    line-height: var(--pph-hm-hb-sb-hotkeyClose-line-height);
+                    color: var(--pph-hm-hb-sb-hotkeyClose-color);
+                    background: var(--pph-hm-hb-sb-hotkeyClose-background);
+                    border: var(--pph-hm-hb-sb-hotkeyClose-border);
+                    border-radius: var(--pph-hm-hb-sb-hotkeyClose-border-radius);
                 }
             }
         }

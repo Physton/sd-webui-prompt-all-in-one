@@ -33,6 +33,11 @@
                                         <icon-svg class="hover-scale-120" name="blacklist"/>
                                     </div>
                                     <div class="extend-btn-item"
+                                         v-tooltip="getLang('hotkey_setting')"
+                                         @click="$emit('click:hotkey', $event)">
+                                        <icon-svg class="hover-scale-120" name="hotkey"/>
+                                    </div>
+                                    <div class="extend-btn-item"
                                          v-tooltip="getLang('theme_extension')"
                                          @click="$emit('click:selectTheme', $event)">
                                         <icon-svg class="hover-scale-120" name="theme"/>
@@ -263,8 +268,10 @@
                     <div v-for="(tag, index) in tags" :key="tag.id"
                          :class="['prompt-tag', tag.disabled ? 'disabled': '', tag.type === 'wrap' ? 'wrap-tag' : '']"
                          :ref="'promptTag-' + tag.id" :data-id="tag.id">
-                        <div class="prompt-tag-main" @mouseenter="onTagMouseEnter(tag.id)"
-                             @mousemove.stop="onTagMouseMove(tag.id)">
+                        <div class="prompt-tag-main"
+                             @mouseenter="onTagMouseEnter(tag.id)"
+                             @mousemove.stop="onTagMouseMove(tag.id)"
+                             @mouseleave.stop="onTagMouseLeave(tag.id)">
                             <div class="prompt-tag-edit">
                                 <template v-if="tag.type === 'wrap'">
                                     <div class="prompt-tag-value"
@@ -284,7 +291,9 @@
                                          :style="getTagColorStyle(tag)"
                                          :ref="'promptTagValue-' + tag.id"
                                          v-tooltip="getLang('click_to_edit') + '<br/>' + getLang('dblclick_to_disable') + '<br/>' + getLang('drop_to_order')"
-                                         @click="onTagClick(tag.id, $event)" @dblclick="onTagDblclick(tag.id)"
+                                         @click="onTagClick(tag.id, $event)"
+                                         @dblclick="onTagDblclick(tag.id)"
+                                         @click.right.prevent="onTagRightClick(tag.id, $event)"
                                          v-html="renderTag(tag.id)">
                                     </div>
                                     <textarea v-show="editing[tag.id]" type="text"
@@ -311,8 +320,11 @@
                                     <icon-svg name="close"/>
                                 </div>
                             </div>
-                            <div class="btn-tag-extend" v-show="(tag.type === 'text' || !tag.type)" @mousedown.stop=""
-                                 @mousemove.stop="" @mouseup.stop="">
+                            <div class="btn-tag-extend"
+                                 :style="{display: (tag.type === 'text' || !tag.type) && (showExtendId === tag.id) ? 'flex' : 'none'}"
+                                 @mousedown.stop=""
+                                 @mousemove.stop=""
+                                 @mouseup.stop="">
                                 <vue-number-input class="input-number" :model-value="tag.weightNum" center controls
                                                   :min="0" :step="0.1" size="small"
                                                   @update:model-value="onTagWeightNumChange(tag.id, $event)"></vue-number-input>
@@ -659,8 +671,12 @@ export default {
             type: Object,
             default: () => ({}),
         },
+        hotkey: {
+            type: Object,
+            default: () => ({}),
+        }
     },
-    emits: ['update:languageCode', 'update:autoTranslate', 'update:autoTranslateToEnglish', 'update:autoTranslateToLocal', 'update:autoRemoveSpace', 'update:autoRemoveLastComma', 'update:autoKeepWeightZero', 'update:autoKeepWeightOne', 'update:hideDefaultInput', 'update:hidePanel', 'update:enableTooltip', 'update:translateApi', 'click:translateApi', 'click:promptFormat', 'click:blacklist', 'click:selectTheme', 'click:switchTheme', 'click:showAbout', 'click:selectLanguage', 'click:showHistory', 'click:showFavorite', 'refreshFavorites', 'click:showChatgpt', 'update:hideGroupTags', 'update:groupTagsColor'],
+    emits: ['update:languageCode', 'update:autoTranslate', 'update:autoTranslateToEnglish', 'update:autoTranslateToLocal', 'update:autoRemoveSpace', 'update:autoRemoveLastComma', 'update:autoKeepWeightZero', 'update:autoKeepWeightOne', 'update:hideDefaultInput', 'update:hidePanel', 'update:enableTooltip', 'update:translateApi', 'click:translateApi', 'click:promptFormat', 'click:blacklist', 'click:hotkey', 'click:selectTheme', 'click:switchTheme', 'click:showAbout', 'click:selectLanguage', 'click:showHistory', 'click:showFavorite', 'refreshFavorites', 'click:showChatgpt', 'update:hideGroupTags', 'update:groupTagsColor'],
     data() {
         return {
             prompt: '',
@@ -1109,6 +1125,7 @@ export default {
         onPromptMainClick() {
             this.onTextareaChange(true)
             this._setTextareaFocus()
+            this.showExtendId = ''
         },
         translates(indexes, toLocal = false, useNetwork = true) {
             return new Promise((resolve, reject) => {
