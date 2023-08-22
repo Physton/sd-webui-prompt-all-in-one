@@ -322,6 +322,7 @@
                             </div>
                             <div class="btn-tag-extend"
                                  :style="{display: (tag.type === 'text' || !tag.type) && (showExtendId === tag.id) ? 'flex' : 'none'}"
+                                 @click.stop=""
                                  @mousedown.stop=""
                                  @mousemove.stop=""
                                  @mouseup.stop="">
