@@ -54,6 +54,7 @@
                             @update:hide-group-tags="onUpdateHideGroupTags(item.id, $event)"
                             :group-tags-translate-cache="groupTagsTranslateCache"
                             :blacklist="blacklist"
+                            @update:blacklist="onUpdateBlacklist"
                             :hotkey="hotkey"
             ></physton-prompt>
         </template>

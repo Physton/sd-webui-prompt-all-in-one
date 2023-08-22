@@ -366,6 +366,11 @@
                                     <icon-svg v-if="!tag.isFavorite" name="favorite-no"/>
                                 </button>
                                 <button type="button"
+                                        v-tooltip="getLang('add_blacklist')"
+                                        @click="onBlacklistClick(tag.id)">
+                                    <icon-svg name="blacklist"/>
+                                </button>
+                                <button type="button"
                                         v-tooltip="getLang(tag.disabled ? 'enable_keyword': 'disable_keyword')"
                                         @click="onDisabledTagClick(tag.id)">
                                     <icon-svg v-if="!tag.disabled" name="disabled"/>
@@ -676,7 +681,7 @@ export default {
             default: () => ({}),
         }
     },
-    emits: ['update:languageCode', 'update:autoTranslate', 'update:autoTranslateToEnglish', 'update:autoTranslateToLocal', 'update:autoRemoveSpace', 'update:autoRemoveLastComma', 'update:autoKeepWeightZero', 'update:autoKeepWeightOne', 'update:hideDefaultInput', 'update:hidePanel', 'update:enableTooltip', 'update:translateApi', 'click:translateApi', 'click:promptFormat', 'click:blacklist', 'click:hotkey', 'click:selectTheme', 'click:switchTheme', 'click:showAbout', 'click:selectLanguage', 'click:showHistory', 'click:showFavorite', 'refreshFavorites', 'click:showChatgpt', 'update:hideGroupTags', 'update:groupTagsColor'],
+    emits: ['update:languageCode', 'update:autoTranslate', 'update:autoTranslateToEnglish', 'update:autoTranslateToLocal', 'update:autoRemoveSpace', 'update:autoRemoveLastComma', 'update:autoKeepWeightZero', 'update:autoKeepWeightOne', 'update:hideDefaultInput', 'update:hidePanel', 'update:enableTooltip', 'update:translateApi', 'click:translateApi', 'click:promptFormat', 'click:blacklist', 'click:hotkey', 'click:selectTheme', 'click:switchTheme', 'click:showAbout', 'click:selectLanguage', 'click:showHistory', 'click:showFavorite', 'refreshFavorites', 'click:showChatgpt', 'update:hideGroupTags', 'update:groupTagsColor', 'update:blacklist'],
     data() {
         return {
             prompt: '',

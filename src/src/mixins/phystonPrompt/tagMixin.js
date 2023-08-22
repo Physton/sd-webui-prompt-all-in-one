@@ -502,5 +502,34 @@ export default {
                 this.updateTags()
             })
         },
+        onBlacklistClick(id) {
+            let tag = this.tags.find(tag => tag.id === id)
+            if (!tag) return
+            let title = this.getLang('confirm_add_blacklist').replace('{0}', tag.value) + "\n" + this.getLang('blacklist_desc')
+            if (!confirm(title)) return
+
+            let blacklist = JSON.parse(JSON.stringify(this.blacklist))
+            if (tag.isLora) {
+                blacklist.lora.push(tag.loraName)
+            } else if (tag.isLyco) {
+                blacklist.lycoris.push(tag.lycoName)
+            } else if (tag.isEmbedding) {
+                blacklist.embedding.push(tag.embeddingName)
+            } else {
+                if (this.neg) {
+                    blacklist.negative_prompt.push(tag.originalValue)
+                } else {
+                    blacklist.prompt.push(tag.originalValue)
+                }
+            }
+            this.gradioAPI.setData('blacklist', blacklist)
+            this.$emit('update:blacklist', blacklist)
+
+            this.tags.forEach(item => {
+                if (item.value === tag.value) {
+                    this.onDeleteTagClick(item.id)
+                }
+            })
+        },
     }
 }

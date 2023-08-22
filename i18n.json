@@ -160,7 +160,9 @@
                 "edit_keyword": "编辑关键词",
                 "disable_enable_keyword": "禁用/启用关键词",
                 "show_keyword_extend_panel": "显示关键词扩展面板",
-                "none": "无"
+                "none": "无",
+                "add_blacklist": "添加到黑名单",
+                "confirm_add_blacklist": "是否将关键词“{0}”加入黑名单？"
             }
         },
         {
@@ -322,7 +324,9 @@
                 "edit_keyword": "編輯關鍵詞",
                 "disable_enable_keyword": "禁用/啟用關鍵詞",
                 "show_keyword_extend_panel": "顯示關鍵詞擴展面板",
-                "none": "無"
+                "none": "無",
+                "add_blacklist": "加入黑名單",
+                "confirm_add_blacklist": "是否將關鍵詞“{0}”加入黑名單？"
             }
         },
         {
@@ -484,7 +488,9 @@
                 "edit_keyword": "編輯關鍵字",
                 "disable_enable_keyword": "禁用/啟用關鍵字",
                 "show_keyword_extend_panel": "顯示關鍵字擴展面板",
-                "none": "無"
+                "none": "無",
+                "add_blacklist": "加入黑名單",
+                "confirm_add_blacklist": "是否將關鍵詞“{0}”加入黑名單？"
             }
         },
         {
@@ -646,7 +652,9 @@
                 "edit_keyword": "Edit Keyword",
                 "disable_enable_keyword": "Disable/Enable Keyword",
                 "show_keyword_extend_panel": "Show Keyword Extend Panel",
-                "none": "None"
+                "none": "None",
+                "add_blacklist": "Add to blacklist",
+                "confirm_add_blacklist": "Do you want to add the keyword \"{0}\" to the blacklist?"
             }
         },
         {
@@ -819,7 +827,9 @@
                 "edit_keyword": "تحرير الكلمة الرئيسية",
                 "disable_enable_keyword": "تعطيل/تمكين الكلمة الرئيسية",
                 "show_keyword_extend_panel": "عرض لوحة تمديد الكلمة الرئيسية",
-                "none": "لا شيء"
+                "none": "لا شيء",
+                "add_blacklist": "إضافة إلى القائمة السوداء",
+                "confirm_add_blacklist": "هل ترغب في إضافة الكلمة الرئيسية \"{0}\" إلى القائمة السوداء؟"
             }
         },
         {
@@ -1080,7 +1090,9 @@
                 "edit_keyword": "Modifier le mot-clé",
                 "disable_enable_keyword": "Désactiver/Activer le mot-clé",
                 "show_keyword_extend_panel": "Afficher le panneau d'extension du mot-clé",
-                "none": "Aucun"
+                "none": "Aucun",
+                "add_blacklist": "Ajouter à la liste noire",
+                "confirm_add_blacklist": "Voulez-vous ajouter le mot-clé \"{0}\" à la liste noire ?"
             }
         },
         {
@@ -1256,7 +1268,9 @@
                 "edit_keyword": "Schlüsselwort bearbeiten",
                 "disable_enable_keyword": "Schlüsselwort deaktivieren/aktivieren",
                 "show_keyword_extend_panel": "Schlüsselwort-Erweiterungs-Panel anzeigen",
-                "none": "Keine"
+                "none": "Keine",
+                "add_blacklist": "Zur schwarzen Liste hinzufügen",
+                "confirm_add_blacklist": "Möchten Sie das Schlüsselwort \"{0}\" zur schwarzen Liste hinzufügen?"
             }
         },
         {
@@ -1482,7 +1496,9 @@
                 "edit_keyword": "Modifica parola chiave",
                 "disable_enable_keyword": "Disabilita/Abilita parola chiave",
                 "show_keyword_extend_panel": "Mostra pannello estensione parola chiave",
-                "none": "Nessuno"
+                "none": "Nessuno",
+                "add_blacklist": "Aggiungi alla lista nera",
+                "confirm_add_blacklist": "Vuoi aggiungere la parola chiave \"{0}\" alla lista nera?"
             }
         },
         {
@@ -1643,7 +1659,9 @@
                 "edit_keyword": "キーワードの編集",
                 "disable_enable_keyword": "キーワードの無効化/有効化",
                 "show_keyword_extend_panel": "キーワード拡張パネルの表示",
-                "none": "なし"
+                "none": "なし",
+                "add_blacklist": "ブラックリストに追加",
+                "confirm_add_blacklist": "キーワード「{0}」をブラックリストに追加しますか？"
             }
         },
         {
@@ -1829,7 +1847,9 @@
                 "edit_keyword": "키워드 편집",
                 "disable_enable_keyword": "키워드 비활성화/활성화",
                 "show_keyword_extend_panel": "키워드 확장 패널 표시",
-                "none": "없음"
+                "none": "없음",
+                "add_blacklist": "블랙리스트에 추가",
+                "confirm_add_blacklist": "키워드 \"{0}\"를 블랙리스트에 추가하시겠습니까?"
             }
         },
         {
@@ -2105,7 +2125,9 @@
                 "edit_keyword": "Editar palavra-chave",
                 "disable_enable_keyword": "Desativar/Ativar palavra-chave",
                 "show_keyword_extend_panel": "Mostrar painel de extensão de palavra-chave",
-                "none": "Nenhum"
+                "none": "Nenhum",
+                "add_blacklist": "Adicionar à lista negra",
+                "confirm_add_blacklist": "Deseja adicionar a palavra-chave \"{0}\" à lista negra?"
             }
         },
         {
@@ -2281,7 +2303,9 @@
                 "edit_keyword": "Редактировать ключевое слово",
                 "disable_enable_keyword": "Отключить/Включить ключевое слово",
                 "show_keyword_extend_panel": "Показать панель расширения ключевого слова",
-                "none": "Нет"
+                "none": "Нет",
+                "add_blacklist": "Добавить в черный список",
+                "confirm_add_blacklist": "Хотите добавить ключевое слово \"{0}\" в черный список?"
             }
         },
         {
@@ -2472,7 +2496,9 @@
                 "edit_keyword": "Editar palabra clave",
                 "disable_enable_keyword": "Desactivar/Activar palabra clave",
                 "show_keyword_extend_panel": "Mostrar panel de extensión de palabra clave",
-                "none": "Ninguno"
+                "none": "Ninguno",
+                "add_blacklist": "Agregar a la lista negra",
+                "confirm_add_blacklist": "¿Deseas agregar la palabra clave \"{0}\" a la lista negra?"
             }
         },
         {
