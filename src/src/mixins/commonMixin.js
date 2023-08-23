@@ -48,7 +48,7 @@ export default {
                 if (extraNetwork.name !== type) continue
                 const nameLowerCase = name.toLowerCase()
                 for (let item of extraNetwork.items) {
-                    if (item.name.toLowerCase() === nameLowerCase || item.output_name.toLowerCase() === nameLowerCase) {
+                    if (item.name.toLowerCase() === nameLowerCase || item.output_name?.toLowerCase() === nameLowerCase) {
                         if (!item.civitai_info?.name) return name
                         if (item.civitai_info.model?.name && item.civitai_info.model.name !== item.civitai_info.name) {
                             return '[' + item.civitai_info.name + '] ' + item.civitai_info.model.name
