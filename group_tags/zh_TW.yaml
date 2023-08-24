@@ -3123,7 +3123,7 @@
       color: rgba(0, 255, 255, .4)
       tags:
         realistic: 寫實
-        highres: 厚塗（風格）
+        impasto: 厚塗（風格）
         photo_(medium): 照片（風格）
         oil_painting: 油畫
         reality: 真實
