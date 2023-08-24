@@ -11,6 +11,8 @@ export default (tags, autoBreakBeforeWrap = false, autoBreakAfterWrap = false) =
     tags = tags.replace(/\r/g, '\n') // 回车符
     tags = tags.replace(/\n+/g, '\n') // 连续换行符
 
+    tags = tags.replace(/\>_\</g, '|||EXPRESSION1|||') // >_<
+
     const brackets = {
         '(': ')',
         '[': ']',
@@ -109,6 +111,10 @@ export default (tags, autoBreakBeforeWrap = false, autoBreakAfterWrap = false) =
     if (temp !== '') {
         result.push(temp.trim())
     }
+
+    result.forEach((value, index) => {
+        result[index] = value.replace(/\|\|\|EXPRESSION1\|\|\|/g, '>_<')
+    })
 
     /*let result2 = []
     let len = result.length
