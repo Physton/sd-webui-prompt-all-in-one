@@ -4,6 +4,7 @@ export default {
     data() {
         return {
             autocompleteResults: null,
+            autocompleteResultsParent: null,
 
             showAppendList: false,
             appendListStyle: {
@@ -273,7 +274,7 @@ export default {
         onAppendTagKeyDown(e, localValue = null) {
             if (e.keyCode === 38 || e.keyCode === 40) {
             } else if (e.keyCode === 13) {
-                if (this.getAutocompleteResults() && this.autocompleteResults.style.display === 'block' && this.getAutocompleteResultsSelected()) {
+                if (this.getAutocompleteResults() && ((this.autocompleteResultsParent && this.autocompleteResultsParent.style.display === 'flex') || this.autocompleteResults.style.display === 'none') && this.getAutocompleteResultsSelected()) {
                     let text = this.getAutocompleteResultsSelectedText()
                     setTimeout(() => {
                         localValue = this.$refs.promptTagAppend.value
@@ -456,6 +457,10 @@ export default {
                         this.autocompleteResults.addEventListener('mousemove', (e) => {
                             this.bindAutocompleteResultsClick()
                         })
+                    }
+                    const autocompleteParent = this.$refs.promptTagAppend.parentElement.querySelector('.autocompleteParent')
+                    if (autocompleteParent) {
+                        this.autocompleteResultsParent = autocompleteParent
                     }
                 }
             }
