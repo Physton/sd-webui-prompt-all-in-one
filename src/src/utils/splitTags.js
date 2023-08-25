@@ -112,9 +112,32 @@ export default (tags, autoBreakBeforeWrap = false, autoBreakAfterWrap = false) =
         result.push(temp.trim())
     }
 
-    result.forEach((value, index) => {
-        result[index] = value.replace(/\|\|\|EXPRESSION1\|\|\|/g, '>_<')
-    })
+    let result2 = []
+    for (let value of result) {
+        // aaa <lora:KuutanKoihime:0.7>  <lora:add_detail:0.6><lora:clothesTransparent_v20:1:1,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0>
+        // ['aaa', '<lora:KuutanKoihime:0.7>', '<lora:add_detail:0.6>', '<lora:clothesTransparent_v20:1:1,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0>']
+        let regex = /\<lora:[^\>]+\>/
+        let match = null
+        let values = []
+        while (match = regex.exec(value)) {
+            let startIndex = match.index
+            let endIndex = startIndex + match[0].length
+            let before = value.substring(0, startIndex)
+            let after = value.substring(endIndex)
+            let middle = match[0]
+            values.push(before)
+            values.push(middle)
+            value = after
+        }
+        values.push(value)
+        for (let value2 of values) {
+            if (value2 === '' || value2.trim() === '') continue
+            // >_<
+            value2 = value2.replace(/\|\|\|EXPRESSION1\|\|\|/g, '>_<')
+            result2.push(value2)
+        }
+    }
+    result = result2
 
     /*let result2 = []
     let len = result.length
