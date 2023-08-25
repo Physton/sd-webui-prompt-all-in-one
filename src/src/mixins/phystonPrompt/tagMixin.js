@@ -382,11 +382,11 @@ export default {
                     this._setTag(tag)
                 }
             } else {
-                // 如果原来的括号是<>，那么最小权重数只能是0.1
-                const bracket = common.hasBrackets(value)
-                if (bracket[0] === '<' && bracket[1] === '>') {
-                    weightNum = 0.1
+                if (tag.isLora || tag.isLyco) {
+                    tag.value = value.replace(common.weightNumRegex, '$1:' + weightNum)
+                    if (localValue !== '') tag.localValue = tag.localValue.replace(common.weightNumRegex, '$1:' + weightNum)
                 } else {
+                    if (weightNum <= 0) weightNum = 0
                     if (this.autoKeepWeightZero) {
                         // 保留权重数
                         tag.value = value.replace(common.weightNumRegex, '$1:0')
