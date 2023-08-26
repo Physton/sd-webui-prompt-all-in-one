@@ -304,7 +304,6 @@ export default {
     getTagWeightNum(tag) {
         const match = tag.match(this.weightNumRegex)
         let weightNum = match ? parseFloat(match[2]) : 0
-        weightNum = weightNum >= 0 ? weightNum : 0
         return weightNum
     },
 
