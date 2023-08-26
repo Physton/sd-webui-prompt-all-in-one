@@ -37,7 +37,21 @@ export default {
             immediate: true,
         }
     },
+    mounted() {
+        this.gradioAPI.getData('groupTagsActive-' + this.name).then((data) => {
+            if (data !== null && typeof data === 'object') {
+                this.groupTagsActive = data.groupTagsActive
+                this.subGroupTagsActive = data.subGroupTagsActive
+            }
+        })
+    },
     methods: {
+        saveGroupActive() {
+            this.gradioAPI.setData('groupTagsActive-' + this.name, {
+                groupTagsActive: this.groupTagsActive,
+                subGroupTagsActive: this.subGroupTagsActive,
+            })
+        },
         activeGroupTab(index) {
             if (index === 'favorite') {
                 this.groupTagsActive = 'favorite'
@@ -48,6 +62,7 @@ export default {
                 this.subGroupTagsActive = this.groupTags[index].groups[0].tabKey
                 index += 1
             }
+            this.saveGroupActive()
             let scrollLeft = this.$refs.groupTabsHeader.children[index].offsetLeft - this.$refs.groupTabsHeader.offsetWidth / 2 + this.$refs.groupTabsHeader.children[index].offsetWidth / 2
             this.$refs.groupTabsHeader.scrollTo({
                 left: scrollLeft,
@@ -61,6 +76,7 @@ export default {
             } else {
                 this.subGroupTagsActive = this.groupTags[index].groups[subIndex].tabKey
             }
+            this.saveGroupActive()
             this._setGroupTagItemWidth()
         },
         _setGroupTagItemWidth() {
