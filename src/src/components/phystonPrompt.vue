@@ -16,7 +16,7 @@
                             </div>
                             <div :class="['extend-btn-item', isLatestVersion ? '' : 'red-dot']">
                                 <icon-svg class="hover-scale-120" name="setting" v-tooltip="getLang('setting_desc')"/>
-                                <div class="setting-box" @mouseenter="onSettingBoxMouseEnter">
+                                <div class="setting-box" v-animate="'fadeIn'" @mouseenter="onSettingBoxMouseEnter">
                                     <div v-if="translateApiItem.name && !isEnglish" class="extend-btn-item"
                                          v-tooltip="getLang('translate_api') + ': ' + translateApiItem.name"
                                          @click="$emit('click:translateApi', $event)">
@@ -227,32 +227,36 @@
                                     {{ appendListItemName(item) }}
                                     <span class="arrow-right" v-show="item.children.length > 0"></span>
                                 </div>
-                                <div class="append-group-list" ref="promptAppendListChildren"
-                                     v-show="item.children.length > 0">
-                                    <div v-for="(child, childIndex) in item.children" :key="childIndex"
-                                         ref="promptAppendListChild"
-                                         :class="['append-item', appendListChildSelected === childIndex ? 'selected' : '']"
-                                         @mouseleave="onAppendListChildMouseLeave(index, childIndex, $event)"
-                                         @mouseenter="onAppendListChildMouseEnter(index, childIndex, $event)"
-                                         @click="onAppendGroupClick(index, childIndex, $event)">
-                                        <template v-if="item.type === 'favorite' || item.type === 'history'">
-                                            <div class="tags-name" v-if="child.name">{{ child.name }}</div>
-                                            <div class="tags-name" v-else>{{ child.prompt }}</div>
-                                        </template>
+                                <Transition name="fade">
+                                    <div class="append-group-list" ref="promptAppendListChildren"
+                                         v-show="item.children.length > 0">
+                                        <div v-for="(child, childIndex) in item.children" :key="childIndex"
+                                             ref="promptAppendListChild"
+                                             :class="['append-item', appendListChildSelected === childIndex ? 'selected' : '']"
+                                             @mouseleave="onAppendListChildMouseLeave(index, childIndex, $event)"
+                                             @mouseenter="onAppendListChildMouseEnter(index, childIndex, $event)"
+                                             @click="onAppendGroupClick(index, childIndex, $event)">
+                                            <template v-if="item.type === 'favorite' || item.type === 'history'">
+                                                <div class="tags-name" v-if="child.name">{{ child.name }}</div>
+                                                <div class="tags-name" v-else>{{ child.prompt }}</div>
+                                            </template>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="tags-detail"
-                                     v-show="appendListSelected !== null && appendListChildSelected !== null && appendListSelected === index && (item.type === 'favorite' || item.type === 'history')">
-                                    <div class="tags-list">
-                                        <template v-for="(tag, tagIndex) in appendListChildItemTags" :key="tagIndex">
-                                            <div v-if="tag.type && tag.type === 'wrap'" class="item-wrap"></div>
-                                            <div v-else class="tags-item">
-                                                <div class="item-tag-value">{{ tag.value }}</div>
-                                                <div class="item-tag-local-value">{{ tag.localValue }}</div>
-                                            </div>
-                                        </template>
+                                </Transition>
+                                <Transition name="fade">
+                                    <div class="tags-detail"
+                                         v-show="appendListSelected !== null && appendListChildSelected !== null && appendListSelected === index && (item.type === 'favorite' || item.type === 'history')">
+                                        <div class="tags-list">
+                                            <template v-for="(tag, tagIndex) in appendListChildItemTags" :key="tagIndex">
+                                                <div v-if="tag.type && tag.type === 'wrap'" class="item-wrap"></div>
+                                                <div v-else class="tags-item">
+                                                    <div class="item-tag-value">{{ tag.value }}</div>
+                                                    <div class="item-tag-local-value">{{ tag.localValue }}</div>
+                                                </div>
+                                            </template>
+                                        </div>
                                     </div>
-                                </div>
+                                </Transition>
                             </div>
                         </div>
                     </div>
@@ -265,132 +269,135 @@
                 @mousemove="onDropMouseMove"
                 @mouseup="onDropMouseUp">
                 <div class="prompt-tags-list" ref="promptTagsList">
-                    <div v-for="(tag, index) in tags" :key="tag.id"
-                         :class="['prompt-tag', tag.disabled ? 'disabled': '', tag.type === 'wrap' ? 'wrap-tag' : '']"
-                         :ref="'promptTag-' + tag.id" :data-id="tag.id">
-                        <div class="prompt-tag-main"
-                             @mouseenter="onTagMouseEnter(tag.id)"
-                             @mousemove.stop="onTagMouseMove(tag.id)"
-                             @mouseleave.stop="onTagMouseLeave(tag.id)">
-                            <div class="prompt-tag-edit">
-                                <template v-if="tag.type === 'wrap'">
-                                    <div class="prompt-tag-value"
-                                         :ref="'promptTagValue-' + tag.id"
-                                         v-tooltip="getLang('line_break_character') + '<br/>' + getLang('drop_to_order')"
-                                         style="width: 100%">
+                    <TransitionGroup name="fadeLeft">
+                        <div v-for="(tag, index) in tags" :key="tag.id"
+                             :class="['prompt-tag', tag.disabled ? 'disabled': '', tag.type === 'wrap' ? 'wrap-tag' : '']"
+                             :ref="'promptTag-' + tag.id" :data-id="tag.id">
+                            <div class="prompt-tag-main"
+                                 @mouseenter="onTagMouseEnter(tag.id)"
+                                 @mousemove.stop="onTagMouseMove(tag.id)"
+                                 @mouseleave.stop="onTagMouseLeave(tag.id)">
+                                <div class="prompt-tag-edit">
+                                    <template v-if="tag.type === 'wrap'">
+                                        <div class="prompt-tag-value"
+                                             :ref="'promptTagValue-' + tag.id"
+                                             v-tooltip="getLang('line_break_character') + '<br/>' + getLang('drop_to_order')"
+                                             style="width: 100%">
+                                            <icon-svg name="wrap"/>
+                                        </div>
+                                    </template>
+                                    <!--<template v-else-if="tag.type === 'favorite'">
+                                    </template>
+                                    <template v-else-if="tag.type === 'history'">
+                                    </template>-->
+                                    <template v-else>
+                                        <div v-show="!editing[tag.id]"
+                                             :class="tag.classes"
+                                             :style="getTagColorStyle(tag)"
+                                             :ref="'promptTagValue-' + tag.id"
+                                             v-tooltip="getLang('click_to_edit') + '<br/>' + getLang('dblclick_to_disable') + '<br/>' + getLang('drop_to_order')"
+                                             @click="onTagClick(tag.id, $event)"
+                                             @dblclick="onTagDblclick(tag.id)"
+                                             @click.right.prevent="onTagRightClick(tag.id, $event)"
+                                             v-html="renderTag(tag.id)">
+                                        </div>
+                                        <textarea v-show="editing[tag.id]" type="text"
+                                                  class="scroll-hide svelte-4xt1ch input-tag-edit"
+                                                  :ref="'promptTagEdit-' + tag.id"
+                                                  :placeholder="getLang('enter_to_save')"
+                                                  :value="tag.value"
+                                                  @mousedown.stop=""
+                                                  @mousemove.stop=""
+                                                  @mouseup.stop=""
+                                                  @blur="onTagInputBlur(tag.id)"
+                                                  @keydown="onTagInputKeyDown(tag.id, $event)"
+                                                  @change="onTagInputChange(tag.id, $event)"></textarea>
+                                        <!--<input v-show="editing[tag.id]" type="text"
+                                               class="scroll-hide svelte-4xt1ch input-tag-edit"
+                                               :ref="'promptTagEdit-' + tag.id" :placeholder="getLang('enter_to_save')"
+                                               :value="tag.value" @blur="onTagInputBlur(tag.id)"
+                                               @keydown="onTagInputKeyDown(tag.id, $event)"
+                                               @change="onTagInputChange(tag.id, $event)">-->
+                                    </template>
+                                    <div class="btn-tag-delete" :ref="'promptTagDelete-' + tag.id"
+                                         @click="onDeleteTagClick(tag.id)" @mousedown.stop=""
+                                         @mousemove.stop="" @mouseup.stop="">
+                                        <icon-svg name="close"/>
+                                    </div>
+                                </div>
+                                <div class="btn-tag-extend"
+                                     v-animate="'fadeIn'"
+                                     :style="{display: (tag.type === 'text' || !tag.type) && (showExtendId === tag.id) ? 'flex' : 'none'}"
+                                     @click.stop=""
+                                     @mousedown.stop=""
+                                     @mousemove.stop=""
+                                     @mouseup.stop="">
+                                    <vue-number-input class="input-number" :model-value="tag.weightNum" center controls
+                                                      :min="tag.isLora || tag.isLyco ? -100 : 0" :step="0.1" size="small"
+                                                      @update:model-value="onTagWeightNumChange(tag.id, $event)"></vue-number-input>
+                                    <button type="button" v-tooltip="getLang('increase_weight_add_parentheses')"
+                                            @click="onIncWeightClick(tag.id, +1)">
+                                        <icon-svg name="weight-parentheses-inc"/>
+                                    </button>
+                                    <button type="button" v-tooltip="getLang('increase_weight_subtract_parentheses')"
+                                            @click="onIncWeightClick(tag.id, -1)">
+                                        <icon-svg name="weight-parentheses-dec"/>
+                                    </button>
+                                    <button type="button" v-tooltip="getLang('decrease_weight_add_brackets')"
+                                            @click="onDecWeightClick(tag.id, +1)">
+                                        <icon-svg name="weight-brackets-inc"/>
+                                    </button>
+                                    <button type="button" v-tooltip="getLang('decrease_weight_subtract_brackets')"
+                                            @click="onDecWeightClick(tag.id, -1)">
+                                        <icon-svg name="weight-brackets-dec"/>
+                                    </button>
+                                    <button type="button"
+                                            v-tooltip="getLang('line_break_character')"
+                                            @click="onWrapTagClick(tag.id)">
                                         <icon-svg name="wrap"/>
-                                    </div>
-                                </template>
-                                <!--<template v-else-if="tag.type === 'favorite'">
-                                </template>
-                                <template v-else-if="tag.type === 'history'">
-                                </template>-->
-                                <template v-else>
-                                    <div v-show="!editing[tag.id]"
-                                         :class="tag.classes"
-                                         :style="getTagColorStyle(tag)"
-                                         :ref="'promptTagValue-' + tag.id"
-                                         v-tooltip="getLang('click_to_edit') + '<br/>' + getLang('dblclick_to_disable') + '<br/>' + getLang('drop_to_order')"
-                                         @click="onTagClick(tag.id, $event)"
-                                         @dblclick="onTagDblclick(tag.id)"
-                                         @click.right.prevent="onTagRightClick(tag.id, $event)"
-                                         v-html="renderTag(tag.id)">
-                                    </div>
-                                    <textarea v-show="editing[tag.id]" type="text"
-                                              class="scroll-hide svelte-4xt1ch input-tag-edit"
-                                              :ref="'promptTagEdit-' + tag.id"
-                                              :placeholder="getLang('enter_to_save')"
-                                              :value="tag.value"
-                                              @mousedown.stop=""
-                                              @mousemove.stop=""
-                                              @mouseup.stop=""
-                                              @blur="onTagInputBlur(tag.id)"
-                                              @keydown="onTagInputKeyDown(tag.id, $event)"
-                                              @change="onTagInputChange(tag.id, $event)"></textarea>
-                                    <!--<input v-show="editing[tag.id]" type="text"
-                                           class="scroll-hide svelte-4xt1ch input-tag-edit"
-                                           :ref="'promptTagEdit-' + tag.id" :placeholder="getLang('enter_to_save')"
-                                           :value="tag.value" @blur="onTagInputBlur(tag.id)"
-                                           @keydown="onTagInputKeyDown(tag.id, $event)"
-                                           @change="onTagInputChange(tag.id, $event)">-->
-                                </template>
-                                <div class="btn-tag-delete" :ref="'promptTagDelete-' + tag.id"
-                                     @click="onDeleteTagClick(tag.id)" @mousedown.stop=""
-                                     @mousemove.stop="" @mouseup.stop="">
-                                    <icon-svg name="close"/>
+                                    </button>
+                                    <button type="button" v-tooltip="getLang('translate_keyword_to_english')"
+                                            v-show="!isEnglish"
+                                            @click="onTranslateToEnglishClick(tag.id)">
+                                        <icon-svg v-if="!loading[tag.id + '_en']" name="english"/>
+                                        <icon-svg v-if="loading[tag.id + '_en']" name="loading"/>
+                                    </button>
+                                    <button type="button" v-tooltip="getLang('copy_to_clipboard')"
+                                            @click="copy(tag.value)">
+                                        <icon-svg name="copy"/>
+                                    </button>
+                                    <button type="button"
+                                            v-tooltip="getLang(tag.isFavorite ? 'remove_from_favorite': 'add_to_favorite')"
+                                            @click="onFavoriteTagClick(tag.id)">
+                                        <icon-svg v-if="tag.isFavorite" name="favorite-yes"/>
+                                        <icon-svg v-if="!tag.isFavorite" name="favorite-no"/>
+                                    </button>
+                                    <button type="button"
+                                            v-tooltip="getLang('add_blacklist')"
+                                            @click="onBlacklistClick(tag.id)">
+                                        <icon-svg name="blacklist"/>
+                                    </button>
+                                    <button type="button"
+                                            v-tooltip="getLang(tag.disabled ? 'enable_keyword': 'disable_keyword')"
+                                            @click="onDisabledTagClick(tag.id)">
+                                        <icon-svg v-if="!tag.disabled" name="disabled"/>
+                                        <icon-svg v-if="tag.disabled" name="enable"/>
+                                    </button>
                                 </div>
                             </div>
-                            <div class="btn-tag-extend"
-                                 :style="{display: (tag.type === 'text' || !tag.type) && (showExtendId === tag.id) ? 'flex' : 'none'}"
-                                 @click.stop=""
-                                 @mousedown.stop=""
-                                 @mousemove.stop=""
-                                 @mouseup.stop="">
-                                <vue-number-input class="input-number" :model-value="tag.weightNum" center controls
-                                                  :min="tag.isLora || tag.isLyco ? -100 : 0" :step="0.1" size="small"
-                                                  @update:model-value="onTagWeightNumChange(tag.id, $event)"></vue-number-input>
-                                <button type="button" v-tooltip="getLang('increase_weight_add_parentheses')"
-                                        @click="onIncWeightClick(tag.id, +1)">
-                                    <icon-svg name="weight-parentheses-inc"/>
-                                </button>
-                                <button type="button" v-tooltip="getLang('increase_weight_subtract_parentheses')"
-                                        @click="onIncWeightClick(tag.id, -1)">
-                                    <icon-svg name="weight-parentheses-dec"/>
-                                </button>
-                                <button type="button" v-tooltip="getLang('decrease_weight_add_brackets')"
-                                        @click="onDecWeightClick(tag.id, +1)">
-                                    <icon-svg name="weight-brackets-inc"/>
-                                </button>
-                                <button type="button" v-tooltip="getLang('decrease_weight_subtract_brackets')"
-                                        @click="onDecWeightClick(tag.id, -1)">
-                                    <icon-svg name="weight-brackets-dec"/>
-                                </button>
-                                <button type="button"
-                                        v-tooltip="getLang('line_break_character')"
-                                        @click="onWrapTagClick(tag.id)">
-                                    <icon-svg name="wrap"/>
-                                </button>
-                                <button type="button" v-tooltip="getLang('translate_keyword_to_english')"
-                                        v-show="!isEnglish"
-                                        @click="onTranslateToEnglishClick(tag.id)">
-                                    <icon-svg v-if="!loading[tag.id + '_en']" name="english"/>
-                                    <icon-svg v-if="loading[tag.id + '_en']" name="loading"/>
-                                </button>
-                                <button type="button" v-tooltip="getLang('copy_to_clipboard')"
-                                        @click="copy(tag.value)">
-                                    <icon-svg name="copy"/>
-                                </button>
-                                <button type="button"
-                                        v-tooltip="getLang(tag.isFavorite ? 'remove_from_favorite': 'add_to_favorite')"
-                                        @click="onFavoriteTagClick(tag.id)">
-                                    <icon-svg v-if="tag.isFavorite" name="favorite-yes"/>
-                                    <icon-svg v-if="!tag.isFavorite" name="favorite-no"/>
-                                </button>
-                                <button type="button"
-                                        v-tooltip="getLang('add_blacklist')"
-                                        @click="onBlacklistClick(tag.id)">
-                                    <icon-svg name="blacklist"/>
-                                </button>
-                                <button type="button"
-                                        v-tooltip="getLang(tag.disabled ? 'enable_keyword': 'disable_keyword')"
-                                        @click="onDisabledTagClick(tag.id)">
-                                    <icon-svg v-if="!tag.disabled" name="disabled"/>
-                                    <icon-svg v-if="tag.disabled" name="enable"/>
-                                </button>
+                            <div class="prompt-local-language"
+                                 v-show="!isEnglish && (tag.type === 'text' || !tag.type)">
+                                <div class="translate-to-local hover-scale-120"
+                                     v-tooltip="getLang('translate_keyword_to_local_language')"
+                                     @click="onTranslateToLocalClick(tag.id)" @mousedown.stop="" @mousemove.stop=""
+                                     @mouseup.stop="">
+                                    <icon-svg v-if="!loading[tag.id + '_local']" name="translate"/>
+                                    <icon-svg v-if="loading[tag.id + '_local']" name="loading"/>
+                                </div>
+                                <div class="local-language">{{ tag.localValue }}</div>
                             </div>
                         </div>
-                        <div class="prompt-local-language"
-                             v-show="!isEnglish && (tag.type === 'text' || !tag.type)">
-                            <div class="translate-to-local hover-scale-120"
-                                 v-tooltip="getLang('translate_keyword_to_local_language')"
-                                 @click="onTranslateToLocalClick(tag.id)" @mousedown.stop="" @mousemove.stop=""
-                                 @mouseup.stop="">
-                                <icon-svg v-if="!loading[tag.id + '_local']" name="translate"/>
-                                <icon-svg v-if="loading[tag.id + '_local']" name="loading"/>
-                            </div>
-                            <div class="local-language">{{ tag.localValue }}</div>
-                        </div>
-                    </div>
+                    </TransitionGroup>
                     <div v-for="(tag, index) in tags" :key="tag.id"
                          :class="['prompt-wrap', tag.type === 'wrap' ? 'wrap-tag' : '']" :data-id="tag.id"
                          ref="promptTagWrap"
@@ -430,95 +437,100 @@
                  v-tooltip="getLang(hideGroupTags ? 'show_group_tags' : 'hide_group_tags')">
                 <icon-svg class="hover-scale-120" name="unfold"/>
             </div>
-            <div class="group-tabs" v-show="!hideGroupTags && groupTags.length">
-                <div class="group-header" ref="groupTabsHeader">
-                    <div :class="['group-tab', 'favorite' == groupTagsActive ? 'active' : '']"
-                         @click="activeGroupTab('favorite')"
-                         data-name="favorite">{{ getLang('favorite') }}</div>
+            <Transition name="fade">
+                <div class="group-tabs" v-show="!hideGroupTags && groupTags.length">
+                    <div class="group-header" ref="groupTabsHeader">
+                        <div :class="['group-tab', 'favorite' == groupTagsActive ? 'active' : '']"
+                             @click="activeGroupTab('favorite')"
+                             data-name="favorite">{{ getLang('favorite') }}</div>
 
-                    <div v-for="(item, index) in groupTags"
-                         :key="index"
-                         :class="['group-tab', item.tabKey == groupTagsActive ? 'active' : '']"
-                         @click="activeGroupTab(index)"
-                         :data-name="item.name">{{ item.name }}</div>
-                </div>
-                <div class="group-body">
-                    <div :class="['group-main', 'favorite' == groupTagsActive ? 'active' : '']">
-                        <div class="sub-group-header" v-if="'favorite' == groupTagsActive">
-                            <div v-for="(item) in getCurrentTypeFavorites()"
-                                 :key="item.key"
-                                 :class="['sub-group-tab', 'favorite-' + item.key == subGroupTagsActive ? 'active' : '']"
-                                 @click="activeSubGroupTab('favorite', item.key)"
-                                 :data-name="item.name">{{ getLang(item.name) }}</div>
+                        <div v-for="(item, index) in groupTags"
+                             :key="index"
+                             :class="['group-tab', item.tabKey == groupTagsActive ? 'active' : '']"
+                             @click="activeGroupTab(index)"
+                             :data-name="item.name">{{ item.name }}</div>
+                    </div>
+                    <div class="group-body">
+                        <div :class="['group-main', 'favorite' == groupTagsActive ? 'active' : '']">
+                            <div class="sub-group-header" v-if="'favorite' == groupTagsActive">
+                                <div v-for="(item) in getCurrentTypeFavorites()"
+                                     :key="item.key"
+                                     :class="['sub-group-tab', 'favorite-' + item.key == subGroupTagsActive ? 'active' : '']"
+                                     @click="activeSubGroupTab('favorite', item.key)"
+                                     :data-name="item.name">{{ getLang(item.name) }}</div>
+                            </div>
+                            <div class="sub-group-body" v-if="'favorite' == groupTagsActive">
+                                <div v-for="(item) in getCurrentTypeFavorites()"
+                                     :key="item.key"
+                                     :class="['sub-group-main', 'favorite-' + item.key == subGroupTagsActive ? 'active' : '']">
+                                    <Transition name="fade">
+                                        <div class="group-tags" v-if="'favorite-' + item.key == subGroupTagsActive">
+                                            <div class="tag-item" ref="groupTagItem" v-for="(favorite) in item.list"
+                                                v-tooltip="getGroupTagTooltip(favorite.name, favorite.prompt)"
+                                                @click="onClickGroupTagFavorite(favorite)">
+                                                <div class="tag-local">{{ favorite.name == '' ? favorite.prompt : favorite.name  }}</div>
+                                                <div class="tag-en">{{ favorite.prompt }}</div>
+                                            </div>
+                                        </div>
+                                    </Transition>
+                                </div>
+                            </div>
                         </div>
-                        <div class="sub-group-body" v-if="'favorite' == groupTagsActive">
-                            <div v-for="(item) in getCurrentTypeFavorites()"
-                                 :key="item.key"
-                                 :class="['sub-group-main', 'favorite-' + item.key == subGroupTagsActive ? 'active' : '']">
-                                <div class="group-tags" v-if="'favorite-' + item.key == subGroupTagsActive">
-                                    <div class="tag-item" ref="groupTagItem" v-for="(favorite) in item.list"
-                                        v-tooltip="getGroupTagTooltip(favorite.name, favorite.prompt)"
-                                        @click="onClickGroupTagFavorite(favorite)">
-                                        <div class="tag-local">{{ favorite.name == '' ? favorite.prompt : favorite.name  }}</div>
-                                        <div class="tag-en">{{ favorite.prompt }}</div>
+
+                        <div v-for="(item, index) in groupTags" :key="index" :class="['group-main', item.tabKey == groupTagsActive ? 'active' : '']">
+                            <div class="sub-group-header" v-if="item.tabKey == groupTagsActive">
+                                <div v-for="(group, subIndex) in item.groups"
+                                     :key="subIndex"
+                                     :class="[group.type && group.type === 'wrap' ? 'sub-group-tag-wrap': 'sub-group-tab', group.tabKey == subGroupTagsActive ? 'active' : '']"
+                                     @click="activeSubGroupTab(index, subIndex)"
+                                     :data-name="group.name">{{ group.name }}</div>
+                            </div>
+                            <div class="sub-group-body" v-if="item.tabKey == groupTagsActive">
+                                <div v-for="(group, subIndex) in item.groups" :key="subIndex" :class="['sub-group-main', group.tabKey == subGroupTagsActive ? 'active' : '']">
+                                    <Transition name="fade">
+                                        <div class="group-tags" v-if="group.tabKey == subGroupTagsActive">
+                                            <div class="tag-item" ref="groupTagItem" v-for="(local, en) in group.tags"
+                                                v-tooltip="getGroupTagTooltip(local, en)"
+                                                @click="onClickGroupTag(local, en)">
+                                                <template v-if="local && local != en">
+                                                    <div class="tag-local" :style="getGroupTagStyle(item.name, group.name)">{{ local }}</div>
+                                                    <div class="tag-en">{{ en }}</div>
+                                                </template>
+                                                <div v-else class="tag-local" :style="getGroupTagStyle(item.name, group.name)">{{ en }}</div>
+                                            </div>
+                                        </div>
+                                    </Transition>
+                                    <div class="tags-footer">
+                                        <div class="tags-color">
+                                            <div>{{ getLang('tags_color') }}:</div>
+                                            <div class="tags-color-picker hover-scale-120"
+                                                 v-tooltip="groupTagsColor[getTagsColorKey(item.name, group.name)]"
+                                                 unaffected="true">
+                                                <color-picker
+                                                    :theme="theme == 'dark' ? 'black' : 'white'"
+                                                    v-model:pureColor="groupTagsColor[getTagsColorKey(item.name, group.name)]"
+                                                    @pureColorChange="onTagsColorChange(getTagsColorKey(item.name, group.name))"
+                                                />
+                                            </div>
+                                            <div class="tags-color-reset hover-scale-120"
+                                                 v-tooltip="getLang('reset_default_color')"
+                                                 @click="onClickResetTagsColor(getTagsColorKey(item.name, group.name))">
+                                                <icon-svg name="reset"/>
+                                            </div>
+                                            <div class="tags-color-clear hover-scale-120"
+                                                 v-tooltip="getLang('clear_color')"
+                                                 @click="onClickClearTagsColor(getTagsColorKey(item.name, group.name))">
+                                                <icon-svg name="clear"/>
+                                            </div>
+                                        </div>
+                                        <div class="tags-copyright">{{ getLang('tags-copyright') }}</div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    <div v-for="(item, index) in groupTags" :key="index" :class="['group-main', item.tabKey == groupTagsActive ? 'active' : '']">
-                        <div class="sub-group-header" v-if="item.tabKey == groupTagsActive">
-                            <div v-for="(group, subIndex) in item.groups"
-                                 :key="subIndex"
-                                 :class="[group.type && group.type === 'wrap' ? 'sub-group-tag-wrap': 'sub-group-tab', group.tabKey == subGroupTagsActive ? 'active' : '']"
-                                 @click="activeSubGroupTab(index, subIndex)"
-                                 :data-name="group.name">{{ group.name }}</div>
-                        </div>
-                        <div class="sub-group-body" v-if="item.tabKey == groupTagsActive">
-                            <div v-for="(group, subIndex) in item.groups" :key="subIndex" :class="['sub-group-main', group.tabKey == subGroupTagsActive ? 'active' : '']">
-                                <div class="group-tags" v-if="group.tabKey == subGroupTagsActive">
-                                    <div class="tag-item" ref="groupTagItem" v-for="(local, en) in group.tags"
-                                        v-tooltip="getGroupTagTooltip(local, en)"
-                                        @click="onClickGroupTag(local, en)">
-                                        <template v-if="local && local != en">
-                                            <div class="tag-local" :style="getGroupTagStyle(item.name, group.name)">{{ local }}</div>
-                                            <div class="tag-en">{{ en }}</div>
-                                        </template>
-                                        <div v-else class="tag-local" :style="getGroupTagStyle(item.name, group.name)">{{ en }}</div>
-                                    </div>
-                                </div>
-                                <div class="tags-footer">
-                                    <div class="tags-color">
-                                        <div>{{ getLang('tags_color') }}:</div>
-                                        <div class="tags-color-picker hover-scale-120"
-                                             v-tooltip="groupTagsColor[getTagsColorKey(item.name, group.name)]"
-                                             unaffected="true">
-                                            <color-picker
-                                                :theme="theme == 'dark' ? 'black' : 'white'"
-                                                v-model:pureColor="groupTagsColor[getTagsColorKey(item.name, group.name)]"
-                                                @pureColorChange="onTagsColorChange(getTagsColorKey(item.name, group.name))"
-                                            />
-                                        </div>
-                                        <div class="tags-color-reset hover-scale-120"
-                                             v-tooltip="getLang('reset_default_color')"
-                                             @click="onClickResetTagsColor(getTagsColorKey(item.name, group.name))">
-                                            <icon-svg name="reset"/>
-                                        </div>
-                                        <div class="tags-color-clear hover-scale-120"
-                                             v-tooltip="getLang('clear_color')"
-                                             @click="onClickClearTagsColor(getTagsColorKey(item.name, group.name))">
-                                            <icon-svg name="clear"/>
-                                        </div>
-                                    </div>
-                                    <div class="tags-copyright">{{ getLang('tags-copyright') }}</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
-            </div>
+            </Transition>
         </div>
         <highlight-prompt ref="highlightPrompt" :textarea="textarea" :hide-default-input="hideDefaultInput"/>
     </div>

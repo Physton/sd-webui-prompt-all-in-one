@@ -517,6 +517,7 @@ export default {
         common.loadCSS('toastr.min.css', 'physton-prompt-toastr', true, true, false)
         common.loadCSS('tippy.css', 'physton-prompt-tippy', true, true, false)
         common.loadCSS('vue3-colorpicker.css', 'physton-prompt-vue3-colorpicker', true, true, false)
+        common.loadCSS('animate.min.css', 'physton-prompt-animate', true, true, false)
         common.loadCSS('main.min.css', 'physton-prompt-main', true)
 
         const urlParams = new URLSearchParams(window.location.search);

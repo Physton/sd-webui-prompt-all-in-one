@@ -1,74 +1,76 @@
 <template>
-    <div class="physton-prompt-history" ref="history" v-show="isShow" @mouseenter="onMouseEnter"
-         @mouseleave="onMouseLeave" @click.stop="">
-        <div class="popup-tabs">
-            <div v-for="(group) in histories" :key="group.key"
-                 :class="['popup-tab', group.key === historyKey ? 'active': '']" @click="onTabClick(group.key)">
-                <div class="tab-name">{{ getLang(group.name) }}</div>
-                <div class="tab-type">{{ getLang(group.type) }}</div>
-                <div class="tab-count">{{ group.list.length }}</div>
-            </div>
-        </div>
-        <div class="popup-detail" v-show="currentItem && currentItem.tags">
-            <div class="popup-item-tags">
-                <template v-for="(tag, index) in currentItem.tags" :key="index">
-                    <div v-if="tag.type && tag.type === 'wrap'" class="item-wrap"></div>
-                    <div v-else class="item-tag">
-                        <div class="item-tag-value">{{ tag.value }}</div>
-                        <div class="item-tag-local-value">{{ tag.localValue }}</div>
-                    </div>
-                </template>
-            </div>
-        </div>
-        <div v-for="(group) in histories" :key="group.key" :class="['popup-tab-content', group.key === historyKey ? 'active': '']">
-            <div class="content-list" v-show="group.list.length > 0">
-                <div class="clear-btn" @click="onDeleteAllHistoryClick">
-                    <icon-svg name="remove"/>
-                    {{ getLang('delete_all_history') }}
-                </div>
-                <div class="content-item" v-for="(item, index) in group.list" :key="item.id"
-                     @mouseenter="onItemMouseEnter(index)" @mouseleave="onItemMouseLeave(index)">
-                    <div class="item-header">
-                        <div class="item-header-left">
-                            <div class="item-header-index">{{ group.list.length - index }}</div>
-                            <div class="item-header-time">{{ formatTime(item.time) }}</div>
-                            <div class="item-header-name">
-                                <input class="header-name-input" :value="item.name"
-                                       @keydown="onNameKeyDown(index, $event)"
-                                       @change="onNameChange(index, $event)" :placeholder="getLang('unset_name')">
-                            </div>
-                        </div>
-                        <div class="item-header-right">
-                            <div class="header-btn-favorite hover-scale-140" @click="onDeleteClick(index)">
-                                <icon-svg name="remove"/>
-                            </div>
-                            <div class="header-btn-favorite hover-scale-140" @click="onFavoriteClick(index)"
-                                 v-show="item.is_favorite" v-tooltip="getLang('remove_from_favorite')">
-                                <icon-svg name="favorite-yes"/>
-                            </div>
-                            <div class="header-btn-favorite hover-scale-140" @click="onFavoriteClick(index)"
-                                 v-show="!item.is_favorite" v-tooltip="getLang('add_to_favorite')">
-                                <icon-svg name="favorite-no"/>
-                            </div>
-                            <div class="header-btn-copy hover-scale-140" @click="onCopyClick(index)"
-                                 v-tooltip="getLang('copy_to_clipboard')">
-                                <icon-svg name="copy"/>
-                            </div>
-                            <div class="header-btn-use hover-scale-140" @click="onUseClick(index)"
-                                 v-tooltip="getLang('use')">
-                                <icon-svg name="use"/>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item-prompt">{{ item.prompt }}</div>
+    <Transition name="fade">
+        <div class="physton-prompt-history" ref="history" v-show="isShow" @mouseenter="onMouseEnter"
+             @mouseleave="onMouseLeave" @click.stop="">
+            <div class="popup-tabs">
+                <div v-for="(group) in histories" :key="group.key"
+                     :class="['popup-tab', group.key === historyKey ? 'active': '']" @click="onTabClick(group.key)">
+                    <div class="tab-name">{{ getLang(group.name) }}</div>
+                    <div class="tab-type">{{ getLang(group.type) }}</div>
+                    <div class="tab-count">{{ group.list.length }}</div>
                 </div>
             </div>
-            <div class="content-empty" v-show="group.list.length === 0">
-                <icon-svg name="loading" v-if="loading"/>
-                <span v-else>{{ emptyMsg }}</span>
+            <div class="popup-detail" v-show="currentItem && currentItem.tags">
+                <div class="popup-item-tags">
+                    <template v-for="(tag, index) in currentItem.tags" :key="index">
+                        <div v-if="tag.type && tag.type === 'wrap'" class="item-wrap"></div>
+                        <div v-else class="item-tag">
+                            <div class="item-tag-value">{{ tag.value }}</div>
+                            <div class="item-tag-local-value">{{ tag.localValue }}</div>
+                        </div>
+                    </template>
+                </div>
+            </div>
+            <div v-for="(group) in histories" :key="group.key" :class="['popup-tab-content', group.key === historyKey ? 'active': '']">
+                <div class="content-list" v-show="group.list.length > 0">
+                    <div class="clear-btn" @click="onDeleteAllHistoryClick">
+                        <icon-svg name="remove"/>
+                        {{ getLang('delete_all_history') }}
+                    </div>
+                    <div class="content-item" v-for="(item, index) in group.list" :key="item.id"
+                         @mouseenter="onItemMouseEnter(index)" @mouseleave="onItemMouseLeave(index)">
+                        <div class="item-header">
+                            <div class="item-header-left">
+                                <div class="item-header-index">{{ group.list.length - index }}</div>
+                                <div class="item-header-time">{{ formatTime(item.time) }}</div>
+                                <div class="item-header-name">
+                                    <input class="header-name-input" :value="item.name"
+                                           @keydown="onNameKeyDown(index, $event)"
+                                           @change="onNameChange(index, $event)" :placeholder="getLang('unset_name')">
+                                </div>
+                            </div>
+                            <div class="item-header-right">
+                                <div class="header-btn-favorite hover-scale-140" @click="onDeleteClick(index)">
+                                    <icon-svg name="remove"/>
+                                </div>
+                                <div class="header-btn-favorite hover-scale-140" @click="onFavoriteClick(index)"
+                                     v-show="item.is_favorite" v-tooltip="getLang('remove_from_favorite')">
+                                    <icon-svg name="favorite-yes"/>
+                                </div>
+                                <div class="header-btn-favorite hover-scale-140" @click="onFavoriteClick(index)"
+                                     v-show="!item.is_favorite" v-tooltip="getLang('add_to_favorite')">
+                                    <icon-svg name="favorite-no"/>
+                                </div>
+                                <div class="header-btn-copy hover-scale-140" @click="onCopyClick(index)"
+                                     v-tooltip="getLang('copy_to_clipboard')">
+                                    <icon-svg name="copy"/>
+                                </div>
+                                <div class="header-btn-use hover-scale-140" @click="onUseClick(index)"
+                                     v-tooltip="getLang('use')">
+                                    <icon-svg name="use"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item-prompt">{{ item.prompt }}</div>
+                    </div>
+                </div>
+                <div class="content-empty" v-show="group.list.length === 0">
+                    <icon-svg name="loading" v-if="loading"/>
+                    <span v-else>{{ emptyMsg }}</span>
+                </div>
             </div>
         </div>
-    </div>
+    </Transition>
 </template>
 <script>
 import common from "@/utils/common";

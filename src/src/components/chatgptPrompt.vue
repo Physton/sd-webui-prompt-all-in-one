@@ -1,5 +1,6 @@
 <template>
-    <div class="physton-chatgpt-prompt" v-if="isOpen" @click="close">
+    <Transition name="fadeDown">
+        <div class="physton-chatgpt-prompt" v-if="isOpen" @click="close">
         <div class="chatgpt-main" @click.stop>
             <div class="chatgpt-close" @click="close">
                 <icon-svg name="close"/>
@@ -101,6 +102,7 @@
             </div>
         </div>
     </div>
+    </Transition>
 </template>
 <script>
 import LanguageMixin from "@/mixins/languageMixin";

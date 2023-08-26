@@ -1,5 +1,6 @@
 <template>
-    <div class="physton-prompt-hotkey" v-if="isOpen" @click="">
+    <Transition name="fadeDown">
+        <div class="physton-prompt-hotkey" v-if="isOpen" @click="">
         <div class="hotkey-main" @click.stop>
             <div class="hotkey-body" @click.stop>
                 <div class="hotkey-list">
@@ -17,6 +18,7 @@
             </div>
         </div>
     </div>
+    </Transition>
 </template>
 <script>
 import LanguageMixin from "@/mixins/languageMixin";

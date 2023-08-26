@@ -17,6 +17,15 @@ onUiLoaded(() => {
     app.config.globalProperties.$copyText  = toClipboard
     app.config.globalProperties.$tippyList = []
     app.mixin(CommonMixin)
+    app.directive('animate', {
+        mounted(el, binding) {
+            el.classList.add('animate__animated', `animate__${binding.value}`, 'animate__faster')
+        },
+        updated(el, binding) {
+            el.classList.remove(`animate__${binding.oldValue}`)
+            el.classList.add(`animate__${binding.value}`)
+        }
+    })
     app.directive('tooltip', {
         mounted(el, binding) {
             // data-tippy-content

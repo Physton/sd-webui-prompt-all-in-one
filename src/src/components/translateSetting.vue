@@ -1,5 +1,6 @@
 <template>
-    <div class="physton-prompt-translate-setting" v-if="isOpen">
+    <Transition name="fadeDown">
+        <div class="physton-prompt-translate-setting" v-if="isOpen">
         <div class="translate-setting-main">
             <div class="translate-setting-content">
                 <div class="setting-line">
@@ -128,6 +129,7 @@
             </div>
         </div>
     </div>
+    </Transition>
 </template>
 <script>
 import LanguageMixin from "@/mixins/languageMixin";

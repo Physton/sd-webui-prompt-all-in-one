@@ -1,37 +1,39 @@
 <template>
-    <div class="physton-prompt-blacklist" v-if="isOpen" @click="">
-        <div class="blacklist-main" @click.stop>
-            <div class="blacklist-body" @click.stop>
-                <div class="blacklist-desc">{{ getLang('blacklist_desc') }}</div>
-                <div class="blacklist-group">
-                    <div class="group-title">{{ getLang('prompt_blacklist_list') }}:</div>
-                    <textarea class="group-content" :placeholder="getLang('one_keyword_per_line')" v-model="textarea.prompt"></textarea>
-                </div>
-                <div class="blacklist-group">
-                    <div class="group-title">{{ getLang('negative_prompt_blacklist_list') }}:</div>
-                    <textarea class="group-content" :placeholder="getLang('one_keyword_per_line')" v-model="textarea.negative_prompt"></textarea>
-                </div>
-                <div class="blacklist-wrap"></div>
-                <div class="blacklist-group">
-                    <div class="group-title">{{ getLang('lora_blacklist_list') }}:</div>
-                    <textarea class="group-content" :placeholder="getLang('one_keyword_per_line')" v-model="textarea.lora"></textarea>
-                </div>
-                <div class="blacklist-group">
-                    <div class="group-title">{{ getLang('lycoris_blacklist_list') }}:</div>
-                    <textarea class="group-content" :placeholder="getLang('one_keyword_per_line')" v-model="textarea.lycoris"></textarea>
-                </div>
-                <div class="blacklist-group">
-                    <div class="group-title">{{ getLang('embedding_blacklist_list') }}:</div>
-                    <textarea class="group-content" :placeholder="getLang('one_keyword_per_line')" v-model="textarea.embedding"></textarea>
-                </div>
-                <div class="blacklist-wrap"></div>
-                <div class="setting-btns">
-                    <div class="blacklist-save hover-scale-120" @click="onSaveClick">{{ getLang('save') }}</div>
-                    <div class="blacklist-close hover-scale-120" @click="onCloseClick">{{ getLang('close') }}</div>
+    <Transition name="fadeDown">
+        <div class="physton-prompt-blacklist" v-if="isOpen" @click="">
+            <div class="blacklist-main" @click.stop>
+                <div class="blacklist-body" @click.stop>
+                    <div class="blacklist-desc">{{ getLang('blacklist_desc') }}</div>
+                    <div class="blacklist-group">
+                        <div class="group-title">{{ getLang('prompt_blacklist_list') }}:</div>
+                        <textarea class="group-content" :placeholder="getLang('one_keyword_per_line')" v-model="textarea.prompt"></textarea>
+                    </div>
+                    <div class="blacklist-group">
+                        <div class="group-title">{{ getLang('negative_prompt_blacklist_list') }}:</div>
+                        <textarea class="group-content" :placeholder="getLang('one_keyword_per_line')" v-model="textarea.negative_prompt"></textarea>
+                    </div>
+                    <div class="blacklist-wrap"></div>
+                    <div class="blacklist-group">
+                        <div class="group-title">{{ getLang('lora_blacklist_list') }}:</div>
+                        <textarea class="group-content" :placeholder="getLang('one_keyword_per_line')" v-model="textarea.lora"></textarea>
+                    </div>
+                    <div class="blacklist-group">
+                        <div class="group-title">{{ getLang('lycoris_blacklist_list') }}:</div>
+                        <textarea class="group-content" :placeholder="getLang('one_keyword_per_line')" v-model="textarea.lycoris"></textarea>
+                    </div>
+                    <div class="blacklist-group">
+                        <div class="group-title">{{ getLang('embedding_blacklist_list') }}:</div>
+                        <textarea class="group-content" :placeholder="getLang('one_keyword_per_line')" v-model="textarea.embedding"></textarea>
+                    </div>
+                    <div class="blacklist-wrap"></div>
+                    <div class="setting-btns">
+                        <div class="blacklist-save hover-scale-120" @click="onSaveClick">{{ getLang('save') }}</div>
+                        <div class="blacklist-close hover-scale-120" @click="onCloseClick">{{ getLang('close') }}</div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </Transition>
 </template>
 <script>
 import LanguageMixin from "@/mixins/languageMixin";

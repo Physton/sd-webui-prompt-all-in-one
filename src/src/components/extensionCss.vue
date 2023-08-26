@@ -1,5 +1,6 @@
 <template>
-    <div class="physton-prompt-extension-css" v-if="isOpen" @click="close">
+    <Transition name="slideRight">
+        <div class="physton-prompt-extension-css" v-if="isOpen" @click="close">
         <div class="extension-main" @click.stop>
             <div class="extension-close" @click="close">
                 <icon-svg name="close"/>
@@ -29,6 +30,7 @@
             </div>
         </div>
     </div>
+    </Transition>
 </template>
 <script>
 import LanguageMixin from "@/mixins/languageMixin";
