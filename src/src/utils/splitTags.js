@@ -114,6 +114,10 @@ export default (tags, autoBreakBeforeWrap = false, autoBreakAfterWrap = false) =
 
     let result2 = []
     for (let value of result) {
+        if (value === "\n") {
+            result2.push(value)
+            continue
+        }
         // aaa <lora:KuutanKoihime:0.7>  <lora:add_detail:0.6><lora:clothesTransparent_v20:1:1,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0>
         // ['aaa', '<lora:KuutanKoihime:0.7>', '<lora:add_detail:0.6>', '<lora:clothesTransparent_v20:1:1,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0>']
         let regex = /\<lora:[^\>]+\>/
