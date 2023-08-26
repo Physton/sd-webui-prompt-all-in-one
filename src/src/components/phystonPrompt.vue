@@ -772,6 +772,16 @@ export default {
         init() {
             this.tags = []
             this.onTextareaChange()
+
+            let oldValue = this.textarea.value
+            setInterval(() => {
+                let newValue = this.textarea.value
+                if (oldValue === newValue) return
+                // 如果焦点在 textarea 上，就不要触发 onTextareaChange 了
+                if (document.activeElement === this.textarea) return
+                oldValue = newValue
+                this.onTextareaChange(true)
+            }, 500)
             // this.textarea.removeEventListener('change', this.onTextareaChange)
             // this.textarea.addEventListener('change', this.onTextareaChange)
             // this.textarea.removeEventListener('blur', this.onTextareaChange)
@@ -784,6 +794,7 @@ export default {
             }, 100)
         },
         _onTextareaChange(event) {
+            console.log('onTextareaChange', event)
             const autocompleteParent = this.textarea.parentElement.getElementsByClassName('autocompleteParent')
             if (autocompleteParent.length) {
                 if (autocompleteParent[0].style.display !== 'none') return
