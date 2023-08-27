@@ -21,16 +21,17 @@ export default {
                 tag.decWeight = 0
             } else {
                 tag.weightNum = common.getTagWeightNum(tag.value)
-                tag.weightNum = tag.weightNum <= 0 ? 1 : tag.weightNum
+                // tag.weightNum = tag.weightNum <= 0 ? 1 : tag.weightNum
+                tag.weightNum = tag.weightNum === 0 ? 1 : tag.weightNum
                 tag.incWeight = common.getTagIncWeight(tag.value)
                 tag.decWeight = common.getTagDecWeight(tag.value)
                 // const bracket = common.hasBrackets(tag.value)
 
                 tag.originalValue = tag.value
-                if (!tag.isLora && !tag.isLyco && !tag.isEmbedding) {
+                if (!tag.value.match(common.loraRegex) && !tag.value.match(common.lycoRegex)) {
                     let value = tag.value
                     const bracket = common.hasBrackets(value)
-                    if ((bracket[0] === '(' && bracket[1] === ')') || bracket[0] === '[' && bracket[1] === ']') {
+                    if ((bracket[0] === '(' && bracket[1] === ')') || (bracket[0] === '[' && bracket[1] === ']')) {
                         // 移除括号
                         value = common.setLayers(value, 0, bracket[0], bracket[1])
                         // 移除权重数

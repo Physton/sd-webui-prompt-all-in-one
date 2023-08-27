@@ -870,7 +870,7 @@ export default {
                         tag.localValue = localValue
                     }
 
-                    if (tag.weightNum > 0) {
+                    if (tag.weightNum > 0 || tag.weightNum < 0) {
                         tag.weightNum = Number(parseFloat(tag.weightNum).toFixed(6))
                         tag.value = tag.value.replace(common.weightNumRegex, '$1:' + tag.weightNum)
                         if (tag.localValue !== '') {
