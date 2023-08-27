@@ -1,0 +1,10 @@
+{
+  "name": "Hide the extension button for tags - weight brackets",
+  "i18n": {
+    "zh_CN": "隐藏标籤的扩展按钮-权重符號",
+    "zh_HK": "隱藏標籤的擴展按鈕-權重符號",
+    "zh_TW": "隱藏標籤的擴展按鈕-權重符號"
+  },
+  "author": "bluelovers",
+  "type": "enhance"
+}

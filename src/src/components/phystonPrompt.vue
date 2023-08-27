@@ -332,52 +332,52 @@
                                  @mousedown.stop=""
                                  @mousemove.stop=""
                                  @mouseup.stop="">
-                                <vue-number-input class="input-number" :model-value="tag.weightNum" center controls
+                                <vue-number-input class="input-number" name="input-number" :model-value="tag.weightNum" center controls
                                                   :min="tag.isLora || tag.isLyco ? -100 : 0" :step="0.1" size="small"
                                                   @update:model-value="onTagWeightNumChange(tag.id, $event)"></vue-number-input>
-                                <button type="button" v-tooltip="getLang('increase_weight_add_parentheses')"
+                                <button type="button" name="weight-parentheses-inc" v-tooltip="getLang('increase_weight_add_parentheses')"
                                         @click="onIncWeightClick(tag.id, +1)">
                                     <icon-svg name="weight-parentheses-inc"/>
                                 </button>
-                                <button type="button" v-tooltip="getLang('increase_weight_subtract_parentheses')"
+                                <button type="button" name="weight-parentheses-dec" v-tooltip="getLang('increase_weight_subtract_parentheses')"
                                         @click="onIncWeightClick(tag.id, -1)">
                                     <icon-svg name="weight-parentheses-dec"/>
                                 </button>
-                                <button type="button" v-tooltip="getLang('decrease_weight_add_brackets')"
+                                <button type="button" name="weight-brackets-inc" v-tooltip="getLang('decrease_weight_add_brackets')"
                                         @click="onDecWeightClick(tag.id, +1)">
                                     <icon-svg name="weight-brackets-inc"/>
                                 </button>
-                                <button type="button" v-tooltip="getLang('decrease_weight_subtract_brackets')"
+                                <button type="button" name="weight-brackets-dec" v-tooltip="getLang('decrease_weight_subtract_brackets')"
                                         @click="onDecWeightClick(tag.id, -1)">
                                     <icon-svg name="weight-brackets-dec"/>
                                 </button>
-                                <button type="button"
+                                <button type="button" name="wrap"
                                         v-tooltip="getLang('line_break_character')"
                                         @click="onWrapTagClick(tag.id)">
                                     <icon-svg name="wrap"/>
                                 </button>
-                                <button type="button" v-tooltip="getLang('translate_keyword_to_english')"
+                                <button type="button" name="translate" v-tooltip="getLang('translate_keyword_to_english')"
                                         v-show="!isEnglish"
                                         @click="onTranslateToEnglishClick(tag.id)">
                                     <icon-svg v-if="!loading[tag.id + '_en']" name="english"/>
                                     <icon-svg v-if="loading[tag.id + '_en']" name="loading"/>
                                 </button>
-                                <button type="button" v-tooltip="getLang('copy_to_clipboard')"
+                                <button type="button" name="copy" v-tooltip="getLang('copy_to_clipboard')"
                                         @click="copy(tag.value)">
                                     <icon-svg name="copy"/>
                                 </button>
-                                <button type="button"
+                                <button type="button" name="favorite"
                                         v-tooltip="getLang(tag.isFavorite ? 'remove_from_favorite': 'add_to_favorite')"
                                         @click="onFavoriteTagClick(tag.id)">
                                     <icon-svg v-if="tag.isFavorite" name="favorite-yes"/>
                                     <icon-svg v-if="!tag.isFavorite" name="favorite-no"/>
                                 </button>
-                                <button type="button"
+                                <button type="button" name="blacklist"
                                         v-tooltip="getLang('add_blacklist')"
                                         @click="onBlacklistClick(tag.id)">
                                     <icon-svg name="blacklist"/>
                                 </button>
-                                <button type="button"
+                                <button type="button" name="enable"
                                         v-tooltip="getLang(tag.disabled ? 'enable_keyword': 'disable_keyword')"
                                         @click="onDisabledTagClick(tag.id)">
                                     <icon-svg v-if="!tag.disabled" name="disabled"/>
