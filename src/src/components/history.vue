@@ -172,7 +172,8 @@ export default {
         onMouseEnter() {
             this.mouseEnter = true
         },
-        onMouseLeave() {
+        onMouseLeave(e) {
+            if (!e.relatedTarget) return // 微软输入法BUG
             this.hide()
         },
         onTabClick(key) {
