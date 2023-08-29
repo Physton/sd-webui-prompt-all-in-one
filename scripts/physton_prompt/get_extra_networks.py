@@ -38,10 +38,9 @@ def get_extra_networks():
                 item['civitai_info'] = {}
                 try:
                     if 'filename' in item and item['filename']:
-                        if extra_page.name == 'textual inversion':
-                            base, ext = os.path.splitext(item['filename'])
-                            info_file = base + '.civitai.info'
-                        else:
+                        base, ext = os.path.splitext(item['filename'])
+                        info_file = base + '.civitai.info'
+                        if not os.path.isfile(info_file):
                             info_file = item['filename'] + '.civitai.info'
                         if os.path.isfile(info_file):
                             with open(info_file, 'r') as f:
