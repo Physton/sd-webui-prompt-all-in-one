@@ -54,6 +54,7 @@
                             @update:hide-group-tags="onUpdateHideGroupTags(item.id, $event)"
                             :group-tags-translate-cache="groupTagsTranslateCache"
                             :blacklist="blacklist"
+                            :cancel-blacklist-confirm="cancelBlacklistConfirm"
                             @update:blacklist="onUpdateBlacklist"
                             :hotkey="hotkey"
             ></physton-prompt>
@@ -313,6 +314,7 @@ export default {
             },
 
             blacklist: {},
+            cancelBlacklistConfirm: false,
 
             hotkey: {
                 click: 'edit', // edit, disable, extend
@@ -577,7 +579,7 @@ export default {
         },
         init() {
             this.loadExtraNetworks()
-            let dataListsKeys = ['languageCode', 'autoTranslate', 'autoTranslateToEnglish', 'autoTranslateToLocal', 'autoRemoveSpace', 'autoRemoveLastComma', 'autoKeepWeightZero', 'autoKeepWeightOne', 'autoBreakBeforeWrap', 'autoBreakAfterWrap', /*'hideDefaultInput', */'translateApi', 'enableTooltip', 'tagCompleteFile', 'onlyCsvOnAuto', 'extensionSelect.minimalist', 'groupTagsColor', 'groupTagsTranslate', 'blacklist', 'hotkey']
+            let dataListsKeys = ['languageCode', 'autoTranslate', 'autoTranslateToEnglish', 'autoTranslateToLocal', 'autoRemoveSpace', 'autoRemoveLastComma', 'autoKeepWeightZero', 'autoKeepWeightOne', 'autoBreakBeforeWrap', 'autoBreakAfterWrap', /*'hideDefaultInput', */'translateApi', 'enableTooltip', 'tagCompleteFile', 'onlyCsvOnAuto', 'extensionSelect.minimalist', 'groupTagsColor', 'groupTagsTranslate', 'blacklist', 'cancelBlacklistConfirm', 'hotkey']
             this.prompts.forEach(item => {
                 dataListsKeys.push(item.hideDefaultInputKey)
                 dataListsKeys.push(item.hidePanelKey)
@@ -708,6 +710,10 @@ export default {
 
                 if (data.blacklist !== null) {
                     this.blacklist = this._handleBlacklist(data.blacklist)
+                }
+
+                if (data.cancelBlacklistConfirm !== null) {
+                    this.cancelBlacklistConfirm = data.cancelBlacklistConfirm
                 }
 
                 if (data.hotkey !== null) {
@@ -1046,8 +1052,9 @@ export default {
           blacklist.embedding = blacklist.embedding?.slice().map(item => item.toLowerCase())
           return blacklist
         },
-        onUpdateBlacklist(data) {
+        onUpdateBlacklist(data, cancelBlacklistConfirm) {
             this.blacklist = this._handleBlacklist(data)
+            this.cancelBlacklistConfirm = cancelBlacklistConfirm
         },
         onUpdateHotkey(data) {
             this.hotkey = data

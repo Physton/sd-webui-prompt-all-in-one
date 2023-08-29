@@ -507,7 +507,9 @@ export default {
             let tag = this.tags.find(tag => tag.id === id)
             if (!tag) return
             let title = this.getLang('confirm_add_blacklist').replace('{0}', tag.value) + "\n" + this.getLang('blacklist_desc')
-            if (!confirm(title)) return
+            if (!this.cancelBlacklistConfirm) {
+                if (!confirm(title)) return
+            }
 
             let blacklist = JSON.parse(JSON.stringify(this.blacklist))
             if (tag.isLora) {

@@ -26,6 +26,15 @@
                         <textarea class="group-content" :placeholder="getLang('one_keyword_per_line')" v-model="textarea.embedding"></textarea>
                     </div>
                     <div class="blacklist-wrap"></div>
+                    <div class="blacklist-group">
+                        <div class="group-title">
+                            <label>
+                                <input type="checkbox" v-model="cancelBlacklistConfirm">
+                                {{ getLang('cancel_confirm_add_blacklist') }}
+                            </label>
+                        </div>
+                    </div>
+                    <div class="blacklist-wrap"></div>
                     <div class="setting-btns">
                         <div class="blacklist-save hover-scale-120" @click="onSaveClick">{{ getLang('save') }}</div>
                         <div class="blacklist-close hover-scale-120" @click="onCloseClick">{{ getLang('close') }}</div>
@@ -55,6 +64,7 @@ export default {
                 lycoris: [],
                 embedding: [],
             },
+            cancelBlacklistConfirm: false,
             textarea: {
                 prompt: '',
                 negative_prompt: '',
@@ -85,13 +95,16 @@ export default {
                 lycoris: '',
                 embedding: '',
             }
-            this.gradioAPI.getData('blacklist').then(res => {
-                if (res) {
-                    this.data.prompt = res.prompt || []
-                    this.data.negative_prompt = res.negative_prompt || []
-                    this.data.lora = res.lora || []
-                    this.data.lycoris = res.lycoris || []
-                    this.data.embedding = res.embedding || []
+            this.gradioAPI.getDatas(['blacklist', 'cancelBlacklistConfirm']).then(res => {
+                if (res.blacklist) {
+                    this.data.prompt = res.blacklist.prompt || []
+                    this.data.negative_prompt = res.blacklist.negative_prompt || []
+                    this.data.lora = res.blacklist.lora || []
+                    this.data.lycoris = res.blacklist.lycoris || []
+                    this.data.embedding = res.blacklist.embedding || []
+                }
+                if (res.cancelBlacklistConfirm) {
+                    this.cancelBlacklistConfirm = res.cancelBlacklistConfirm
                 }
                 this.textarea.prompt = this.data.prompt.join('\n')
                 this.textarea.negative_prompt = this.data.negative_prompt.join('\n')
@@ -113,8 +126,9 @@ export default {
             this.data.lycoris = this.textarea.lycoris.split(/\s*\n\s*/).filter(item => item?.trim().length)
             this.data.embedding = this.textarea.embedding.split(/\s*\n\s*/).filter(item => item?.trim().length)
             this.gradioAPI.setData('blacklist', this.data)
+            this.gradioAPI.setData('cancelBlacklistConfirm', this.cancelBlacklistConfirm)
             this.close()
-            this.$emit('update:blacklist', this.data)
+            this.$emit('update:blacklist', this.data, this.cancelBlacklistConfirm)
         },
     },
 }

@@ -688,6 +688,10 @@ export default {
             type: Object,
             default: () => ({}),
         },
+        cancelBlacklistConfirm: {
+            type: Boolean,
+            default: false,
+        },
         hotkey: {
             type: Object,
             default: () => ({}),

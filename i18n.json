@@ -162,7 +162,8 @@
                 "show_keyword_extend_panel": "显示关键词扩展面板",
                 "none": "无",
                 "add_blacklist": "添加到黑名单",
-                "confirm_add_blacklist": "是否将关键词“{0}”加入黑名单？"
+                "confirm_add_blacklist": "是否将关键词“{0}”加入黑名单？",
+                "cancel_confirm_add_blacklist": "从关键词列表扩展面板中加入黑名单时，取消《确认提示窗口》。"
             }
         },
         {
@@ -326,7 +327,8 @@
                 "show_keyword_extend_panel": "顯示關鍵詞擴展面板",
                 "none": "無",
                 "add_blacklist": "加入黑名單",
-                "confirm_add_blacklist": "是否將關鍵詞“{0}”加入黑名單？"
+                "confirm_add_blacklist": "是否將關鍵詞“{0}”加入黑名單？",
+                "cancel_confirm_add_blacklist": "從關鍵詞列表擴展面板中加入黑名單時，取消《確認提示窗口》。"
             }
         },
         {
@@ -490,7 +492,8 @@
                 "show_keyword_extend_panel": "顯示關鍵字擴展面板",
                 "none": "無",
                 "add_blacklist": "加入黑名單",
-                "confirm_add_blacklist": "是否將關鍵詞“{0}”加入黑名單？"
+                "confirm_add_blacklist": "是否將關鍵詞“{0}”加入黑名單？",
+                "cancel_confirm_add_blacklist": "從關鍵詞列表擴展面板中加入黑名單時，取消《確認提示視窗》。"
             }
         },
         {
@@ -654,7 +657,8 @@
                 "show_keyword_extend_panel": "Show Keyword Extend Panel",
                 "none": "None",
                 "add_blacklist": "Add to blacklist",
-                "confirm_add_blacklist": "Do you want to add the keyword \"{0}\" to the blacklist?"
+                "confirm_add_blacklist": "Do you want to add the keyword \"{0}\" to the blacklist?",
+                "cancel_confirm_add_blacklist": "Cancel the confirmation dialog when adding to the blacklist from the keyword list expansion panel."
             }
         },
         {
@@ -829,7 +833,8 @@
                 "show_keyword_extend_panel": "عرض لوحة تمديد الكلمة الرئيسية",
                 "none": "لا شيء",
                 "add_blacklist": "إضافة إلى القائمة السوداء",
-                "confirm_add_blacklist": "هل ترغب في إضافة الكلمة الرئيسية \"{0}\" إلى القائمة السوداء؟"
+                "confirm_add_blacklist": "هل ترغب في إضافة الكلمة الرئيسية \"{0}\" إلى القائمة السوداء؟",
+                "cancel_confirm_add_blacklist": "إلغاء نافذة التأكيد عند إضافة إلى القائمة السوداء من لوحة توسيع قائمة الكلمات الرئيسية."
             }
         },
         {
@@ -1092,7 +1097,8 @@
                 "show_keyword_extend_panel": "Afficher le panneau d'extension du mot-clé",
                 "none": "Aucun",
                 "add_blacklist": "Ajouter à la liste noire",
-                "confirm_add_blacklist": "Voulez-vous ajouter le mot-clé \"{0}\" à la liste noire ?"
+                "confirm_add_blacklist": "Voulez-vous ajouter le mot-clé \"{0}\" à la liste noire ?",
+                "cancel_confirm_add_blacklist": "Annuler la fenêtre de confirmation lors de l'ajout à la liste noire depuis le panneau d'extension de la liste de mots-clés."
             }
         },
         {
@@ -1270,7 +1276,8 @@
                 "show_keyword_extend_panel": "Schlüsselwort-Erweiterungs-Panel anzeigen",
                 "none": "Keine",
                 "add_blacklist": "Zur schwarzen Liste hinzufügen",
-                "confirm_add_blacklist": "Möchten Sie das Schlüsselwort \"{0}\" zur schwarzen Liste hinzufügen?"
+                "confirm_add_blacklist": "Möchten Sie das Schlüsselwort \"{0}\" zur schwarzen Liste hinzufügen?",
+                "cancel_confirm_add_blacklist": "Die Bestätigungsmeldung beim Hinzufügen zur Blacklist aus der Schlüsselwortliste-Erweiterungsleiste abbrechen."
             }
         },
         {
@@ -1498,7 +1505,8 @@
                 "show_keyword_extend_panel": "Mostra pannello estensione parola chiave",
                 "none": "Nessuno",
                 "add_blacklist": "Aggiungi alla lista nera",
-                "confirm_add_blacklist": "Vuoi aggiungere la parola chiave \"{0}\" alla lista nera?"
+                "confirm_add_blacklist": "Vuoi aggiungere la parola chiave \"{0}\" alla lista nera?",
+                "cancel_confirm_add_blacklist": "Annulla la finestra di conferma durante l'aggiunta alla lista nera dalla barra di espansione dell'elenco delle parole chiave."
             }
         },
         {
@@ -1661,7 +1669,8 @@
                 "show_keyword_extend_panel": "キーワード拡張パネルの表示",
                 "none": "なし",
                 "add_blacklist": "ブラックリストに追加",
-                "confirm_add_blacklist": "キーワード「{0}」をブラックリストに追加しますか？"
+                "confirm_add_blacklist": "キーワード「{0}」をブラックリストに追加しますか？",
+                "cancel_confirm_add_blacklist": "キーワードリスト拡張パネルからブラックリストに追加する際の確認ダイアログをキャンセルします。"
             }
         },
         {
@@ -1849,7 +1858,8 @@
                 "show_keyword_extend_panel": "키워드 확장 패널 표시",
                 "none": "없음",
                 "add_blacklist": "블랙리스트에 추가",
-                "confirm_add_blacklist": "키워드 \"{0}\"를 블랙리스트에 추가하시겠습니까?"
+                "confirm_add_blacklist": "키워드 \"{0}\"를 블랙리스트에 추가하시겠습니까?",
+                "cancel_confirm_add_blacklist": "키워드 목록 확장 패널에서 블랙리스트에 추가할 때 확인 대화 상자를 취소합니다."
             }
         },
         {
@@ -2127,7 +2137,8 @@
                 "show_keyword_extend_panel": "Mostrar painel de extensão de palavra-chave",
                 "none": "Nenhum",
                 "add_blacklist": "Adicionar à lista negra",
-                "confirm_add_blacklist": "Deseja adicionar a palavra-chave \"{0}\" à lista negra?"
+                "confirm_add_blacklist": "Deseja adicionar a palavra-chave \"{0}\" à lista negra?",
+                "cancel_confirm_add_blacklist": "Cancelar a janela de confirmação ao adicionar à lista negra a partir do painel de expansão da lista de palavras-chave."
             }
         },
         {
@@ -2305,7 +2316,8 @@
                 "show_keyword_extend_panel": "Показать панель расширения ключевого слова",
                 "none": "Нет",
                 "add_blacklist": "Добавить в черный список",
-                "confirm_add_blacklist": "Хотите добавить ключевое слово \"{0}\" в черный список?"
+                "confirm_add_blacklist": "Хотите добавить ключевое слово \"{0}\" в черный список?",
+                "cancel_confirm_add_blacklist": "Отменить окно подтверждения при добавлении в черный список из панели расширения списка ключевых слов."
             }
         },
         {
@@ -2498,7 +2510,8 @@
                 "show_keyword_extend_panel": "Mostrar panel de extensión de palabra clave",
                 "none": "Ninguno",
                 "add_blacklist": "Agregar a la lista negra",
-                "confirm_add_blacklist": "¿Deseas agregar la palabra clave \"{0}\" a la lista negra?"
+                "confirm_add_blacklist": "¿Deseas agregar la palabra clave \"{0}\" a la lista negra?",
+                "cancel_confirm_add_blacklist": "Cancelar el cuadro de diálogo de confirmación al agregar a la lista negra desde el panel de expansión de la lista de palabras clave."
             }
         },
         {
