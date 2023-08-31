@@ -166,6 +166,16 @@ export default {
             text = text.trim().toLowerCase()
             if (res.toLocal.has(text)) {
                 return res.toLocal.get(text)
+            } else {
+                // 使用 , 分隔
+                const texts = text.split(',').map(t => t.trim())
+                let result = []
+                texts.forEach(t => {
+                    if (res.toLocal.has(t)) {
+                        result.push(res.toLocal.get(t))
+                    }
+                })
+                if (result.length > 0) return result.join(', ')
             }
             return ''
         },
@@ -178,10 +188,22 @@ export default {
             return ''
         },
         async translateToLocalByGroupTags(text) {
+            console.log(text)
             text = text.trim().toLowerCase()
             if (this.groupTagsTranslateCache.toLocal.has(text)) {
                 let value = this.groupTagsTranslateCache.toLocal.get(text)
                 return value.join(' / ')
+            } else {
+                // 使用 , 分隔
+                const texts = text.split(',').map(t => t.trim())
+                let result = []
+                texts.forEach(t => {
+                    if (this.groupTagsTranslateCache.toLocal.has(t)) {
+                        let value = this.groupTagsTranslateCache.toLocal.get(t)
+                        result.push(value.join(' / '))
+                    }
+                })
+                if (result.length > 0) return result.join(', ')
             }
             return ''
         },
