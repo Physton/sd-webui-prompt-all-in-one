@@ -10,7 +10,7 @@
                     <div class="tab-count">{{ group.list.length }}</div>
                 </div>
             </div>
-            <div class="popup-detail" v-show="currentItem && currentItem.tags">
+            <div class="popup-detail" ref="favoriteDetail" v-show="currentItem && currentItem.tags">
                 <div class="popup-item-tags">
                     <template v-for="(tag, index) in currentItem.tags" :key="index">
                         <div v-if="tag.type && tag.type === 'wrap'" class="item-wrap"></div>
@@ -158,12 +158,21 @@ export default {
             this.$refs.favorite.style.left = (e.pageX + 2) + 'px'
 
             this.getFavorites(this.favoriteKey)
+            this.$nextTick(() => {
+                // 如果当前窗口超出屏幕，就自动调整位置
+                let rect = this.$refs.favorite.getBoundingClientRect()
+                if (rect.right > window.innerWidth) {
+                    this.$refs.favorite.style.left = (window.innerWidth - rect.width - 2) + 'px'
+                }
+            })
 
             // 如果n秒后鼠标还没进来，就隐藏
             setTimeout(() => {
                 if (this.mouseEnter) return
                 this.hide()
             }, 3000)
+
+
         },
         hide() {
             this.mouseEnter = false
@@ -236,6 +245,14 @@ export default {
             let group = this.favorites.find(item => item.key === this.favoriteKey)
             if (!group) return
             this.currentItem = group.list[index]
+
+            this.$nextTick(() => {
+                // 判断 favoriteDetail 是否超出屏幕
+                let rect = this.$refs.favoriteDetail.getBoundingClientRect()
+                if (rect.right > window.innerWidth) {
+                    this.$refs.favoriteDetail.style.left = (0 - rect.width - 2) + 'px'
+                }
+            })
         },
         onItemMouseLeave(index) {
             this.currentItem = {}
