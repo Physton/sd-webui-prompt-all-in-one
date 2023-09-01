@@ -22,13 +22,14 @@ export default {
             } else {
                 tag.weightNum = common.getTagWeightNum(tag.value)
                 // tag.weightNum = tag.weightNum <= 0 ? 1 : tag.weightNum
-                tag.weightNum = tag.weightNum === 0 ? 1 : tag.weightNum
+                // tag.weightNum = tag.weightNum === 0 ? 1 : tag.weightNum
                 tag.incWeight = common.getTagIncWeight(tag.value)
                 tag.decWeight = common.getTagDecWeight(tag.value)
                 // const bracket = common.hasBrackets(tag.value)
 
                 tag.originalValue = tag.value
                 if (!tag.value.match(common.loraRegex) && !tag.value.match(common.lycoRegex)) {
+                    tag.weightNum = tag.weightNum <= 0 ? 1 : tag.weightNum
                     let value = tag.value
                     const bracket = common.hasBrackets(value)
                     if ((bracket[0] === '(' && bracket[1] === ')') || (bracket[0] === '[' && bracket[1] === ']')) {
