@@ -1,6 +1,7 @@
 import common from "@/utils/common"
 import Papa from 'papaparse'
 import globals from "../../globals";
+import { slugify } from '@lazy-cjk/zh-slugify';
 
 export default {
     props: {
@@ -100,7 +101,10 @@ export default {
                         en.replace(/\-/g, ' '),
                     ]
                     texts.forEach(t => data.toLocal.set(t, local))
+                    const key = slugify(local, true)
+                    !data.toEn.has(key) && data.toEn.set(key, en)
                     data.toEn.set(local, en)
+                    // console.log('setData:csv', local, key, en)
                 }
 
                 if (!tagCompleteFile) {
@@ -188,20 +192,21 @@ export default {
         },
         async translateToEnByCSV(text, tagCompleteFile = null, reload = false) {
             let res = await this.getCSV(tagCompleteFile, reload)
-            text = text.trim().toLowerCase()
-            if (res.toEn.has(text)) {
-                return res.toEn.get(text)
-            }
-            return ''
+            return this._toEn(text, res.toEn)
         },
         async translateToLocalByGroupTags(text, useNetwork = false) {
             console.log('translateToLocalByGroupTags', text)
             return this._translateToLocalBy(text, this.groupTagsTranslateCache.toLocal, useNetwork)
         },
         async translateToEnByGroupTags(text) {
+            return this._toEn(text, this.groupTagsTranslateCache.toEn)
+        },
+        _toEn(text, toEn) {
             text = text.trim().toLowerCase()
-            if (this.groupTagsTranslateCache.toEn.has(text)) {
-                return this.groupTagsTranslateCache.toEn.get(text)
+            if (toEn.has(text)) {
+                return toEn.get(text)
+            } else if ((text = slugify(text, true)) && toEn.has(text)) {
+                return toEn.get(text)
             }
             return ''
         },

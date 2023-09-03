@@ -151,6 +151,7 @@ import globals from "../globals";
 import jsYaml from "js-yaml";
 import {ref} from "vue";
 import Hotkey from "@/components/hotkey.vue";
+import { slugify } from '@lazy-cjk/zh-slugify';
 
 export default {
     name: 'App',
@@ -806,7 +807,10 @@ export default {
                         data.toLocal.set(t, [local])
                     }
                 })
+                const key = slugify(local, true)
+                !data.toEn.has(key) && data.toEn.set(key, en)
                 data.toEn.set(local, en)
+                // console.log('setData:groupTags', local, key, en)
             }
             this.groupTags.forEach((item, index) => {
                 item.tabKey = 'groupTags-' + index
