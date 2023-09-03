@@ -1394,7 +1394,8 @@ export default {
                             promises.push(this.translateToEnByGroupTags(tag.value))
                         }
                     })
-                    Promise.all(promises).then(results => {
+                    Promise.allSettled(promises).then(results => {
+                        let errors = []
                         let needs = []
                         results.forEach((result, index) => {
                             let tag = tags[index]
@@ -1403,11 +1404,15 @@ export default {
                                 tag.value = tag.splits.left + tag.value + tag.splits.right
                             }
 
-                            if (result === '') {
+                            if (result.status !== 'fulfilled') {
+                              errors.push(result.reason)
+                            }
+
+                            if (!result.value?.length || result.status !== 'fulfilled') {
                                 needs.push(tag)
                             } else {
                                 if (tag.splits) {
-                                    result = tag.splits.left + result + tag.splits.right
+                                    result = tag.splits.left + result.value + tag.splits.right
                                 }
                                 setLoading(tag, false)
                                 setTag(tag, result)
@@ -1418,6 +1423,12 @@ export default {
                             // 开启了使用tagcomplete翻译
                             translateByCSV(needs)
                         } else {
+                            if (errors.length) {
+                              setLoadings(tags, false)
+                              this.$toastr.error(errors[0])
+                              reject(errors[0])
+                              return
+                            }
                             if (useNetwork) {
                                 translate(needs)
                             } else {
