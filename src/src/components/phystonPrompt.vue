@@ -1335,7 +1335,7 @@ export default {
                         }
                         if (tag.toLocal) {
                             // 翻译到本地语言
-                            promises.push(this.translateToLocalByCSV(tag.value))
+                            promises.push(this.translateToLocalByCSV(tag.value, void 0, void 0, useNetwork))
                         } else {
                             // 翻译到英文
                             promises.push(this.translateToEnByCSV(tag.value))

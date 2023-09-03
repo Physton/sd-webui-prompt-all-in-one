@@ -161,7 +161,7 @@ export default {
                 })
             })
         },
-        async translateToLocalByCSV(text, tagCompleteFile = null, reload = false) {
+        async translateToLocalByCSV(text, tagCompleteFile = null, reload = false, useNetwork = false) {
             let res = await this.getCSV(tagCompleteFile, reload)
             text = text.trim().toLowerCase()
             if (res.toLocal.has(text)) {
@@ -170,12 +170,15 @@ export default {
                 // 使用 , 分隔
                 const texts = text.split(',').map(t => t.trim())
                 let result = []
+                let needs = []
                 texts.forEach(t => {
                     if (res.toLocal.has(t)) {
                         result.push(res.toLocal.get(t))
+                    } else if (useNetwork && t.length) {
+                        needs.push(t)
                     }
                 })
-                if (result.length > 0) return result.join(', ')
+                if (result.length > 0 && (!needs.length || texts.length === result.length)) return result.join(', ')
             }
             return ''
         },
