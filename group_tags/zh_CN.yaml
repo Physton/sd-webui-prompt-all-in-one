@@ -3374,7 +3374,6 @@
         dusk: 黄昏
         night: 夜晚
         rain: 下雨
-        in the rain: 雨中
         rainy days: 雨天
         sunset: 日落
         cloudy: 多云
@@ -3601,7 +3600,6 @@
         shop: 商店
         street: 街道
         cyberpunk city: 赛博朋克城市
-        in the cyberpunk city: 在赛博朋克城市
         chinese style architecture: 古风建筑
         gohei: 神社
         Bustling city: 繁华都市
@@ -4434,7 +4432,7 @@
 - name: 魔法系
   groups:
     - name: 魔法1.0
-      color: 
+      color:
       tags:
         ((water drops)),wet clothes,((beautiful detailed water)),((floating)),dynamic angle: 水魔法
         beautiful detailed glow, (detailed ice), beautiful detailed water: 冰魔法
@@ -4485,7 +4483,7 @@
         beautiful detailed sky, night, stars, (red plum blossom),((winter)),(((snowflakes))), ((red and white flowers))，(starry sky),(sitting),((colorful)),scenery, lantern,(starfall): 冬雪法
 
     - name: 魔法1.5
-      color: 
+      color:
       tags:
         ((((melt)))),(((((black and white melt))))),(((wear Black and white Taoist robes))),((((gold and silver lace)))),(((gold and silver lace lace))),(((flowing ((black)) and white background))),extremely detailed gorgeous tiara: 万物熔炉
         Floating black ashes, Beautiful and detailed black, red moon, ((The black clouds)), (black Wings) , a black cloudy sky, burning, black dress, ((Black fog)), Red eyes, (black smoke), ((Black feathers floating in the air)),bat, (floating black cloud:1.5),: 暗鸦法
