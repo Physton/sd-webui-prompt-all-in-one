@@ -1415,7 +1415,7 @@ export default {
                                     result = tag.splits.left + result.value + tag.splits.right
                                 }
                                 setLoading(tag, false)
-                                setTag(tag, result)
+                                setTag(tag, result.value)
                             }
                         })
                         console.log('No translated keywords: ', needs.map(tag => tag.value))
