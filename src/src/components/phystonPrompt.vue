@@ -1324,7 +1324,7 @@ export default {
 
                 let translateByCSV = (tags) => {
                     // 开启了使用tagcomplete翻译
-                    console.log('translateByCSV', tags.map(tag => tag.value).join(', '))
+                    console.log('translateByCSV', tags.map(tag => tag.value))
                     let promises = []
                     tags.forEach(tag => {
                         // 是否被括号包裹
@@ -1360,7 +1360,7 @@ export default {
                                 setTag(tag, result)
                             }
                         })
-                        console.log('No translated keywords: ', needs.map(tag => tag.value).join(', '))
+                        console.log('No translated keywords: ', needs.map(tag => tag.value))
                         if (useNetwork) {
                             translate(needs)
                         } else {
@@ -1377,7 +1377,7 @@ export default {
 
                 let translateByGroupTags = (tags) => {
                     // 开启了使用关键词组翻译
-                    console.log('translateByGroupTags', tags.map(tag => tag.value).join(', '))
+                    console.log('translateByGroupTags', tags.map(tag => tag.value))
                     let promises = []
                     tags.forEach(tag => {
                         // 是否被括号包裹
@@ -1413,7 +1413,7 @@ export default {
                                 setTag(tag, result)
                             }
                         })
-                        console.log('No translated keywords: ', needs.map(tag => tag.value).join(', '))
+                        console.log('No translated keywords: ', needs.map(tag => tag.value))
                         if (this.tagCompleteFile) {
                             // 开启了使用tagcomplete翻译
                             translateByCSV(needs)
