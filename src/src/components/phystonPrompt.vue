@@ -1324,7 +1324,7 @@ export default {
 
                 let translateByCSV = (tags) => {
                     // 开启了使用tagcomplete翻译
-                    console.log('translateByCSV', tags.map(tag => tag.value))
+                    console.log('translateByCSV', tags.map(tag => tag.value), { useNetwork })
                     let promises = []
                     tags.forEach(tag => {
                         // 是否被括号包裹
@@ -1377,7 +1377,7 @@ export default {
 
                 let translateByGroupTags = (tags) => {
                     // 开启了使用关键词组翻译
-                    console.log('translateByGroupTags', tags.map(tag => tag.value))
+                    console.log('translateByGroupTags', tags.map(tag => tag.value), { useNetwork })
                     let promises = []
                     tags.forEach(tag => {
                         // 是否被括号包裹
@@ -1388,10 +1388,10 @@ export default {
                         }
                         if (tag.toLocal) {
                             // 翻译到本地语言
-                            promises.push(this.translateToLocalByGroupTags(tag.value))
+                            promises.push(this.translateToLocalByGroupTags(tag.value, useNetwork))
                         } else {
                             // 翻译到英文
-                            promises.push(this.translateToEnByGroupTags(tag.value))
+                            promises.push(this.translateToEnByGroupTags(tag.value, useNetwork))
                         }
                     })
                     Promise.allSettled(promises).then(results => {

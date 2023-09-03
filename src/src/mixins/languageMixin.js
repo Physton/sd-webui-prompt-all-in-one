@@ -178,7 +178,7 @@ export default {
                         needs.push(t)
                     }
                 })
-                if (result.length > 0 && (!needs.length || texts.length === result.length)) return result.join(', ')
+                if (result.length > 0 && !needs.length) return result.join(', ')
             }
             return ''
         },
@@ -190,8 +190,8 @@ export default {
             }
             return ''
         },
-        async translateToLocalByGroupTags(text) {
-            console.log(text)
+        async translateToLocalByGroupTags(text, useNetwork = false) {
+            console.log('translateToLocalByGroupTags', text)
             text = text.trim().toLowerCase()
             if (this.groupTagsTranslateCache.toLocal.has(text)) {
                 let value = this.groupTagsTranslateCache.toLocal.get(text)
@@ -200,13 +200,16 @@ export default {
                 // 使用 , 分隔
                 const texts = text.split(',').map(t => t.trim())
                 let result = []
+                let needs = []
                 texts.forEach(t => {
                     if (this.groupTagsTranslateCache.toLocal.has(t)) {
                         let value = this.groupTagsTranslateCache.toLocal.get(t)
                         result.push(value.join(' / '))
+                    } else if (useNetwork && t.length) {
+                        needs.push(t)
                     }
                 })
-                if (result.length > 0) return result.join(', ')
+                if (result.length > 0 && !needs.length) return result.join(', ')
             }
             return ''
         },
