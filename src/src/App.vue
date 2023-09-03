@@ -1058,7 +1058,7 @@ export default {
         },
         onUpdateBlacklist(data, cancelBlacklistConfirm) {
             this.blacklist = this._handleBlacklist(data)
-            this.cancelBlacklistConfirm = cancelBlacklistConfirm
+            if (typeof cancelBlacklistConfirm === "boolean") this.cancelBlacklistConfirm = cancelBlacklistConfirm
         },
         onUpdateHotkey(data) {
             this.hotkey = data
