@@ -161,23 +161,30 @@ export default {
                 })
             })
         },
-        async translateToLocalByCSV(text, tagCompleteFile = null, reload = false) {
-            let res = await this.getCSV(tagCompleteFile, reload)
+        _translateToLocalBy(text, toLocal, useNetwork = false) {
             text = text.trim().toLowerCase()
-            if (res.toLocal.has(text)) {
-                return res.toLocal.get(text)
+            let _localToString = value => (value.join?.(' / ') ?? value)
+            if (toLocal.has(text)) {
+                return _localToString(toLocal.get(text))
             } else {
                 // 使用 , 分隔
                 const texts = text.split(',').map(t => t.trim())
                 let result = []
+                let needs = []
                 texts.forEach(t => {
-                    if (res.toLocal.has(t)) {
-                        result.push(res.toLocal.get(t))
+                    if (toLocal.has(t)) {
+                        result.push(_localToString(toLocal.get(t)))
+                    } else if (useNetwork && t.length) {
+                        needs.push(t)
                     }
                 })
-                if (result.length > 0) return result.join(', ')
+                if (result.length > 0 && !needs.length) return result.join(', ')
             }
             return ''
+        },
+        async translateToLocalByCSV(text, tagCompleteFile = null, reload = false, useNetwork = false) {
+            let res = await this.getCSV(tagCompleteFile, reload)
+            return this._translateToLocalBy(text, res.toLocal, useNetwork)
         },
         async translateToEnByCSV(text, tagCompleteFile = null, reload = false) {
             let res = await this.getCSV(tagCompleteFile, reload)
@@ -187,25 +194,9 @@ export default {
             }
             return ''
         },
-        async translateToLocalByGroupTags(text) {
-            console.log(text)
-            text = text.trim().toLowerCase()
-            if (this.groupTagsTranslateCache.toLocal.has(text)) {
-                let value = this.groupTagsTranslateCache.toLocal.get(text)
-                return value.join(' / ')
-            } else {
-                // 使用 , 分隔
-                const texts = text.split(',').map(t => t.trim())
-                let result = []
-                texts.forEach(t => {
-                    if (this.groupTagsTranslateCache.toLocal.has(t)) {
-                        let value = this.groupTagsTranslateCache.toLocal.get(t)
-                        result.push(value.join(' / '))
-                    }
-                })
-                if (result.length > 0) return result.join(', ')
-            }
-            return ''
+        async translateToLocalByGroupTags(text, useNetwork = false) {
+            console.log('translateToLocalByGroupTags', text)
+            return this._translateToLocalBy(text, this.groupTagsTranslateCache.toLocal, useNetwork)
         },
         async translateToEnByGroupTags(text) {
             text = text.trim().toLowerCase()
