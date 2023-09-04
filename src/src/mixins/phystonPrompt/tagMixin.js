@@ -507,8 +507,9 @@ export default {
         onBlacklistClick(id) {
             let tag = this.tags.find(tag => tag.id === id)
             if (!tag) return
-            let title = this.getLang('confirm_add_blacklist').replace('{0}', tag.value) + "\n" + this.getLang('blacklist_desc')
+
             if (!this.cancelBlacklistConfirm) {
+                let title = this.getLang('confirm_add_blacklist').replace('{0}', tag.value) + "\n" + this.getLang('blacklist_desc')
                 if (!confirm(title)) return
             }
 
@@ -527,7 +528,7 @@ export default {
                 }
             }
             this.gradioAPI.setData('blacklist', blacklist)
-            this.$emit('update:blacklist', blacklist)
+            this.$emit('update:blacklist', blacklist, this.cancelBlacklistConfirm)
 
             this.tags.forEach(item => {
                 if (item.value === tag.value) {
