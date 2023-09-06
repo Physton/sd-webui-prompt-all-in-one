@@ -29,7 +29,7 @@ export default {
 
                 tag.originalValue = tag.value
                 if (!tag.value.match(common.loraRegex) && !tag.value.match(common.lycoRegex)) {
-                    tag.weightNum = tag.weightNum <= 0 ? 1 : tag.weightNum
+                    // tag.weightNum = tag.weightNum <= 0 ? 1 : tag.weightNum
                     let value = tag.value
                     const bracket = common.hasBrackets(value)
                     if ((bracket[0] === '(' && bracket[1] === ')') || (bracket[0] === '[' && bracket[1] === ']')) {
@@ -345,7 +345,7 @@ export default {
             let weightNum = e
             let value = tag.value
             let localValue = tag.localValue
-            if (weightNum > 0) {
+            if (weightNum !== 0) {
                 if (weightNum === 1 && !this.autoKeepWeightOne) {
                     // 如果权重数是1，那么就去掉权重数
                     const bracket = common.hasBrackets(value)
@@ -383,21 +383,15 @@ export default {
                     if (localValue !== '') tag.localValue = localValue
                     this._setTag(tag)
                 }
-            } else {
-                if (tag.isLora || tag.isLyco) {
-                    tag.value = value.replace(common.weightNumRegex, '$1:' + weightNum)
-                    if (localValue !== '') tag.localValue = tag.localValue.replace(common.weightNumRegex, '$1:' + weightNum)
+            }  else {
+                if (this.autoKeepWeightZero) {
+                    // 保留权重数
+                    tag.value = value.replace(common.weightNumRegex, '$1:0')
+                    if (localValue !== '') tag.localValue = tag.localValue.replace(common.weightNumRegex, '$1:0')
                 } else {
-                    if (weightNum <= 0) weightNum = 0
-                    if (this.autoKeepWeightZero) {
-                        // 保留权重数
-                        tag.value = value.replace(common.weightNumRegex, '$1:0')
-                        if (localValue !== '') tag.localValue = tag.localValue.replace(common.weightNumRegex, '$1:0')
-                    } else {
-                        // 移除权重数
-                        tag.value = value.replace(common.weightNumRegex, '$1')
-                        if (localValue !== '') tag.localValue = tag.localValue.replace(common.weightNumRegex, '$1')
-                    }
+                    // 移除权重数
+                    tag.value = value.replace(common.weightNumRegex, '$1')
+                    if (localValue !== '') tag.localValue = tag.localValue.replace(common.weightNumRegex, '$1')
                 }
             }
             tag.weightNum = weightNum

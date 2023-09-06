@@ -333,7 +333,9 @@
                                  @mousemove.stop=""
                                  @mouseup.stop="">
                                 <vue-number-input class="input-number" name="input-number" :model-value="tag.weightNum" center controls
-                                                  :min="tag.isLora || tag.isLyco ? -100 : 0" :step="0.1" size="small"
+                                                  :min="-100"
+                                                  :step="0.1"
+                                                  size="small"
                                                   @update:model-value="onTagWeightNumChange(tag.id, $event)"></vue-number-input>
                                 <button type="button" name="weight-parentheses-inc" v-tooltip="getLang('increase_weight_add_parentheses')"
                                         @click="onIncWeightClick(tag.id, +1)">

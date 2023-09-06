@@ -303,7 +303,7 @@ export default {
      */
     getTagWeightNum(tag) {
         const match = tag.match(this.weightNumRegex)
-        let weightNum = match ? parseFloat(match[2]) : 0
+        let weightNum = match ? parseFloat(match[2]) : 1
         return weightNum
     },
 
