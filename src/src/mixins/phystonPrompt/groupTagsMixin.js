@@ -101,7 +101,20 @@ export default {
             this.$emit('update:hideGroupTags', !this.hideGroupTags)
         },
         onClickGroupTag(local, en) {
-            this._appendTag(en, local, false, -1, 'text')
+            // 判断是否存在 tags 中
+            let indexes = []
+            this.tags.forEach((tag, index) => {
+                if (tag.originalValue === en) {
+                    indexes.push(index)
+                }
+            })
+            if (indexes.length) {
+                indexes.reverse().forEach((index) => {
+                    this.tags.splice(index, 1)
+                })
+            } else {
+                this._appendTag(en, local, false, -1, 'text')
+            }
             this.updateTags()
         },
         onClickGroupTagFavorite(favorite) {
@@ -118,7 +131,7 @@ export default {
             html += en
             return html
         },
-        getGroupTagStyle(groupName, subGroupName) {
+        getGroupTagStyle(groupName, subGroupName, value) {
             let style = {}
             let colorKey = common.getTagsColorKey(groupName, subGroupName)
             let color = ''
@@ -131,6 +144,13 @@ export default {
             }
             if (color) {
                 style = {background: color}
+            }
+            // 判断是否存在 tags 中
+            for (let tag of this.tags) {
+                if (tag.originalValue === value) {
+                    style['filter'] = 'grayscale(1)'
+                    break
+                }
             }
             return style
         },

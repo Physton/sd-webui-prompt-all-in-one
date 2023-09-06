@@ -494,10 +494,10 @@
                                                 v-tooltip="getGroupTagTooltip(local, en)"
                                                 @click="onClickGroupTag(local, en)">
                                                 <template v-if="local && local != en">
-                                                    <div class="tag-local" :style="getGroupTagStyle(item.name, group.name)">{{ local }}</div>
+                                                    <div class="tag-local" :style="getGroupTagStyle(item.name, group.name, en)">{{ local }}</div>
                                                     <div class="tag-en">{{ en }}</div>
                                                 </template>
-                                                <div v-else class="tag-local" :style="getGroupTagStyle(item.name, group.name)">{{ en }}</div>
+                                                <div v-else class="tag-local" :style="getGroupTagStyle(item.name, group.name, en)">{{ en }}</div>
                                             </div>
                                         </div>
                                     </Transition>
