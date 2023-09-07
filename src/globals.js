@@ -10,4 +10,5 @@ export default {
     nameTagComplete: 'DominikDoom/a1111-sd-webui-tagcomplete',
     shortNameTagComplete: 'a1111-sd-webui-tagcomplete',
     githubTagComplete: 'https://github.com/DominikDoom/a1111-sd-webui-tagcomplete',
+    civitaiUrl: 'https://civitai.com',
 }

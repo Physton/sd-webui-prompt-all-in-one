@@ -229,11 +229,29 @@ export default {
             }
             return false
         },
+        onLoraPopupUseKeywords(keywords) {
+            let indexes = []
+            for (let keyword of keywords) {
+                let temp = keyword.toLowerCase()
+                let find = this.tags.find(tag => tag.value.toLowerCase() === temp)
+                if (!find) {
+                    let index = this._appendTag(keyword, '', false, -1, 'text')
+                    if (index !== -1) indexes.push(index)
+                }
+            }
+            if (indexes.length) {
+                this.autoTranslateByIndexes(indexes)
+            }
+        },
         onTagMouseEnter(id) {
             let tag = this.tags.find(tag => tag.id === id)
             if (!tag) return false
             tag.isFavorite = this.isFavorite(tag.id)
             if (this.hotkey.hover === 'extend') this.showExtendId = id
+            if (tag.isLora || tag.isLyco || tag.isEmbedding) {
+                let name = tag.isLora ? tag.loraName : (tag.isLyco ? tag.lycoName : tag.embeddingName)
+                this.$emit('showExtraNetworks', this.$refs['promptTagValue-' + tag.id][0], name, this.onLoraPopupUseKeywords)
+            }
         },
         onTagMouseMove(id) {
             let tag = this.tags.find(tag => tag.id === id)
@@ -244,6 +262,7 @@ export default {
             let tag = this.tags.find(tag => tag.id === id)
             if (!tag) return false
             if (this.hotkey.hover === 'extend') this.showExtendId = ''
+            this.$emit('hideExtraNetworks')
         },
         onTagClick(id) {
             if (this.tagClickTimeId) clearTimeout(this.tagClickTimeId)

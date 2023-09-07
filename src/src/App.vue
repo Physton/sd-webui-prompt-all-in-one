@@ -57,6 +57,8 @@
                             :cancel-blacklist-confirm="cancelBlacklistConfirm"
                             @update:blacklist="onUpdateBlacklist"
                             :hotkey="hotkey"
+                            @show-extra-networks="onShowExtraNetworks"
+                            @hide-extra-networks="onHideExtraNetworks"
             ></physton-prompt>
         </template>
         <translate-setting ref="translateSetting" v-model:language-code="languageCode"
@@ -114,6 +116,11 @@
         <about ref="about" v-model:language-code="languageCode"
                :translate-apis="translateApis" :languages="languages" />
 
+        <extra-networks-popup ref="extraNetworksPopup"
+                              v-model:language-code="languageCode"
+                              :translate-apis="translateApis" :languages="languages"
+                              :extra-networks="extraNetworks" />
+
         <div class="physton-paste-popup" v-if="showPastePopup" @click="closePastePopup">
             <div class="paste-popup-main" @click.stop>
                 <div class="paste-popup-close" @click="closePastePopup">
@@ -152,6 +159,7 @@ import jsYaml from "js-yaml";
 import {ref} from "vue";
 import Hotkey from "@/components/hotkey.vue";
 import { slugify } from '@lazy-cjk/zh-slugify';
+import ExtraNetworksPopup from "@/components/extraNetworksPopup.vue";
 
 export default {
     name: 'App',
@@ -169,6 +177,7 @@ export default {
         SelectLanguage,
         TranslateSetting,
         PhystonPrompt,
+        ExtraNetworksPopup
     },
     mixins: [],
     data() {
@@ -1062,6 +1071,12 @@ export default {
         },
         onUpdateHotkey(data) {
             this.hotkey = data
+        },
+        onShowExtraNetworks(e, name, useCallback) {
+            this.$refs.extraNetworksPopup.show(e, name, useCallback)
+        },
+        onHideExtraNetworks() {
+            this.$refs.extraNetworksPopup.hide()
         },
     },
 }

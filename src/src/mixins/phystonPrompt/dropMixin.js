@@ -70,6 +70,7 @@ export default {
                 if (this.dropTimeId) clearTimeout(this.dropTimeId)
                 this.dropTimeId = setTimeout(this.dropSelectItems, 10)
             }
+            this.$emit('hideExtraNetworks')
         },
         dropSelectItems() {
             if (this.dropTimeId) clearTimeout(this.dropTimeId)

@@ -38,7 +38,9 @@ onUiLoaded(() => {
                 theme: 'light',
                 allowHTML: true,
                 onCreate(instance, partialProps) {
+                    if (!binding.value) return
                     if (unaffected) return
+                    instance.enable()
                     const enable = localStorage.getItem('phystonPromptEnableTooltip') === 'true'
                     if (!enable) {
                         instance.disable()
@@ -49,8 +51,12 @@ onUiLoaded(() => {
             if (!unaffected) app.config.globalProperties.$tippyList.push(instance)
         },
         updated(el, binding) {
-            el.setAttribute('data-tippy-content', binding.value)
-            el.$tippyInstance.setContent(binding.value)
+            if (!binding.value) {
+                el.$tippyInstance.disable()
+            } else {
+                el.setAttribute('data-tippy-content', binding.value)
+                el.$tippyInstance.setContent(binding.value)
+            }
         }
     })
 

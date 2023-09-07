@@ -320,29 +320,32 @@ export default {
                         }
                         if (index !== -1) indexes.push(index)
                     })
-                    this.updatePrompt() // 先更新再翻译
-                    if (this.autoTranslateToEnglish || this.autoTranslateToLocal) {
-                        this.$nextTick(() => {
-                            let useNetwork = !(this.tagCompleteFile && this.onlyCsvOnAuto)
-                            if (this.autoTranslateToEnglish) {
-                                // 如果开启了自动翻译到英语，那么就自动翻译
-                                this.translates(indexes, false, useNetwork).finally(() => {
-                                    this.updateTags()
-                                })
-                            } else if (this.autoTranslateToLocal) {
-                                // 如果开启了自动翻译到本地语言，那么就自动翻译
-                                this.translates(indexes, true, useNetwork).finally(() => {
-                                    this.updateTags()
-                                })
-                            }
-                        })
-                    } else {
-                        this.updateTags()
-                    }
+                    this.autoTranslateByIndexes(indexes)
                 }
             } else {
                 // 不是上下键，也不是回车
                 this.removeAutocompleteResultsSelected()
+            }
+        },
+        autoTranslateByIndexes(indexes) {
+            this.updatePrompt() // 先更新再翻译
+            if (this.autoTranslateToEnglish || this.autoTranslateToLocal) {
+                this.$nextTick(() => {
+                    let useNetwork = !(this.tagCompleteFile && this.onlyCsvOnAuto)
+                    if (this.autoTranslateToEnglish) {
+                        // 如果开启了自动翻译到英语，那么就自动翻译
+                        this.translates(indexes, false, useNetwork).finally(() => {
+                            this.updateTags()
+                        })
+                    } else if (this.autoTranslateToLocal) {
+                        // 如果开启了自动翻译到本地语言，那么就自动翻译
+                        this.translates(indexes, true, useNetwork).finally(() => {
+                            this.updateTags()
+                        })
+                    }
+                })
+            } else {
+                this.updateTags()
             }
         },
         onAppendTagKeyUp(e) {

@@ -163,7 +163,15 @@
                 "none": "无",
                 "add_blacklist": "添加到黑名单",
                 "confirm_add_blacklist": "是否将关键词“{0}”加入黑名单？",
-                "cancel_confirm_add_blacklist": "从关键词列表扩展面板中加入黑名单时，取消《确认提示窗口》。"
+                "cancel_confirm_add_blacklist": "从关键词列表扩展面板中加入黑名单时，取消《确认提示窗口》。",
+                "model_name": "模型名称 (name)",
+                "output_name": "输出名称 (output name)",
+                "filename": "文件名 (filename)",
+                "filepath": "文件路径",
+                "trained_words": "触发关键词",
+                "description": "描述",
+                "open_civitai": "打开Civitai",
+                "use_keywords": "使用关键词"
             }
         },
         {
@@ -328,7 +336,15 @@
                 "none": "無",
                 "add_blacklist": "加入黑名單",
                 "confirm_add_blacklist": "是否將關鍵詞“{0}”加入黑名單？",
-                "cancel_confirm_add_blacklist": "從關鍵詞列表擴展面板中加入黑名單時，取消《確認提示窗口》。"
+                "cancel_confirm_add_blacklist": "從關鍵詞列表擴展面板中加入黑名單時，取消《確認提示窗口》。",
+                "model_name": "模型名稱 (name)",
+                "output_name": "輸出名稱 (output name)",
+                "filename": "文件名稱 (filename)",
+                "filepath": "文件路徑",
+                "trained_words": "觸發關鍵詞",
+                "description": "描述",
+                "open_civitai": "打開Civitai",
+                "use_keywords": "使用關鍵詞"
             }
         },
         {
@@ -493,7 +509,15 @@
                 "none": "無",
                 "add_blacklist": "加入黑名單",
                 "confirm_add_blacklist": "是否將關鍵詞“{0}”加入黑名單？",
-                "cancel_confirm_add_blacklist": "從關鍵詞列表擴展面板中加入黑名單時，取消《確認提示視窗》。"
+                "cancel_confirm_add_blacklist": "從關鍵詞列表擴展面板中加入黑名單時，取消《確認提示視窗》。",
+                "model_name": "模型名稱 (name)",
+                "output_name": "輸出名稱 (output name)",
+                "filename": "檔案名稱 (filename)",
+                "filepath": "檔案路徑",
+                "trained_words": "觸發關鍵詞",
+                "description": "描述",
+                "open_civitai": "開啟Civitai",
+                "use_keywords": "使用關鍵詞"
             }
         },
         {
@@ -658,7 +682,15 @@
                 "none": "None",
                 "add_blacklist": "Add to blacklist",
                 "confirm_add_blacklist": "Do you want to add the keyword \"{0}\" to the blacklist?",
-                "cancel_confirm_add_blacklist": "Cancel the confirmation dialog when adding to the blacklist from the keyword list expansion panel."
+                "cancel_confirm_add_blacklist": "Cancel the confirmation dialog when adding to the blacklist from the keyword list expansion panel.",
+                "model_name": "Model Name",
+                "output_name": "Output Name",
+                "filename": "File Name",
+                "filepath": "File Path",
+                "trained_words": "Trigger Keywords",
+                "description": "Description",
+                "open_civitai": "Open Civitai",
+                "use_keywords": "Use Keywords"
             }
         },
         {
@@ -834,7 +866,15 @@
                 "none": "لا شيء",
                 "add_blacklist": "إضافة إلى القائمة السوداء",
                 "confirm_add_blacklist": "هل ترغب في إضافة الكلمة الرئيسية \"{0}\" إلى القائمة السوداء؟",
-                "cancel_confirm_add_blacklist": "إلغاء نافذة التأكيد عند إضافة إلى القائمة السوداء من لوحة توسيع قائمة الكلمات الرئيسية."
+                "cancel_confirm_add_blacklist": "إلغاء نافذة التأكيد عند إضافة إلى القائمة السوداء من لوحة توسيع قائمة الكلمات الرئيسية.",
+                "model_name": "اسم النموذج (name)",
+                "output_name": "اسم الإخراج (output name)",
+                "filename": "اسم الملف (filename)",
+                "filepath": "مسار الملف",
+                "trained_words": "كلمات المفاتيح المدربة",
+                "description": "الوصف",
+                "open_civitai": "افتح سيفيتاي",
+                "use_keywords": "استخدم الكلمات المفتاحية"
             }
         },
         {
@@ -1098,7 +1138,15 @@
                 "none": "Aucun",
                 "add_blacklist": "Ajouter à la liste noire",
                 "confirm_add_blacklist": "Voulez-vous ajouter le mot-clé \"{0}\" à la liste noire ?",
-                "cancel_confirm_add_blacklist": "Annuler la fenêtre de confirmation lors de l'ajout à la liste noire depuis le panneau d'extension de la liste de mots-clés."
+                "cancel_confirm_add_blacklist": "Annuler la fenêtre de confirmation lors de l'ajout à la liste noire depuis le panneau d'extension de la liste de mots-clés.",
+                "model_name": "Nom du modèle (name)",
+                "output_name": "Nom de sortie (output name)",
+                "filename": "Nom de fichier (filename)",
+                "filepath": "Chemin du fichier",
+                "trained_words": "Mots clés entraînés",
+                "description": "Description",
+                "open_civitai": "Ouvrir Civitai",
+                "use_keywords": "Utiliser des mots clés"
             }
         },
         {
@@ -1277,7 +1325,15 @@
                 "none": "Keine",
                 "add_blacklist": "Zur schwarzen Liste hinzufügen",
                 "confirm_add_blacklist": "Möchten Sie das Schlüsselwort \"{0}\" zur schwarzen Liste hinzufügen?",
-                "cancel_confirm_add_blacklist": "Die Bestätigungsmeldung beim Hinzufügen zur Blacklist aus der Schlüsselwortliste-Erweiterungsleiste abbrechen."
+                "cancel_confirm_add_blacklist": "Die Bestätigungsmeldung beim Hinzufügen zur Blacklist aus der Schlüsselwortliste-Erweiterungsleiste abbrechen.",
+                "model_name": "Modellname (name)",
+                "output_name": "Ausgabename (output name)",
+                "filename": "Dateiname (filename)",
+                "filepath": "Dateipfad",
+                "trained_words": "Trainierte Schlüsselwörter",
+                "description": "Beschreibung",
+                "open_civitai": "Civitai öffnen",
+                "use_keywords": "Schlüsselwörter verwenden"
             }
         },
         {
@@ -1506,7 +1562,15 @@
                 "none": "Nessuno",
                 "add_blacklist": "Aggiungi alla lista nera",
                 "confirm_add_blacklist": "Vuoi aggiungere la parola chiave \"{0}\" alla lista nera?",
-                "cancel_confirm_add_blacklist": "Annulla la finestra di conferma durante l'aggiunta alla lista nera dalla barra di espansione dell'elenco delle parole chiave."
+                "cancel_confirm_add_blacklist": "Annulla la finestra di conferma durante l'aggiunta alla lista nera dalla barra di espansione dell'elenco delle parole chiave.",
+                "model_name": "Nome del modello (name)",
+                "output_name": "Nome dell'output (output name)",
+                "filename": "Nome del file (filename)",
+                "filepath": "Percorso del file",
+                "trained_words": "Parole chiave addestrate",
+                "description": "Descrizione",
+                "open_civitai": "Apri Civitai",
+                "use_keywords": "Usa parole chiave"
             }
         },
         {
@@ -1670,7 +1734,15 @@
                 "none": "なし",
                 "add_blacklist": "ブラックリストに追加",
                 "confirm_add_blacklist": "キーワード「{0}」をブラックリストに追加しますか？",
-                "cancel_confirm_add_blacklist": "キーワードリスト拡張パネルからブラックリストに追加する際の確認ダイアログをキャンセルします。"
+                "cancel_confirm_add_blacklist": "キーワードリスト拡張パネルからブラックリストに追加する際の確認ダイアログをキャンセルします。",
+                "model_name": "モデル名 (name)",
+                "output_name": "出力名 (output name)",
+                "filename": "ファイル名 (filename)",
+                "filepath": "ファイルパス",
+                "trained_words": "トリガーキーワード",
+                "description": "説明",
+                "open_civitai": "Civitaiを開く",
+                "use_keywords": "キーワードを使用する"
             }
         },
         {
@@ -1859,7 +1931,15 @@
                 "none": "없음",
                 "add_blacklist": "블랙리스트에 추가",
                 "confirm_add_blacklist": "키워드 \"{0}\"를 블랙리스트에 추가하시겠습니까?",
-                "cancel_confirm_add_blacklist": "키워드 목록 확장 패널에서 블랙리스트에 추가할 때 확인 대화 상자를 취소합니다."
+                "cancel_confirm_add_blacklist": "키워드 목록 확장 패널에서 블랙리스트에 추가할 때 확인 대화 상자를 취소합니다.",
+                "model_name": "모델 이름 (name)",
+                "output_name": "출력 이름 (output name)",
+                "filename": "파일 이름 (filename)",
+                "filepath": "파일 경로",
+                "trained_words": "트리거 키워드",
+                "description": "설명",
+                "open_civitai": "Civitai 열기",
+                "use_keywords": "키워드 사용"
             }
         },
         {
@@ -2138,7 +2218,15 @@
                 "none": "Nenhum",
                 "add_blacklist": "Adicionar à lista negra",
                 "confirm_add_blacklist": "Deseja adicionar a palavra-chave \"{0}\" à lista negra?",
-                "cancel_confirm_add_blacklist": "Cancelar a janela de confirmação ao adicionar à lista negra a partir do painel de expansão da lista de palavras-chave."
+                "cancel_confirm_add_blacklist": "Cancelar a janela de confirmação ao adicionar à lista negra a partir do painel de expansão da lista de palavras-chave.",
+                "model_name": "Nome do modelo (name)",
+                "output_name": "Nome de saída (output name)",
+                "filename": "Nome do arquivo (filename)",
+                "filepath": "Caminho do arquivo",
+                "trained_words": "Palavras-chave treinadas",
+                "description": "Descrição",
+                "open_civitai": "Abrir Civitai",
+                "use_keywords": "Usar palavras-chave"
             }
         },
         {
@@ -2317,7 +2405,15 @@
                 "none": "Нет",
                 "add_blacklist": "Добавить в черный список",
                 "confirm_add_blacklist": "Хотите добавить ключевое слово \"{0}\" в черный список?",
-                "cancel_confirm_add_blacklist": "Отменить окно подтверждения при добавлении в черный список из панели расширения списка ключевых слов."
+                "cancel_confirm_add_blacklist": "Отменить окно подтверждения при добавлении в черный список из панели расширения списка ключевых слов.",
+                "model_name": "Имя модели (name)",
+                "output_name": "Имя вывода (output name)",
+                "filename": "Имя файла (filename)",
+                "filepath": "Путь к файлу",
+                "trained_words": "Обученные ключевые слова",
+                "description": "Описание",
+                "open_civitai": "Открыть Civitai",
+                "use_keywords": "Использовать ключевые слова"
             }
         },
         {
@@ -2511,7 +2607,15 @@
                 "none": "Ninguno",
                 "add_blacklist": "Agregar a la lista negra",
                 "confirm_add_blacklist": "¿Deseas agregar la palabra clave \"{0}\" a la lista negra?",
-                "cancel_confirm_add_blacklist": "Cancelar el cuadro de diálogo de confirmación al agregar a la lista negra desde el panel de expansión de la lista de palabras clave."
+                "cancel_confirm_add_blacklist": "Cancelar el cuadro de diálogo de confirmación al agregar a la lista negra desde el panel de expansión de la lista de palabras clave.",
+                "model_name": "Nombre del modelo (name)",
+                "output_name": "Nombre de salida (output name)",
+                "filename": "Nombre de archivo (filename)",
+                "filepath": "Ruta del archivo",
+                "trained_words": "Palabras clave entrenadas",
+                "description": "Descripción",
+                "open_civitai": "Abrir Civitai",
+                "use_keywords": "Usar palabras clave"
             }
         },
         {

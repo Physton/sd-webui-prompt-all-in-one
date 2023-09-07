@@ -5,8 +5,8 @@ import json
 import os
 
 filters = [
-    'filename',
-    'description',
+    # 'filename',
+    # 'description',
     'search_term',
     'local_preview',
     'metadata',
@@ -38,6 +38,8 @@ def get_extra_networks():
                 item['civitai_info'] = {}
                 try:
                     if 'filename' in item and item['filename']:
+                        item['basename'] = os.path.basename(item['filename'])
+                        item['dirname'] = os.path.dirname(item['filename'])
                         base, ext = os.path.splitext(item['filename'])
                         info_file = base + '.civitai.info'
                         if not os.path.isfile(info_file):
@@ -45,10 +47,19 @@ def get_extra_networks():
                         if os.path.isfile(info_file):
                             with open(info_file, 'r') as f:
                                 info = json.load(f)
+                                images = info.get('images', [])
                                 info = {
+                                    'modelId': info.get('modelId', ''),
                                     'name': info.get('name', ''),
+                                    'description': info.get('description', ''),
+                                    'baseModel': info.get('baseModel', ''),
                                     'model': info.get('model', {}),
+                                    'trainedWords': info.get('trainedWords', []),
+                                    'images': [],
                                 }
+                                if images and len(images) > 0:
+                                    for image in images:
+                                        info['images'].append(image['url'])
                                 item['civitai_info'] = info
                 except Exception as e:
                     pass
