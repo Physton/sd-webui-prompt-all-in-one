@@ -101,8 +101,8 @@ export default {
                         en.replace(/\-/g, ' '),
                     ]
                     texts.forEach(t => data.toLocal.set(t, local))
-                    const key = slugify(local, true)
-                    !data.toEn.has(key) && data.toEn.set(key, en)
+                    // const key = slugify(local, true)
+                    // !data.toEn.has(key) && data.toEn.set(key, en)
                     data.toEn.set(local, en)
                     // console.log('setData:csv', local, key, en)
                 }
@@ -205,9 +205,9 @@ export default {
             text = text.trim().toLowerCase()
             if (toEn.has(text)) {
                 return toEn.get(text)
-            } else if ((text = slugify(text, true)) && toEn.has(text)) {
+            }/* else if ((text = slugify(text, true)) && toEn.has(text)) {
                 return toEn.get(text)
-            }
+            }*/
             return ''
         },
     }

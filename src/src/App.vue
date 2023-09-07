@@ -807,8 +807,8 @@ export default {
                         data.toLocal.set(t, [local])
                     }
                 })
-                const key = slugify(local, true)
-                !data.toEn.has(key) && data.toEn.set(key, en)
+                // const key = slugify(local, true)
+                // !data.toEn.has(key) && data.toEn.set(key, en)
                 data.toEn.set(local, en)
                 // console.log('setData:groupTags', local, key, en)
             }
