@@ -1231,6 +1231,17 @@ export default {
                         // 不需要翻译
                         return
                     }
+
+                    if (tag.isLora) {
+                        if (this.blacklist.translate?.includes(tag.loraName.toLowerCase())) return
+                    } else if (tag.isLyco) {
+                        if (this.blacklist.translate?.includes(tag.lycoName.toLowerCase())) return
+                    } else if (tag.isEmbedding) {
+                        if (this.blacklist.translate?.includes(tag.embeddingName.toLowerCase())) return
+                    } else {
+                        if (this.blacklist.translate?.includes(tag.originalValue.toLowerCase())) return
+                    }
+
                     tag.isEnglish = common.isEnglishByLangCode(tag.value, this.languageCode)
                     if (tag.isEnglish === -1) {
                         // 无法检测

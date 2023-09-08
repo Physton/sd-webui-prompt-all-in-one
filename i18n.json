@@ -171,7 +171,9 @@
                 "trained_words": "触发关键词",
                 "description": "描述",
                 "open_civitai": "打开Civitai",
-                "use_keywords": "使用关键词"
+                "use_keywords": "使用关键词",
+                "translate_blacklist_desc": "设为禁止翻译的词，插件将不会翻译它们！",
+                "disable_translate_prompt_blacklist_list": "禁止翻译的提示词列表"
             }
         },
         {
@@ -344,7 +346,9 @@
                 "trained_words": "觸發關鍵詞",
                 "description": "描述",
                 "open_civitai": "打開Civitai",
-                "use_keywords": "使用關鍵詞"
+                "use_keywords": "使用關鍵詞",
+                "translate_blacklist_desc": "設為禁止翻譯的詞，插件將不會翻譯它們！",
+                "disable_translate_prompt_blacklist_list": "禁止翻譯的提示詞列表"
             }
         },
         {
@@ -517,7 +521,9 @@
                 "trained_words": "觸發關鍵詞",
                 "description": "描述",
                 "open_civitai": "開啟Civitai",
-                "use_keywords": "使用關鍵詞"
+                "use_keywords": "使用關鍵詞",
+                "translate_blacklist_desc": "設為禁止翻譯的詞，插件將不會翻譯它們！",
+                "disable_translate_prompt_blacklist_list": "禁止翻譯的提示詞列表"
             }
         },
         {
@@ -690,7 +696,9 @@
                 "trained_words": "Trigger Keywords",
                 "description": "Description",
                 "open_civitai": "Open Civitai",
-                "use_keywords": "Use Keywords"
+                "use_keywords": "Use Keywords",
+                "translate_blacklist_desc": "Set as forbidden words for translation, the plugin will not translate them!",
+                "disable_translate_prompt_blacklist_list": "List of prompt words for translation disable"
             }
         },
         {
@@ -874,7 +882,9 @@
                 "trained_words": "كلمات المفاتيح المدربة",
                 "description": "الوصف",
                 "open_civitai": "افتح سيفيتاي",
-                "use_keywords": "استخدم الكلمات المفتاحية"
+                "use_keywords": "استخدم الكلمات المفتاحية",
+                "translate_blacklist_desc": "تعيين ككلمات ممنوعة للترجمة، لن يقوم الملحق بترجمتها!",
+                "disable_translate_prompt_blacklist_list": "قائمة كلمات التذكير الممنوعة من الترجمة"
             }
         },
         {
@@ -1146,7 +1156,9 @@
                 "trained_words": "Mots clés entraînés",
                 "description": "Description",
                 "open_civitai": "Ouvrir Civitai",
-                "use_keywords": "Utiliser des mots clés"
+                "use_keywords": "Utiliser des mots clés",
+                "translate_blacklist_desc": "Définir comme mots interdits pour la traduction, le plugin ne les traduira pas !",
+                "disable_translate_prompt_blacklist_list": "Liste des mots de rappel interdits de traduction"
             }
         },
         {
@@ -1333,7 +1345,9 @@
                 "trained_words": "Trainierte Schlüsselwörter",
                 "description": "Beschreibung",
                 "open_civitai": "Civitai öffnen",
-                "use_keywords": "Schlüsselwörter verwenden"
+                "use_keywords": "Schlüsselwörter verwenden",
+                "translate_blacklist_desc": "Als verbotene Wörter für die Übersetzung festlegen, das Plugin übersetzt sie nicht!",
+                "disable_translate_prompt_blacklist_list": "Liste der deaktivierten Übersetzungsprompt-Wörter"
             }
         },
         {
@@ -1570,7 +1584,9 @@
                 "trained_words": "Parole chiave addestrate",
                 "description": "Descrizione",
                 "open_civitai": "Apri Civitai",
-                "use_keywords": "Usa parole chiave"
+                "use_keywords": "Usa parole chiave",
+                "translate_blacklist_desc": "Imposta come parole vietate per la traduzione, il plugin non le tradurrà!",
+                "disable_translate_prompt_blacklist_list": "Elenco delle parole di promemoria per la traduzione disabilitate"
             }
         },
         {
@@ -1742,7 +1758,9 @@
                 "trained_words": "トリガーキーワード",
                 "description": "説明",
                 "open_civitai": "Civitaiを開く",
-                "use_keywords": "キーワードを使用する"
+                "use_keywords": "キーワードを使用する",
+                "translate_blacklist_desc": "翻訳禁止ワードとして設定されています。プラグインはこれらを翻訳しません！",
+                "disable_translate_prompt_blacklist_list": "翻訳のプロンプトワードリストを無効にする"
             }
         },
         {
@@ -1939,7 +1957,9 @@
                 "trained_words": "트리거 키워드",
                 "description": "설명",
                 "open_civitai": "Civitai 열기",
-                "use_keywords": "키워드 사용"
+                "use_keywords": "키워드 사용",
+                "translate_blacklist_desc": "번역 금지 단어로 설정되었습니다. 플러그인은 번역하지 않습니다!",
+                "disable_translate_prompt_blacklist_list": "번역 프롬프트 단어 목록 비활성화"
             }
         },
         {
@@ -2226,7 +2246,9 @@
                 "trained_words": "Palavras-chave treinadas",
                 "description": "Descrição",
                 "open_civitai": "Abrir Civitai",
-                "use_keywords": "Usar palavras-chave"
+                "use_keywords": "Usar palavras-chave",
+                "translate_blacklist_desc": "Definir como palavras proibidas para tradução, o plugin não as traduzirá!",
+                "disable_translate_prompt_blacklist_list": "Lista de palavras de lembrete desativadas para tradução"
             }
         },
         {
@@ -2413,7 +2435,9 @@
                 "trained_words": "Обученные ключевые слова",
                 "description": "Описание",
                 "open_civitai": "Открыть Civitai",
-                "use_keywords": "Использовать ключевые слова"
+                "use_keywords": "Использовать ключевые слова",
+                "translate_blacklist_desc": "Установите в качестве запрещенных слов для перевода, плагин не будет их переводить!",
+                "disable_translate_prompt_blacklist_list": "Список запрещенных слов для перевода"
             }
         },
         {
@@ -2615,7 +2639,9 @@
                 "trained_words": "Palabras clave entrenadas",
                 "description": "Descripción",
                 "open_civitai": "Abrir Civitai",
-                "use_keywords": "Usar palabras clave"
+                "use_keywords": "Usar palabras clave",
+                "translate_blacklist_desc": "Establecer como palabras prohibidas para la traducción, el complemento no las traducirá.",
+                "disable_translate_prompt_blacklist_list": "Lista de palabras de recordatorio desactivadas para la traducción"
             }
         },
         {
