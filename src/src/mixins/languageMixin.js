@@ -205,9 +205,9 @@ export default {
             text = text.trim().toLowerCase()
             if (toEn.has(text)) {
                 return toEn.get(text)
-            }/* else if ((text = slugify(text, true)) && toEn.has(text)) {
+            } else if ((text = slugify(text, true)) && toEn.has(text)) {
                 return toEn.get(text)
-            }*/
+            }
             return ''
         },
     }
