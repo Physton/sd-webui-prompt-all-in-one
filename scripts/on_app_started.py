@@ -21,6 +21,7 @@ from scripts.physton_prompt.get_lang import get_lang
 from scripts.physton_prompt.get_version import get_git_commit_version, get_git_remote_versions, get_latest_version
 from scripts.physton_prompt.mbart50 import initialize as mbart50_initialize, translate as mbart50_translate
 from scripts.physton_prompt.get_group_tags import get_group_tags
+from scripts.physton_prompt.slugify import slugify
 
 try:
     from modules.shared import cmd_opts
@@ -372,6 +373,13 @@ def on_app_started(_: gr.Blocks, app: FastAPI):
     @app.get("/physton_prompt/get_group_tags")
     async def _get_group_tags(lang: str):
         return {"tags": get_group_tags(lang)}
+
+    @app.post("/physton_prompt/slugify")
+    async def _slugify(request: Request):
+        data = await request.json()
+        if 'keywords' not in data:
+            return {"success": False, "message": get_lang('is_required', {'0': 'keywords'})}
+        return {"success": True, 'result': slugify(data['keywords'])}
 
     try:
         translate_api = st.get('translateApi')

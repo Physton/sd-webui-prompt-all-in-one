@@ -94,6 +94,25 @@ export default {
                 window.tagCompleteFileLoading[tagCompleteFile] = true
 
                 let data = {toEn: new Map(), toLocal: new Map()}
+                let slugifyQueue = []
+                let handleSlugifyQueue = () => {
+                    if (!['zh_CN', 'zh_HK', 'zh_TW'].includes(this.languageCode)) return
+                    if (slugifyQueue.length > 0) {
+                        let keywords = []
+                        slugifyQueue.forEach((item) => {
+                            keywords.push(item.local)
+                        })
+                        this.gradioAPI.slugify(keywords).then(res => {
+                            if (!res.result) return
+                            slugifyQueue.forEach((item) => {
+                                if (res.result[item.local]) {
+                                    !data.toEn.has(res.result[item.local]) && data.toEn.set(res.result[item.local], item.en)
+                                }
+                            })
+                            console.log('Slugify complete: getCSV')
+                        })
+                    }
+                }
                 let setData = (en, local) => {
                     const texts = [
                         en,
@@ -101,6 +120,7 @@ export default {
                         en.replace(/\-/g, ' '),
                     ]
                     texts.forEach(t => data.toLocal.set(t, local))
+                    slugifyQueue.push({en, local})
                     // const key = slugify(local, true)
                     // !data.toEn.has(key) && data.toEn.set(key, en)
                     data.toEn.set(local, en)
@@ -112,6 +132,7 @@ export default {
                         translations.forEach((local, en) => {
                             setData(en, local)
                         })
+                        handleSlugifyQueue()
                         window.tagCompleteFileLoading[tagCompleteFile] = false
                         window.tagCompleteFileCache[tagCompleteFile] = data
                         resolve(data)
@@ -151,6 +172,7 @@ export default {
                         if (en === '' || local === '') return
                         setData(en, local)
                     })*/
+                    handleSlugifyQueue()
                     window.tagCompleteFileLoading[tagCompleteFile] = false
                     window.tagCompleteFileCache[tagCompleteFile] = data
                     resolve(data)

@@ -183,4 +183,8 @@ export default class GradioAPI {
     async getGroupTags(lang) {
         return (await this.api.get("/get_group_tags", {params: {lang}})).data.tags
     }
+
+    async slugify(keywords) {
+        return (await this.api.post("/slugify", {keywords})).data
+    }
 }
