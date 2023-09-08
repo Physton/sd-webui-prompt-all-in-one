@@ -109,6 +109,8 @@ export default {
                                     !data.toEn.has(res.result[item.local]) && data.toEn.set(res.result[item.local], item.en)
                                 }
                             })
+                            window.tagCompleteFileLoading[tagCompleteFile] = false
+                            window.tagCompleteFileCache[tagCompleteFile] = data
                             console.log('Slugify complete: getCSV')
                         })
                     }

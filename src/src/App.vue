@@ -815,6 +815,7 @@ export default {
                                 !data.toEn.has(res.result[item.local]) && data.toEn.set(res.result[item.local], item.en)
                             }
                         })
+                        this.groupTagsTranslateCache = data
                         console.log('Slugify complete: _handleGroupTags')
                     })
                 }
