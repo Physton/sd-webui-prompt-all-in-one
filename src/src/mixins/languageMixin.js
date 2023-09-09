@@ -71,13 +71,17 @@ export default {
         replaceGlobals(text) {
             return common.replaceGlobals(text, this.languageCode)
         },
+        getTagCompleteFileCache(tagCompleteFile = null) {
+            return window.tagCompleteFileCache[tagCompleteFile || this.tagCompleteFile]
+        },
         getCSV(tagCompleteFile = null, reload = false) {
-            window.tagCompleteFileCache = window.tagCompleteFileCache || {}
-            window.tagCompleteFileLoading = window.tagCompleteFileLoading || {}
+            window.tagCompleteFileCache ||= {}
+            window.tagCompleteFileLoading ||= {}
             return new Promise((resolve, reject) => {
-                tagCompleteFile = tagCompleteFile || this.tagCompleteFile
-                if (!reload && window.tagCompleteFileCache[tagCompleteFile]) {
-                    resolve(window.tagCompleteFileCache[tagCompleteFile])
+                tagCompleteFile ||= this.tagCompleteFile
+                let res = this.getTagCompleteFileCache(tagCompleteFile)
+                if (!reload && res) {
+                    resolve(res)
                     return
                 }
 
@@ -86,7 +90,7 @@ export default {
                     const timer = setInterval(() => {
                         if (!window.tagCompleteFileLoading[tagCompleteFile]) {
                             clearInterval(timer)
-                            resolve(window.tagCompleteFileCache[tagCompleteFile])
+                            resolve(this.getTagCompleteFileCache(tagCompleteFile))
                         }
                     }, 100)
                     return
@@ -189,6 +193,9 @@ export default {
                 })
             })
         },
+        /**
+         * @returns {string}
+         */
         _translateToLocalBy(text, toLocal, useNetwork = false) {
             text = text.trim().toLowerCase()
             let _localToString = value => (value.join?.(' / ') ?? value)
@@ -234,5 +241,31 @@ export default {
             }
             return ''
         },
+        /**
+         * @returns {string}
+         */
+        _slugifyToLocal(text, en, tagCompleteFile = null) {
+            const res = this.getTagCompleteFileCache(tagCompleteFile)
+            if (res) {
+                en ??= this._toEn(text, res.toEn)
+                let value
+                if (en.length) {
+                    value = this._translateToLocalBy(en, res.toLocal)
+                    console.log('slugifyToLocal', { text, en, value })
+                    return this._iifText(value, text)
+                }
+                console.log('slugifyToLocal', { text, en })
+            }
+            return text
+        },
+        /**
+         * @param newValue string
+         * @param oldValue string
+         * @returns {string}
+         * @private
+         */
+        _iifText(newValue, oldValue) {
+            return newValue?.length ? newValue : oldValue
+        }
     }
 }

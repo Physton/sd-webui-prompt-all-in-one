@@ -1202,10 +1202,10 @@ export default {
                     if (tag.toLocal) {
                         tag.localValue = translateText
                     } else {
-                        tag.localValue = tag.value
+                        tag.localValue = this._slugifyToLocal(tag.value, translateText)
                         tag.value = translateText
                     }
-                    this._setTagById(tag.id, tag.value, tag.localValue)
+                    return this._setTagById(tag.id, tag.value, tag.localValue)
                 }
 
                 let getTranslateText = (tag) => {
@@ -1425,7 +1425,7 @@ export default {
                                 needs.push(tag)
                             } else {
                                 if (tag.splits) {
-                                    result = tag.splits.left + result.value + tag.splits.right
+                                    result.value = tag.splits.left + result.value + tag.splits.right
                                 }
                                 setLoading(tag, false)
                                 setTag(tag, result.value)
