@@ -93,8 +93,11 @@ def __slugify(keywords):
 
         threads_results = []
         def process_keywords(keywords):
-            result = ctx.call('slugifyMulti', keywords)
-            threads_results.extend(result)
+            try:
+                result = ctx.call('slugifyMulti', keywords)
+                threads_results.extend(result)
+            except Exception as e:
+                print(f'[sd-webui-prompt-all-in-one] slugify error: {e}')
 
         def process_thread(keywords):
             thread = threading.Thread(target=process_keywords, args=(keywords,))
