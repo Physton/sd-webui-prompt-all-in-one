@@ -545,7 +545,7 @@ export default {
         setTimeout(() => {
             let hasLobeTheme = false
             let hasKitchenTheme = false
-            if (localStorage.getItem("SD-LOBE-SETTING") || localStorage.getItem("SD-KITCHEN-SETTING")) {
+            if (localStorage.getItem("SD-LOBE-SETTING") || localStorage.getItem("SD-KITCHEN-SETTING") || document.querySelector('head > meta[name="application-name"]')?.content?.includes?.('Lobe')) {
                 let links = document.getElementsByTagName('link')
                 for (let i = 0; i < links.length; i++) {
                     let link = links[i]
