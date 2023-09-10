@@ -9,7 +9,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@lazy-cjk/zh-slugify": "^1.0.86",
     "autosize-input": "^1.0.2",
     "axios": "^1.4.0",
     "js-yaml": "^4.1.0",

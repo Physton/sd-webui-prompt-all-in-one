@@ -158,7 +158,6 @@ import globals from "../globals";
 import jsYaml from "js-yaml";
 import {ref} from "vue";
 import Hotkey from "@/components/hotkey.vue";
-import { slugify } from '@lazy-cjk/zh-slugify';
 import ExtraNetworksPopup from "@/components/extraNetworksPopup.vue";
 
 export default {
@@ -800,26 +799,6 @@ export default {
         },
         _handleGroupTags() {
             let data = {toEn: new Map(), toLocal: new Map()}
-            let slugifyQueue = []
-            let handleSlugifyQueue = () => {
-                if (!['zh_CN', 'zh_HK', 'zh_TW'].includes(this.languageCode)) return
-                if (slugifyQueue.length > 0) {
-                    let keywords = []
-                    slugifyQueue.forEach((item) => {
-                        keywords.push(item.local)
-                    })
-                    this.gradioAPI.slugify(keywords).then(res => {
-                        if (!res.result) return
-                        slugifyQueue.forEach((item) => {
-                            if (res.result[item.local]) {
-                                !data.toEn.has(res.result[item.local]) && data.toEn.set(res.result[item.local], item.en)
-                            }
-                        })
-                        this.groupTagsTranslateCache = data
-                        console.log('Slugify complete: _handleGroupTags')
-                    })
-                }
-            }
             let setData = (en, local) => {
                 const texts = [
                     en,
@@ -836,9 +815,6 @@ export default {
                         data.toLocal.set(t, [local])
                     }
                 })
-                // const key = slugify(local, true)
-                // !data.toEn.has(key) && data.toEn.set(key, en)
-                slugifyQueue.push({en, local})
                 data.toEn.set(local, en)
                 // console.log('setData:groupTags', local, key, en)
             }
@@ -861,8 +837,6 @@ export default {
                     }
                 })
             })
-
-            handleSlugifyQueue()
 
             this.groupTagsTranslateCache = data
         },
