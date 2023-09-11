@@ -1,0 +1,10 @@
+{
+  "name": "Hide the ExtraNetworks popup for tags",
+  "i18n": {
+    "zh_CN": "隐藏标签的ExtraNetworks弹窗",
+    "zh_HK": "隱藏標籤的ExtraNetworks彈窗",
+    "zh_TW": "隱藏標籤的ExtraNetworks彈窗"
+  },
+  "author": "physton",
+  "type": "enhance"
+}
