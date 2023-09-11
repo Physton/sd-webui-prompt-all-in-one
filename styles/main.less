@@ -2056,12 +2056,13 @@
     --ppenp-top: 0;
     --ppenp-left: 0;
     --ppenp-z-index: 999;
-    --ppenp-background: rgba(0, 0, 0, 0.8);
+    --ppenp-background: rgba(0, 0, 0, 0.95);
     --ppenp-border-radius: 6px;
     --ppenp-color: #fff;
     --ppenp-overflow: hidden;
-    --ppenp-box-shadow: 0 0 3px 0 @common-blue;
+    --ppenp-box-shadow: 0 0 4px 1px #ffffffa6;
     --ppenp-box-sizing: border-box;
+    --ppenp-border: 1px solid #ccc;
 
     // .physton-prompt-extra-networks-popup .popup-main
     --ppenp-popupMain-display: flex;
@@ -2073,35 +2074,60 @@
     --ppenp-pm-infoPreview-height: 0;
     --ppenp-pm-infoPreview-display: block;
 
+    // .physton-prompt-extra-networks-popup .popup-main .info-raws
+    --ppenp-pm-infoRaws-display: table;
+
     // .physton-prompt-extra-networks-popup .popup-main .info-raws .info-raw
-    --ppenp-pm-ir-infoRaw-display: flex;
-    --ppenp-pm-ir-infoRaw-justify-content: space-between;
-    --ppenp-pm-ir-infoRaw-align-items: flex-start;
-    --ppenp-pm-ir-infoRaw-padding: 2px 5px;
-    --ppenp-pm-ir-infoRaw-border-bottom: 1px dashed rgba(186, 186, 186, .2);
+    --ppenp-pm-ir-infoRaw-display: table-row;
+
+    // .physton-prompt-extra-networks-popup .popup-main .info-raws .info-raw .raw-name, .raw-value
+    --ppenp-pm-ir-ir-rawNameRawValue-margin: 2px;
+    --ppenp-pm-ir-ir-rawNameRawValue-padding: 2px;
+    --ppenp-pm-ir-ir-rawNameRawValue-display: table-cell;
+    --ppenp-pm-ir-ir-rawNameRawValue-border-bottom: 1px dashed rgba(186, 186, 186, .2);
 
     // .physton-prompt-extra-networks-popup .popup-main .info-raws .info-raw .raw-name
     --ppenp-pm-ir-ir-rawName-color: #fff;
     --ppenp-pm-ir-ir-rawName-white-space: nowrap;
-    --ppenp-pm-ir-ir-rawName-margin-right: 20px;
+    --ppenp-pm-ir-ir-rawName-padding-right: 10px;
     --ppenp-pm-ir-ir-rawName-font-size: 12px;
     --ppenp-pm-ir-ir-rawName-line-height: 16px;
+    --ppenp-pm-ir-ir-rawName-background: #25262b;
 
     // .physton-prompt-extra-networks-popup .popup-main .info-raws .info-raw .raw-value
-    --ppenp-pm-ir-ir-rawValue-flex: 1;
     --ppenp-pm-ir-ir-rawValue-color: #fff;
     --ppenp-pm-ir-ir-rawValue-white-space: break-spaces;
     --ppenp-pm-ir-ir-rawValue-word-break: break-all;
     --ppenp-pm-ir-ir-rawValue-width: 250px;
-    --ppenp-pm-ir-ir-rawValue-text-align: right;
+    --ppenp-pm-ir-ir-rawValue-text-align: left;
     --ppenp-pm-ir-ir-rawValue-font-size: 12px;
     --ppenp-pm-ir-ir-rawValue-line-height: 16px;
     --ppenp-pm-ir-ir-rawValue-cursor: pointer;
 
-    // .physton-prompt-extra-networks-popup .popup-main .info-raws .info-raw .description
-    --ppenp-pm-ir-ir-description-max-height: 32px;
-    --ppenp-pm-ir-ir-description-overflow: hidden;
-    --ppenp-pm-ir-ir-description-text-overflow: ellipsis;
+    // .physton-prompt-extra-networks-popup .popup-main .info-raws .info-raw .raw-description
+    --ppenp-pm-ir-ir-rawDescription-display: -webkit-box;
+    --ppenp-pm-ir-ir-rawDescription--webkit-box-orient: vertical;
+    --ppenp-pm-ir-ir-rawDescription--webkit-line-clamp: 2;
+    --ppenp-pm-ir-ir-rawDescription-max-height: 32px;
+    --ppenp-pm-ir-ir-rawDescription-overflow: hidden;
+    --ppenp-pm-ir-ir-rawDescription-text-overflow: ellipsis;
+
+    // .physton-prompt-extra-networks-popup .popup-main .info-raws .info-raw .raw-words
+    --ppenp-pm-ir-ir-rawWords-background: #0c4a68;
+    --ppenp-pm-ir-ir-rawWords-display: inline-block;
+    --ppenp-pm-ir-ir-rawWords-padding: 2px 6px;
+    --ppenp-pm-ir-ir-rawWords-border-radius: 4px;
+    --ppenp-pm-ir-ir-rawWords-margin: 2px;
+    --ppenp-pm-ir-ir-rawWords-font-size: 12px;
+    --ppenp-pm-ir-ir-rawWords-line-height: 14px;
+
+    // .physton-prompt-extra-networks-popup .popup-main .info-raws .info-raw .raw-words:hover
+    --ppenp-pm-ir-ir-rawWordsLastChild-background: #146f9b;
+
+    // .physton-prompt-extra-networks-popup .popup-main .info-raws .info-raw .raw-link
+    --ppenp-pm-ir-ir-rawLink-font-size: 12px;
+    --ppenp-pm-ir-ir-rawLink-color: #06a7f4;
+    --ppenp-pm-ir-ir-rawLink-text-decoration: underline;
 
     // .physton-prompt-extra-networks-popup .popup-main .info-btns
     --ppenp-pm-infoBtns-display: flex;
@@ -4755,6 +4781,7 @@
     overflow: var(--ppenp-overflow);
     box-shadow: var(--ppenp-box-shadow);
     box-sizing: var(--ppenp-box-sizing);
+    border: var(--ppenp-border);
 
     .popup-main {
         display: var(--ppenp-popupMain-display);
@@ -4768,24 +4795,28 @@
         }
 
         .info-raws {
+            display: var(--ppenp-pm-infoRaws-display);
 
             .info-raw {
                 display: var(--ppenp-pm-ir-infoRaw-display);
-                justify-content: var(--ppenp-pm-ir-infoRaw-justify-content);
-                align-items: var(--ppenp-pm-ir-infoRaw-align-items);
-                padding: var(--ppenp-pm-ir-infoRaw-padding);
-                border-bottom: var(--ppenp-pm-ir-infoRaw-border-bottom);
+
+                .raw-name, .raw-value {
+                    margin: var(--ppenp-pm-ir-ir-rawNameRawValue-margin);
+                    padding: var(--ppenp-pm-ir-ir-rawNameRawValue-padding);
+                    display: var(--ppenp-pm-ir-ir-rawNameRawValue-display);
+                    border-bottom: var(--ppenp-pm-ir-ir-rawNameRawValue-border-bottom);
+                }
 
                 .raw-name {
                     color: var(--ppenp-pm-ir-ir-rawName-color);
                     white-space: var(--ppenp-pm-ir-ir-rawName-white-space);
-                    margin-right: var(--ppenp-pm-ir-ir-rawName-margin-right);
+                    padding-right: var(--ppenp-pm-ir-ir-rawName-padding-right);
                     font-size: var(--ppenp-pm-ir-ir-rawName-font-size);
                     line-height: var(--ppenp-pm-ir-ir-rawName-line-height);
+                    background: var(--ppenp-pm-ir-ir-rawName-background);
                 }
 
                 .raw-value {
-                    flex: var(--ppenp-pm-ir-ir-rawValue-flex);
                     color: var(--ppenp-pm-ir-ir-rawValue-color);
                     white-space: var(--ppenp-pm-ir-ir-rawValue-white-space);
                     word-break: var(--ppenp-pm-ir-ir-rawValue-word-break);
@@ -4800,10 +4831,33 @@
                     user-select: none;
                 }
 
-                .description {
-                    max-height: var(--ppenp-pm-ir-ir-description-max-height);
-                    overflow: var(--ppenp-pm-ir-ir-description-overflow);
-                    text-overflow: var(--ppenp-pm-ir-ir-description-text-overflow);
+                .raw-description {
+                    display: var(--ppenp-pm-ir-ir-rawDescription-display);
+                    -webkit-box-orient: var(--ppenp-pm-ir-ir-rawDescription--webkit-box-orient);
+                    -webkit-line-clamp: var(--ppenp-pm-ir-ir-rawDescription--webkit-line-clamp);
+                    max-height: var(--ppenp-pm-ir-ir-rawDescription-max-height);
+                    overflow: var(--ppenp-pm-ir-ir-rawDescription-overflow);
+                    text-overflow: var(--ppenp-pm-ir-ir-rawDescription-text-overflow);
+                }
+
+                .raw-words {
+                    background: var(--ppenp-pm-ir-ir-rawWords-background);
+                    display: var(--ppenp-pm-ir-ir-rawWords-display);
+                    padding: var(--ppenp-pm-ir-ir-rawWords-padding);
+                    border-radius: var(--ppenp-pm-ir-ir-rawWords-border-radius);
+                    margin: var(--ppenp-pm-ir-ir-rawWords-margin);
+                    font-size: var(--ppenp-pm-ir-ir-rawWords-font-size);
+                    line-height: var(--ppenp-pm-ir-ir-rawWords-line-height);
+
+                    &:hover {
+                        background: var(--ppenp-pm-ir-ir-rawWordsLastChild-background);
+                    }
+                }
+
+                .raw-link {
+                    font-size: var(--ppenp-pm-ir-ir-rawLink-font-size);
+                    color: var(--ppenp-pm-ir-ir-rawLink-color);
+                    text-decoration: var(--ppenp-pm-ir-ir-rawLink-text-decoration);
                 }
             }
         }

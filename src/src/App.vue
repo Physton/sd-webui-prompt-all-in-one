@@ -773,6 +773,19 @@ export default {
                 // this.$refs.blacklist.open()
                 // this.$refs.hotkey.open()
                 // this.$refs.translateSetting.open(this.translateApi)
+                /*this.$refs.extraNetworksPopup.show({
+                    getBoundingClientRect: () => {
+                        return {
+                            top: 0,
+                            left: 0,
+                            width: 0,
+                            height: 0,
+                            bottom: 0,
+                            right: 0,
+                        }
+                    },
+                    offsetHeight: 26,
+                }, 'FGOTiamatv2')*/
                 /*this.onShowFavorite('phystonPrompt_txt2img_prompt', {
                     clientY: 150,
                     clientX: 283,

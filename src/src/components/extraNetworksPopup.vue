@@ -26,16 +26,22 @@
                 </div>
                 <div class="info-raw" v-if="data.trainedWords && data.trainedWords.length">
                     <div class="raw-name">{{ getLang('trained_words') }}</div>
-                    <div class="raw-value" @click="copy(data.trainedWords.join(', '))">{{ data.trainedWords.join(', ') }}</div>
+                    <div class="raw-value">
+                        <div class="raw-words" v-for="(value) in data.trainedWords" :key="value" @click="onUseKeywordsClick(value)">{{ value }}</div>
+                    </div>
                 </div>
                 <div class="info-raw" v-if="data.description">
                     <div class="raw-name">{{ getLang('description') }}</div>
-                    <div class="raw-value description" v-tooltip="data.description" @click="copy(data.description)">{{ data.description }}</div>
+                    <div class="raw-value" v-tooltip="data.description" @click="copy(data.description)"><div class="raw-description">{{ data.description }}</div></div>
                 </div>
-                <div class="info-btns">
+                <div class="info-raw" v-if="data.civitaiUrl">
+                    <div class="raw-name">Civitai</div>
+                    <div class="raw-value"><a :href="data.civitaiUrl" target="_blank" class="raw-link">{{ data.civitaiUrl }}</a></div>
+                </div>
+                <!--<div class="info-btns">
                     <div class="info-btn hover-scale-120" v-if="data.modelId" @click="onOpenCivitaiClick">{{ getLang('open_civitai') }}</div>
                     <div class="info-btn hover-scale-120" v-if="data.trainedWords && data.trainedWords.length" @click="onUseKeywordsClick">{{ getLang('use_keywords') }}</div>
-                </div>
+                </div>-->
             </div>
         </div>
     </div>
@@ -120,6 +126,7 @@ export default {
             this.data.trainedWords = data.civitai_info && data.civitai_info.trainedWords ? data.civitai_info.trainedWords : []
             this.data.preview = data.preview || (data.civitai_info && data.civitai_info.images && data.civitai_info.images.length ? data.civitai_info.images[0] : '')
             this.data.modelId = data.civitai_info && data.civitai_info.modelId ? data.civitai_info.modelId : ''
+            this.data.civitaiUrl = this.data.modelId ? this.getCivitaiUrl(this.data.modelId) : ''
             this.$nextTick(() => {
                 const eRect = e.getBoundingClientRect()
                 this.style.top = (eRect.top + e.offsetHeight + 4) + 'px'
@@ -172,17 +179,28 @@ export default {
                 this.$toastr.error(this.getLang('failed'))
             })
         },
+        getCivitaiUrl(modelId) {
+            return globals.civitaiUrl + '/models/' + modelId
+        },
         onOpenCivitaiClick() {
             if (!this.data.modelId) return
-            let url = globals.civitaiUrl + '/models/' + this.data.modelId
+            let url = this.getCivitaiUrl(this.data.modelId)
             window.open(url)
         },
-        onUseKeywordsClick() {
+        /*onUseKeywordsClick() {
             if (!this.data.trainedWords || !this.data.trainedWords.length) return
             if (!this.useCallback) return
             if (typeof this.useCallback !== 'function') return
             this.useCallback(this.data.trainedWords)
             this.$toastr.success(this.getLang('success'))
+        },*/
+        onUseKeywordsClick(value) {
+            if (!value) return
+            if (typeof this.useCallback !== 'function') return
+            let tags = common.splitTags(value)
+            console.log(tags)
+            this.useCallback(tags)
+            // this.$toastr.success(this.getLang('success'))
         },
     },
 }
