@@ -3,6 +3,7 @@
 from modules import script_callbacks, extra_networks, prompt_parser, shared, ui_extra_networks
 import json
 import os
+import copy
 
 filters = [
     # 'filename',
@@ -22,7 +23,8 @@ def get_extra_networks():
                 'title': extra_page.title,
                 'items': []
             }
-            for item in extra_page.list_items():
+            for oriItem in extra_page.list_items():
+                item = copy.deepcopy(oriItem)
                 # 解析metadata
                 output_name = None
                 try:
@@ -73,5 +75,6 @@ def get_extra_networks():
 
             result.append(result_item)
     except Exception as e:
+        print(f'[sd-webui-prompt-all-in-one] get_extra_networks error: {e}')
         pass
     return result
