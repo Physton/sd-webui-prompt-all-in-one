@@ -1425,7 +1425,7 @@ export default {
                                 needs.push(tag)
                             } else {
                                 if (tag.splits) {
-                                    result = tag.splits.left + result.value + tag.splits.right
+                                    result.value = tag.splits.left + result.value + tag.splits.right
                                 }
                                 setLoading(tag, false)
                                 setTag(tag, result.value)
