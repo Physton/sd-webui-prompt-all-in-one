@@ -15,7 +15,7 @@ export default {
     },
     methods: {
         loadExtraNetworks(loadI = 0) {
-            if (document.querySelectorAll("#txt2img_checkpoints_cards .card").length) {
+            if (common.gradioApp().querySelectorAll("#txt2img_checkpoints_cards .card").length) {
                 // console.log('系统ExtraNetworks已加载，开始加载ExtraNetworks')
                 return this._loadExtraNetworks()
             }
