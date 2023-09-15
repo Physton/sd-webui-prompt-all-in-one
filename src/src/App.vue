@@ -832,10 +832,12 @@ export default {
                 // console.log('setData:groupTags', local, key, en)
             }
             this.groupTags.forEach((item, index) => {
+                item.type = item.type || ''
                 item.tabKey = 'groupTags-' + index
                 item.groups.forEach((group, subIndex) => {
+                    group.type = group.type || ''
                     group.tabKey = 'subGroupTags-' + index + '-' + subIndex
-                    if (group.type && group.type == 'wrap') return
+                    if (group.type == 'wrap') return
                     let key = common.getTagsColorKey(item.name, group.name)
                     if (!this.groupTagsColor[key]) {
                         this.groupTagsColor[key] = ref(common.fitterInputColor(group.color))
@@ -1084,8 +1086,8 @@ export default {
         onUpdateHotkey(data) {
             this.hotkey = data
         },
-        onShowExtraNetworks(e, name, useCallback) {
-            this.$refs.extraNetworksPopup.show(e, name, useCallback)
+        onShowExtraNetworks(e, name, useCallback, showCheckpoints) {
+            this.$refs.extraNetworksPopup.show(e, name, useCallback, showCheckpoints)
         },
         onHideExtraNetworks() {
             this.$refs.extraNetworksPopup.hide()

@@ -83,7 +83,7 @@ export default {
     mounted() {
     },
     methods: {
-        show(e, name, useCallback) {
+        show(e, name, useCallback, showCheckpoints = false) {
             this.mouseIn = false
             this.eMouseIn = true
             this.e = e
@@ -108,6 +108,14 @@ export default {
                     for (let item of extraNetwork.items) {
                         if (item.name.toLowerCase() === name || (item.output_name && item.output_name.toLowerCase() === name)) {
                             this.type = extraNetwork.name === 'lora' ? TYPE_LORA : TYPE_LYCO
+                            data = item
+                            break
+                        }
+                    }
+                } else if (showCheckpoints && extraNetwork.name === 'checkpoints') {
+                    for (let item of extraNetwork.items) {
+                        if (item.name.toLowerCase() === name) {
+                            this.type = 'checkpoints'
                             data = item
                             break
                         }

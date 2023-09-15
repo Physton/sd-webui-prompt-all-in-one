@@ -434,51 +434,21 @@
                     </button>
                 </div>
             </div>
-            <div v-if="groupTags.length" :class="['show-group-tags', hideGroupTags ? 'hided': '']" @click="onClickHideGroupTags"
+            <div v-if="groupTagsProcessed.length" :class="['show-group-tags', hideGroupTags ? 'hided': '']" @click="onClickHideGroupTags"
                  v-tooltip="getLang(hideGroupTags ? 'show_group_tags' : 'hide_group_tags')">
                 <icon-svg class="hover-scale-120" name="unfold"/>
             </div>
             <Transition name="fade">
-                <div class="group-tabs" v-show="!hideGroupTags && groupTags.length">
+                <div class="group-tabs" v-show="!hideGroupTags && groupTagsProcessed.length">
                     <div class="group-header" ref="groupTabsHeader">
-                        <div :class="['group-tab', 'favorite' == groupTagsActive ? 'active' : '']"
-                             @click="activeGroupTab('favorite')"
-                             data-name="favorite">{{ getLang('favorite') }}</div>
-
-                        <div v-for="(item, index) in groupTags"
+                        <div v-for="(item, index) in groupTagsProcessed"
                              :key="index"
                              :class="['group-tab', item.tabKey == groupTagsActive ? 'active' : '']"
                              @click="activeGroupTab(index)"
                              :data-name="item.name">{{ item.name }}</div>
                     </div>
                     <div class="group-body">
-                        <div :class="['group-main', 'favorite' == groupTagsActive ? 'active' : '']">
-                            <div class="sub-group-header" v-if="'favorite' == groupTagsActive">
-                                <div v-for="(item) in getCurrentTypeFavorites()"
-                                     :key="item.key"
-                                     :class="['sub-group-tab', 'favorite-' + item.key == subGroupTagsActive ? 'active' : '']"
-                                     @click="activeSubGroupTab('favorite', item.key)"
-                                     :data-name="item.name">{{ getLang(item.name) }}</div>
-                            </div>
-                            <div class="sub-group-body" v-if="'favorite' == groupTagsActive">
-                                <div v-for="(item) in getCurrentTypeFavorites()"
-                                     :key="item.key"
-                                     :class="['sub-group-main', 'favorite-' + item.key == subGroupTagsActive ? 'active' : '']">
-                                    <Transition name="fade">
-                                        <div class="group-tags" v-if="'favorite-' + item.key == subGroupTagsActive">
-                                            <div class="tag-item" ref="groupTagItem" v-for="(favorite) in item.list"
-                                                v-tooltip="getGroupTagTooltip(favorite.name, favorite.prompt)"
-                                                @click="onClickGroupTagFavorite(favorite)">
-                                                <div class="tag-local">{{ favorite.name == '' ? favorite.prompt : favorite.name  }}</div>
-                                                <div class="tag-en">{{ favorite.prompt }}</div>
-                                            </div>
-                                        </div>
-                                    </Transition>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div v-for="(item, index) in groupTags" :key="index" :class="['group-main', item.tabKey == groupTagsActive ? 'active' : '']">
+                        <div v-for="(item, index) in groupTagsProcessed" :key="index" :class="['group-main', item.tabKey == groupTagsActive ? 'active' : '']">
                             <div class="sub-group-header" v-if="item.tabKey == groupTagsActive">
                                 <div v-for="(group, subIndex) in item.groups"
                                      :key="subIndex"
@@ -490,9 +460,22 @@
                                 <div v-for="(group, subIndex) in item.groups" :key="subIndex" :class="['sub-group-main', group.tabKey == subGroupTagsActive ? 'active' : '']">
                                     <Transition name="fade">
                                         <div class="group-tags" v-if="group.tabKey == subGroupTagsActive">
-                                            <div class="tag-item" ref="groupTagItem" v-for="(local, en) in group.tags"
+                                            <div v-if="group.type === 'extraNetworks'" class="group-extra-network"
+                                                 v-for="extraData in group.datas" :key="extraData.name"
+                                                 @click="onClickGroupTagExtraNetwork(extraData, item, group)"
+                                                 @mouseenter="onGroupExtraNetworkMouseEnter($event, extraData.name)"
+                                                 @mousemove="onGroupExtraNetworkMouseMove"
+                                                 @mouseleave="onGroupExtraNetworkMouseLeave"
+                                                 :style="getGroupTagExtraNetworkStyle(extraData)">
+                                                <img class="extra-network-preview" :src="extraData.preview || './file=html/card-no-preview.png'" />
+                                                <div class="extra-network-name">{{ extraData.name }}</div>
+                                                <div class="extra-network-loading" v-if="extraData.loading">
+                                                    <icon-svg name="loading"/>
+                                                </div>
+                                            </div>
+                                            <div v-else class="tag-item" ref="groupTagItem" v-for="(local, en) in group.tags"
                                                 v-tooltip="getGroupTagTooltip(local, en)"
-                                                @click="onClickGroupTag(local, en)">
+                                                @click="onClickGroupTag(local, en, item, group)">
                                                 <template v-if="local && local != en">
                                                     <div class="tag-local" :style="getGroupTagStyle(item.name, group.name, en)">{{ local }}</div>
                                                     <div class="tag-en">{{ en }}</div>
@@ -501,7 +484,7 @@
                                             </div>
                                         </div>
                                     </Transition>
-                                    <div class="tags-footer">
+                                    <div class="tags-footer" v-if="item.type !== 'favorite' && item.type !== 'extraNetworks'">
                                         <div class="tags-color">
                                             <div>{{ getLang('tags_color') }}:</div>
                                             <div class="tags-color-picker hover-scale-120"
