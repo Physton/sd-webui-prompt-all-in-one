@@ -1,5 +1,6 @@
 <template>
     <div class="physton-prompt-extra-networks-popup" ref="extraNetworks"
+         :data-from="from"
          @mouseenter.stop="onMouseEnter"
          @mousemove.stop="onMouseMove"
          @mouseleave.stop="onMouseLeave"
@@ -72,6 +73,7 @@ export default {
             name: '',
             useCallback: null,
             type: '',
+            from: 'tags',
             data: {},
             style: {},
             previewStyle: {},
@@ -83,13 +85,14 @@ export default {
     mounted() {
     },
     methods: {
-        show(e, name, useCallback, showCheckpoints = false) {
+        show(e, name, useCallback, showCheckpoints = false, from = 'tags') {
             this.mouseIn = false
             this.eMouseIn = true
             this.e = e
             this.name = name
             this.useCallback = useCallback
             this.type = ''
+            this.from = from
             this.data = {}
             this.style = {}
             this.previewStyle = {}

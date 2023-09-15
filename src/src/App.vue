@@ -53,6 +53,8 @@
                             :group-tags-color-key-cache="groupTagsColorKeyCache"
                             @update:hide-group-tags="onUpdateHideGroupTags(item.id, $event)"
                             :group-tags-translate-cache="groupTagsTranslateCache"
+                            v-model:extra-networks-width="extraNetworksWidth"
+                            v-model:extra-networks-height="extraNetworksHeight"
                             :blacklist="blacklist"
                             :cancel-blacklist-confirm="cancelBlacklistConfirm"
                             @update:blacklist="onUpdateBlacklist"
@@ -321,6 +323,8 @@ export default {
                 toEn: new Map(),
                 toLocal: new Map()
             },
+            extraNetworksWidth: 100,
+            extraNetworksHeight: 120,
 
             blacklist: {},
             cancelBlacklistConfirm: false,
@@ -523,6 +527,26 @@ export default {
             }).catch(err => {
             })
         },
+        extraNetworksWidth() {
+            if (!this.startWatchSave) return
+            if (this.extraNetworksWidthTimer) clearTimeout(this.extraNetworksWidthTimer)
+            this.extraNetworksWidthTimer = setTimeout(() => {
+                console.log('onExtraNetworksWidthChange', this.extraNetworksWidth)
+                this.gradioAPI.setData('extraNetworksWidth', this.extraNetworksWidth).then(data => {
+                }).catch(err => {
+                })
+            }, 500)
+        },
+        extraNetworksHeight() {
+            if (!this.startWatchSave) return
+            if (this.extraNetworksHeightTimer) clearTimeout(this.extraNetworksHeightTimer)
+            this.extraNetworksHeightTimer = setTimeout(() => {
+                console.log('onExtraNetworksHeightChange', this.extraNetworksHeight)
+                this.gradioAPI.setData('extraNetworksHeight', this.extraNetworksHeight).then(data => {
+                }).catch(err => {
+                })
+            }, 500)
+        },
     },
     mounted() {
         common.loadCSS('toastr.min.css', 'physton-prompt-toastr', true, true, false)
@@ -588,7 +612,7 @@ export default {
         },
         init() {
             this.loadExtraNetworks()
-            let dataListsKeys = ['languageCode', 'autoTranslate', 'autoTranslateToEnglish', 'autoTranslateToLocal', 'autoRemoveSpace', 'autoRemoveLastComma', 'autoKeepWeightZero', 'autoKeepWeightOne', 'autoBreakBeforeWrap', 'autoBreakAfterWrap', /*'hideDefaultInput', */'translateApi', 'enableTooltip', 'tagCompleteFile', 'onlyCsvOnAuto', 'extensionSelect.minimalist', 'groupTagsColor', 'groupTagsTranslate', 'blacklist', 'cancelBlacklistConfirm', 'hotkey']
+            let dataListsKeys = ['languageCode', 'autoTranslate', 'autoTranslateToEnglish', 'autoTranslateToLocal', 'autoRemoveSpace', 'autoRemoveLastComma', 'autoKeepWeightZero', 'autoKeepWeightOne', 'autoBreakBeforeWrap', 'autoBreakAfterWrap', /*'hideDefaultInput', */'translateApi', 'enableTooltip', 'tagCompleteFile', 'onlyCsvOnAuto', 'extensionSelect.minimalist', 'groupTagsColor', 'groupTagsTranslate', 'blacklist', 'cancelBlacklistConfirm', 'hotkey', 'extraNetworksWidth', 'extraNetworksHeight']
             this.prompts.forEach(item => {
                 dataListsKeys.push(item.hideDefaultInputKey)
                 dataListsKeys.push(item.hidePanelKey)
@@ -727,6 +751,14 @@ export default {
 
                 if (data.hotkey !== null) {
                     this.hotkey = data.hotkey
+                }
+
+                if (data.extraNetworksWidth !== null) {
+                    this.extraNetworksWidth = data.extraNetworksWidth
+                }
+
+                if (data.extraNetworksHeight !== null) {
+                    this.extraNetworksHeight = data.extraNetworksHeight
                 }
 
                 this.updateTranslateApiConfig()
@@ -1086,8 +1118,8 @@ export default {
         onUpdateHotkey(data) {
             this.hotkey = data
         },
-        onShowExtraNetworks(e, name, useCallback, showCheckpoints) {
-            this.$refs.extraNetworksPopup.show(e, name, useCallback, showCheckpoints)
+        onShowExtraNetworks(e, name, useCallback, showCheckpoints, from) {
+            this.$refs.extraNetworksPopup.show(e, name, useCallback, showCheckpoints, from)
         },
         onHideExtraNetworks() {
             this.$refs.extraNetworksPopup.hide()

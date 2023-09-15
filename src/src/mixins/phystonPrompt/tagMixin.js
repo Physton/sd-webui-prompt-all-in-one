@@ -250,7 +250,7 @@ export default {
             if (this.hotkey.hover === 'extend') this.showExtendId = id
             if (tag.isLora || tag.isLyco || tag.isEmbedding) {
                 let name = tag.isLora ? tag.loraName : (tag.isLyco ? tag.lycoName : tag.embeddingName)
-                this.$emit('showExtraNetworks', this.$refs['promptTagValue-' + tag.id][0], name, this.onLoraPopupUseKeywords)
+                this.$emit('showExtraNetworks', this.$refs['promptTagValue-' + tag.id][0], name, this.onLoraPopupUseKeywords, 'tags')
             }
         },
         onTagMouseMove(id) {

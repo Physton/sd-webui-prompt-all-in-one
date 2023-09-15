@@ -484,6 +484,28 @@
                                             </div>
                                         </div>
                                     </Transition>
+                                    <div class="tags-footer" v-if="item.type === 'extraNetworks'">
+                                        <div class="tags-size">
+                                            <div class="tags-size-item">
+                                                <!--<input class="size-range" type="range" min="10" max="1000" step="1"
+                                                       :value="extraNetworksWidth"
+                                                       @change="$emit('update:extraNetworksWidth', $event.target.value)"/>-->
+                                                <input class="size-number" type="number" min="10" max="1000" step="1"
+                                                       :value="extraNetworksWidth"
+                                                       @change="$emit('update:extraNetworksWidth', $event.target.value)">
+                                                <div class="size-title">{{ this.getLang('width') }}</div>
+                                            </div>
+                                            <div class="tags-size-item">
+                                                <!--<input class="size-range" type="range" min="10" max="1000" step="1"
+                                                       :value="extraNetworksHeight"
+                                                       @change="$emit('update:extraNetworksHeight', $event.target.value)"/>-->
+                                                <input class="size-number" type="number" min="10" max="1000" step="1"
+                                                       :value="extraNetworksHeight"
+                                                       @change="$emit('update:extraNetworksHeight', $event.target.value)">
+                                                <div class="size-title">{{ this.getLang('height') }}</div>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="tags-footer" v-if="item.type !== 'favorite' && item.type !== 'extraNetworks'">
                                         <div class="tags-color">
                                             <div>{{ getLang('tags_color') }}:</div>
@@ -657,6 +679,14 @@ export default {
             type: Array,
             default: () => [],
         },
+        extraNetworksWidth: {
+            type: Number,
+            default: 100,
+        },
+        extraNetworksHeight: {
+            type: Number,
+            default: 120,
+        },
         hideGroupTags: {
             type: Boolean,
             default: false,
@@ -682,7 +712,7 @@ export default {
             default: () => ({}),
         }
     },
-    emits: ['update:languageCode', 'update:autoTranslate', 'update:autoTranslateToEnglish', 'update:autoTranslateToLocal', 'update:autoRemoveSpace', 'update:autoRemoveLastComma', 'update:autoKeepWeightZero', 'update:autoKeepWeightOne', 'update:hideDefaultInput', 'update:hidePanel', 'update:enableTooltip', 'update:translateApi', 'click:translateApi', 'click:promptFormat', 'click:blacklist', 'click:hotkey', 'click:selectTheme', 'click:switchTheme', 'click:showAbout', 'click:selectLanguage', 'click:showHistory', 'click:showFavorite', 'refreshFavorites', 'click:showChatgpt', 'update:hideGroupTags', 'update:groupTagsColor', 'update:blacklist', 'showExtraNetworks', 'hideExtraNetworks'],
+    emits: ['update:languageCode', 'update:autoTranslate', 'update:autoTranslateToEnglish', 'update:autoTranslateToLocal', 'update:autoRemoveSpace', 'update:autoRemoveLastComma', 'update:autoKeepWeightZero', 'update:autoKeepWeightOne', 'update:hideDefaultInput', 'update:hidePanel', 'update:enableTooltip', 'update:translateApi', 'click:translateApi', 'click:promptFormat', 'click:blacklist', 'click:hotkey', 'click:selectTheme', 'click:switchTheme', 'click:showAbout', 'click:selectLanguage', 'click:showHistory', 'click:showFavorite', 'refreshFavorites', 'click:showChatgpt', 'update:hideGroupTags', 'update:groupTagsColor', 'update:blacklist', 'showExtraNetworks', 'hideExtraNetworks', 'update:extraNetworksWidth', 'update:extraNetworksHeight'],
     data() {
         return {
             prompt: '',

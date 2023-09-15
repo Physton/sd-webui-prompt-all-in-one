@@ -308,7 +308,10 @@ export default {
         },
         getGroupTagExtraNetworkStyle(data) {
             let indexes = this._groupTagsExtraNetworkTagsIndexes(data)
-            let style = {}
+            let style = {
+                width: this.extraNetworksWidth + 'px',
+                height: this.extraNetworksHeight + 'px',
+            }
             if (indexes.length) style['filter'] = 'grayscale(1)'
             return style
         },
@@ -344,7 +347,7 @@ export default {
             return {background: color}
         },
         onGroupExtraNetworkMouseEnter(e, name) {
-            this.$emit('showExtraNetworks', e.target, name, this.onLoraPopupUseKeywords, true)
+            this.$emit('showExtraNetworks', e.target, name, this.onLoraPopupUseKeywords, true, 'groupTags')
         },
         onGroupExtraNetworkMouseMove() {
         },
