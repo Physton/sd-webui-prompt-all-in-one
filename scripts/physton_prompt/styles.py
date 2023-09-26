@@ -9,7 +9,14 @@ styles_path = os.path.normpath(styles_path)
 
 def get_style_full_path(file):
     global styles_path
-    return os.path.join(styles_path, file)
+    path = os.path.join(styles_path, file)
+    path = os.path.abspath(path)
+    path = os.path.normpath(path)
+    if not os.path.exists(path):
+        return None
+    if styles_path not in path:
+        return None
+    return path
 
 
 def get_extension_css_list():

@@ -340,7 +340,7 @@ def on_app_started(_: gr.Blocks, app: FastAPI):
     @app.get("/physton_prompt/styles")
     async def _styles(file: str):
         file_path = get_style_full_path(file)
-        if not os.path.exists(file_path):
+        if not file_path or not os.path.exists(file_path):
             return Response(status_code=404)
         return FileResponse(file_path, filename=os.path.basename(file_path))
 
