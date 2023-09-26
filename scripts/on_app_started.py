@@ -84,7 +84,10 @@ def on_app_started(_: gr.Blocks, app: FastAPI):
 
     @app.post("/physton_prompt/install_package")
     async def _install_package(request: Request):
-        data = await request.json()
+        try:
+            data = await request.json()
+        except:
+            data = {}
         if 'name' not in data:
             return {"result": get_lang('is_required', {'0': 'name'})}
         if 'package' not in data:
