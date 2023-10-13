@@ -9,9 +9,9 @@ export default {
         }
     },
     mounted() {
-        common.gradioApp().addEventListener('mousemove', () => {
+        /*common.gradioApp().addEventListener('mousemove', () => {
             this.$refs.highlightPrompt.hide()
-        })
+        })*/
     },
     methods: {
         _setTag(tag) {
@@ -254,9 +254,9 @@ export default {
             }
         },
         onTagMouseMove(id) {
-            let tag = this.tags.find(tag => tag.id === id)
+            /*let tag = this.tags.find(tag => tag.id === id)
             if (!tag) return false
-            this.$refs.highlightPrompt.show(tag)
+            this.$refs.highlightPrompt.show(tag)*/
         },
         onTagMouseLeave(id) {
             let tag = this.tags.find(tag => tag.id === id)
