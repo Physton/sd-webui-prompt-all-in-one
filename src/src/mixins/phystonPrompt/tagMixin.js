@@ -244,6 +244,7 @@ export default {
             }
         },
         onTagMouseEnter(id) {
+            if (this.isEditing) return false
             let tag = this.tags.find(tag => tag.id === id)
             if (!tag) return false
             tag.isFavorite = this.isFavorite(tag.id)
@@ -313,6 +314,7 @@ export default {
             if (!tag) return false
             this.editing = {}
             this.editing[tag.id] = true
+            this.isEditing = true
             this.$forceUpdate()
             this.$nextTick(() => {
                 const input = this.$refs['promptTagEdit-' + tag.id][0]
@@ -335,12 +337,14 @@ export default {
             let tag = this.tags.find(tag => tag.id === id)
             if (!tag) return false
             this.editing[tag.id] = false
+            this.isEditing = false
         },
         onTagInputKeyDown(id, e) {
             if (e.keyCode === 13) {
                 let tag = this.tags.find(tag => tag.id === id)
                 if (!tag) return false
                 this.editing[tag.id] = false
+                this.isEditing = false
                 if (tag.value !== e.target.value) {
                     tag.value = e.target.value
                     this._setTag(tag)

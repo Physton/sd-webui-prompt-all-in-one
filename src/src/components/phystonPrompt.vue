@@ -327,7 +327,7 @@
                             </div>
                             <div class="btn-tag-extend"
                                  v-animate="'fadeIn'"
-                                 :style="{display: (tag.type === 'text' || !tag.type) && (showExtendId === tag.id) ? 'flex' : 'none'}"
+                                 :style="{display: (tag.type === 'text' || !tag.type) && (showExtendId === tag.id) && !this.editing[tag.id] ? 'flex' : 'none'}"
                                  @click.stop=""
                                  @mousedown.stop=""
                                  @mousemove.stop=""
@@ -723,6 +723,7 @@ export default {
             droping: false,
             loading: {},
             editing: {},
+            isEditing: false,
         }
     },
     computed: {
@@ -1136,6 +1137,7 @@ export default {
                         })
                     }
                     this.editing = {}
+                    this.isEditing = false
                     this.droping = true
                 },
                 onUnchoose: (env) => {
