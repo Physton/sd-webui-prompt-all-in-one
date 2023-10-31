@@ -99,6 +99,14 @@ export default class GradioAPI {
         return (await this.api.post("/push_favorite", {type, tags, prompt, name})).data.success
     }
 
+    async moveUpFavorite(type, id) {
+        return (await this.api.post("/move_up_favorite", {type, id})).data.success
+    }
+
+    async moveDownFavorite(type, id) {
+        return (await this.api.post("/move_down_favorite", {type, id})).data.success
+    }
+
     async getLatestHistory(type) {
         return (await this.api.get("/get_latest_history", {params: {type}})).data.history
     }

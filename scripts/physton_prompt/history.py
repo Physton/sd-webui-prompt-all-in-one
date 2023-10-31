@@ -79,6 +79,26 @@ class History:
         self.__save_favorites(type)
         return item
 
+    def move_up_favorite(self, type, id):
+        for index, favorite in enumerate(self.favorites[type]):
+            if favorite['id'] == id:
+                if index > 0:
+                    self.favorites[type].insert(index - 1, self.favorites[type].pop(index))
+                    self.__save_favorites(type)
+                    return True
+                return False
+        return False
+
+    def move_down_favorite(self, type, id):
+        for index, favorite in enumerate(self.favorites[type]):
+            if favorite['id'] == id:
+                if index < len(self.favorites[type]) - 1:
+                    self.favorites[type].insert(index + 1, self.favorites[type].pop(index))
+                    self.__save_favorites(type)
+                    return True
+                return False
+        return False
+
     def get_latest_history(self, type):
         if len(self.histories[type]) > 0:
             return self.histories[type][-1]

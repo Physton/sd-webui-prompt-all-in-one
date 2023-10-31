@@ -175,7 +175,9 @@
                 "translate_blacklist_desc": "设为禁止翻译的词，插件将不会翻译它们！",
                 "disable_translate_prompt_blacklist_list": "禁止翻译的提示词列表",
                 "width": "宽度",
-                "height": "高度"
+                "height": "高度",
+                "move_up": "上移",
+                "move_down": "下移"
             }
         },
         {
@@ -352,7 +354,9 @@
                 "translate_blacklist_desc": "設為禁止翻譯的詞，插件將不會翻譯它們！",
                 "disable_translate_prompt_blacklist_list": "禁止翻譯的提示詞列表",
                 "width": "寬度",
-                "height": "高度"
+                "height": "高度",
+                "move_up": "上移",
+                "move_down": "下移"
             }
         },
         {
@@ -529,7 +533,9 @@
                 "translate_blacklist_desc": "設為禁止翻譯的詞，插件將不會翻譯它們！",
                 "disable_translate_prompt_blacklist_list": "禁止翻譯的提示詞列表",
                 "width": "寬度",
-                "height": "高度"
+                "height": "高度",
+                "move_up": "上移",
+                "move_down": "下移"
             }
         },
         {
@@ -706,7 +712,9 @@
                 "translate_blacklist_desc": "Set as forbidden words for translation, the plugin will not translate them!",
                 "disable_translate_prompt_blacklist_list": "List of prompt words for translation disable",
                 "width": "Width",
-                "height": "Height"
+                "height": "Height",
+                "move_up": "Move Up",
+                "move_down": "Move Down"
             }
         },
         {
@@ -894,7 +902,9 @@
                 "translate_blacklist_desc": "تعيين ككلمات ممنوعة للترجمة، لن يقوم الملحق بترجمتها!",
                 "disable_translate_prompt_blacklist_list": "قائمة كلمات التذكير الممنوعة من الترجمة",
                 "width": "العرض",
-                "height": "الارتفاع"
+                "height": "الارتفاع",
+                "move_up": "الانتقال لأعلى",
+                "move_down": "الانتقال لأسفل"
             }
         },
         {
@@ -1170,7 +1180,9 @@
                 "translate_blacklist_desc": "Définir comme mots interdits pour la traduction, le plugin ne les traduira pas !",
                 "disable_translate_prompt_blacklist_list": "Liste des mots de rappel interdits de traduction",
                 "width": "Largeur",
-                "height": "Hauteur"
+                "height": "Hauteur",
+                "move_up": "Déplacer vers le haut",
+                "move_down": "Déplacer vers le bas"
             }
         },
         {
@@ -1361,7 +1373,9 @@
                 "translate_blacklist_desc": "Als verbotene Wörter für die Übersetzung festlegen, das Plugin übersetzt sie nicht!",
                 "disable_translate_prompt_blacklist_list": "Liste der deaktivierten Übersetzungsprompt-Wörter",
                 "width": "Breite",
-                "height": "Höhe"
+                "height": "Höhe",
+                "move_up": "Nach oben bewegen",
+                "move_down": "Nach unten bewegen"
             }
         },
         {
@@ -1602,7 +1616,9 @@
                 "translate_blacklist_desc": "Imposta come parole vietate per la traduzione, il plugin non le tradurrà!",
                 "disable_translate_prompt_blacklist_list": "Elenco delle parole di promemoria per la traduzione disabilitate",
                 "width": "Larghezza",
-                "height": "Altezza"
+                "height": "Altezza",
+                "move_up": "Sposta in alto",
+                "move_down": "Sposta in basso"
             }
         },
         {
@@ -1778,7 +1794,9 @@
                 "translate_blacklist_desc": "翻訳禁止ワードとして設定されています。プラグインはこれらを翻訳しません！",
                 "disable_translate_prompt_blacklist_list": "翻訳のプロンプトワードリストを無効にする",
                 "width": "幅",
-                "height": "高さ"
+                "height": "高さ",
+                "move_up": "上に移動",
+                "move_down": "下に移動"
             }
         },
         {
@@ -1979,7 +1997,9 @@
                 "translate_blacklist_desc": "번역 금지 단어로 설정되었습니다. 플러그인은 번역하지 않습니다!",
                 "disable_translate_prompt_blacklist_list": "번역 프롬프트 단어 목록 비활성화",
                 "width": "너비",
-                "height": "높이"
+                "height": "높이",
+                "move_up": "위로 이동",
+                "move_down": "아래로 이동"
             }
         },
         {
@@ -2270,7 +2290,9 @@
                 "translate_blacklist_desc": "Definir como palavras proibidas para tradução, o plugin não as traduzirá!",
                 "disable_translate_prompt_blacklist_list": "Lista de palavras de lembrete desativadas para tradução",
                 "width": "Largura",
-                "height": "Altura"
+                "height": "Altura",
+                "move_up": "Mover para cima",
+                "move_down": "Mover para baixo"
             }
         },
         {
@@ -2461,7 +2483,9 @@
                 "translate_blacklist_desc": "Установите в качестве запрещенных слов для перевода, плагин не будет их переводить!",
                 "disable_translate_prompt_blacklist_list": "Список запрещенных слов для перевода",
                 "width": "Ширина",
-                "height": "Высота"
+                "height": "Высота",
+                "move_up": "Переместить вверх",
+                "move_down": "Переместить вниз"
             }
         },
         {
@@ -2667,7 +2691,9 @@
                 "translate_blacklist_desc": "Establecer como palabras prohibidas para la traducción, el complemento no las traducirá.",
                 "disable_translate_prompt_blacklist_list": "Lista de palabras de recordatorio desactivadas para la traducción",
                 "width": "Ancho",
-                "height": "Altura"
+                "height": "Altura",
+                "move_up": "Mover hacia arriba",
+                "move_down": "Mover hacia abajo"
             }
         },
         {

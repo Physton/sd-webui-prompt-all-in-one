@@ -221,6 +221,24 @@ def on_app_started(_: gr.Blocks, app: FastAPI):
         hi.push_favorite(data['type'], data['tags'], data['prompt'], data.get('name', ''))
         return {"success": True}
 
+    @app.post("/physton_prompt/move_up_favorite")
+    async def _move_up_favorite(request: Request):
+        data = await request.json()
+        if 'type' not in data:
+            return {"success": False, "message": get_lang('is_required', {'0': 'type'})}
+        if 'id' not in data:
+            return {"success": False, "message": get_lang('is_required', {'0': 'id'})}
+        return {"success": hi.move_up_favorite(data['type'], data['id'])}
+
+    @app.post("/physton_prompt/move_down_favorite")
+    async def _move_down_favorite(request: Request):
+        data = await request.json()
+        if 'type' not in data:
+            return {"success": False, "message": get_lang('is_required', {'0': 'type'})}
+        if 'id' not in data:
+            return {"success": False, "message": get_lang('is_required', {'0': 'id'})}
+        return {"success": hi.move_down_favorite(data['type'], data['id'])}
+
     @app.get("/physton_prompt/get_latest_history")
     async def _get_latest_history(type: str):
         return {"history": hi.get_latest_history(type)}
