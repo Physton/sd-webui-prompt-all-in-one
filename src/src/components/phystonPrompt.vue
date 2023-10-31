@@ -943,6 +943,8 @@ export default {
                                 splitSymbol = ''
                             }
                         }
+                    } else if (nextIsBreak) {
+                        splitSymbol = ' '
                     }
 
                     if (tag.value === 'BREAK') {
