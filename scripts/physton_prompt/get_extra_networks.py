@@ -67,11 +67,12 @@ def get_extra_networks():
                     pass
 
                 # 过滤掉不需要的字段
-                for filter in filters:
-                    if filter in item:
-                        del item[filter]
+                newItem = {}
+                for key in item:
+                    if key not in filters:
+                        newItem[key] = item[key]
 
-                result_item['items'].append(item)
+                result_item['items'].append(newItem)
 
             result.append(result_item)
     except Exception as e:
