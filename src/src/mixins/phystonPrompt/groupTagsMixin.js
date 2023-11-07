@@ -80,63 +80,65 @@ export default {
             })
             processed.push(favoriteGroup)
 
-            let extraNetworksGroup = {
-                name: 'Extra Networks',
-                tabKey: 'extraNetworks',
-                type: 'extraNetworks',
-                groups: [],
-            }
-            this.extraNetworks.forEach(extraNetwork => {
-                // if (extraNetwork.name === 'checkpoints') return
-                let subGroup = {
-                    color: '',
-                    name: extraNetwork.title,
-                    tabKey: 'extraNetworks-' + extraNetwork.name,
+            if (!this.$appMode) {
+                let extraNetworksGroup = {
+                    name: 'Extra Networks',
+                    tabKey: 'extraNetworks',
                     type: 'extraNetworks',
-                    subType: extraNetwork.name,
-                    tags: {},
-                    datas: [],
+                    groups: [],
                 }
-                extraNetwork.items.forEach(item => {
-                    subGroup.datas.push(item)
-                })
-                extraNetworksGroup.groups.push(subGroup)
-                extraNetwork.items.forEach(item => {
-                    item.dirnameFormat = item.dirname.replaceAll('\\', '/')
-                })
-                let dirs = []
-                let splitArrays = extraNetwork.items.map(item => item.dirnameFormat.split('/'))
-                let minLength = Math.min(...splitArrays.map(item => item.length))
-                extraNetwork.items.forEach(item => {
-                    item.base_dirname = item.dirnameFormat.split('/').slice(minLength).join('/')
-                    dirs.push(item.base_dirname)
-                })
-                dirs = [...new Set(dirs)]
-                dirs = dirs.filter(item => item !== '')
-                if (dirs.length > 1) {
-                    dirs.forEach(dir => {
-                        let subDirGroup = {
-                            color: '',
-                            name: dir,
-                            tabKey: 'extraNetworks-' + extraNetwork.name + '-' + dir,
-                            type: 'extraNetworks',
-                            subType: extraNetwork.name,
-                            tags: {},
-                            datas: [],
-                        }
-                        extraNetwork.items.forEach(item => {
-                            if (item.base_dirname === dir) {
-                                subDirGroup.datas.push(item)
-                            }
-                        })
-                        extraNetworksGroup.groups.push(subDirGroup)
+                this.extraNetworks.forEach(extraNetwork => {
+                    // if (extraNetwork.name === 'checkpoints') return
+                    let subGroup = {
+                        color: '',
+                        name: extraNetwork.title,
+                        tabKey: 'extraNetworks-' + extraNetwork.name,
+                        type: 'extraNetworks',
+                        subType: extraNetwork.name,
+                        tags: {},
+                        datas: [],
+                    }
+                    extraNetwork.items.forEach(item => {
+                        subGroup.datas.push(item)
                     })
-                }
-                extraNetworksGroup.groups.push({
-                    type: 'wrap',
+                    extraNetworksGroup.groups.push(subGroup)
+                    extraNetwork.items.forEach(item => {
+                        item.dirnameFormat = item.dirname.replaceAll('\\', '/')
+                    })
+                    let dirs = []
+                    let splitArrays = extraNetwork.items.map(item => item.dirnameFormat.split('/'))
+                    let minLength = Math.min(...splitArrays.map(item => item.length))
+                    extraNetwork.items.forEach(item => {
+                        item.base_dirname = item.dirnameFormat.split('/').slice(minLength).join('/')
+                        dirs.push(item.base_dirname)
+                    })
+                    dirs = [...new Set(dirs)]
+                    dirs = dirs.filter(item => item !== '')
+                    if (dirs.length > 1) {
+                        dirs.forEach(dir => {
+                            let subDirGroup = {
+                                color: '',
+                                name: dir,
+                                tabKey: 'extraNetworks-' + extraNetwork.name + '-' + dir,
+                                type: 'extraNetworks',
+                                subType: extraNetwork.name,
+                                tags: {},
+                                datas: [],
+                            }
+                            extraNetwork.items.forEach(item => {
+                                if (item.base_dirname === dir) {
+                                    subDirGroup.datas.push(item)
+                                }
+                            })
+                            extraNetworksGroup.groups.push(subDirGroup)
+                        })
+                    }
+                    extraNetworksGroup.groups.push({
+                        type: 'wrap',
+                    })
                 })
-            })
-            processed.push(extraNetworksGroup)
+                processed.push(extraNetworksGroup)
+            }
 
             processed = processed.concat(this.groupTags)
             this.groupTagsProcessed = processed

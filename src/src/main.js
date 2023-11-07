@@ -13,6 +13,7 @@ onUiLoaded(() => {
     common.gradioApp().appendChild(div)
     const app = Vue.createApp(App)
 
+    app.config.globalProperties.$appMode   = typeof APP_MODE !== 'undefined' && APP_MODE
     app.config.globalProperties.$toastr    = toastr
     app.config.globalProperties.$copyText  = toClipboard
     app.config.globalProperties.$tippyList = []

@@ -761,6 +761,9 @@ export default {
         },
     },
     mounted() {
+        if (this.$appMode) {
+            this.counterText = ''
+        }
         this.$nextTick(() => {
             this.initSortable()
             // autoSizeInput(this.$refs.promptTagAppend)
@@ -1023,10 +1026,12 @@ export default {
             console.log('tags change', this.tags)
             this.updatePrompt()
             const steps = this.steps.querySelector('input[type="number"]').value
-            this.gradioAPI.tokenCounter(this.textarea.value, steps).then(res => {
-                const {token_count, max_length} = res
-                this.counterText = `${token_count}/${max_length}`
-            })
+            if (!this.$appMode) {
+                this.gradioAPI.tokenCounter(this.textarea.value, steps).then(res => {
+                    const {token_count, max_length} = res
+                    this.counterText = `${token_count}/${max_length}`
+                })
+            }
             if (this.tags.length) {
                 this.gradioAPI.getLatestHistory(this.historyKey).then(res => {
                     if (res && res.prompt === this.prompt) {
