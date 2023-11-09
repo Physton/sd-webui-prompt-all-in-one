@@ -20,6 +20,8 @@
                             v-model:auto-keep-weight-one="autoKeepWeightOne"
                             v-model:auto-break-before-wrap="autoBreakBeforeWrap"
                             v-model:auto-break-after-wrap="autoBreakAfterWrap"
+                            v-model:auto-remove-lora-before-comma="autoRemoveLoraBeforeComma"
+                            v-model:auto-remove-lora-after-comma="autoRemoveLoraAfterComma"
                             :hide-default-input="item.hideDefaultInput"
                             @update:hide-default-input="onUpdateHideDefaultInput(item.id, $event)"
                             :hide-panel="item.hidePanel"
@@ -84,7 +86,10 @@
                        v-model:auto-keep-weight-zero="autoKeepWeightZero"
                        v-model:auto-keep-weight-one="autoKeepWeightOne"
                        v-model:auto-break-before-wrap="autoBreakBeforeWrap"
-                       v-model:auto-break-after-wrap="autoBreakAfterWrap"></prompt-format>
+                       v-model:auto-break-after-wrap="autoBreakAfterWrap"
+                       v-model:auto-remove-lora-before-comma="autoRemoveLoraBeforeComma"
+                       v-model:auto-remove-lora-after-comma="autoRemoveLoraAfterComma"
+        ></prompt-format>
         <blacklist ref="blacklist" v-model:language-code="languageCode"
                    :translate-apis="translateApis"
                    :languages="languages"
@@ -284,6 +289,8 @@ export default {
             autoKeepWeightOne: false,
             autoBreakBeforeWrap: false,
             autoBreakAfterWrap: false,
+            autoRemoveLoraBeforeComma: false,
+            autoRemoveLoraAfterComma: false,
             // hideDefaultInput: false,
             enableTooltip: true,
             tagCompleteFile: '',
@@ -454,6 +461,26 @@ export default {
             },
             immediate: false,
         },
+        autoRemoveLoraBeforeComma: {
+            handler: function (val, oldVal) {
+                if (!this.startWatchSave) return
+                console.log('onAutoRemoveLoraBeforeCommaChange', val)
+                this.gradioAPI.setData('autoRemoveLoraBeforeComma', val).then(data => {
+                }).catch(err => {
+                })
+            },
+            immediate: false,
+        },
+        autoRemoveLoraAfterComma: {
+            handler: function (val, oldVal) {
+                if (!this.startWatchSave) return
+                console.log('onAutoRemoveLoraAfterCommaChange', val)
+                this.gradioAPI.setData('autoRemoveLoraAfterComma', val).then(data => {
+                }).catch(err => {
+                })
+            },
+            immediate: false,
+        },
         /*hideDefaultInput: {
             handler: function (val, oldVal) {
                 if (!this.startWatchSave) return
@@ -612,7 +639,7 @@ export default {
         },
         init() {
             this.loadExtraNetworks()
-            let dataListsKeys = ['languageCode', 'autoTranslate', 'autoTranslateToEnglish', 'autoTranslateToLocal', 'autoRemoveSpace', 'autoRemoveLastComma', 'autoKeepWeightZero', 'autoKeepWeightOne', 'autoBreakBeforeWrap', 'autoBreakAfterWrap', /*'hideDefaultInput', */'translateApi', 'enableTooltip', 'tagCompleteFile', 'onlyCsvOnAuto', 'extensionSelect.minimalist', 'groupTagsColor', 'groupTagsTranslate', 'blacklist', 'cancelBlacklistConfirm', 'hotkey', 'extraNetworksWidth', 'extraNetworksHeight']
+            let dataListsKeys = ['languageCode', 'autoTranslate', 'autoTranslateToEnglish', 'autoTranslateToLocal', 'autoRemoveSpace', 'autoRemoveLastComma', 'autoKeepWeightZero', 'autoKeepWeightOne', 'autoBreakBeforeWrap', 'autoBreakAfterWrap', 'autoRemoveLoraBeforeComma', 'autoRemoveLoraAfterComma', /*'hideDefaultInput', */'translateApi', 'enableTooltip', 'tagCompleteFile', 'onlyCsvOnAuto', 'extensionSelect.minimalist', 'groupTagsColor', 'groupTagsTranslate', 'blacklist', 'cancelBlacklistConfirm', 'hotkey', 'extraNetworksWidth', 'extraNetworksHeight']
             this.prompts.forEach(item => {
                 dataListsKeys.push(item.hideDefaultInputKey)
                 dataListsKeys.push(item.hidePanelKey)
@@ -687,6 +714,12 @@ export default {
                 }
                 if (data.autoBreakAfterWrap !== null) {
                     this.autoBreakAfterWrap = data.autoBreakAfterWrap
+                }
+                if (data.autoRemoveLoraBeforeComma !== null) {
+                    this.autoRemoveLoraBeforeComma = data.autoRemoveLoraBeforeComma
+                }
+                if (data.autoRemoveLoraAfterComma !== null) {
+                    this.autoRemoveLoraAfterComma = data.autoRemoveLoraAfterComma
                 }
                 /*if (data.hideDefaultInput !== null) {
                     this.hideDefaultInput = data.hideDefaultInput

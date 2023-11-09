@@ -36,6 +36,18 @@
                            @change="$emit('update:autoBreakAfterWrap', $event.target.checked)">
                     <div class="format-desc" v-html="getLang('is_break_after_wrap')"></div>
                 </div>
+                <div class="format-item">
+                    <input class="format-checkbox" type="checkbox"
+                           :checked="autoRemoveLoraBeforeComma"
+                           @change="$emit('update:autoRemoveLoraBeforeComma', $event.target.checked)">
+                    <div class="format-desc" v-html="getLang('is_remove_lora_before_comma')"></div>
+                </div>
+                <div class="format-item">
+                    <input class="format-checkbox" type="checkbox"
+                           :checked="autoRemoveLoraAfterComma"
+                           @change="$emit('update:autoRemoveLoraAfterComma', $event.target.checked)">
+                    <div class="format-desc" v-html="getLang('is_remove_lora_after_comma')"></div>
+                </div>
             </div>
         </div>
     </div>
@@ -74,13 +86,21 @@ export default {
             type: Boolean,
             default: false,
         },
+        autoRemoveLoraBeforeComma: {
+            type: Boolean,
+            default: false,
+        },
+        autoRemoveLoraAfterComma: {
+            type: Boolean,
+            default: false,
+        },
     },
     data() {
         return {
             isOpen: false,
         }
     },
-    emits: ['update:autoRemoveSpace', 'update:autoRemoveLastComma', 'update:autoKeepWeightZero', 'update:autoKeepWeightOne', 'update:autoBreakBeforeWrap', 'update:autoBreakAfterWrap'],
+    emits: ['update:autoRemoveSpace', 'update:autoRemoveLastComma', 'update:autoKeepWeightZero', 'update:autoKeepWeightOne', 'update:autoBreakBeforeWrap', 'update:autoBreakAfterWrap', 'update:autoRemoveLoraBeforeComma', 'update:autoRemoveLoraAfterComma'],
     computed: {},
     mounted() {
     },
