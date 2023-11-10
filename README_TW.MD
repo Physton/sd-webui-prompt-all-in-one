@@ -26,7 +26,7 @@ sd-webui-prompt-all-in-one 是一個基於 [stable-diffusion-webui](https://gith
 
 ----
 
-**⭐️⭐️⭐️ 本專案已開發獨立運行版本，不依賴 stable-diffusion-webui 既可運行。輕巧小巧，專注於提示詞的編輯和整理。前往 [Physton/sd-webui-prompt-all-in-one-app](https://github.com/Physton/sd-webui-prompt-all-in-one-app) 查看使用教程。**
+**📢📢📢 本專案已開發獨立運行版本，不依賴 stable-diffusion-webui 既可運行。輕巧小巧，專注於提示詞的編輯和整理。前往 [Physton/sd-webui-prompt-all-in-one-app](https://github.com/Physton/sd-webui-prompt-all-in-one-app) 查看使用教程。**
 
 ----
 

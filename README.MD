@@ -26,7 +26,7 @@ sd-webui-prompt-all-in-one is an extension based on [stable-diffusion-webui](htt
 
 ----
 
-**⭐️⭐️⭐️ This project has developed an independent standalone version that can run without relying on stable-diffusion-webui. It is lightweight and compact, focusing on editing and organizing prompt words. Visit [Physton/sd-webui-prompt-all-in-one-app](https://github.com/Physton/sd-webui-prompt-all-in-one-app) for the tutorial on how to use it.**
+**📢📢📢 This project has developed an independent standalone version that can run without relying on stable-diffusion-webui. It is lightweight and compact, focusing on editing and organizing prompt words. Visit [Physton/sd-webui-prompt-all-in-one-app](https://github.com/Physton/sd-webui-prompt-all-in-one-app) for the tutorial on how to use it.**
 
 ----
 
