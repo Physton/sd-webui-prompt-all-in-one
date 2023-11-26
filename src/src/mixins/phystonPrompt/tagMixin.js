@@ -23,7 +23,7 @@ export default {
                 tag.weightNum = common.getTagWeightNum(tag.value)
                 // tag.weightNum = tag.weightNum <= 0 ? 1 : tag.weightNum
                 // tag.weightNum = tag.weightNum === 0 ? 1 : tag.weightNum
-                tag.incWeight = common.getTagIncWeight(tag.value)
+                tag.incWeight = common.getTagIncWeight(tag.value, this.useNovelAiWeightSymbol)
                 tag.decWeight = common.getTagDecWeight(tag.value)
                 // const bracket = common.hasBrackets(tag.value)
 
@@ -32,7 +32,7 @@ export default {
                     // tag.weightNum = tag.weightNum <= 0 ? 1 : tag.weightNum
                     let value = tag.value
                     const bracket = common.hasBrackets(value)
-                    if ((bracket[0] === '(' && bracket[1] === ')') || (bracket[0] === '[' && bracket[1] === ']')) {
+                    if ((bracket[0] === '(' && bracket[1] === ')') || (bracket[0] === '[' && bracket[1] === ']') || (this.useNovelAiWeightSymbol && bracket[0] === '{' && bracket[1] === '}')) {
                         // 移除括号
                         value = common.setLayers(value, 0, bracket[0], bracket[1])
                         // 移除权重数
@@ -198,11 +198,19 @@ export default {
             } else {
                 value = common.escapeHtml(value)
                 if (tag.incWeight > 0) {
-                    value = common.setLayers(value, 0, '(', ')')
-                    value = '<div class="character">' + value + '</div>'
-                    let start = '<div class="weight-character">' + '('.repeat(tag.incWeight) + '</div>'
-                    let end = '<div class="weight-character">' + ')'.repeat(tag.incWeight) + '</div>'
-                    value = start + value + end
+                    if (this.useNovelAiWeightSymbol) {
+                        value = common.setLayers(value, 0, '{', '}')
+                        value = '<div class="character">' + value + '</div>'
+                        let start = '<div class="weight-character">' + '{'.repeat(tag.incWeight) + '</div>'
+                        let end = '<div class="weight-character">' + '}'.repeat(tag.incWeight) + '</div>'
+                        value = start + value + end
+                    } else {
+                        value = common.setLayers(value, 0, '(', ')')
+                        value = '<div class="character">' + value + '</div>'
+                        let start = '<div class="weight-character">' + '('.repeat(tag.incWeight) + '</div>'
+                        let end = '<div class="weight-character">' + ')'.repeat(tag.incWeight) + '</div>'
+                        value = start + value + end
+                    }
                 } else if (tag.decWeight > 0) {
                     value = common.setLayers(value, 0, '[', ']')
                     value = '<div class="character">' + value + '</div>'
@@ -372,7 +380,7 @@ export default {
                 if (weightNum === 1 && !this.autoKeepWeightOne) {
                     // 如果权重数是1，那么就去掉权重数
                     const bracket = common.hasBrackets(value)
-                    if (bracket[0] === '(' && bracket[1] === ')') {
+                    if (bracket[0] === '(' && bracket[1] === ')' || (this.useNovelAiWeightSymbol && bracket[0] === '{' && bracket[1] === '}')) {
                         // 移除括号
                         value = common.setLayers(value, 0, bracket[0], bracket[1])
                         if (localValue !== '') localValue = common.setLayers(localValue, 0, bracket[0], bracket[1])
@@ -397,8 +405,13 @@ export default {
                     }
                     // 如果原来没有括号() [] {} <>，那么就加上括号
                     if (!common.hasBrackets(value)) {
-                        value = common.setLayers(value, 1, '(', ')')
-                        if (localValue !== '') localValue = common.setLayers(localValue, 1, '(', ')')
+                        if (this.useNovelAiWeightSymbol) {
+                            value = common.setLayers(value, 1, '{', '}')
+                            if (localValue !== '') localValue = common.setLayers(localValue, 1, '{', '}')
+                        } else {
+                            value = common.setLayers(value, 1, '(', ')')
+                            if (localValue !== '') localValue = common.setLayers(localValue, 1, '(', ')')
+                        }
                     }
                 }
                 if (value !== tag.value) {
@@ -462,13 +475,22 @@ export default {
             let localValue = tag.localValue
             value = common.setLayers(value, 0, '[', ']')
             if (localValue !== '') localValue = common.setLayers(localValue, 0, '[', ']')
+            if (this.useNovelAiWeightSymbol) {
+                value = common.setLayers(value, 0, '(', ')')
+                if (localValue !== '') localValue = common.setLayers(localValue, 0, '(', ')')
+            }
             let incWeight = tag.incWeight
             incWeight += num
             if (incWeight < 0) incWeight = 0
             tag.incWeight = incWeight
             tag.decWeight = 0
-            value = common.setLayers(value, incWeight, '(', ')')
-            if (localValue !== '') localValue = common.setLayers(localValue, incWeight, '(', ')')
+            if (this.useNovelAiWeightSymbol) {
+                value = common.setLayers(value, incWeight, '{', '}')
+                if (localValue !== '') localValue = common.setLayers(localValue, incWeight, '{', '}')
+            } else {
+                value = common.setLayers(value, incWeight, '(', ')')
+                if (localValue !== '') localValue = common.setLayers(localValue, incWeight, '(', ')')
+            }
             tag.value = value
             if (localValue !== '') tag.localValue = localValue
             this.updateTags()
@@ -480,6 +502,10 @@ export default {
             let localValue = tag.localValue
             value = common.setLayers(value, 0, '(', ')')
             if (localValue !== '') localValue = common.setLayers(localValue, 0, '(', ')')
+            if (this.useNovelAiWeightSymbol) {
+                value = common.setLayers(value, 0, '{', '}')
+                if (localValue !== '') localValue = common.setLayers(localValue, 0, '{', '}')
+            }
             let decWeight = tag.decWeight
             decWeight += num
             if (decWeight < 0) decWeight = 0

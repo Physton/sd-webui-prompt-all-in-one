@@ -128,6 +128,10 @@ export default (tags, autoBreakBeforeWrap = false, autoBreakAfterWrap = false) =
             result2.push(value)
             continue
         }
+        if (start === '{' && end === '}') {
+            result2.push(value)
+            continue
+        }
 
         // aaa <lora:KuutanKoihime:0.7>  <lora:add_detail:0.6><lora:clothesTransparent_v20:1:1,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0>, [<lora:A:1>:<lora:B:1>:10], [lora:A:1::10], [<lora:A:1>:10], [<lora:A:1>:0.5], [[<lora:A:1>::25]:10], [<lora:A:1> #increment:10], [<lora:A:1> #decrease:10], [<lora:A:1> #cmd\(warmup\(0.5\)\):10]
         let regex = /\<lora:[^\>]+\>/

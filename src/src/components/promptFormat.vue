@@ -48,6 +48,12 @@
                            @change="$emit('update:autoRemoveLoraAfterComma', $event.target.checked)">
                     <div class="format-desc" v-html="getLang('is_remove_lora_after_comma')"></div>
                 </div>
+                <div class="format-item">
+                    <input class="format-checkbox" type="checkbox"
+                           :checked="useNovelAiWeightSymbol"
+                           @change="$emit('update:useNovelAiWeightSymbol', $event.target.checked)">
+                    <div class="format-desc" v-html="getLang('is_use_novel_ai_weight_symbol')"></div>
+                </div>
             </div>
         </div>
     </div>
@@ -94,13 +100,17 @@ export default {
             type: Boolean,
             default: false,
         },
+        useNovelAiWeightSymbol: {
+            type: Boolean,
+            default: false,
+        },
     },
     data() {
         return {
             isOpen: false,
         }
     },
-    emits: ['update:autoRemoveSpace', 'update:autoRemoveLastComma', 'update:autoKeepWeightZero', 'update:autoKeepWeightOne', 'update:autoBreakBeforeWrap', 'update:autoBreakAfterWrap', 'update:autoRemoveLoraBeforeComma', 'update:autoRemoveLoraAfterComma'],
+    emits: ['update:autoRemoveSpace', 'update:autoRemoveLastComma', 'update:autoKeepWeightZero', 'update:autoKeepWeightOne', 'update:autoBreakBeforeWrap', 'update:autoBreakAfterWrap', 'update:autoRemoveLoraBeforeComma', 'update:autoRemoveLoraAfterComma', 'update:useNovelAiWeightSymbol'],
     computed: {},
     mounted() {
     },

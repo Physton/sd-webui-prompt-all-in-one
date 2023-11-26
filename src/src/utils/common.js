@@ -310,10 +310,15 @@ export default {
     /**
      * 获取标签的加权数
      * @param tag {string}
+     * @param useNovelAiWeightSymbol {boolean}
      * @returns {number}
      */
-    getTagIncWeight(tag) {
-        return this.countLayers(tag, '(', ')')
+    getTagIncWeight(tag, useNovelAiWeightSymbol = false) {
+        if (useNovelAiWeightSymbol) {
+            return this.countLayers(tag, '{', '}')
+        } else {
+            return this.countLayers(tag, '(', ')')
+        }
     },
 
     /**

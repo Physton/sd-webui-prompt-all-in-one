@@ -339,11 +339,11 @@
                                                   @update:model-value="onTagWeightNumChange(tag.id, $event)"></vue-number-input>
                                 <button type="button" name="weight-parentheses-inc" v-tooltip="getLang('increase_weight_add_parentheses')"
                                         @click="onIncWeightClick(tag.id, +1)">
-                                    <icon-svg name="weight-parentheses-inc"/>
+                                    <icon-svg :name="useNovelAiWeightSymbol ? 'weight-braces-inc' : 'weight-parentheses-inc'"/>
                                 </button>
                                 <button type="button" name="weight-parentheses-dec" v-tooltip="getLang('increase_weight_subtract_parentheses')"
                                         @click="onIncWeightClick(tag.id, -1)">
-                                    <icon-svg name="weight-parentheses-dec"/>
+                                    <icon-svg :name="useNovelAiWeightSymbol ? 'weight-braces-dec' : 'weight-parentheses-dec'"/>
                                 </button>
                                 <button type="button" name="weight-brackets-inc" v-tooltip="getLang('decrease_weight_add_brackets')"
                                         @click="onDecWeightClick(tag.id, +1)">
@@ -628,6 +628,10 @@ export default {
             default: false,
         },
         autoRemoveLoraAfterComma: {
+            type: Boolean,
+            default: false,
+        },
+        useNovelAiWeightSymbol: {
             type: Boolean,
             default: false,
         },
