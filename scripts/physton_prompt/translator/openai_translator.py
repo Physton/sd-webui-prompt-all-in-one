@@ -14,6 +14,7 @@ class OpenaiTranslator(BaseTranslator):
             else:
                 return ''
         import openai
+        from distutils.version import LooseVersion
         openai.api_base = self.api_config.get('api_base', 'https://api.openai.com/v1')
         openai.api_key = self.api_config.get('api_key', '')
         model = self.api_config.get('model', 'gpt-3.5-turbo')
@@ -36,7 +37,15 @@ class OpenaiTranslator(BaseTranslator):
                 "content": f"You are a translator assistant. Please translate the following JSON data {self.to_lang}. Preserve the original format. Only return the translation result, without any additional content or annotations. If the prompt word is in the target language, please send it to me unchanged:\n{body_str}"
             },
         ]
-        completion = openai.ChatCompletion.create(model=model, messages=messages, timeout=60)
+        if LooseVersion(openai.__version__) < LooseVersion('1.0.0'):
+            completion = openai.ChatCompletion.create(model=model, messages=messages, timeout=60)
+        else:
+            from openai import OpenAI
+            client = OpenAI(
+                base_url=openai.api_base,
+                api_key=openai.api_key,
+            )
+            completion = client.chat.completions.create(model=model, messages=messages, timeout=60)
         if len(completion.choices) == 0:
             raise Exception(get_lang('no_response_from', {'0': 'OpenAI'}))
         content = completion.choices[0].message.content
