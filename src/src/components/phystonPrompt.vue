@@ -635,6 +635,10 @@ export default {
             type: Boolean,
             default: false,
         },
+        autoRemoveBeforeLineComma: {
+            type: Boolean,
+            default: false,
+        },
         hideDefaultInput: {
             type: Boolean,
             default: false,
@@ -957,12 +961,16 @@ export default {
                     if (nextIsWarp) {
                         // 如果下一个是换行
 
-                        // sd-webui-regional-prompter
-                        const regionals = [' BREAK', ' ADDCOL', ' ADDROW', ' ADDCOMM', ' ADDBASE']
-                        for (const regional of regionals) {
-                            if (tag.value.endsWith(regional)) {
-                                // 如果是sd-webui-regional-prompter，那么就不需要加逗号
-                                splitSymbol = ''
+                        if (this.autoRemoveBeforeLineComma) {
+                            splitSymbol = ''
+                        } else {
+                            // sd-webui-regional-prompter
+                            const regionals = [' BREAK', ' ADDCOL', ' ADDROW', ' ADDCOMM', ' ADDBASE']
+                            for (const regional of regionals) {
+                                if (tag.value.endsWith(regional)) {
+                                    // 如果是sd-webui-regional-prompter，那么就不需要加逗号
+                                    splitSymbol = ''
+                                }
                             }
                         }
                     } else if (nextIsBreak) {

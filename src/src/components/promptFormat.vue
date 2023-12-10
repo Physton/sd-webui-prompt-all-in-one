@@ -54,6 +54,12 @@
                            @change="$emit('update:useNovelAiWeightSymbol', $event.target.checked)">
                     <div class="format-desc" v-html="getLang('is_use_novel_ai_weight_symbol')"></div>
                 </div>
+                <div class="format-item">
+                    <input class="format-checkbox" type="checkbox"
+                           :checked="autoRemoveBeforeLineComma"
+                           @change="$emit('update:autoRemoveBeforeLineComma', $event.target.checked)">
+                    <div class="format-desc" v-html="getLang('is_remove_before_line_comma')"></div>
+                </div>
             </div>
         </div>
     </div>
@@ -104,13 +110,17 @@ export default {
             type: Boolean,
             default: false,
         },
+        autoRemoveBeforeLineComma: {
+            type: Boolean,
+            default: false,
+        },
     },
     data() {
         return {
             isOpen: false,
         }
     },
-    emits: ['update:autoRemoveSpace', 'update:autoRemoveLastComma', 'update:autoKeepWeightZero', 'update:autoKeepWeightOne', 'update:autoBreakBeforeWrap', 'update:autoBreakAfterWrap', 'update:autoRemoveLoraBeforeComma', 'update:autoRemoveLoraAfterComma', 'update:useNovelAiWeightSymbol'],
+    emits: ['update:autoRemoveSpace', 'update:autoRemoveLastComma', 'update:autoKeepWeightZero', 'update:autoKeepWeightOne', 'update:autoBreakBeforeWrap', 'update:autoBreakAfterWrap', 'update:autoRemoveLoraBeforeComma', 'update:autoRemoveLoraAfterComma', 'update:useNovelAiWeightSymbol', 'update:autoRemoveBeforeLineComma'],
     computed: {},
     mounted() {
     },

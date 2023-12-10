@@ -23,6 +23,7 @@
                             v-model:auto-remove-lora-before-comma="autoRemoveLoraBeforeComma"
                             v-model:auto-remove-lora-after-comma="autoRemoveLoraAfterComma"
                             v-model:use-novel-ai-weight-symbol="useNovelAiWeightSymbol"
+                            v-model:auto-remove-before-line-comma="autoRemoveBeforeLineComma"
                             :hide-default-input="item.hideDefaultInput"
                             @update:hide-default-input="onUpdateHideDefaultInput(item.id, $event)"
                             :hide-panel="item.hidePanel"
@@ -91,6 +92,7 @@
                        v-model:auto-remove-lora-before-comma="autoRemoveLoraBeforeComma"
                        v-model:auto-remove-lora-after-comma="autoRemoveLoraAfterComma"
                        v-model:use-novel-ai-weight-symbol="useNovelAiWeightSymbol"
+                       v-model:auto-remove-before-line-comma="autoRemoveBeforeLineComma"
         ></prompt-format>
         <blacklist ref="blacklist" v-model:language-code="languageCode"
                    :translate-apis="translateApis"
@@ -294,6 +296,7 @@ export default {
             autoRemoveLoraBeforeComma: false,
             autoRemoveLoraAfterComma: false,
             useNovelAiWeightSymbol: false,
+            autoRemoveBeforeLineComma: false,
             // hideDefaultInput: false,
             enableTooltip: true,
             tagCompleteFile: '',
@@ -494,6 +497,15 @@ export default {
             },
             immediate: false,
         },
+        autoRemoveBeforeLineComma: {
+            handler: function (val, oldVal) {
+                if (!this.startWatchSave) return
+                console.log('onAutoRemoveBeforeLineCommaChange', val)
+                this.gradioAPI.setData('autoRemoveBeforeLineComma', val).then(data => {
+                }).catch(err => {
+                })
+            }
+        },
         /*hideDefaultInput: {
             handler: function (val, oldVal) {
                 if (!this.startWatchSave) return
@@ -652,7 +664,7 @@ export default {
         },
         init() {
             this.loadExtraNetworks()
-            let dataListsKeys = ['languageCode', 'autoTranslate', 'autoTranslateToEnglish', 'autoTranslateToLocal', 'autoRemoveSpace', 'autoRemoveLastComma', 'autoKeepWeightZero', 'autoKeepWeightOne', 'autoBreakBeforeWrap', 'autoBreakAfterWrap', 'autoRemoveLoraBeforeComma', 'autoRemoveLoraAfterComma', 'useNovelAiWeightSymbol', /*'hideDefaultInput', */'translateApi', 'enableTooltip', 'tagCompleteFile', 'onlyCsvOnAuto', 'extensionSelect.minimalist', 'groupTagsColor', 'groupTagsTranslate', 'blacklist', 'cancelBlacklistConfirm', 'hotkey', 'extraNetworksWidth', 'extraNetworksHeight']
+            let dataListsKeys = ['languageCode', 'autoTranslate', 'autoTranslateToEnglish', 'autoTranslateToLocal', 'autoRemoveSpace', 'autoRemoveLastComma', 'autoKeepWeightZero', 'autoKeepWeightOne', 'autoBreakBeforeWrap', 'autoBreakAfterWrap', 'autoRemoveLoraBeforeComma', 'autoRemoveLoraAfterComma', 'useNovelAiWeightSymbol', 'autoRemoveBeforeLineComma', /*'hideDefaultInput', */'translateApi', 'enableTooltip', 'tagCompleteFile', 'onlyCsvOnAuto', 'extensionSelect.minimalist', 'groupTagsColor', 'groupTagsTranslate', 'blacklist', 'cancelBlacklistConfirm', 'hotkey', 'extraNetworksWidth', 'extraNetworksHeight']
             this.prompts.forEach(item => {
                 dataListsKeys.push(item.hideDefaultInputKey)
                 dataListsKeys.push(item.hidePanelKey)
@@ -736,6 +748,9 @@ export default {
                 }
                 if (data.useNovelAiWeightSymbol !== null) {
                     this.useNovelAiWeightSymbol = data.useNovelAiWeightSymbol
+                }
+                if (data.autoRemoveBeforeLineComma !== null) {
+                    this.autoRemoveBeforeLineComma = data.autoRemoveBeforeLineComma
                 }
                 /*if (data.hideDefaultInput !== null) {
                     this.hideDefaultInput = data.hideDefaultInput
