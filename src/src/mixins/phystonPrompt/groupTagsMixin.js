@@ -105,17 +105,19 @@ export default {
                     extraNetwork.items.forEach(item => {
                         item.dirnameFormat = item.dirname.replaceAll('\\', '/')
                     })
-                    let dirs = []
-                    let splitArrays = extraNetwork.items.map(item => item.dirnameFormat.split('/'))
-                    let minLength = Math.min(...splitArrays.map(item => item.length))
+                    let prefixPath = common.getSamePrefixPath([...new Set(extraNetwork.items.map(item => item.dirnameFormat))])
+                    let baseDirs = []
                     extraNetwork.items.forEach(item => {
-                        item.base_dirname = item.dirnameFormat.split('/').slice(minLength).join('/')
-                        dirs.push(item.base_dirname)
+                        let baseDirname = item.dirnameFormat.replace(prefixPath, '')
+                        if (baseDirname === '') baseDirname = '@root'
+                        baseDirname = baseDirname.replace(/^\//, '')
+                        baseDirs.push(baseDirname)
+                        item.base_dirname = baseDirname
                     })
-                    dirs = [...new Set(dirs)]
-                    dirs = dirs.filter(item => item !== '')
-                    if (dirs.length > 1) {
-                        dirs.forEach(dir => {
+                    baseDirs = [...new Set(baseDirs)]
+
+                    if (baseDirs.length > 1) {
+                        baseDirs.forEach(dir => {
                             let subDirGroup = {
                                 color: '',
                                 name: dir,

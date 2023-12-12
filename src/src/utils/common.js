@@ -632,4 +632,17 @@ export default {
     getTagsColorKey(groupName, subGroupName) {
         return groupName + '||' + subGroupName
     },
+
+    getSamePrefixPath(arr)  {
+        if (arr.length <= 0) return ''
+        const arr1 = arr.map(item => item.split("/"));
+        const arr2 = arr1[0];
+        const arr3 = arr1.slice(1);
+        const result = arr2.filter((item, index) => {
+            return arr3.every(item2 => {
+                return item2[index] === item;
+            });
+        });
+        return result.join("/");
+    }
 }
