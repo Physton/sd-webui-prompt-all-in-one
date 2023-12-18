@@ -845,7 +845,8 @@ export default {
                 this.$nextTick(() => {
                     this.prompts.forEach(item => {
                         const $prompt = common.gradioApp().querySelector("#" + item.id)
-                        item.$prompt.parentElement.parentElement.parentElement.appendChild($prompt)
+                        console.log($prompt);
+                        item.$prompt.parentElement.parentElement.after($prompt)
                         item.$prompt.parentElement.parentElement.style.display = item.hideDefaultInput ? 'none' : 'flex'
                         // item.$textarea.parentNode.appendChild($prompt)
                     })
