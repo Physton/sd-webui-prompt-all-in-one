@@ -1,0 +1,10 @@
+{
+  "name": "Remove the \"Show/Hide default input box\" checkbox",
+  "i18n": {
+    "zh_CN": "去除“显示/隐藏默认输入框”勾选框",
+    "zh_HK": "去除“顯示/隱藏預設輸入框”勾選框",
+    "zh_TW": "去除“顯示/隱藏預設輸入框”勾選框"
+  },
+  "author": "Physton",
+  "type": "enhance"
+}
