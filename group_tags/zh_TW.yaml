@@ -295,20 +295,20 @@
         twin braids: 雙辮子
         medium hair: 中髮
         very long hair: 超長髮
-        braided bangs: 辮子劉海
-        swept bangs: 側掃劉海
+        braided bangs: 辮子瀏海
+        swept bangs: 側掃瀏海
         hair between eyes: 眼間頭髮
         bob cut: 妹妹頭
         hime cut: 公主頭
-        crossed bangs: 交叉劉海
-        bangs: 劉海
-        blunt bangs: 齊劉海
-        air bangs: 空氣劉海
+        crossed bangs: 交叉瀏海
+        bangs: 瀏海
+        blunt bangs: 齊瀏海
+        air bangs: 空氣瀏海
         hair wings: 翼狀頭髮
-        long bangs: 長劉海
-        side_blunt_bangs: 側面空氣劉海
-        centre parting bangs: 中分劉海
-        asymmetric bangs: 不對稱劉海
+        long bangs: 長瀏海
+        side_blunt_bangs: 側面空氣瀏海
+        centre parting bangs: 中分瀏海
+        asymmetric bangs: 不對稱瀏海
         disheveled hair: 蓬鬆
         wavy hair: 波浪形頭髮
         hair in takes: 收攏
@@ -321,7 +321,7 @@
         hair bun: 包子頭
         double bun: 兩個包子頭
         messy hair: 凌亂髮型
-        hair_flaps: 發翼
+        hair_flaps: 髮翼
 
     - name: 面部
       color: rgba(255, 123, 2, .4)
@@ -857,7 +857,7 @@
         byzantine_fashion: 拜占庭風格
         Tropical: 熱帶特徵的
         indian_style: 印度風格
-        Ao_Dai: 越南校服（奧黛）
+        Ao_Dai: 越南服裝（奧黛）
         ainu_clothes: 阿伊努人的服飾
         arabian_clothes: 阿拉伯服飾
         egyptian_clothes: 埃及風格服飾
@@ -941,7 +941,7 @@
         sailor_bikini: 水手服款比基尼
         shell_bikini: 貝殼比基尼
         sports_bikini: 運動比基尼
-        string_bikini: 系繩比基尼
+        string_bikini: 繫繩比基尼
         strapless_bikini: 無肩帶比基尼
         side-tie_bikini: 細帶款比基尼
         front-tie_bikini_top: 前系帶比基尼上衣
@@ -1407,8 +1407,8 @@
         white_thighhighs: 白色長筒襪
         black_thighhighs: 黑色長筒襪
         pink_thighhighs: 粉色長筒襪
-        suspenders: 吊帶襪
-        garter_straps: 腰帶(吊帶襪的)
+        suspenders: 吊褲帶
+        garter_straps: 腰帶(吊襪帶的)
         torn_legwear: 破損的褲襪
         torn_thighhighs: 損壞了的長筒襪
         see-through_legwear_: 透明的襪子
@@ -1447,7 +1447,7 @@
       tags:
         garters: 襪帶
         leg_garter: 腿環｜襪帶
-        garter_straps: 吊帶襪的吊帶
+        garter_straps: 吊襪帶的吊帶
         thigh_strap: 大腿綁帶
         thigh_ribbon: 大腿緞帶
         leg_ribbon: 腿鍛帶
@@ -1626,7 +1626,7 @@
         platform_footwear: 厚底鞋
         high_heels: 高跟鞋
         stiletto_heels: 細跟高跟鞋
-        strappy_heels: 帶束帶的高跟鞋
+        strappy_heels: 綁帶高跟鞋
         platform_heels_: 厚底高跟鞋
         rudder_footwear: 艦C艦娘專用鞋
         sandals: 涼鞋
@@ -1641,7 +1641,7 @@
         anklet: 腳環
         shackles: 鐐銬
         brown_footwear: 棕色鞋類
-        cross-laced_footwear: 交叉系帶鞋
+        cross-laced_footwear: 交叉繫帶鞋
         loafers: 樂福鞋
         mary_janes: 珍妮鞋
         mismatched_footwear: 雙色鞋子
@@ -2507,7 +2507,7 @@
         splashing: 飛濺
         standing_on_liquid: 站在水上或液體上
         standing_on_one_leg: 單腿站立
-        standing_split: 站立劈叉|站立高抬腿
+        standing_split: 站立劈腿|站立高抬腿
         steepled_fingers: 指尖抵著指間
         strangling: 絞首
         sweeping: 打掃
@@ -2519,7 +2519,7 @@
         talking_on_phone: 打電話
         teasing: 戲弄
         thinking: 思考
-        tickling: 挠癢癢
+        tickling: 撓癢癢
         toilet_use: 上廁所
         tossing_: 投擲
         tripping: 被絆倒
@@ -2593,10 +2593,10 @@
         double_fox_shadow_puppet: b
         finger_gun: 手指槍手勢
         v: 勝利手勢
-        double_v: 雙_v
+        double_v: 兩手勝利手勢
         thumbs_up: 翹大拇指
         index_finger_raised: 食指抬起
-        middle_finger: 國際友好手勢
+        middle_finger: 國際友好手勢|伸中指
         grimace: 做鬼臉
         eyelid_pull: 做鬼臉
         fingersmile: 用手指做出笑臉
@@ -2611,7 +2611,7 @@
         shading_eyes: 遮陽手勢
         finger_biting: 咬手指
         finger_in_mouth: 吮吸手指
-        fingering_through_clothes: 手指
+        fingering_through_clothes: 隔着衣物指交
         fingers_together: 手指並攏
         hair_twirling: 手指捲著頭髮
         hands_clasped: 雙手手指交叉|雙手緊握
@@ -2850,12 +2850,12 @@
     - name: 腿部動作
       color: rgba(241, 229, 140, .4)
       tags:
-        legs_up: 抬一隻腿
+        legs_up: 抬一條腿
         spread legs: 張腿
         legs_together: 兩腿並攏
         crossed_legs: 二郎腿
-        m_legs: M字擺腿
-        standing_split,_leg_up: M字擺腿
+        m_legs: M字開腳
+        standing_split,_leg_up: 站立抬腿
         curtsy: 屈膝禮（女僕行禮）
         hand_between_legs: 雙腿之間的手
         open_stance: 稍息
@@ -2935,7 +2935,7 @@
         ankle_wrap: 腳踝套
         crossed_ankles: 交叉腳踝
         pince-nez: 夾鼻眼鏡|無腳眼鏡
-        folded: 舉腿露陰
+        folded: 二郎腿|雙腿交叉
         thick_thighs: 肉腿
         thigh_holster: 腿上繫著帶子或工具包或槍套
 
@@ -2951,7 +2951,7 @@
         feeding: 餵食
         finger_in_another's_mouth: 口內指交
         fingering: 指交
-        french_kiss: 法國之吻
+        french_kiss: 法式接吻
         giving: 遞|贈送
         grinding: 素股|臀推
         groping: 猥褻
@@ -2972,7 +2972,7 @@
         shared_food: 共享食物|用嘴遞食物
         sitting_on_head: 坐在頭上
         sitting_on_shoulder: 坐在肩膀上
-        slapping: 掌掴
+        slapping: 掌摑|打巴掌
         spanking: 打屁股
         special_feeling_(meme): 雪中打傘的戀人梗
         symmetrical_docking: 胸擠胸
@@ -3108,7 +3108,7 @@
       color: rgba(0, 255, 255, .4)
       tags:
         rim light: 輪廓光
-        Volumetric Lighting: 体積光
+        Volumetric Lighting: 體積光
         glowing neon lights: 霓虹燈
         Cinematic Lighting: 電影級燈光
         lens flare: 透鏡光暈
@@ -3335,7 +3335,7 @@
         honeycomb_background: 蜂窩風格背景
         plaid_background: 格子呢背景
         polka_dot: 圓斑背景
-        striped_background: 圓斑背景
+        striped_background: 條紋背景
         scenery: 風景
         landscape: 景觀
         foral_background: 花卉圖案裝飾的背景
@@ -3470,7 +3470,7 @@
         universe: 宇宙
         space: 太空
         planet: 星球
-        from_space_station: 空間站
+        from_space_station: 從太空站
         satellite: 衛星
 
     - name: 雲
@@ -3543,7 +3543,7 @@
         tanabata: 七夕節
         mid-autumn festival: 中秋節
         halloween: 萬聖節
-        christmas: 聖誕節
+        christmas: 聖誕節|耶誕節
         explosion: 爆炸
         water vapor: 蒸汽
         fireworks: 焰火
@@ -3623,17 +3623,17 @@
         building_ruins: 建築廢墟
         bar: 酒吧
         izakaya: 居酒屋
-        cafe: 咖啡館
+        cafe: 咖啡廳
         bakery: 麵包店
-        convenience store: 便利店
+        convenience store: 便利商店
         supermarket: 超市
-        pharmacy: 藥店
+        pharmacy: 藥局
         theater: 劇院
         movie theater: 電影院
         workshop: 工作坊
         courtroom: 法庭
         park: 公園
-        Trapeze: 吊架；秋千
+        Trapeze: 吊架；鞦韆
         classroom: 教室
         botanical garden: 植物園
         amusement_park: 遊樂園
@@ -3643,19 +3643,19 @@
         Auditorium: 禮堂
         concert: 音樂會
         Japanese_hotel: 日本旅館
-        jail_bars: 監獄酒吧
+        jail_bars: 牢房柵欄
         in_the_movie_theatre: 在電影院裡
         stage: 舞台
         harbor: 港口
         casino: 賭場
-        billiard: 台球桌
+        billiard: 撞球桌
         dungeon: 地牢
         grave: 墳墓
         graveyard: 墓地
         tombstone: 墓碑
         monolith: 巨大的石頭物體
         rappelling: 拉平（懸掛）
-        building: 建築
+        building: 大樓
         architecture: 建築
         magnificent_architecture: 建築
         Skyscraper: 摩天樓
@@ -3684,7 +3684,7 @@
         crowd: 人群
         alley: 小巷
         in_main_street: 大道
-        Intersection: 路口
+        intersection: 路口
         avenue: 大街
         lawn: 草坪
         road: 路
@@ -3716,7 +3716,7 @@
         infirmary: 醫務室
         stage: 舞台
         electrical room: 配電房
-        server room: 伺服器機房
+        server room: 機房
         basement: 地下室
         art room: 美術室
         bathing: 浴室
@@ -3776,7 +3776,7 @@
       color: rgba(159, 32, 240, .4)
       tags:
         bathroom: 浴室
-        bathtub,: 浴缸
+        bathtub: 浴缸
         rubber_duck: 橡皮鴨
         shower_head: 淋浴噴頭
         toilet: 馬桶
@@ -3794,7 +3794,7 @@
         pencil: 鉛筆
         book: 書
         open_book: 翻開的書
-        book_stack: 書摞
+        book_stack: 書堆
         bookshelf: 書架
         school_bag: 上學包（手提包）
         backpack: 背包
@@ -3893,7 +3893,7 @@
         Lever: 槓桿,操作桿
         molecule: 分子
         money: 錢
-        Painting_(Object): 畫作（物品）
+        painting_(object): 畫作（物品）
         photo_(object): 照片（物體）
         sand: 沙子
         stubble: 茬
@@ -3935,7 +3935,7 @@
         handgun: 手槍
         thompson_submachine_gun: 湯普森衝鋒槍
         magazine_(weapon): 彈匣（武器）
-        dynamite: 甘油炸藥
+        dynamite: 矽藻土炸藥
         bomb: 炸彈
         track missiles: 跟蹤導彈
         complex Trajectory: 軌跡拖尾
@@ -4289,21 +4289,21 @@
         pink with white chest pleated skirt: 粉白褶裙
         white with pink chest pleated skirt: 白偏粉褶裙
 
-    - name: 系帶
+    - name: 繫帶
       color: rgba(178, 33, 34, .4)
       tags:
-        green waistband: 綠色系帶
-        yellow waistband: 黃色系帶
-        red waistband: 紅色系帶
-        pink waistband: 粉色系帶
-        orange waistband: 橙色系帶
-        light blue waistband: 淡藍系帶
-        light green waistband: 綠白系帶
-        green with yellow waistband: 黃綠系帶
-        purple with white waistband: 紫白系帶
-        red with white waistband: 紅白系帶
-        red with black waistband: 紅黑系帶
-        yellow with white waistband: 黃白系帶
+        green waistband: 綠色繫帶
+        yellow waistband: 黃色繫帶
+        red waistband: 紅色繫帶
+        pink waistband: 粉色繫帶
+        orange waistband: 橙色繫帶
+        light blue waistband: 淡藍繫帶
+        light green waistband: 綠白繫帶
+        green with yellow waistband: 黃綠繫帶
+        purple with white waistband: 紫白繫帶
+        red with white waistband: 紅白繫帶
+        red with black waistband: 紅黑繫帶
+        yellow with white waistband: 黃白繫帶
 
     - name: 披帛
       color: rgba(178, 33, 34, .4)
