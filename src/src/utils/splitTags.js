@@ -11,7 +11,17 @@ export default (tags, autoBreakBeforeWrap = false, autoBreakAfterWrap = false) =
     tags = tags.replace(/\r/g, '\n') // 回车符
     tags = tags.replace(/\n+/g, '\n') // 连续换行符
 
-    tags = tags.replace(/\>_\</g, '|||EXPRESSION1|||') // >_<
+    let emojis = [
+        {emoji: ">_<", re: /\>_\</g},
+        {emoji: ":<", re: /\:\</g},
+        {emoji: ">:<", re: /\>\:\</g},
+        {emoji: ":>", re: /\:\>/g},
+        {emoji: ":-(", re: /\:\-\(/g},
+        {emoji: ":-)", re: /\:\-\)/g},
+    ]
+    emojis.forEach((emoji, index) => {
+        tags = tags.replace(emoji.re, "|||EXPRESSION" + index + "|||")
+    })
 
     const brackets = {
         '(': ')',
@@ -150,8 +160,10 @@ export default (tags, autoBreakBeforeWrap = false, autoBreakAfterWrap = false) =
         values.push(value)
         for (let value2 of values) {
             if (value2 === '' || value2.trim() === '') continue
-            // >_<
-            value2 = value2.replace(/\|\|\|EXPRESSION1\|\|\|/g, '>_<')
+            emojis.forEach((emoji, index) => {
+                value2 = value2.replace("|||EXPRESSION" + index + "|||", emoji.emoji)
+            })
+            // value2 = value2.replace(/\|\|\|EXPRESSION1\|\|\|/g, '>_<')
             result2.push(value2)
         }
     }
