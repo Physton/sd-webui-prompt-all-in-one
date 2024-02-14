@@ -26,6 +26,8 @@
                             v-model:auto-remove-before-line-comma="autoRemoveBeforeLineComma"
                             :hide-default-input="item.hideDefaultInput"
                             @update:hide-default-input="onUpdateHideDefaultInput(item.id, $event)"
+                            :auto-load-webui-prompt="item.autoLoadWebuiPrompt"
+                            @update:auto-load-webui-prompt="onUpdateAutoLoadWebuiPrompt(item.id, $event)"
                             :hide-panel="item.hidePanel"
                             @update:hide-panel="onUpdateHidePanel(item.id, $event)"
                             v-model:enable-tooltip="enableTooltip"
@@ -208,6 +210,8 @@ export default {
                     neg: false,
                     hideDefaultInputKey: 'txt2ImgHideDefaultInput',
                     hideDefaultInput: false,
+                    autoLoadWebuiPromptKey: 'txt2ImgAutoLoadWebuiPrompt',
+                    autoLoadWebuiPrompt: true,
                     hidePanelKey: 'txt2ImgHidePanel',
                     hidePanel: false,
                     hideGroupTagsKey: 'txt2ImgHideGroupTags',
@@ -229,6 +233,8 @@ export default {
                     neg: true,
                     hideDefaultInputKey: 'txt2ImgNegHideDefaultInput',
                     hideDefaultInput: false,
+                    autoLoadWebuiPromptKey: 'txt2ImgNegAutoLoadWebuiPrompt',
+                    autoLoadWebuiPrompt: true,
                     hidePanelKey: 'txt2ImgNegHidePanel',
                     hidePanel: false,
                     hideGroupTagsKey: 'txt2ImgNegHideGroupTags',
@@ -250,6 +256,8 @@ export default {
                     neg: false,
                     hideDefaultInputKey: 'img2ImgHideDefaultInput',
                     hideDefaultInput: false,
+                    autoLoadWebuiPromptKey: 'img2ImgAutoLoadWebuiPrompt',
+                    autoLoadWebuiPrompt: true,
                     hidePanelKey: 'img2ImgHidePanel',
                     hidePanel: false,
                     hideGroupTagsKey: 'img2ImgHideGroupTags',
@@ -271,6 +279,8 @@ export default {
                     neg: true,
                     hideDefaultInputKey: 'img2ImgNegHideDefaultInput',
                     hideDefaultInput: false,
+                    autoLoadWebuiPromptKey: 'img2ImgNegAutoLoadWebuiPrompt',
+                    autoLoadWebuiPrompt: true,
                     hidePanelKey: 'img2ImgNegHidePanel',
                     hidePanel: false,
                     hideGroupTagsKey: 'img2ImgNegHideGroupTags',
@@ -667,6 +677,7 @@ export default {
             let dataListsKeys = ['languageCode', 'autoTranslate', 'autoTranslateToEnglish', 'autoTranslateToLocal', 'autoRemoveSpace', 'autoRemoveLastComma', 'autoKeepWeightZero', 'autoKeepWeightOne', 'autoBreakBeforeWrap', 'autoBreakAfterWrap', 'autoRemoveLoraBeforeComma', 'autoRemoveLoraAfterComma', 'useNovelAiWeightSymbol', 'autoRemoveBeforeLineComma', /*'hideDefaultInput', */'translateApi', 'enableTooltip', 'tagCompleteFile', 'onlyCsvOnAuto', 'extensionSelect.minimalist', 'groupTagsColor', 'groupTagsTranslate', 'blacklist', 'cancelBlacklistConfirm', 'hotkey', 'extraNetworksWidth', 'extraNetworksHeight']
             this.prompts.forEach(item => {
                 dataListsKeys.push(item.hideDefaultInputKey)
+                dataListsKeys.push(item.autoLoadWebuiPromptKey)
                 dataListsKeys.push(item.hidePanelKey)
                 dataListsKeys.push(item.hideGroupTagsKey)
             })
@@ -831,6 +842,9 @@ export default {
                 this.prompts.forEach(item => {
                     if (data[item.hideDefaultInputKey] !== null) {
                         item.hideDefaultInput = data[item.hideDefaultInputKey]
+                    }
+                    if (data[item.autoLoadWebuiPromptKey] !== null) {
+                        item.autoLoadWebuiPrompt = data[item.autoLoadWebuiPromptKey]
                     }
                     if (data[item.hidePanelKey] !== null) {
                         item.hidePanel = data[item.hidePanelKey]
@@ -1089,6 +1103,12 @@ export default {
             item.hideDefaultInput = value
             this.gradioAPI.setData(item.hideDefaultInputKey, item.hideDefaultInput)
             item.$prompt.parentElement.parentElement.style.display = item.hideDefaultInput ? 'none' : 'flex'
+        },
+        onUpdateAutoLoadWebuiPrompt(id, value) {
+            const item = this.prompts.find(item => item.id == id)
+            if (!item) return
+            item.autoLoadWebuiPrompt = value
+            this.gradioAPI.setData(item.autoLoadWebuiPromptKey, item.autoLoadWebuiPrompt)
         },
         onUpdateHidePanel(id, value) {
             const item = this.prompts.find(item => item.id == id)

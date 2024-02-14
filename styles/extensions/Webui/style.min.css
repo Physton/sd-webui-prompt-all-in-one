@@ -468,6 +468,15 @@ margin-bottom: 8px!important;
     height: 17px !important;
     width: 17px !important;
 }
+.physton-prompt .prompt-header .icon-svg-load svg{
+    fill: var(--body-text-color);
+}
+.physton-prompt .prompt-header .icon-svg-load, .physton-prompt .prompt-header .icon-svg-load svg {
+    /* 功能设置图标样式*/
+    display: inline-block;
+    height: 17px !important;
+    width: 17px !important;
+}
 
 
 .physton-prompt .prompt-header .prompt-header-extend .extend-content .input-tag-append{

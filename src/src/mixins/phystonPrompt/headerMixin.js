@@ -166,6 +166,9 @@ export default {
             this.tags = []
             this.updateTags()
         },
+        onClickLoadWebuiPrompt() {
+            this.onTextareaChange(true)
+        },
         appendListItemName(item) {
             let names = []
             if (typeof item.name === "object") {

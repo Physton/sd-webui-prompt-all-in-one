@@ -181,7 +181,9 @@
                 "is_remove_lora_before_comma": "是否去除Lora前面的逗号。<br/>勾选后Lora输出为“aaa &lt;lora:bbb:0.1&gt; &lt;lora:ccc:0.1&gt;, ddd”。<br/>取消勾选Lora输出为“aaa, &lt;lora:bbb:0.1&gt;, &lt;lora:ccc:0.1&gt;, ddd”。",
                 "is_remove_lora_after_comma": "是否去除Lora后面的逗号。<br/>勾选后Lora输出为“aaa, &lt;lora:bbb:0.1&gt; &lt;lora:ccc:0.1&gt; ddd”。<br/>取消勾选Lora输出为“aaa, &lt;lora:bbb:0.1&gt;, &lt;lora:ccc:0.1&gt;, ddd”。",
                 "is_use_novel_ai_weight_symbol": "是否使用NovelAI的权重符号。<br/>勾选后权重符号 () 将变为 {}",
-                "is_remove_before_line_comma": "是否去除换行前面的逗号。<br/>勾选后输出为“aaa, bbb<br/>ccc”。<br/>取消勾选输出为“aaa, bbb,<br/>ccc”。"
+                "is_remove_before_line_comma": "是否去除换行前面的逗号。<br/>勾选后输出为“aaa, bbb<br/>ccc”。<br/>取消勾选输出为“aaa, bbb,<br/>ccc”。",
+                "auto_load_webui_prompt": "自动加载WebUI提示词变动。<br/>勾选后，当WebUI中提示词输入框的内容变动时，插件会自动加载关键词解析并格式化。<br/>未勾选，当WebUI中提示词输入框的内容变动时，需要手动点击加载提示词按钮。",
+                "load_webui_prompt": "加载WebUI提示词"
             }
         },
         {
@@ -364,7 +366,9 @@
                 "is_remove_lora_before_comma": "是否去除Lora前面的逗號。<br/>勾選後Lora輸出為「aaa &lt;lora:bbb:0.1&gt; &lt;lora:ccc:0.1&gt;, ddd」。<br/>取消勾選Lora輸出為「aaa, &lt;lora:bbb:0.1&gt;, &lt;lora:ccc:0.1&gt;, ddd」。",
                 "is_remove_lora_after_comma": "是否去除Lora後面的逗號。<br/>勾選後Lora輸出為「aaa, &lt;lora:bbb:0.1&gt; &lt;lora:ccc:0.1&gt; ddd」。<br/>取消勾選Lora輸出為「aaa, &lt;lora:bbb:0.1&gt;, &lt;lora:ccc:0.1&gt;, ddd」。",
                 "is_use_novel_ai_weight_symbol": "是否使用NovelAI的權重符號。<br/>勾選後權重符號 () 將變為 {}",
-                "is_remove_before_line_comma": "是否去除換行前面的逗號。<br/>勾選後輸出為「aaa, bbb<br/>ccc」。<br/>取消勾選輸出為「aaa, bbb,<br/>ccc」。"
+                "is_remove_before_line_comma": "是否去除換行前面的逗號。<br/>勾選後輸出為「aaa, bbb<br/>ccc」。<br/>取消勾選輸出為「aaa, bbb,<br/>ccc」。",
+                "auto_load_webui_prompt": "自動加載WebUI提示詞變動。<br/>勾選後，當WebUI中提示詞輸入框的內容變動時，插件會自動加載關鍵詞解析並格式化。<br/>未勾選，當WebUI中提示詞輸入框的內容變動時，需要手動點擊加載提示詞按鈕。",
+                "load_webui_prompt": "加載WebUI提示詞"
             }
         },
         {
@@ -547,7 +551,9 @@
                 "is_remove_lora_before_comma": "是否移除Lora前面的逗號。<br/>勾選後Lora輸出為「aaa &lt;lora:bbb:0.1&gt; &lt;lora:ccc:0.1&gt;, ddd」。<br/>取消勾選Lora輸出為「aaa, &lt;lora:bbb:0.1&gt;, &lt;lora:ccc:0.1&gt;, ddd」。",
                 "is_remove_lora_after_comma": "是否移除Lora後面的逗號。<br/>勾選後Lora輸出為「aaa, &lt;lora:bbb:0.1&gt; &lt;lora:ccc:0.1&gt; ddd」。<br/>取消勾選Lora輸出為「aaa, &lt;lora:bbb:0.1&gt;, &lt;lora:ccc:0.1&gt;, ddd」。",
                 "is_use_novel_ai_weight_symbol": "是否使用NovelAI的權重符號。<br/>勾選後權重符號 () 將變為 {}",
-                "is_remove_before_line_comma": "是否移除換行前面的逗號。<br/>勾選後輸出為「aaa, bbb<br/>ccc」。<br/>取消勾選輸出為「aaa, bbb,<br/>ccc」。"
+                "is_remove_before_line_comma": "是否移除換行前面的逗號。<br/>勾選後輸出為「aaa, bbb<br/>ccc」。<br/>取消勾選輸出為「aaa, bbb,<br/>ccc」。",
+                "auto_load_webui_prompt": "自動載入WebUI提示詞變動。<br/>勾選後，當WebUI中提示詞輸入框的內容變動時，插件會自動載入關鍵詞解析並格式化。<br/>未勾選，當WebUI中提示詞輸入框的內容變動時，需要手動點擊載入提示詞按鈕。",
+                "load_webui_prompt": "載入WebUI提示詞"
             }
         },
         {
@@ -730,7 +736,9 @@
                 "is_remove_lora_before_comma": "Remove the comma before Lora or not.<br/>If selected, the Lora output will be 'aaa &lt;lora:bbb:0.1&gt; &lt;lora:ccc:0.1&gt;, ddd'.<br/>If unselected, the Lora output will be 'aaa, &lt;lora:bbb:0.1&gt;, &lt;lora:ccc:0.1&gt;, ddd'.",
                 "is_remove_lora_after_comma": "Remove the comma after Lora or not.<br/>If selected, the Lora output will be 'aaa, &lt;lora:bbb:0.1&gt; &lt;lora:ccc:0.1&gt; ddd'.<br/>If unselected, the Lora output will be 'aaa, &lt;lora:bbb:0.1&gt;, &lt;lora:ccc:0.1&gt;, ddd'.",
                 "is_use_novel_ai_weight_symbol": "Whether to use NovelAI's weight symbol.<br/>Checking this will change the weight symbol () to {}",
-                "is_remove_before_line_comma": "Whether to remove the comma before a line break.<br/>If checked, the output will be \"aaa, bbb<br/>ccc\".<br/>If unchecked, the output will be \"aaa, bbb,<br/>ccc\"."
+                "is_remove_before_line_comma": "Whether to remove the comma before a line break.<br/>If checked, the output will be \"aaa, bbb<br/>ccc\".<br/>If unchecked, the output will be \"aaa, bbb,<br/>ccc\".",
+                "auto_load_webui_prompt": "Auto-load WebUI prompt changes.<br/>When checked, the plugin will automatically load and format keyword parsing when the content of the prompt input box in WebUI changes.<br/>When unchecked, you need to manually click the load prompt button when the content of the prompt input box in WebUI changes.",
+                "load_webui_prompt": "Load WebUI prompt"
             }
         },
         {
@@ -924,7 +932,9 @@
                 "is_remove_lora_before_comma": "هل ترغب في إزالة الفاصلة قبل Lora أم لا؟<br/>إذا تم تحديده، سيكون إخراج Lora على النحو التالي 'aaa &lt;lora:bbb:0.1&gt; &lt;lora:ccc:0.1&gt;, ddd'.<br/>إذا تم إلغاء التحديد، سيكون إخراج Lora على النحو التالي 'aaa, &lt;lora:bbb:0.1&gt;, &lt;lora:ccc:0.1&gt;, ddd'.",
                 "is_remove_lora_after_comma": "هل ترغب في إزالة الفاصلة بعد Lora أم لا؟<br/>إذا تم تحديده، سيكون إخراج Lora على النحو التالي 'aaa, &lt;lora:bbb:0.1&gt; &lt;lora:ccc:0.1&gt; ddd'.<br/>إذا تم إلغاء التحديد، سيكون إخراج Lora على النحو التالي 'aaa, &lt;lora:bbb:0.1&gt;, &lt;lora:ccc:0.1&gt;, ddd'.",
                 "is_use_novel_ai_weight_symbol": "هل ترغب في استخدام رمز الوزن من NovelAI؟<br/>بعد التحقق من هذا، ستتغير رمز الوزن () إلى {}",
-                "is_remove_before_line_comma": "هل ترغب في إزالة الفاصلة قبل السطر المكتوب.<br/>إذا تم التحقق، سيكون الإخراج \"aaa، bbb<br/>ccc\".<br/>إذا لم يتم التحقق، سيكون الإخراج \"aaa، bbb،<br/>ccc\"."
+                "is_remove_before_line_comma": "هل ترغب في إزالة الفاصلة قبل السطر المكتوب.<br/>إذا تم التحقق، سيكون الإخراج \"aaa، bbb<br/>ccc\".<br/>إذا لم يتم التحقق، سيكون الإخراج \"aaa، bbb،<br/>ccc\".",
+                "auto_load_webui_prompt": "تحميل تلقائي لتغييرات تلميح واجهة المستخدم الرسومية عبر الويب.<br/>عند التحقق، سيقوم الملحق تلقائيًا بتحميل وتنسيق تحليل الكلمات الرئيسية عند تغيير محتوى مربع إدخال التلميح في واجهة المستخدم الرسومية عبر الويب.<br/>عند عدم التحقق، يتعين عليك النقر يدويًا على زر تحميل التلميح عند تغيير محتوى مربع إدخال التلميح في واجهة المستخدم الرسومية عبر الويب.",
+                "load_webui_prompt": "تحميل تلميح واجهة المستخدم الرسومية عبر الويب"
             }
         },
         {
@@ -1206,7 +1216,9 @@
                 "is_remove_lora_before_comma": "Supprimer la virgule avant Lora ou non.<br/>Si sélectionné, la sortie Lora sera 'aaa &lt;lora:bbb:0.1&gt; &lt;lora:ccc:0.1&gt;, ddd'.<br/>Si non sélectionné, la sortie Lora sera 'aaa, &lt;lora:bbb:0.1&gt;, &lt;lora:ccc:0.1&gt;, ddd'.",
                 "is_remove_lora_after_comma": "Supprimer la virgule après Lora ou non.<br/>Si sélectionné, la sortie Lora sera 'aaa, &lt;lora:bbb:0.1&gt; &lt;lora:ccc:0.1&gt; ddd'.<br/>Si non sélectionné, la sortie Lora sera 'aaa, &lt;lora:bbb:0.1&gt;, &lt;lora:ccc:0.1&gt;, ddd'.",
                 "is_use_novel_ai_weight_symbol": "Utiliser le symbole de poids de NovelAI.<br/>En cochant cette option, le symbole de poids () sera remplacé par {}",
-                "is_remove_before_line_comma": "Indique si vous souhaitez supprimer la virgule avant un saut de ligne.<br/>Si coché, la sortie sera \"aaa, bbb<br/>ccc\".<br/>Si décoché, la sortie sera \"aaa, bbb,<br/>ccc\"."
+                "is_remove_before_line_comma": "Indique si vous souhaitez supprimer la virgule avant un saut de ligne.<br/>Si coché, la sortie sera \"aaa, bbb<br/>ccc\".<br/>Si décoché, la sortie sera \"aaa, bbb,<br/>ccc\".",
+                "auto_load_webui_prompt": "Chargement automatique des modifications de l'invite WebUI.<br/>Lorsqu'il est coché, le plugin chargera automatiquement et formatera l'analyse des mots clés lorsque le contenu de la zone de saisie de l'invite dans WebUI change.<br/>Lorsqu'il n'est pas coché, vous devez cliquer manuellement sur le bouton de chargement de l'invite lorsque le contenu de la zone de saisie de l'invite dans WebUI change.",
+                "load_webui_prompt": "Charger l'invite WebUI"
             }
         },
         {
@@ -1403,7 +1415,9 @@
                 "is_remove_lora_before_comma": "Komma vor Lora entfernen oder nicht.<br/>Wenn ausgewählt, wird die Lora-Ausgabe 'aaa &lt;lora:bbb:0.1&gt; &lt;lora:ccc:0.1&gt;, ddd' sein.<br/>Wenn nicht ausgewählt, wird die Lora-Ausgabe 'aaa, &lt;lora:bbb:0.1&gt;, &lt;lora:ccc:0.1&gt;, ddd' sein.",
                 "is_remove_lora_after_comma": "Komma nach Lora entfernen oder nicht.<br/>Wenn ausgewählt, wird die Lora-Ausgabe 'aaa, &lt;lora:bbb:0.1&gt; &lt;lora:ccc:0.1&gt; ddd' sein.<br/>Wenn nicht ausgewählt, wird die Lora-Ausgabe 'aaa, &lt;lora:bbb:0.1&gt;, &lt;lora:ccc:0.1&gt;, ddd' sein.",
                 "is_use_novel_ai_weight_symbol": "Ob das Gewichtssymbol von NovelAI verwendet werden soll.<br/>Wenn diese Option aktiviert ist, wird das Gewichtssymbol () zu {} geändert",
-                "is_remove_before_line_comma": "Gibt an, ob das Komma vor einem Zeilenumbruch entfernt werden soll.<br/>Wenn ausgewählt, wird die Ausgabe \"aaa, bbb<br/>ccc\" sein.<br/>Wenn nicht ausgewählt, wird die Ausgabe \"aaa, bbb,<br/>ccc\" sein."
+                "is_remove_before_line_comma": "Gibt an, ob das Komma vor einem Zeilenumbruch entfernt werden soll.<br/>Wenn ausgewählt, wird die Ausgabe \"aaa, bbb<br/>ccc\" sein.<br/>Wenn nicht ausgewählt, wird die Ausgabe \"aaa, bbb,<br/>ccc\" sein.",
+                "auto_load_webui_prompt": "Automatisches Laden von WebUI-Prompt-Änderungen.<br/>Wenn aktiviert, lädt das Plugin automatisch die Schlüsselwort-Analyse und -Formatierung, wenn sich der Inhalt des Eingabefelds für den Prompt in der WebUI ändert.<br/>Wenn deaktiviert, müssen Sie manuell auf die Schaltfläche zum Laden des Prompts klicken, wenn sich der Inhalt des Eingabefelds für den Prompt in der WebUI ändert.",
+                "load_webui_prompt": "WebUI-Prompt laden"
             }
         },
         {
@@ -1650,7 +1664,9 @@
                 "is_remove_lora_before_comma": "Rimuovere la virgola prima di Lora o meno.<br/>Se selezionato, l'output di Lora sarà 'aaa &lt;lora:bbb:0.1&gt; &lt;lora:ccc:0.1&gt;, ddd'.<br/>Se non selezionato, l'output di Lora sarà 'aaa, &lt;lora:bbb:0.1&gt;, &lt;lora:ccc:0.1&gt;, ddd'.",
                 "is_remove_lora_after_comma": "Rimuovere la virgola dopo Lora o meno.<br/>Se selezionato, l'output di Lora sarà 'aaa, &lt;lora:bbb:0.1&gt; &lt;lora:ccc:0.1&gt; ddd'.<br/>Se non selezionato, l'output di Lora sarà 'aaa, &lt;lora:bbb:0.1&gt;, &lt;lora:ccc:0.1&gt;, ddd'.",
                 "is_use_novel_ai_weight_symbol": "Se utilizzare il simbolo di peso di NovelAI.<br/>Selezionando questa opzione, il simbolo di peso () verrà sostituito con {}",
-                "is_remove_before_line_comma": "Seleziona se rimuovere la virgola prima di un'interruzione di riga.<br/>Se selezionato, l'output sarà \"aaa, bbb<br/>ccc\".<br/>Se deselezionato, l'output sarà \"aaa, bbb,<br/>ccc\"."
+                "is_remove_before_line_comma": "Seleziona se rimuovere la virgola prima di un'interruzione di riga.<br/>Se selezionato, l'output sarà \"aaa, bbb<br/>ccc\".<br/>Se deselezionato, l'output sarà \"aaa, bbb,<br/>ccc\".",
+                "auto_load_webui_prompt": "Caricamento automatico delle modifiche dell'invito WebUI.<br/>Quando selezionato, il plugin caricherà automaticamente e formatterà l'analisi delle parole chiave quando il contenuto della casella di input dell'invito in WebUI cambia.<br/>Quando deselezionato, è necessario fare clic manualmente sul pulsante di caricamento dell'invito quando il contenuto della casella di input dell'invito in WebUI cambia.",
+                "load_webui_prompt": "Carica invito WebUI"
             }
         },
         {
@@ -1832,7 +1848,9 @@
                 "is_remove_lora_before_comma": "コンマの前にLoraを削除するかどうか。<br/>選択すると、Loraの出力は「aaa &lt;lora:bbb:0.1&gt; &lt;lora:ccc:0.1&gt;, ddd」となります。<br/>選択しない場合、Loraの出力は「aaa, &lt;lora:bbb:0.1&gt;, &lt;lora:ccc:0.1&gt;, ddd」となります。",
                 "is_remove_lora_after_comma": "コンマの後にLoraを削除するかどうか。<br/>選択すると、Loraの出力は「aaa, &lt;lora:bbb:0.1&gt; &lt;lora:ccc:0.1&gt; ddd」となります。<br/>選択しない場合、Loraの出力は「aaa, &lt;lora:bbb:0.1&gt;, &lt;lora:ccc:0.1&gt;, ddd」となります。",
                 "is_use_novel_ai_weight_symbol": "NovelAIの重み記号を使用するかどうか。<br/>このオプションを選択すると、重み記号 () が {} に変更されます",
-                "is_remove_before_line_comma": "改行の前のカンマを削除するかどうか。<br/>チェックすると、出力は「aaa, bbb<br/>ccc」となります。<br/>チェックを外すと、出力は「aaa, bbb,<br/>ccc」となります。"
+                "is_remove_before_line_comma": "改行の前のカンマを削除するかどうか。<br/>チェックすると、出力は「aaa, bbb<br/>ccc」となります。<br/>チェックを外すと、出力は「aaa, bbb,<br/>ccc」となります。",
+                "auto_load_webui_prompt": "WebUIプロンプトの変更を自動的にロードします。<br/>チェックすると、WebUIのプロンプト入力ボックスの内容が変更されたとき、プラグインはキーワードの解析とフォーマットを自動的にロードします。<br/>チェックしない場合、WebUIのプロンプト入力ボックスの内容が変更されたときに手動でプロンプトのロードボタンをクリックする必要があります。",
+                "load_webui_prompt": "WebUIプロンプトのロード"
             }
         },
         {
@@ -2039,7 +2057,9 @@
                 "is_remove_lora_before_comma": "쉼표 앞의 Lora를 제거할지 여부입니다.<br/>선택한 경우 Lora 출력은 'aaa &lt;lora:bbb:0.1&gt; &lt;lora:ccc:0.1&gt;, ddd'가 됩니다.<br/>선택하지 않은 경우 Lora 출력은 'aaa, &lt;lora:bbb:0.1&gt;, &lt;lora:ccc:0.1&gt;, ddd'가 됩니다.",
                 "is_remove_lora_after_comma": "쉼표 뒤의 Lora를 제거할지 여부입니다.<br/>선택한 경우 Lora 출력은 'aaa, &lt;lora:bbb:0.1&gt; &lt;lora:ccc:0.1&gt; ddd'가 됩니다.<br/>선택하지 않은 경우 Lora 출력은 'aaa, &lt;lora:bbb:0.1&gt;, &lt;lora:ccc:0.1&gt;, ddd'가 됩니다.",
                 "is_use_novel_ai_weight_symbol": "NovelAI의 가중치 기호를 사용하시겠습니까?<br/>이 옵션을 선택하면 가중치 기호 () 가 {} 로 변경됩니다",
-                "is_remove_before_line_comma": "줄 바꿈 앞의 쉼표를 제거할지 여부입니다.<br/>선택한 경우 출력은 \"aaa, bbb<br/>ccc\"가 됩니다.<br/>선택하지 않은 경우 출력은 \"aaa, bbb,<br/>ccc\"가 됩니다."
+                "is_remove_before_line_comma": "줄 바꿈 앞의 쉼표를 제거할지 여부입니다.<br/>선택한 경우 출력은 \"aaa, bbb<br/>ccc\"가 됩니다.<br/>선택하지 않은 경우 출력은 \"aaa, bbb,<br/>ccc\"가 됩니다.",
+                "auto_load_webui_prompt": "WebUI 프롬프트 변경 사항 자동로드.<br/>확인하면, WebUI의 프롬프트 입력란의 내용이 변경될 때 플러그인이 키워드 분석 및 형식 지정을 자동으로 로드합니다.<br/>체크하지 않으면, WebUI의 프롬프트 입력란의 내용이 변경될 때 수동으로 프롬프트 로드 버튼을 클릭해야 합니다.",
+                "load_webui_prompt": "WebUI 프롬프트 로드"
             }
         },
         {
@@ -2336,7 +2356,9 @@
                 "is_remove_lora_before_comma": "Remover a vírgula antes de Lora ou não.<br/>Se selecionado, a saída de Lora será 'aaa &lt;lora:bbb:0.1&gt; &lt;lora:ccc:0.1&gt;, ddd'.<br/>Se não selecionado, a saída de Lora será 'aaa, &lt;lora:bbb:0.1&gt;, &lt;lora:ccc:0.1&gt;, ddd'.",
                 "is_remove_lora_after_comma": "Remover a vírgula depois de Lora ou não.<br/>Se selecionado, a saída de Lora será 'aaa, &lt;lora:bbb:0.1&gt; &lt;lora:ccc:0.1&gt; ddd'.<br/>Se não selecionado, a saída de Lora será 'aaa, &lt;lora:bbb:0.1&gt;, &lt;lora:ccc:0.1&gt;, ddd'.",
                 "is_use_novel_ai_weight_symbol": "Se deve usar o símbolo de peso da NovelAI.<br/>Ao marcar esta opção, o símbolo de peso () será alterado para {}",
-                "is_remove_before_line_comma": "Selecione se deseja remover a vírgula antes de uma quebra de linha.<br/>Se marcado, a saída será \"aaa, bbb<br/>ccc\".<br/>Se desmarcado, a saída será \"aaa, bbb,<br/>ccc\"."
+                "is_remove_before_line_comma": "Selecione se deseja remover a vírgula antes de uma quebra de linha.<br/>Se marcado, a saída será \"aaa, bbb<br/>ccc\".<br/>Se desmarcado, a saída será \"aaa, bbb,<br/>ccc\".",
+                "auto_load_webui_prompt": "Carregar automaticamente alterações no prompt do WebUI.<br/>Quando marcado, o plugin carregará automaticamente e formatará a análise de palavras-chave quando o conteúdo da caixa de entrada do prompt no WebUI for alterado.<br/>Quando desmarcado, é necessário clicar manualmente no botão de carregar o prompt quando o conteúdo da caixa de entrada do prompt no WebUI for alterado.",
+                "load_webui_prompt": "Carregar prompt do WebUI"
             }
         },
         {
@@ -2533,7 +2555,9 @@
                 "is_remove_lora_before_comma": "Удалить запятую перед Lora или нет.<br/>Если выбрано, то вывод Lora будет 'aaa &lt;lora:bbb:0.1&gt; &lt;lora:ccc:0.1&gt;, ddd'.<br/>Если не выбрано, то вывод Lora будет 'aaa, &lt;lora:bbb:0.1&gt;, &lt;lora:ccc:0.1&gt;, ddd'.",
                 "is_remove_lora_after_comma": "Удалить запятую после Lora или нет.<br/>Если выбрано, то вывод Lora будет 'aaa, &lt;lora:bbb:0.1&gt; &lt;lora:ccc:0.1&gt; ddd'.<br/>Если не выбрано, то вывод Lora будет 'aaa, &lt;lora:bbb:0.1&gt;, &lt;lora:ccc:0.1&gt;, ddd'.",
                 "is_use_novel_ai_weight_symbol": "Использовать символ веса NovelAI.<br/>При выборе этой опции символ веса () будет заменен на {}",
-                "is_remove_before_line_comma": "Удалить запятую перед переносом строки или нет.<br/>Если отмечено, то вывод будет \"aaa, bbb<br/>ccc\".<br/>Если не отмечено, то вывод будет \"aaa, bbb,<br/>ccc\"."
+                "is_remove_before_line_comma": "Удалить запятую перед переносом строки или нет.<br/>Если отмечено, то вывод будет \"aaa, bbb<br/>ccc\".<br/>Если не отмечено, то вывод будет \"aaa, bbb,<br/>ccc\".",
+                "auto_load_webui_prompt": "Автоматическая загрузка изменений веб-интерфейса пользовательского интерфейса.<br/>Если отмечено, плагин автоматически загружает и форматирует анализ ключевых слов при изменении содержимого поля ввода подсказки веб-интерфейса.<br/>Если снято, вам нужно вручную нажать кнопку загрузки подсказки при изменении содержимого поля ввода подсказки веб-интерфейса.",
+                "load_webui_prompt": "Загрузить подсказку веб-интерфейса"
             }
         },
         {
@@ -2745,7 +2769,9 @@
                 "is_remove_lora_before_comma": "Eliminar la coma antes de Lora o no.<br/>Si se selecciona, la salida de Lora será 'aaa &lt;lora:bbb:0.1&gt; &lt;lora:ccc:0.1&gt;, ddd'.<br/>Si no se selecciona, la salida de Lora será 'aaa, &lt;lora:bbb:0.1&gt;, &lt;lora:ccc:0.1&gt;, ddd'.",
                 "is_remove_lora_after_comma": "Eliminar la coma después de Lora o no.<br/>Si se selecciona, la salida de Lora será 'aaa, &lt;lora:bbb:0.1&gt; &lt;lora:ccc:0.1&gt; ddd'.<br/>Si no se selecciona, la salida de Lora será 'aaa, &lt;lora:bbb:0.1&gt;, &lt;lora:ccc:0.1&gt;, ddd'.",
                 "is_use_novel_ai_weight_symbol": "Si se debe usar el símbolo de peso de NovelAI.<br/>Al marcar esta opción, el símbolo de peso () se cambiará a {}",
-                "is_remove_before_line_comma": "Si desea eliminar la coma antes de un salto de línea.<br/>Si está marcado, la salida será \"aaa, bbb<br/>ccc\".<br/>Si no está marcado, la salida será \"aaa, bbb,<br/>ccc\"."
+                "is_remove_before_line_comma": "Si desea eliminar la coma antes de un salto de línea.<br/>Si está marcado, la salida será \"aaa, bbb<br/>ccc\".<br/>Si no está marcado, la salida será \"aaa, bbb,<br/>ccc\".",
+                "auto_load_webui_prompt": "Cargar automáticamente cambios en el aviso de WebUI.<br/>Cuando está marcado, el complemento cargará automáticamente y formateará el análisis de palabras clave cuando cambie el contenido del cuadro de entrada del aviso en WebUI.<br/>Cuando no está marcado, es necesario hacer clic manualmente en el botón de carga del aviso cuando cambie el contenido del cuadro de entrada del aviso en WebUI.",
+                "load_webui_prompt": "Cargar aviso de WebUI"
             }
         },
         {

@@ -182,6 +182,16 @@
                         </div>
                     </div>
                 </div>
+                <div class="prompt-header-extend" v-if="!autoLoadWebuiPrompt">
+                    <div class="extend-content">
+                        <div class="extend-btn-group">
+                            <div class="extend-btn-item" v-tooltip="getLang('load_webui_prompt')"
+                                 @click="onClickLoadWebuiPrompt">
+                                <icon-svg class="hover-scale-120" name="load2"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="prompt-header-extend" v-if="!neg">
                     <div class="extend-content">
                         <div class="extend-btn-group">
@@ -194,6 +204,14 @@
                 </div>
                 <div class="prompt-header-extend prompt-append">
                     <div class="extend-content">
+                        <div class="gradio-checkbox hover-scale-120">
+                            <label v-tooltip="getLang('auto_load_webui_prompt')">
+                                <input type="checkbox" name="auto_load_webui_prompt" value="1"
+                                       :checked="autoLoadWebuiPrompt"
+                                       @change="$emit('update:autoLoadWebuiPrompt', $event.target.checked)">
+                                <icon-svg name="load"/>
+                            </label>
+                        </div>
                         <div class="gradio-checkbox hover-scale-120">
                             <label v-if="hideDefaultInput" v-tooltip="getLang('show_default_input_box')">
                                 <input type="checkbox" name="hide_default_input" value="1"
@@ -643,6 +661,10 @@ export default {
             type: Boolean,
             default: false,
         },
+        autoLoadWebuiPrompt: {
+            type: Boolean,
+            default: true,
+        },
         hidePanel: {
             type: Boolean,
             default: false,
@@ -728,7 +750,7 @@ export default {
             default: () => ({}),
         }
     },
-    emits: ['update:languageCode', 'update:autoTranslate', 'update:autoTranslateToEnglish', 'update:autoTranslateToLocal', 'update:autoRemoveSpace', 'update:autoRemoveLastComma', 'update:autoKeepWeightZero', 'update:autoKeepWeightOne', 'update:hideDefaultInput', 'update:hidePanel', 'update:enableTooltip', 'update:translateApi', 'click:translateApi', 'click:promptFormat', 'click:blacklist', 'click:hotkey', 'click:selectTheme', 'click:switchTheme', 'click:showAbout', 'click:selectLanguage', 'click:showHistory', 'click:showFavorite', 'refreshFavorites', 'click:showChatgpt', 'update:hideGroupTags', 'update:groupTagsColor', 'update:blacklist', 'showExtraNetworks', 'hideExtraNetworks', 'update:extraNetworksWidth', 'update:extraNetworksHeight'],
+    emits: ['update:languageCode', 'update:autoTranslate', 'update:autoTranslateToEnglish', 'update:autoTranslateToLocal', 'update:autoRemoveSpace', 'update:autoRemoveLastComma', 'update:autoKeepWeightZero', 'update:autoKeepWeightOne', 'update:hideDefaultInput', 'update:hidePanel', 'update:enableTooltip', 'update:translateApi', 'click:translateApi', 'click:promptFormat', 'click:blacklist', 'click:hotkey', 'click:selectTheme', 'click:switchTheme', 'click:showAbout', 'click:selectLanguage', 'click:showHistory', 'click:showFavorite', 'refreshFavorites', 'click:showChatgpt', 'update:hideGroupTags', 'update:groupTagsColor', 'update:blacklist', 'showExtraNetworks', 'hideExtraNetworks', 'update:extraNetworksWidth', 'update:extraNetworksHeight', 'update:autoLoadWebuiPrompt'],
     data() {
         return {
             prompt: '',
@@ -814,12 +836,14 @@ export default {
 
             let oldValue = this.textarea.value
             setInterval(() => {
-                let newValue = this.textarea.value
-                if (oldValue === newValue) return
-                // 如果焦点在 textarea 上，就不要触发 onTextareaChange 了
-                if (document.activeElement === this.textarea) return
-                oldValue = newValue
-                this.onTextareaChange(true)
+                if (this.autoLoadWebuiPrompt) {
+                    let newValue = this.textarea.value
+                    if (oldValue === newValue) return
+                    // 如果焦点在 textarea 上，就不要触发 onTextareaChange 了
+                    if (document.activeElement === this.textarea) return
+                    oldValue = newValue
+                    this.onTextareaChange(true)
+                }
             }, 500)
             // this.textarea.removeEventListener('change', this.onTextareaChange)
             // this.textarea.addEventListener('change', this.onTextareaChange)
@@ -1230,7 +1254,9 @@ export default {
             this.updateTags()
         },
         onPromptMainClick() {
-            this.onTextareaChange(true)
+            if (this.autoLoadWebuiPrompt) {
+                this.onTextareaChange(true)
+            }
             this._setTextareaFocus()
             this.showExtendId = ''
         },

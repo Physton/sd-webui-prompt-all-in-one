@@ -197,6 +197,9 @@
     --pp-ph-ebi-iconSvgChatgpt-width: auto;
     --pp-ph-ebi-iconSvgChatgpt-height: 18px;
     --pp-ph-ebi-iconSvgChatgpt-color: #02b7fd;
+    --pp-ph-ebi-iconSvgLoad2-width: auto;
+    --pp-ph-ebi-iconSvgLoad2-height: 18px;
+    --pp-ph-ebi-iconSvgLoad2-color: #ad6800;
 
     // .physton-prompt .prompt-header .setting-box
     --pp-ph-sb-iconSvgApi-width: auto;
@@ -238,8 +241,11 @@
 
     // .physton-prompt .prompt-header
     --pp-ph-iconSvgInput-width: auto;
-    --pp-ph-iconSvgInput-height: 22px;
+    --pp-ph-iconSvgInput-height: 18px;
     --pp-ph-iconSvgInput-color: rgba(0, 0, 0, .88);
+    --pp-ph-iconSvgLoad-width: auto;
+    --pp-ph-iconSvgLoad-height: 18px;
+    --pp-ph-iconSvgLoad-color: rgba(0, 0, 0, .88);
 
     // .physton-prompt .prompt-header .prompt-append-list
     --pp-ph-pal-iconSvgWrap-width: auto;
@@ -404,6 +410,12 @@
 
     // .physton-prompt .prompt-header .prompt-header-extend .extend-content .gradio-checkbox
     --pp-ph-phe-ec-gradioCheckbox-cursor: pointer;
+    --pp-ph-phe-ec-gradioCheckbox-margin-right: 2px;
+
+    // .physton-prompt .prompt-header .prompt-header-extend .extend-content .gradio-checkbox label
+    --pp-ph-phe-ec-gc-label-display: flex;
+    --pp-ph-phe-ec-gc-label-justify-content: center;
+    --pp-ph-phe-ec-gc-label-align-items: center;
 
     // .physton-prompt .prompt-header .prompt-header-extend .extend-content input[type="checkbox"]
     --pp-ph-phe-ec-inputCheckbox-position: relative;
@@ -2663,6 +2675,7 @@
             .set-icon-svg(var(--pp-ph-ebi-iconSvgCopy-width), var(--pp-ph-ebi-iconSvgCopy-height), var(--pp-ph-ebi-iconSvgCopy-color), icon-svg-copy);
             .set-icon-svg(var(--pp-ph-ebi-iconSvgRemove-width), var(--pp-ph-ebi-iconSvgRemove-height), var(--pp-ph-ebi-iconSvgRemove-color), icon-svg-remove);
             .set-icon-svg(var(--pp-ph-ebi-iconSvgChatgpt-width), var(--pp-ph-ebi-iconSvgChatgpt-height), var(--pp-ph-ebi-iconSvgChatgpt-color), icon-svg-chatgpt);
+            .set-icon-svg(var(--pp-ph-ebi-iconSvgLoad2-width), var(--pp-ph-ebi-iconSvgLoad2-height), var(--pp-ph-ebi-iconSvgLoad2-color), icon-svg-load2);
         }
 
         .setting-box {
@@ -2681,6 +2694,7 @@
         }
 
         .set-icon-svg(var(--pp-ph-iconSvgInput-width), var(--pp-ph-iconSvgInput-height), var(--pp-ph-iconSvgInput-color), icon-svg-input);
+        .set-icon-svg(var(--pp-ph-iconSvgLoad-width), var(--pp-ph-iconSvgLoad-height), var(--pp-ph-iconSvgLoad-color), icon-svg-load);
 
         .prompt-append-list {
             .set-icon-svg(var(--pp-ph-pal-iconSvgWrap-width), var(--pp-ph-pal-iconSvgWrap-height), var(--pp-ph-pal-iconSvgWrap-color), icon-svg-wrap);
@@ -2875,6 +2889,13 @@
 
                 .gradio-checkbox {
                     cursor: var(--pp-ph-phe-ec-gradioCheckbox-cursor);
+                    margin-right: var(--pp-ph-phe-ec-gradioCheckbox-margin-right);
+
+                    label {
+                        // display: var(--pp-ph-phe-ec-gc-label-display);
+                        // justify-content: var(--pp-ph-phe-ec-gc-label-justify-content);
+                        // align-items: var(--pp-ph-phe-ec-gc-label-align-items);
+                    }
                 }
 
                 input[type="checkbox"] {
