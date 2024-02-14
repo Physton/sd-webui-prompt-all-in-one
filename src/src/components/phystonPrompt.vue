@@ -911,8 +911,18 @@ export default {
         genPrompt(tags = null, ignoreDisabled = false) {
             tags = tags || this.tags
             let prompts = []
-            let length = tags.length
-            tags.forEach((tag, index) => {
+            let tags2 = []
+            if (!ignoreDisabled) {
+                for (let key in tags) {
+                    if (!tags[key].disabled) {
+                        tags2.push(tags[key])
+                    }
+                }
+            } else {
+                tags2 = tags
+            }
+            let length = tags2.length
+            tags2.forEach((tag, index) => {
                 let prompt = ''
                 if (typeof tag['type'] === 'string' && tag.type === 'wrap') {
                     prompt = "\n"
