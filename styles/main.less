@@ -1158,6 +1158,16 @@
     // .physton-prompt .prompt-tags .group-tabs .group-body .group-main .sub-group-main .tags-footer .tags-size .tags-size-item:hover
     --pp-pt-gt-gb-gm-sgm-tf-ts-tagsSizeItemHover-flex-basis: 50%;
 
+    // .physton-prompt .prompt-tags .group-tabs .group-body .group-main .sub-group-main .tags-footer .tags-size .tags-size-item .icon-svg-refresh
+    --pp-pt-gt-gb-gm-sgm-tf-ts-tsi-iconSvgRefresh-width: 16px;
+    --pp-pt-gt-gb-gm-sgm-tf-ts-tsi-iconSvgRefresh-height: 16px;
+    --pp-pt-gt-gb-gm-sgm-tf-ts-tsi-iconSvgRefresh-color: #999;
+
+    // .physton-prompt .prompt-tags .group-tabs .group-body .group-main .sub-group-main .tags-footer .tags-size .tags-size-item .icon-svg-loading
+    --pp-pt-gt-gb-gm-sgm-tf-ts-tsi-iconSvgLoading-width: auto;
+    --pp-pt-gt-gb-gm-sgm-tf-ts-tsi-iconSvgLoading-height: 16px;
+    --pp-pt-gt-gb-gm-sgm-tf-ts-tsi-iconSvgLoading-color: none;
+
     // .physton-prompt .prompt-tags .group-tabs .group-body .group-main .sub-group-main .tags-footer .tags-size .tags-size-item:hover .size-range
     --pp-pt-gt-gb-gm-sgm-tf-ts-tsih-sizeRange-display: block;
 
@@ -3739,6 +3749,9 @@
                             display: var(--pp-pt-gt-gb-gm-sgm-tf-ts-tagsSizeItem-display);
                             justify-content: var(--pp-pt-gt-gb-gm-sgm-tf-ts-tagsSizeItem-justify-content);
                             align-items: var(--pp-pt-gt-gb-gm-sgm-tf-ts-tagsSizeItem-align-items);
+
+                            .set-icon-svg(var(--pp-pt-gt-gb-gm-sgm-tf-ts-tsi-iconSvgRefresh-width), var(--pp-pt-gt-gb-gm-sgm-tf-ts-tsi-iconSvgRefresh-height), var(--pp-pt-gt-gb-gm-sgm-tf-ts-tsi-iconSvgRefresh-color), icon-svg-refresh);
+                            .set-icon-svg(var(--pp-pt-gt-gb-gm-sgm-tf-ts-tsi-iconSvgLoading-width), var(--pp-pt-gt-gb-gm-sgm-tf-ts-tsi-iconSvgLoading-height), var(--pp-pt-gt-gb-gm-sgm-tf-ts-tsi-iconSvgLoading-color), icon-svg-loading);
 
                             &:hover {
                                 //flex-basis: var(--pp-pt-gt-gb-gm-sgm-tf-ts-tagsSizeItemHover-flex-basis);

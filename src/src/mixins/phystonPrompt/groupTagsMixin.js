@@ -7,6 +7,7 @@ export default {
             groupTagsActive: '',
             subGroupTagsActive: '',
             groupTagsProcessed: [],
+            extraNetworksRefreshing: false,
         }
     },
     watch: {
@@ -224,11 +225,13 @@ export default {
                 let setLoading = (num) => {
                     if (num > 100) {
                         data.loading = false
+                        setTimeout(this.onClickGroupExtraNetworkRefresh, 1000)
                         // console.log('超时')
                         return
                     }
-                    if (opts && opts.sd_model_checkpoint === data.basename) {
+                    if (opts && opts.sd_model_checkpoint.indexOf(data.basename) === 0) {
                         data.loading = false
+                        setTimeout(this.onClickGroupExtraNetworkRefresh, 1000)
                         // console.log('已加载')
                         return
                     }
@@ -358,6 +361,13 @@ export default {
         },
         onGroupExtraNetworkMouseLeave() {
             this.$emit('hideExtraNetworks')
+        },
+        onClickGroupExtraNetworkRefresh() {
+            this.$emit('refreshExtraNetworks')
+            // this.extraNetworksRefreshing = true
+            // this._loadExtraNetworks().finally(() => {
+            //     this.extraNetworksRefreshing = false
+            // })
         },
     }
 }

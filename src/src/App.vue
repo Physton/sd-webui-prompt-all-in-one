@@ -67,6 +67,7 @@
                             :hotkey="hotkey"
                             @show-extra-networks="onShowExtraNetworks"
                             @hide-extra-networks="onHideExtraNetworks"
+                            @refresh-extra-networks="onRefreshExtraNetworks"
             ></physton-prompt>
         </template>
         <translate-setting ref="translateSetting" v-model:language-code="languageCode"
@@ -1208,6 +1209,9 @@ export default {
         },
         onHideExtraNetworks() {
             this.$refs.extraNetworksPopup.hide()
+        },
+        onRefreshExtraNetworks() {
+            this._loadExtraNetworks()
         },
     },
 }
