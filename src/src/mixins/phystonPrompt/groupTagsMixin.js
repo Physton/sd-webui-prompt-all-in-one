@@ -229,17 +229,48 @@ export default {
                         // console.log('超时')
                         return
                     }
-                    if (opts && opts.sd_model_checkpoint.indexOf(data.basename) === 0) {
-                        data.loading = false
-                        setTimeout(this.onClickGroupExtraNetworkRefresh, 1000)
-                        // console.log('已加载')
-                        return
+                    if (opts && opts.sd_model_checkpoint) {
+                        let isLoaded = false
+                        let checkpoint = opts.sd_model_checkpoint
+                        if (checkpoint.indexOf('['+ data.shorthash +']') > -1) {
+                            isLoaded = true
+                        } else {
+                            checkpoint = checkpoint.replaceAll('\\', '/')
+                            let baseDirname = data.baseDirname
+                            if (baseDirname === '@root') baseDirname = ''
+                            if (checkpoint.indexOf(baseDirname + '/' + data.basename) > -1) {
+                                isLoaded = true
+                            } else {
+                                if (checkpoint.indexOf(data.basename) > -1) {
+                                    isLoaded = true
+                                }
+                            }
+                        }
+                        if (isLoaded) {
+                            data.loading = false
+                            setTimeout(this.onClickGroupExtraNetworkRefresh, 1000)
+                            // console.log('已加载')
+                            return
+                        }
                     }
 
                     setTimeout(setLoading, 100, num + 1)
                 }
                 setLoading(0)
-                selectCheckpoint(data.basename)
+                console.log(data)
+                if (data.onclick) {
+                    let e = document.createElement('div')
+                    e.innerHTML = data.onclick
+                    let onclick = e.textContent || e.innerText
+                    // 去除左右"引号
+                    onclick = onclick.replace(/^"/, '').replace(/"$/, '').trim()
+                    // 去除 return
+                    onclick = onclick.replace(/^return /, '').trim()
+                    console.log(onclick)
+                    eval(onclick)
+                } else {
+                    selectCheckpoint(data.basename)
+                }
                 return
             }
             let indexes = this._groupTagsExtraNetworkTagsIndexes(data)
