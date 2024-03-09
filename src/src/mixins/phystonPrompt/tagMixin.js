@@ -371,7 +371,7 @@ export default {
         onTagWeightNumChange(id, e) {
             let tag = this.tags.find(tag => tag.id === id)
             if (!tag) return false
-            e = typeof e === "number" || typeof a === "string" ? e : e.target.value
+            e = typeof e === "number" || typeof e === "string" ? e : e.target.value
             if (tag.weightNum == e) return
             let weightNum = e
             let value = tag.value
@@ -403,8 +403,10 @@ export default {
                             if (localValue !== '') localValue = localValue + ':' + weightNum
                         }
                     }
-                    // 如果原来没有括号() [] {} <>，那么就加上括号
-                    if (!common.hasBrackets(value)) {
+                    // 排除Lora、embedding、lyco
+                    // 如果原来没有括号() [] {}，那么就加上括号
+                    if (tag.isLora||tag.isLyco||tag.isEmbedding){}
+                    else if (!common.hasBrackets(value)) {
                         if (this.useNovelAiWeightSymbol) {
                             value = common.setLayers(value, 1, '{', '}')
                             if (localValue !== '') localValue = common.setLayers(localValue, 1, '{', '}')
