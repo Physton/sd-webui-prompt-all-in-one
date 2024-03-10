@@ -150,8 +150,8 @@ export default (tags, autoBreakBeforeWrap = false, autoBreakAfterWrap = false) =
         while (match = regex.exec(value)) {
             let startIndex = match.index
             let endIndex = startIndex + match[0].length
-            let before = value.substring(0, startIndex)
-            let after = value.substring(endIndex)
+            let before = value.substring(0, startIndex).trim()
+            let after = value.substring(endIndex).trim()
             let middle = match[0]
             values.push(before)
             values.push(middle)

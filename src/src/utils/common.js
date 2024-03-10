@@ -4,7 +4,8 @@ import tinycolor from "tinycolor2";
 
 export default {
     // loraRegex: /^\<lora:\s*([^\:]+)\s*(:)?\s*(\-?[0-9\.]+)?\>$/,
-    loraRegex: /^\<lora:\s*([^\:]+)\s*(:)?\s*(\-?[0-9\.]+)?([^\>]+)?\>$/,
+    // lora加上metadata 描述词
+    loraRegex: /^\<lora:\s*([^\:]+)\s*(:)?\s*(\-?[0-9\.]+)?([^\>]+)?\>/,
     // lycoRegex: /^\<lyco:\s*([^\:]+)\s*(:)?\s*(\-?[0-9\.]+)?\>$/,
     lycoRegex: /^\<lyco:\s*([^\:]+)\s*(:)?\s*(\-?[0-9\.]+)?([^\>]+)?\>$/,
     weightNumRegex: /(.*):(\-?[0-9\.]+)/,
