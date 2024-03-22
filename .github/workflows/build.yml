@@ -1,11 +1,11 @@
 name: Build
 
-on:
-  push:
-    branches:
-      - main
-    paths:
-      - 'src/**'
+#on:
+#  push:
+#    branches:
+#      - main
+#    paths:
+#      - 'src/**'
 
 jobs:
   build:
