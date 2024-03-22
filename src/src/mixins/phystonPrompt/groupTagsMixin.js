@@ -340,7 +340,6 @@ export default {
                     find = tag.originalValue === name || (output_name && tag.originalValue === output_name)
                 }
                 if (find) {
-                    console.log("1")
                     indexes.push(index)
                 }
             }
