@@ -985,7 +985,7 @@ export default {
                     let nextIsLyco = false
                     // 获取下一个按钮
                     if (index + 1 < length) {
-                        nextTag = tags[index + 1]
+                        nextTag = tags2[index + 1]
                         if (typeof nextTag['type'] === 'string' && nextTag.type === 'wrap') {
                             nextIsWarp = true
                         } else if (nextTag.value === 'BREAK') {
