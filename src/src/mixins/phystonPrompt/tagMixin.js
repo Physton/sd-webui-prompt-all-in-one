@@ -353,20 +353,25 @@ export default {
                 if (!tag) return false
                 this.editing[tag.id] = false
                 this.isEditing = false
-                if (tag.value !== e.target.value) {
-                    tag.value = e.target.value
-                    this._setTag(tag)
-                    this.updateTags()
-                }
+                this._changeTagValue(tag, e.target.value)
             }
         },
         onTagInputChange(id, e) {
             let tag = this.tags.find(tag => tag.id === id)
             if (!tag) return false
-            if (tag.value === e.target.value) return
-            tag.value = e.target.value
-            this._setTag(tag)
-            this.updateTags()
+            this._changeTagValue(tag, e.target.value)
+        },
+        _changeTagValue(tag, newValue) {
+            let oldValue = tag.value
+            if (tag.value !== newValue) {
+                tag.value = newValue
+                this._setTag(tag)
+                if (this._isTagBlacklist(tag)) {
+                    tag.value = oldValue
+                     this._setTag(tag)
+                }
+                this.updateTags()
+            }
         },
         onTagWeightNumChange(id, e) {
             let tag = this.tags.find(tag => tag.id === id)
