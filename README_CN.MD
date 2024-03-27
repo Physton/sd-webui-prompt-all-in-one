@@ -165,6 +165,8 @@ sd-webui-prompt-all-in-one 是一个基于 [stable-diffusion-webui](https://gith
 
 ### 请我喝杯咖啡
 
+> 留言可能无法回复，如有问题请联系QQ：94126162或邮箱：pyhston@163.com。
+> 
 | Buy me a coffee (EN) | [![Buy me a coffee](https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png)](https://buymeacoffee.com/physton) |
 |:-----------:| :----: |
 | ko-fi (EN) | [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/physton) |
