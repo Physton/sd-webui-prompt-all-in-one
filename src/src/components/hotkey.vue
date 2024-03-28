@@ -1,7 +1,10 @@
 <template>
     <Transition name="fadeDown">
-        <div class="physton-prompt-hotkey" v-if="isOpen" @click="">
+        <div class="physton-prompt-hotkey" v-if="isOpen" @click="onCloseClick">
         <div class="hotkey-main" @click.stop>
+            <div class="hotkey-popup-close" @click="onCloseClick">
+                <icon-svg name="close"/>
+            </div>
             <div class="hotkey-body" @click.stop>
                 <div class="hotkey-list">
                     <div class="hotkey-item" v-for="(hotkey) in hotkeys" :key="hotkey.name">

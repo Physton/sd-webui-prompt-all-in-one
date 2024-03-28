@@ -4150,6 +4150,10 @@
     .blacklist-main {
         position: var(--ppb-blacklistMain-position);
 
+        .blacklist-popup-close {
+            .common-popup-close();
+        }
+
         .blacklist-body {
             display: var(--ppb-bm-blacklistBody-display);
             flex-wrap: var(--ppb-bm-blacklistBody-flex-wrap);
@@ -4232,6 +4236,10 @@
 
     .hotkey-main {
         position: var(--pph-hotkeyMain-position);
+
+        .hotkey-popup-close {
+            .common-popup-close();
+        }
 
         .hotkey-body {
             display: var(--pph-hm-hotkeyBody-display);
@@ -4461,21 +4469,25 @@
 
     .translate-setting-main {
         .common-popup-main();
-        .common-popup-height();
+
+        .translate-setting-close {
+            .common-popup-close();
+        }
 
         .translate-setting-content {
-            max-height: var(--ppts-tsm-translateSettingContent-max-height);
-            overflow: var(--ppts-tsm-translateSettingContent-overflow);
-            overflow-y: var(--ppts-tsm-translateSettingContent-overflow-y);
+            //max-height: var(--ppts-tsm-translateSettingContent-max-height);
+            //overflow: var(--ppts-tsm-translateSettingContent-overflow);
+            //overflow-y: var(--ppts-tsm-translateSettingContent-overflow-y);
             padding: var(--ppts-tsm-translateSettingContent-padding);
             border: var(--ppts-tsm-translateSettingContent-border);
             border-radius: var(--ppts-tsm-translateSettingContent-border-radius);
+            .common-popup-height();
 
             // 始终显示滚动条
-            &::-webkit-scrollbar {
-                width: var(--ppts-tsm-translateSettingContentWebkitScrollbar-width);
-                height: var(--ppts-tsm-translateSettingContentWebkitScrollbar-height);
-            }
+            //&::-webkit-scrollbar {
+            //    width: var(--ppts-tsm-translateSettingContentWebkitScrollbar-width);
+            //    height: var(--ppts-tsm-translateSettingContentWebkitScrollbar-height);
+            //}
         }
 
         .setting-line {

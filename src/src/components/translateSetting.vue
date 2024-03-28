@@ -1,134 +1,137 @@
 <template>
     <Transition name="fadeDown">
-        <div class="physton-prompt-translate-setting" v-if="isOpen">
-        <div class="translate-setting-main">
-            <div class="translate-setting-content">
-                <div class="setting-line">
-                    <div class="line-title">{{ getLang('translate_api') }}</div>
-                    <div class="line-content">
-                        <select v-model="apiKey">
-                            <optgroup v-for="typeGroup in supportApi" :key="typeGroup.type"
-                                      :label="getLang(typeGroup.type)">
-                                <option v-for="item in typeGroup.children" :key="item.key" :value="item.key" :disabled="item.disabled">
-                                    {{ getItemName(item) }}
-                                </option>
-                            </optgroup>
-                        </select>
-                    </div>
+        <div class="physton-prompt-translate-setting" v-if="isOpen" @click="onCloseClick">
+            <div class="translate-setting-main" @click.stop>
+                <div class="translate-setting-close" @click="onCloseClick">
+                    <icon-svg name="close"/>
                 </div>
-                <div class="setting-line" v-if="apiItem && apiItem.type == 'translators'">
-                    <div class="line-title"></div>
-                    <div class="line-content">
-                        <span class="common-red">*{{ getLang('not_api_key_desc') }}</span>
-                    </div>
-                </div>
-                <div class="setting-line" v-if="apiItem.help">
-                    <div class="line-title"></div>
-                    <div class="line-content">
-                        <div v-for="item in apiItem.help" class="help-list">
-                            <div class="help-item">[?] <a :href="item.url" target="_blank">{{ item.title }}</a></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="setting-line" v-for="config in configs">
-                    <div class="line-title">{{ config.title }}</div>
-                    <div class="line-content">
-                        <input type="text" v-if="config.type == 'input'" v-model="config.value" @change="onChangeConfigValue(config)">
-                        <select v-if="config.type == 'select'" v-model="config.value">
-                            <option v-for="option in config.options" :value="option">{{ option }}</option>
-                        </select>
-                        <div v-if="config.desc" v-html="config.desc"></div>
-                    </div>
-                </div>
-                <div class="setting-line" v-if="apiItem.key === 'mbart50'">
-                    <div class="line-title">{{ getLang('initialize') }}</div>
-                    <div class="line-content">
-                        <div class="hover-scale-120 test-btn" @click="onMbart50Initialize">
-                            <icon-svg v-if="mbart50Loading" name="loading"/>
-                            <template v-else>{{ getLang('initialize') }}</template>
-                        </div>
-                        <p class="common-red" v-html="getLang('download_model_desc')"></p>
-                        <p class="common-red" v-html="getLang('download_model_desc2')"></p>
-                    </div>
-                </div>
-                <div class="setting-line" v-if="apiItem.key === 'mbart50' && mbart50Message">
-                    <div class="line-title"></div>
-                    <div class="line-content">
-                        <div :class="[mbart50Success ? '' : 'common-red']">{{ mbart50Message }}</div>
-                    </div>
-                </div>
-                <div class="setting-line">
-                    <div class="line-title">{{ getLang('translate_test') }}</div>
-                    <div class="line-content">
-                        <textarea class="test-input" v-model="testText"></textarea>
-                    </div>
-                </div>
-                <div class="setting-line">
-                    <div class="line-title"></div>
-                    <div class="line-content">
-                        <div class="hover-scale-120 test-btn" @click="onTestClick">
-                            <icon-svg v-if="loading" name="loading"/>
-                            <template v-else>{{getLang('test')}}</template>
-                        </div>
-                    </div>
-                </div>
-                <div class="setting-line">
-                    <div class="line-title"></div>
-                    <div class="line-content">
-                        <div class="translate-error" v-if="!translateSuccess && errorMessage">{{ errorMessage }}</div>
-                        <textarea class="test-input" v-if="translatedText" v-model="translatedText"></textarea>
-                    </div>
-                </div>
-                <div class="setting-line">
-                    <div class="line-title">{{ getLang('Keyword_group') }}</div>
-                    <div class="line-content">
-                        <div v-html="getLang('enhance_translation_use_Keyword_group_desc')"></div>
-                        <label class="onlyCsvOnAuto">
-                            <input class="hover-scale-120" type="checkbox" value="1" v-model="groupTagsTranslateValue">
-                            <span>{{ getLang('enhance_translation_use_keyword_group') }}</span>
-                        </label>
-                    </div>
-                </div>
-                <div class="setting-line">
-                    <div class="line-title">TagComplete</div>
-                    <div class="line-content">
-                        <div class="help-list">
-                            <div class="help-item">[?] <a :href="globals.docs + '/TranslationApiConfiguration.html#tagcomplete-translation-enhancement'" target="_blank">[Wiki] TagComplete Translation enhancement</a>
-                            </div>
-                        </div>
-                        <div v-html="getLang('tagcomplete_translate_desc')"></div>
-                        <div class="common-red" v-html="getLang('tagcomplete_translate_desc2')"></div>
-                        <div class="line-row">
-                            <select v-model="tagCompleteFileKey" @change="tagCompleteResults = []">
-                                <option v-for="item in tagCompleteFiles" :value="item.key">{{ item.name }}</option>
+                <div class="translate-setting-content" @click.stop>
+                    <div class="setting-line">
+                        <div class="line-title">{{ getLang('translate_api') }}</div>
+                        <div class="line-content">
+                            <select v-model="apiKey">
+                                <optgroup v-for="typeGroup in supportApi" :key="typeGroup.type"
+                                          :label="getLang(typeGroup.type)">
+                                    <option v-for="item in typeGroup.children" :key="item.key" :value="item.key" :disabled="item.disabled">
+                                        {{ getItemName(item) }}
+                                    </option>
+                                </optgroup>
                             </select>
-                            <div class="refresh-btn hover-scale-120" v-tooltip="getLang('refresh')" @click="refreshCSVs">
-                                <icon-svg v-if="tagCompleteFilesLoading" name="loading"/>
-                                <icon-svg v-else name="refresh" />
+                        </div>
+                    </div>
+                    <div class="setting-line" v-if="apiItem && apiItem.type == 'translators'">
+                        <div class="line-title"></div>
+                        <div class="line-content">
+                            <span class="common-red">*{{ getLang('not_api_key_desc') }}</span>
+                        </div>
+                    </div>
+                    <div class="setting-line" v-if="apiItem.help">
+                        <div class="line-title"></div>
+                        <div class="line-content">
+                            <div v-for="item in apiItem.help" class="help-list">
+                                <div class="help-item">[?] <a :href="item.url" target="_blank">{{ item.title }}</a></div>
                             </div>
                         </div>
-                        <label class="onlyCsvOnAuto" :style="{display: tagCompleteFileKey ? 'flex': 'none'}">
-                            <input class="hover-scale-120" type="checkbox" value="1" v-model="onlyCsvOnAutoValue">
-                            <span>{{ getLang('only_csv_on_auto') }}</span>
-                        </label>
                     </div>
-                </div>
-                <div class="setting-line" v-show="tagCompleteFileKey">
-                    <div class="line-title"></div>
-                    <div class="line-content">
-                        <div class="hover-scale-120 test-btn" @click="onTagCompleteTestClick">{{ getLang('test') }}</div>
-                        <div ref="tagCompleteResults" v-show="tagCompleteResults.length > 0">
-                            <p v-for="text in tagCompleteResults" :key="text">{{ text }}</p>
+                    <div class="setting-line" v-for="config in configs">
+                        <div class="line-title">{{ config.title }}</div>
+                        <div class="line-content">
+                            <input type="text" v-if="config.type == 'input'" v-model="config.value" @change="onChangeConfigValue(config)">
+                            <select v-if="config.type == 'select'" v-model="config.value">
+                                <option v-for="option in config.options" :value="option">{{ option }}</option>
+                            </select>
+                            <div v-if="config.desc" v-html="config.desc"></div>
                         </div>
                     </div>
+                    <div class="setting-line" v-if="apiItem.key === 'mbart50'">
+                        <div class="line-title">{{ getLang('initialize') }}</div>
+                        <div class="line-content">
+                            <div class="hover-scale-120 test-btn" @click="onMbart50Initialize">
+                                <icon-svg v-if="mbart50Loading" name="loading"/>
+                                <template v-else>{{ getLang('initialize') }}</template>
+                            </div>
+                            <p class="common-red" v-html="getLang('download_model_desc')"></p>
+                            <p class="common-red" v-html="getLang('download_model_desc2')"></p>
+                        </div>
+                    </div>
+                    <div class="setting-line" v-if="apiItem.key === 'mbart50' && mbart50Message">
+                        <div class="line-title"></div>
+                        <div class="line-content">
+                            <div :class="[mbart50Success ? '' : 'common-red']">{{ mbart50Message }}</div>
+                        </div>
+                    </div>
+                    <div class="setting-line">
+                        <div class="line-title">{{ getLang('translate_test') }}</div>
+                        <div class="line-content">
+                            <textarea class="test-input" v-model="testText"></textarea>
+                        </div>
+                    </div>
+                    <div class="setting-line">
+                        <div class="line-title"></div>
+                        <div class="line-content">
+                            <div class="hover-scale-120 test-btn" @click="onTestClick">
+                                <icon-svg v-if="loading" name="loading"/>
+                                <template v-else>{{getLang('test')}}</template>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="setting-line">
+                        <div class="line-title"></div>
+                        <div class="line-content">
+                            <div class="translate-error" v-if="!translateSuccess && errorMessage">{{ errorMessage }}</div>
+                            <textarea class="test-input" v-if="translatedText" v-model="translatedText"></textarea>
+                        </div>
+                    </div>
+                    <div class="setting-line">
+                        <div class="line-title">{{ getLang('Keyword_group') }}</div>
+                        <div class="line-content">
+                            <div v-html="getLang('enhance_translation_use_Keyword_group_desc')"></div>
+                            <label class="onlyCsvOnAuto">
+                                <input class="hover-scale-120" type="checkbox" value="1" v-model="groupTagsTranslateValue">
+                                <span>{{ getLang('enhance_translation_use_keyword_group') }}</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="setting-line">
+                        <div class="line-title">TagComplete</div>
+                        <div class="line-content">
+                            <div class="help-list">
+                                <div class="help-item">[?] <a :href="globals.docs + '/TranslationApiConfiguration.html#tagcomplete-translation-enhancement'" target="_blank">[Wiki] TagComplete Translation enhancement</a>
+                                </div>
+                            </div>
+                            <div v-html="getLang('tagcomplete_translate_desc')"></div>
+                            <div class="common-red" v-html="getLang('tagcomplete_translate_desc2')"></div>
+                            <div class="line-row">
+                                <select v-model="tagCompleteFileKey" @change="tagCompleteResults = []">
+                                    <option v-for="item in tagCompleteFiles" :value="item.key">{{ item.name }}</option>
+                                </select>
+                                <div class="refresh-btn hover-scale-120" v-tooltip="getLang('refresh')" @click="refreshCSVs">
+                                    <icon-svg v-if="tagCompleteFilesLoading" name="loading"/>
+                                    <icon-svg v-else name="refresh" />
+                                </div>
+                            </div>
+                            <label class="onlyCsvOnAuto" :style="{display: tagCompleteFileKey ? 'flex': 'none'}">
+                                <input class="hover-scale-120" type="checkbox" value="1" v-model="onlyCsvOnAutoValue">
+                                <span>{{ getLang('only_csv_on_auto') }}</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="setting-line" v-show="tagCompleteFileKey">
+                        <div class="line-title"></div>
+                        <div class="line-content">
+                            <div class="hover-scale-120 test-btn" @click="onTagCompleteTestClick">{{ getLang('test') }}</div>
+                            <div ref="tagCompleteResults" v-show="tagCompleteResults.length > 0">
+                                <p v-for="text in tagCompleteResults" :key="text">{{ text }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="setting-btns">
+                        <div class="translate-save hover-scale-120" @click="onSaveClick">{{ getLang('save') }}</div>
+                        <div class="translate-close hover-scale-120" @click="onCloseClick">{{ getLang('close') }}</div>
+                    </div>
                 </div>
-            </div>
-            <div class="setting-btns">
-                <div class="translate-save hover-scale-120" @click="onSaveClick">{{ getLang('save') }}</div>
-                <div class="translate-close hover-scale-120" @click="onCloseClick">{{ getLang('close') }}</div>
             </div>
         </div>
-    </div>
     </Transition>
 </template>
 <script>

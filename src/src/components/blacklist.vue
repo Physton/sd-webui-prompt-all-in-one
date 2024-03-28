@@ -1,7 +1,10 @@
 <template>
     <Transition name="fadeDown">
-        <div class="physton-prompt-blacklist" v-if="isOpen" @click="">
+        <div class="physton-prompt-blacklist" v-if="isOpen" @click="onCloseClick">
             <div class="blacklist-main" @click.stop>
+                <div class="blacklist-popup-close" @click="onCloseClick">
+                    <icon-svg name="close"/>
+                </div>
                 <div class="blacklist-body" @click.stop>
                     <div class="blacklist-desc">1. {{ getLang('blacklist_desc') }}</div>
                     <div class="blacklist-group">
