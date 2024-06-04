@@ -7,7 +7,7 @@ import CommonMixin from "@/mixins/commonMixin"
 import common from "@/utils/common"
 import tippy from "tippy.js"
 
-onUiLoaded(() => {
+onUiLoaded(async () => {
     const div = document.createElement('div')
     div.id    = 'physton-prompt-all-in-one'
     common.gradioApp().appendChild(div)
