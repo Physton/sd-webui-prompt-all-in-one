@@ -120,10 +120,10 @@ export default {
         }
     },
     emits: ['use'],
-    mounted() {
-        this.favorites.forEach(item => {
-            this.getFavorites(item.key)
-        })
+    async mounted() {
+        for (const item of this.favorites) {
+          await this.getFavorites(item.key)
+        }
     },
     methods: {
         formatTime(time) {
@@ -134,7 +134,7 @@ export default {
             let favoriteItem = this.favorites.find(item => item.key === favoriteKey)
             if (!favoriteItem) return
             this.loading = true
-            this.gradioAPI.getFavorites(favoriteKey).then(res => {
+            return this.gradioAPI.getFavorites(favoriteKey).then(res => {
                 if(res && res.length > 0){
                     // 倒序
                     res.reverse()
