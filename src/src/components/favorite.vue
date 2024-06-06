@@ -120,10 +120,10 @@ export default {
         }
     },
     emits: ['use'],
-    async mounted() {
-        for (const item of this.favorites) {
-          await this.getFavorites(item.key)
-        }
+    mounted() {
+        this.favorites.forEach(item => {
+            waitTick.addWaitTick(() => this.getFavorites(item.key))
+        })
     },
     methods: {
         formatTime(time) {
