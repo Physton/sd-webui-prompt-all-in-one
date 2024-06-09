@@ -78,6 +78,7 @@ import common from "@/utils/common";
 
 import LanguageMixin from "@/mixins/languageMixin";
 import IconSvg from "@/components/iconSvg.vue";
+import waitTick from '@/utils/waitTick';
 
 export default {
     components: {IconSvg},
