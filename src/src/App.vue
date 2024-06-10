@@ -173,6 +173,7 @@ import jsYaml from "js-yaml";
 import {ref} from "vue";
 import Hotkey from "@/components/hotkey.vue";
 import ExtraNetworksPopup from "@/components/extraNetworksPopup.vue";
+import waitTick from "@/utils/waitTick";
 
 export default {
     name: 'App',
@@ -370,7 +371,7 @@ export default {
                 this.gradioAPI.setData('languageCode', val).then(data => {
                 }).catch(err => {
                 })
-                this.loadGroupTags()
+                waitTick.addWaitTick(() => this.loadGroupTags())
             },
             immediate: false,
         },
@@ -782,7 +783,7 @@ export default {
                 }
                 if (data.tagCompleteFile !== null) {
                     this.tagCompleteFile = data.tagCompleteFile
-                    this.$nextTick(() => {
+                    waitTick.addWaitTick(() => {
                         this.$refs.translateSetting.getCSV(this.tagCompleteFile)
                     })
                 } else {
@@ -870,7 +871,8 @@ export default {
                 })
 
                 this.handlePaste()
-                this.loadGroupTags()
+
+                waitTick.addWaitTick(() => this.loadGroupTags())
 
                 /*this.gradioAPI.getVersion().then(res => {
                     this.version = res.version
@@ -905,7 +907,7 @@ export default {
             })
         },
         loadGroupTags() {
-            this.gradioAPI.getGroupTags(this.languageCode).then(data => {
+            return this.gradioAPI.getGroupTags(this.languageCode).then(data => {
                 if (!data || data === '') {
                     this.groupTags = []
                 } else {

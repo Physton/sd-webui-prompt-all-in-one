@@ -78,6 +78,7 @@ import common from "@/utils/common";
 
 import LanguageMixin from "@/mixins/languageMixin";
 import IconSvg from "@/components/iconSvg.vue";
+import waitTick from '@/utils/waitTick';
 
 export default {
     components: {IconSvg},
@@ -122,7 +123,7 @@ export default {
     emits: ['use'],
     mounted() {
         this.favorites.forEach(item => {
-            this.getFavorites(item.key)
+            waitTick.addWaitTick(() => this.getFavorites(item.key))
         })
     },
     methods: {
@@ -134,7 +135,7 @@ export default {
             let favoriteItem = this.favorites.find(item => item.key === favoriteKey)
             if (!favoriteItem) return
             this.loading = true
-            this.gradioAPI.getFavorites(favoriteKey).then(res => {
+            return this.gradioAPI.getFavorites(favoriteKey).then(res => {
                 if(res && res.length > 0){
                     // 倒序
                     res.reverse()

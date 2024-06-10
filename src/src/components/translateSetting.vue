@@ -267,7 +267,7 @@ Github: {{name}}`
             if (this.tagCompleteFilesLoading) return
             this.tagCompleteFilesLoading = true
             this.tagCompleteFiles = []
-            this.gradioAPI.getCSVs().then(res => {
+            return this.gradioAPI.getCSVs().then(res => {
                 this.tagCompleteFilesLoading = false
                 if (!res || res.length <= 0) return
                 this.tagCompleteFiles.push({

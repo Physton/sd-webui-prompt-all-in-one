@@ -130,7 +130,7 @@ export default {
             let historyItem = this.histories.find(item => item.key === historyKey)
             if (!historyItem) return
             this.loading = true
-            this.gradioAPI.getHistories(historyKey).then(res => {
+            return this.gradioAPI.getHistories(historyKey).then(res => {
                 if (res && res.length > 0) {
                     // 倒序
                     res.reverse()
