@@ -1,6 +1,4 @@
 from scripts.physton_prompt.storage import Storage
-
-storage = Storage()
 from scripts.physton_prompt.get_i18n import get_i18n
 
 
@@ -12,7 +10,7 @@ def replace_vars(text, vars):
 
 def get_lang(key, vars={}):
     i18n = get_i18n()
-    code = storage.get('languageCode')
+    code = Storage.get('languageCode')
 
     def find_lang(code):
         for item in i18n['languages']:

@@ -2,17 +2,14 @@ import os
 import json
 import re
 from scripts.physton_prompt.storage import Storage
-st = Storage()
 
 # from scripts.physton_prompt.storage import Storage
 
 translate_apis = {}
 
 
-# st = Storage()
 def get_translate_apis(reload=False):
     global translate_apis
-    global st
     if reload or not translate_apis:
         translate_apis = {}
         current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -26,7 +23,7 @@ def get_translate_apis(reload=False):
         #         if 'config' not in item:
         #             continue
         #         config_name = 'translate_api.' + item['key']
-        #         config = st.get(config_name)
+        #         config = Storage.get(config_name)
         #         if not config:
         #             config = {}
         #         for config_item in item['config']:
@@ -102,7 +99,7 @@ def unprotected_translate_api_config(data_key, data):
     if 'config' not in api_item or not api_item['config']:
         return data
 
-    storage_data = st.get(data_key)
+    storage_data = Storage.get(data_key)
 
     for config in api_item['config']:
         # 如果有 privacy 的属性并且为 True

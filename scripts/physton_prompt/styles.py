@@ -1,7 +1,6 @@
 import os
 from scripts.physton_prompt.storage import Storage
 
-storage = Storage()
 
 styles_path = os.path.dirname(os.path.abspath(__file__)) + '/../../styles'
 styles_path = os.path.normpath(styles_path)
@@ -58,7 +57,7 @@ def get_extension_css_list():
             'manifest': manifest,
             'style': f'extensions/{dir}/style.min.css',
         }
-        css_item['selected'] = storage.get(css_item['dataName'])
+        css_item['selected'] = Storage.get(css_item['dataName'])
         css_list.append(css_item)
 
     return css_list
