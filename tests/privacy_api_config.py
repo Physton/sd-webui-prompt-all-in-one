@@ -3,9 +3,8 @@ import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
 from scripts.physton_prompt.storage import Storage
 from scripts.physton_prompt.get_translate_apis import privacy_translate_api_config, unprotected_translate_api_config
-st = Storage()
 key = 'translate_api.volcengine'
-data = st.get(key)
+data = Storage.get(key)
 data = privacy_translate_api_config(key, data)
 print(data)
 data = unprotected_translate_api_config(key, data)

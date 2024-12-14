@@ -17,26 +17,25 @@ class History:
         'img2img_neg': [],
     }
     max = 100
-    storage = Storage()
 
     def __init__(self):
         for type in self.histories:
-            self.histories[type] = self.storage.get('history.' + type)
+            self.histories[type] = Storage.get('history.' + type)
             if self.histories[type] is None:
                 self.histories[type] = []
                 self.__save_histories(type)
 
         for type in self.favorites:
-            self.favorites[type] = self.storage.get('favorite.' + type)
+            self.favorites[type] = Storage.get('favorite.' + type)
             if self.favorites[type] is None:
                 self.favorites[type] = []
                 self.__save_favorites(type)
 
     def __save_histories(self, type):
-        self.storage.set('history.' + type, self.histories[type])
+        Storage.set('history.' + type, self.histories[type])
 
     def __save_favorites(self, type):
-        self.storage.set('favorite.' + type, self.favorites[type])
+        Storage.set('favorite.' + type, self.favorites[type])
 
     def get_histories(self, type):
         histories = self.histories[type]
