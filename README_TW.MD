@@ -18,6 +18,10 @@ sd-webui-prompt-all-in-one 是一個基於 [stable-diffusion-webui](https://gith
 
 ---
 
+**📮📮📮 非常抱歉，由於個人精力有限，本項目不再維護。但是如果有朋友改進了代碼，歡迎提交Pull Request，我會抽空合併到主分支。**
+
+---
+
 <div align="center">
 
 ### 安裝教程、功能詳解、使用方法、常見問題等等，詳見：[文檔](https://aiodoc.physton.com/zh-TW/)。

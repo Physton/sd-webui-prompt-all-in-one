@@ -18,6 +18,10 @@ sd-webui-prompt-all-in-one는[stable-diffusion-webui](https://github.com/AUTOMAT
 
 ---
 
+**📮📮📮 대단히 죄송하지만 개인적인 에너지가 한정되어 있어 이 프로젝트는 더 이상 유지되지 않습니다. 그러나 누군가 코드 개선을 한다면, 언제든지 풀 리퀘스트를 제출해 주세요. 시간을 내어 메인 브랜치에 병합하겠습니다.**
+
+---
+
 <div align="center">
 
 설치 안내, 기능 설명, 사용 방법, 일반적인 문제 해결 방법 등에 대한 자세한 내용은 [문서](https://aiodoc.physton.com/)를 참조하십시오.

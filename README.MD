@@ -18,6 +18,10 @@ sd-webui-prompt-all-in-one is an extension based on [stable-diffusion-webui](htt
 
 ---
 
+**📮📮📮 I am very sorry, due to limited personal energy, this project will no longer be maintained. However, if anyone improves the code, feel free to submit a Pull Request, and I will find time to merge it into the main branch.**
+
+---
+
 <div align="center">
 
 ### Installation tutorial, detailed feature introduction, usage instructions, frequently asked questions, and more can be found in the [Wiki](https://aiodoc.physton.com/).
