@@ -9,7 +9,6 @@ from scripts.physton_prompt.get_translate_apis import get_translate_apis
 from scripts.physton_prompt.storage import Storage
 
 i18n = get_i18n()
-st = Storage()
 text = 'Hello World, I am a boy'
 
 tested_file = os.path.join(os.path.dirname(__file__), 'tested.json')
@@ -37,7 +36,7 @@ def add_tested(api_key, from_lang, to_lang, translated_text):
 def test_api(api):
     print(f"开始测试 {api['name']}")
     config_name = 'translate_api.' + api['key']
-    config = st.get(config_name)
+    config = Storage.get(config_name)
     if not config:
         config = {}
     for lang_code in api['support']:

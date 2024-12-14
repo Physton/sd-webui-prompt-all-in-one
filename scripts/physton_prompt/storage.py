@@ -1,5 +1,4 @@
 import os
-from pathlib import Path
 import json
 import time
 
@@ -7,50 +6,62 @@ import time
 class Storage:
     storage_path = ''
 
-    def __init__(self):
-        pass
+    def __init__():
+        Storage.__dispose_all_locks()
 
-    def __get_storage_path(self):
-        self.storage_path = os.path.dirname(os.path.abspath(__file__)) + '/../../storage'
-        self.storage_path = os.path.normpath(self.storage_path)
-        if not os.path.exists(self.storage_path):
-            os.makedirs(self.storage_path)
+    def __get_storage_path():
+        Storage.storage_path = os.path.dirname(os.path.abspath(__file__)) + '/../../storage'
+        Storage.storage_path = os.path.normpath(Storage.storage_path)
+        if not os.path.exists(Storage.storage_path):
+            os.makedirs(Storage.storage_path)
 
         # old_storage_path = os.path.join(Path().absolute(), 'physton-prompt')
         # if os.path.exists(old_storage_path):
         #     # 复制就的存储文件到新的存储文件夹
         #     for file in os.listdir(old_storage_path):
         #         old_file_path = os.path.join(old_storage_path, file)
-        #         new_file_path = os.path.join(self.storage_path, file)
+        #         new_file_path = os.path.join(Storage.storage_path, file)
         #         if not os.path.exists(new_file_path):
         #             os.rename(old_file_path, new_file_path)
         #     # 删除旧的存储文件夹
         #     os.rmdir(old_storage_path)
 
-        return self.storage_path
+        return Storage.storage_path
 
-    def __get_data_filename(self, key):
-        return self.__get_storage_path() + '/' + key + '.json'
+    def __get_data_filename(key):
+        return Storage.__get_storage_path() + '/' + key + '.json'
 
-    def __get_key_lock_filename(self, key):
-        return self.__get_storage_path() + '/' + key + '.lock'
+    def __get_key_lock_filename(key):
+        return Storage.__get_storage_path() + '/' + key + '.lock'
 
-    def __lock(self, key):
-        file_path = self.__get_key_lock_filename(key)
+    def __dispose_all_locks():
+        directory = Storage.__get_storage_path()
+        for filename in os.listdir(directory):
+            # 检查文件是否以指定后缀结尾
+            if filename.endswith('.lock'):
+                file_path = os.path.join(directory, filename)
+                try:
+                    os.remove(file_path)
+                    print(f"Disposed lock: {file_path}")
+                except Exception as e:
+                    print(f"Dispose lock {file_path} failed: {e}")
+
+    def __lock(key):
+        file_path = Storage.__get_key_lock_filename(key)
         with open(file_path, 'w') as f:
             f.write('1')
 
-    def __unlock(self, key):
-        file_path = self.__get_key_lock_filename(key)
+    def __unlock(key):
+        file_path = Storage.__get_key_lock_filename(key)
         if os.path.exists(file_path):
             os.remove(file_path)
 
-    def __is_locked(self, key):
-        file_path = self.__get_key_lock_filename(key)
+    def __is_locked(key):
+        file_path = Storage.__get_key_lock_filename(key)
         return os.path.exists(file_path)
 
-    def __get(self, key):
-        filename = self.__get_data_filename(key)
+    def __get(key):
+        filename = Storage.__get_data_filename(key)
         if not os.path.exists(filename):
             return None
         if os.path.getsize(filename) == 0:
@@ -75,103 +86,103 @@ class Storage:
                 return None
         return data
 
-    def __set(self, key, data):
-        file_path = self.__get_data_filename(key)
+    def __set(key, data):
+        file_path = Storage.__get_data_filename(key)
         with open(file_path, 'w') as f:
             json.dump(data, f, indent=4, ensure_ascii=True)
 
-    def set(self, key, data):
-        while self.__is_locked(key):
+    def set(key, data):
+        while Storage.__is_locked(key):
             time.sleep(0.01)
-        self.__lock(key)
+        Storage.__lock(key)
         try:
-            self.__set(key, data)
-            self.__unlock(key)
+            Storage.__set(key, data)
+            Storage.__unlock(key)
         except Exception as e:
-            self.__unlock(key)
+            Storage.__unlock(key)
             raise e
 
-    def get(self, key):
-        return self.__get(key)
+    def get(key):
+        return Storage.__get(key)
 
-    def delete(self, key):
-        file_path = self.__get_data_filename(key)
+    def delete(key):
+        file_path = Storage.__get_data_filename(key)
         if os.path.exists(file_path):
             os.remove(file_path)
 
-    def __get_list(self, key):
-        data = self.get(key)
+    def __get_list(key):
+        data = Storage.get(key)
         if not data:
             data = []
         return data
 
     # 向列表中添加元素
-    def list_push(self, key, item):
-        while self.__is_locked(key):
+    def list_push(key, item):
+        while Storage.__is_locked(key):
             time.sleep(0.01)
-        self.__lock(key)
+        Storage.__lock(key)
         try:
-            data = self.__get_list(key)
+            data = Storage.__get_list(key)
             data.append(item)
-            self.__set(key, data)
-            self.__unlock(key)
+            Storage.__set(key, data)
+            Storage.__unlock(key)
         except Exception as e:
-            self.__unlock(key)
+            Storage.__unlock(key)
             raise e
 
     # 从列表中删除和返回最后一个元素
-    def list_pop(self, key):
-        while self.__is_locked(key):
+    def list_pop(key):
+        while Storage.__is_locked(key):
             time.sleep(0.01)
-        self.__lock(key)
+        Storage.__lock(key)
         try:
-            data = self.__get_list(key)
+            data = Storage.__get_list(key)
             item = data.pop()
-            self.__set(key, data)
-            self.__unlock(key)
+            Storage.__set(key, data)
+            Storage.__unlock(key)
             return item
         except Exception as e:
-            self.__unlock(key)
+            Storage.__unlock(key)
             raise e
 
     # 从列表中删除和返回第一个元素
-    def list_shift(self, key):
-        while self.__is_locked(key):
+    def list_shift(key):
+        while Storage.__is_locked(key):
             time.sleep(0.01)
-        self.__lock(key)
+        Storage.__lock(key)
         try:
-            data = self.__get_list(key)
+            data = Storage.__get_list(key)
             item = data.pop(0)
-            self.__set(key, data)
-            self.__unlock(key)
+            Storage.__set(key, data)
+            Storage.__unlock(key)
             return item
         except Exception as e:
-            self.__unlock(key)
+            Storage.__unlock(key)
             raise e
 
     # 从列表中删除指定元素
-    def list_remove(self, key, index):
-        while self.__is_locked(key):
+    def list_remove(key, index):
+        while Storage.__is_locked(key):
             time.sleep(0.01)
-        self.__lock(key)
-        data = self.__get_list(key)
+        Storage.__lock(key)
+        data = Storage.__get_list(key)
         data.pop(index)
-        self.__set(key, data)
-        self.__unlock(key)
+        Storage.__set(key, data)
+        Storage.__unlock(key)
 
     # 获取列表中指定位置的元素
-    def list_get(self, key, index):
-        data = self.__get_list(key)
+    def list_get(key, index):
+        data = Storage.__get_list(key)
         return data[index]
 
     # 清空列表中的所有元素
-    def list_clear(self, key):
-        while self.__is_locked(key):
+    def list_clear(key):
+        while Storage.__is_locked(key):
             time.sleep(0.01)
-        self.__lock(key)
+        Storage.__lock(key)
         try:
-            self.__set(key, [])
-            self.__unlock(key)
+            Storage.__set(key, [])
+            Storage.__unlock(key)
         except Exception as e:
-            self.__unlock(key)
+            Storage.__unlock(key)
             raise e

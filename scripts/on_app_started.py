@@ -57,7 +57,6 @@ except Exception as e:
 
 
 def on_app_started(_: gr.Blocks, app: FastAPI):
-    st = Storage()
     hi = History()
 
     @app.get("/physton_prompt/get_version")
@@ -109,7 +108,7 @@ def on_app_started(_: gr.Blocks, app: FastAPI):
 
     @app.get("/physton_prompt/get_data")
     async def _get_data(key: str):
-        data = st.get(key)
+        data = Storage.get(key)
         data = privacy_translate_api_config(key, data)
         return {"data": data}
 
@@ -118,7 +117,7 @@ def on_app_started(_: gr.Blocks, app: FastAPI):
         keys = keys.split(',')
         datas = {}
         for key in keys:
-            datas[key] = st.get(key)
+            datas[key] = Storage.get(key)
             datas[key] = privacy_translate_api_config(key, datas[key])
         return {"datas": datas}
 
@@ -130,7 +129,7 @@ def on_app_started(_: gr.Blocks, app: FastAPI):
         if 'data' not in data:
             return {"success": False, "message": get_lang('is_required', {'0': 'data'})}
         data['data'] = unprotected_translate_api_config(data['key'], data['data'])
-        st.set(data['key'], data['data'])
+        Storage.set(data['key'], data['data'])
         return {"success": True}
 
     @app.post("/physton_prompt/set_datas")
@@ -140,12 +139,12 @@ def on_app_started(_: gr.Blocks, app: FastAPI):
             return {"success": False, "message": get_lang('is_not_dict', {'0': 'data'})}
         for key in data:
             data[key] = unprotected_translate_api_config(key, data[key])
-            st.set(key, data[key])
+            Storage.set(key, data[key])
         return {"success": True}
 
     @app.get("/physton_prompt/get_data_list_item")
     async def _get_data_list_item(key: str, index: int):
-        return {"item": st.list_get(key, index)}
+        return {"item": Storage.list_get(key, index)}
 
     @app.post("/physton_prompt/push_data_list")
     async def _push_data_list(request: Request):
@@ -154,7 +153,7 @@ def on_app_started(_: gr.Blocks, app: FastAPI):
             return {"success": False, "message": get_lang('is_required', {'0': 'key'})}
         if 'item' not in data:
             return {"success": False, "message": get_lang('is_required', {'0': 'item'})}
-        st.list_push(data['key'], data['item'])
+        Storage.list_push(data['key'], data['item'])
         return {"success": True}
 
     @app.post("/physton_prompt/pop_data_list")
@@ -162,14 +161,14 @@ def on_app_started(_: gr.Blocks, app: FastAPI):
         data = await request.json()
         if 'key' not in data:
             return {"success": False, "message": get_lang('is_required', {'0': 'key'})}
-        return {"success": True, 'item': st.list_pop(data['key'])}
+        return {"success": True, 'item': Storage.list_pop(data['key'])}
 
     @app.post("/physton_prompt/shift_data_list")
     async def _shift_data_list(request: Request):
         data = await request.json()
         if 'key' not in data:
             return {"success": False, "message": get_lang('is_required', {'0': 'key'})}
-        return {"success": True, 'item': st.list_shift(data['key'])}
+        return {"success": True, 'item': Storage.list_shift(data['key'])}
 
     @app.post("/physton_prompt/remove_data_list")
     async def _remove_data_list(request: Request):
@@ -178,7 +177,7 @@ def on_app_started(_: gr.Blocks, app: FastAPI):
             return {"success": False, "message": get_lang('is_required', {'0': 'key'})}
         if 'index' not in data:
             return {"success": False, "message": get_lang('is_required', {'0': 'index'})}
-        st.list_remove(data['key'], data['index'])
+        Storage.list_remove(data['key'], data['index'])
         return {"success": True}
 
     @app.post("/physton_prompt/clear_data_list")
@@ -186,7 +185,7 @@ def on_app_started(_: gr.Blocks, app: FastAPI):
         data = await request.json()
         if 'key' not in data:
             return {"success": False, "message": get_lang('is_required', {'0': 'key'})}
-        st.list_clear(data['key'])
+        Storage.list_clear(data['key'])
         return {"success": True}
 
     @app.get("/physton_prompt/get_histories")
@@ -395,7 +394,7 @@ def on_app_started(_: gr.Blocks, app: FastAPI):
         return {"tags": get_group_tags(lang)}
 
     try:
-        translate_api = st.get('translateApi')
+        translate_api = Storage.get('translateApi')
         if translate_api == 'mbart50':
             mbart50_initialize()
     except Exception:

@@ -1,0 +1,8 @@
+{
+  "name": "Temporary fix for issues caused by css in Firefox.",
+  "i18n": {
+    "zh_CN": "临时修复Firefox中css导致的问题"
+  },
+  "author": "PTCMode",
+  "type": "enhance"
+}
