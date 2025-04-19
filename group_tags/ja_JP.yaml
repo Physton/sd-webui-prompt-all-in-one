@@ -2182,7 +2182,7 @@
         happy_tears: 幸せな涙
         happy_valentine: ハッピー・バレンタイン
 
-    - name: 哭
+    - name: 泣き
       color: rgba(241, 229, 140, .4)
       tags:
         sad: 悲しい
@@ -2197,7 +2197,7 @@
         wiping_tears: 涙を拭く
         badmood: 機嫌が悪い
 
-    - name: 不开心
+    - name: 不幸
       color: rgba(241, 229, 140, .4)
       tags:
         frustrated: 意気消沈
@@ -2209,7 +2209,7 @@
         disappointed: がっかりした
         despair: 絶望
 
-    - name: 蔑视
+    - name: 軽蔑
       color: rgba(241, 229, 140, .4)
       tags:
         disgust: 嫌悪（ゴミのような目）
@@ -2223,7 +2223,7 @@
         fear_kubrick: 恐怖で横目
         laughing: 笑っている
 
-    - name: 生气
+    - name: 怒り
       color: rgba(241, 229, 140, .4)
       tags:
         angry: 怒っている
@@ -2235,7 +2235,7 @@
         screaming: 叫び|大声で叫ぶ
         shouting: 叫ぶ
 
-    - name: 其他表情
+    - name: その他表情
       color: rgba(241, 229, 140, .4)
       tags:
         expressionless: 無表情
@@ -2276,7 +2276,7 @@
         moaning: 喘ぎ声
         scowl: 嫌いな目つき
 
-    - name: 基础动作
+    - name: 基本動作
       color: rgba(241, 229, 140, .4)
       tags:
         standing: 立っている
@@ -2433,7 +2433,7 @@
         yawning: あくびをする
         hiding: 隠れる
 
-    - name: 手部动作
+    - name: 手の動き
       color: rgba(241, 229, 140, .4)
       tags:
         arms_behind_back: 背後で手を組む
