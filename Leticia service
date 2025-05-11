@@ -1,0 +1,18 @@
+from together import Together
+
+image = client.images.generate(
+    prompt="MJ v6, A sensual, full-body anime elf girl with long, flowing silver hair and sparkling highlights, deep red eyes, and a seductive, lustful expression, posing with both hands grasping a green wine bottle, wearing an Egyptian-inspired sheer black skirt with intricate golden embroidery, split front and back panels, and a delicate black silk veil draped over her head, paired with black elbow-length fingerless gloves, elegant golden jewelry, and ornate bracelets, set against a dark fantasy blur background with soft body lighting, detailed anime shading, and line art, strong contrast with dramatic shadows, cinematic lighting, and a Goblin Slayer-inspired aesthetic, rendered in a highly detailed, ultra-sharp, and masterful style, with a focus on photorealistic textures and a close-up composition that emphasizes the subject's intricate features and sensual presence.",
+    model="black-forest-labs/FLUX.1-dev-lora",
+    height=768,
+    width=1024,
+    seed=8910047,
+    steps=28,
+    image_loras=[
+        {
+            "path": "https://huggingface.co/strangerzonehf/Flux-Midjourney-Mix2-LoRA",
+            "scale": 1,
+        },
+    ],
+)
+
+print(image.data[0].url)
