@@ -1,7 +1,7 @@
 from modules import script_callbacks, extra_networks, prompt_parser, sd_models
 from modules.sd_hijack import model_hijack
 from functools import partial, reduce
-
+ 
 
 def get_token_counter(text, steps):
     # Check if the model is fully loaded to prevent TypeError during model switching
