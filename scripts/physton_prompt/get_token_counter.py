@@ -4,6 +4,10 @@ from functools import partial, reduce
 
 
 def get_token_counter(text, steps):
+    # Check if the model is fully loaded to prevent TypeError during model switching
+    if sd_models.model_data.sd_model is None:
+        return {"token_count": 0, "max_length": 0}
+
     # copy from modules.ui.py
     try:
         text, _ = extra_networks.parse_prompt(text)
@@ -27,10 +31,6 @@ def get_token_counter(text, steps):
     prompts = [prompt_text for step, prompt_text in flat_prompts]
 
     if forge:
-        # Check if the model is fully loaded to prevent TypeError during model switching
-        if sd_models.model_data.sd_model is None:
-            return {"token_count": 0, "max_length": 0}
-
         cond_stage_model = sd_models.model_data.sd_model.cond_stage_model
         token_count, max_length = max([model_hijack.get_prompt_lengths(prompt,cond_stage_model) for prompt in prompts],
                                       key=lambda args: args[0])
