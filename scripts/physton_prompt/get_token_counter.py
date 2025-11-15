@@ -4,8 +4,10 @@ from functools import partial, reduce
 
 
 def get_token_counter(text, steps):
-    # Check if the model is fully loaded to prevent TypeError during model switching
-    if sd_models.model_data.sd_model is None:
+    # Check if the model is fully loaded to prevent TypeError during model switching.
+    # Checks both sd_model and its subcomponent (cond_stage_model).
+    if sd_models.model_data.sd_model is None or \
+       sd_models.model_data.sd_model.cond_stage_model is None:
         return {"token_count": 0, "max_length": 0}
 
     # copy from modules.ui.py
