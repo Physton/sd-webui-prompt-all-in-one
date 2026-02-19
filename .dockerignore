@@ -1,0 +1,9 @@
+.git
+.github
+node_modules
+src/node_modules
+__pycache__
+*.pyc
+*.pyo
+.DS_Store
+*.log

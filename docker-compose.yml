@@ -1,0 +1,28 @@
+services:
+  sd-webui:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: sd-webui-prompt-all-in-one
+    ports:
+      - "7860:7860"
+    volumes:
+      # Persist downloaded models across container restarts
+      - sd_models:/app/models
+      # Persist extension storage (settings, history, favorites)
+      - ./storage:/app/extensions/sd-webui-prompt-all-in-one/storage
+      # Persist WebUI outputs
+      - sd_outputs:/app/outputs
+    environment:
+      - PYTHONUNBUFFERED=1
+      - SKIP_TORCH_VERSION_CHECK=1
+      - SKIP_PYTHON_VERSION_CHECK=1
+      - GIT_TERMINAL_PROMPT=0
+    restart: unless-stopped
+    shm_size: '2gb'
+
+volumes:
+  sd_models:
+    driver: local
+  sd_outputs:
+    driver: local
