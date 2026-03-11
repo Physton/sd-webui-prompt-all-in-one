@@ -139,26 +139,6 @@ export default class GradioAPI {
         return (await this.api.post("/delete_histories", {type})).data.success
     }
 
-    async translate(text, from_lang, to_lang, api, api_config = {}) {
-        let data = (await this.api.post("/translate", {text, from_lang, to_lang, api, api_config})).data
-        if (data.translated_text) {
-            // 实体转义
-            data.translated_text = common.unescapeHtml(data.translated_text)
-        }
-        return data
-    }
-
-    async translates(texts, from_lang, to_lang, api, api_config = {}) {
-        let data = (await this.api.post("/translates", {texts, from_lang, to_lang, api, api_config})).data
-        if (data.translated_text) {
-            data.translated_text.forEach((item, index) => {
-                // 实体转义
-                data.translated_text[index] = common.unescapeHtml(item)
-            })
-        }
-        return data
-    }
-
     async getCSVs() {
         return (await this.api.get("/get_csvs")).data.csvs
     }
@@ -177,15 +157,6 @@ export default class GradioAPI {
 
     async getExtraNetworks() {
         return (await this.api.get("/get_extra_networks")).data.extra_networks
-    }
-
-    async genOpenAI(messages, api_config) {
-        return (await this.api.post("/gen_openai", {messages, api_config})).data
-    }
-
-    async mbart50Initialize() {
-        const config = {timeout: 100000000000}
-        return (await this.api.post("/mbart50_initialize", {}, config)).data
     }
 
     async getGroupTags(lang) {
