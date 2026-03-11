@@ -248,7 +248,6 @@ export default {
                 }
             }
             if (indexes.length) {
-                this.autoTranslateByIndexes(indexes)
             }
         },
         onTagMouseEnter(id) {
@@ -536,22 +535,8 @@ export default {
             this.tags.splice(index + 1, 0, wrapTag);
             this.updateTags()
         },
-        onTranslateToLocalClick(id) {
-            let tag = this.tags.find(tag => tag.id === id)
-            if (!tag) return
-            let index = this.tags.indexOf(tag)
-            if (this.loading[tag.id + '_local']) return
-            this.translates([index], true, true).finally(() => {
-                this.updateTags()
             })
         },
-        onTranslateToEnglishClick(id) {
-            let tag = this.tags.find(tag => tag.id === id)
-            if (!tag) return
-            let index = this.tags.indexOf(tag)
-            if (this.loading[tag.id + '_en']) return
-            this.translates([index], false, true).finally(() => {
-                this.updateTags()
             })
         },
         onBlacklistClick(id) {

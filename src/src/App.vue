@@ -70,13 +70,6 @@
                             @refresh-extra-networks="onRefreshExtraNetworks"
             ></physton-prompt>
         </template>
-        <translate-setting ref="translateSetting" v-model:language-code="languageCode"
-                           :translate-apis="translateApis" :languages="languages"
-                           @forceUpdate:translateApi="updateTranslateApiConfig"
-                           v-model:tag-complete-file="tagCompleteFile"
-                           v-model:only-csv-on-auto="onlyCsvOnAuto"
-                           v-model:group-tags-translate="groupTagsTranslate"
-                           v-model:translate-api="translateApi"></translate-setting>
         <select-language ref="selectLanguage" v-model:language-code="languageCode"
                          :translate-apis="translateApis"
                          :languages="languages"
@@ -124,9 +117,6 @@
                         :translate-apis="translateApis" :languages="languages"
                         @click:select-language="onSelectLanguageClick"
                         :packages-state="packagesState" :python="python"/>
-        <chatgpt-prompt ref="chatgptPrompt" v-model:language-code="languageCode"
-                        :translate-apis="translateApis" :languages="languages"
-                        @use="onUseChatgpt" />
         <about ref="about" v-model:language-code="languageCode"
                :translate-apis="translateApis" :languages="languages" />
 
@@ -156,7 +146,6 @@
 
 <script>
 import PhystonPrompt from "./components/phystonPrompt.vue"
-import TranslateSetting from "@/components/translateSetting.vue";
 import common from "@/utils/common";
 import SelectLanguage from "@/components/selectLanguage.vue";
 import Favorite from "@/components/favorite.vue";
@@ -166,7 +155,6 @@ import ExtensionCss from "@/components/extensionCss.vue";
 import PromptFormat from "@/components/promptFormat.vue";
 import Blacklist from "@/components/blacklist.vue";
 import PackagesState from "@/components/packagesState.vue";
-import ChatgptPrompt from "@/components/chatgptPrompt.vue";
 import About from "@/components/about.vue";
 import globals from "../globals";
 import jsYaml from "js-yaml";
@@ -180,8 +168,7 @@ export default {
     components: {
         Hotkey,
         About,
-        ChatgptPrompt,
-        PackagesState,
+                PackagesState,
         PromptFormat,
         Blacklist,
         ExtensionCss,
@@ -189,8 +176,7 @@ export default {
         History,
         Favorite,
         SelectLanguage,
-        TranslateSetting,
-        PhystonPrompt,
+                PhystonPrompt,
         ExtraNetworksPopup
     },
     mixins: [],
@@ -292,13 +278,6 @@ export default {
             ],
             languageCode: '',
             languages: {},
-            translateApis: [],
-            translateApi: '',
-            translateApiConfig: {},
-            canOneTranslate: false,
-            autoTranslate: false,
-            autoTranslateToEnglish: false,
-            autoTranslateToLocal: false,
             autoRemoveSpace: true,
             autoRemoveLastComma: false,
             autoKeepWeightZero: false,
@@ -324,7 +303,6 @@ export default {
 
             historyCurrentPrompt: '',
             favoriteCurrentPrompt: '',
-            chatgptCurrentPrompt: '',
 
             extraNetworks: [],
             loras: [],
@@ -343,7 +321,6 @@ export default {
             groupTags: [],
             groupTagsColor: {},
             groupTagsColorKeyCache: {},
-            groupTagsTranslate: true,
             groupTagsTranslateCache: {
                 toEn: new Map(),
                 toLocal: new Map()
@@ -655,8 +632,6 @@ export default {
         this.gradioAPI.getConfig().then(res => {
             console.log('config:', res)
             this.languageCode = res.i18n.default
-            this.translateApi = res.translate_apis.default
-            this.translateApis = res.translate_apis.apis
             this.python = res.python
             this.packagesState = res.packages_state
             let languages = {}

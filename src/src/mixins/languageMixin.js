@@ -48,7 +48,6 @@ export default {
     },
     data() {
         return {
-            cancelMultiTranslate: false,
             globals: globals
         }
     },
@@ -162,11 +161,6 @@ export default {
                 })
             })
         },
-        _translateToLocalBy(text, toLocal, useNetwork = false) {
-            text = text.trim().toLowerCase()
-            let _localToString = value => (value.join?.(' / ') ?? value)
-            if (toLocal.has(text)) {
-                return _localToString(toLocal.get(text))
             } else {
                 // 使用 , 分隔
                 const texts = text.split(',').map(t => t.trim())
@@ -183,22 +177,12 @@ export default {
             }
             return ''
         },
-        async translateToLocalByCSV(text, tagCompleteFile = null, reload = false, useNetwork = false) {
             let res = await this.getCSV(tagCompleteFile, reload)
-            return this._translateToLocalBy(text, res.toLocal, useNetwork)
         },
-        async translateToEnByCSV(text, tagCompleteFile = null, reload = false) {
             let res = await this.getCSV(tagCompleteFile, reload)
-            return this._toEn(text, res.toEn)
         },
-        async translateToLocalByGroupTags(text, useNetwork = false) {
-            console.log('translateToLocalByGroupTags', text)
-            return this._translateToLocalBy(text, this.groupTagsTranslateCache.toLocal, useNetwork)
         },
-        async translateToEnByGroupTags(text) {
-            return this._toEn(text, this.groupTagsTranslateCache.toEn)
         },
-        _toEn(text, toEn) {
             text = text.trim().toLowerCase()
             if (toEn.has(text)) {
                 return toEn.get(text)

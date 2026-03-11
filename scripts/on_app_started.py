@@ -9,17 +9,13 @@ from scripts.physton_prompt.storage import Storage
 from scripts.physton_prompt.get_extensions import get_extensions
 from scripts.physton_prompt.get_token_counter import get_token_counter
 from scripts.physton_prompt.get_i18n import get_i18n
-from scripts.physton_prompt.get_translate_apis import get_translate_apis, privacy_translate_api_config, unprotected_translate_api_config
-from scripts.physton_prompt.translate import translate
 from scripts.physton_prompt.history import History
 from scripts.physton_prompt.csv import get_csvs, get_csv
 from scripts.physton_prompt.styles import get_style_full_path, get_extension_css_list
 from scripts.physton_prompt.get_extra_networks import get_extra_networks
 from scripts.physton_prompt.packages import get_packages_state, install_package
-from scripts.physton_prompt.gen_openai import gen_openai
 from scripts.physton_prompt.get_lang import get_lang
 from scripts.physton_prompt.get_version import get_git_commit_version, get_git_remote_versions, get_latest_version
-from scripts.physton_prompt.mbart50 import initialize as mbart50_initialize, translate as mbart50_translate
 from scripts.physton_prompt.get_group_tags import get_group_tags
 
 try:
@@ -76,7 +72,6 @@ def on_app_started(_: gr.Blocks, app: FastAPI):
     async def _get_config():
         return {
             'i18n': get_i18n(True),
-            'translate_apis': get_translate_apis(True),
             'packages_state': get_packages_state(),
             'python': sys.executable,
         }
@@ -108,9 +103,7 @@ def on_app_started(_: gr.Blocks, app: FastAPI):
 
     @app.get("/physton_prompt/get_data")
     async def _get_data(key: str):
-        data = Storage.get(key)
-        data = privacy_translate_api_config(key, data)
-        return {"data": data}
+        return {"data": Storage.get(key)}
 
     @app.get("/physton_prompt/get_datas")
     async def _get_datas(keys: str):
@@ -118,7 +111,6 @@ def on_app_started(_: gr.Blocks, app: FastAPI):
         datas = {}
         for key in keys:
             datas[key] = Storage.get(key)
-            datas[key] = privacy_translate_api_config(key, datas[key])
         return {"datas": datas}
 
     @app.post("/physton_prompt/set_data")
@@ -128,7 +120,6 @@ def on_app_started(_: gr.Blocks, app: FastAPI):
             return {"success": False, "message": get_lang('is_required', {'0': 'key'})}
         if 'data' not in data:
             return {"success": False, "message": get_lang('is_required', {'0': 'data'})}
-        data['data'] = unprotected_translate_api_config(data['key'], data['data'])
         Storage.set(data['key'], data['data'])
         return {"success": True}
 
@@ -138,7 +129,6 @@ def on_app_started(_: gr.Blocks, app: FastAPI):
         if not isinstance(data, dict):
             return {"success": False, "message": get_lang('is_not_dict', {'0': 'data'})}
         for key in data:
-            data[key] = unprotected_translate_api_config(key, data[key])
             Storage.set(key, data[key])
         return {"success": True}
 
@@ -313,36 +303,6 @@ def on_app_started(_: gr.Blocks, app: FastAPI):
             return {"success": False, "message": get_lang('is_required', {'0': 'type'})}
         return {"success": hi.remove_histories(data['type'])}
 
-    @app.post("/physton_prompt/translate")
-    async def _translate(request: Request):
-        data = await request.json()
-        if 'text' not in data:
-            return {"success": False, "message": get_lang('is_required', {'0': 'text'})}
-        if 'from_lang' not in data:
-            return {"success": False, "message": get_lang('is_required', {'0': 'from_lang'})}
-        if 'to_lang' not in data:
-            return {"success": False, "message": get_lang('is_required', {'0': 'to_lang'})}
-        if 'api' not in data:
-            return {"success": False, "message": get_lang('is_required', {'0': 'api'})}
-        if 'api_config' not in data:
-            return {"success": False, "message": get_lang('is_required', {'0': 'api_config'})}
-        return translate(data['text'], data['from_lang'], data['to_lang'], data['api'], data['api_config'])
-
-    @app.post("/physton_prompt/translates")
-    async def _translates(request: Request):
-        data = await request.json()
-        if 'texts' not in data:
-            return {"success": False, "message": get_lang('is_required', {'0': 'texts'})}
-        if 'from_lang' not in data:
-            return {"success": False, "message": get_lang('is_required', {'0': 'from_lang'})}
-        if 'to_lang' not in data:
-            return {"success": False, "message": get_lang('is_required', {'0': 'to_lang'})}
-        if 'api' not in data:
-            return {"success": False, "message": get_lang('is_required', {'0': 'api'})}
-        if 'api_config' not in data:
-            return {"success": False, "message": get_lang('is_required', {'0': 'api_config'})}
-        return translate(data['texts'], data['from_lang'], data['to_lang'], data['api'], data['api_config'])
-
     @app.get("/physton_prompt/get_csvs")
     async def _get_csvs():
         return {"csvs": get_csvs()}
@@ -369,37 +329,9 @@ def on_app_started(_: gr.Blocks, app: FastAPI):
     async def _get_extra_networks():
         return {"extra_networks": get_extra_networks()}
 
-    @app.post("/physton_prompt/gen_openai")
-    async def _gen_openai(request: Request):
-        data = await request.json()
-        if 'messages' not in data:
-            return {"success": False, "message": get_lang('is_required', {'0': 'messages'})}
-        if 'api_config' not in data:
-            return {"success": False, "message": get_lang('is_required', {'0': 'api_config'})}
-        try:
-            return {"success": True, 'result': gen_openai(data['messages'], data['api_config'])}
-        except Exception as e:
-            return {"success": False, 'message': str(e)}
-
-    @app.post("/physton_prompt/mbart50_initialize")
-    async def _mbart50_initialize(request: Request):
-        try:
-            mbart50_initialize(True)
-            return {"success": True}
-        except Exception as e:
-            return {"success": False, 'message': str(e)}
-
     @app.get("/physton_prompt/get_group_tags")
     async def _get_group_tags(lang: str):
         return {"tags": get_group_tags(lang)}
-
-    try:
-        translate_api = Storage.get('translateApi')
-        if translate_api == 'mbart50':
-            mbart50_initialize()
-    except Exception:
-        pass
-
 
 try:
     script_callbacks.on_app_started(on_app_started)
