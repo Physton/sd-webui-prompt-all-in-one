@@ -60,6 +60,18 @@
                            @change="$emit('update:autoRemoveBeforeLineComma', $event.target.checked)">
                     <div class="format-desc" v-html="getLang('is_remove_before_line_comma')"></div>
                 </div>
+                <div class="format-item">
+                    <input class="format-checkbox" type="checkbox"
+                           :checked="autoSplitByPeriod"
+                           @change="$emit('update:autoSplitByPeriod', $event.target.checked)">
+                    <div class="format-desc" v-html="getLang('is_split_by_period')"></div>
+                </div>
+                <div class="format-item" v-if="autoSplitByPeriod" style="padding-left: 20px;">
+                    <input class="format-checkbox" type="checkbox"
+                           :checked="autoSplitByPeriodIncludeParen"
+                           @change="$emit('update:autoSplitByPeriodIncludeParen', $event.target.checked)">
+                    <div class="format-desc" v-html="getLang('is_split_by_period_include_paren')"></div>
+                </div>
             </div>
         </div>
     </div>
@@ -114,13 +126,34 @@ export default {
             type: Boolean,
             default: false,
         },
+        autoSplitByPeriod: {
+            type: Boolean,
+            default: false,
+        },
+        autoSplitByPeriodIncludeParen: {
+            type: Boolean,
+            default: false,
+        },
     },
     data() {
         return {
             isOpen: false,
         }
     },
-    emits: ['update:autoRemoveSpace', 'update:autoRemoveLastComma', 'update:autoKeepWeightZero', 'update:autoKeepWeightOne', 'update:autoBreakBeforeWrap', 'update:autoBreakAfterWrap', 'update:autoRemoveLoraBeforeComma', 'update:autoRemoveLoraAfterComma', 'update:useNovelAiWeightSymbol', 'update:autoRemoveBeforeLineComma'],
+    emits: [
+        'update:autoRemoveSpace',
+        'update:autoRemoveLastComma',
+        'update:autoKeepWeightZero',
+        'update:autoKeepWeightOne',
+        'update:autoBreakBeforeWrap',
+        'update:autoBreakAfterWrap',
+        'update:autoRemoveLoraBeforeComma',
+        'update:autoRemoveLoraAfterComma',
+        'update:useNovelAiWeightSymbol',
+        'update:autoRemoveBeforeLineComma',
+        'update:autoSplitByPeriod',
+        'update:autoSplitByPeriodIncludeParen',
+    ],
     computed: {},
     mounted() {
     },

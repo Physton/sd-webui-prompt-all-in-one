@@ -662,6 +662,14 @@ export default {
             type: Boolean,
             default: false,
         },
+        autoSplitByPeriod: {
+            type: Boolean,
+            default: false,
+        },
+        autoSplitByPeriodIncludeParen: {
+            type: Boolean,
+            default: false,
+        },
         hideDefaultInput: {
             type: Boolean,
             default: false,
@@ -755,7 +763,43 @@ export default {
             default: () => ({}),
         }
     },
-    emits: ['update:languageCode', 'update:autoTranslate', 'update:autoTranslateToEnglish', 'update:autoTranslateToLocal', 'update:autoRemoveSpace', 'update:autoRemoveLastComma', 'update:autoKeepWeightZero', 'update:autoKeepWeightOne', 'update:hideDefaultInput', 'update:hidePanel', 'update:enableTooltip', 'update:translateApi', 'click:translateApi', 'click:promptFormat', 'click:blacklist', 'click:hotkey', 'click:selectTheme', 'click:switchTheme', 'click:showAbout', 'click:selectLanguage', 'click:showHistory', 'click:showFavorite', 'refreshFavorites', 'click:showChatgpt', 'update:hideGroupTags', 'update:groupTagsColor', 'update:blacklist', 'showExtraNetworks', 'hideExtraNetworks', 'refreshExtraNetworks', 'update:extraNetworksWidth', 'update:extraNetworksHeight', 'update:autoLoadWebuiPrompt'],
+    emits: [
+        'update:languageCode',
+        'update:autoTranslate',
+        'update:autoTranslateToEnglish',
+        'update:autoTranslateToLocal',
+        'update:autoRemoveSpace',
+        'update:autoRemoveLastComma',
+        'update:autoKeepWeightZero',
+        'update:autoKeepWeightOne',
+        'update:hideDefaultInput',
+        'update:hidePanel',
+        'update:enableTooltip',
+        'update:translateApi',
+        'click:translateApi',
+        'click:promptFormat',
+        'click:blacklist',
+        'click:hotkey',
+        'click:selectTheme',
+        'click:switchTheme',
+        'click:showAbout',
+        'click:selectLanguage',
+        'click:showHistory',
+        'click:showFavorite',
+        'refreshFavorites',
+        'click:showChatgpt',
+        'update:hideGroupTags',
+        'update:groupTagsColor',
+        'update:blacklist',
+        'showExtraNetworks',
+        'hideExtraNetworks',
+        'refreshExtraNetworks',
+        'update:extraNetworksWidth',
+        'update:extraNetworksHeight',
+        'update:autoLoadWebuiPrompt',
+        'update:autoSplitByPeriod',
+        'update:autoSplitByPeriodIncludeParen',
+    ],
     data() {
         return {
             prompt: '',
@@ -904,12 +948,13 @@ export default {
                             break
                         }
                     }
-                    const localValue = find ? find.localValue : ''
-                    const disabled = find ? find.disabled : false
-                    const index = this._appendTag(tag, localValue, disabled, -1, 'text')
+                    // _restoreTag：建立 tag 並自動還原 localValue/disabled/自訂屬性
+                    const index = this._restoreTag(tag, -1, find || null)
                     if (!find && index !== -1) indexes.push(index)
                 }
             }
+            // autoSplitByPeriod：在 textarea 內容變動、重新解析標籤後，同步分割含 ". " 的標籤
+            this.applySplitByPeriod()
             if (this.autoTranslateToLocal && event) {
                 // 启动了自动翻译到本地语言，并且用户手动触发的
                 let useNetwork = !(this.tagCompleteFile && this.onlyCsvOnAuto)
@@ -1027,7 +1072,7 @@ export default {
                     }
 
                     if (this.autoRemoveLastComma && index + 1 === length) {
-                        // 如果是最后一个，那么就不需要加逗号
+                        // 如果是最后一个，那么就不需要加逗號
                         splitSymbol = ''
                     }
 
@@ -1035,7 +1080,13 @@ export default {
                         splitSymbol = (this.autoRemoveSpace ? '' : ' ')
                     }
 
+                    // autoSplitByPeriod：若此 tag 是分割產生的中間段且原始 tag 無逗號，則移除逗號
+                    if (tag.splitNoComma && splitSymbol.includes(',')) {
+                        splitSymbol = splitSymbol.replace(/,/g, '')
+                    }
+
                     prompt = tag.value + splitSymbol
+
                 }
 
                 if (prompt) prompts.push(prompt)
@@ -1043,6 +1094,61 @@ export default {
             if (prompts.length <= 0) return ''
             // console.log('update tags', prompts)
             return prompts.join('')
+        },
+        /**
+         * autoSplitByPeriod：在 tags 陣列層級實際分割標籤。
+         *
+         * 原因：若僅在 genPrompt() 輸出字串中分割，tags 陣列不會被修改，
+         * 導致 UI 顯示的標籤與實際輸出不一致（prompts 已分割但 tag 仍為原始值）。
+         * 因此改為直接操作 tags 陣列，在標籤載入或選項變更時觸發分割。
+         *
+         * 正則規則（Lookbehind）：
+         *   - 預設 /(?<=\.) +(?!\()/ : 以句號後的空格為斷點，句號自動保留在前段末尾
+         *     負向 lookahead (?!\() 避免拆分 "U.S.A. (something)"
+         *   - autoSplitByPeriodIncludeParen=true 時：改用 /(?<=\.) +/，允許拆分括號前的句號空格
+         *   - 邊界驗證：第一段與最後一段不得為空（排除開頭句號、結尾句號、僅句號空格的情境）
+         */
+        applySplitByPeriod() {
+            if (!this.autoSplitByPeriod) return
+            // 使用 Lookbehind 只匹配句號「後」的空格，句號會自動保留在上一段末尾
+            let regex = this.autoSplitByPeriodIncludeParen
+                ? /(?<=\.) +/
+                : /(?<=\.) +(?!\()/
+            let i = 0
+            while (i < this.tags.length) {
+                let tag = this.tags[i]
+                // 跳過不應分割的標籤：換行、BREAK、Lora、Lyco
+                if (tag?.type === 'wrap' || tag.value === 'BREAK' || tag.isLora || tag.isLyco) {
+                    i++
+                    continue
+                }
+
+                let parts = tag.value.split(regex)
+                // 需滿足：至少有 2 段、首段非空（無開頭句號）、末段非空（無結尾句號）
+                if (parts.length > 1 && parts[0] !== '' && parts[parts.length - 1] !== '') {
+                    // 判斷原標籤是否有逗號：複製 genPrompt() 的 splitSymbol 邏輯
+                    let nextTag = this.tags[i + 1] || null
+                    let originalHasComma = !(
+                        (nextTag?.type === 'wrap' && this.autoRemoveBeforeLineComma) ||
+                        nextTag?.value === 'BREAK' ||
+                        ((nextTag?.isLora || nextTag?.isLyco) && this.autoRemoveLoraBeforeComma)
+                    )
+
+                    // 移除舊 tag，轉換新 parts 並直接插入對應位置
+                    this.tags.splice(i, 1)
+                    parts.forEach((part, index) => {
+                        let newTag = this._appendTag(part, '', false, i + index, 'text')
+                        // 中間分割段（非最後一段）若原標籤無逗號，則補上 splitNoComma
+                        if (newTag !== -1 && index < parts.length - 1 && !originalHasComma) {
+                            this.tags[newTag].splitNoComma = true
+                        }
+                    })
+                    // 跳過剛才新插入的這些標籤，繼續往後檢查
+                    i += parts.length
+                } else {
+                    i++
+                }
+            }
         },
         updatePrompt() {
             let insertWrapIndexes = []
@@ -1243,8 +1349,11 @@ export default {
         useHistory(history) {
             this.tags = []
             history.tags.forEach(item => {
-                this._appendTag(item.value, item.localValue, item.disabled, -1, item.type || 'text')
+                // _restoreTag：建立 tag 並自動還原 localValue/disabled/自訂屬性
+                this._restoreTag(item.value, -1, item)
             })
+            // autoSplitByPeriod：歷史紀錄載入後，同步分割含 ". " 的標籤
+            this.applySplitByPeriod()
             this.updateTags()
         },
         useFavorite(favorite) {
@@ -1256,6 +1365,8 @@ export default {
             tags.forEach(tag => {
                 this._appendTag(tag, '', false, -1, 'text')
             })
+            // autoSplitByPeriod：ChatGPT prompt 載入後，同步分割含 ". " 的標籤
+            this.applySplitByPeriod()
             this.updateTags()
         },
         onPromptMainClick() {

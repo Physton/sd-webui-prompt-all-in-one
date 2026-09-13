@@ -24,6 +24,8 @@
                             v-model:auto-remove-lora-after-comma="autoRemoveLoraAfterComma"
                             v-model:use-novel-ai-weight-symbol="useNovelAiWeightSymbol"
                             v-model:auto-remove-before-line-comma="autoRemoveBeforeLineComma"
+                            v-model:auto-split-by-period="autoSplitByPeriod"
+                            v-model:auto-split-by-period-include-paren="autoSplitByPeriodIncludeParen"
                             :hide-default-input="item.hideDefaultInput"
                             @update:hide-default-input="onUpdateHideDefaultInput(item.id, $event)"
                             :auto-load-webui-prompt="item.autoLoadWebuiPrompt"
@@ -96,6 +98,8 @@
                        v-model:auto-remove-lora-after-comma="autoRemoveLoraAfterComma"
                        v-model:use-novel-ai-weight-symbol="useNovelAiWeightSymbol"
                        v-model:auto-remove-before-line-comma="autoRemoveBeforeLineComma"
+                       v-model:auto-split-by-period="autoSplitByPeriod"
+                       v-model:auto-split-by-period-include-paren="autoSplitByPeriodIncludeParen"
         ></prompt-format>
         <blacklist ref="blacklist" v-model:language-code="languageCode"
                    :translate-apis="translateApis"
@@ -309,6 +313,8 @@ export default {
             autoRemoveLoraAfterComma: false,
             useNovelAiWeightSymbol: false,
             autoRemoveBeforeLineComma: false,
+            autoSplitByPeriod: false,
+            autoSplitByPeriodIncludeParen: false,
             // hideDefaultInput: false,
             enableTooltip: true,
             tagCompleteFile: '',
@@ -518,6 +524,40 @@ export default {
                 })
             }
         },
+        // autoSplitByPeriod：選項變更時，先分割 tags 陣列，再重新產生輸出
+        // 原因：僅呼叫 updatePrompt() 只會在輸出字串層級分割，tags 陣列不會被修改，
+        // 導致 UI 顯示與輸出不一致。因此需先呼叫 applySplitByPeriod() 同步修改 tags。
+        autoSplitByPeriod: {
+            handler: function (val, oldVal) {
+                if (!this.startWatchSave) return
+                console.log('onAutoSplitByPeriodChange', val)
+                this.gradioAPI.setData('autoSplitByPeriod', val).then(data => {
+                    this.prompts.forEach(item => {
+                        this.$refs[item.id][0].applySplitByPeriod()
+                        this.$refs[item.id][0].updatePrompt()
+                    })
+                }).catch(err => {
+                })
+            },
+            immediate: false,
+        },
+        // autoSplitByPeriodIncludeParen：子選項變更僅重新產生輸出
+        // 原因：此選項控制是否允許拆分括號前的 ". "（如 "word1. (test)"）。
+        // 由於 tags 已在 autoSplitByPeriod 開啟時被分割，此選項的變更不會影響已分割的 tags，
+        // 僅影響後續新載入標籤的分割行為。
+        autoSplitByPeriodIncludeParen: {
+            handler: function (val, oldVal) {
+                if (!this.startWatchSave) return
+                console.log('onAutoSplitByPeriodIncludeParenChange', val)
+                this.gradioAPI.setData('autoSplitByPeriodIncludeParen', val).then(data => {
+                    this.prompts.forEach(item => {
+                        this.$refs[item.id][0].updatePrompt()
+                    })
+                }).catch(err => {
+                })
+            },
+            immediate: false,
+        },
         /*hideDefaultInput: {
             handler: function (val, oldVal) {
                 if (!this.startWatchSave) return
@@ -676,7 +716,37 @@ export default {
         },
         init() {
             this.loadExtraNetworks()
-            let dataListsKeys = ['languageCode', 'autoTranslate', 'autoTranslateToEnglish', 'autoTranslateToLocal', 'autoRemoveSpace', 'autoRemoveLastComma', 'autoKeepWeightZero', 'autoKeepWeightOne', 'autoBreakBeforeWrap', 'autoBreakAfterWrap', 'autoRemoveLoraBeforeComma', 'autoRemoveLoraAfterComma', 'useNovelAiWeightSymbol', 'autoRemoveBeforeLineComma', /*'hideDefaultInput', */'translateApi', 'enableTooltip', 'tagCompleteFile', 'onlyCsvOnAuto', 'extensionSelect.minimalist', 'groupTagsColor', 'groupTagsTranslate', 'blacklist', 'cancelBlacklistConfirm', 'hotkey', 'extraNetworksWidth', 'extraNetworksHeight']
+            let dataListsKeys = [
+                'languageCode',
+                'autoTranslate',
+                'autoTranslateToEnglish',
+                'autoTranslateToLocal',
+                'autoRemoveSpace',
+                'autoRemoveLastComma',
+                'autoKeepWeightZero',
+                'autoKeepWeightOne',
+                'autoBreakBeforeWrap',
+                'autoBreakAfterWrap',
+                'autoRemoveLoraBeforeComma',
+                'autoRemoveLoraAfterComma',
+                'useNovelAiWeightSymbol',
+                'autoRemoveBeforeLineComma',
+                'autoSplitByPeriod',
+                'autoSplitByPeriodIncludeParen',
+                /*'hideDefaultInput', */
+                'translateApi',
+                'enableTooltip',
+                'tagCompleteFile',
+                'onlyCsvOnAuto',
+                'extensionSelect.minimalist',
+                'groupTagsColor',
+                'groupTagsTranslate',
+                'blacklist',
+                'cancelBlacklistConfirm',
+                'hotkey',
+                'extraNetworksWidth',
+                'extraNetworksHeight',
+            ]
             this.prompts.forEach(item => {
                 dataListsKeys.push(item.hideDefaultInputKey)
                 dataListsKeys.push(item.autoLoadWebuiPromptKey)
@@ -764,6 +834,12 @@ export default {
                 }
                 if (data.autoRemoveBeforeLineComma !== null) {
                     this.autoRemoveBeforeLineComma = data.autoRemoveBeforeLineComma
+                }
+                if (data.autoSplitByPeriod !== null) {
+                    this.autoSplitByPeriod = data.autoSplitByPeriod
+                }
+                if (data.autoSplitByPeriodIncludeParen !== null) {
+                    this.autoSplitByPeriodIncludeParen = data.autoSplitByPeriodIncludeParen
                 }
                 /*if (data.hideDefaultInput !== null) {
                     this.hideDefaultInput = data.hideDefaultInput

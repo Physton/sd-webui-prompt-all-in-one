@@ -13,6 +13,14 @@ export default {
             this.$refs.highlightPrompt.hide()
         })*/
     },
+    /**
+     * 需要在 round-trip / rebuild 中保留的自訂屬性
+     * _appendTag() 已處理的屬性（value, localValue, disabled, type）不在此列
+     * 新增自訂屬性時只需在此陣列追加
+     */
+    RESTOREABLE_PROPERTIES: [
+        'splitNoComma',
+    ],
     methods: {
         _setTag(tag) {
             if (typeof tag['type'] === 'string' && tag.type === 'wrap') {
@@ -188,6 +196,47 @@ export default {
                 if (this.$refs['promptTagEdit-' + id]) autoSizeInput(this.$refs['promptTagEdit-' + id][0])
             })
             return index - 1
+        },
+        /**
+         * 從 source 建立 tag，自動還原所有自訂屬性。
+         *
+         * 封裝 _appendTag + 屬性還原，呼叫端無需手動處理。
+         * localValue、disabled、type 從 source 提取，無需手動傳入。
+         *
+         * @param {string} value - 標籤文字
+         * @param {number} index - 插入位置（-1 = 末端）
+         * @param {object|null} source - 舊 tag 或儲存資料，用於還原屬性
+         * @returns {number} 新 tag 的 index，失敗回傳 -1
+         */
+        _restoreTag(value, index, source) {
+            const localValue = source?.localValue || ''
+            const disabled = source ? !!source.disabled : false
+            const type = source?.type || 'text'
+            let tagIndex = this._appendTag(value, localValue, disabled, index, type)
+            this._restoreTagProperties(this.tags[tagIndex], source)
+            return tagIndex
+        },
+        /**
+         * 從 source 還原自訂屬性到已建立的 tag 上。
+         *
+         * 原因：_appendTag() 只建立核心欄位（value, localValue, disabled, type），
+         * 但 tag 上可能有其他自訂屬性（如 splitNoComma）需要在 round-trip（儲存→載入）
+         * 或 rebuild（textarea 重建）時保留。
+         *
+         * 做法：只複製 RESTOREABLE_PROPERTIES 中定義的屬性，避免無差別複製
+         * 導入 _setTag() 計算的屬性（weightNum/incWeight/decWeight/originalValue 等）。
+         * 新增自訂屬性時只需在 RESTOREABLE_PROPERTIES 陣列中追加。
+         *
+         * 防禦：tag 無效（undefined / -1 index）或 source 為空時直接返回，
+         * 不將邊界檢查外洩至呼叫端。
+         */
+        _restoreTagProperties(tag, source) {
+            if (!source || !tag) return
+            this.$options.RESTOREABLE_PROPERTIES.forEach(prop => {
+                if (source[prop] !== undefined) {
+                    tag[prop] = source[prop]
+                }
+            })
         },
         renderTag(id) {
             let tag = this.tags.find(tag => tag.id === id)
