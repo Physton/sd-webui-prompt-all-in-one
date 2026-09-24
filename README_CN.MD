@@ -16,6 +16,26 @@
 
 sd-webui-prompt-all-in-one 是一个基于 [stable-diffusion-webui](https://github.com/AUTOMATIC1111/stable-diffusion-webui) 的扩展，旨在提高提示词/反向提示词输入框的使用体验。它拥有更直观、强大的输入界面功能，它提供了自动翻译、历史记录和收藏等功能，它支持多种语言，满足不同用户的需求。
 
+## 🇨🇳 中文翻译词库增强（内置，默认启用）
+
+本 PR 在原版基础上内置了一份约 **43.8 万条**的合并优化中文翻译词库 `danbooru.zh_ALL.csv`，并**默认启用**——合并后用户无需任何设置，提示词下方的中文翻译（本地 CSV 翻译）直接生效。
+
+相比常见的机翻词表，主要改进：
+
+- **多源分层合并**：五个公开翻译来源按质量优先级覆盖合并——EhTagTranslation（人工翻译，角色/画师/作品条目最准）> Tags-zh-full-pack（人工精校）> ffdkj 词表（Gemini 翻译+人工校对，约 31 万条，广覆盖兜底）> 魔咒百科（[wfjsw/danbooru-diffusion-prompt-builder](https://github.com/wfjsw/danbooru-diffusion-prompt-builder)）> 原版 SFW 机翻兜底
+- **修复带括号 tag 显示不出中文的问题**：为 `名_(作品)` 类 tag 额外生成 `\(` `\)` 转义变体行（约 10.4 万条）。原版面板查翻译时不剥转义符，插入转义形式（如 `amiya_\(act_ii\)_\(arknights\)`）时下方中文不显示，本词表可正常命中
+- **角色名与作品名兼得**：EhTag 的「名 姓」命名自动对齐 danbooru 的「姓_名_(作品)」格式，作品名后缀单独翻译再拼回，例如 `fujimiya_sumika_(isekai_ojisan)` → 藤宫澄夏 (异世界舅舅)、`amiya_(act_ii)_(arknights)` → 阿米娅 (升变阶段) (明日方舟)
+
+词表位置与文档：
+
+| 内容 | 位置 |
+|---|---|
+| 运行时词表（默认启用） | `tags/danbooru.zh_ALL.csv`（由 `storage/tagCompleteFile.json` 默认指向） |
+| 词表副本与详细说明 | [translations/README.md](translations/README.md) |
+| 词表直链下载 | [translations/danbooru.zh_ALL.csv](translations/danbooru.zh_ALL.csv) |
+
+各翻译来源适用其各自的开源许可证（如 EhTagTranslation 数据库为 CC BY-NC-SA 4.0，含非商用条款），使用/分发请一并遵守，详见词表说明文档。
+
 ---
 
 **📮📮📮 非常抱歉，由于个人精力有限，本项目不再维护。但是如果有朋友改进了代码，欢迎提交Pull Request，我会抽空合并到主分支。**
