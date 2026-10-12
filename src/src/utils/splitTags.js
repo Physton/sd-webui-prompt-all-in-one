@@ -1,6 +1,16 @@
-export default (tags, autoBreakBeforeWrap = false, autoBreakAfterWrap = false) => {
+/**
+ * 分割标签（对外入口）。
+ *
+ * @param {string}  tags
+ * @param {boolean} autoBreakBeforeWrap
+ * @param {boolean} autoBreakAfterWrap
+ * @param {object}  [options] - 扩充选项集中于此物件，避免参数随功能增加而爆炸。
+ *   @param {boolean} [options.allowKeepEmptyLine=false] - 是否允许保持一个空行。
+ * @returns {string[]}
+ */
+export default (tags, autoBreakBeforeWrap = false, autoBreakAfterWrap = false, options = {}) => {
     if (tags === null || tags === undefined || tags === false || tags === "" || tags.trim() === "") return []
-    return splitRaw(tags, true, autoBreakBeforeWrap, autoBreakAfterWrap)
+    return splitRaw(tags, true, autoBreakBeforeWrap, autoBreakAfterWrap, options)
 }
 
 /**
@@ -14,9 +24,14 @@ export default (tags, autoBreakBeforeWrap = false, autoBreakAfterWrap = false) =
  *   雙引號不受影響（未關閉雙引號仍保護到結尾）。
  * @param {boolean} autoBreakBeforeWrap
  * @param {boolean} autoBreakAfterWrap
+ * @param {object}  [options]
+ * @param {boolean} [options.allowKeepEmptyLine=false] - 是否允許保持一個空行。
+ *   false（預設）：連續換行一律壓縮為單一換行（\n+ → \n）。
+ *   true：連續換行最多保留一個空行（\n{3,} → \n\n），兩個以上的空行仍會被壓縮。
  * @returns {string[]}
  */
-function splitRaw(tags, allowSingleQuote, autoBreakBeforeWrap, autoBreakAfterWrap) {
+function splitRaw(tags, allowSingleQuote, autoBreakBeforeWrap, autoBreakAfterWrap, options = {}) {
+    const {allowKeepEmptyLine = false} = options
 
     /**
      * 中文/日文標點轉換（原為全域 pre-process，改為在迴圈內 quote-aware 執行）
@@ -42,8 +57,14 @@ function splitRaw(tags, allowSingleQuote, autoBreakBeforeWrap, autoBreakAfterWra
     tags = tags.replace(/\t/g, '\n')
     /** 回车符 */
     tags = tags.replace(/\r/g, '\n')
-    /** 连续换行符 */
-    tags = tags.replace(/\n+/g, '\n')
+    /**
+     * 连续换行符压缩：
+     *   allowKeepEmptyLine=false（预设）— 一律压缩为单个换行（\n+ → \n）
+     *   allowKeepEmptyLine=true          — 最多保留一个空行（\n{3,} → \n\n）
+     */
+    tags = allowKeepEmptyLine
+        ? tags.replace(/\n{3,}/g, '\n\n')
+        : tags.replace(/\n+/g, '\n')
 
     let emojis = [
         {emoji: ">_<", re: /\>_\</g},
@@ -85,7 +106,7 @@ function splitRaw(tags, allowSingleQuote, autoBreakBeforeWrap, autoBreakAfterWra
         const text = temp.trim()
         if (text === '') return
         if (allowSingleQuote && quoteChar === "'") {
-            result.push(...splitRaw(text, false, autoBreakBeforeWrap, autoBreakAfterWrap))
+            result.push(...splitRaw(text, false, autoBreakBeforeWrap, autoBreakAfterWrap, options))
         } else {
             result.push(text)
         }

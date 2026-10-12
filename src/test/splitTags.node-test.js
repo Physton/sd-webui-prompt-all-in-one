@@ -57,7 +57,9 @@ async function loadSplitByPeriod() {
  *    { input, args?, note? }
  *
  *  - input : 傳入 splitTags 的第一個參數（tags 字串）
- *  - args  : 額外參數陣列 [autoBreakBeforeWrap, autoBreakAfterWrap]
+ *  - args  : 額外參數陣列 [autoBreakBeforeWrap, autoBreakAfterWrap, options]
+ *            options 為物件（如 { allowKeepEmptyLine: true }），集中承載新選項，
+ *            後續新增選項只需擴充物件欄位，不必更動既有案例。
  *  - note  : 附加說明（顯示在測試標題中）
  *
  *  斷言方式：
@@ -89,6 +91,22 @@ const cases = [
         expectOriginalChanged: false },
     { input: 'a\n\n\nb',
         note: 'multiple newlines collapsed',
+        expectOriginalChanged: false },
+    { input: 'a\n\n\nb',
+        args: [false, false, {allowKeepEmptyLine: true}],
+        note: 'allowKeepEmptyLine — 3+ newlines compressed to one empty line',
+        expectOriginalChanged: true },
+    { input: 'a\n\nb',
+        args: [false, false, {allowKeepEmptyLine: true}],
+        note: 'allowKeepEmptyLine — existing empty line kept',
+        expectOriginalChanged: true },
+    { input: 'a\n\n\n\n\nb',
+        args: [false, false, {allowKeepEmptyLine: true}],
+        note: 'allowKeepEmptyLine — many newlines still capped at one empty line',
+        expectOriginalChanged: true },
+    { input: 'a\nb',
+        args: [false, false, {allowKeepEmptyLine: true}],
+        note: 'allowKeepEmptyLine — single newline unaffected',
         expectOriginalChanged: false },
     { input: 'a\rb\nc',
         note: 'CR normalized to LF',

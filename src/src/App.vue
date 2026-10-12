@@ -28,6 +28,7 @@
                             v-model:auto-split-by-period-include-paren="autoSplitByPeriodIncludeParen"
                             v-model:auto-split-by-period-semicolon="autoSplitByPeriodSemicolon"
                             v-model:auto-optimize-split-symbol="autoOptimizeSplitSymbol"
+                            v-model:allow-keep-empty-line="allowKeepEmptyLine"
                             :hide-default-input="item.hideDefaultInput"
                             @update:hide-default-input="onUpdateHideDefaultInput(item.id, $event)"
                             :auto-load-webui-prompt="item.autoLoadWebuiPrompt"
@@ -104,6 +105,7 @@
                        v-model:auto-split-by-period-include-paren="autoSplitByPeriodIncludeParen"
                        v-model:auto-split-by-period-semicolon="autoSplitByPeriodSemicolon"
                        v-model:auto-optimize-split-symbol="autoOptimizeSplitSymbol"
+                       v-model:allow-keep-empty-line="allowKeepEmptyLine"
         ></prompt-format>
         <blacklist ref="blacklist" v-model:language-code="languageCode"
                    :translate-apis="translateApis"
@@ -321,6 +323,7 @@ export default {
             autoSplitByPeriodIncludeParen: false,
             autoSplitByPeriodSemicolon: false,
             autoOptimizeSplitSymbol: false,
+            allowKeepEmptyLine: false,
             // hideDefaultInput: false,
             enableTooltip: true,
             tagCompleteFile: '',
@@ -603,6 +606,21 @@ export default {
                         this.$refs[item.id][0].applySplitByPeriod()
                         this.$refs[item.id][0].updatePrompt()
                     })
+                }).catch(err => {
+                })
+            },
+            immediate: false,
+        },
+        /**
+         * allowKeepEmptyLine（允許保持一個空行）：僅影響 prompt 解析階段
+         * （splitTags 的連續換行壓縮上限），不影響輸出格式，
+         * 因此只需儲存設定；下次解析（載入提示詞 / 輸入變動）時生效。
+         */
+        allowKeepEmptyLine: {
+            handler: function (val, oldVal) {
+                if (!this.startWatchSave) return
+                console.log('onAllowKeepEmptyLineChange', val)
+                this.gradioAPI.setData('allowKeepEmptyLine', val).then(data => {
                 }).catch(err => {
                 })
             },

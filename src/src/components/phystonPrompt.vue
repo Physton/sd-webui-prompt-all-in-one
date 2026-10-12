@@ -679,6 +679,10 @@ export default {
             type: Boolean,
             default: false,
         },
+        allowKeepEmptyLine: {
+            type: Boolean,
+            default: false,
+        },
         hideDefaultInput: {
             type: Boolean,
             default: false,
@@ -810,6 +814,7 @@ export default {
         'update:autoSplitByPeriodIncludeParen',
         'update:autoSplitByPeriodSemicolon',
         'update:autoOptimizeSplitSymbol',
+        'update:allowKeepEmptyLine',
     ],
     data() {
         return {
@@ -930,7 +935,9 @@ export default {
 
             let value = this.textarea.value.trim()
             if (value === this.prompt.trim()) return
-            let tags = common.splitTags(value, this.autoBreakBeforeWrap, this.autoBreakAfterWrap)
+            let tags = common.splitTags(value, this.autoBreakBeforeWrap, this.autoBreakAfterWrap, {
+                allowKeepEmptyLine: this.allowKeepEmptyLine,
+            })
 
             let disabledTags = []
             this.tags.forEach((tag, index) => {
@@ -1567,7 +1574,9 @@ export default {
             this.useHistory(favorite)
         },
         useChatgpt(prompt) {
-            let tags = common.splitTags(prompt, this.autoBreakBeforeWrap, this.autoBreakAfterWrap)
+            let tags = common.splitTags(prompt, this.autoBreakBeforeWrap, this.autoBreakAfterWrap, {
+                allowKeepEmptyLine: this.allowKeepEmptyLine,
+            })
             this.tags = []
             tags.forEach(tag => {
                 this._appendTag(tag, '', false, -1, 'text')

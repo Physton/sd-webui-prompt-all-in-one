@@ -64,6 +64,72 @@ exports[`splitTags > all five punctuations in one string — [c3de2efa] \"好，
 }
 `;
 
+exports[`splitTags > allowKeepEmptyLine — 3+ newlines compressed to one empty line — [2282b3ef] \"a\\n\\n\\nb\" (false, false, {allowKeepEmptyLine: true}) 1`] = `
+{
+  "input": "a\\n\\n\\nb",
+  "result": [
+    "a",
+    "\\n",
+    "\\n",
+    "b"
+  ],
+  "changedFromOriginal": true,
+  "originalResult": [
+    "a",
+    "\\n",
+    "b"
+  ]
+}
+`;
+
+exports[`splitTags > allowKeepEmptyLine — existing empty line kept — [38022fd2] \"a\\n\\nb\" (false, false, {allowKeepEmptyLine: true}) 1`] = `
+{
+  "input": "a\\n\\nb",
+  "result": [
+    "a",
+    "\\n",
+    "\\n",
+    "b"
+  ],
+  "changedFromOriginal": true,
+  "originalResult": [
+    "a",
+    "\\n",
+    "b"
+  ]
+}
+`;
+
+exports[`splitTags > allowKeepEmptyLine — many newlines still capped at one empty line — [f144c87f] \"a\\n\\n\\n\\n\\nb\" (false, false, {allowKeepEmptyLine: true}) 1`] = `
+{
+  "input": "a\\n\\n\\n\\n\\nb",
+  "result": [
+    "a",
+    "\\n",
+    "\\n",
+    "b"
+  ],
+  "changedFromOriginal": true,
+  "originalResult": [
+    "a",
+    "\\n",
+    "b"
+  ]
+}
+`;
+
+exports[`splitTags > allowKeepEmptyLine — single newline unaffected — [7e18f737] \"a\\nb\" (false, false, {allowKeepEmptyLine: true}) 1`] = `
+{
+  "input": "a\\nb",
+  "result": [
+    "a",
+    "\\n",
+    "b"
+  ],
+  "changedFromOriginal": false
+}
+`;
+
 exports[`splitTags > angle brackets protect inner commas — [5b8bbf22] \"a, <b, c>, d\" 1`] = `
 {
   "input": "a, <b, c>, d",

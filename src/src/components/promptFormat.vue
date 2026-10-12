@@ -69,6 +69,12 @@
                 </div>
                 <div class="format-item">
                     <input class="format-checkbox" type="checkbox"
+                           :checked="allowKeepEmptyLine"
+                           @change="$emit('update:allowKeepEmptyLine', $event.target.checked)">
+                    <div class="format-desc" v-html="getLang('is_allow_keep_empty_line')"></div>
+                </div>
+                <div class="format-item">
+                    <input class="format-checkbox" type="checkbox"
                            :checked="autoSplitByPeriod"
                            @change="$emit('update:autoSplitByPeriod', $event.target.checked)">
                     <div class="format-desc" v-html="getLang('is_split_by_period')"></div>
@@ -155,6 +161,10 @@ export default {
             type: Boolean,
             default: false,
         },
+        allowKeepEmptyLine: {
+            type: Boolean,
+            default: false,
+        },
     },
     data() {
         return {
@@ -176,6 +186,7 @@ export default {
         'update:autoSplitByPeriodIncludeParen',
         'update:autoSplitByPeriodSemicolon',
         'update:autoOptimizeSplitSymbol',
+        'update:allowKeepEmptyLine',
     ],
     computed: {},
     mounted() {
