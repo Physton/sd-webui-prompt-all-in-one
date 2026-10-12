@@ -675,7 +675,7 @@ export default {
             type: Boolean,
             default: false,
         },
-        autoSplitByPeriodRemoveWrapComma: {
+        autoOptimizeSplitSymbol: {
             type: Boolean,
             default: false,
         },
@@ -809,7 +809,7 @@ export default {
         'update:autoSplitByPeriod',
         'update:autoSplitByPeriodIncludeParen',
         'update:autoSplitByPeriodSemicolon',
-        'update:autoSplitByPeriodRemoveWrapComma',
+        'update:autoOptimizeSplitSymbol',
     ],
     data() {
         return {
@@ -1007,9 +1007,17 @@ export default {
                 tags2 = tags
             }
             let length = tags2.length
+            /**
+             * 自動優化分割符號：於單次前向遍歷中累計「該行是否含 # 開頭/結尾 tag」。
+             * 遇換行 tag 時重置，使 # 判定均為 O(1)，
+             * 避免每遇到換行就回頭掃描整行（多個換行時最壞 O(n²)）。
+             */
+            let lineHasSharp = false
             tags2.forEach((tag, index) => {
                 let prompt = ''
                 if (typeof tag['type'] === 'string' && tag.type === 'wrap') {
+                    // 換行結束當前行 → 重置行狀態，供下一行重新累計
+                    lineHasSharp = false
                     prompt = "\n"
                 } else {
                     let value = common.replaceTag(tag.value)
@@ -1030,6 +1038,18 @@ export default {
                         }
                     }
                     if (tag.disabled && !ignoreDisabled) return
+
+                    /**
+                     * 自動優化分割符號：累計當前行的 # 狀態（O(1) 檢查，
+                     * 行內已確認含 # 時略過後續 tag 的重複檢查）。
+                     * 當前 tag 也屬於該行，必須在下方 nextIsWarp 判定之前更新。
+                     */
+                    if (this.autoOptimizeSplitSymbol && !lineHasSharp) {
+                        const sharpValue = (tag.value || '').trim()
+                        if (sharpValue.startsWith('#') || sharpValue.endsWith('#')) {
+                            lineHasSharp = true
+                        }
+                    }
 
                     let splitSymbol = ',' + (this.autoRemoveSpace ? '' : ' ')
                     let splitSymbolDefault = splitSymbol
@@ -1059,6 +1079,15 @@ export default {
                         if (this.autoRemoveBeforeLineComma) {
                             splitSymbol = ''
                         } else {
+                            /**
+                             * 自動優化分割符號（autoOptimizeSplitSymbol）：
+                             * 換行前符合任一條件時移除逗號。
+                             * 在輸出層直接判定，不依賴 autoSplitByPeriod，選項獨立啟用時即生效。
+                             * 行內 # 狀態由 forEach 遍歷期間累計，以物件選項傳入（預留未來擴充）。
+                             */
+                            if (this.autoOptimizeSplitSymbol && this._shouldRemoveCommaBeforeWrap(tag, {lineHasSharp})) {
+                                splitSymbol = ''
+                            }
                             // sd-webui-regional-prompter
                             const regionals = [' BREAK', ' ADDCOL', ' ADDROW', ' ADDCOMM', ' ADDBASE']
                             for (const regional of regionals) {
@@ -1107,14 +1136,54 @@ export default {
             return prompts.join('')
         },
         /**
-         * 判斷指定 tag 的最後一個逗號是否應被移除。
+         * 自動優化分割符號（autoOptimizeSplitSymbol）：判斷換行前的逗號是否應被移除。
          *
-         * 單一事實來源：所有基於「下一個 tag 類型」決定逗號去留的邏輯
+         * 此方法在 genPrompt() 的輸出層直接判定，不經過 applySplitByPeriod()，
+         * 因此不依賴 autoSplitByPeriod，選項成為獨立選項後單獨啟用即會生效。
+         *
+         * 效能設計：行內 # 判定改由 genPrompt() 的 tags2.forEach 於單次前向遍歷中累計，
+         * 以 options 物件傳入，此方法本身為 O(1)，
+         * 避免每次遇到換行都回頭掃描整行（多個換行時最壞 O(n²)）。
+         *
+         * 判定規則（呼叫時當前 tag 必為換行前的最後一個 tag，任一符合即移除）：
+         *   1. 當前 tag 以「:」結尾（如前綴式寫法「xxx:」，表示內容尚未結束）
+         *   2. 當前 tag 是 Lora / Lyco
+         *   3. options.lineHasSharp=true：該行（自上一個換行至當前 tag）任一 tag 以「#」開頭或結尾
+         *   4. 當前 tag 以句號結尾（沿用原有的 period + wrap 移除行為）
+         *
+         * @param {object}  tag               - 當前標籤（換行前的最後一個 tag）
+         * @param {object}  [options]         - 擴充選項（以物件傳入，便於未來新增欄位而不更動簽名）
+         * @param {boolean} [options.lineHasSharp=false] - 該行是否含 # 開頭/結尾的 tag
+         *                                                （由 genPrompt() 於遍歷期間累計，遇換行重置）
+         * @returns {boolean} true = 應移除換行前的逗號
+         */
+        _shouldRemoveCommaBeforeWrap(tag, options = {}) {
+            if (!tag) return false
+            const {lineHasSharp = false} = options
+            const value = (tag.value || '').trim()
+            // 規則 1：換行前的 tag 以「:」結尾
+            if (value.endsWith(':')) return true
+            // 規則 2：換行前的 tag 是 Lora / Lyco
+            if (tag.isLora || tag.isLyco) return true
+            // 規則 3：該行任一 tag 以「#」開頭或結尾（由呼叫端遍歷期間累計傳入）
+            if (lineHasSharp) return true
+            // 規則 4：換行前的 tag 以句號結尾
+            return /\.\s*$/.test(tag.value)
+        },
+        /**
+         * 判斷指定 tag 的最後一個逗號是否應被移除（供 applySplitByPeriod 設定 splitNoComma）。
+         *
+         * 單一事實來源：拆分流程中基於「下一個 tag 類型」決定逗號去留的邏輯
          * 都由此方法集中判定，避免重複散落在各處。
          *
          * 判定規則（需先通過 trigger 檢查）：
-         *   1. autoSplitByPeriodRemoveWrapComma=true 且 tag 以句號結尾 + next 為 wrap / lora → 移除
+         *   1. autoOptimizeSplitSymbol=true 且 tag 以句號結尾 + next 為 wrap / lora → 移除
          *   2. 否則依 autoRemoveBeforeLineComma + nextIsBreak + nextIsLoraOrLyco 綜合判定
+         *
+         * 註：選項已更名為「自動優化分割符號」並成為獨立選項（不再屬於 autoSplitByPeriod 子選項）。
+         *     其新增的分行前條件（「:」結尾 / 該行含 # tag / 分行前為 Lora）
+         *     於 genPrompt() 的 _shouldRemoveCommaBeforeWrap() 在輸出層判定，不經過此方法，
+         *     因此不依賴 autoSplitByPeriod；此方法僅負責拆分流程的 splitNoComma 標記。
          *
          * @param {object}      tag     - 當前標籤（用於檢查 value 是否以句號結尾）
          * @param {object|null} nextTag - 下一個標籤，由呼叫端負責提供（null 時直接回傳不移除）
@@ -1136,7 +1205,7 @@ export default {
                 && (nextTag?.isLora || nextTag?.isLyco)
                 && !this.autoRemoveLoraBeforeComma
 
-            if (this.autoSplitByPeriodRemoveWrapComma && (originalHasTrailingPeriod && nextIsWrap || nextIsLoraOrLyco)) {
+            if (this.autoOptimizeSplitSymbol && (originalHasTrailingPeriod && nextIsWrap || nextIsLoraOrLyco)) {
                 return true
             }
 

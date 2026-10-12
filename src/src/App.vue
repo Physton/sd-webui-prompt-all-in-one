@@ -27,7 +27,7 @@
                             v-model:auto-split-by-period="autoSplitByPeriod"
                             v-model:auto-split-by-period-include-paren="autoSplitByPeriodIncludeParen"
                             v-model:auto-split-by-period-semicolon="autoSplitByPeriodSemicolon"
-                            v-model:auto-split-by-period-remove-wrap-comma="autoSplitByPeriodRemoveWrapComma"
+                            v-model:auto-optimize-split-symbol="autoOptimizeSplitSymbol"
                             :hide-default-input="item.hideDefaultInput"
                             @update:hide-default-input="onUpdateHideDefaultInput(item.id, $event)"
                             :auto-load-webui-prompt="item.autoLoadWebuiPrompt"
@@ -103,7 +103,7 @@
                        v-model:auto-split-by-period="autoSplitByPeriod"
                        v-model:auto-split-by-period-include-paren="autoSplitByPeriodIncludeParen"
                        v-model:auto-split-by-period-semicolon="autoSplitByPeriodSemicolon"
-                       v-model:auto-split-by-period-remove-wrap-comma="autoSplitByPeriodRemoveWrapComma"
+                       v-model:auto-optimize-split-symbol="autoOptimizeSplitSymbol"
         ></prompt-format>
         <blacklist ref="blacklist" v-model:language-code="languageCode"
                    :translate-apis="translateApis"
@@ -320,7 +320,7 @@ export default {
             autoSplitByPeriod: false,
             autoSplitByPeriodIncludeParen: false,
             autoSplitByPeriodSemicolon: false,
-            autoSplitByPeriodRemoveWrapComma: false,
+            autoOptimizeSplitSymbol: false,
             // hideDefaultInput: false,
             enableTooltip: true,
             tagCompleteFile: '',
@@ -588,15 +588,17 @@ export default {
             immediate: false,
         },
         /**
-         * autoSplitByPeriodRemoveWrapComma：子選項變更需重新分割 tags 再重新產生輸出
-         * 原因：此選項改變 shouldRemoveLastComma 的判定邏輯，影響 splitNoComma 的設定，
-         * 需要重新執行 applySplitByPeriod() 才能正確反映在輸出中。
+         * autoOptimizeSplitSymbol（自動優化分割符號）：獨立選項變更需重新產生輸出
+         * 原因：此選項已不再屬於 autoSplitByPeriod 子選項，其新增的分行前條件
+         * （「:」結尾 / 該行含 # tag / 分行前為 Lora）在 genPrompt() 輸出層直接判定；
+         * 同時它也改變 _shouldRemoveLastComma 的判定邏輯，影響 splitNoComma 的設定。
+         * 因此需同時呼叫 applySplitByPeriod()（重新標記 splitNoComma）與 updatePrompt()（重新產生輸出）。
          */
-        autoSplitByPeriodRemoveWrapComma: {
+        autoOptimizeSplitSymbol: {
             handler: function (val, oldVal) {
                 if (!this.startWatchSave) return
-                console.log('onAutoSplitByPeriodRemoveWrapCommaChange', val)
-                this.gradioAPI.setData('autoSplitByPeriodRemoveWrapComma', val).then(data => {
+                console.log('onAutoOptimizeSplitSymbolChange', val)
+                this.gradioAPI.setData('autoOptimizeSplitSymbol', val).then(data => {
                     this.prompts.forEach(item => {
                         this.$refs[item.id][0].applySplitByPeriod()
                         this.$refs[item.id][0].updatePrompt()
@@ -782,7 +784,8 @@ export default {
                 'autoSplitByPeriod',
                 'autoSplitByPeriodIncludeParen',
                 'autoSplitByPeriodSemicolon',
-                'autoSplitByPeriodRemoveWrapComma',
+                'autoOptimizeSplitSymbol',
+                'autoSplitByPeriodRemoveWrapComma', // 舊存檔鍵：僅供遷移讀取（選項更名前的使用者設定），見下方載入邏輯
                 /*'hideDefaultInput', */
                 'translateApi',
                 'enableTooltip',
@@ -894,8 +897,12 @@ export default {
                 if (data.autoSplitByPeriodSemicolon !== null) {
                     this.autoSplitByPeriodSemicolon = data.autoSplitByPeriodSemicolon
                 }
-                if (data.autoSplitByPeriodRemoveWrapComma !== null) {
-                    this.autoSplitByPeriodRemoveWrapComma = data.autoSplitByPeriodRemoveWrapComma
+                if (data.autoOptimizeSplitSymbol !== null) {
+                    this.autoOptimizeSplitSymbol = data.autoOptimizeSplitSymbol
+                } else if (data.autoSplitByPeriodRemoveWrapComma !== null) {
+                    // 舊存檔鍵遷移：autoSplitByPeriodRemoveWrapComma 已更名為 autoOptimizeSplitSymbol，
+                    // 讀取舊鍵避免使用者既有設定遺失；後續寫入一律走新鍵
+                    this.autoOptimizeSplitSymbol = data.autoSplitByPeriodRemoveWrapComma
                 }
                 /*if (data.hideDefaultInput !== null) {
                     this.hideDefaultInput = data.hideDefaultInput

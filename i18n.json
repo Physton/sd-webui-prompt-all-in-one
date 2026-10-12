@@ -185,7 +185,7 @@
                 "is_split_by_period": "是否在句号+空格处分割关键词。<br/>勾选后将“word1. word2”分割为“word1.”和“word2”两个关键词。<br/>取消勾选则保持原样。",
                 "is_split_by_period_include_paren": "是否同时分割括号前的句号+空格（如\u201cword1. (test)\u201d）。<br/>需先勾选上方选项。",
                 "is_split_by_period_semicolon": "是否将分号 \";\" 并入句号机制分割关键词。<br/>勾选后将「word1; word2」分割为「word1;」和「word2」两个关键词（分号保留在前段末尾），连续多个分号全数保留。<br/>需先勾选上方选项。",
-                "is_split_by_period_remove_wrap_comma": "分割后，是否移除分行前（wrap/lora）的逗号。<br/>勾选后，分割段后面紧跟 wrap/lora 时，该段的逗号会被移除。<br/>取消勾选则由 autoRemoveBeforeLineComma 等设置决定。",
+                "is_auto_optimize_split_symbol": "自动优化分割符号：勾选后，换行（分行）前的关键词符合任一条件时，自动移除该行最后一个关键词的逗号。<br/>条件：1. 换行前的关键词以“:”结尾；2. 换行前的关键词是 Lora；3. 该行任一关键词以“#”开头或结尾；4. 换行前的关键词以句号结尾。<br/>此为独立选项，无需勾选“按句号分割关键词”。<br/>取消勾选则由 autoRemoveBeforeLineComma 等设置决定。",
                 "auto_load_webui_prompt": "自动加载WebUI提示词变动。<br/>勾选后，当WebUI中提示词输入框的内容变动时，插件会自动加载关键词解析并格式化。<br/>未勾选，当WebUI中提示词输入框的内容变动时，需要手动点击加载提示词按钮。",
                 "load_webui_prompt": "加载WebUI提示词"
             }
@@ -374,7 +374,7 @@
                 "is_split_by_period": "是否在句號+空格處分割關鍵詞。<br/>勾選後將「word1. word2」分割為「word1.」和「word2」兩個關鍵詞。<br/>取消勾選則保持原樣。",
                 "is_split_by_period_include_paren": "是否同時分割括號前的句號+空格（如「word1. (test)」）。<br/>需先勾選上方選項。",
                 "is_split_by_period_semicolon": "是否將分號 \";\" 併入句號機制分割關鍵詞。<br/>勾選後將「word1; word2」分割為「word1;」和「word2」兩個關鍵詞（分號保留在前段末尾），連續多個分號全數保留。<br/>需先勾選上方選項。",
-                "is_split_by_period_remove_wrap_comma": "分割後，是否移除分行前（wrap/lora）的逗號。<br/>勾選後，分割段後面紧跟 wrap/lora 時，該段的逗號會被移除。<br/>取消勾選則由 autoRemoveBeforeLineComma 等設定決定。",
+                "is_auto_optimize_split_symbol": "自動優化分割符號：勾選後，換行（分行）前的關鍵詞符合任一條件時，自動移除該行最後一個關鍵詞的逗號。<br/>條件：1. 換行前的關鍵詞以「:」結尾；2. 換行前的關鍵詞是 Lora；3. 該行任一關鍵詞以「#」開頭或結尾；4. 換行前的關鍵詞以句號結尾。<br/>此為獨立選項，無需勾選「在句號+空格處分割關鍵詞」。<br/>取消勾選則由 autoRemoveBeforeLineComma 等設定決定。",
                 "auto_load_webui_prompt": "自動加載WebUI提示詞變動。<br/>勾選後，當WebUI中提示詞輸入框的內容變動時，插件會自動加載關鍵詞解析並格式化。<br/>未勾選，當WebUI中提示詞輸入框的內容變動時，需要手動點擊加載提示詞按鈕。",
                 "load_webui_prompt": "加載WebUI提示詞"
             }
@@ -563,7 +563,7 @@
                 "is_split_by_period": "是否在句號+空格處分割關鍵詞。<br/>勾選後將「word1. word2」分割為「word1.」和「word2」兩個關鍵詞。<br/>取消勾選則保持原樣。",
                 "is_split_by_period_include_paren": "是否同時分割括號前的句號+空格（如「word1. (test)」）。<br/>需先勾選上方選項。",
                 "is_split_by_period_semicolon": "是否將分號 \";\" 併入句號機制分割關鍵詞。<br/>勾選後將「word1; word2」分割為「word1;」和「word2」兩個關鍵詞（分號保留在前段末尾），連續多個分號全數保留。<br/>需先勾選上方選項。",
-                "is_split_by_period_remove_wrap_comma": "分割後，是否移除分行前（wrap/lora）的逗號。<br/>勾選後，分割段後面紧跟 wrap/lora 時，該段的逗號會被移除。<br/>取消勾選則由 autoRemoveBeforeLineComma 等設定決定。",
+                "is_auto_optimize_split_symbol": "自動優化分割符號：勾選後，換行（分行）前的關鍵詞符合任一條件時，自動移除該行最後一個關鍵詞的逗號。<br/>條件：1. 換行前的關鍵詞以「:」結尾；2. 換行前的關鍵詞是 Lora；3. 該行任一關鍵詞以「#」開頭或結尾；4. 換行前的關鍵詞以句號結尾。<br/>此為獨立選項，無需勾選「在句號+空格處分割關鍵詞」。<br/>取消勾選則由 autoRemoveBeforeLineComma 等設定決定。",
                 "auto_load_webui_prompt": "自動載入WebUI提示詞變動。<br/>勾選後，當WebUI中提示詞輸入框的內容變動時，插件會自動載入關鍵詞解析並格式化。<br/>未勾選，當WebUI中提示詞輸入框的內容變動時，需要手動點擊載入提示詞按鈕。",
                 "load_webui_prompt": "載入WebUI提示詞"
             }
@@ -752,7 +752,7 @@
                 "is_split_by_period": "Whether to split keywords at period+space.<br/>If checked, \"word1. word2\" will be split into \"word1.\" and \"word2\".<br/>If unchecked, it stays as is.",
                 "is_split_by_period_include_paren": "Also split at period+space before parentheses (e.g. \"word1. (test)\").<br/>Requires the above option.",
                 "is_split_by_period_semicolon": "Whether to split keywords at semicolon+space using the same mechanism as period.<br/>If checked, \"word1; word2\" will be split into \"word1;\" and \"word2\" (semicolon kept at the end of the first part); consecutive semicolons are all preserved.<br/>Requires the above option.",
-                "is_split_by_period_remove_wrap_comma": "After split, remove comma before line breaks (wrap/lora).<br/>When checked, if a split part is followed by wrap/lora, its comma is removed.<br/>When unchecked, determined by autoRemoveBeforeLineComma etc.",
+                "is_auto_optimize_split_symbol": "Auto-optimize split symbol: when checked, the comma of the last keyword before a line break is removed automatically if any of the following conditions is met:<br/>1. The keyword before the line break ends with \":\";<br/>2. The keyword before the line break is a Lora;<br/>3. Any keyword in that line starts or ends with \"#\";<br/>4. The keyword before the line break ends with a period.<br/>This is a standalone option and does not require \"split keywords at period+space\".<br/>When unchecked, determined by autoRemoveBeforeLineComma etc.",
                 "auto_load_webui_prompt": "Auto-load WebUI prompt changes.<br/>When checked, the plugin will automatically load and format keyword parsing when the content of the prompt input box in WebUI changes.<br/>When unchecked, you need to manually click the load prompt button when the content of the prompt input box in WebUI changes.",
                 "load_webui_prompt": "Load WebUI prompt"
             }
@@ -952,7 +952,7 @@
                 "is_split_by_period": "هل تريد تقسيم الكلمات المفتاحية عند نقطة+مسافة.<br/>إذا تم التحقق، سيتم تقسيم \"word1. word2\" إلى \"word1.\" و \"word2\".<br/>إذا لم يتم التحقق، يبقى كما هو.",
                 "is_split_by_period_include_paren": "تقسيم أيضاً عند نقطة+مسافة قبل الأقواس (مثل \"word1. (test)\").<br/>يتطلب الخيار أعلاه.",
                 "is_split_by_period_semicolon": "تقسيم الكلمات المفتاحية عند فاصلة منقوطة+مسافة باستخدام نفس آلية النقطة.<br/>عند التحقق، سيتم تقسيم \"word1; word2\" إلى \"word1;\" و \"word2\" (تبقى الفاصلة المنقوطة في نهاية الجزء الأول)؛ وتُحفظ الفواصل المنقوطة المتتالية جميعها.<br/>يتطلب الخيار أعلاه.",
-                "is_split_by_period_remove_wrap_comma": "بعد التقسيم، إزالة الفاصلة قبل فواصل الأسطر (wrap/lora).<br/>عند التحقق، إذا تبع الجزء المقسم wrap/lora، تتم إزالة فاصلته.<br/>عند الإلغاء، يتحدد بواسطة autoRemoveBeforeLineComma إلخ.",
+                "is_auto_optimize_split_symbol": "تحسين رمز الفصل تلقائياً: عند التحقق، تتم إزالة الفاصلة الأخيرة قبل فاصل السطر تلقائياً إذا تحقق أحد الشروط التالية:<br/>1. الكلمة المفتاحية قبل فاصل السطر تنتهي بـ \":\"؛<br/>2. الكلمة المفتاحية قبل فاصل السطر هي Lora؛<br/>3. أي كلمة مفتاحية في ذلك السطر تبدأ أو تنتهي بـ \"#\"؛<br/>4. الكلمة المفتاحية قبل فاصل السطر تنتهي بنقطة.<br/>هذا خيار مستقل ولا يتطلب خيار تقسيم الكلمات عند النقطة.<br/>عند الإلغاء، يتحدد بواسطة autoRemoveBeforeLineComma إلخ.",
                 "auto_load_webui_prompt": "تحميل تلقائي لتغييرات تلميح واجهة المستخدم الرسومية عبر الويب.<br/>عند التحقق، سيقوم الملحق تلقائيًا بتحميل وتنسيق تحليل الكلمات الرئيسية عند تغيير محتوى مربع إدخال التلميح في واجهة المستخدم الرسومية عبر الويب.<br/>عند عدم التحقق، يتعين عليك النقر يدويًا على زر تحميل التلميح عند تغيير محتوى مربع إدخال التلميح في واجهة المستخدم الرسومية عبر الويب.",
                 "load_webui_prompt": "تحميل تلميح واجهة المستخدم الرسومية عبر الويب"
             }
@@ -1240,7 +1240,7 @@
                 "is_split_by_period": "Séparer les mots-clés au point+espace.<br/>Si coché, \"word1. word2\" sera séparé en \"word1.\" et \"word2\".<br/>Si décoché, reste tel quel.",
                 "is_split_by_period_include_paren": "Séparer aussi au point+espace avant les parenthèses (ex. \"word1. (test)\").<br/>Nécessite l'option ci-dessus.",
                 "is_split_by_period_semicolon": "Séparer les mots-clés au point-virgule+espace avec le même mécanisme que le point.<br/>Si coché, \"word1; word2\" sera séparé en \"word1;\" et \"word2\" (le point-virgule reste en fin de la première partie) ; les point-virgules consécutifs sont tous conservés.<br/>Nécessite l'option ci-dessus.",
-                "is_split_by_period_remove_wrap_comma": "Après la séparation, supprimer la virgule avant les retours à la ligne (wrap/lora).<br/>Si coché, si une partie séparée est suivie de wrap/lora, sa virgule est supprimée.<br/>Si non coché, déterminé par autoRemoveBeforeLineComma etc.",
+                "is_auto_optimize_split_symbol": "Optimiser automatiquement le symbole de séparation : si coché, la virgule du dernier mot-clé avant un saut de ligne est automatiquement supprimée si l'une des conditions suivantes est remplie :<br/>1. Le mot-clé avant le saut de ligne se termine par \":\" ;<br/>2. Le mot-clé avant le saut de ligne est un Lora ;<br/>3. Un mot-clé de cette ligne commence ou se termine par \"#\" ;<br/>4. Le mot-clé avant le saut de ligne se termine par un point.<br/>C'est une option indépendante et elle ne nécessite pas « Séparer les mots-clés au point+espace ».<br/>Si non coché, déterminé par autoRemoveBeforeLineComma etc.",
                 "auto_load_webui_prompt": "Chargement automatique des modifications de l'invite WebUI.<br/>Lorsqu'il est coché, le plugin chargera automatiquement et formatera l'analyse des mots clés lorsque le contenu de la zone de saisie de l'invite dans WebUI change.<br/>Lorsqu'il n'est pas coché, vous devez cliquer manuellement sur le bouton de chargement de l'invite lorsque le contenu de la zone de saisie de l'invite dans WebUI change.",
                 "load_webui_prompt": "Charger l'invite WebUI"
             }
@@ -1443,7 +1443,7 @@
                 "is_split_by_period": "Schlüsselwörter bei Punkt+Leerzeichen trennen.<br/>Wenn aktiviert, wird \"word1. word2\" in \"word1.\" und \"word2\" aufgeteilt.<br/>Wenn deaktiviert, bleibt es wie es ist.",
                 "is_split_by_period_include_paren": "Auch bei Punkt+Leerzeichen vor Klammern trennen (z.B. \"word1. (test)\").<br/>Erfordert die obige Option.",
                 "is_split_by_period_semicolon": "Auch bei Semikolon+Leerzeichen mit demselben Mechanismus wie der Punkt trennen.<br/>Wenn aktiviert, wird \"word1; word2\" in \"word1;\" und \"word2\" aufgeteilt (Semikolon bleibt am Ende des ersten Teils); aufeinanderfolgende Semikolons werden alle erhalten.<br/>Erfordert die obige Option.",
-                "is_split_by_period_remove_wrap_comma": "Nach der Teilung Komma vor Zeilenumbrüchen (wrap/lora) entfernen.<br/>Wenn aktiviert und ein geteilter Teil von wrap/lora gefolgt wird, wird sein Komma entfernt.<br/>Wenn deaktiviert, bestimmt durch autoRemoveBeforeLineComma usw.",
+                "is_auto_optimize_split_symbol": "Trennzeichen automatisch optimieren: Wenn aktiviert, wird das Komma des letzten Schlüsselwortes vor einem Zeilenumbruch automatisch entfernt, wenn eine der folgenden Bedingungen zutrifft:<br/>1. Das Schlüsselwort vor dem Zeilenumbruch endet auf \":\";<br/>2. Das Schlüsselwort vor dem Zeilenumbruch ist ein Lora;<br/>3. Ein Schlüsselwort dieser Zeile beginnt oder endet mit \"#\";<br/>4. Das Schlüsselwort vor dem Zeilenumbruch endet auf einen Punkt.<br/>Dies ist eine unabhängige Option und erfordert nicht \"Schlüsselwörter bei Punkt+Leerzeichen trennen\".<br/>Wenn deaktiviert, bestimmt durch autoRemoveBeforeLineComma usw.",
                 "auto_load_webui_prompt": "Automatisches Laden von WebUI-Prompt-Änderungen.<br/>Wenn aktiviert, lädt das Plugin automatisch die Schlüsselwort-Analyse und -Formatierung, wenn sich der Inhalt des Eingabefelds für den Prompt in der WebUI ändert.<br/>Wenn deaktiviert, müssen Sie manuell auf die Schaltfläche zum Laden des Prompts klicken, wenn sich der Inhalt des Eingabefelds für den Prompt in der WebUI ändert.",
                 "load_webui_prompt": "WebUI-Prompt laden"
             }
@@ -1696,7 +1696,7 @@
                 "is_split_by_period": "Dividere le parole chiave al punto+spazio.<br/>Se selezionato, \"word1. word2\" verrà diviso in \"word1.\" e \"word2\".<br/>Se deselezionato, rimane com'è.",
                 "is_split_by_period_include_paren": "Dividere anche al punto+spazio prima delle parentesi (es. \"word1. (test)\").<br/>Richiede l'opzione sopra.",
                 "is_split_by_period_semicolon": "Dividere anche al punto e virgola+spazio con lo stesso meccanismo del punto.<br/>Se selezionato, \"word1; word2\" verrà diviso in \"word1;\" e \"word2\" (il punto e virgola resta alla fine della prima parte); i punti e virgola consecutivi vengono tutti conservati.<br/>Richiede l'opzione sopra.",
-                "is_split_by_period_remove_wrap_comma": "Dopo la divisione, rimuovere la virgola prima delle interruzioni di riga (wrap/lora).<br/>Se selezionato, se una parte divisa è seguita da wrap/lora, la sua virgola viene rimossa.<br/>Se non selezionato, determinato da autoRemoveBeforeLineComma ecc.",
+                "is_auto_optimize_split_symbol": "Ottimizzare automaticamente il simbolo di separazione: se selezionato, la virgola dell'ultima parola chiave prima di un'interruzione di riga viene rimossa automaticamente se è soddisfatta una delle seguenti condizioni:<br/>1. La parola chiave prima dell'interruzione di riga termina con \":\";<br/>2. La parola chiave prima dell'interruzione di riga è un Lora;<br/>3. Una parola chiave di quella riga inizia o termina con \"#\";<br/>4. La parola chiave prima dell'interruzione di riga termina con un punto.<br/>Si tratta di un'opzione indipendente e non richiede \"Dividere le parole chiave al punto+spazio\".<br/>Se non selezionato, determinato da autoRemoveBeforeLineComma ecc.",
                 "auto_load_webui_prompt": "Caricamento automatico delle modifiche dell'invito WebUI.<br/>Quando selezionato, il plugin caricherà automaticamente e formatterà l'analisi delle parole chiave quando il contenuto della casella di input dell'invito in WebUI cambia.<br/>Quando deselezionato, è necessario fare clic manualmente sul pulsante di caricamento dell'invito quando il contenuto della casella di input dell'invito in WebUI cambia.",
                 "load_webui_prompt": "Carica invito WebUI"
             }
@@ -1884,7 +1884,7 @@
                 "is_split_by_period": "ピリオド+スペースでキーワードを分割するかどうか。<br/>チェックすると、「word1. word2」が「word1.」と「word2」に分割されます。<br/>チェックを外すとそのままです。",
                 "is_split_by_period_include_paren": "括弧前のピリオド+スペースでも分割する（例：「word1. (test)」）。<br/>上のオプションが必要です。",
                 "is_split_by_period_semicolon": "セミコロン+スペースでもピリオドと同じ仕様で分割するかどうか。<br/>チェックすると、「word1; word2」が「word1;」と「word2」に分割されます（セミコロンは前の部分の末尾に残ります）。連続したセミコロンもすべて保持されます。<br/>上のオプションが必要です。",
-                "is_split_by_period_remove_wrap_comma": "分割後、改行前（wrap/lora）のカンマを除去する。<br/>チェックすると、分割部分が wrap/lora に続く場合、その部分のカンマが除去されます。<br/>チェックを外すと、autoRemoveBeforeLineComma 等の設定に従います。",
+                "is_auto_optimize_split_symbol": "区切り記号を自動最適化：チェックすると、改行前のキーワードが次のいずれかの条件に該当する場合、その行の最後のキーワードのカンマを自動的に削除します。<br/>1. 改行前のキーワードが「:」で終わる。<br/>2. 改行前のキーワードが Lora の場合。<br/>3. その行のいずれかのキーワードが「#」で始まるか終わる。<br/>4. 改行前のキーワードがピリオドで終わる。<br/>これは独立したオプションで、「ピリオド+スペースでキーワードを分割する」は不要です。<br/>チェックを外すと、autoRemoveBeforeLineComma 等の設定に従います。",
                 "auto_load_webui_prompt": "WebUIプロンプトの変更を自動的にロードします。<br/>チェックすると、WebUIのプロンプト入力ボックスの内容が変更されたとき、プラグインはキーワードの解析とフォーマットを自動的にロードします。<br/>チェックしない場合、WebUIのプロンプト入力ボックスの内容が変更されたときに手動でプロンプトのロードボタンをクリックする必要があります。",
                 "load_webui_prompt": "WebUIプロンプトのロード"
             }
@@ -2097,7 +2097,7 @@
                 "is_split_by_period": "마침표+공백에서 키워드를 분할할지 여부입니다.<br/>선택하면 \"word1. word2\"가 \"word1.\"과 \"word2\"로 분할됩니다.<br/>선택하지 않으면 그대로 유지됩니다.",
                 "is_split_by_period_include_paren": "괄호 앞의 마침표+공백에서도 분할 (예: \"word1. (test)\").<br/>위 옵션이 필요합니다.",
                 "is_split_by_period_semicolon": "세미콜론+공백에서도 마침표와 동일한 방식으로 분할할지 여부입니다.<br/>선택하면 \"word1; word2\"가 \"word1;\"과 \"word2\"로 분할됩니다(세미콜론은 앞부분 끝에 유지). 연속된 세미콜론도 모두 보존됩니다.<br/>위 옵션이 필요합니다.",
-                "is_split_by_period_remove_wrap_comma": "분할 후 줄바꿈 전 (wrap/lora) 쉼표 제거.<br/>선택하면 분할된 부분이 wrap/lora 뒤에 오는 경우 해당 부분의 쉼표가 제거됩니다.<br/>선택하지 않으면 autoRemoveBeforeLineComma 등의 설정에 따릅니다.",
+                "is_auto_optimize_split_symbol": "구분 기호 자동 최적화: 선택하면 줄바꿈 앞 키워드가 다음 조건 중 하나에 해당할 때 해당 줄 마지막 키워드의 쉼표를 자동으로 제거합니다.<br/>1. 줄바꿈 앞 키워드가 \":\"로 끝납니다.<br/>2. 줄바꿈 앞 키워드가 Lora인 경우.<br/>3. 해당 줄의 키워드 중 하나가 \"#\"로 시작하거나 끝납니다.<br/>4. 줄바꿈 앞 키워드가 마침표로 끝납니다.<br/>이는 독립적인 옵션이며 \"마침표+공백에서 키워드 분할\"이 필요 없습니다.<br/>선택하지 않으면 autoRemoveBeforeLineComma 등의 설정에 따릅니다.",
                 "auto_load_webui_prompt": "WebUI 프롬프트 변경 사항 자동로드.<br/>확인하면, WebUI의 프롬프트 입력란의 내용이 변경될 때 플러그인이 키워드 분석 및 형식 지정을 자동으로 로드합니다.<br/>체크하지 않으면, WebUI의 프롬프트 입력란의 내용이 변경될 때 수동으로 프롬프트 로드 버튼을 클릭해야 합니다.",
                 "load_webui_prompt": "WebUI 프롬프트 로드"
             }
@@ -2396,7 +2396,7 @@
                 "is_split_by_period": "Dividir palavras-chave por ponto+espaço.<br/>Se marcado, \"word1. word2\" será dividido em \"word1.\" e \"word2\".<br/>Se desmarcado, permanece como está.",
                 "is_split_by_period_include_paren": "Também dividir por ponto+espaço antes de parênteses (ex: \"word1. (test)\").<br/>Requer a opção acima.",
                 "is_split_by_period_semicolon": "Também dividir por ponto e vírgula+espaço usando o mesmo mecanismo do ponto.<br/>Se marcado, \"word1; word2\" será dividido em \"word1;\" e \"word2\" (o ponto e vírgula fica no final da primeira parte); pontos e vírgulas consecutivos são todos preservados.<br/>Requer a opção acima.",
-                "is_split_by_period_remove_wrap_comma": "Após a divisão, remover vírgula antes de quebras de linha (wrap/lora).<br/>Se marcado, se uma parte dividida for seguida por wrap/lora, sua vírgula é removida.<br/>Se desmarcado, determinado por autoRemoveBeforeLineComma etc.",
+                "is_auto_optimize_split_symbol": "Otimizar o símbolo de separação automaticamente: se marcado, a vírgula da última palavra-chave antes de uma quebra de linha é removida automaticamente se qualquer uma das condições seguintes for cumprida:<br/>1. A palavra-chave antes da quebra de linha termina em \":\";<br/>2. A palavra-chave antes da quebra de linha é um Lora;<br/>3. Qualquer palavra-chave dessa linha começa ou termina em \"#\";<br/>4. A palavra-chave antes da quebra de linha termina em ponto.<br/>Trata-se de uma opção independente e não requer \"Dividir palavras-chave por ponto+espaço\".<br/>Se desmarcado, determinado por autoRemoveBeforeLineComma etc.",
                 "auto_load_webui_prompt": "Carregar automaticamente mudanças de prompt do WebUI.<br/>Quando marcado, o plugin carregará automaticamente e formatará a análise de palavra-chave quando o conteúdo da caixa de entrada de prompt no WebUI mudar.<br/>Quando desmarcado, você precisa clicar manualmente no botão de carregar prompt quando o conteúdo da caixa de entrada de prompt no WebUI mudar.",
                 "load_webui_prompt": "Carregar prompt do WebUI"
             }
@@ -2584,7 +2584,7 @@
                 "is_split_by_period": "Dividir palavras-chave por ponto+espaço.<br/>Se marcado, \"word1. word2\" será dividido em \"word1.\" e \"word2\".<br/>Se desmarcado, permanece como está.",
                 "is_split_by_period_include_paren": "Também dividir por ponto+espaço antes de parênteses (ex: \"word1. (test)\").<br/>Requer a opção acima.",
                 "is_split_by_period_semicolon": "Também dividir por ponto e vírgula+espaço usando o mesmo mecanismo do ponto.<br/>Se marcado, \"word1; word2\" será dividido em \"word1;\" e \"word2\" (o ponto e vírgula fica no final da primeira parte); pontos e vírgulas consecutivos são todos preservados.<br/>Requer a opção acima.",
-                "is_split_by_period_remove_wrap_comma": "Após a divisão, remover vírgula antes de quebras de linha (wrap/lora).<br/>Se marcado, se uma parte dividida for seguida por wrap/lora, sua vírgula é removida.<br/>Se desmarcado, determinado por autoRemoveBeforeLineComma etc.",
+                "is_auto_optimize_split_symbol": "Otimizar o símbolo de separação automaticamente: se marcado, a vírgula da última palavra-chave antes de uma quebra de linha é removida automaticamente se qualquer uma das condições seguintes for cumprida:<br/>1. A palavra-chave antes da quebra de linha termina em \":\";<br/>2. A palavra-chave antes da quebra de linha é um Lora;<br/>3. Qualquer palavra-chave dessa linha começa ou termina em \"#\";<br/>4. A palavra-chave antes da quebra de linha termina em ponto.<br/>Trata-se de uma opção independente e não requer \"Dividir palavras-chave por ponto+espaço\".<br/>Se desmarcado, determinado por autoRemoveBeforeLineComma etc.",
                 "auto_load_webui_prompt": "Carregar automaticamente alterações no prompt do WebUI.<br/>Quando marcado, o plugin carregará automaticamente e formatará a análise de palavras-chave quando o conteúdo da caixa de entrada do prompt no WebUI for alterado.<br/>Quando desmarcado, é necessário clicar manualmente no botão de carregar o prompt quando o conteúdo da caixa de entrada do prompt no WebUI for alterado.",
                 "load_webui_prompt": "Carregar prompt do WebUI"
             }
@@ -2787,7 +2787,7 @@
                 "is_split_by_period": "Разделять ключевые слова по точке+пробел.<br/>Если включено, \"word1. word2\" будет разделено на \"word1.\" и \"word2\".<br/>Если выключено, остаётся как есть.",
                 "is_split_by_period_include_paren": "Также разделять по точке+пробел перед скобками (напр. \"word1. (test)\").<br/>Требуется параметр выше.",
                 "is_split_by_period_semicolon": "Также разделять по точке с запятой+пробел по тому же механизму, что и точка.<br/>Если включено, \"word1; word2\" будет разделено на \"word1;\" и \"word2\" (точка с запятой остаётся в конце первой части); подряд идущие точки с запятой полностью сохраняются.<br/>Требуется параметр выше.",
-                "is_split_by_period_remove_wrap_comma": "После разделения удалять запятую перед переносами строк (wrap/lora).<br/>Если включено, когда разделённая часть followed by wrap/lora, её запятая удаляется.<br/>Если выключено, определяется autoRemoveBeforeLineComma и т.д.",
+                "is_auto_optimize_split_symbol": "Автоматическая оптимизация символа-разделителя: если включено, запятая последнего ключевого слова перед переносом строки автоматически удаляется при выполнении любого из следующих условий:<br/>1. Ключевое слово перед переносом строки заканчивается на \":\";<br/>2. Ключевое слово перед переносом строки — Lora;<br/>3. Любое ключевое слово в этой строке начинается или заканчивается на \"#\";<br/>4. Ключевое слово перед переносом строки заканчивается на точку.<br/>Это независимый параметр и не требует \"Разделять ключевые слова по точке+пробел\".<br/>Если выключено, определяется autoRemoveBeforeLineComma и т.д.",
                 "auto_load_webui_prompt": "Автоматическая загрузка изменений веб-интерфейса пользовательского интерфейса.<br/>Если отмечено, плагин автоматически загружает и форматирует анализ ключевых слов при изменении содержимого поля ввода подсказки веб-интерфейса.<br/>Если снято, вам нужно вручную нажать кнопку загрузки подсказки при изменении содержимого поля ввода подсказки веб-интерфейса.",
                 "load_webui_prompt": "Загрузить подсказку веб-интерфейса"
             }
@@ -3005,7 +3005,7 @@
                 "is_split_by_period": "Dividir palabras clave por punto+espacio.<br/>Si está marcado, \"word1. word2\" se dividirá en \"word1.\" y \"word2\".<br/>Si no está marcado, se mantiene igual.",
                 "is_split_by_period_include_paren": "También dividir por punto+espacio antes de paréntesis (ej: \"word1. (test)\").<br/>Requiere la opción anterior.",
                 "is_split_by_period_semicolon": "También dividir por punto y coma+espacio usando el mismo mecanismo que el punto.<br/>Si está marcado, \"word1; word2\" se dividirá en \"word1;\" y \"word2\" (el punto y coma se mantiene al final de la primera parte); los puntos y coma consecutivos se conservan todos.<br/>Requiere la opción anterior.",
-                "is_split_by_period_remove_wrap_comma": "Después de dividir, eliminar coma antes de saltos de línea (wrap/lora).<br/>Si está marcado, cuando una parte dividida es seguida por wrap/lora, su coma se elimina.<br/>Si no está marcado, determinado por autoRemoveBeforeLineComma etc.",
+                "is_auto_optimize_split_symbol": "Optimizar el símbolo de separación automáticamente: si está marcado, la coma de la última palabra clave antes de un salto de línea se elimina automáticamente si se cumple alguna de las siguientes condiciones:<br/>1. La palabra clave antes del salto de línea termina en \":\";<br/>2. La palabra clave antes del salto de línea es un Lora;<br/>3. Cualquier palabra clave de esa línea empieza o termina en \"#\";<br/>4. La palabra clave antes del salto de línea termina en punto.<br/>Es una opción independiente y no requiere \"Dividir palabras clave por punto+espacio\".<br/>Si no está marcado, determinado por autoRemoveBeforeLineComma etc.",
                 "auto_load_webui_prompt": "Cargar automáticamente cambios en el aviso de WebUI.<br/>Cuando está marcado, el complemento cargará automáticamente y formateará el análisis de palabras clave cuando cambie el contenido del cuadro de entrada del aviso en WebUI.<br/>Cuando no está marcado, es necesario hacer clic manualmente en el botón de carga del aviso cuando cambie el contenido del cuadro de entrada del aviso en WebUI.",
                 "load_webui_prompt": "Cargar aviso de WebUI"
             }
