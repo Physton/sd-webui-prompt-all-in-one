@@ -1073,6 +1073,18 @@ export default {
                         }
                     }
 
+                    /**
+                     * 自動優化分割符號（autoOptimizeSplitSymbol）：
+                     * 符合下列任一條件時，移除當前 tag 後的逗號（不論其他選項是否啟用）。
+                     * 詳細規則見 _shouldRemoveCommaByAutoOptimize()。
+                     * 換行情境（下一個為分行）連同空白一併移除，其餘僅移除逗號、保留空白。
+                     */
+                    if (this.autoOptimizeSplitSymbol && splitSymbol.includes(',')) {
+                        if (this._shouldRemoveCommaByAutoOptimize(tag, tags2, index)) {
+                            splitSymbol = nextIsWarp ? '' : splitSymbol.replace(/,/g, '')
+                        }
+                    }
+
                     if (nextIsWarp) {
                         // 如果下一个是换行
 
@@ -1166,9 +1178,59 @@ export default {
             // 規則 2：換行前的 tag 是 Lora / Lyco
             if (tag.isLora || tag.isLyco) return true
             // 規則 3：該行任一 tag 以「#」開頭或結尾（由呼叫端遍歷期間累計傳入）
-            if (lineHasSharp) return true
+            // if (lineHasSharp) return true
             // 規則 4：換行前的 tag 以句號結尾
             return /\.\s*$/.test(tag.value)
+        },
+        /**
+         * 自動優化分割符號（autoOptimizeSplitSymbol）：判斷當前 tag 後的逗號是否應被移除。
+         *
+         * 與 _shouldRemoveCommaBeforeWrap()（僅處理換行前一個 tag）不同，
+         * 此方法涵蓋任意下一個 tag（分行 / BREAK / Lora / 一般 tag），
+         * 於 genPrompt() 的輸出層直接判定，不經過 applySplitByPeriod()，
+         * 因此不依賴 autoSplitByPeriod，選項獨立啟用時即生效。
+         *
+         * 判定規則（任一符合即移除逗號）：
+         *   1. 當前 tag 是 Lora / Lyco，且下一個 tag 也是 Lora / Lyco
+         *      （連續 Lora 間不需要逗號，避免破壞 Lora 語法）
+         *   2. 下一個 tag 是 BREAK，或「分行 + BREAK」
+         *      （分行可連續多個，略過後取第一個非分行 tag 判定）
+         *   3. 當前 tag 以「;」或「}」結尾（表示語法尚未結束），
+         *      且下一個 tag 是 分行 或 Lora / Lyco
+         *
+         * 效能：僅在下一個 tag 為分行時才會向後前瞻，並連續略過分行 tag，
+         *       攤還 O(1)，不會因多個分行造成整體 O(n²)。
+         *
+         * @param {object} tag   - 當前標籤
+         * @param {Array}  tags2 - 已過濾（排除 disabled）的標籤陣列，與 genPrompt() 使用同一份
+         * @param {number} index - 當前標籤在 tags2 中的索引
+         * @returns {boolean} true = 應移除當前 tag 後的逗號
+         */
+        _shouldRemoveCommaByAutoOptimize(tag, tags2, index) {
+            if (!tag) return false
+            const isLoraLike = item => !!item && (item.isLora || item.isLyco)
+            const isWrap = item => !!item && typeof item['type'] === 'string' && item.type === 'wrap'
+            const isBreak = item => !!item && typeof item.value === 'string' && item.value.trim() === 'BREAK'
+            const nextTag = index + 1 < tags2.length ? tags2[index + 1] : null
+            // 已是最後一個 tag → 由 autoRemoveLastComma 處理，此處不移除
+            if (!nextTag) return false
+
+            // 規則 1：當前是 Lora / Lyco，且下一個也是 Lora / Lyco
+            if (isLoraLike(tag) && isLoraLike(nextTag)) return true
+            // 規則 2-1：下一個 tag 是 BREAK
+            if (isBreak(nextTag)) return true
+            // 規則 2-2：下一個 tag 是分行，且分行後第一個非分行 tag 是 BREAK
+            if (isWrap(nextTag)) {
+                let nextIndex = index + 1
+                while (nextIndex < tags2.length && isWrap(tags2[nextIndex])) {
+                    nextIndex++
+                }
+                if (isBreak(nextIndex < tags2.length ? tags2[nextIndex] : null)) return true
+            }
+            // 規則 3：當前 tag 以「;」或「}」結尾，且下一個是 分行 / Lora / Lyco
+            if (/[;}:]$/.test((tag.value || '').trim()) && (isWrap(nextTag) || isLoraLike(nextTag))) return true
+
+            return false
         },
         /**
          * 判斷指定 tag 的最後一個逗號是否應被移除（供 applySplitByPeriod 設定 splitNoComma）。
