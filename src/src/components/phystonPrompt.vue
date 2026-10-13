@@ -287,7 +287,15 @@
                 @mousemove="onDropMouseMove"
                 @mouseup="onDropMouseUp">
                 <div class="prompt-tags-list" ref="promptTagsList">
-                    <!--<TransitionGroup name="fadeLeft">-->
+
+                    <div v-for="(tag, index) in tags" :key="'line-' + tag.id"
+                         :class="['prompt-tag-line-no', tagLineNumbers[index] ? 'line-no' : '']"
+                         :data-line="tagLineNumbers[index]"
+                         :data-id="tag.id"
+                         ref="promptTagLineNo"
+                         @mousedown.stop="" @mousemove.stop="" @mouseup.stop=""></div>
+
+                     <!--<TransitionGroup name="fadeLeft">-->
                     <div v-for="(tag, index) in tags" :key="tag.id"
                          :class="['prompt-tag', tag.disabled ? 'disabled': '', tag.type === 'wrap' ? 'wrap-tag' : '']"
                          :ref="'promptTag-' + tag.id" :data-id="tag.id">
@@ -835,6 +843,44 @@ export default {
         },
         translateApiItem() {
             return common.getTranslateApiItem(this.translateApis, this.translateApi)
+        },
+        /**
+         * 行號：與 this.tags 平行的字串陣列，供模板以 data-line 綁定。
+         *
+         * UI 的「行」由 tags 陣列中的 wrap tag（type === 'wrap'）邏輯分割決定，
+         * 與 flex-wrap 造成的視覺換行無關，因此須在此以單次前向遍歷計算。
+         *
+         * 補零為 3 位（001、002…），由 CSS content: attr(data-line) 直接取用，
+         * 基礎樣式不設定 content，故預設不渲染偽元素、零開銷；
+         * 顯示與否交由 styles/extensions 以純 CSS 控制。
+         *
+         * 僅行首 tag 取得行號，其餘為空字串，避免每列重複顯示造成干擾。
+         * wrap tag 本身不標記（它是分隔符，不是內容）。
+         *
+         * @returns {string[]}
+         */
+        tagLineNumbers() {
+            const numbers = []
+            let line = 1
+            let isFirstInLine = true
+            this.tags.forEach((tag, index) => {
+                if (typeof tag['type'] === 'string' && tag.type === 'wrap') {
+                    /**
+                     * wrap 是行邊界。當它是「行首」時代表一個空行
+                     * （例如拖曳標籤後留在列首的 wrap），此時應顯示該行行號；
+                     * 否則它只是結束一個非空行，行號已顯示在該行首個 tag，
+                     * wrap 本身不顯示（維持 ''）。
+                     */
+                    numbers[index] = isFirstInLine ? String(line).padStart(3, '0') : ''
+                    // 結束當前行，供下一行重新計數
+                    line++
+                    isFirstInLine = true
+                    return
+                }
+                numbers[index] = isFirstInLine ? String(line).padStart(3, '0') : ''
+                isFirstInLine = false
+            })
+            return numbers
         },
     },
     watch: {
@@ -1444,6 +1490,10 @@ export default {
                     let tag = this.$refs.promptTagsList.children[i]
                     if (!tag.classList.contains('prompt-tag')) continue
                     let id = tag.getAttribute('data-id')
+                    let lineNo = this.$refs.promptTagLineNo.find(lineNo => {
+                        return lineNo.getAttribute('data-id') === id
+                    })
+                    if (lineNo) tag.parentNode.insertBefore(lineNo, tag)
                     let wrap = this.$refs.promptTagWrap.find(wrap => {
                         return wrap.getAttribute('data-id') === id
                     })

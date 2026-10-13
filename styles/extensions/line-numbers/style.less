@@ -1,0 +1,100 @@
+/**
+ * 行號顯示（預設隱藏，由本擴充樣式開啟）。
+ *
+ * 實作方式：行號改由獨立空元素 .prompt-tag-line-no 承載
+ * （模板中位於每個 .prompt-tag 之前的第三個 v-for，DOM 交錯後緊鄰對應 tag 之前），
+ * 其 line-no class 與 data-line 由 computed tagLineNumbers 產生（已補零至 3 位）。
+ *
+ * 基礎樣式的行號偽元素規則掛在 .prompt-tag.line-no::before 上，
+ * 已不會命中（.prompt-tag 不再帶 line-no class），因此本擴充樣式須自行完整宣告：
+ *
+ * - content：在 .prompt-tag-line-no 上以 attr(data-line) 重新定義變數；
+ *   自訂屬性繼承至偽元素，特異度（0,3,0）勝過 .physton-gradio-container
+ *   （0,1,0）上的預設值 none，機制與原實作相同。
+ * - 定位／外觀（position/left/top/width/padding/border…）：沿用基礎樣式定義的
+ *   同名 CSS 變數；變數值仍由基礎樣式提供，此處只負責套用到新的偽元素上，不另造新變數。
+ * - position（元素本身）：沿用 .prompt-tag 的 --pp-pt-dsb-ptl-promptTag-position，
+ *   讓偽元素以相同方式錨定到該空元素；因該元素左上原點與 tag 一致，視覺位置不變。
+ *
+ * 僅「行首 tag」對應的元素帶 line-no class；其餘元素雖仍保留 data-line
+ * （供後續功能預留），但因不帶 line-no class，偽元素完全不渲染 → 不會殘留空的行號框。
+ * content 預設 none；顯示（content 改為 attr(data-line)）由本擴充樣式以純 CSS 控制。
+ */
+ .physton-gradio-container {
+
+    --pp-pt-dsb-ptl-promptTagLineNo-content: none;
+    --pp-pt-dsb-ptl-promptTagLineNo-position: absolute;
+    --pp-pt-dsb-ptl-promptTagLineNo-left: -30px;
+    --pp-pt-dsb-ptl-promptTagLineNo-top: 5px;
+    --pp-pt-dsb-ptl-promptTagLineNo-width: 24px;
+    --pp-pt-dsb-ptl-promptTagLineNo-font-size: 0.75rem;
+    --pp-pt-dsb-ptl-promptTagLineNo-line-height: 1;
+    // 顏色引用 tag 文字色（SSoT）：該變數於 .dark 區塊已覆寫為淺色，
+    // 故行號自動跟隨亮/暗主題，不需自行硬編碼，也不需額外的 .dark 覆寫。
+    --pp-pt-dsb-ptl-promptTagLineNo-color: var(--pp-pt-dsb-ptl-pt-ptm-pte-promptTagValue-color);
+    // 透明度：同時作用於行號文字與外框（同一個偽元素）。
+    // .88（tag 預設文字色）× .7 ≈ .62，讓外框清晰可見，
+    // 同時仍比 tag 文字略淡，維持行號的次要視覺層級。
+    // 需要更淡／更濃時直接調整此值即可。
+    --pp-pt-dsb-ptl-promptTagLineNo-opacity: .7;
+    // 外框：以 currentColor 呼應行號文字色，自動跟隨亮／暗主題。
+    // content 預設 none 時整個偽元素不渲染，故外框僅在啟用行號時一併出現。
+    --pp-pt-dsb-ptl-promptTagLineNo-border: 1px solid currentColor;
+    --pp-pt-dsb-ptl-promptTagLineNo-border-radius: 3px;
+    // 內距：讓文字不至於緊貼外框。
+    // 注意 box-sizing 為 content-box（預設），width 僅為內容寬，
+    // 外框與內距會向 left 方向的留白區延伸，不會與 tag 重疊。
+    --pp-pt-dsb-ptl-promptTagLineNo-padding: 1px 2px;
+    --pp-pt-dsb-ptl-promptTagLineNo-text-align: right;
+    --pp-pt-dsb-ptl-promptTagLineNo-pointer-events: none;
+    // 滑過所屬 tag 時：行號提升至全亮度，強調游標目前所在的列。
+    // 偽元素本身 pointer-events 為 none，無法自行接收 hover，
+    // 故由父層 .prompt-tag 的 :hover 連動其 ::before（見下方 &::before 規則後）。
+    --pp-pt-dsb-ptl-promptTagLineNoHover-opacity: 1;
+ }
+
+.physton-prompt {
+    .prompt-tags-list {
+        /** 為行號左側留白，避免超出容器 */
+        padding-left: 34px;
+
+        .prompt-tag-line-no {
+            --pp-pt-dsb-ptl-promptTagLineNo-content: attr(data-line);
+            position: relative;
+            /**
+             * 1px 寬度用於在不影響布局的情況下佔位
+             */
+            width: 1px;
+
+            &.line-no::before {
+                content: var(--pp-pt-dsb-ptl-promptTagLineNo-content);
+                position: var(--pp-pt-dsb-ptl-promptTagLineNo-position);
+                left: var(--pp-pt-dsb-ptl-promptTagLineNo-left);
+                top: var(--pp-pt-dsb-ptl-promptTagLineNo-top);
+                width: var(--pp-pt-dsb-ptl-promptTagLineNo-width);
+                padding: var(--pp-pt-dsb-ptl-promptTagLineNo-padding);
+                border: var(--pp-pt-dsb-ptl-promptTagLineNo-border);
+                border-radius: var(--pp-pt-dsb-ptl-promptTagLineNo-border-radius);
+                font-size: var(--pp-pt-dsb-ptl-promptTagLineNo-font-size);
+                line-height: var(--pp-pt-dsb-ptl-promptTagLineNo-line-height);
+                color: var(--pp-pt-dsb-ptl-promptTagLineNo-color);
+                opacity: var(--pp-pt-dsb-ptl-promptTagLineNo-opacity);
+                text-align: var(--pp-pt-dsb-ptl-promptTagLineNo-text-align);
+                pointer-events: var(--pp-pt-dsb-ptl-promptTagLineNo-pointer-events);
+                font-family: Consolas, monospace;
+                font-variant-numeric: tabular-nums;
+            }
+
+            /**
+             * hover 效果：滑過所屬 tag 時，其行號提升至全亮度。
+             * 偽元素 pointer-events 為 none，無法自行接收 hover，
+             * 故由父層 .prompt-tag 的 :hover 連動。
+             * 僅 line-no tag 才有行號偽元素，此規則對其生效；其餘 tag 無偽元素、不受影響。
+             */
+            &.line-no:hover::before, &.line-no::before:hover {
+                opacity: var(--pp-pt-dsb-ptl-promptTagLineNoHover-opacity);
+                color: red;
+            }
+        }
+    }
+}
