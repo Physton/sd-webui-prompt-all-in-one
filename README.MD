@@ -16,6 +16,26 @@
 
 sd-webui-prompt-all-in-one is an extension based on [stable-diffusion-webui](https://github.com/AUTOMATIC1111/stable-diffusion-webui) that aims to improve the user experience of the prompt/negative prompt input box. It has a more intuitive and powerful input interface, provides automatic translation, history and collection functions, and supports multiple languages to meet the needs of different users.
 
+## 🇨🇳 Chinese translation wordlist enhancement (bundled, enabled by default)
+
+This PR bundles a merged and improved Chinese translation wordlist `danbooru.zh_ALL.csv` (~**438k entries**) and **enables it by default** — after merging, the local-CSV Chinese translation under the prompt works immediately, no settings needed.
+
+Key improvements over the commonly used machine-translated wordlist:
+
+- **Multi-source layered merge**: five public translation sources merged by quality priority — EhTagTranslation (human translation, most accurate for artists/characters/works) > Tags-zh-full-pack (human-reviewed) > the ffdkj wordlist (Gemini translation + human review, ~310k entries, wide-coverage fallback) > the Chinese community wordlist ([wfjsw/danbooru-diffusion-prompt-builder](https://github.com/wfjsw/danbooru-diffusion-prompt-builder)) > the original SFW machine translation as the last fallback
+- **Fixes Chinese not showing for bracketed tags**: extra `\(` `\)`-escaped variant rows (~104k). The panel's translation lookup does not strip escape characters, so escaped tags like `amiya_\(act_ii\)_\(arknights\)` previously showed no Chinese below the prompt; with this wordlist they resolve correctly
+- **Character name and work name both preserved**: EhTag's "given family" naming is aligned to danbooru's "family_given_(work)" format, and each work-name suffix is translated separately and re-composed, e.g. `fujimiya_sumika_(isekai_ojisan)` → 藤宫澄夏 (异世界舅舅), `amiya_(act_ii)_(arknights)` → 阿米娅 (升变阶段) (明日方舟)
+
+Where things live:
+
+| Item | Location |
+|---|---|
+| Runtime wordlist (enabled by default) | `tags/danbooru.zh_ALL.csv` (pointed to by `storage/tagCompleteFile.json`) |
+| Copy & detailed documentation | [translations/README.md](translations/README.md) |
+| Direct download | [translations/danbooru.zh_ALL.csv](translations/danbooru.zh_ALL.csv) |
+
+Each translation source keeps its own license (e.g. the EhTagTranslation database is CC BY-NC-SA 4.0, non-commercial); please comply with them when using or redistributing. See the wordlist documentation for details.
+
 ---
 
 **📮📮📮 I am very sorry, due to limited personal energy, this project will no longer be maintained. However, if anyone improves the code, feel free to submit a Pull Request, and I will find time to merge it into the main branch.**
