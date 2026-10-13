@@ -1,0 +1,10 @@
+{
+  "name": "Show line numbers",
+  "i18n": {
+    "zh_CN": "显示行号",
+    "zh_HK": "顯示行號",
+    "zh_TW": "顯示行號"
+  },
+  "author": "bluelovers",
+  "type": "enhance"
+}

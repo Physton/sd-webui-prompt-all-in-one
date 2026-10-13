@@ -60,6 +60,19 @@
                            @change="$emit('update:autoRemoveBeforeLineComma', $event.target.checked)">
                     <div class="format-desc" v-html="getLang('is_remove_before_line_comma')"></div>
                 </div>
+                <!-- 自動優化分割符號：獨立選項（不再屬於 autoSplitByPeriod 子選項），因此不加 v-if 與縮排 -->
+                <div class="format-item">
+                    <input class="format-checkbox" type="checkbox"
+                           :checked="autoOptimizeSplitSymbol"
+                           @change="$emit('update:autoOptimizeSplitSymbol', $event.target.checked)">
+                    <div class="format-desc" v-html="getLang('is_auto_optimize_split_symbol')"></div>
+                </div>
+                <div class="format-item">
+                    <input class="format-checkbox" type="checkbox"
+                           :checked="allowKeepEmptyLine"
+                           @change="$emit('update:allowKeepEmptyLine', $event.target.checked)">
+                    <div class="format-desc" v-html="getLang('is_allow_keep_empty_line')"></div>
+                </div>
                 <div class="format-item">
                     <input class="format-checkbox" type="checkbox"
                            :checked="autoSplitByPeriod"
@@ -71,6 +84,12 @@
                            :checked="autoSplitByPeriodIncludeParen"
                            @change="$emit('update:autoSplitByPeriodIncludeParen', $event.target.checked)">
                     <div class="format-desc" v-html="getLang('is_split_by_period_include_paren')"></div>
+                </div>
+                <div class="format-item" v-if="autoSplitByPeriod" style="padding-left: 20px;">
+                    <input class="format-checkbox" type="checkbox"
+                           :checked="autoSplitByPeriodSemicolon"
+                           @change="$emit('update:autoSplitByPeriodSemicolon', $event.target.checked)">
+                    <div class="format-desc" v-html="getLang('is_split_by_period_semicolon')"></div>
                 </div>
             </div>
         </div>
@@ -134,6 +153,18 @@ export default {
             type: Boolean,
             default: false,
         },
+        autoSplitByPeriodSemicolon: {
+            type: Boolean,
+            default: false,
+        },
+        autoOptimizeSplitSymbol: {
+            type: Boolean,
+            default: false,
+        },
+        allowKeepEmptyLine: {
+            type: Boolean,
+            default: false,
+        },
     },
     data() {
         return {
@@ -153,6 +184,9 @@ export default {
         'update:autoRemoveBeforeLineComma',
         'update:autoSplitByPeriod',
         'update:autoSplitByPeriodIncludeParen',
+        'update:autoSplitByPeriodSemicolon',
+        'update:autoOptimizeSplitSymbol',
+        'update:allowKeepEmptyLine',
     ],
     computed: {},
     mounted() {

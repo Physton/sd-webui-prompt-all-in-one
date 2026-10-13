@@ -135,10 +135,12 @@ export default {
      * @param tags {string}
      * @param autoBreakBeforeWrap {boolean}
      * @param autoBreakAfterWrap {boolean}
+     * @param options {object} 扩充选项（集中传递，便于后续新增而不动签名）
+     * @param options.allowKeepEmptyLine {boolean} 是否允许保持一个空行（连续换行压缩上限为一个空行）
      * @returns {string[]}
      */
-    splitTags(tags, autoBreakBeforeWrap = false, autoBreakAfterWrap = false) {
-        return splitTags(tags, autoBreakBeforeWrap, autoBreakAfterWrap)
+    splitTags(tags, autoBreakBeforeWrap = false, autoBreakAfterWrap = false, options = {}) {
+        return splitTags(tags, autoBreakBeforeWrap, autoBreakAfterWrap, options)
     },
 
     /**

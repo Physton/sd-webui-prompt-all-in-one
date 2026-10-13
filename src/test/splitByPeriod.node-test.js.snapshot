@@ -1,0 +1,1036 @@
+exports[`splitByPeriod > basic splitting without brackets > [1bf9e201] \"a. b. c\" 1`] = `
+{
+  "input": "a. b. c",
+  "result": [
+    "a.",
+    "b.",
+    "c"
+  ]
+}
+`;
+
+exports[`splitByPeriod > basic splitting without brackets > [68b15ecd] \"hello. world\" 1`] = `
+{
+  "input": "hello. world",
+  "result": [
+    "hello.",
+    "world"
+  ]
+}
+`;
+
+exports[`splitByPeriod > basic splitting without brackets > multiple spaces after period — [a30a50d1] \"one.  two.  three\" 1`] = `
+{
+  "input": "one.  two.  three",
+  "result": [
+    "one.",
+    "two.",
+    "three"
+  ]
+}
+`;
+
+exports[`splitByPeriod > basic splitting without brackets > period + space then end of string — [df7f2436] \"abc. \" 1`] = `
+{
+  "input": "abc. ",
+  "result": [
+    "abc.",
+    ""
+  ]
+}
+`;
+
+exports[`splitByPeriod > basic splitting without brackets > period without surrounding space — no split — [2e7336dc] \"a.b\" 1`] = `
+{
+  "input": "a.b",
+  "result": [
+    "a.b"
+  ]
+}
+`;
+
+exports[`splitByPeriod > basic splitting without brackets > trailing period, no space after — [5ac9481b] \"abc.\" 1`] = `
+{
+  "input": "abc.",
+  "result": [
+    "abc."
+  ]
+}
+`;
+
+exports[`splitByPeriod > includeParen=false — stop splitting before open paren > closed paren — split works — [ba16040d] \"(111. 222). xxx\" ({includeParen: false}) 1`] = `
+{
+  "input": "(111. 222). xxx",
+  "args": [
+    {
+      "includeParen": false
+    }
+  ],
+  "result": [
+    "(111. 222).",
+    "xxx"
+  ]
+}
+`;
+
+exports[`splitByPeriod > includeParen=false — stop splitting before open paren > curly bracket stops — [e72c33ff] \"a. b. {c. d}\" ({includeParen: false}) 1`] = `
+{
+  "input": "a. b. {c. d}",
+  "args": [
+    {
+      "includeParen": false
+    }
+  ],
+  "result": [
+    "a.",
+    "b. {c. d}"
+  ]
+}
+`;
+
+exports[`splitByPeriod > includeParen=false — stop splitting before open paren > first open paren stops — [6d414e33] \"xxx. (111. 222)\" ({includeParen: false}) 1`] = `
+{
+  "input": "xxx. (111. 222)",
+  "args": [
+    {
+      "includeParen": false
+    }
+  ],
+  "result": [
+    "xxx. (111. 222)"
+  ]
+}
+`;
+
+exports[`splitByPeriod > includeParen=false — stop splitting before open paren > no parens — all splits work — [1bf9e201] \"a. b. c\" ({includeParen: false}) 1`] = `
+{
+  "input": "a. b. c",
+  "args": [
+    {
+      "includeParen": false
+    }
+  ],
+  "result": [
+    "a.",
+    "b.",
+    "c"
+  ]
+}
+`;
+
+exports[`splitByPeriod > includeParen=false — stop splitting before open paren > splits first two, stops at third — [668d33a5] \"a. b. (c. d)\" ({includeParen: false}) 1`] = `
+{
+  "input": "a. b. (c. d)",
+  "args": [
+    {
+      "includeParen": false
+    }
+  ],
+  "result": [
+    "a.",
+    "b. (c. d)"
+  ]
+}
+`;
+
+exports[`splitByPeriod > includeParen=false — stop splitting before open paren > square bracket stops — [4af00ea8] \"a. b. [c. d]\" ({includeParen: false}) 1`] = `
+{
+  "input": "a. b. [c. d]",
+  "args": [
+    {
+      "includeParen": false
+    }
+  ],
+  "result": [
+    "a.",
+    "b. [c. d]"
+  ]
+}
+`;
+
+exports[`splitByPeriod > mismatched / noisy brackets > multiple nested groups — [a9257105] \"((a. b). (c. d)). e\" ({includeParen: true}) 1`] = `
+{
+  "input": "((a. b). (c. d)). e",
+  "args": [
+    {
+      "includeParen": true
+    }
+  ],
+  "result": [
+    "((a. b). (c. d)).",
+    "e"
+  ]
+}
+`;
+
+exports[`splitByPeriod > mismatched / noisy brackets > nested open parens — [56dd7c52] \"(a. (b. c)). d\" ({includeParen: true}) 1`] = `
+{
+  "input": "(a. (b. c)). d",
+  "args": [
+    {
+      "includeParen": true
+    }
+  ],
+  "result": [
+    "(a. (b. c)).",
+    "d"
+  ]
+}
+`;
+
+exports[`splitByPeriod > mismatched / noisy brackets > stray close bracket ignored — [6bed09d6] \"a. ]. b\" ({includeParen: true}) 1`] = `
+{
+  "input": "a. ]. b",
+  "args": [
+    {
+      "includeParen": true
+    }
+  ],
+  "result": [
+    "a.",
+    "].",
+    "b"
+  ]
+}
+`;
+
+exports[`splitByPeriod > mismatched / noisy brackets > stray close paren ignored — [14d3e565] \"a. )b. c\" ({includeParen: true}) 1`] = `
+{
+  "input": "a. )b. c",
+  "args": [
+    {
+      "includeParen": true
+    }
+  ],
+  "result": [
+    "a.",
+    ")b.",
+    "c"
+  ]
+}
+`;
+
+exports[`splitByPeriod > nested bracket protection (includeParen=true) > [062ce5bf] \"aaa. (bbb. ccc). ddd. eee\" ({includeParen: true}) 1`] = `
+{
+  "input": "aaa. (bbb. ccc). ddd. eee",
+  "args": [
+    {
+      "includeParen": true
+    }
+  ],
+  "result": [
+    "aaa.",
+    "(bbb. ccc).",
+    "ddd.",
+    "eee"
+  ]
+}
+`;
+
+exports[`splitByPeriod > nested bracket protection (includeParen=true) > [6d414e33] \"xxx. (111. 222)\" ({includeParen: true}) 1`] = `
+{
+  "input": "xxx. (111. 222)",
+  "args": [
+    {
+      "includeParen": true
+    }
+  ],
+  "result": [
+    "xxx.",
+    "(111. 222)"
+  ]
+}
+`;
+
+exports[`splitByPeriod > nested bracket protection (includeParen=true) > [ba16040d] \"(111. 222). xxx\" ({includeParen: true}) 1`] = `
+{
+  "input": "(111. 222). xxx",
+  "args": [
+    {
+      "includeParen": true
+    }
+  ],
+  "result": [
+    "(111. 222).",
+    "xxx"
+  ]
+}
+`;
+
+exports[`splitByPeriod > nested bracket protection (includeParen=true) > curly brackets — [bfde1249] \"aaa. {bbb. ccc}. ddd\" ({includeParen: true}) 1`] = `
+{
+  "input": "aaa. {bbb. ccc}. ddd",
+  "args": [
+    {
+      "includeParen": true
+    }
+  ],
+  "result": [
+    "aaa.",
+    "{bbb. ccc}.",
+    "ddd"
+  ]
+}
+`;
+
+exports[`splitByPeriod > nested bracket protection (includeParen=true) > deeply nested — [2eff1a38] \"a. ((b. c). d). e\" ({includeParen: true}) 1`] = `
+{
+  "input": "a. ((b. c). d). e",
+  "args": [
+    {
+      "includeParen": true
+    }
+  ],
+  "result": [
+    "a.",
+    "((b. c). d).",
+    "e"
+  ]
+}
+`;
+
+exports[`splitByPeriod > nested bracket protection (includeParen=true) > mixed bracket types — [aaa7c462] \"a. ([b. c]). d\" ({includeParen: true}) 1`] = `
+{
+  "input": "a. ([b. c]). d",
+  "args": [
+    {
+      "includeParen": true
+    }
+  ],
+  "result": [
+    "a.",
+    "([b. c]).",
+    "d"
+  ]
+}
+`;
+
+exports[`splitByPeriod > nested bracket protection (includeParen=true) > square brackets — [1e7b180d] \"aaa. [bbb. ccc]. ddd\" ({includeParen: true}) 1`] = `
+{
+  "input": "aaa. [bbb. ccc]. ddd",
+  "args": [
+    {
+      "includeParen": true
+    }
+  ],
+  "result": [
+    "aaa.",
+    "[bbb. ccc].",
+    "ddd"
+  ]
+}
+`;
+
+exports[`splitByPeriod > nested bracket protection (includeParen=true) > unclosed paren — [3eeb9016] \"xxx. (111. 222\" ({includeParen: true}) 1`] = `
+{
+  "input": "xxx. (111. 222",
+  "args": [
+    {
+      "includeParen": true
+    }
+  ],
+  "result": [
+    "xxx.",
+    "(111. 222"
+  ]
+}
+`;
+
+exports[`splitByPeriod > nested bracket protection (includeParen=true) > unclosed paren — no split at all — [8e69b796] \"(111. 222. xxx\" ({includeParen: true}) 1`] = `
+{
+  "input": "(111. 222. xxx",
+  "args": [
+    {
+      "includeParen": true
+    }
+  ],
+  "result": [
+    "(111. 222. xxx"
+  ]
+}
+`;
+
+exports[`splitByPeriod > newline handling (priority over quotes/parens) > consecutive newlines — one marker each — [75a11da4] \"\\n\\n\" 1`] = `
+{
+  "input": "\\n\\n",
+  "result": [
+    "\\n",
+    "\\n"
+  ]
+}
+`;
+
+exports[`splitByPeriod > newline handling (priority over quotes/parens) > leading newline — no empty head segment — [7361a6f4] \"\\na\" 1`] = `
+{
+  "input": "\\na",
+  "result": [
+    "\\n",
+    "a"
+  ]
+}
+`;
+
+exports[`splitByPeriod > newline handling (priority over quotes/parens) > lone newline — splitTags \"\\\\n\" marker passthrough unchanged — [01ba4719] \"\\n\" 1`] = `
+{
+  "input": "\\n",
+  "result": [
+    "\\n"
+  ]
+}
+`;
+
+exports[`splitByPeriod > newline handling (priority over quotes/parens) > newline after closed quote — [31ed92ca] \"a \\\"b\\\"\\nc\" 1`] = `
+{
+  "input": "a \\"b\\"\\nc",
+  "result": [
+    "a \\"b\\"",
+    "\\n",
+    "c"
+  ]
+}
+`;
+
+exports[`splitByPeriod > newline handling (priority over quotes/parens) > newline always splits — same rule as splitTags (priority > quotes/parens) — [7e18f737] \"a\\nb\" 1`] = `
+{
+  "input": "a\\nb",
+  "result": [
+    "a",
+    "\\n",
+    "b"
+  ]
+}
+`;
+
+exports[`splitByPeriod > newline handling (priority over quotes/parens) > newline in parens splits, paren state reset — [bf17b4db] \"(a\\nb). c\" ({includeParen: true}) 1`] = `
+{
+  "input": "(a\\nb). c",
+  "args": [
+    {
+      "includeParen": true
+    }
+  ],
+  "result": [
+    "(a",
+    "\\n",
+    "b).",
+    "c"
+  ]
+}
+`;
+
+exports[`splitByPeriod > newline handling (priority over quotes/parens) > newline inside quotes still splits — newline priority > quote — [422b6e38] \"\\\"a\\nb\\\"\" 1`] = `
+{
+  "input": "\\"a\\nb\\"",
+  "result": [
+    "\\"a",
+    "\\n",
+    "b\\""
+  ]
+}
+`;
+
+exports[`splitByPeriod > newline handling (priority over quotes/parens) > newline priority overrides includeParen=false stop — [1409f70b] \"a. \\n(b)\" ({includeParen: false}) 1`] = `
+{
+  "input": "a. \\n(b)",
+  "args": [
+    {
+      "includeParen": false
+    }
+  ],
+  "result": [
+    "a.",
+    "\\n",
+    "(b)"
+  ]
+}
+`;
+
+exports[`splitByPeriod > newline handling (priority over quotes/parens) > newline split then period split with includeParen=true — [7dfd5cca] \"a\\nb. c\" ({includeParen: true}) 1`] = `
+{
+  "input": "a\\nb. c",
+  "args": [
+    {
+      "includeParen": true
+    }
+  ],
+  "result": [
+    "a",
+    "\\n",
+    "b.",
+    "c"
+  ]
+}
+`;
+
+exports[`splitByPeriod > newline handling (priority over quotes/parens) > newline split then period split — [7dfd5cca] \"a\\nb. c\" 1`] = `
+{
+  "input": "a\\nb. c",
+  "result": [
+    "a",
+    "\\n",
+    "b.",
+    "c"
+  ]
+}
+`;
+
+exports[`splitByPeriod > newline handling (priority over quotes/parens) > period split AND newline marker both kept — [fe27ddd8] \"a.\\nb\" 1`] = `
+{
+  "input": "a.\\nb",
+  "result": [
+    "a.",
+    "\\n",
+    "b"
+  ]
+}
+`;
+
+exports[`splitByPeriod > newline handling (priority over quotes/parens) > trailing newline — no empty tail segment — [87428fc5] \"a\\n\" 1`] = `
+{
+  "input": "a\\n",
+  "result": [
+    "a",
+    "\\n"
+  ]
+}
+`;
+
+exports[`splitByPeriod > no period at all > [b94d27b9] \"hello world\" 1`] = `
+{
+  "input": "hello world",
+  "result": [
+    "hello world"
+  ]
+}
+`;
+
+exports[`splitByPeriod > no period at all > empty string — [e3b0c442] \"\" 1`] = `
+{
+  "input": "",
+  "result": [
+    ""
+  ]
+}
+`;
+
+exports[`splitByPeriod > non-string input guard > boolean 1`] = `
+{
+  "input": true,
+  "result": [
+    "true"
+  ]
+}
+`;
+
+exports[`splitByPeriod > non-string input guard > null 1`] = `
+{
+  "input": null,
+  "result": [
+    "null"
+  ]
+}
+`;
+
+exports[`splitByPeriod > non-string input guard > number 1`] = `
+{
+  "input": 42,
+  "result": [
+    "42"
+  ]
+}
+`;
+
+exports[`splitByPeriod > non-string input guard > object 1`] = `
+{
+  "input": {
+    "a": 1
+  },
+  "result": [
+    "[object Object]"
+  ]
+}
+`;
+
+exports[`splitByPeriod > non-string input guard > undefined 1`] = `
+{
+  "result": [
+    "undefined"
+  ]
+}
+`;
+
+exports[`splitByPeriod > quote protection (double & single) > apostrophe (single char) does not open quote — [bdea5ad1] \"it's a. test\" ({includeParen: true}) 1`] = `
+{
+  "input": "it's a. test",
+  "args": [
+    {
+      "includeParen": true
+    }
+  ],
+  "result": [
+    "it's a.",
+    "test"
+  ]
+}
+`;
+
+exports[`splitByPeriod > quote protection (double & single) > apostrophe inside double-quoted string — [0bfd1af1] \"\\\"it's a. b. c\\\". d\" ({includeParen: true}) 1`] = `
+{
+  "input": "\\"it's a. b. c\\". d",
+  "args": [
+    {
+      "includeParen": true
+    }
+  ],
+  "result": [
+    "\\"it's a. b. c\\".",
+    "d"
+  ]
+}
+`;
+
+exports[`splitByPeriod > quote protection (double & single) > closing quote does not split — space after is part of same segment — [2ffde19b] \"'hello. world' a. b\" ({includeParen: true}) 1`] = `
+{
+  "input": "'hello. world' a. b",
+  "args": [
+    {
+      "includeParen": true
+    }
+  ],
+  "result": [
+    "'hello. world' a.",
+    "b"
+  ]
+}
+`;
+
+exports[`splitByPeriod > quote protection (double & single) > common contraction — no quote protection — [9c2488e8] \"don't stop. go\" ({includeParen: true}) 1`] = `
+{
+  "input": "don't stop. go",
+  "args": [
+    {
+      "includeParen": true
+    }
+  ],
+  "result": [
+    "don't stop.",
+    "go"
+  ]
+}
+`;
+
+exports[`splitByPeriod > quote protection (double & single) > double-quoted sentence preserved — [da230858] \"with \\\"Small joys. Brighter days.\\\" below.\" ({includeParen: true}) 1`] = `
+{
+  "input": "with \\"Small joys. Brighter days.\\" below.",
+  "args": [
+    {
+      "includeParen": true
+    }
+  ],
+  "result": [
+    "with \\"Small joys. Brighter days.\\" below."
+  ]
+}
+`;
+
+exports[`splitByPeriod > quote protection (double & single) > entire string quoted — no split — [56e5032b] \"\\\"a. b. c\\\"\" ({includeParen: true}) 1`] = `
+{
+  "input": "\\"a. b. c\\"",
+  "args": [
+    {
+      "includeParen": true
+    }
+  ],
+  "result": [
+    "\\"a. b. c\\""
+  ]
+}
+`;
+
+exports[`splitByPeriod > quote protection (double & single) > non-ASCII apostrophe (â) — no quote protection — [23b69493] \"pathâ's stop. go\" ({includeParen: true}) 1`] = `
+{
+  "input": "pathâ's stop. go",
+  "args": [
+    {
+      "includeParen": true
+    }
+  ],
+  "result": [
+    "pathâ's stop.",
+    "go"
+  ]
+}
+`;
+
+exports[`splitByPeriod > quote protection (double & single) > quotes in middle — split outside only — [da72da85] \"a. \\\"b. c\\\". d\" ({includeParen: true}) 1`] = `
+{
+  "input": "a. \\"b. c\\". d",
+  "args": [
+    {
+      "includeParen": true
+    }
+  ],
+  "result": [
+    "a.",
+    "\\"b. c\\".",
+    "d"
+  ]
+}
+`;
+
+exports[`splitByPeriod > quote protection (double & single) > single quote at end — opens but no closer, period protected — [62f9d386] \"end with '.\" ({includeParen: true}) 1`] = `
+{
+  "input": "end with '.",
+  "args": [
+    {
+      "includeParen": true
+    }
+  ],
+  "result": [
+    "end with '."
+  ]
+}
+`;
+
+exports[`splitByPeriod > quote protection (double & single) > single-quoted sentence preserved — [a5043d98] \"with 'Small joys. Brighter days.' below.\" ({includeParen: true}) 1`] = `
+{
+  "input": "with 'Small joys. Brighter days.' below.",
+  "args": [
+    {
+      "includeParen": true
+    }
+  ],
+  "result": [
+    "with 'Small joys. Brighter days.' below."
+  ]
+}
+`;
+
+exports[`splitByPeriod > quote protection (double & single) > two quoted segments — [f31ceebf] \"\\\"a. b\\\". \\\"c. d\\\"\" ({includeParen: true}) 1`] = `
+{
+  "input": "\\"a. b\\". \\"c. d\\"",
+  "args": [
+    {
+      "includeParen": true
+    }
+  ],
+  "result": [
+    "\\"a. b\\".",
+    "\\"c. d\\""
+  ]
+}
+`;
+
+exports[`splitByPeriod > quote protection (double & single) > unclosed double quote — rest is protected to end — [d5c70c59] \"a. \\\"b. c\" ({includeParen: true}) 1`] = `
+{
+  "input": "a. \\"b. c",
+  "args": [
+    {
+      "includeParen": true
+    }
+  ],
+  "result": [
+    "a.",
+    "\\"b. c"
+  ]
+}
+`;
+
+exports[`splitByPeriod > quote protection (double & single) > unclosed single quote — ignored at segmentation, period splits (same rule as splitTags) — [cd6115d8] \"a. 'b. c\" ({includeParen: true}) 1`] = `
+{
+  "input": "a. 'b. c",
+  "args": [
+    {
+      "includeParen": true
+    }
+  ],
+  "result": [
+    "a.",
+    "'b.",
+    "c"
+  ]
+}
+`;
+
+exports[`splitByPeriod > real-world prompt scenarios > [51e9ec54] \"highly detailed. [horse:donkey:0.5]. landscape\" ({includeParen: true}) 1`] = `
+{
+  "input": "highly detailed. [horse:donkey:0.5]. landscape",
+  "args": [
+    {
+      "includeParen": true
+    }
+  ],
+  "result": [
+    "highly detailed.",
+    "[horse:donkey:0.5].",
+    "landscape"
+  ]
+}
+`;
+
+exports[`splitByPeriod > real-world prompt scenarios > [77309c03] \"tag. (nested. prompt. here). end\" ({includeParen: true}) 1`] = `
+{
+  "input": "tag. (nested. prompt. here). end",
+  "args": [
+    {
+      "includeParen": true
+    }
+  ],
+  "result": [
+    "tag.",
+    "(nested. prompt. here).",
+    "end"
+  ]
+}
+`;
+
+exports[`splitByPeriod > real-world prompt scenarios > [ed9400f7] \"masterpiece, best quality. (1girl:1.2), looking at viewer\" ({includeParen: true}) 1`] = `
+{
+  "input": "masterpiece, best quality. (1girl:1.2), looking at viewer",
+  "args": [
+    {
+      "includeParen": true
+    }
+  ],
+  "result": [
+    "masterpiece, best quality.",
+    "(1girl:1.2), looking at viewer"
+  ]
+}
+`;
+
+exports[`splitByPeriod > real-world prompt scenarios > [fb07e75e] \"(masterpiece:1.0), best quality. 1girl, {red hair}\" ({includeParen: true}) 1`] = `
+{
+  "input": "(masterpiece:1.0), best quality. 1girl, {red hair}",
+  "args": [
+    {
+      "includeParen": true
+    }
+  ],
+  "result": [
+    "(masterpiece:1.0), best quality.",
+    "1girl, {red hair}"
+  ]
+}
+`;
+
+exports[`splitByPeriod > semicolon splitting (splitSemicolon option, default off) > consecutive semicolons preserved — not condensed — [1594b656] \"legs;;; gnarled\" ({splitSemicolon: true}) 1`] = `
+{
+  "input": "legs;;; gnarled",
+  "args": [
+    {
+      "splitSemicolon": true
+    }
+  ],
+  "result": [
+    "legs;;;",
+    "gnarled"
+  ]
+}
+`;
+
+exports[`splitByPeriod > semicolon splitting (splitSemicolon option, default off) > default off — semicolon is not a split point — [10a5d3f6] \"her legs; gnarled trees\" 1`] = `
+{
+  "input": "her legs; gnarled trees",
+  "result": [
+    "her legs; gnarled trees"
+  ]
+}
+`;
+
+exports[`splitByPeriod > semicolon splitting (splitSemicolon option, default off) > enabled — splits like period, delimiter kept at segment end — [10a5d3f6] \"her legs; gnarled trees\" ({splitSemicolon: true}) 1`] = `
+{
+  "input": "her legs; gnarled trees",
+  "args": [
+    {
+      "splitSemicolon": true
+    }
+  ],
+  "result": [
+    "her legs;",
+    "gnarled trees"
+  ]
+}
+`;
+
+exports[`splitByPeriod > semicolon splitting (splitSemicolon option, default off) > explicitly off — [10a5d3f6] \"her legs; gnarled trees\" ({splitSemicolon: false}) 1`] = `
+{
+  "input": "her legs; gnarled trees",
+  "args": [
+    {
+      "splitSemicolon": false
+    }
+  ],
+  "result": [
+    "her legs; gnarled trees"
+  ]
+}
+`;
+
+exports[`splitByPeriod > semicolon splitting (splitSemicolon option, default off) > includeParen=false stops at paren (same as period) — [dc359986] \"a; (b; c)\" ({splitSemicolon: true}) 1`] = `
+{
+  "input": "a; (b; c)",
+  "args": [
+    {
+      "splitSemicolon": true
+    }
+  ],
+  "result": [
+    "a; (b; c)"
+  ]
+}
+`;
+
+exports[`splitByPeriod > semicolon splitting (splitSemicolon option, default off) > no whitespace after — no split (same mechanism as period) — [7c1225c1] \"a;;b\" ({splitSemicolon: true}) 1`] = `
+{
+  "input": "a;;b",
+  "args": [
+    {
+      "splitSemicolon": true
+    }
+  ],
+  "result": [
+    "a;;b"
+  ]
+}
+`;
+
+exports[`splitByPeriod > semicolon splitting (splitSemicolon option, default off) > semicolon and period share the same mechanism — [395d8ed7] \"a; b. c\" ({splitSemicolon: true}) 1`] = `
+{
+  "input": "a; b. c",
+  "args": [
+    {
+      "splitSemicolon": true
+    }
+  ],
+  "result": [
+    "a;",
+    "b.",
+    "c"
+  ]
+}
+`;
+
+exports[`splitByPeriod > semicolon splitting (splitSemicolon option, default off) > semicolon before newline — split, newline marker kept — [8f82902a] \"a;\\nb\" ({splitSemicolon: true}) 1`] = `
+{
+  "input": "a;\\nb",
+  "args": [
+    {
+      "splitSemicolon": true
+    }
+  ],
+  "result": [
+    "a;",
+    "\\n",
+    "b"
+  ]
+}
+`;
+
+exports[`splitByPeriod > semicolon splitting (splitSemicolon option, default off) > semicolon inside double quotes protected — [2ccd5dfe] \"with \\\"a; b\\\" end\" ({splitSemicolon: true}) 1`] = `
+{
+  "input": "with \\"a; b\\" end",
+  "args": [
+    {
+      "splitSemicolon": true
+    }
+  ],
+  "result": [
+    "with \\"a; b\\" end"
+  ]
+}
+`;
+
+exports[`splitByPeriod > semicolon splitting (splitSemicolon option, default off) > semicolon inside parens protected, after close splits — [37040df0] \"(a; b); c\" ({splitSemicolon: true, includeParen: true}) 1`] = `
+{
+  "input": "(a; b); c",
+  "args": [
+    {
+      "splitSemicolon": true,
+      "includeParen": true
+    }
+  ],
+  "result": [
+    "(a; b);",
+    "c"
+  ]
+}
+`;
+
+exports[`splitByPeriod > semicolon splitting (splitSemicolon option, default off) > trailing semicolon — no split, preserved — [52f361ed] \"legs;\" ({splitSemicolon: true}) 1`] = `
+{
+  "input": "legs;",
+  "args": [
+    {
+      "splitSemicolon": true
+    }
+  ],
+  "result": [
+    "legs;"
+  ]
+}
+`;
+
+exports[`splitByPeriod > semicolon splitting (splitSemicolon option, default off) > unclosed single quote (possessive) ignored — semicolon still splits — [88db725e] \"orks' legs; gnarled trees\" ({splitSemicolon: true}) 1`] = `
+{
+  "input": "orks' legs; gnarled trees",
+  "args": [
+    {
+      "splitSemicolon": true
+    }
+  ],
+  "result": [
+    "orks' legs;",
+    "gnarled trees"
+  ]
+}
+`;
+
+exports[`splitByPeriod > whitespace handling > many spaces then open paren — [0053270b] \"a.   (b. c)\" ({includeParen: true}) 1`] = `
+{
+  "input": "a.   (b. c)",
+  "args": [
+    {
+      "includeParen": true
+    }
+  ],
+  "result": [
+    "a.",
+    "(b. c)"
+  ]
+}
+`;
+
+exports[`splitByPeriod > whitespace handling > multiple tabs + spaces — [d5cca2af] \"a.\\t  \\tb. c\" 1`] = `
+{
+  "input": "a.\\t  \\tb. c",
+  "result": [
+    "a.",
+    "b.",
+    "c"
+  ]
+}
+`;
+
+exports[`splitByPeriod > whitespace handling > newline after period — kept as \"\\\\n\" marker — [bc5f0cca] \"a.\\nb. c\" 1`] = `
+{
+  "input": "a.\\nb. c",
+  "result": [
+    "a.",
+    "\\n",
+    "b.",
+    "c"
+  ]
+}
+`;
+
+exports[`splitByPeriod > whitespace handling > tab after period — [165ef8db] \"a.\\tb. c\" 1`] = `
+{
+  "input": "a.\\tb. c",
+  "result": [
+    "a.",
+    "b.",
+    "c"
+  ]
+}
+`;

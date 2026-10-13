@@ -1,0 +1,10 @@
+{
+  "name": "Limit the max height of the keyword list",
+  "i18n": {
+    "zh_CN": "限制关键词列表最大高度",
+    "zh_HK": "限制關鍵詞列表最大高度",
+    "zh_TW": "限制關鍵詞列表最大高度"
+  },
+  "author": "bluelovers",
+  "type": "enhance"
+}

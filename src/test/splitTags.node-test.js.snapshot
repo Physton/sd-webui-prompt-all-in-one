@@ -1,0 +1,1755 @@
+exports[`splitTags > BREAK keyword splits — [bcbb06ec] \"a, BREAK, b\" 1`] = `
+{
+  "input": "a, BREAK, b",
+  "result": [
+    "a",
+    "BREAK",
+    "b"
+  ],
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > BREAK with newlines — [a53f4895] \"a\\nBREAK\\nb\" 1`] = `
+{
+  "input": "a\\nBREAK\\nb",
+  "result": [
+    "a",
+    "\\n",
+    "BREAK",
+    "\\n",
+    "b"
+  ],
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > CR normalized to LF — [82525e55] \"a\\rb\\nc\" 1`] = `
+{
+  "input": "a\\rb\\nc",
+  "result": [
+    "a",
+    "\\n",
+    "b",
+    "\\n",
+    "c"
+  ],
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > LoRA tag preserved as single unit — [aa5b2d3c] \"a, <lora:model:0.7>, b\" 1`] = `
+{
+  "input": "a, <lora:model:0.7>, b",
+  "result": [
+    "a",
+    "<lora:model:0.7>",
+    "b"
+  ],
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > all five punctuations in one string — [c3de2efa] \"好，壞、普通；再來．結束\" 1`] = `
+{
+  "input": "好，壞、普通；再來．結束",
+  "result": [
+    "好",
+    "壞",
+    "普通",
+    "再來",
+    "結束"
+  ],
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > allowKeepEmptyLine — 3+ newlines compressed to one empty line — [2282b3ef] \"a\\n\\n\\nb\" (false, false, {allowKeepEmptyLine: true}) 1`] = `
+{
+  "input": "a\\n\\n\\nb",
+  "result": [
+    "a",
+    "\\n",
+    "\\n",
+    "b"
+  ],
+  "changedFromOriginal": true,
+  "originalResult": [
+    "a",
+    "\\n",
+    "b"
+  ]
+}
+`;
+
+exports[`splitTags > allowKeepEmptyLine — existing empty line kept — [38022fd2] \"a\\n\\nb\" (false, false, {allowKeepEmptyLine: true}) 1`] = `
+{
+  "input": "a\\n\\nb",
+  "result": [
+    "a",
+    "\\n",
+    "\\n",
+    "b"
+  ],
+  "changedFromOriginal": true,
+  "originalResult": [
+    "a",
+    "\\n",
+    "b"
+  ]
+}
+`;
+
+exports[`splitTags > allowKeepEmptyLine — many newlines still capped at one empty line — [f144c87f] \"a\\n\\n\\n\\n\\nb\" (false, false, {allowKeepEmptyLine: true}) 1`] = `
+{
+  "input": "a\\n\\n\\n\\n\\nb",
+  "result": [
+    "a",
+    "\\n",
+    "\\n",
+    "b"
+  ],
+  "changedFromOriginal": true,
+  "originalResult": [
+    "a",
+    "\\n",
+    "b"
+  ]
+}
+`;
+
+exports[`splitTags > allowKeepEmptyLine — single newline unaffected — [7e18f737] \"a\\nb\" (false, false, {allowKeepEmptyLine: true}) 1`] = `
+{
+  "input": "a\\nb",
+  "result": [
+    "a",
+    "\\n",
+    "b"
+  ],
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > angle brackets protect inner commas — [5b8bbf22] \"a, <b, c>, d\" 1`] = `
+{
+  "input": "a, <b, c>, d",
+  "result": [
+    "a",
+    "<b, c>",
+    "d"
+  ],
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > apostrophe after emoji — not a quote opener — [149ceb46] \"🚀's launch, next\" 1`] = `
+{
+  "input": "🚀's launch, next",
+  "result": [
+    "🚀's launch",
+    "next"
+  ],
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > apostrophe after non-ASCII letter (â) — not a quote opener — [be0e91cc] \"pathâ's leading line\" 1`] = `
+{
+  "input": "pathâ's leading line",
+  "result": [
+    "pathâ's leading line"
+  ],
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > apostrophe inside double quotes — content, comma protected — [3fcfd7f9] \"\\\"it's fine, really\\\"\" 1`] = `
+{
+  "input": "\\"it's fine, really\\"",
+  "result": [
+    "\\"it's fine, really\\""
+  ],
+  "changedFromOriginal": true,
+  "originalResult": [
+    "\\"it's fine",
+    "really\\""
+  ]
+}
+`;
+
+exports[`splitTags > apostrophe — not a quote opener — [03a96726] \"it's a, b, c\" 1`] = `
+{
+  "input": "it's a, b, c",
+  "result": [
+    "it's a",
+    "b",
+    "c"
+  ],
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > boolean false input 1`] = `
+{
+  "input": false,
+  "result": [],
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > both quote types closed before newline — [fb2a0bd6] \"\\\"a\\\" 'b'\\nc\" 1`] = `
+{
+  "input": "\\"a\\" 'b'\\nc",
+  "result": [
+    "\\"a\\" 'b'",
+    "\\n",
+    "c"
+  ],
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > both quote types closed, comma outside splits — [d36cc3f4] \"\\\"a\\\" 'b', c\" 1`] = `
+{
+  "input": "\\"a\\" 'b', c",
+  "result": [
+    "\\"a\\" 'b'",
+    "c"
+  ],
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > closed quote directly before newline — [2110a10f] \"\\\"a\\\"\\nb\" 1`] = `
+{
+  "input": "\\"a\\"\\nb",
+  "result": [
+    "\\"a\\"",
+    "\\n",
+    "b"
+  ],
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > closed single quote directly before newline — [b642749c] \"'a'\\nb\" 1`] = `
+{
+  "input": "'a'\\nb",
+  "result": [
+    "'a'",
+    "\\n",
+    "b"
+  ],
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > comma-separated — [47a28732] \"a, b, c\" 1`] = `
+{
+  "input": "a, b, c",
+  "result": [
+    "a",
+    "b",
+    "c"
+  ],
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > consecutive 、 — each becomes comma, double split — [1df88318] \"好、、壞\" 1`] = `
+{
+  "input": "好、、壞",
+  "result": [
+    "好",
+    "壞"
+  ],
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > consecutive 。 — each becomes period, no split — [6862d9cf] \"好。。壞\" 1`] = `
+{
+  "input": "好。。壞",
+  "result": [
+    "好..壞"
+  ],
+  "changedFromOriginal": true,
+  "originalResult": [
+    "好",
+    "壞"
+  ]
+}
+`;
+
+exports[`splitTags > consecutive ， — each becomes comma, empty segment filtered — [887ebed3] \"好，，壞\" 1`] = `
+{
+  "input": "好，，壞",
+  "result": [
+    "好",
+    "壞"
+  ],
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > consecutive ； — each becomes comma, empty segment filtered — [c3c02626] \"好；；壞\" 1`] = `
+{
+  "input": "好；；壞",
+  "result": [
+    "好",
+    "壞"
+  ],
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > curly braces protect inner commas — [e4cf8e0c] \"a, {b, c}, d\" 1`] = `
+{
+  "input": "a, {b, c}, d",
+  "result": [
+    "a",
+    "{b, c}",
+    "d"
+  ],
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > double quotes inside single quote — inner comma protected — [0b3caab3] \"'a \\\"b\\\" c', d\" 1`] = `
+{
+  "input": "'a \\"b\\" c', d",
+  "result": [
+    "'a \\"b\\" c'",
+    "d"
+  ],
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > double-quoted comma inside single quotes — protected — [a7cd0796] \"'a \\\"b, c\\\" d'\" 1`] = `
+{
+  "input": "'a \\"b, c\\" d'",
+  "result": [
+    "'a \\"b, c\\" d'"
+  ],
+  "changedFromOriginal": true,
+  "originalResult": [
+    "'a \\"b",
+    "c\\" d'"
+  ]
+}
+`;
+
+exports[`splitTags > emoji :-( protected — [e3d7a88d] \"a, :-(, b\" 1`] = `
+{
+  "input": "a, :-(, b",
+  "result": [
+    "a",
+    ":-(",
+    "b"
+  ],
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > emoji :-) protected — [015f9f96] \"a, :-), b\" 1`] = `
+{
+  "input": "a, :-), b",
+  "result": [
+    "a",
+    ":-)",
+    "b"
+  ],
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > emoji :< protected — [75df4b5d] \"a, :<, b\" 1`] = `
+{
+  "input": "a, :<, b",
+  "result": [
+    "a",
+    ":<",
+    "b"
+  ],
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > emoji >: < with space — splits on comma — [83f38a6f] \"a, >: <, b\" 1`] = `
+{
+  "input": "a, >: <, b",
+  "result": [
+    "a",
+    ">: <, b"
+  ],
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > emoji >_< protected — [aaa9e3a1] \"a, >_<, b\" 1`] = `
+{
+  "input": "a, >_<, b",
+  "result": [
+    "a",
+    ">_<",
+    "b"
+  ],
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > emoji at end — [5e7d451c] \"hello,>_<\" 1`] = `
+{
+  "input": "hello,>_<",
+  "result": [
+    "hello",
+    ">_<"
+  ],
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > emoji at start — [683b5f30] \">_<,hello\" 1`] = `
+{
+  "input": ">_<,hello",
+  "result": [
+    ">_<",
+    "hello"
+  ],
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > emoji between quotes — [d013881c] \"\\\":)\\\", world\\\"\" 1`] = `
+{
+  "input": "\\":)\\", world\\"",
+  "result": [
+    "\\":)\\"",
+    "world\\""
+  ],
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > emoji with quote at start — [cf74b00c] \"\\\":(\\\", hello\" 1`] = `
+{
+  "input": "\\":(\\", hello",
+  "result": [
+    "\\":(\\"",
+    "hello"
+  ],
+  "changedFromOriginal": true,
+  "originalResult": [
+    "\\":(\\", hello"
+  ]
+}
+`;
+
+exports[`splitTags > emoji with 、(enumeration comma) — [3adb95d1] \"hello、>_<\" 1`] = `
+{
+  "input": "hello、>_<",
+  "result": [
+    "hello",
+    ">_<"
+  ],
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > emoji with ，(fullwidth comma) — [1066f457] \":-)，world\" 1`] = `
+{
+  "input": ":-)，world",
+  "result": [
+    ":-)",
+    "world"
+  ],
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > emoji with ，(fullwidth comma) — [8672289f] \">_<，hello\" 1`] = `
+{
+  "input": ">_<，hello",
+  "result": [
+    ">_<",
+    "hello"
+  ],
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > empty segments filtered — [28fd7827] \"a,  ,  b\" 1`] = `
+{
+  "input": "a,  ,  b",
+  "result": [
+    "a",
+    "b"
+  ],
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > empty string — [e3b0c442] \"\" 1`] = `
+{
+  "input": "",
+  "result": [],
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > entire input is unclosed quote — no split — [c09b1f74] \"\\\"a, b, c\" 1`] = `
+{
+  "input": "\\"a, b, c",
+  "result": [
+    "\\"a, b, c"
+  ],
+  "changedFromOriginal": true,
+  "originalResult": [
+    "\\"a",
+    "b",
+    "c"
+  ]
+}
+`;
+
+exports[`splitTags > excerpt: Japanese comma + period in quotes — [4923fb53] \"\\\"いつもの日を、少し特別に。\\\" with\" 1`] = `
+{
+  "input": "\\"いつもの日を、少し特別に。\\" with",
+  "result": [
+    "\\"いつもの日を、少し特別に。\\" with"
+  ],
+  "changedFromOriginal": true,
+  "originalResult": [
+    "\\"いつもの日を",
+    "少し特別に",
+    "\\" with"
+  ]
+}
+`;
+
+exports[`splitTags > excerpt: Japanese period inside quotes — [e553f60c] \"\\\"くらしに、さくらを。\\\" beneath\" 1`] = `
+{
+  "input": "\\"くらしに、さくらを。\\" beneath",
+  "result": [
+    "\\"くらしに、さくらを。\\" beneath"
+  ],
+  "changedFromOriginal": true,
+  "originalResult": [
+    "\\"くらしに",
+    "さくらを",
+    "\\" beneath"
+  ]
+}
+`;
+
+exports[`splitTags > excerpt: Japanese period then English period — [f8202b2e] \"\\\"さくらの季節をもっと身近に。\\\".\" 1`] = `
+{
+  "input": "\\"さくらの季節をもっと身近に。\\".",
+  "result": [
+    "\\"さくらの季節をもっと身近に。\\"."
+  ],
+  "changedFromOriginal": true,
+  "originalResult": [
+    "\\"さくらの季節をもっと身近に",
+    "\\"."
+  ]
+}
+`;
+
+exports[`splitTags > excerpt: Japanese period then trailing English period — [3f0b9816] \"The right window poster reads \\\"さくらの季節をもっと身近に。\\\".\" 1`] = `
+{
+  "input": "The right window poster reads \\"さくらの季節をもっと身近に。\\".",
+  "result": [
+    "The right window poster reads \\"さくらの季節をもっと身近に。\\"."
+  ],
+  "changedFromOriginal": true,
+  "originalResult": [
+    "The right window poster reads \\"さくらの季節をもっと身近に",
+    "\\"."
+  ]
+}
+`;
+
+exports[`splitTags > excerpt: another Japanese comma + period — [8d134a86] \"\\\"今日も、いい一日を。\\\" with\" 1`] = `
+{
+  "input": "\\"今日も、いい一日を。\\" with",
+  "result": [
+    "\\"今日も、いい一日を。\\" with"
+  ],
+  "changedFromOriginal": true,
+  "originalResult": [
+    "\\"今日も",
+    "いい一日を",
+    "\\" with"
+  ]
+}
+`;
+
+exports[`splitTags > excerpt: period-space splits outside quotes — [1ea95ac6] \"The left window poster reads \\\"今日も、いい一日を。\\\" with \\\"Good day. Be…\" 1`] = `
+{
+  "input": "The left window poster reads \\"今日も、いい一日を。\\" with \\"Good day. Better tomorrow.\\" below.",
+  "result": [
+    "The left window poster reads \\"今日も、いい一日を。\\" with \\"Good day. Better tomorrow.\\" below."
+  ],
+  "changedFromOriginal": true,
+  "originalResult": [
+    "The left window poster reads \\"今日も",
+    "いい一日を",
+    "\\" with \\"Good day. Better tomorrow.\\" below."
+  ]
+}
+`;
+
+exports[`splitTags > excerpt: quoted items separated by commas — [e4ea99a4] \"lists \\\"たばこ\\\", \\\"お弁当\\\", \\\"飲み物\\\", \\\"スイーツ\\\", and \\\"日用品\\\"\" 1`] = `
+{
+  "input": "lists \\"たばこ\\", \\"お弁当\\", \\"飲み物\\", \\"スイーツ\\", and \\"日用品\\"",
+  "result": [
+    "lists \\"たばこ\\"",
+    "\\"お弁当\\"",
+    "\\"飲み物\\"",
+    "\\"スイーツ\\"",
+    "and \\"日用品\\""
+  ],
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > known: quote directly after comma (no space) — \\S rule treats as apostrophe, falls back to original behavior — [8cdecfca] \"a,'b, c'\" 1`] = `
+{
+  "input": "a,'b, c'",
+  "result": [
+    "a",
+    "'b",
+    "c'"
+  ],
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > leading newline — marker at start — [f39d39bf] \"\\nabc\" 1`] = `
+{
+  "input": "\\nabc",
+  "result": [
+    "\\n",
+    "abc"
+  ],
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > mixed quotes inside double quotes, then newline — [a467e25c] \"\\\"a 'b' c\\\"\\nd\" 1`] = `
+{
+  "input": "\\"a 'b' c\\"\\nd",
+  "result": [
+    "\\"a 'b' c\\"",
+    "\\n",
+    "d"
+  ],
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > multiple LoRA tags — [d1fdc6f2] \"<lora:A:1> <lora:B:0.5>, c\" 1`] = `
+{
+  "input": "<lora:A:1> <lora:B:0.5>, c",
+  "result": [
+    "<lora:A:1>",
+    "<lora:B:0.5>",
+    "c"
+  ],
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > multiple emojis in sequence — [470ee362] \"a, >_<, b, :-), c\" 1`] = `
+{
+  "input": "a, >_<, b, :-), c",
+  "result": [
+    "a",
+    ">_<",
+    "b",
+    ":-)",
+    "c"
+  ],
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > multiple newlines collapsed — [2282b3ef] \"a\\n\\n\\nb\" 1`] = `
+{
+  "input": "a\\n\\n\\nb",
+  "result": [
+    "a",
+    "\\n",
+    "b"
+  ],
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > multiple newlines only — collapsed then guard returns [] — [6a3cf519] \"\\n\\n\\n\" 1`] = `
+{
+  "input": "\\n\\n\\n",
+  "result": [],
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > multiple quoted segments with commas — [fd1cf617] \"\\\"a, b\\\", c, \\\"d, e\\\"\" 1`] = `
+{
+  "input": "\\"a, b\\", c, \\"d, e\\"",
+  "result": [
+    "\\"a, b\\"",
+    "c",
+    "\\"d, e\\""
+  ],
+  "changedFromOriginal": true,
+  "originalResult": [
+    "\\"a",
+    "b\\"",
+    "c",
+    "\\"d",
+    "e\\""
+  ]
+}
+`;
+
+exports[`splitTags > nested bracket types — [0bee03ca] \"a, ([b, c]), d\" 1`] = `
+{
+  "input": "a, ([b, c]), d",
+  "result": [
+    "a",
+    "([b, c])",
+    "d"
+  ],
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > nested same bracket type — [27170068] \"[a, [b, c]], d\" 1`] = `
+{
+  "input": "[a, [b, c]], d",
+  "result": [
+    "[a, [b, c]]",
+    "d"
+  ],
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > newline at start then unclosed quote — [e937d5a5] \"\\n\\\"a\" 1`] = `
+{
+  "input": "\\n\\"a",
+  "result": [
+    "\\n",
+    "\\"a"
+  ],
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > newline directly after BREAK — marker follows BREAK — [c7a53bb3] \"a BREAK\\nb\" 1`] = `
+{
+  "input": "a BREAK\\nb",
+  "result": [
+    "a",
+    "BREAK",
+    "\\n",
+    "b"
+  ],
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > newline in brackets inside quote — splits — [03925ef4] \"(a \\\"b\\nc\\\")\" 1`] = `
+{
+  "input": "(a \\"b\\nc\\")",
+  "result": [
+    "(a \\"b",
+    "\\n",
+    "c\\")"
+  ],
+  "changedFromOriginal": true,
+  "originalResult": [
+    "(a \\"b c\\")"
+  ]
+}
+`;
+
+exports[`splitTags > newline in curly braces — splits — [7efaba7f] \"{a\\nb}\" 1`] = `
+{
+  "input": "{a\\nb}",
+  "result": [
+    "{a",
+    "\\n",
+    "b}"
+  ],
+  "changedFromOriginal": true,
+  "originalResult": [
+    "{a b}"
+  ]
+}
+`;
+
+exports[`splitTags > newline in nested brackets — splits, state reset — [824c3dab] \"([a\\nb])\" 1`] = `
+{
+  "input": "([a\\nb])",
+  "result": [
+    "([a",
+    "\\n",
+    "b])"
+  ],
+  "changedFromOriginal": true,
+  "originalResult": [
+    "([a b])"
+  ]
+}
+`;
+
+exports[`splitTags > newline in parens — inner comma still protected — [550f4194] \"(a, b\\nc, d)\" 1`] = `
+{
+  "input": "(a, b\\nc, d)",
+  "result": [
+    "(a, b",
+    "\\n",
+    "c",
+    "d)"
+  ],
+  "changedFromOriginal": true,
+  "originalResult": [
+    "(a, b c, d)"
+  ]
+}
+`;
+
+exports[`splitTags > newline in parens — splits, comma rule unaffected — [6dbdc326] \"(a\\nb)\" 1`] = `
+{
+  "input": "(a\\nb)",
+  "result": [
+    "(a",
+    "\\n",
+    "b)"
+  ],
+  "changedFromOriginal": true,
+  "originalResult": [
+    "(a b)"
+  ]
+}
+`;
+
+exports[`splitTags > newline in square brackets — splits — [7557a515] \"[a\\nb]\" 1`] = `
+{
+  "input": "[a\\nb]",
+  "result": [
+    "[a",
+    "\\n",
+    "b]"
+  ],
+  "changedFromOriginal": true,
+  "originalResult": [
+    "[a b]"
+  ]
+}
+`;
+
+exports[`splitTags > newline inside quotes still splits — [1596094b] \"\\\"quoted\\nnewline\\\", next\" 1`] = `
+{
+  "input": "\\"quoted\\nnewline\\", next",
+  "result": [
+    "\\"quoted",
+    "\\n",
+    "newline\\"",
+    "next"
+  ],
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > newline inside quotes — identical structure to outside (\\n marker included) — [28c6b5d9] \"\\\"line one\\nline two\\\"\" 1`] = `
+{
+  "input": "\\"line one\\nline two\\"",
+  "result": [
+    "\\"line one",
+    "\\n",
+    "line two\\""
+  ],
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > newline only — whitespace guard returns [] — [01ba4719] \"\\n\" 1`] = `
+{
+  "input": "\\n",
+  "result": [],
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > newline outside quotes — baseline structure — [b6858b03] \"line one\\nline two\" 1`] = `
+{
+  "input": "line one\\nline two",
+  "result": [
+    "line one",
+    "\\n",
+    "line two"
+  ],
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > newline-separated — [ea7fb08b] \"a\\nb\\nc\" 1`] = `
+{
+  "input": "a\\nb\\nc",
+  "result": [
+    "a",
+    "\\n",
+    "b",
+    "\\n",
+    "c"
+  ],
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > non-ASCII apostrophe + quoted apostrophe — [5e5f152c] \"café's best, \\\"it's fine\\\"\" 1`] = `
+{
+  "input": "café's best, \\"it's fine\\"",
+  "result": [
+    "café's best",
+    "\\"it's fine\\""
+  ],
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > null input 1`] = `
+{
+  "input": null,
+  "result": [],
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > quote opens directly after newline — [90febc15] \"a\\n\\\"b\\\"\" 1`] = `
+{
+  "input": "a\\n\\"b\\"",
+  "result": [
+    "a",
+    "\\n",
+    "\\"b\\""
+  ],
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > quote opens mid-text, newline still splits with marker — [4b5346b9] \"pre \\\"quoted\\nnext\\\" post\" 1`] = `
+{
+  "input": "pre \\"quoted\\nnext\\" post",
+  "result": [
+    "pre \\"quoted",
+    "\\n",
+    "next\\" post"
+  ],
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > quoted segments with newline between — [e1387d82] \"\\\"a, b\\\"\\n\\\"c, d\\\"\" 1`] = `
+{
+  "input": "\\"a, b\\"\\n\\"c, d\\"",
+  "result": [
+    "\\"a, b\\"",
+    "\\n",
+    "\\"c, d\\""
+  ],
+  "changedFromOriginal": true,
+  "originalResult": [
+    "\\"a",
+    "b\\"",
+    "\\n",
+    "\\"c",
+    "d\\""
+  ]
+}
+`;
+
+exports[`splitTags > quoted sentence — comma inside protected — [da230858] \"with \\\"Small joys. Brighter days.\\\" below.\" 1`] = `
+{
+  "input": "with \\"Small joys. Brighter days.\\" below.",
+  "result": [
+    "with \\"Small joys. Brighter days.\\" below."
+  ],
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > quoted then newline then unquoted split — [ac9c2a04] \"\\\"a, b\\\"\\nc, d\" 1`] = `
+{
+  "input": "\\"a, b\\"\\nc, d",
+  "result": [
+    "\\"a, b\\"",
+    "\\n",
+    "c",
+    "d"
+  ],
+  "changedFromOriginal": true,
+  "originalResult": [
+    "\\"a",
+    "b\\"",
+    "\\n",
+    "c",
+    "d"
+  ]
+}
+`;
+
+exports[`splitTags > quotes on both sides of newline — [4a362fea] \"\\\"a\\\"\\n\\\"b\\\"\" 1`] = `
+{
+  "input": "\\"a\\"\\n\\"b\\"",
+  "result": [
+    "\\"a\\"",
+    "\\n",
+    "\\"b\\""
+  ],
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > re-process: unclosed single ignored, closed double quote still protects — [c9b473a3] \"x 'a \\\"b, c\\\" d, e\\nnext\" 1`] = `
+{
+  "input": "x 'a \\"b, c\\" d, e\\nnext",
+  "result": [
+    "x 'a \\"b, c\\" d",
+    "e",
+    "\\n",
+    "next"
+  ],
+  "changedFromOriginal": true,
+  "originalResult": [
+    "x 'a \\"b",
+    "c\\" d",
+    "e",
+    "\\n",
+    "next"
+  ]
+}
+`;
+
+exports[`splitTags > real-world: unclosed single quote (orks') ignored at segmentation — comma rules re-applied, newlines split — [497823a0] \"her fingers and the orks' legs; gnarled dead trees stand as …\" 1`] = `
+{
+  "input": "her fingers and the orks' legs; gnarled dead trees stand as dark silhouettes at the frame edges, dense fog swallows the middle distance, \\n#, \\npixelated",
+  "result": [
+    "her fingers and the orks' legs; gnarled dead trees stand as dark silhouettes at the frame edges",
+    "dense fog swallows the middle distance",
+    "\\n",
+    "#",
+    "\\n",
+    "pixelated"
+  ],
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > single quote before newline, double quote after — [1110acef] \"'a'\\n\\\"b\\\"\" 1`] = `
+{
+  "input": "'a'\\n\\"b\\"",
+  "result": [
+    "'a'",
+    "\\n",
+    "\\"b\\""
+  ],
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > single quote containing double quote char, closed — [345618ad] \"'a \\\"b'\" 1`] = `
+{
+  "input": "'a \\"b'",
+  "result": [
+    "'a \\"b'"
+  ],
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > single quote opens directly after newline — prev is \\n, not apostrophe — [a8a3c644] \"a\\n'b'\" 1`] = `
+{
+  "input": "a\\n'b'",
+  "result": [
+    "a",
+    "\\n",
+    "'b'"
+  ],
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > single quotes inside double quote — inner comma protected — [445c7efb] \"\\\"a, 'b, c'\\\"\" 1`] = `
+{
+  "input": "\\"a, 'b, c'\\"",
+  "result": [
+    "\\"a, 'b, c'\\""
+  ],
+  "changedFromOriginal": true,
+  "originalResult": [
+    "\\"a",
+    "'b",
+    "c'\\""
+  ]
+}
+`;
+
+exports[`splitTags > single-quoted comma protected — [fcac0226] \"with 'hello, world' end\" 1`] = `
+{
+  "input": "with 'hello, world' end",
+  "result": [
+    "with 'hello, world' end"
+  ],
+  "changedFromOriginal": true,
+  "originalResult": [
+    "with 'hello",
+    "world' end"
+  ]
+}
+`;
+
+exports[`splitTags > splits before quote opens, rest protected — [40c12fc9] \"x, y, \\\"z\" 1`] = `
+{
+  "input": "x, y, \\"z",
+  "result": [
+    "x",
+    "y",
+    "\\"z"
+  ],
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > square brackets protect inner commas — [c63c958f] \"a, [b, c], d\" 1`] = `
+{
+  "input": "a, [b, c], d",
+  "result": [
+    "a",
+    "[b, c]",
+    "d"
+  ],
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > tab converted to newline — [894891f8] \"a\\tb\" 1`] = `
+{
+  "input": "a\\tb",
+  "result": [
+    "a",
+    "\\n",
+    "b"
+  ],
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > trailing comma — [c3627a4b] \"a, b, c,\" 1`] = `
+{
+  "input": "a, b, c,",
+  "result": [
+    "a",
+    "b",
+    "c"
+  ],
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > trailing newline — splits, marker at end — [edeaaff3] \"abc\\n\" 1`] = `
+{
+  "input": "abc\\n",
+  "result": [
+    "abc",
+    "\\n"
+  ],
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > two emojis adjacent — [278738fa] \">_<,>_<\" 1`] = `
+{
+  "input": ">_<,>_<",
+  "result": [
+    ">_<",
+    ">_<"
+  ],
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > unclosed double quote + newline — newline still splits — [68614791] \"pre \\\"quoted\\nnext\" 1`] = `
+{
+  "input": "pre \\"quoted\\nnext",
+  "result": [
+    "pre \\"quoted",
+    "\\n",
+    "next"
+  ],
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > unclosed double quote containing single quote char — [5b888052] \"a \\\"b 'c\" 1`] = `
+{
+  "input": "a \\"b 'c",
+  "result": [
+    "a \\"b 'c"
+  ],
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > unclosed double quote — comma protected to end — [236673cd] \"a, \\\"b, c\" 1`] = `
+{
+  "input": "a, \\"b, c",
+  "result": [
+    "a",
+    "\\"b, c"
+  ],
+  "changedFromOriginal": true,
+  "originalResult": [
+    "a",
+    "\\"b",
+    "c"
+  ]
+}
+`;
+
+exports[`splitTags > unclosed quote + BREAK — BREAK not keyword inside quote — [59f7cdaa] \"a, \\\"b, BREAK\" 1`] = `
+{
+  "input": "a, \\"b, BREAK",
+  "result": [
+    "a",
+    "\\"b, BREAK"
+  ],
+  "changedFromOriginal": true,
+  "originalResult": [
+    "a",
+    "\\"b",
+    "BREAK"
+  ]
+}
+`;
+
+exports[`splitTags > unclosed quote + Chinese enumeration comma — preserved, not converted — [642d7bc6] \"a, \\\"好、壞\" 1`] = `
+{
+  "input": "a, \\"好、壞",
+  "result": [
+    "a",
+    "\\"好、壞"
+  ],
+  "changedFromOriginal": true,
+  "originalResult": [
+    "a",
+    "\\"好",
+    "壞"
+  ]
+}
+`;
+
+exports[`splitTags > unclosed quote ends at newline — split, empty tail dropped — [a271871a] \"\\\"a\\n\" 1`] = `
+{
+  "input": "\\"a\\n",
+  "result": [
+    "\\"a",
+    "\\n"
+  ],
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > unclosed quote starts right after newline — inner newline still splits — [6899d2f4] \"a\\n\\\"b\\nc\" 1`] = `
+{
+  "input": "a\\n\\"b\\nc",
+  "result": [
+    "a",
+    "\\n",
+    "\\"b",
+    "\\n",
+    "c"
+  ],
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > unclosed quote with only quote char — [f16b9a79] \"a, \\\"\" 1`] = `
+{
+  "input": "a, \\"",
+  "result": [
+    "a",
+    "\\""
+  ],
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > unclosed single quote + newline — newline still splits — [24aae5e5] \"pre 'quoted\\nnext\" 1`] = `
+{
+  "input": "pre 'quoted\\nnext",
+  "result": [
+    "pre 'quoted",
+    "\\n",
+    "next"
+  ],
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > unclosed single quote after apostrophe — first quote opens, second is content — [839fa265] \"a, 'it's fine\" 1`] = `
+{
+  "input": "a, 'it's fine",
+  "result": [
+    "a",
+    "'it's fine"
+  ],
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > unclosed single quote — ignored at segmentation, comma splits (matches original) — [9637b550] \"a, 'b, c\" 1`] = `
+{
+  "input": "a, 'b, c",
+  "result": [
+    "a",
+    "'b",
+    "c"
+  ],
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > undefined input 1`] = `
+{
+  "result": [],
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > weight syntax — inner comma preserved — [79d259ad] \"(fire extinguisher: 1.0, 2.0), a\" 1`] = `
+{
+  "input": "(fire extinguisher: 1.0, 2.0), a",
+  "result": [
+    "(fire extinguisher: 1.0, 2.0)",
+    "a"
+  ],
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > whitespace + newline — guard returns [] — [cd686159] \" \\n \" 1`] = `
+{
+  "input": " \\n ",
+  "result": [],
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > whitespace only — [0aad7da7] \"   \" 1`] = `
+{
+  "input": "   ",
+  "result": [],
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > 、and ；mixed — both become comma — [507e0e5f] \"好、壞；普通\" 1`] = `
+{
+  "input": "好、壞；普通",
+  "result": [
+    "好",
+    "壞",
+    "普通"
+  ],
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > 、enumeration comma → comma — [135b37d0] \"好、壞、普通\" 1`] = `
+{
+  "input": "好、壞、普通",
+  "result": [
+    "好",
+    "壞",
+    "普通"
+  ],
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > 、inside quotes protected — [0aa3d58d] \"\\\"好、壞\\\"、普通\" 1`] = `
+{
+  "input": "\\"好、壞\\"、普通",
+  "result": [
+    "\\"好、壞\\"",
+    "普通"
+  ],
+  "changedFromOriginal": true,
+  "originalResult": [
+    "\\"好",
+    "壞\\"",
+    "普通"
+  ]
+}
+`;
+
+exports[`splitTags > 。Chinese/Japanese period → period (not comma) — [eddccc68] \"好。壞。普通\" 1`] = `
+{
+  "input": "好。壞。普通",
+  "result": [
+    "好.壞.普通"
+  ],
+  "changedFromOriginal": true,
+  "originalResult": [
+    "好",
+    "壞",
+    "普通"
+  ]
+}
+`;
+
+exports[`splitTags > 。inside brackets — 。changes to period — [177d802d] \"[好。壞]。普通\" 1`] = `
+{
+  "input": "[好。壞]。普通",
+  "result": [
+    "[好.壞].普通"
+  ],
+  "changedFromOriginal": true,
+  "originalResult": [
+    "[好,壞]",
+    "普通"
+  ]
+}
+`;
+
+exports[`splitTags > 。inside quotes protected — [68699627] \"\\\"好。壞\\\"。普通\" 1`] = `
+{
+  "input": "\\"好。壞\\"。普通",
+  "result": [
+    "\\"好。壞\\".普通"
+  ],
+  "changedFromOriginal": true,
+  "originalResult": [
+    "\\"好",
+    "壞\\"",
+    "普通"
+  ]
+}
+`;
+
+exports[`splitTags > ，and 。mixed — comma splits, period does not — [5215e7bf] \"好，壞。普通\" 1`] = `
+{
+  "input": "好，壞。普通",
+  "result": [
+    "好",
+    "壞.普通"
+  ],
+  "changedFromOriginal": true,
+  "originalResult": [
+    "好",
+    "壞",
+    "普通"
+  ]
+}
+`;
+
+exports[`splitTags > ，fullwidth comma → comma — [3511ac5c] \"好，壞，普通\" 1`] = `
+{
+  "input": "好，壞，普通",
+  "result": [
+    "好",
+    "壞",
+    "普通"
+  ],
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > ，inside parens protected — [662d032c] \"(好，壞)，普通\" 1`] = `
+{
+  "input": "(好，壞)，普通",
+  "result": [
+    "(好,壞)",
+    "普通"
+  ],
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > ，inside quotes protected — [cdc874ee] \"\\\"好，壞\\\"，普通\" 1`] = `
+{
+  "input": "\\"好，壞\\"，普通",
+  "result": [
+    "\\"好，壞\\"",
+    "普通"
+  ],
+  "changedFromOriginal": true,
+  "originalResult": [
+    "\\"好",
+    "壞\\"",
+    "普通"
+  ]
+}
+`;
+
+exports[`splitTags > ．and 。mixed — fullwidth period splits, Japanese period does not — [751c58fc] \"好．壞。普通\" 1`] = `
+{
+  "input": "好．壞。普通",
+  "result": [
+    "好",
+    "壞.普通"
+  ],
+  "changedFromOriginal": true,
+  "originalResult": [
+    "好",
+    "壞",
+    "普通"
+  ]
+}
+`;
+
+exports[`splitTags > ．fullwidth period → comma — [ded25a67] \"好．壞．普通\" 1`] = `
+{
+  "input": "好．壞．普通",
+  "result": [
+    "好",
+    "壞",
+    "普通"
+  ],
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > ．inside quotes protected — [030b93e4] \"\\\"好．壞\\\"．普通\" 1`] = `
+{
+  "input": "\\"好．壞\\"．普通",
+  "result": [
+    "\\"好．壞\\"",
+    "普通"
+  ],
+  "changedFromOriginal": true,
+  "originalResult": [
+    "\\"好",
+    "壞\\"",
+    "普通"
+  ]
+}
+`;
+
+exports[`splitTags > ；fullwidth semicolon → comma — [828abde0] \"好；壞；普通\" 1`] = `
+{
+  "input": "好；壞；普通",
+  "result": [
+    "好",
+    "壞",
+    "普通"
+  ],
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > ；inside quotes protected — [be7bb421] \"\\\"好；壞\\\"；普通\" 1`] = `
+{
+  "input": "\\"好；壞\\"；普通",
+  "result": [
+    "\\"好；壞\\"",
+    "普通"
+  ],
+  "changedFromOriginal": true,
+  "originalResult": [
+    "\\"好",
+    "壞\\"",
+    "普通"
+  ]
+}
+`;
+
+exports[`splitTags → splitByPeriod pipeline > Chinese comma pipeline — [3511ac5c] \"好，壞，普通\" 1`] = `
+{
+  "input": "好，壞，普通",
+  "splitTagsResult": [
+    "好",
+    "壞",
+    "普通"
+  ],
+  "splitByPeriodChanged": false,
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags → splitByPeriod pipeline > [163e273f] \"一位女孩，她正坐在中国城市街头普通的金属材质公交站台长椅上等车。身侧是一个带有广告牌的公交站牌，路边是平整的沥青人行道，…\" 1`] = `
+{
+  "input": "一位女孩，她正坐在中国城市街头普通的金属材质公交站台长椅上等车。身侧是一个带有广告牌的公交站牌，路边是平整的沥青人行道，背景可以看到远处的老旧居民楼和几棵行道树，自然光线均匀地照射在人物身上，画面呈现出手机实拍的质感，色调真实自然，人物神态平和，背景有日常生活的街道细节。",
+  "splitTagsResult": [
+    "一位女孩",
+    "她正坐在中国城市街头普通的金属材质公交站台长椅上等车.身侧是一个带有广告牌的公交站牌",
+    "路边是平整的沥青人行道",
+    "背景可以看到远处的老旧居民楼和几棵行道树",
+    "自然光线均匀地照射在人物身上",
+    "画面呈现出手机实拍的质感",
+    "色调真实自然",
+    "人物神态平和",
+    "背景有日常生活的街道细节."
+  ],
+  "splitByPeriodChanged": false,
+  "changedFromOriginal": true,
+  "originalResult": [
+    "一位女孩",
+    "她正坐在中国城市街头普通的金属材质公交站台长椅上等车",
+    "身侧是一个带有广告牌的公交站牌",
+    "路边是平整的沥青人行道",
+    "背景可以看到远处的老旧居民楼和几棵行道树",
+    "自然光线均匀地照射在人物身上",
+    "画面呈现出手机实拍的质感",
+    "色调真实自然",
+    "人物神态平和",
+    "背景有日常生活的街道细节"
+  ]
+}
+`;
+
+exports[`splitTags → splitByPeriod pipeline > [74b5470e] \"一位穿著太空衣的貓、復古老舊的紅色跑車\" 1`] = `
+{
+  "input": "一位穿著太空衣的貓、復古老舊的紅色跑車",
+  "splitTagsResult": [
+    "一位穿著太空衣的貓",
+    "復古老舊的紅色跑車"
+  ],
+  "splitByPeriodChanged": false,
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags → splitByPeriod pipeline > complex prompt pipeline — [33c09d55] \"masterpiece, best quality, (1girl:1.2), <lora:add_detail:0.6…\" 1`] = `
+{
+  "input": "masterpiece, best quality, (1girl:1.2), <lora:add_detail:0.6>, BREAK, forest, trees",
+  "splitTagsResult": [
+    "masterpiece",
+    "best quality",
+    "(1girl:1.2)",
+    "<lora:add_detail:0.6>",
+    "BREAK",
+    "forest",
+    "trees"
+  ],
+  "splitByPeriodChanged": false,
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags → splitByPeriod pipeline > full prompt pipeline — [2d679141] \"Prominent readable text and placement: the main illuminated …\" 1`] = `
+{
+  "input": "Prominent readable text and placement: the main illuminated facade at upper left-center reads \\"Sakura Stop\\" with \\"くらしに、さくらを。\\" beneath. The right side of the fascia reads \\"いつもの日を、少し特別に。\\" with \\"Small joys. Brighter days.\\" below. The tall illuminated sign above the slope reads \\"Sakura Stop\\" and lists \\"たばこ\\", \\"お弁当\\", \\"飲み物\\", \\"スイーツ\\", and \\"日用品\\". The left window poster reads \\"今日も、いい一日を。\\" with \\"Good day. Better tomorrow.\\" below. The right window poster reads \\"さくらの季節をもっと身近に。\\". A pink vertical banner beside the store reads \\"さくらと、いい毎日を。\\". The roadside vertical sign at far right reads \\"海の見える町\\". The downhill road includes the white marking \\"止まれ\\" near the lower distance.",
+  "splitTagsResult": [
+    "Prominent readable text and placement: the main illuminated facade at upper left-center reads \\"Sakura Stop\\" with \\"くらしに、さくらを。\\" beneath. The right side of the fascia reads \\"いつもの日を、少し特別に。\\" with \\"Small joys. Brighter days.\\" below. The tall illuminated sign above the slope reads \\"Sakura Stop\\" and lists \\"たばこ\\"",
+    "\\"お弁当\\"",
+    "\\"飲み物\\"",
+    "\\"スイーツ\\"",
+    "and \\"日用品\\". The left window poster reads \\"今日も、いい一日を。\\" with \\"Good day. Better tomorrow.\\" below. The right window poster reads \\"さくらの季節をもっと身近に。\\". A pink vertical banner beside the store reads \\"さくらと、いい毎日を。\\". The roadside vertical sign at far right reads \\"海の見える町\\". The downhill road includes the white marking \\"止まれ\\" near the lower distance."
+  ],
+  "splitByPeriodChanged": true,
+  "splitByPeriodResult": [
+    "Prominent readable text and placement: the main illuminated facade at upper left-center reads \\"Sakura Stop\\" with \\"くらしに、さくらを。\\" beneath.",
+    "The right side of the fascia reads \\"いつもの日を、少し特別に。\\" with \\"Small joys. Brighter days.\\" below.",
+    "The tall illuminated sign above the slope reads \\"Sakura Stop\\" and lists \\"たばこ\\"",
+    "\\"お弁当\\"",
+    "\\"飲み物\\"",
+    "\\"スイーツ\\"",
+    "and \\"日用品\\".",
+    "The left window poster reads \\"今日も、いい一日を。\\" with \\"Good day. Better tomorrow.\\" below.",
+    "The right window poster reads \\"さくらの季節をもっと身近に。\\".",
+    "A pink vertical banner beside the store reads \\"さくらと、いい毎日を。\\".",
+    "The roadside vertical sign at far right reads \\"海の見える町\\".",
+    "The downhill road includes the white marking \\"止まれ\\" near the lower distance."
+  ],
+  "changedFromOriginal": true,
+  "originalResult": [
+    "Prominent readable text and placement: the main illuminated facade at upper left-center reads \\"Sakura Stop\\" with \\"くらしに",
+    "さくらを",
+    "\\" beneath. The right side of the fascia reads \\"いつもの日を",
+    "少し特別に",
+    "\\" with \\"Small joys. Brighter days.\\" below. The tall illuminated sign above the slope reads \\"Sakura Stop\\" and lists \\"たばこ\\"",
+    "\\"お弁当\\"",
+    "\\"飲み物\\"",
+    "\\"スイーツ\\"",
+    "and \\"日用品\\". The left window poster reads \\"今日も",
+    "いい一日を",
+    "\\" with \\"Good day. Better tomorrow.\\" below. The right window poster reads \\"さくらの季節をもっと身近に",
+    "\\". A pink vertical banner beside the store reads \\"さくらと",
+    "いい毎日を",
+    "\\". The roadside vertical sign at far right reads \\"海の見える町\\". The downhill road includes the white marking \\"止まれ\\" near the lower distance."
+  ]
+}
+`;
+
+exports[`splitTags → splitByPeriod pipeline > parentheses pipeline — [1b4ec68a] \"a, (b, c), d\" 1`] = `
+{
+  "input": "a, (b, c), d",
+  "splitTagsResult": [
+    "a",
+    "(b, c)",
+    "d"
+  ],
+  "splitByPeriodChanged": false,
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags → splitByPeriod pipeline > pipeline newline — splitTags \"\\\\n\" marker passes through splitByPeriod unchanged — [b6858b03] \"line one\\nline two\" 1`] = `
+{
+  "input": "line one\\nline two",
+  "splitTagsResult": [
+    "line one",
+    "\\n",
+    "line two"
+  ],
+  "splitByPeriodChanged": false,
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags → splitByPeriod pipeline > pipeline splitSemicolon — semicolon splits like period (option B) — [497823a0] \"her fingers and the orks' legs; gnarled dead trees stand as …\" 1`] = `
+{
+  "input": "her fingers and the orks' legs; gnarled dead trees stand as dark silhouettes at the frame edges, dense fog swallows the middle distance, \\n#, \\npixelated",
+  "splitTagsResult": [
+    "her fingers and the orks' legs; gnarled dead trees stand as dark silhouettes at the frame edges",
+    "dense fog swallows the middle distance",
+    "\\n",
+    "#",
+    "\\n",
+    "pixelated"
+  ],
+  "splitByPeriodChanged": true,
+  "splitByPeriodResult": [
+    "her fingers and the orks' legs;",
+    "gnarled dead trees stand as dark silhouettes at the frame edges",
+    "dense fog swallows the middle distance",
+    "\\n",
+    "#",
+    "\\n",
+    "pixelated"
+  ],
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags → splitByPeriod pipeline > quoted comma pipeline — [d39a27c4] \"with \\\"Small joys, Brighter days.\\\" below.\" 1`] = `
+{
+  "input": "with \\"Small joys, Brighter days.\\" below.",
+  "splitTagsResult": [
+    "with \\"Small joys, Brighter days.\\" below."
+  ],
+  "splitByPeriodChanged": false,
+  "changedFromOriginal": true,
+  "originalResult": [
+    "with \\"Small joys",
+    "Brighter days.\\" below."
+  ]
+}
+`;

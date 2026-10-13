@@ -4,7 +4,14 @@
   "private": true,
   "scripts": {
     "dev": "vite",
+    "test": "node --run test:node",
+    "test:node": "node --test --test-update-snapshots test/**/*.node-test.js",
+    "posttest": "pnpm run build",
     "build": "vite build",
+    "build:all": "pnpm run build && node --run build:css",
+    "build:css": "node build-css.js all",
+    "build:css:main": "node build-css.js main",
+    "build:css:extensions": "node build-css.js extensions",
     "build:watch": "vite build --watch",
     "preview": "vite preview"
   },
@@ -25,6 +32,7 @@
     "@vitejs/plugin-vue": "^4.0.0",
     "less": "^4.1.3",
     "less-loader": "^11.1.0",
+    "less-plugin-clean-css": "^1.6.0",
     "sass": "^1.65.1",
     "vite": "^4.1.4"
   }
