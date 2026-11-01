@@ -51,12 +51,12 @@ export const enum EnumTagLoraLikeCharacterClass
  * 只在確實帶有數值時給出結果：
  * 權重 0 不套用權重樣式，避免使用者把 0 誤讀成加重或減輕。
  *
- * @param weightNum - 權重數字字串（可含前導 `:`、空白與附加描述）
+ * @param weightText - 權重數字字串（可含前導 `:`、空白與附加描述）
  * @returns 負值為 true、正值為 false；0 / 無值 / 無法解析時為 undefined
  */
-function parseWeightNumIsDec(weightNum?: string): boolean | undefined
+function parseWeightNumIsDec(weightText?: string): boolean | undefined
 {
-	const matched = weightNum?.match(/-?\d+(?:\.\d+)?/)
+	const matched = weightText?.match(/-?\d+(?:\.\d+)?/)
 	if (!matched) return undefined
 	const value = Number.parseFloat(matched[0])
 	if (!Number.isFinite(value) || value === 0) return undefined
@@ -180,8 +180,8 @@ function wrapWeightCharacters(value: string, options: IWrapWeightCharactersOptio
 {
 	const isLoraLike = tagIsLoraLike(options.tag)
 	const matched = value.match(isLoraLike ? WEIGHT_NUM_CHARACTERS_REGEX : WEIGHT_NUM_CHARACTERS_REGEX2)
-	const weightNumber = matched?.[2]
-	const isDecWeight = parseWeightNumIsDec(weightNumber)
+	const weightText = matched?.[2]
+	const isDecWeight = parseWeightNumIsDec(weightText)
 
 	/** 本體：沒有可標記的權重數字時，數字留在本體一併顯示 */
 	const body = isDecWeight === undefined ? value : matched[1]
@@ -193,7 +193,7 @@ function wrapWeightCharacters(value: string, options: IWrapWeightCharactersOptio
 	let html = body.length ? wrapTagCharacters(body, options.tag) : ''
 	if (isDecWeight !== undefined)
 	{
-		html += wrapWeightCharacter(weightNumber, {
+		html += wrapWeightCharacter(weightText, {
 			tag: options.tag,
 			kind: EnumTagWeightCharacterKind.Number,
 			isDecWeight,
