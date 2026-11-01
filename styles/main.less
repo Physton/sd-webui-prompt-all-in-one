@@ -696,12 +696,13 @@
     // .physton-prompt .prompt-tags .prompt-tags-list .prompt-tag .prompt-tag-main .prompt-tag-edit .prompt-tag-value .dec-weight-character
     --pp-pt-dsb-ptl-pt-ptm-pte-ptv-decWeightCharacter-color: @common-green;
 
-    // .physton-prompt .prompt-tags .prompt-tags-list .prompt-tag .prompt-tag-main .prompt-tag-edit .prompt-tag-value .inc-lora-like-weight-character
-    // lora 的權重段沿用一般權重符號的顏色：同一份權重在不同語法下不該用不同顏色表示
-    --pp-pt-dsb-ptl-pt-ptm-pte-ptv-loraLikeWeightCharacterInc-color: var(--pp-pt-dsb-ptl-pt-ptm-pte-ptv-weightCharacter-color);
+    // .physton-prompt .prompt-tags .prompt-tags-list .prompt-tag .prompt-tag-main .prompt-tag-edit .prompt-tag-value .weight-number-character
+    // 權重數值（lora 的 :weight）與括號是不同東西，各自一個變數；
+    // 預設值直接指向括號的顏色，讓「同一份權重用同一種顏色表示」不必靠兩處各自維護
+    --pp-pt-dsb-ptl-pt-ptm-pte-ptv-weightNumberCharacter-color: var(--pp-pt-dsb-ptl-pt-ptm-pte-ptv-weightCharacter-color);
 
-    // .physton-prompt .prompt-tags .prompt-tags-list .prompt-tag .prompt-tag-main .prompt-tag-edit .prompt-tag-value .dec-lora-like-weight-character
-    --pp-pt-dsb-ptl-pt-ptm-pte-ptv-loraLikeWeightCharacterDec-color: var(--pp-pt-dsb-ptl-pt-ptm-pte-ptv-decWeightCharacter-color);
+    // .physton-prompt .prompt-tags .prompt-tags-list .prompt-tag .prompt-tag-main .prompt-tag-edit .prompt-tag-value .dec-weight-number-character
+    --pp-pt-dsb-ptl-pt-ptm-pte-ptv-decWeightNumberCharacter-color: var(--pp-pt-dsb-ptl-pt-ptm-pte-ptv-decWeightCharacter-color);
 
     // .physton-prompt .prompt-tags .prompt-tags-list .prompt-tag .prompt-tag-main .prompt-tag-edit .prompt-tag-value .break-character
     --pp-pt-dsb-ptl-pt-ptm-pte-ptv-breakCharacter-color: #c6c6c6;
@@ -3231,12 +3232,12 @@
                                 color: var(--pp-pt-dsb-ptl-pt-ptm-pte-ptv-decWeightCharacter-color);
                             }
 
-                            .inc-lora-like-weight-character {
-                                color: var(--pp-pt-dsb-ptl-pt-ptm-pte-ptv-loraLikeWeightCharacterInc-color);
+                            .weight-number-character {
+                                color: var(--pp-pt-dsb-ptl-pt-ptm-pte-ptv-weightNumberCharacter-color);
                             }
 
-                            .dec-lora-like-weight-character {
-                                color: var(--pp-pt-dsb-ptl-pt-ptm-pte-ptv-loraLikeWeightCharacterDec-color);
+                            .dec-weight-number-character {
+                                color: var(--pp-pt-dsb-ptl-pt-ptm-pte-ptv-decWeightNumberCharacter-color);
                             }
 
                             .break-character {

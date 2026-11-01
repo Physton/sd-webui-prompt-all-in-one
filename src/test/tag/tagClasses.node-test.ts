@@ -7,7 +7,7 @@
 
 import { describe, it } from 'node:test'
 import { runCases } from '../helpers/node-test-helpers'
-import { getTagClasses } from '@/utils/promptTags/tagClasses'
+import { getTagClasses } from '@/utils/promptTagRender/tagClasses'
 import { _t_createTag_core, _t_createTag_text, _t_createTag_wrap } from '../helpers/tag-factories'
 import { EnumPromptTagType, IPromptTag } from '@/utils/promptTags/tag-types'
 import type { IRunCase } from '../helpers/types/node-test-case-types'

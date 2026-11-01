@@ -1,14 +1,3 @@
-/**
- * tag 顯示樣式類別的計算。
- *
- * 為什麼抽離：`.prompt-tag-value` 上的分類 class 決定顏色（lora / lyco /
- * embedding / neg），原本混在 tagMixin._setTagClass() 的偵測流程尾端，
- * 無法單獨驗證，也讓「偵測」與「呈現」兩件事綁在一起。
- * 抽為純函式後只讀取 _setTagClass() 已寫好的欄位，不重新解析 value。
- *
- * @module utils/promptTags/tagClasses
- */
-
 import { IPromptTag } from '../promptTags/tag-types';
 import { IHostPromptOptions } from '../promptTags/types';
 

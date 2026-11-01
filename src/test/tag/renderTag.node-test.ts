@@ -69,27 +69,75 @@ describe('renderTag', () => {
 			expected: '',
 		},
 		{
-			note: 'lora 依 <lora: / name / :weight / > 拆成四段（正權重附 inc class）',
+			note: '括號內結尾的權重數字獨立標記為 weight-number-character',
+			input: {tag: _t_createTag_text('(cat:1.2)', {incWeight: 1})},
+			expected: [
+				'<div class="weight-character">(</div>',
+				'<div class="character">cat</div>',
+				'<div class="weight-number-character">:1.2</div>',
+				'<div class="weight-character">)</div>',
+			].join(''),
+		},
+		{
+			note: '遞減括號內的權重數字依數字正負分色（正數仍為 inc）',
+			input: {tag: _t_createTag_text('[cat:0.5]', {decWeight: 1})},
+			expected: [
+				'<div class="weight-character dec-weight-character">[</div>',
+				'<div class="character">cat</div>',
+				'<div class="weight-number-character">:0.5</div>',
+				'<div class="weight-character dec-weight-character">]</div>',
+			].join(''),
+		},
+		{
+			note: '負數權重數字疊上 dec-weight-number-character',
+			input: {tag: _t_createTag_text('(cat:-0.4)', {incWeight: 1})},
+			expected: [
+				'<div class="weight-character">(</div>',
+				'<div class="character">cat</div>',
+				'<div class="weight-number-character dec-weight-number-character">:-0.4</div>',
+				'<div class="weight-character">)</div>',
+			].join(''),
+		},
+		{
+			note: '權重數字為 0 時不標記，留在本體',
+			input: {tag: _t_createTag_text('(cat:0)', {incWeight: 1})},
+			expected: [
+				'<div class="weight-character">(</div>',
+				'<div class="character">cat:0</div>',
+				'<div class="weight-character">)</div>',
+			].join(''),
+		},
+		{
+			note: '沒有結尾權重數字時整段維持單一 character',
+			input: {tag: _t_createTag_text('(cat)', {incWeight: 2})},
+			expected: [
+				'<div class="weight-character">((</div>',
+				'<div class="character">cat</div>',
+				'<div class="weight-character">))</div>',
+			].join(''),
+		},
+		{
+			note: 'lora 依 <lora: / name / :weight / > 拆成四段，正權重套用權重數值樣式',
 			input: {tag: _t_createTag_core(EnumPromptTagType.lora, '<lora:myLora:0.8>', {isLora: true})},
 			expected: [
 				'<div class="character lora-like-open-character">&lt;lora:</div>',
 				'<div class="character lora-like-name-character">myLora</div>',
-				'<div class="character lora-like-weight-character inc-lora-like-weight-character">:0.8</div>',
+				'<div class="weight-number-character lora-like-weight-character">:0.8</div>',
 				'<div class="character lora-like-close-character">&gt;</div>',
 			].join(''),
 		},
 		{
-			note: '負權重附 dec class，與 dec-weight-character 同色',
+			note: '負權重疊上 dec-weight-number-character，與遞減權重同色',
 			input: {tag: _t_createTag_core(EnumPromptTagType.lora, '<lora:myLora:-0.35>', {isLora: true})},
 			expected: [
 				'<div class="character lora-like-open-character">&lt;lora:</div>',
 				'<div class="character lora-like-name-character">myLora</div>',
-				'<div class="character lora-like-weight-character dec-lora-like-weight-character">:-0.35</div>',
+				'<div class="weight-number-character dec-weight-number-character lora-like-weight-character">:-0.35</div>',
 				'<div class="character lora-like-close-character">&gt;</div>',
 			].join(''),
 		},
 		{
-			note: '權重 0 不附加 inc/dec class，維持原色',
+			note: '權重 0 不套用權重數值樣式，只保留角色 class',
 			input: {tag: _t_createTag_core(EnumPromptTagType.lora, '<lora:myLora:0>', {isLora: true})},
 			expected: [
 				'<div class="character lora-like-open-character">&lt;lora:</div>',
@@ -113,7 +161,7 @@ describe('renderTag', () => {
 			expected: [
 				'<div class="character lora-like-open-character">&lt;lyco:</div>',
 				'<div class="character lora-like-name-character">abc</div>',
-				'<div class="character lora-like-weight-character inc-lora-like-weight-character">:1</div>',
+				'<div class="weight-number-character lora-like-weight-character">:1</div>',
 				'<div class="character lora-like-close-character">&gt;</div>',
 			].join(''),
 		},
@@ -126,7 +174,7 @@ describe('renderTag', () => {
 				'<div class="weight-character">((</div>',
 				'<div class="character lora-like-open-character">&lt;lora:</div>',
 				'<div class="character lora-like-name-character">abc</div>',
-				'<div class="character lora-like-weight-character inc-lora-like-weight-character">:1</div>',
+				'<div class="weight-number-character lora-like-weight-character">:1</div>',
 				'<div class="character lora-like-close-character">&gt;</div>',
 				'<div class="weight-character">))</div>',
 			].join(''),
