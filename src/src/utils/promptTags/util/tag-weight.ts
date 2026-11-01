@@ -169,6 +169,43 @@ function isWrappedIn(str: string, start: IBracketPairInput, end: IBracketPairInp
 }
 
 /**
+ * 重複剝除 str 外層的同組括號，直至不再是包裹狀態。
+ *
+ * @param str   - 要處理的文字
+ * @param start - 開括號字元
+ * @param end   - 閉括號字元
+ * @returns 剝除後的文字與剝除的層數
+ */
+function unwrapLayers(str: string, start: IBracketPairInput, end: IBracketPairInput)
+{
+	let layers = 0
+	while (isWrappedIn(str, start, end))
+	{
+		layers++
+		str = str.slice(1, str.length - 1)
+	}
+	return {
+		inner: str,
+		layers,
+	}
+}
+
+/**
+ * 將 str 包上 num 層括號，括號與本體之間插入 joinStr。
+ *
+ * @param str     - 要處理的文字
+ * @param num     - 包裹層數
+ * @param start   - 開括號字元
+ * @param end     - 閉括號字元
+ * @param joinStr - 括號與本體之間插入的文字（如 `:1.2` 的權重數字）
+ * @returns 處理後的文字
+ */
+function wrapLayers(str: string, num: number, start: IBracketPairInput, end: IBracketPairInput, joinStr = ''): string
+{
+	return start.repeat(num) + str + joinStr + end.repeat(num)
+}
+
+/**
  * 計算字串被同組括號包裹的層數（僅由外向內連續同組者計數）。
  *
  * @param str   - 要計算的文字
@@ -182,13 +219,8 @@ export function countLayers(
 	end: IBracketPairInput = EnumTagWeightSymbol.IncWeightSymbolClose,
 ): number
 {
-	let count = 0
-	while (isWrappedIn(str, start, end))
-	{
-		count++
-		str = str.slice(1, str.length - 1)
-	}
-	return count
+	const { layers } = unwrapLayers(str, start, end)
+	return layers
 }
 
 /**
@@ -206,15 +238,12 @@ export function setLayers(
 	num = 0,
 	start: IBracketPairInput = EnumTagWeightSymbol.IncWeightSymbolOpen,
 	end: IBracketPairInput = EnumTagWeightSymbol.IncWeightSymbolClose,
-	joinStr = '',
+	joinStr?: string,
 ): string
 {
-	while (isWrappedIn(str, start, end))
-	{
-		str = str.slice(1, str.length - 1)
-	}
-	if (num === 0) return str
-	return start.repeat(num) + str + joinStr + end.repeat(num)
+	const { inner } = unwrapLayers(str, start, end)
+	if (num === 0) return inner
+	return wrapLayers(inner, num, start, end, joinStr)
 }
 
 /**
@@ -301,7 +330,7 @@ function createValueRewriter(tag: IPromptTag)
 		 *
 		 * joinStr 為括號與本體之間插入的文字（如 `:1.2` 的權重數字）。
 		 */
-		setLayers(num: number, bracket: IBracketPair<EnumTagWeightSymbol>, joinStr = ''): void
+		setLayers(num: number, bracket: IBracketPair<EnumTagWeightSymbol>, joinStr?: string): void
 		{
 			map(text => setLayers(text, num, bracket[0], bracket[1], joinStr))
 		},
