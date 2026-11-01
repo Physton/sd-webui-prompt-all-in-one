@@ -16,6 +16,7 @@ import {
 	EnumTagWeightSymbol,
 	parseWeightNumIsDec,
 	setLayers,
+	stripLayers,
 	WEIGHT_NUM_CHARACTERS_REGEX,
 	WEIGHT_NUM_CHARACTERS_REGEX2,
 } from '../promptTags/util/tag-weight';
@@ -256,7 +257,7 @@ export function renderTagCore(tag: IPromptTag | undefined, options: IPromptOptio
 		 */
 		const open = options.useNovelAiWeightSymbol ? EnumTagWeightSymbol.NovelAiWeightSymbolOpen : EnumTagWeightSymbol.IncWeightSymbolOpen
 		const close = options.useNovelAiWeightSymbol ? EnumTagWeightSymbol.NovelAiWeightSymbolClose : EnumTagWeightSymbol.IncWeightSymbolClose
-		value = wrapWeightCharacters(setLayers(value, 0, open, close), {
+		value = wrapWeightCharacters(stripLayers(value, open, close), {
 			count: tag.incWeight,
 			open,
 			close,
@@ -270,7 +271,7 @@ export function renderTagCore(tag: IPromptTag | undefined, options: IPromptOptio
 		 */
 		const open = EnumTagWeightSymbol.DecWeightSymbolOpen
 		const close = EnumTagWeightSymbol.DecWeightSymbolClose
-		value = wrapWeightCharacters(setLayers(value, 0, open, close), {
+		value = wrapWeightCharacters(stripLayers(value, open, close), {
 			count: tag.decWeight,
 			open,
 			close,

@@ -178,8 +178,8 @@ function isWrappedIn(str: string, start: IBracketPairInput, end: IBracketPairInp
  */
 export function countLayers(
 	str: string,
-	start = EnumTagWeightSymbol.IncWeightSymbolOpen,
-	end = EnumTagWeightSymbol.IncWeightSymbolClose,
+	start: IBracketPairInput = EnumTagWeightSymbol.IncWeightSymbolOpen,
+	end: IBracketPairInput = EnumTagWeightSymbol.IncWeightSymbolClose,
 ): number
 {
 	let count = 0
@@ -204,8 +204,8 @@ export function countLayers(
 export function setLayers(
 	str: string,
 	num = 0,
-	start = EnumTagWeightSymbol.IncWeightSymbolOpen,
-	end = EnumTagWeightSymbol.IncWeightSymbolClose,
+	start: IBracketPairInput = EnumTagWeightSymbol.IncWeightSymbolOpen,
+	end: IBracketPairInput = EnumTagWeightSymbol.IncWeightSymbolClose,
 	joinStr = '',
 ): string
 {
@@ -215,6 +215,14 @@ export function setLayers(
 	}
 	if (num === 0) return str
 	return start.repeat(num) + str + joinStr + end.repeat(num)
+}
+
+/**
+ * 剝除 str 外層的指定括號組（連續同組包裹會全部剝除）。
+ */
+export function stripLayers(text: string, start: IBracketPairInput, end: IBracketPairInput): string
+{
+	return setLayers(text, 0, start, end)
 }
 
 /**
@@ -259,7 +267,7 @@ function accumulateLayers(current: number | undefined, delta: number): number
 /**
  * 產生 tag.value / tag.localValue 的成對改寫器。
  *
- * map() 對兩者套用同一改寫，localValue 為空字串時跳過（沿用原守門條件）；
+ * map() 與 setLayers() 對兩者套用同一改寫，localValue 為空字串時跳過（沿用原守門條件）；
  * 寫回分兩種語意：commitIfChanged() 只在 value 有變動時寫回（applyTagWeightNum），
  * commit() 無條件寫回（applyTagIncWeight / applyTagDecWeight）。
  *
@@ -271,18 +279,31 @@ function createValueRewriter(tag: IPromptTag)
 	const originalValue = tag.value
 	let value = tag.value
 	let localValue = tag.localValue!
+
+	const map = (fn: (text: string) => string): void =>
+	{
+		value = fn(value)
+		if (localValue !== '') localValue = fn(localValue)
+	}
+
 	return {
-		/** 目前的 value（已套用歷次 map()，尚未寫回 tag） */
+		/** 目前的 value（已套用歷次改寫，尚未寫回 tag） */
 		get value(): string
 		{
 			return value
 		},
 
 		/** 對 value 與 localValue（非空時）套用同一改寫 */
-		map(fn: (text: string) => string): void
+		map,
+
+		/**
+		 * 重設 value / localValue 外層的 bracket 括號組為 num 層（0 即剝除）。
+		 *
+		 * joinStr 為括號與本體之間插入的文字（如 `:1.2` 的權重數字）。
+		 */
+		setLayers(num: number, bracket: IBracketPair<EnumTagWeightSymbol>, joinStr = ''): void
 		{
-			value = fn(value)
-			if (localValue !== '') localValue = fn(localValue)
+			map(text => setLayers(text, num, bracket[0], bracket[1], joinStr))
 		},
 
 		/** 僅在 value 有變動時寫回 tag；回傳是否有變動 */
@@ -373,7 +394,7 @@ export function extractTagValueFromBrackets(value: IPromptTagValue, options?: IH
 	const bracket = hasBrackets(value)
 	if (isWeightBracket(bracket, options))
 	{
-		return setLayers(value, 0, bracket[0], bracket[1]).replace(weightNumRegex, '$1')
+		return stripLayers(value, bracket[0], bracket[1]).replace(weightNumRegex, '$1')
 	}
 	return value
 }
@@ -442,7 +463,7 @@ export function applyTagWeightNum(tag: IPromptTag, weightNum: number | string, o
 			const bracket = hasBrackets(rewriter.value)
 			if (isWeightBracket(bracket, options))
 			{
-				rewriter.map(text => setLayers(text, 0, bracket[0], bracket[1]))
+				rewriter.setLayers(0, bracket)
 			}
 			rewriter.map(text => text.replace(weightNumRegex, '$1'))
 		}
@@ -455,7 +476,7 @@ export function applyTagWeightNum(tag: IPromptTag, weightNum: number | string, o
 				const bracket = hasBrackets(rewriter.value)
 				if (bracket)
 				{
-					rewriter.map(text => setLayers(text, 1, bracket[0], bracket[1], suffix))
+					rewriter.setLayers(1, bracket, suffix)
 				}
 				else
 				{
@@ -465,8 +486,7 @@ export function applyTagWeightNum(tag: IPromptTag, weightNum: number | string, o
 			/** Lora / Lyco / Embedding 以 `:weight` 表達權重，不再補外層括號 */
 			if (!tagIsExtraNetworks(tag) && !hasBrackets(rewriter.value))
 			{
-				const [open, close] = getIncWeightBracket(useNovelAiWeightSymbol)
-				rewriter.map(text => setLayers(text, 1, open, close))
+				rewriter.setLayers(1, getIncWeightBracket(useNovelAiWeightSymbol))
 			}
 		}
 		return rewriter.commitIfChanged()
@@ -494,18 +514,17 @@ export function applyTagIncWeight(tag: IPromptTag, num: number, options?: IHostP
 	const useNovelAiWeightSymbol = options?.useNovelAiWeightSymbol
 
 	/** 先剝除減權層；NovelAI 模式下 `()` 是加權符號，一併剝除 */
-	rewriter.map(text => setLayers(text, 0, ...DEC_WEIGHT_BRACKET))
+	rewriter.setLayers(0, DEC_WEIGHT_BRACKET)
 	if (useNovelAiWeightSymbol)
 	{
-		rewriter.map(text => setLayers(text, 0, ...INC_WEIGHT_BRACKET))
+		rewriter.setLayers(0, INC_WEIGHT_BRACKET)
 	}
 
 	const incWeight = accumulateLayers(tag.incWeight, num)
 	tag.incWeight = incWeight
 	tag.decWeight = 0
 
-	const [open, close] = getIncWeightBracket(useNovelAiWeightSymbol)
-	rewriter.map(text => setLayers(text, incWeight, open, close))
+	rewriter.setLayers(incWeight, getIncWeightBracket(useNovelAiWeightSymbol))
 	rewriter.commit()
 }
 
@@ -523,17 +542,17 @@ export function applyTagDecWeight(tag: IPromptTag, num: number, options?: IHostP
 	const rewriter = createValueRewriter(tag)
 
 	/** 先剝除加權層；NovelAI 模式下 `{}` 一併剝除 */
-	rewriter.map(text => setLayers(text, 0, ...INC_WEIGHT_BRACKET))
+	rewriter.setLayers(0, INC_WEIGHT_BRACKET)
 	if (options?.useNovelAiWeightSymbol)
 	{
-		rewriter.map(text => setLayers(text, 0, ...NOVEL_AI_WEIGHT_BRACKET))
+		rewriter.setLayers(0, NOVEL_AI_WEIGHT_BRACKET)
 	}
 
 	const decWeight = accumulateLayers(tag.decWeight, num)
 	tag.incWeight = 0
 	tag.decWeight = decWeight
 
-	rewriter.map(text => setLayers(text, decWeight, ...DEC_WEIGHT_BRACKET))
+	rewriter.setLayers(decWeight, DEC_WEIGHT_BRACKET)
 	rewriter.commit()
 }
 
