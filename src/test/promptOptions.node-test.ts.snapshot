@@ -28,7 +28,7 @@ exports[`promptOptions:snapshot 1`] = `
     "autoBreakAfterWrap": true,
     "autoRemoveLoraBeforeComma": false,
     "autoRemoveLoraAfterComma": false,
-    "autoRemoveDuplicateLora": false,
+    "autoRemoveDuplicateLora": true,
     "useNovelAiWeightSymbol": false,
     "autoRemoveBeforeLineComma": false,
     "autoOptimizeSplitSymbol": false,

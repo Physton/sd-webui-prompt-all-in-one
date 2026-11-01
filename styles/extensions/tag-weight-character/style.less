@@ -5,16 +5,18 @@
                 .prompt-tag-main {
                     .prompt-tag-edit {
                         .prompt-tag-value {
-                            .weight-character {
-                                --pp-pt-dsb-ptl-pt-ptm-pte-promptTagValue-bracket-font-family:
-                                    "JetBrains Mono",
-                                    "Noto Sans",
-                                    "Liberation Sans",
-                                    "Helvetica Neue",
-                                    "Arial",
-                                    "Segoe UI",
-                                    sans-serif;
+                            // 語法符號（權重括號、lora-like 的 <> 與名稱分隔）統一用等寬字型：
+                            // 這些字元在比例字型下會寬窄不一，同一種符號看起來反而像不同字。
+                            --pp-pt-dsb-ptl-pt-ptm-pte-promptTagValue-bracket-font-family:
+                                "JetBrains Mono",
+                                "Noto Sans",
+                                "Liberation Sans",
+                                "Helvetica Neue",
+                                "Arial",
+                                "Segoe UI",
+                                sans-serif;
 
+                            .weight-character {
                                 font-weight: 900;
 
                                 font-synthesis: weight;
@@ -29,6 +31,24 @@
                                 &:last-of-type {
                                     padding-left: 3px;
                                 }
+                            }
+
+                            // lora-like 的 `<lora:` / `:weight` / `>` 只是語法外殼，
+                            // 以淡化處理把注意力留給模型名稱；不加粗是為了與 weight-character 區隔，
+                            // 避免同一行出現兩種同樣搶眼的符號。
+                            .lora-like-open-character,
+                            .lora-like-weight-character,
+                            .lora-like-close-character {
+                                font-family: var(--pp-pt-dsb-ptl-pt-ptm-pte-promptTagValue-bracket-font-family);
+
+                                font-synthesis: none;
+                                font-weight: 400;
+                                opacity: .55;
+                            }
+
+                            // 名稱是使用者真正在讀的部分，維持一般字型並略為加重
+                            .lora-like-name-character {
+                                font-weight: 700;
                             }
                         }
                     }

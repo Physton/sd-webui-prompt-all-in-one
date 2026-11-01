@@ -1,0 +1,73 @@
+/**
+ * tag 顯示樣式類別的計算。
+ *
+ * 為什麼抽離：`.prompt-tag-value` 上的分類 class 決定顏色（lora / lyco /
+ * embedding / neg），原本混在 tagMixin._setTagClass() 的偵測流程尾端，
+ * 無法單獨驗證，也讓「偵測」與「呈現」兩件事綁在一起。
+ * 抽為純函式後只讀取 _setTagClass() 已寫好的欄位，不重新解析 value。
+ *
+ * @module utils/promptTags/tagClasses
+ */
+
+import { IPromptTag } from './tag-types';
+import { IHostPromptOptions } from './types';
+
+export const enum EnumTagValueClass
+{
+	/** 所有可見 tag 共用的基底 class */
+	Value = 'prompt-tag-value',
+
+	/** 反向提示詞中的一般 tag */
+	Neg = 'neg-tag',
+
+	Lora = 'lora-tag',
+	/** Lora 名稱不在已載入清單中 */
+	LoraNotExists = 'lora-not-exists',
+
+	Lyco = 'lyco-tag',
+	/** Lyco 名稱不在已載入清單中 */
+	LycoNotExists = 'lyco-not-exists',
+
+	Embedding = 'embedding-tag',
+}
+
+/**
+ * 依 tag 的分類欄位產生 `.prompt-tag-value` 要套用的 class 清單。
+ *
+ * 分類互斥且依序為 lora → lyco → embedding → 一般 tag，
+ * 與 tagMixin._setTagClass() 的偵測順序一致：
+ * embedding 判定不會覆蓋已命中的 lora / lyco。
+ *
+ * 分行 tag 沒有分類欄位，只會拿到基底 class（neg 為 true 時仍附上 neg-tag，
+ * 但分行 tag 的樣板不使用 tag.classes，故不影響顯示）。
+ *
+ * @param tag     - 已由 _setTagClass() 分類的 tag
+ * @param options - 渲染脈絡（neg 決定一般 tag 是否標記為反向提示詞）
+ * @returns 可直接綁到 :class 的 class 清單
+ */
+export function getTagClasses(tag?: IPromptTag, options: IHostPromptOptions = {}): EnumTagValueClass[]
+{
+	const classes: EnumTagValueClass[] = [EnumTagValueClass.Value];
+	if (!tag) return classes;
+
+	if (tag.isLora)
+	{
+		classes.push(EnumTagValueClass.Lora);
+		if (!tag.loraExists) classes.push(EnumTagValueClass.LoraNotExists);
+	}
+	else if (tag.isLyco)
+	{
+		classes.push(EnumTagValueClass.Lyco);
+		if (!tag.lycoExists) classes.push(EnumTagValueClass.LycoNotExists);
+	}
+	else if (tag.isEmbedding)
+	{
+		classes.push(EnumTagValueClass.Embedding);
+	}
+	else if (options.neg)
+	{
+		classes.push(EnumTagValueClass.Neg);
+	}
+
+	return classes;
+}

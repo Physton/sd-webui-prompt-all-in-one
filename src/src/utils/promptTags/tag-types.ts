@@ -89,3 +89,16 @@ export interface IPromptTag extends IPromptTagBaseWithUuid, IPromptTagRuntimeExt
 	localValue?: string;
 	isEnglish?: EnumIsEnglish;
 }
+
+export type IPromptTagLoraLikeCore = ITSAnyOfUnion<{
+	isLora: true;
+	loraName: string;
+} | {
+	isLyco: true;
+	lycoName: string;
+}>
+
+export type IPromptTagEmbeddingCore = {
+	isEmbedding: true;
+	embeddingName: string;
+}

@@ -1,6 +1,7 @@
 import common from "@/utils/common";
 import autoSizeInput from "autosize-input";
 import { findTagUntil, parseLoraLikeValue, tagIsDisabled, tagIsSharp, tagIsWrap, findTagByID } from "@/utils/promptTags/util";
+import { getTagClasses } from "@/utils/promptTags/tagClasses";
 import { renderTagCore } from "@/utils/promptTagRender/renderTag";
 import { _createTagBase, _createTagUuid } from "@/utils/promptTags/createTag";
 
@@ -128,25 +129,8 @@ export default {
                 }
             }
 
-            let classes = ['prompt-tag-value']
-            if (tag.isLora) {
-                classes.push('lora-tag')
-                if (!tag.loraExists) {
-                    classes.push('lora-not-exists')
-                }
-            } else if (tag.isLyco) {
-                classes.push('lyco-tag')
-                if (!tag.lycoExists) {
-                    classes.push('lyco-not-exists')
-                }
-            } else if (tag.isEmbedding) {
-                classes.push('embedding-tag')
-            } else if (this.neg) {
-                classes.push('neg-tag')
-            }
-
-            tag.classes = classes
-            return classes
+            tag.classes = getTagClasses(tag, this)
+            return tag.classes
         },
         _setTagById(id, value = null, localValue = null) {
             let tag = this.tags.find(tag => tag.id === id)

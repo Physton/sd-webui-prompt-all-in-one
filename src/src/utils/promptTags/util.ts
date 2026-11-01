@@ -15,7 +15,7 @@
 
 import { ITSAnyOfUnion } from 'ts-type';
 import common from '../common';
-import { EnumPromptTagType, IPromptTag, IPromptTagValue } from './tag-types';
+import { EnumPromptTagType, IPromptTag, IPromptTagEmbeddingCore, IPromptTagLoraLikeCore, IPromptTagValue } from './tag-types';
 
 /**
  * 是否為 Lora 或 Lyco —— 兩者同屬 Extra Networks 的權重模型標籤，
@@ -23,7 +23,7 @@ import { EnumPromptTagType, IPromptTag, IPromptTagValue } from './tag-types';
  *
  * @param tag - 要判定的 tag
  */
-export function tagIsLoraLike(tag?: IPromptTag): tag is IPromptTag & ITSAnyOfUnion<{ isLora: true; } | { isLyco: true }>
+export function tagIsLoraLike(tag?: IPromptTag): tag is IPromptTag & IPromptTagLoraLikeCore
 {
 	return tag?.isLora || tag?.isLyco
 }
@@ -136,7 +136,7 @@ export function tagIsDisabled(tag?: IPromptTag): tag is IPromptTag & { disabled:
  *
  * @param tag - 要判定的 tag
  */
-export function tagIsEmbedding(tag?: IPromptTag): tag is IPromptTag & { isEmbedding: true }
+export function tagIsEmbedding(tag?: IPromptTag): tag is IPromptTag & IPromptTagEmbeddingCore
 {
 	return tag?.isEmbedding!
 }
@@ -147,16 +147,7 @@ export function tagIsEmbedding(tag?: IPromptTag): tag is IPromptTag & { isEmbedd
  *
  * @param tag - 要判定的 tag
  */
-export function tagIsExtraNetworks(tag?: IPromptTag): tag is IPromptTag & ITSAnyOfUnion<{
-		isLora: true;
-		loraName: string;
-	} | {
-		isLyco: true;
-		lycoName: string;
-	} | {
-		isEmbedding: true;
-		embeddingName: string;
-	}>
+export function tagIsExtraNetworks(tag?: IPromptTag): tag is IPromptTag & (ITSAnyOfUnion<IPromptTagLoraLikeCore | IPromptTagEmbeddingCore>)
 {
 	return tagIsLoraLike(tag) || tagIsEmbedding(tag)
 }

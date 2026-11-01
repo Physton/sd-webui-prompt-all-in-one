@@ -11,4 +11,6 @@ export type IHostPromptOptions = IPromptOptionValueRecordWithLegacyRuntime & {
 	 * genPromptCore 據此只在尚未載入時，於首次輸出 extra networks tag 時要求載入。
 	 */
 	requestLoadExtraNetworksCalled?: boolean;
+	/** 目前編輯的是反向提示詞：一般 tag 會加上 neg-tag */
+	neg?: boolean;
 }
