@@ -1,6 +1,14 @@
-import common from "@/utils/common";
 import autoSizeInput from "autosize-input";
 import { findTagUntil, parseLoraLikeValue, tagIsDisabled, tagIsSharp, tagIsWrap, findTagByID } from "@/utils/promptTags/util";
+import {
+    getTagDecWeight,
+    getTagIncWeight,
+    getTagOriginalValue,
+    getTagWeightNum,
+    applyTagDecWeight,
+    applyTagIncWeight,
+    applyTagWeightNum,
+} from "@/utils/promptTags/util/tag-weight";
 import { getTagClasses } from "@/utils/promptTagRender/tagClasses";
 import { renderTagCore } from "@/utils/promptTagRender/renderTag";
 import { _createTagBase, _createTagUuid } from "@/utils/promptTags/createTag";
@@ -32,25 +40,17 @@ export default {
                 tag.incWeight = 0
                 tag.decWeight = 0
             } else {
-                tag.weightNum = common.getTagWeightNum(tag.value)
+                tag.weightNum = getTagWeightNum(tag.value)
                 // tag.weightNum = tag.weightNum <= 0 ? 1 : tag.weightNum
                 // tag.weightNum = tag.weightNum === 0 ? 1 : tag.weightNum
-                tag.incWeight = common.getTagIncWeight(tag.value, this.useNovelAiWeightSymbol)
-                tag.decWeight = common.getTagDecWeight(tag.value)
-                // const bracket = common.hasBrackets(tag.value)
+                tag.incWeight = getTagIncWeight(tag.value, this)
+                tag.decWeight = getTagDecWeight(tag.value)
 
                 tag.originalValue = tag.value
                 /** Lora / Lyco 語法偵測：單一事實在 parseLoraLikeValue()，不另行比對正則 */
                 if (!parseLoraLikeValue(tag.value)) {
                     // tag.weightNum = tag.weightNum <= 0 ? 1 : tag.weightNum
-                    let value = tag.value
-                    const bracket = common.hasBrackets(value)
-                    if ((bracket[0] === '(' && bracket[1] === ')') || (bracket[0] === '[' && bracket[1] === ']') || (this.useNovelAiWeightSymbol && bracket[0] === '{' && bracket[1] === '}')) {
-                        // 移除括号
-                        value = common.setLayers(value, 0, bracket[0], bracket[1])
-                        // 移除权重数
-                        tag.originalValue = value.replace(common.weightNumRegex, '$1')
-                    }
+                    tag.originalValue = getTagOriginalValue(tag.value, this)
                 }
             }
             this._setTagClass(tag)
@@ -184,8 +184,8 @@ export default {
              * 因為 _isTagBlacklist() 依賴 _setTag() 才算得出的 isLora / originalValue。
              */
             this._setTag(tag)
-            // value           = common.setLayers(value, 0, '(', ')')
-            // value           = common.setLayers(value, 0, '[', ']')
+            // value           = setLayers(value, 0, '(', ')')
+            // value           = setLayers(value, 0, '[', ']')
             if (this._isTagBlacklist(tag)) return -1
             if (index >= 0) {
                 // 插入到指定位置
@@ -442,66 +442,14 @@ export default {
             if (!tag) return false
             e = typeof e === "number" || typeof e === "string" ? e : e.target.value
             if (tag.weightNum == e) return
-            let weightNum = e
-            let value = tag.value
-            let localValue = tag.localValue
-            if (weightNum !== 0) {
-                if (weightNum === 1 && !this.autoKeepWeightOne) {
-                    // 如果权重数是1，那么就去掉权重数
-                    const bracket = common.hasBrackets(value)
-                    if (bracket[0] === '(' && bracket[1] === ')' || (this.useNovelAiWeightSymbol && bracket[0] === '{' && bracket[1] === '}')) {
-                        // 移除括号
-                        value = common.setLayers(value, 0, bracket[0], bracket[1])
-                        if (localValue !== '') localValue = common.setLayers(localValue, 0, bracket[0], bracket[1])
-                    } else {
-                        // 不移除括号
-                    }
-                    // 移除权重数
-                    value = value.replace(common.weightNumRegex, '$1')
-                    if (localValue !== '') localValue = localValue.replace(common.weightNumRegex, '$1')
-                } else {
-                    // 如果原来没有权重数，那么就加上权重数
-                    if (!common.weightNumRegex.test(value)) {
-                        // 如果原来有括号，就要加到括号内
-                        let bracket = common.hasBrackets(value)
-                        if (bracket) {
-                            value = common.setLayers(value, 1, bracket[0], bracket[1], ':' + weightNum)
-                            if (localValue !== '') localValue = common.setLayers(localValue, 1, bracket[0], bracket[1], ':' + weightNum)
-                        } else {
-                            value = value + ':' + weightNum
-                            if (localValue !== '') localValue = localValue + ':' + weightNum
-                        }
-                    }
-                    // 排除Lora、embedding、lyco
-                    // 如果原来没有括号() [] {}，那么就加上括号
-                    if (tag.isLora||tag.isLyco||tag.isEmbedding){}
-                    else if (!common.hasBrackets(value)) {
-                        if (this.useNovelAiWeightSymbol) {
-                            value = common.setLayers(value, 1, '{', '}')
-                            if (localValue !== '') localValue = common.setLayers(localValue, 1, '{', '}')
-                        } else {
-                            value = common.setLayers(value, 1, '(', ')')
-                            if (localValue !== '') localValue = common.setLayers(localValue, 1, '(', ')')
-                        }
-                    }
-                }
-                if (value !== tag.value) {
-                    tag.value = value
-                    if (localValue !== '') tag.localValue = localValue
-                    this._setTag(tag)
-                }
-            }  else {
-                if (this.autoKeepWeightZero) {
-                    // 保留权重数
-                    tag.value = value.replace(common.weightNumRegex, '$1:0')
-                    if (localValue !== '') tag.localValue = tag.localValue.replace(common.weightNumRegex, '$1:0')
-                } else {
-                    // 移除权重数
-                    tag.value = value.replace(common.weightNumRegex, '$1')
-                    if (localValue !== '') tag.localValue = tag.localValue.replace(common.weightNumRegex, '$1')
-                }
-            }
-            tag.weightNum = weightNum
+            /**
+             * 權重語法改寫抽離於 applyTagWeightNum()（參數：tag / options: this）。
+             * 回傳 true 代表 value 已改寫、需重算權重欄位；
+             * weightNum 必須在 _setTag() 之後寫回，才能蓋過由 value 解析出的數值。
+             */
+            const changed = applyTagWeightNum(tag, e, this)
+            if (changed) this._setTag(tag)
+            tag.weightNum = e
             this.updateTags()
         },
         onDeleteTagClick(id) {
@@ -542,50 +490,13 @@ export default {
         onIncWeightClick(id, num) {
             let tag = this.tags.find(tag => tag.id === id)
             if (!tag) return
-            let value = tag.value
-            let localValue = tag.localValue
-            value = common.setLayers(value, 0, '[', ']')
-            if (localValue !== '') localValue = common.setLayers(localValue, 0, '[', ']')
-            if (this.useNovelAiWeightSymbol) {
-                value = common.setLayers(value, 0, '(', ')')
-                if (localValue !== '') localValue = common.setLayers(localValue, 0, '(', ')')
-            }
-            let incWeight = tag.incWeight
-            incWeight += num
-            if (incWeight < 0) incWeight = 0
-            tag.incWeight = incWeight
-            tag.decWeight = 0
-            if (this.useNovelAiWeightSymbol) {
-                value = common.setLayers(value, incWeight, '{', '}')
-                if (localValue !== '') localValue = common.setLayers(localValue, incWeight, '{', '}')
-            } else {
-                value = common.setLayers(value, incWeight, '(', ')')
-                if (localValue !== '') localValue = common.setLayers(localValue, incWeight, '(', ')')
-            }
-            tag.value = value
-            if (localValue !== '') tag.localValue = localValue
+            applyTagIncWeight(tag, num, this)
             this.updateTags()
         },
         onDecWeightClick(id, num) {
             let tag = this.tags.find(tag => tag.id === id)
             if (!tag) return
-            let value = tag.value
-            let localValue = tag.localValue
-            value = common.setLayers(value, 0, '(', ')')
-            if (localValue !== '') localValue = common.setLayers(localValue, 0, '(', ')')
-            if (this.useNovelAiWeightSymbol) {
-                value = common.setLayers(value, 0, '{', '}')
-                if (localValue !== '') localValue = common.setLayers(localValue, 0, '{', '}')
-            }
-            let decWeight = tag.decWeight
-            decWeight += num
-            if (decWeight < 0) decWeight = 0
-            tag.incWeight = 0
-            tag.decWeight = decWeight
-            value = common.setLayers(value, decWeight, '[', ']')
-            if (localValue !== '') localValue = common.setLayers(localValue, decWeight, '[', ']')
-            tag.value = value
-            if (localValue !== '') tag.localValue = localValue
+            applyTagDecWeight(tag, num, this)
             this.updateTags()
         },
         onWrapTagClick(id) {

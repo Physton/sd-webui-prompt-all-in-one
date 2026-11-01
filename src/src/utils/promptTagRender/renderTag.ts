@@ -11,21 +11,13 @@ import common from "@/utils/common";
 import { IPromptTag } from "../promptTags/tag-types";
 import { IPromptOptionValueRecordWithLegacyRuntime } from '../promptOptions/definitions';
 import { tagIsBreak, tagIsLoraLike, tagIsSharp } from '../promptTags/util';
-
-export const enum EnumTagWeightSymbol
-{
-	/** NovelAI 的權重符號 options.useNovelAiWeightSymbol = true 時使用 */
-	NovelAiWeightSymbolOpen = '{',
-	NovelAiWeightSymbolClose = '}',
-
-	/** 一般模型的權重符號 */
-	IncWeightSymbolOpen = '(',
-	IncWeightSymbolClose = ')',
-
-
-	DecWeightSymbolOpen = '[',
-	DecWeightSymbolClose = ']',
-}
+import {
+	EnumTagWeightSymbol,
+	parseWeightNumIsDec,
+	setLayers,
+	WEIGHT_NUM_CHARACTERS_REGEX,
+	WEIGHT_NUM_CHARACTERS_REGEX2,
+} from '../promptTags/util/tag-weight';
 
 /**
  * lora-like 語法分段後可分別套用樣式的 class。
@@ -44,33 +36,6 @@ export const enum EnumTagLoraLikeCharacterClass
 	/** 結尾的 `>` */
 	Close = 'lora-like-close-character',
 }
-
-/**
- * 權重數字是否是遞減（負值）。
- *
- * 只在確實帶有數值時給出結果：
- * 權重 0 不套用權重樣式，避免使用者把 0 誤讀成加重或減輕。
- *
- * @param weightText - 權重數字字串（可含前導 `:`、空白與附加描述）
- * @returns 負值為 true、正值為 false；0 / 無值 / 無法解析時為 undefined
- */
-function parseWeightNumIsDec(weightText?: string): boolean | undefined
-{
-	const matched = weightText?.match(/-?\d+(?:\.\d+)?/)
-	if (!matched) return undefined
-	const value = Number.parseFloat(matched[0])
-	if (!Number.isFinite(value) || value === 0) return undefined
-	return value < 0
-}
-
-/**
- * 結尾的權重數字分段：`本體` + `:權重`。
- *
- * 只認字串尾端，故不會像 common.weightNumRegex（未錨定）那樣把 tag 中間的冒號也當成權重；
- * 分組 1 是本體（可能為空），分組 2 是含冒號的權重數字。
- */
-const WEIGHT_NUM_CHARACTERS_REGEX = /^([\s\S]*?)(:\s*-?\d+(?:\.\d+)?)$/
-const WEIGHT_NUM_CHARACTERS_REGEX2 = /^([\s\S]*?)(:\s*-?\d+(?:\.\d+)?)(?: )?$/
 
 /**
  * lora-like 語法的顯示分段：`<lora:` / name / `:weight` / `>`。
@@ -299,7 +264,7 @@ export function renderTagCore(tag: IPromptTag | undefined, options: IPromptOptio
 		 */
 		const open = options.useNovelAiWeightSymbol ? EnumTagWeightSymbol.NovelAiWeightSymbolOpen : EnumTagWeightSymbol.IncWeightSymbolOpen
 		const close = options.useNovelAiWeightSymbol ? EnumTagWeightSymbol.NovelAiWeightSymbolClose : EnumTagWeightSymbol.IncWeightSymbolClose
-		value = wrapWeightCharacters(common.setLayers(value, 0, open, close), {
+		value = wrapWeightCharacters(setLayers(value, 0, open, close), {
 			count: tag.incWeight,
 			open,
 			close,
@@ -313,7 +278,7 @@ export function renderTagCore(tag: IPromptTag | undefined, options: IPromptOptio
 		 */
 		const open = EnumTagWeightSymbol.DecWeightSymbolOpen
 		const close = EnumTagWeightSymbol.DecWeightSymbolClose
-		value = wrapWeightCharacters(common.setLayers(value, 0, open, close), {
+		value = wrapWeightCharacters(setLayers(value, 0, open, close), {
 			count: tag.decWeight,
 			open,
 			close,

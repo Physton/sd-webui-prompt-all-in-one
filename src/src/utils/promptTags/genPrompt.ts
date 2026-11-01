@@ -17,6 +17,7 @@
  */
 
 import common from '../common'
+import { weightNumRegex } from './util/tag-weight'
 import {
     findTagUntil,
     getLoraLikeName,
@@ -274,9 +275,9 @@ export function genPromptCore(
             const weightNum = Number(tag.weightNum)
             if (weightNum > 0 || weightNum < 0) {
                 tag.weightNum = Number(parseFloat(String(weightNum)).toFixed(6))
-                tag.value = tag.value.replace(common.weightNumRegex, '$1:' + tag.weightNum)
+                tag.value = tag.value.replace(weightNumRegex, '$1:' + tag.weightNum)
                 if (tag.localValue !== '') {
-                    tag.localValue = tag.localValue.replace(common.weightNumRegex, '$1:' + tag.weightNum)
+                    tag.localValue = tag.localValue.replace(weightNumRegex, '$1:' + tag.weightNum)
                 }
             }
             if (tag.disabled && !ignoreDisabled) return

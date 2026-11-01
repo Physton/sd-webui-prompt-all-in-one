@@ -1,4 +1,5 @@
 import common from "@/utils/common";
+import { hasBrackets, replaceBrackets } from "@/utils/promptTags/util/tag-weight";
 import { setPromptTextareaValueAndDispatchEvent } from "@/utils/promptTextarea";
 
 export default {
@@ -342,15 +343,15 @@ export default {
                 if (localValue) {
                     // 去除末尾的逗号
                     tags = tags.replace(/\s*,\s*$/, '').trim()
-                    if (common.hasBrackets(tags)) {
-                        tags = common.replaceBrackets(tags)
+                    if (hasBrackets(tags)) {
+                        tags = replaceBrackets(tags)
                     }
                     this._appendTag(tags, localValue)
                     this.updateTags()
                 } else {
-                    if (common.hasBrackets(tags)) {
+                    if (hasBrackets(tags)) {
                         // 如果已经被英文括号括起来，那么就不需要再分词了
-                        tags = common.replaceBrackets(tags)
+                        tags = replaceBrackets(tags)
                         tags = [tags]
                     } else {
                         tags = common.splitTags(tags, this.autoBreakBeforeWrap, this.autoBreakAfterWrap)
@@ -562,8 +563,8 @@ export default {
                 this.$refs.promptTagAppend.value = ''
                 // 去除末尾的逗号
                 tags = tags.replace(/\s*,\s*$/, '').trim()
-                if (common.hasBrackets(tags)) {
-                    tags = common.replaceBrackets(tags)
+                if (hasBrackets(tags)) {
+                    tags = replaceBrackets(tags)
                 }
                 this._appendTag(tags, text)
                 this.updateTags()

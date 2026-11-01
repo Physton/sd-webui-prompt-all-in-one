@@ -1,6 +1,7 @@
 import splitTags from "@/utils/splitTags";
 import globals from "../../globals";
 import tinycolor from "tinycolor2";
+import { normalizeWeightNum, replaceBrackets } from "@/utils/promptTags/util/tag-weight";
 
 export default {
     // loraRegex: /^\<lora:\s*([^\:]+)\s*(:)?\s*(\-?[0-9\.]+)?\>$/,
@@ -8,99 +9,18 @@ export default {
     loraRegex: /^\<lora:\s*([^\:]+)\s*(:)?\s*(\-?[0-9\.]+)?([^\>]+)?\>/,
     // lycoRegex: /^\<lyco:\s*([^\:]+)\s*(:)?\s*(\-?[0-9\.]+)?\>$/,
     lycoRegex: /^\<lyco:\s*([^\:]+)\s*(:)?\s*(\-?[0-9\.]+)?([^\>]+)?\>$/,
-    weightNumRegex: /(.*):(\-?[0-9\.]+)/,
-    weightNumRegexEN: /(.*):\s*(\-?[0-9\.]+)/,
-    weightNumRegexCN: /(.*)：\s*(\-?[0-9\.]+)/,
-    bracketsEN: [
-        {'(': '(', ')': ')'},
-        {'[': '[', ']': ']'},
-        {'{': '{', '}': '}'},
-        {'<': '<', '>': '>'},
-    ],
-    bracketsCN: [
-        {'（': '(', '）': ')'},
-        {'【': '[', '】': ']'},
-        {'《': '<', '》': '>'},
-        {'「': '{', '」': '}'},
-        {'『': '{', '』': '}'},
-        {'〈': '<', '〉': '>'},
-        {'﹝': '(', '﹞': ')'},
-        {'﹛': '{', '﹜': '}'},
-        {'﹙': '(', '﹚': ')'},
-    ],
 
     /**
      * 替换标签
+     *
+     * 括號正規化與冒號權重正規化的實作在 utils/promptTags/util/tag-weight。
      * @param text {string}
      * @returns {*|string}
      */
     replaceTag(text) {
         if (typeof text !== "string") return text
         if (text === "") return text
-        text = this.replaceBrackets(text)
-        if (this.weightNumRegexEN.test(text)) text = text.replace(this.weightNumRegexEN, '$1:$2')
-        if (this.weightNumRegexCN.test(text)) text = text.replace(this.weightNumRegexCN, '$1:$2')
-        return text
-    },
-
-    /**
-     * 替换括号
-     * @param text
-     * @returns {*}
-     */
-    replaceBrackets(text) {
-        const length = text.length
-        if (length === 0) return text
-        let replaces = {}
-        this.bracketsCN.forEach(item => {
-            for (const key in item) {
-                replaces[key] = item[key]
-            }
-        })
-
-        let start = text[0]
-        let end = text[length - 1]
-        if (typeof replaces[start] !== "undefined") {
-            text = replaces[start] + text.substring(1)
-        }
-        if (typeof replaces[end] !== "undefined") {
-            text = text.substring(0, length - 1) + replaces[end]
-        }
-        return text
-    },
-
-    /**
-     * 是否有括号
-     * @param text {string}
-     * @returns {Array|boolean}
-     */
-    hasBrackets(text) {
-        const length = text.length
-        if (length === 0) return false
-        let brackets = []
-        this.bracketsEN.forEach(item => {
-            let temp = []
-            for (const key in item) {
-                temp.push(key)
-            }
-            brackets.push(temp)
-        })
-        this.bracketsCN.forEach(item => {
-            let temp = []
-            for (const key in item) {
-                temp.push(key)
-            }
-            brackets.push(temp)
-        })
-
-        let start = text[0]
-        let end = text[length - 1]
-        for (const bracket of brackets) {
-            if (bracket[0] === start && bracket[1] === end) {
-                return bracket
-            }
-        }
-        return false
+        return normalizeWeightNum(replaceBrackets(text))
     },
 
     /**
@@ -302,94 +222,6 @@ export default {
             }
             return chars[tag] || tag
         })
-    },
-
-    /**
-     * 获取标签的权重数
-     * @param tag {string}
-     * @returns {number}
-     */
-    getTagWeightNum(tag) {
-        const match = tag.match(this.weightNumRegex)
-        let weightNum = match ? parseFloat(match[2]) : 1
-        return weightNum
-    },
-
-    /**
-     * 获取标签的加权数
-     * @param tag {string}
-     * @param useNovelAiWeightSymbol {boolean}
-     * @returns {number}
-     */
-    getTagIncWeight(tag, useNovelAiWeightSymbol = false) {
-        if (useNovelAiWeightSymbol) {
-            return this.countLayers(tag, '{', '}')
-        } else {
-            return this.countLayers(tag, '(', ')')
-        }
-    },
-
-    /**
-     * 获取标签的减权数
-     * @param tag {string}
-     * @returns {number}
-     */
-    getTagDecWeight(tag) {
-        return this.countLayers(tag, '[', ']')
-    },
-
-    /**
-     * 计算字符串包裹的层数
-     * @param str {string}
-     * @param start {string}
-     * @param end {string}
-     * @returns {number}
-     */
-    countLayers(str, start = '(', end = ')') {
-        let count = 0
-        if (str.length < 2) return count // 长度小于2，不可能有会有包裹
-        while (true) {
-            // 取出第一个和最后一个字符
-            let first = str[0]
-            let last = str[str.length - 1]
-            if (first === start && last === end) {
-                // 如果第一个和最后一个字符是括号，且是对应的括号，那么层数加1，然后去掉第一个和最后一个字符
-                count++
-                // 去掉第一个和最后一个字符
-                str = str.slice(1, str.length - 1)
-            } else {
-                break
-            }
-        }
-        return count
-    },
-
-    /**
-     * 设置字符串的包裹
-     * @param str {string}
-     * @param num {number}
-     * @param start {string}
-     * @param end {string}
-     * @param joinStr {string}
-     * @returns {string}
-     */
-    setLayers(str, num = 0, start = '(', end = ')', joinStr = '') {
-        // 先去除所有的括号
-        while (true) {
-            let first = str[0]
-            let last = str[str.length - 1]
-            if (first === start && last === end) {
-                // 如果第一个和最后一个字符是括号，且是对应的括号，那么层数加1，然后去掉第一个和最后一个字符
-                // 去掉第一个和最后一个字符
-                str = str.slice(1, str.length - 1)
-            } else {
-                break
-            }
-        }
-        // 如果层数为0，那么直接返回
-        if (num === 0) return str
-        // 如果层数大于0，那么在字符串的前面加上num个start，后面加上num个end
-        return start.repeat(num) + str + joinStr + end.repeat(num)
     },
 
     /**
