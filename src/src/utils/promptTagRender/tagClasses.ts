@@ -9,8 +9,8 @@
  * @module utils/promptTags/tagClasses
  */
 
-import { IPromptTag } from './tag-types';
-import { IHostPromptOptions } from './types';
+import { IPromptTag } from '../promptTags/tag-types';
+import { IHostPromptOptions } from '../promptTags/types';
 
 export const enum EnumTagValueClass
 {

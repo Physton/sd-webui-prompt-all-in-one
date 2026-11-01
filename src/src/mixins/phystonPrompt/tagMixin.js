@@ -1,7 +1,7 @@
 import common from "@/utils/common";
 import autoSizeInput from "autosize-input";
 import { findTagUntil, parseLoraLikeValue, tagIsDisabled, tagIsSharp, tagIsWrap, findTagByID } from "@/utils/promptTags/util";
-import { getTagClasses } from "@/utils/promptTags/tagClasses";
+import { getTagClasses } from "@/utils/promptTagRender/tagClasses";
 import { renderTagCore } from "@/utils/promptTagRender/renderTag";
 import { _createTagBase, _createTagUuid } from "@/utils/promptTags/createTag";
 
