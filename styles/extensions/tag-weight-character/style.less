@@ -33,17 +33,23 @@
                                 }
                             }
 
-                            // lora-like 的 `<lora:` / `:weight` / `>` 只是語法外殼，
+                            // lora-like 的 `<lora:` / `>` 只是語法外殼，
                             // 以淡化處理把注意力留給模型名稱；不加粗是為了與 weight-character 區隔，
                             // 避免同一行出現兩種同樣搶眼的符號。
                             .lora-like-open-character,
-                            .lora-like-weight-character,
                             .lora-like-close-character {
                                 font-family: var(--pp-pt-dsb-ptl-pt-ptm-pte-promptTagValue-bracket-font-family);
 
                                 font-synthesis: none;
                                 font-weight: 400;
                                 opacity: .55;
+                            }
+
+                            // 權重段不淡化：它的顏色（加重 / 減輕）本身就是語意
+                            .lora-like-weight-character {
+                                font-family: var(--pp-pt-dsb-ptl-pt-ptm-pte-promptTagValue-bracket-font-family);
+
+                                font-synthesis: none;
                             }
 
                             // 名稱是使用者真正在讀的部分，維持一般字型並略為加重

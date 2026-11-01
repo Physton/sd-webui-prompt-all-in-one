@@ -696,6 +696,13 @@
     // .physton-prompt .prompt-tags .prompt-tags-list .prompt-tag .prompt-tag-main .prompt-tag-edit .prompt-tag-value .dec-weight-character
     --pp-pt-dsb-ptl-pt-ptm-pte-ptv-decWeightCharacter-color: @common-green;
 
+    // .physton-prompt .prompt-tags .prompt-tags-list .prompt-tag .prompt-tag-main .prompt-tag-edit .prompt-tag-value .inc-lora-like-weight-character
+    // lora 的權重段沿用一般權重符號的顏色：同一份權重在不同語法下不該用不同顏色表示
+    --pp-pt-dsb-ptl-pt-ptm-pte-ptv-loraLikeWeightCharacterInc-color: var(--pp-pt-dsb-ptl-pt-ptm-pte-ptv-weightCharacter-color);
+
+    // .physton-prompt .prompt-tags .prompt-tags-list .prompt-tag .prompt-tag-main .prompt-tag-edit .prompt-tag-value .dec-lora-like-weight-character
+    --pp-pt-dsb-ptl-pt-ptm-pte-ptv-loraLikeWeightCharacterDec-color: var(--pp-pt-dsb-ptl-pt-ptm-pte-ptv-decWeightCharacter-color);
+
     // .physton-prompt .prompt-tags .prompt-tags-list .prompt-tag .prompt-tag-main .prompt-tag-edit .prompt-tag-value .break-character
     --pp-pt-dsb-ptl-pt-ptm-pte-ptv-breakCharacter-color: #c6c6c6;
 
@@ -3222,6 +3229,14 @@
 
                             .dec-weight-character {
                                 color: var(--pp-pt-dsb-ptl-pt-ptm-pte-ptv-decWeightCharacter-color);
+                            }
+
+                            .inc-lora-like-weight-character {
+                                color: var(--pp-pt-dsb-ptl-pt-ptm-pte-ptv-loraLikeWeightCharacterInc-color);
+                            }
+
+                            .dec-lora-like-weight-character {
+                                color: var(--pp-pt-dsb-ptl-pt-ptm-pte-ptv-loraLikeWeightCharacterDec-color);
                             }
 
                             .break-character {

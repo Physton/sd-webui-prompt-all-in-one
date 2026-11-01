@@ -69,12 +69,32 @@ describe('renderTag', () => {
 			expected: '',
 		},
 		{
-			note: 'lora 依 <lora: / name / :weight / > 拆成四段',
+			note: 'lora 依 <lora: / name / :weight / > 拆成四段（正權重附 inc class）',
 			input: {tag: _t_createTag_core(EnumPromptTagType.lora, '<lora:myLora:0.8>', {isLora: true})},
 			expected: [
 				'<div class="character lora-like-open-character">&lt;lora:</div>',
 				'<div class="character lora-like-name-character">myLora</div>',
-				'<div class="character lora-like-weight-character">:0.8</div>',
+				'<div class="character lora-like-weight-character inc-lora-like-weight-character">:0.8</div>',
+				'<div class="character lora-like-close-character">&gt;</div>',
+			].join(''),
+		},
+		{
+			note: '負權重附 dec class，與 dec-weight-character 同色',
+			input: {tag: _t_createTag_core(EnumPromptTagType.lora, '<lora:myLora:-0.35>', {isLora: true})},
+			expected: [
+				'<div class="character lora-like-open-character">&lt;lora:</div>',
+				'<div class="character lora-like-name-character">myLora</div>',
+				'<div class="character lora-like-weight-character dec-lora-like-weight-character">:-0.35</div>',
+				'<div class="character lora-like-close-character">&gt;</div>',
+			].join(''),
+		},
+		{
+			note: '權重 0 不附加 inc/dec class，維持原色',
+			input: {tag: _t_createTag_core(EnumPromptTagType.lora, '<lora:myLora:0>', {isLora: true})},
+			expected: [
+				'<div class="character lora-like-open-character">&lt;lora:</div>',
+				'<div class="character lora-like-name-character">myLora</div>',
+				'<div class="character lora-like-weight-character">:0</div>',
 				'<div class="character lora-like-close-character">&gt;</div>',
 			].join(''),
 		},
@@ -93,7 +113,7 @@ describe('renderTag', () => {
 			expected: [
 				'<div class="character lora-like-open-character">&lt;lyco:</div>',
 				'<div class="character lora-like-name-character">abc</div>',
-				'<div class="character lora-like-weight-character">:1</div>',
+				'<div class="character lora-like-weight-character inc-lora-like-weight-character">:1</div>',
 				'<div class="character lora-like-close-character">&gt;</div>',
 			].join(''),
 		},
@@ -106,7 +126,7 @@ describe('renderTag', () => {
 				'<div class="weight-character">((</div>',
 				'<div class="character lora-like-open-character">&lt;lora:</div>',
 				'<div class="character lora-like-name-character">abc</div>',
-				'<div class="character lora-like-weight-character">:1</div>',
+				'<div class="character lora-like-weight-character inc-lora-like-weight-character">:1</div>',
 				'<div class="character lora-like-close-character">&gt;</div>',
 				'<div class="weight-character">))</div>',
 			].join(''),

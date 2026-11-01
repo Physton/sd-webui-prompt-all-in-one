@@ -41,8 +41,30 @@ export const enum EnumTagLoraLikeCharacterClass
 	Name = 'lora-like-name-character',
 	/** `:權重`；value 未帶權重時不產生此段 */
 	Weight = 'lora-like-weight-character',
+	/** 權重 > 0：與遞增權重符號同色 */
+	WeightInc = 'inc-lora-like-weight-character',
+	/** 權重 < 0：與遞減權重符號同色 */
+	WeightDec = 'dec-lora-like-weight-character',
 	/** 結尾的 `>` */
 	Close = 'lora-like-close-character',
+}
+
+/**
+ * lora-like 權重段的正負號。
+ *
+ * 只在確實帶有數值且不為 0 時回傳：
+ * 權重 0 與「未寫權重」在樣式上同樣維持原色，避免使用者把 0 誤讀成加重或減輕。
+ *
+ * @param weight - 已拆出的權重段（含前導 `:`，可能附帶描述文字）
+ * @returns 對應的正負號 class；0 / 無權重 / 無法解析時為 undefined
+ */
+function parseLoraLikeWeightSign(weight: string): EnumTagLoraLikeCharacterClass | undefined
+{
+	const matched = weight.match(/-?\d+(?:\.\d+)?/)
+	if (!matched) return undefined
+	const value = Number.parseFloat(matched[0])
+	if (!Number.isFinite(value) || value === 0) return undefined
+	return value > 0 ? EnumTagLoraLikeCharacterClass.WeightInc : EnumTagLoraLikeCharacterClass.WeightDec
 }
 
 /**
@@ -111,6 +133,9 @@ function wrapCharacters(value: string, options?: ICharactersOptions): string
  * 不符語法時退回單一 character，顯示結果與一般 tag 相同，
  * 避免未經分類或帶額外語法的 tag 少顯示或多顯示字元。
  *
+ * 權重段另依正負號附加 inc- / dec- class，讓顏色與一般權重符號一致；
+ * 權重 0 不附加，維持原色。
+ *
  * @param value   - 未 escape 的 tag 內容
  * @param options - 渲染旗標（className 由各段角色決定，故不沿用）
  * @returns 顯示用 HTML
@@ -121,14 +146,20 @@ function wrapLoraLikeCharacters(value: string, options: ICharactersOptions): str
 	if (!matched) return wrapCharacters(value, options)
 
 	const [, open, name, weight, close] = matched
-	const wrapSegment = (segment: string, className: EnumTagLoraLikeCharacterClass) => wrapCharacters(segment, {
+	const wrapSegment = (segment: string, className: string) => wrapCharacters(segment, {
 		tag: options.tag,
 		className,
 	})
 
 	let html = wrapSegment(open, EnumTagLoraLikeCharacterClass.Open)
 	html += wrapSegment(name, EnumTagLoraLikeCharacterClass.Name)
-	if (weight.length) html += wrapSegment(weight, EnumTagLoraLikeCharacterClass.Weight)
+	if (weight.length)
+	{
+		const weightClasses = [EnumTagLoraLikeCharacterClass.Weight]
+		const weightSign = parseLoraLikeWeightSign(weight)
+		if (weightSign) weightClasses.push(weightSign)
+		html += wrapSegment(weight, weightClasses.join(' '))
+	}
 	html += wrapSegment(close, EnumTagLoraLikeCharacterClass.Close)
 	return html
 }
@@ -159,7 +190,8 @@ function wrapTagCharacters(value: string, tag: IPromptTag, className?: string): 
  * - 權重：incWeight > 0 依 useNovelAiWeightSymbol 選用 {} 或 ()，
  *   decWeight > 0 固定選用 []，兩者皆為 0 時只包一層 character。
  * - lora-like（tagIsLoraLike）：內容再依 `<lora:` / name / `:weight` / `>`
- *   拆成多段，讓樣式能分別強調語法符號與模型名稱。
+ *   拆成多段，讓樣式能分別強調語法符號與模型名稱；
+ *   權重段依正負號附加 inc- / dec- class，與一般權重符號同色（0 不附加）。
  * - 其餘 value 於 wrapCharacters 內 escapeHtml，
  *   避免標籤內容中的 HTML 破壞版面。
  *
