@@ -18,9 +18,9 @@
 
 import common from '../common'
 import { applyTagWeightNumToValue } from './util/tag-weight'
+import { getLoraLikeName } from './util/tag-lora'
 import {
     findTagUntil,
-    getLoraLikeName,
     tagIsBreak,
     tagIsDisabled,
     tagIsExtraNetworks,
