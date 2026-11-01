@@ -165,6 +165,14 @@ export function tagIsSharp(item?: IPromptTag): item is IPromptTag & { value: Enu
 	return item?.value?.trim() === EnumPromptTagType.VALUE_SHARP
 }
 
+export function tagIsWrapWeight(item?: IPromptTag): item is IPromptTag & {
+	incWeight: number;
+	decWeight: number;
+}
+{
+	return item?.incWeight > 0 || item?.decWeight > 0
+}
+
 /**
  * findTagUntil() 的掃描條件：起點、略過條件、目標條件與行數預算。
  */

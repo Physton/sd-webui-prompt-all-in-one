@@ -277,21 +277,6 @@ function wrapTagCharacters(value: string, tag: IPromptTag, className?: string): 
 /**
  * 將單一 tag 渲染為顯示用 HTML。
  *
- * - 找不到 tag 回傳空字串。
- * - BREAK 以嚴格相等判定（不 trim），僅在 autoBreakBeforeWrap /
- *   autoBreakAfterWrap 任一開啟時改渲染成分隔線；
- *   與 promptTags/util 的 tagIsBreak()（trim 後比對）刻意不同。
- * - 權重：incWeight > 0 依 useNovelAiWeightSymbol 選用 {} 或 ()，
- *   decWeight > 0 固定選用 []，兩者皆為 0 時只包一層 character。
- *   括號內的結尾權重數字（`:1.2`）另標記為 weight-number-character，
- *   樣式才能只作用在數字上並依正負分色（0 不標記）。
- * - lora-like（tagIsLoraLike）：內容再依 `<lora:` / name / `:weight` / `>`
- *   拆成多段，讓樣式能分別強調語法符號與模型名稱；
- *   `:weight` 帶 weight-number-character / dec-weight-number-character，
- *   與括號的 weight-character 分開命名（權重 0 不套用）。
- * - 其餘 value 於 wrapCharacters 內 escapeHtml，
- *   避免標籤內容中的 HTML 破壞版面。
- *
  * @param tag     - 要渲染的 tag；undefined 時回傳空字串
  * @param options - 渲染旗標
  * @returns 顯示用 HTML
@@ -301,13 +286,17 @@ export function renderTagCore(tag: IPromptTag | undefined, options: IPromptOptio
 	if (!tag) return ''
 
 	let value = tag.value
+	/** BREAK 以嚴格相等判定（不 trim），僅在 autoBreakBeforeWrap / autoBreakAfterWrap 任一開啟時改渲染成分隔線； */
 	if (tagIsBreak(tag) && (options.autoBreakBeforeWrap || options.autoBreakAfterWrap))
 	{
 		value = BREAK_HTML
 	}
 	else if (tag.incWeight > 0)
 	{
-		/** NovelAI 用 {}，其餘用 () */
+		/**
+		 * 權重：incWeight > 0 依 useNovelAiWeightSymbol 選用 {} 或 ()，
+		 * NovelAI 用 {}，其餘用 ()
+		 */
 		const open = options.useNovelAiWeightSymbol ? EnumTagWeightSymbol.NovelAiWeightSymbolOpen : EnumTagWeightSymbol.IncWeightSymbolOpen
 		const close = options.useNovelAiWeightSymbol ? EnumTagWeightSymbol.NovelAiWeightSymbolClose : EnumTagWeightSymbol.IncWeightSymbolClose
 		value = wrapWeightCharacters(common.setLayers(value, 0, open, close), {
@@ -319,6 +308,9 @@ export function renderTagCore(tag: IPromptTag | undefined, options: IPromptOptio
 	}
 	else if (tag.decWeight > 0)
 	{
+		/**
+		 * decWeight > 0 固定選用 []
+		 */
 		const open = EnumTagWeightSymbol.DecWeightSymbolOpen
 		const close = EnumTagWeightSymbol.DecWeightSymbolClose
 		value = wrapWeightCharacters(common.setLayers(value, 0, open, close), {
