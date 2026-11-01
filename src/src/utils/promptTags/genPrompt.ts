@@ -244,7 +244,7 @@ export function genPromptCore(
      * tag.isEmbedding 由 _setTagClass() 比對 embeddingExists() 成功才成立，
      * 而 embeddingExists() 依賴已載入的 embeddings 清單，
      * 因此未載入時 tagIsExtraNetworks(tag) 恆為 false，形成循環依賴。
-     * lora / lyco 不受影響：common.loraRegex / lycoRegex 為正則判定，不依賴清單。
+     * lora / lyco 不受影響。
      */
     let extraNetworksRequested = false
     tags2.forEach((tag, index) => {

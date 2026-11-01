@@ -4,6 +4,7 @@
 
 import { IPromptTag, IPromptTagValue } from '../tag-types';
 import type { IHostPromptOptions } from '../types';
+import { tagIsExtraNetworks } from '../util';
 
 export const enum EnumTagWeightSymbol
 {
@@ -245,7 +246,7 @@ export function getTagDecWeight(value: IPromptTagValue): number
  * @param options - 宿主選項（決定 `{}` 是否視為權重括號）
  * @returns 剝除後的文字
  */
-export function getTagOriginalValue(value: IPromptTagValue, options?: IHostPromptOptions): string
+export function extractTagValueFromBrackets(value: IPromptTagValue, options?: IHostPromptOptions): IPromptTagValue
 {
 	const bracket = hasBrackets(value)
 	if (bracket
@@ -351,7 +352,7 @@ export function applyTagWeightNum(tag: IPromptTag, weightNum: number | string, o
 				}
 			}
 			/** Lora / Lyco / Embedding 以 `:weight` 表達權重，不再補外層括號 */
-			if (tag.isLora || tag.isLyco || tag.isEmbedding)
+			if (tagIsExtraNetworks(tag))
 			{
 			}
 			else if (!hasBrackets(value))

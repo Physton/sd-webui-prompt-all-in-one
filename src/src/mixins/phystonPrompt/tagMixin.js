@@ -1,9 +1,9 @@
 import autoSizeInput from "autosize-input";
-import { findTagUntil, parseLoraLikeValue, tagIsDisabled, tagIsSharp, tagIsWrap, findTagByID } from "@/utils/promptTags/util";
+import { findTagUntil, tagIsDisabled, tagIsSharp, tagIsWrap, findTagByID } from "@/utils/promptTags/util";
 import {
     getTagDecWeight,
     getTagIncWeight,
-    getTagOriginalValue,
+    extractTagValueFromBrackets,
     getTagWeightNum,
     applyTagDecWeight,
     applyTagIncWeight,
@@ -12,6 +12,7 @@ import {
 import { getTagClasses } from "@/utils/promptTagRender/tagClasses";
 import { renderTagCore } from "@/utils/promptTagRender/renderTag";
 import { _createTagBase, _createTagUuid } from "@/utils/promptTags/createTag";
+import { parseLoraLikeValue } from "@/utils/promptTags/util/tag-lora";
 
 export default {
     data() {
@@ -50,7 +51,7 @@ export default {
                 /** Lora / Lyco 語法偵測：單一事實在 parseLoraLikeValue()，不另行比對正則 */
                 if (!parseLoraLikeValue(tag.value)) {
                     // tag.weightNum = tag.weightNum <= 0 ? 1 : tag.weightNum
-                    tag.originalValue = getTagOriginalValue(tag.value, this)
+                    tag.originalValue = extractTagValueFromBrackets(tag.value, this)
                 }
             }
             this._setTagClass(tag)

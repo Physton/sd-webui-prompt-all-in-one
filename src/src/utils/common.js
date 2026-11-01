@@ -4,12 +4,6 @@ import tinycolor from "tinycolor2";
 import { normalizeWeightNum, replaceBrackets } from "@/utils/promptTags/util/tag-weight";
 
 export default {
-    // loraRegex: /^\<lora:\s*([^\:]+)\s*(:)?\s*(\-?[0-9\.]+)?\>$/,
-    // lora加上metadata 描述词
-    loraRegex: /^\<lora:\s*([^\:]+)\s*(:)?\s*(\-?[0-9\.]+)?([^\>]+)?\>/,
-    // lycoRegex: /^\<lyco:\s*([^\:]+)\s*(:)?\s*(\-?[0-9\.]+)?\>$/,
-    lycoRegex: /^\<lyco:\s*([^\:]+)\s*(:)?\s*(\-?[0-9\.]+)?([^\>]+)?\>$/,
-
     /**
      * 替换标签
      * 

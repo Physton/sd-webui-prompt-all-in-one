@@ -5,16 +5,11 @@
  * 本檔的判定函式只讀取這些欄位並回傳型別守衛 (Type Guard)，
  * 讓呼叫端在判斷後直接取得收窄後的欄位。
  *
- * 例外：「value → 種類 / 名稱」的解析集中於 parseLoraLikeValue()——
- * 這是 Lora / Lyco 語法解析的單一事實 (SSoT)，
- * 分類（_setTagClass）、語法偵測（_set）與名稱提取（getLoraLikeName）
- * 皆由它驅動，不得各自另行比對正則。
- *
  * @module utils/promptTags/util
  */
 
 import { ITSAnyOfUnion } from 'ts-type';
-import common from '../common';
+import { loraRegex, lycoRegex } from './util/tag-lora';
 import { EnumPromptTagType, IPromptTag, IPromptTagEmbeddingCore, IPromptTagLoraLikeCore, IPromptTagValue } from './tag-types';
 
 /**
@@ -26,75 +21,6 @@ import { EnumPromptTagType, IPromptTag, IPromptTagEmbeddingCore, IPromptTagLoraL
 export function tagIsLoraLike(tag?: IPromptTag): tag is IPromptTag & IPromptTagLoraLikeCore
 {
 	return tag?.isLora || tag?.isLyco
-}
-
-/**
- * parseLoraLikeValue() 的解析結果：命中哪種語法及其捕捉的名稱。
- */
-export interface IParsedLoraLikeValue
-{
-	/** 命中的語法種類；對應 tag.isLora / tag.isLyco 的布林欄位 */
-	kind: EnumPromptTagType.lora | EnumPromptTagType.lyco
-	/**
-	 * regex 捕捉的模型名稱（未 trim）——
-	 * 與 _setTagClass() 存入 loraName / lycoName 的值完全一致。
-	 */
-	name: string
-}
-
-/**
- * 依 value 解析 Lora / Lyco 語法（「value → 種類 / 名稱」的單一事實）。
- *
- * 使用者（皆不得自行比對 loraRegex / lycoRegex）：
- *   1. 分類  —— tagMixin._setTagClass() 設定 isLora / loraName / isLyco / lycoName
- *   2. 偵測  —— tagMixin._set() 判斷 value 是否為 Lora / Lyco 語法
- *               （是則跳過括號與權重清理）
- *   3. 提取  —— getLoraLikeName() 對「未經分類的 tag」的手動回退
- *
- * 正則定義本身（common.loraRegex / lycoRegex）不在此重宣告，沿用 common 單一來源。
- *
- * @param value - tag.value（null / undefined 視為 ''）
- * @returns 命中時回傳種類與名稱（名稱未 trim）；皆未命中回傳 null
- */
-export function parseLoraLikeValue(value?: IPromptTagValue): IParsedLoraLikeValue
-{
-	const text = String(value ?? '');
-	const lora = text.match(common.loraRegex);
-	if (lora) return {kind: EnumPromptTagType.lora, name: lora[1]};
-	const lyco = text.match(common.lycoRegex);
-	if (lyco) return {kind: EnumPromptTagType.lyco, name: lyco[1]};
-	return null;
-}
-
-/**
- * 取得 Lora / Lyco 的模型名稱。
- *
- * 兩段式提取：
- *   1. `loraName` / `lycoName` 存在時直接採用——`_setTagClass()` 已分類完成，
- *      無需再手動偵測名稱。
- *   2. 不存在時（tag 尚未經 `_setTagClass` 分類，如純測試輸入）交由
- *      parseLoraLikeValue() 解析 value——與分類共用同一份解析事實。
- *
- * @param tag - 要提取名稱的 tag（不含 Lora / Lyco 時仍會嘗試第 2 段）
- * @returns 名稱（trim 後）
- */
-export function getLoraLikeName(tag?: IPromptTag): string
-{
-	let name: string;
-	if (tag)
-	{
-		const storedName = tag.isLora ? tag.loraName : (tag.isLyco ? tag.lycoName : undefined)
-		if (storedName?.length)
-		{
-			name = storedName
-		}
-		else
-		{
-			const parsed = parseLoraLikeValue(tag?.value);
-			name = parsed?.name
-		}
-	}
-	return name?.trim();
 }
 
 /**

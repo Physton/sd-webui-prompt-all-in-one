@@ -12,6 +12,7 @@ import {
     type IPromptBracketOpen,
 } from './splitPromptTypes'
 import { _isNotAllowedValueOrEmpty, _normalizeTagValueAndTrim } from './promptTags/util/tag-normalize'
+import { splitLoraTagSegments } from './promptTags/util/tag-lora'
 import { IPromptTagValue, IPromptTagValueRuntimeInput } from './promptTags/tag-types'
 import { IPromptOptionValueRecordWithLegacyRuntime } from './promptOptions/definitions'
 
@@ -399,23 +400,9 @@ function splitRaw(tags: IPromptTagValue, allowSingleQuote: boolean, autoBreakBef
         }
 
         /**
-         * lora 標籤與權重括號格式範例（本段邏輯只會拆出 <lora:...>，其餘靠括號防護保留）：
-         * aaa <lora:KuutanKoihime:0.7>  <lora:add_detail:0.6><lora:clothesTransparent_v20:1:1,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0>, [<lora:A:1>:<lora:B:1>:10], [lora:A:1::10], [<lora:A:1>:10], [<lora:A:1>:0.5], [[<lora:A:1>::25]:10], [<lora:A:1> #increment:10], [<lora:A:1> #decrease:10], [<lora:A:1> #cmd\(warmup\(0.5\)\):10]
+         * lora 標籤抽出與片段拆分，其餘片段靠上方括號防護保留。
          */
-        let regex = /\<lora:[^\>]+\>/
-        let match: RegExpExecArray | null = null
-        let values: string[] = []
-        while (match = regex.exec(value)) {
-            let startIndex = match.index
-            let endIndex = startIndex + match[0].length
-            let before = value.substring(0, startIndex).trim()
-            let after = value.substring(endIndex).trim()
-            let middle = match[0]
-            values.push(before)
-            values.push(middle)
-            value = after
-        }
-        values.push(value)
+        const values = splitLoraTagSegments(value)
         for (let value2 of values) {
             if (value2 === '' || value2.trim() === '') continue
             emojis.forEach((emoji, index) => {

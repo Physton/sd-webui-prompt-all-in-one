@@ -11,6 +11,7 @@ import common from "@/utils/common";
 import { IPromptTag } from "../promptTags/tag-types";
 import { IPromptOptionValueRecordWithLegacyRuntime } from '../promptOptions/definitions';
 import { tagIsBreak, tagIsLoraLike, tagIsSharp } from '../promptTags/util';
+import { LORA_LIKE_CHARACTERS_REGEX } from '../promptTags/util/tag-lora';
 import {
 	EnumTagWeightSymbol,
 	parseWeightNumIsDec,
@@ -36,15 +37,6 @@ export const enum EnumTagLoraLikeCharacterClass
 	/** 結尾的 `>` */
 	Close = 'lora-like-close-character',
 }
-
-/**
- * lora-like 語法的顯示分段：`<lora:` / name / `:weight` / `>`。
- *
- * 名稱以 `[^:>]` 界定，故未帶權重時名稱仍完整落在第 2 段；
- * 權重之後允許附加描述（common.loraRegex 允許），一併歸入第 3 段，
- * 確保拆段只改變結構、不改變顯示內容。
- */
-const LORA_LIKE_CHARACTERS_REGEX = /^(<(?:lora|lyco):)([^:>]*)([^>]*)(>)$/
 
 /**
  * 權重醒目樣式的套用對象。
