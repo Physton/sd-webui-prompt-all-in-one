@@ -12,8 +12,7 @@ export default {
 
     /**
      * 替换标签
-     *
-     * 括號正規化與冒號權重正規化的實作在 utils/promptTags/util/tag-weight。
+     * 
      * @param text {string}
      * @returns {*|string}
      */

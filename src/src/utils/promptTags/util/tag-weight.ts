@@ -215,9 +215,9 @@ export function getTagWeightNum(value: IPromptTagValue): number
  * @param options - 宿主選項（原 this.useNovelAiWeightSymbol）
  * @returns 加權層數
  */
-export function getTagIncWeight(value: IPromptTagValue, options: IHostPromptOptions = {}): number
+export function getTagIncWeight(value: IPromptTagValue, options: IHostPromptOptions): number
 {
-	return options.useNovelAiWeightSymbol
+	return options?.useNovelAiWeightSymbol
 		? countLayers(value, '{', '}')
 		: countLayers(value, '(', ')')
 }
@@ -245,17 +245,46 @@ export function getTagDecWeight(value: IPromptTagValue): number
  * @param options - 宿主選項（決定 `{}` 是否視為權重括號）
  * @returns 剝除後的文字
  */
-export function getTagOriginalValue(value: IPromptTagValue, options: IHostPromptOptions = {}): string
+export function getTagOriginalValue(value: IPromptTagValue, options?: IHostPromptOptions): string
 {
 	const bracket = hasBrackets(value)
 	if (bracket
 		&& ((bracket[0] === '(' && bracket[1] === ')')
 			|| (bracket[0] === '[' && bracket[1] === ']')
-			|| (options.useNovelAiWeightSymbol && bracket[0] === '{' && bracket[1] === '}')))
+			|| (options?.useNovelAiWeightSymbol && bracket[0] === '{' && bracket[1] === '}')))
 	{
 		return setLayers(value, 0, bracket[0], bracket[1]).replace(weightNumRegex, '$1')
 	}
 	return value
+}
+
+/**
+ * 輸出層的權重數值改寫：將 tag.weightNum 回寫到 tag.value / tag.localValue。
+ *
+ * 與編輯層的 applyTagWeightNum() 不同：此處不增減括號、不看選項，
+ * 只把既有的權重數字以 `本體:數字` 蓋上去（無權重數字的 value 維持原樣，
+ * 由 weightNumRegex 未命中決定），並把權重正規化到小數 6 位。
+ * 權重為 0（或無法解析為數字）時不動任何欄位。
+ *
+ * @param tag - 要改寫的 tag（直接寫入 weightNum / value / localValue）
+ */
+export function applyTagWeightNumToValue(tag: IPromptTag): void
+{
+	/**
+	 * 權重數值改寫：原式為 `tag.weightNum > 0 || tag.weightNum < 0`，
+	 * 因 tag.weightNum 型別為 number|string，先以 Number() 統一再比較，
+	 * 與 JS 關係運算子的隱含轉換結果完全一致。
+	 */
+	const weightNum = Number(tag.weightNum)
+	if (weightNum > 0 || weightNum < 0)
+	{
+		tag.weightNum = Number(parseFloat(String(weightNum)).toFixed(6))
+		tag.value = tag.value.replace(weightNumRegex, '$1:' + tag.weightNum)
+		if (tag.localValue !== '')
+		{
+			tag.localValue = tag.localValue.replace(weightNumRegex, '$1:' + tag.weightNum)
+		}
+	}
 }
 
 /**
@@ -275,22 +304,28 @@ export function getTagOriginalValue(value: IPromptTagValue, options: IHostPrompt
  * @param options   - 宿主選項（autoKeepWeightOne / autoKeepWeightZero / useNovelAiWeightSymbol）
  * @returns 是否已改寫 value且需重算權重欄位；權重 0 分支恒為 false
  */
-export function applyTagWeightNum(tag: IPromptTag, weightNum: number | string, options: IHostPromptOptions = {}): boolean
+export function applyTagWeightNum(tag: IPromptTag, weightNum: number | string, options?: IHostPromptOptions): boolean
 {
 	let value = tag.value
 	let localValue = tag.localValue!
 	let changed = false
 
+	const {
+		useNovelAiWeightSymbol,
+		autoKeepWeightOne,
+		autoKeepWeightZero,
+	} = options || {} as IHostPromptOptions
+
 	if (weightNum !== 0)
 	{
-		if (weightNum === 1 && !options.autoKeepWeightOne)
+		if (weightNum === 1 && !autoKeepWeightOne)
 		{
 			/** 權重 1 → 移除權重：先剝配對括號，再移除權重數字 */
 			const bracket = hasBrackets(value)
 			if (bracket
 				&& ((bracket[0] === '(' && bracket[1] === ')')
 					|| (bracket[0] === '[' && bracket[1] === ']')
-					|| (options.useNovelAiWeightSymbol && bracket[0] === '{' && bracket[1] === '}')))
+					|| (useNovelAiWeightSymbol && bracket[0] === '{' && bracket[1] === '}')))
 			{
 				value = setLayers(value, 0, bracket[0], bracket[1])
 				if (localValue !== '') localValue = setLayers(localValue, 0, bracket[0], bracket[1])
@@ -321,7 +356,7 @@ export function applyTagWeightNum(tag: IPromptTag, weightNum: number | string, o
 			}
 			else if (!hasBrackets(value))
 			{
-				if (options.useNovelAiWeightSymbol)
+				if (useNovelAiWeightSymbol)
 				{
 					value = setLayers(value, 1, '{', '}')
 					if (localValue !== '') localValue = setLayers(localValue, 1, '{', '}')
@@ -342,7 +377,7 @@ export function applyTagWeightNum(tag: IPromptTag, weightNum: number | string, o
 	}
 	else
 	{
-		if (options.autoKeepWeightZero)
+		if (autoKeepWeightZero)
 		{
 			/** 保留權重數字 */
 			tag.value = value.replace(weightNumRegex, '$1:0')
@@ -367,13 +402,15 @@ export function applyTagWeightNum(tag: IPromptTag, weightNum: number | string, o
  * @param num     - 加權層數增量（負值不低於 0）
  * @param options - 宿主選項（useNovelAiWeightSymbol 決定以 `{}` 或 `()` 加權）
  */
-export function applyTagIncWeight(tag: IPromptTag, num: number, options: IHostPromptOptions = {}): void
+export function applyTagIncWeight(tag: IPromptTag, num: number, options?: IHostPromptOptions): void
 {
+	const useNovelAiWeightSymbol = options?.useNovelAiWeightSymbol
+
 	let value = tag.value
 	let localValue = tag.localValue!
 	value = setLayers(value, 0, '[', ']')
 	if (localValue !== '') localValue = setLayers(localValue, 0, '[', ']')
-	if (options.useNovelAiWeightSymbol)
+	if (useNovelAiWeightSymbol)
 	{
 		value = setLayers(value, 0, '(', ')')
 		if (localValue !== '') localValue = setLayers(localValue, 0, '(', ')')
@@ -383,7 +420,7 @@ export function applyTagIncWeight(tag: IPromptTag, num: number, options: IHostPr
 	if (incWeight < 0) incWeight = 0
 	tag.incWeight = incWeight
 	tag.decWeight = 0
-	if (options.useNovelAiWeightSymbol)
+	if (useNovelAiWeightSymbol)
 	{
 		value = setLayers(value, incWeight, '{', '}')
 		if (localValue !== '') localValue = setLayers(localValue, incWeight, '{', '}')
@@ -406,13 +443,13 @@ export function applyTagIncWeight(tag: IPromptTag, num: number, options: IHostPr
  * @param num     - 減權層數增量（負值不低於 0）
  * @param options - 宿主選項（useNovelAiWeightSymbol 決定先剝哪一組加權括號）
  */
-export function applyTagDecWeight(tag: IPromptTag, num: number, options: IHostPromptOptions = {}): void
+export function applyTagDecWeight(tag: IPromptTag, num: number, options?: IHostPromptOptions): void
 {
 	let value = tag.value
 	let localValue = tag.localValue!
 	value = setLayers(value, 0, '(', ')')
 	if (localValue !== '') localValue = setLayers(localValue, 0, '(', ')')
-	if (options.useNovelAiWeightSymbol)
+	if (options?.useNovelAiWeightSymbol)
 	{
 		value = setLayers(value, 0, '{', '}')
 		if (localValue !== '') localValue = setLayers(localValue, 0, '{', '}')

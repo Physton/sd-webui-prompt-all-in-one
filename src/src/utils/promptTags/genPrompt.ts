@@ -17,7 +17,7 @@
  */
 
 import common from '../common'
-import { weightNumRegex } from './util/tag-weight'
+import { applyTagWeightNumToValue } from './util/tag-weight'
 import {
     findTagUntil,
     getLoraLikeName,
@@ -267,19 +267,8 @@ export function genPromptCore(
                 tag.localValue = localValue
             }
 
-            /**
-             * 權重數值改寫：原式為 `tag.weightNum > 0 || tag.weightNum < 0`，
-             * 因 tag.weightNum 型別為 number|string，先以 Number() 統一再比較，
-             * 與 JS 關係運算子的隱含轉換結果完全一致。
-             */
-            const weightNum = Number(tag.weightNum)
-            if (weightNum > 0 || weightNum < 0) {
-                tag.weightNum = Number(parseFloat(String(weightNum)).toFixed(6))
-                tag.value = tag.value.replace(weightNumRegex, '$1:' + tag.weightNum)
-                if (tag.localValue !== '') {
-                    tag.localValue = tag.localValue.replace(weightNumRegex, '$1:' + tag.weightNum)
-                }
-            }
+            /** 權重數值改寫（正規化到小數 6 位並回寫 value） */
+            applyTagWeightNumToValue(tag)
             if (tag.disabled && !ignoreDisabled) return
 
             /**
