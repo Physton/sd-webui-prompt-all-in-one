@@ -93,9 +93,19 @@ function createLineState(): IPeriodLineState {
  *   splitByPeriod("a;;; b", { splitSemicolon: true })
  *   // → ["a;;;", "b"]       （連續分號全數保留，不縮減）
  */
-export function splitByPeriod(str: unknown, options?: IHostPromptOptions): IPromptTagValue[] {
+export function splitByPeriodPart(str: unknown, options?: IHostPromptOptions): IPromptTagValue[] {
     if (typeof str !== 'string') return [String(str)]
-    return walk(str, options || {}, true)
+    return walkSplitByPeriod(str, options || {}, true)
+}
+
+export function splitByPeriod(str: unknown, options?: IHostPromptOptions): IPromptTagValue[] {
+    const ret = splitByPeriodPart(str, options)
+    /**
+     * TODO: 將 {@link splitByPeriodPart} 重構為回傳 {@link I_SplitByPart[]} 對齊 {@link splitByPart} 的新格式
+     * 然後使用 {@link _splitPromptPartsToStringList} 將其轉換為 {@link IPromptTagValue[]} 來相容於既有測試的舊格式
+     */
+    // return _splitPromptPartsToStringList(ret)
+    return ret
 }
 
 /**
@@ -108,7 +118,7 @@ export function splitByPeriod(str: unknown, options?: IHostPromptOptions): IProm
  *   以 false 重走——忽略該單引號，重新套用句號／分號／分行／括號規則。
  *   未關閉雙引號不觸發重走（保持保護到結尾）。
  */
-function walk(str: string, options: IHostPromptOptions, allowSingleQuote: boolean): IPromptTagValue[] {
+function walkSplitByPeriod(str: string, options: IHostPromptOptions, allowSingleQuote: boolean): IPromptTagValue[] {
 
     const len = str.length
     const parts: IPromptTagValue[] = []
@@ -226,7 +236,7 @@ function walk(str: string, options: IHostPromptOptions, allowSingleQuote: boolea
      *（與 splitTags pushSegment 同規則；重走時單引號不再開啟，不會遞迴）。
      */
     if (allowSingleQuote && lineState.quoteChar === EnumPromptQuoteChar.single) {
-        return walk(str, options, false)
+        return walkSplitByPeriod(str, options, false)
     }
 
     /**
