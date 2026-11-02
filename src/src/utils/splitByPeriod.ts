@@ -60,10 +60,12 @@ function createLineState(): IPeriodLineState {
  *   - 未關閉的單引號（如所有格 orks'）在收尾時會被忽略並以 allowSingleQuote=false
  *     重走整段，重新套用句號／分號／分行／括號規則（與 splitTags pushSegment 同規則）；
  *     未關閉雙引號則保持保護到結尾。
+ *   - 實作拆分：splitByPeriodPart() 回傳 I_SplitByPart[] 段落結構，
+ *     本函式以 _splitPromptPartsToStringList 轉回字串陣列，維持既有呼叫端與測試的舊格式。
  *
  * @param str - 要切割的原始字串。非字串時以 String() 轉換為單一元素陣列回傳（防禦 js 呼叫端）。
  * @param [options] - 切割選項。
- * @returns {IPromptTagValue[]} 切割後的片段陣列。若無可切割點則回傳包含完整字串的單元素陣列。
+ * @returns 切割後的片段陣列。若無可切割點則回傳包含完整字串的單元素陣列。
  *
  * @example
  *   splitByPeriod("xxx. (111. 222)", { includeParen: true })
@@ -93,19 +95,25 @@ function createLineState(): IPeriodLineState {
  *   splitByPeriod("a;;; b", { splitSemicolon: true })
  *   // → ["a;;;", "b"]       （連續分號全數保留，不縮減）
  */
-export function splitByPeriodPart(str: unknown, options?: IHostPromptOptions): IPromptTagValue[] {
-    if (typeof str !== 'string') return [String(str)]
-    return walkSplitByPeriod(str, options || {}, true)
-}
-
 export function splitByPeriod(str: unknown, options?: IHostPromptOptions): IPromptTagValue[] {
     const ret = splitByPeriodPart(str, options)
-    /**
-     * TODO: 將 {@link splitByPeriodPart} 重構為回傳 {@link I_SplitByPart[]} 對齊 {@link splitByPart} 的新格式
-     * 然後使用 {@link _splitPromptPartsToStringList} 將其轉換為 {@link IPromptTagValue[]} 來相容於既有測試的舊格式
-     */
-    // return _splitPromptPartsToStringList(ret)
-    return ret
+    return _splitPromptPartsToStringList(ret)
+}
+
+/**
+ * 以句號 "." 為分隔符切割字串，回傳段落結構 {@link I_SplitByPart}[]（與 splitByPart 同格式）。
+ *
+ * 切割算法、防護規則與範例見 {@link splitByPeriod}——兩者共用 walkSplitByPeriod 核心，
+ * 僅回傳格式不同：本函式回傳段落結構，splitByPeriod() 以
+ * {@link _splitPromptPartsToStringList} 轉回字串陣列以相容舊格式。
+ *
+ * @param str - 要切割的原始字串。非字串時以 String() 轉換為單一段落回傳（防禦 js 呼叫端）。
+ * @param [options] - 切割選項。
+ * @returns 切割後的段落陣列。若無可切割點則回傳包含完整字串的單一段落。
+ */
+export function splitByPeriodPart(str: unknown, options?: IHostPromptOptions): I_SplitByPart[] {
+    if (typeof str !== 'string') return [{ value: String(str) }]
+    return walkSplitByPeriod(str, options || {}, true)
 }
 
 /**
@@ -117,11 +125,12 @@ export function splitByPeriod(str: unknown, options?: IHostPromptOptions): IProm
  *   主呼叫為 true；若收尾時單引號仍未關閉（false positive，如所有格 orks'），
  *   以 false 重走——忽略該單引號，重新套用句號／分號／分行／括號規則。
  *   未關閉雙引號不觸發重走（保持保護到結尾）。
+ * @returns {I_SplitByPart[]} 切割後的段落陣列（value 為段落文字）。
  */
-function walkSplitByPeriod(str: string, options: IHostPromptOptions, allowSingleQuote: boolean): IPromptTagValue[] {
+function walkSplitByPeriod(str: string, options: IHostPromptOptions, allowSingleQuote: boolean): I_SplitByPart[] {
 
     const len = str.length
-    const parts: IPromptTagValue[] = []
+    const parts: I_SplitByPart[] = []
     /**
      * 行級 runtime 狀態：所有「僅作用於當前行」的變數集中於此。
      * 分行時由 splitAtNewline() 呼叫 lineState.reset() 一併重置。
@@ -140,8 +149,8 @@ function walkSplitByPeriod(str: string, options: IHostPromptOptions, allowSingle
      */
     function splitAtNewline(ci: number): void {
         const seg = str.substring(start, ci)
-        if (seg !== '') parts.push(seg)
-        parts.push(EnumPromptSplitMarker.newline)
+        if (seg !== '') parts.push({ value: seg })
+        parts.push({ value: EnumPromptSplitMarker.newline })
         start = ci + 1
         lineState.reset()
     }
@@ -223,7 +232,7 @@ function walkSplitByPeriod(str: string, options: IHostPromptOptions, allowSingle
                 }
 
                 /** 執行切割：保留句號在前一段末尾 */
-                parts.push(str.substring(start, ci + 1))
+                parts.push({ value: str.substring(start, ci + 1) })
                 start = nextStart
                 /** 迴圈指標跳至空白後的字元前一位 */
                 ci = nextStart - 1
@@ -245,8 +254,8 @@ function walkSplitByPeriod(str: string, options: IHostPromptOptions, allowSingle
      *（如輸入 "\n" → ["\n"]，保證 splitTags 標記直通）。
      */
     const tail = str.substring(start)
-    if (tail !== '' || parts.length === 0 || parts[parts.length - 1] !== EnumPromptSplitMarker.newline) {
-        parts.push(tail)
+    if (tail !== '' || parts.length === 0 || parts[parts.length - 1].value !== EnumPromptSplitMarker.newline) {
+        parts.push({ value: tail })
     }
 
     return parts
