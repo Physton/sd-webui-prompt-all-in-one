@@ -1,5 +1,6 @@
 import { EnumPromptTagType, IPromptTag, IPromptTagValue } from './promptTags/tag-types'
 import { IHostPromptOptions } from './promptTags/types'
+import { _replaceKeywordToPlainCore, reKeywordBoundary, reKeywordDelimiter, replaceKeywordToPlain } from './promptTags/util/tag-keyword'
 import {
     EnumPromptBracketClose,
     EnumPromptQuoteChar,
@@ -380,34 +381,6 @@ function walkSplitByPeriod(str: string, options: IHostPromptOptions, allowSingle
  */
 type I_SplitByPart = Pick<IPromptTag, 'value' | 'isKeyword' | 'noCommaBefore' | 'noCommaAfter'>
 
-/** AND 邊界字元：前後不得為詞字元（[A-Za-z0-9_]），避免內嵌詞誤切割。 */
-const reKeywordBoundary = /[A-Za-z0-9_]/
-
-/** AND 相鄰可吃掉的分隔字元：空白與逗號（逗號有無決定 noComma* 標記）。 */
-const reKeywordDelimiter = /[ \t,]/
-
-/**
- * 特定關鍵字 → 普通提示詞的值對應表（選項 autoKeywordToPlain 啟用時套用）。
- * 目前僅 AND：改寫為 "And" 後失去全大寫形式，下游即不再以關鍵字語意處理。
- */
-const keywordPlainValues: Readonly<Partial<Record<string, string>>> = {
-    [EnumPromptTagType.VALUE_KEYWORD_AND]: 'And',
-}
-
-/**
- * 依 autoKeywordToPlain 選項將關鍵字值轉為普通提示詞（如 AND → And）。
- * 未啟用選項、或值不在對應表內時原樣回傳——只改變值，
- * isKeyword / noCommaBefore / noCommaAfter 等機制完全不受影響。
- *
- * @param value - 待檢查的關鍵字值
- * @param options - 切割選項（讀取 autoKeywordToPlain）
- * @returns 轉換後的普通提示詞值，或原樣回傳
- */
-export function toPlainKeywordValue(value: IPromptTagValue, options: IHostPromptOptions): IPromptTagValue {
-    if (!options.autoKeywordToPlain) return value
-    return keywordPlainValues[String(value)] ?? value
-}
-
 /**
  * 以全大寫關鍵字 "AND" 為分隔符切割字串，AND 獨立成段。
  *
@@ -484,7 +457,7 @@ const andWalkStrategy: I_SplitWalkStrategy = {
          * isKeyword 與 noComma* 仍依原始關鍵字的相鄰逗號判定，機制不變。
          */
         const part: I_SplitByPart = {
-            value: toPlainKeywordValue(EnumPromptTagType.VALUE_KEYWORD_AND, ctx.options),
+            value: replaceKeywordToPlain(EnumPromptTagType.VALUE_KEYWORD_AND, ctx.options),
             isKeyword: true,
         }
         if (hasContentBefore && !beforeRegion.includes(',')) part.noCommaBefore = true

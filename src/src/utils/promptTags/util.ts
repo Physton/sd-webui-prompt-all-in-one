@@ -98,17 +98,22 @@ export function tagIsExtraNetworks(tag?: IPromptTag): tag is IPromptTag & (ITSAn
  *
  * @param item - 要判定的 tag
  */
-export function tagIsSharp(item?: IPromptTag): item is IPromptTag & { value: EnumPromptTagType.VALUE_SHARP }
+export function tagIsSharp(tag?: IPromptTag): tag is IPromptTag & { value: EnumPromptTagType.VALUE_SHARP }
 {
-	return item?.value?.trim() === EnumPromptTagType.VALUE_SHARP
+	return tag?.value?.trim() === EnumPromptTagType.VALUE_SHARP
 }
 
-export function tagIsWrapWeight(item?: IPromptTag): item is IPromptTag & {
+export function tagIsWrapWeight(tag?: IPromptTag): tag is IPromptTag & {
 	incWeight: number;
 	decWeight: number;
 }
 {
-	return item?.incWeight > 0 || item?.decWeight > 0
+	return tag?.incWeight > 0 || tag?.decWeight > 0
+}
+
+export function tagIsNormalText(tag?: IPromptTag): tag is IPromptTag & { type: EnumPromptTagType.text }
+{
+	return tag?.type === EnumPromptTagType.text
 }
 
 /**

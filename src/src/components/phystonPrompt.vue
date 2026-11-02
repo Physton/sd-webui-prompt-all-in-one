@@ -597,12 +597,13 @@ import GroupTagsMixin from "@/mixins/phystonPrompt/groupTagsMixin"
 import IconSvg from "@/components/iconSvg.vue"
 import HighlightPrompt from "@/components/highlightPrompt.vue"
 import { ColorPicker } from "vue3-colorpicker"
-import { splitPromptParts, toPlainKeywordValue } from "@/utils/splitByPeriod"
+import { splitPromptParts } from "@/utils/splitByPeriod"
 import { getPromptOptionEmits, getPromptOptionProps } from "@/utils/promptOptions"
 import { tagIsBreak, tagIsLoraLike, tagIsWrap, tagIsKeyword } from "@/utils/promptTags/util"
 import { genPromptCore } from "@/utils/promptTags/genPrompt"
 import { updatePromptCore } from "@/utils/promptTags/updatePrompt"
 import { setPromptTextareaValueAndDispatchEvent } from "@/utils/promptTextarea"
+import { applyTagReplaceKeywordToPlain } from "@/utils/promptTags/util/tag-keyword"
 
 export default {
     name: 'PhystonPrompt',
@@ -1187,9 +1188,7 @@ export default {
                          * 與其餘機制完全不動；改值後補上 isKeyword 旗標，
                          * 維持後續重跑的關鍵字識別（值已非全大寫，value 比對不再成立）。
                          */
-                        const plainValue = toPlainKeywordValue(tag.value, this)
-                        if (plainValue !== tag.value) {
-                            tag.value = plainValue
+                        if (applyTagReplaceKeywordToPlain(tag, this).changed) {
                             tag.isKeyword = true
                         }
                         // 保留 noCommaBefore / noCommaAfter

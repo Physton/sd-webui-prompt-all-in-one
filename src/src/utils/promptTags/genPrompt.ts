@@ -31,6 +31,7 @@ import {
 import { IPromptOptionValueRecordWithLegacy } from '../promptOptions/definitions'
 import { IHostPromptOptions } from './types'
 import { IPromptTag } from './tag-types'
+import { applyTagReplaceKeywordToPlain } from './util/tag-keyword'
 
 /**
  * 副作用掛鉤：宿主（Vue 元件）注入的行為。
@@ -362,15 +363,18 @@ export function genPromptCore(
                 splitSymbol = (options.autoRemoveSpace ? '' : ' ')
             }
 
-            // autoSplitByPeriod：若此 tag 是分割產生的中間段且原始 tag 無逗號，則移除逗號
-            if (options.autoSplitByPeriod && tag.noCommaAfter && splitSymbol.includes(',')) {
-                splitSymbol = splitSymbol.replace(/,/g, '')
+            if (true || options.autoSplitByPeriod) {
+                // autoSplitByPeriod：若此 tag 是分割產生的中間段且原始 tag 無逗號，則移除逗號
+                if (tag.noCommaAfter && splitSymbol.includes(',')) {
+                    splitSymbol = splitSymbol.replace(/,/g, '')
+                }
+                // AND 關鍵字切割：若下一個 tag 是 AND 且其前方原始無逗號，則移除當前 tag 後的逗號
+                else if (nextTag && nextTag.noCommaBefore && splitSymbol.includes(',')) {
+                    splitSymbol = splitSymbol.replace(/,/g, '')
+                }
             }
 
-            // AND 關鍵字切割：若下一個 tag 是 AND 且其前方原始無逗號，則移除當前 tag 後的逗號
-            if (options.autoSplitByPeriod && nextTag && nextTag.noCommaBefore && splitSymbol.includes(',')) {
-                splitSymbol = splitSymbol.replace(/,/g, '')
-            }
+            applyTagReplaceKeywordToPlain(tag, options)
 
             prompt = tag.value + splitSymbol
 

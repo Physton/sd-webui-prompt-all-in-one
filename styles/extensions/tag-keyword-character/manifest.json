@@ -1,8 +1,8 @@
 {
   "name": "Colorize Tag Keyword Character",
   "i18n": {
-    "zh_CN": "强调关键词",
-    "zh_HK": "強調關鍵詞",
+    "zh_CN": "强调提示词运算子／Composable Diffusion 等关键字",
+    "zh_HK": "強調提示詞運算子／Composable Diffusion 等關鍵字",
     "zh_TW": "強調提示詞運算子／Composable Diffusion 等關鍵字"
   },
   "author": "bluelovers",
