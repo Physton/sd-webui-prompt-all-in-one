@@ -11,7 +11,11 @@ export const enum EnumPromptTagType
 	/* =============== */
 
 	/** when value is "BREAK" */
-	VALUE_BREAK = 'BREAK',
+	VALUE_KEYWORD_BREAK = 'BREAK',
+
+	/** when value is "AND" (standalone uppercase) */
+	VALUE_KEYWORD_AND = 'AND',
+
 	/** when value is "#" */
 	VALUE_SHARP = '#',
 
@@ -45,16 +49,19 @@ export type IPromptTagValueRuntimeInput<T extends IPromptTagValue = IPromptTagVa
  */
 export interface IPromptTagRuntimeExtraProps
 {
+	/** 是否為關鍵字（全大寫、獨立詞） */
+  isKeyword?: boolean
+
 	/**
 	 * Whether to remove the comma after this tag when splitting by period.
 	 */
-	splitNoCommaAfter?: boolean;
+	noCommaAfter?: boolean;
 	/**
 	 * Whether to remove the comma before this tag when splitting the standalone
 	 * uppercase AND keyword. Only set on tags produced by the AND split; the
 	 * comma between the previous tag and an AND tag is controlled by this flag.
 	 */
-	splitNoCommaBefore?: boolean;
+	noCommaBefore?: boolean;
 }
 
 export interface IPromptTagRuntimeProps

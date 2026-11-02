@@ -21,7 +21,7 @@ export function _t_createTag_wrap(props?: ITestPromptTagProps): IPromptTag {
 }
 
 export function _t_createTag_brk(props?: ITestPromptTagProps): IPromptTag {
-	return _t_createTag_core(EnumPromptTagType.text, EnumPromptTagType.VALUE_BREAK, props)
+	return _t_createTag_core(EnumPromptTagType.text, EnumPromptTagType.VALUE_KEYWORD_BREAK, props)
 }
 
 /** Lora 標籤（tagIsLoraLike 以 isLora / isLyco 判定）。 */

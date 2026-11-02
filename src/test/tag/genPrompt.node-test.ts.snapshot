@@ -544,13 +544,13 @@ exports[`genPrompt > genPrompt cases > autoRemoveSpace — 分割符號不含空
 }
 `;
 
-exports[`genPrompt > genPrompt cases > autoSplitByPeriod — 已標記 splitNoCommaAfter 的中間段不加逗號 (false, {autoSplitByPeriod: true}) 1`] = `
+exports[`genPrompt > genPrompt cases > autoSplitByPeriod — 已標記 noCommaAfter 的中間段不加逗號 (false, {autoSplitByPeriod: true}) 1`] = `
 {
   "input": [
     {
       "type": "text",
       "value": "a",
-      "splitNoCommaAfter": true
+      "noCommaAfter": true
     },
     {
       "type": "text",

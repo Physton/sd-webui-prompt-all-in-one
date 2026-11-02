@@ -163,7 +163,7 @@ const _promptOptions = [
         emittedBy: [EnumPromptOptionComponent.promptFormat],
         /** 無 parentKey：獨立頂層選項（不再屬於 autoSplitByPeriod 子選項），不縮排 */
         checkUi: {labelLangKey: 'is_auto_optimize_split_symbol'},
-        note: '自動優化分割符號（獨立選項，不再屬於 autoSplitByPeriod 子選項）。其分行前條件（「:」結尾 / 該行含 # tag / 分行前為 Lora）在 genPrompt() 輸出層直接判定，並影響 splitNoCommaAfter 標記，因此需同時 applySplitByPeriod() 與 updatePrompt()。',
+        note: '自動優化分割符號（獨立選項，不再屬於 autoSplitByPeriod 子選項）。其分行前條件（「:」結尾 / 該行含 # tag / 分行前為 Lora）在 genPrompt() 輸出層直接判定，並影響 noCommaAfter 標記，因此需同時 applySplitByPeriod() 與 updatePrompt()。',
     },
     {
         key: 'allowKeepEmptyLine',

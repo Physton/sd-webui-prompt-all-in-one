@@ -15,7 +15,7 @@ import {
     semicolonCases,
     whitespaceCases,
 } from './fixture/data-splitByPeriod';
-import { splitByPeriod } from '../src/utils/splitByPeriod'
+import { splitByPeriod } from '#/src/utils/splitByPeriod'
 
 /* ====================================================================
  *  執行測試

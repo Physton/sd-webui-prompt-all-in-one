@@ -32,8 +32,8 @@ export default {
      * 新增自訂屬性時只需在此陣列追加
      */
     RESTOREABLE_PROPERTIES: [
-        'splitNoCommaAfter',
-        'splitNoCommaBefore',
+        'noCommaAfter',
+        'noCommaBefore',
     ],
     methods: {
         _setTag(tag) {

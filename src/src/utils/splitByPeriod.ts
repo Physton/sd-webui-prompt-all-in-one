@@ -1,4 +1,4 @@
-import { IPromptTagValue } from './promptTags/tag-types'
+import { EnumPromptTagType, IPromptTag, IPromptTagValue } from './promptTags/tag-types'
 import { IHostPromptOptions } from './promptTags/types'
 import {
     EnumPromptBracketClose,
@@ -250,41 +250,15 @@ function walk(str: string, includeParen: boolean | undefined, splitSemicolon: bo
  * 與 splitByPeriod 的純字串結果不同：AND 段落需額外携带
  * 「原始字串中 AND 相鄰兩側是否存在逗號」的資訊，
  * 由呼叫端（applySplitByPeriod）轉換為 tag 上的
- * splitNoCommaBefore / splitNoCommaAfter 標記。
+ * noCommaBefore / noCommaAfter 標記。
  */
-export interface ISplitByAndPart {
-    /** 段落文字；isAnd=true 時恆為 "AND" */
-    value: IPromptTagValue
-    /** 此段是否為 AND 關鍵字（全大寫、獨立詞、不在引號 / 括號內） */
-    isAnd?: boolean
-    /** AND 之前的同一字串相鄰處沒有逗號（僅在前方有內容時才標記） */
-    noCommaBefore?: boolean
-    /** AND 之後的同一字串相鄰處沒有逗號（僅在後方有內容時才標記） */
-    noCommaAfter?: boolean
-}
-
-/** AND 關鍵字（僅全小寫以外的全大寫形式；ANDROID、BRAND 等內嵌詞不切割）。 */
-const PROMPT_AND_KEYWORD = 'AND'
+type I_SplitByPart = Pick<IPromptTag, 'value' | 'isKeyword' | 'noCommaBefore' | 'noCommaAfter'>
 
 /** AND 邊界字元：前後不得為詞字元（[A-Za-z0-9_]），避免內嵌詞誤切割。 */
-const reAndBoundary = /[A-Za-z0-9_]/
+const reKeywordBoundary = /[A-Za-z0-9_]/
 
 /** AND 相鄰可吃掉的分隔字元：空白與逗號（逗號有無決定 noComma* 標記）。 */
-const reAndDelimiter = /[ \t,]/
-
-/**
- * 判斷文字是否為 AND 關鍵字段落。
- *
- * 供呼叫端區分「切割產生的 AND tag」與一般文字：
- * AND tag 的 splitNoComma* 標記由切割時的相鄰逗號決定，
- * 重跑分割時必須保留，不可套用句號機制的過期清理規則。
- *
- * @param {unknown} value - 待檢查的 tag value
- * @returns {boolean} 是否為獨立的 "AND" 關鍵字
- */
-export function isSplitByAndKeyword(value: unknown): boolean {
-    return typeof value === 'string' && /^AND$/.test(value.trim())
-}
+const reKeywordDelimiter = /[ \t,]/
 
 /**
  * 以全大寫關鍵字 "AND" 為分隔符切割字串，AND 獨立成段。
@@ -307,7 +281,7 @@ export function isSplitByAndKeyword(value: unknown): boolean {
  * 隔離成獨立段落後再逐段呼叫（見 splitPromptParts）。
  *
  * @param {unknown} str - 要切割的原始字串。非字串時以單段落結構回傳。
- * @returns {ISplitByAndPart[]} 段落陣列；無 AND 時回傳單段（value 為原字串）。
+ * @returns {I_SplitByPart[]} 段落陣列；無 AND 時回傳單段（value 為原字串）。
  *
  * @example
  *   splitByAnd("a AND b")   // → [{a}, {AND, noCommaBefore, noCommaAfter}, {b}]
@@ -316,10 +290,10 @@ export function isSplitByAndKeyword(value: unknown): boolean {
  *   splitByAnd("ANDROID b") // → [{ANDROID b}]（內嵌詞，不切割）
  *   splitByAnd("(a AND b)") // → [{(a AND b)}]（括號內不切割）
  */
-export function splitByAnd(str: unknown): ISplitByAndPart[] {
+export function splitByPart(str: unknown, options?: IHostPromptOptions): I_SplitByPart[] {
     if (typeof str !== 'string') return [{ value: String(str) }]
     if (str === '') return [{ value: '' }]
-    return walkByAnd(str, true)
+    return walkSplitByPart(str, options, true)
 }
 
 /**
@@ -329,11 +303,11 @@ export function splitByAnd(str: unknown): ISplitByAndPart[] {
  * @param {boolean} allowSingleQuote - 是否允許單引號開啟引號。
  *   主呼叫為 true；若收尾時單引號仍未關閉，以 false 重走——
  *   單引號視為一般字元，AND 照常切割（不會再遞迴）。
- * @returns {ISplitByAndPart[]}
+ * @returns {I_SplitByPart[]}
  */
-function walkByAnd(str: string, allowSingleQuote: boolean): ISplitByAndPart[] {
+function walkSplitByPart(str: string, options: IHostPromptOptions, allowSingleQuote: boolean): I_SplitByPart[] {
     const len = str.length
-    const parts: ISplitByAndPart[] = []
+    const parts: I_SplitByPart[] = []
     let start = 0
     /** 目前開啟的引號字元（null = 不在引號內；不跨呼叫保留） */
     let quoteChar: EnumPromptQuoteChar | null = null
@@ -379,27 +353,27 @@ function walkByAnd(str: string, allowSingleQuote: boolean): ISplitByAndPart[] {
 
         /** ── AND 關鍵字：全大寫、獨立詞、且不在引號 / 括號內 ── */
         if (parenStack.length !== 0) continue
-        if (!str.startsWith(PROMPT_AND_KEYWORD, ci)) continue
+        if (!str.startsWith(EnumPromptTagType.VALUE_KEYWORD_AND, ci)) continue
 
-        const kwEnd = ci + PROMPT_AND_KEYWORD.length
+        const kwEnd = ci + EnumPromptTagType.VALUE_KEYWORD_AND.length
         const prevChar = ci > 0 ? str[ci - 1] : ''
         const nextChar = kwEnd < len ? str[kwEnd] : ''
-        if (ci > 0 && reAndBoundary.test(prevChar)) continue
-        if (nextChar !== '' && reAndBoundary.test(nextChar)) continue
+        if (ci > 0 && reKeywordBoundary.test(prevChar)) continue
+        if (nextChar !== '' && reKeywordBoundary.test(nextChar)) continue
 
         /** 向後吃掉分隔（空白 / 逗號）：逗號有無決定 noCommaBefore */
         let b = ci
-        while (b > start && reAndDelimiter.test(str[b - 1])) b--
+        while (b > start && reKeywordDelimiter.test(str[b - 1])) b--
         const beforeRegion = str.substring(b, ci)
         const hasContentBefore = b > start
 
         /** 向前吃掉分隔（空白 / 逗號）：逗號有無決定 noCommaAfter */
         let f = kwEnd
-        while (f < len && reAndDelimiter.test(str[f])) f++
+        while (f < len && reKeywordDelimiter.test(str[f])) f++
         const afterRegion = str.substring(kwEnd, f)
         const hasContentAfter = f < len
 
-        const part: ISplitByAndPart = { value: PROMPT_AND_KEYWORD, isAnd: true }
+        const part: I_SplitByPart = { value: EnumPromptTagType.VALUE_KEYWORD_AND, isKeyword: true }
         if (hasContentBefore && !beforeRegion.includes(',')) part.noCommaBefore = true
         if (hasContentAfter && !afterRegion.includes(',')) part.noCommaAfter = true
 
@@ -415,7 +389,7 @@ function walkByAnd(str: string, allowSingleQuote: boolean): ISplitByAndPart[] {
      *（與 walk() 同規則；重走時單引號不再開啟，不會遞迴）。
      */
     if (allowSingleQuote && quoteChar === EnumPromptQuoteChar.single) {
-        return walkByAnd(str, false)
+        return walkSplitByPart(str, options, false)
     }
 
     /** 收尾：AND 之後的剩餘字串（AND 在結尾時 start 已推進至 len，不產生空段） */
@@ -433,14 +407,16 @@ function walkByAnd(str: string, allowSingleQuote: boolean): ISplitByAndPart[] {
  *
  * @param {unknown} str - 原始字串
  * @param {IHostPromptOptions} [options] - 切割選項（傳給 splitByPeriod）
- * @returns {ISplitByAndPart[]} 段落陣列（含 AND 相鄰逗號資訊）；無切割點時為單段
+ * @returns {I_SplitByPart[]} 段落陣列（含 AND 相鄰逗號資訊）；無切割點時為單段
  */
-export function splitPromptParts(str: unknown, options: IHostPromptOptions = {}): ISplitByAndPart[] {
-    const parts: ISplitByAndPart[] = []
+export function splitPromptParts(str: unknown, options: IHostPromptOptions = {}): I_SplitByPart[] {
+    const parts: I_SplitByPart[] = []
     splitByPeriod(str, options).forEach(seg => {
-        splitByAnd(seg).forEach(part => parts.push(part))
+        splitByPart(seg, options).forEach(part => parts.push(part))
     })
     return parts
 }
 
-export default splitByPeriod
+export function _splitPromptPartsToStringList(parts: I_SplitByPart[]): IPromptTagValue[] {
+    return parts.map(part => part.value)
+}

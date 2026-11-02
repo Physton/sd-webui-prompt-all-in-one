@@ -363,12 +363,12 @@ export function genPromptCore(
             }
 
             // autoSplitByPeriod：若此 tag 是分割產生的中間段且原始 tag 無逗號，則移除逗號
-            if (options.autoSplitByPeriod && tag.splitNoCommaAfter && splitSymbol.includes(',')) {
+            if (options.autoSplitByPeriod && tag.noCommaAfter && splitSymbol.includes(',')) {
                 splitSymbol = splitSymbol.replace(/,/g, '')
             }
 
             // AND 關鍵字切割：若下一個 tag 是 AND 且其前方原始無逗號，則移除當前 tag 後的逗號
-            if (options.autoSplitByPeriod && nextTag && nextTag.splitNoCommaBefore && splitSymbol.includes(',')) {
+            if (options.autoSplitByPeriod && nextTag && nextTag.noCommaBefore && splitSymbol.includes(',')) {
                 splitSymbol = splitSymbol.replace(/,/g, '')
             }
 

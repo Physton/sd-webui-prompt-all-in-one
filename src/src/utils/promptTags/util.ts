@@ -40,9 +40,21 @@ export function tagIsWrap(tag?: IPromptTag): tag is IPromptTag & { type: EnumPro
  *
  * @param tag - 要判定的 tag
  */
-export function tagIsBreak(tag?: IPromptTag): tag is IPromptTag & { value: EnumPromptTagType.VALUE_BREAK }
+export function tagIsBreak(tag?: IPromptTag): tag is IPromptTag & { value: EnumPromptTagType.VALUE_KEYWORD_BREAK }
 {
-	return tag?.value?.trim() === EnumPromptTagType.VALUE_BREAK
+	return tag?.value?.trim() === EnumPromptTagType.VALUE_KEYWORD_BREAK
+}
+
+/**
+ * 是否為 AND keyword tag —— 以 trim 後的 value 比對 VALUE_KEYWORD_AND，
+ * 故 value 兩端空白不影響判定；AND 本身是 text 類型的普通 tag。
+ *
+ * @param tag - 要判定的 tag
+ */
+export function tagIsKeyword(tag?: IPromptTag): tag is IPromptTag & { value: EnumPromptTagType.VALUE_KEYWORD_AND }
+{
+	const value = tag?.value?.trim()
+	return tag?.isKeyword || value === EnumPromptTagType.VALUE_KEYWORD_AND
 }
 
 /**

@@ -597,9 +597,9 @@ import GroupTagsMixin from "@/mixins/phystonPrompt/groupTagsMixin"
 import IconSvg from "@/components/iconSvg.vue"
 import HighlightPrompt from "@/components/highlightPrompt.vue"
 import { ColorPicker } from "vue3-colorpicker"
-import { splitPromptParts, isSplitByAndKeyword } from "@/utils/splitByPeriod"
+import { splitPromptParts } from "@/utils/splitByPeriod"
 import { getPromptOptionEmits, getPromptOptionProps } from "@/utils/promptOptions"
-import { tagIsBreak, tagIsLoraLike, tagIsWrap } from "@/utils/promptTags/util"
+import { tagIsBreak, tagIsLoraLike, tagIsWrap, tagIsKeyword } from "@/utils/promptTags/util"
 import { genPromptCore } from "@/utils/promptTags/genPrompt"
 import { updatePromptCore } from "@/utils/promptTags/updatePrompt"
 import { setPromptTextareaValueAndDispatchEvent } from "@/utils/promptTextarea"
@@ -1042,7 +1042,7 @@ export default {
          * 註：選項已更名為「自動優化分割符號」並成為獨立選項（不再屬於 autoSplitByPeriod 子選項）。
          *     其新增的分行前條件（「:」結尾 / 該行含 # tag / 分行前為 Lora）
          *     於 genPrompt() 的 _shouldRemoveCommaBeforeWrap() 在輸出層判定，不經過此方法，
-         *     因此不依賴 autoSplitByPeriod；此方法僅負責拆分流程的 splitNoCommaAfter 標記。
+         *     因此不依賴 autoSplitByPeriod；此方法僅負責拆分流程的 noCommaAfter 標記。
          *
          * @param {object}      tag     - 當前標籤（用於檢查 value 是否以句號結尾）
          * @param {object|null} nextTag - 下一個標籤，由呼叫端負責提供（null 時直接回傳不移除）
@@ -1086,10 +1086,10 @@ export default {
          *   - 巢狀括號防護：stack 追蹤括號配對，僅在所有括號已關閉的位置切割
          *   - 邊界驗證：第一段與最後一段不得為空（排除開頭句號、結尾句號、僅句號空白的情境）
          *   - AND 關鍵字：全大寫 AND 獨立成段，依原始相鄰逗號設定
-         *     splitNoCommaBefore / splitNoCommaAfter（見 splitPromptParts）
+         *     noCommaBefore / splitNoCommaAfter（見 splitPromptParts）
          *   - splitNoComma：中間段永遠不加逗號；最後一段繼承原 tag 的 comma 行為
-         *   - else 分支同時負責清除 history 載入時 `_restoreTagProperties` 還原的過期 splitNoCommaAfter
-         *     （tag.value 已不含句號卻仍帶有 splitNoCommaAfter 時，表示 prompt 結構已變動）
+         *   - else 分支同時負責清除 history 載入時 `_restoreTagProperties` 還原的過期 noCommaAfter
+         *     （tag.value 已不含句號卻仍帶有 noCommaAfter 時，表示 prompt 結構已變動）
          */
         applySplitByPeriod() {
             if (!this.autoSplitByPeriod) return
@@ -1132,33 +1132,33 @@ export default {
                          * 字串邊界（開頭 / 結尾）不標記對應的 noComma*，
                          * 以保留跨 tag 的預設逗號行為。
                          */
-                        if (part.isAnd) {
+                        if (part.isKeyword || part.noCommaBefore || part.noCommaAfter) {
                             if (part.noCommaBefore) {
-                                newTag.splitNoCommaBefore = true
+                                newTag.noCommaBefore = true
                             } else {
-                                delete newTag.splitNoCommaBefore
+                                delete newTag.noCommaBefore
                             }
                             if (part.noCommaAfter) {
-                                newTag.splitNoCommaAfter = true
+                                newTag.noCommaAfter = true
                             } else {
-                                delete newTag.splitNoCommaAfter
+                                delete newTag.noCommaAfter
                             }
                             return
                         }
 
                         /**
-                         * 下一段是 AND：前方逗號交由 AND 的 splitNoCommaBefore
+                         * 下一段是 AND：前方逗號交由 AND 的 noCommaBefore
                          * 於輸出層（genPrompt）判定，此處不可套用中間段預設——
                          * 否則會吃掉 "a,AND b" 中原本就存在的逗號。
                          */
-                        if (parts[index + 1] && parts[index + 1].isAnd) return
+                        if (parts[index + 1] && parts[index + 1].isKeyword) return
 
                         /**
                          * 中間段：永遠不加逗號（原本是同一個 tag 的一部分）
                          * 最後一段：shouldRemoveLastComma=true 時不加（移除逗號）
                          */
                         if (isIntermediate || shouldRemoveLastComma) {
-                            newTag.splitNoCommaAfter = true
+                            newTag.noCommaAfter = true
                         }
                     })
 
@@ -1172,21 +1172,21 @@ export default {
                      * AND 關鍵字 tag：splitNoComma* 由切割時的相鄰逗號決定，
                      * 重跑分割時必須保留，不進入下方的句號過期清理。
                      */
-                    if (isSplitByAndKeyword(tag.value)) {
-                        // 保留 splitNoCommaBefore / splitNoCommaAfter
+                    if (tagIsKeyword(tag)) {
+                        // 保留 noCommaBefore / noCommaAfter
                     } else {
                         if (this._shouldRemoveLastComma(tag, nextTag, hasTrailingPeriod)) {
-                            tag.splitNoCommaAfter = true
+                            tag.noCommaAfter = true
                         } else if (!hasTrailingPeriod) {
                             /**
                              * 清除 history 載入時由 _restoreTagProperties 還原的過期 splitNoComma：
                              * 舊 session 中 tag 曾以句號結尾而被標記，但當前 value 已不含句號，
                              * 表示使用者已编辑或 prompt 結構已變動，應移除不再適用的標記
                              */
-                            delete tag.splitNoCommaAfter
+                            delete tag.noCommaAfter
                         }
-                        /** splitNoCommaBefore 僅在 AND tag 上有意義，非 AND tag 一律清除 */
-                        delete tag.splitNoCommaBefore
+                        /** noCommaBefore 僅在 AND tag 上有意義，非 AND tag 一律清除 */
+                        delete tag.noCommaBefore
                     }
                     i++
                 }
