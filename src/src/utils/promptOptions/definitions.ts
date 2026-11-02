@@ -10,8 +10,9 @@
  * 新增選項時只需在此加入一筆定義（並補上 i18n），checkbox 樣板會自動生成，
  * 無需再逐一修改上述四處樣板碼，避免漏改造成「重新整理後設定遺失」一類的缺陷。
  *
- * 需要手動更新 src/src/App.vue 中的 promptFormat 引用：
- * <prompt-format ref="promptFormat"
+ * 但仍須手動更新 src/src/App.vue 的 v-model 綁定：<physton-prompt> 與
+ * <prompt-format> 兩處各補一行 v-model:kebab-case-key="dataKey"，
+ * 否則選項值不會流入子元件（data 預設值、watch、dataListsKeys 仍由此表生成）。
  */
 
 import { EnumPromptOptionAfterSave, EnumPromptOptionComponent, type IPromptOptionDefinitionCore } from './types'
@@ -210,6 +211,15 @@ const _promptOptions = [
         emittedBy: [EnumPromptOptionComponent.promptFormat],
         checkUi: {labelLangKey: 'is_split_by_period_semicolon', parentKey: 'autoSplitByPeriod'},
         note: '控制 ";" 是否併入句號機制成為分割點；需重新執行 applySplitByPeriod() 才能將既有含分號的 tag 分割。/ Whether ";" joins the period split points; re-run applySplitByPeriod() to split existing tags.',
+    },
+    {
+        key: 'autoKeywordToPlain',
+        dataDefault: false,
+        propDefault: false,
+        afterSave: EnumPromptOptionAfterSave.resplitAndPrompt,
+        emittedBy: [EnumPromptOptionComponent.promptFormat],
+        checkUi: {labelLangKey: 'is_keyword_to_plain', parentKey: 'autoSplitByPeriod'},
+        note: '自動使特定關鍵字變成普通提示詞（目前僅 AND → And）：只改寫關鍵字 tag 的值，切割、noCommaBefore / noCommaAfter 標記與其餘機制完全不變，因此需先 applySplitByPeriod() 改寫既有關鍵字 tag 的值，再重新產生輸出。',
     },
 ] as const satisfies I_PromptOptionDefinition[]
 

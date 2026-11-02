@@ -34,6 +34,7 @@ export default {
     RESTOREABLE_PROPERTIES: [
         'noCommaAfter',
         'noCommaBefore',
+        'isKeyword',
     ],
     methods: {
         _setTag(tag) {

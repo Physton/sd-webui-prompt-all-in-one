@@ -597,7 +597,7 @@ import GroupTagsMixin from "@/mixins/phystonPrompt/groupTagsMixin"
 import IconSvg from "@/components/iconSvg.vue"
 import HighlightPrompt from "@/components/highlightPrompt.vue"
 import { ColorPicker } from "vue3-colorpicker"
-import { splitPromptParts } from "@/utils/splitByPeriod"
+import { splitPromptParts, toPlainKeywordValue } from "@/utils/splitByPeriod"
 import { getPromptOptionEmits, getPromptOptionProps } from "@/utils/promptOptions"
 import { tagIsBreak, tagIsLoraLike, tagIsWrap, tagIsKeyword } from "@/utils/promptTags/util"
 import { genPromptCore } from "@/utils/promptTags/genPrompt"
@@ -1133,6 +1133,14 @@ export default {
                          * 以保留跨 tag 的預設逗號行為。
                          */
                         if (part.isKeyword || part.noCommaBefore || part.noCommaAfter) {
+                            /**
+                             * 關鍵字識別旗標隨值一起落地：autoKeywordToPlain 改值後
+                             *（AND → And）已非全大寫，需靠 isKeyword 維持重跑時的識別，
+                             * 否則 noComma* 會被 else 分支的過期清理移除。
+                             */
+                            if (part.isKeyword) {
+                                newTag.isKeyword = true
+                            }
                             if (part.noCommaBefore) {
                                 newTag.noCommaBefore = true
                             } else {
@@ -1173,6 +1181,17 @@ export default {
                      * 重跑分割時必須保留，不進入下方的句號過期清理。
                      */
                     if (tagIsKeyword(tag)) {
+                        /**
+                         * autoKeywordToPlain：關鍵字值改寫為普通提示詞（如 AND → And）。
+                         * 單段落未觸發分割，此處直接改值——noCommaBefore / noCommaAfter
+                         * 與其餘機制完全不動；改值後補上 isKeyword 旗標，
+                         * 維持後續重跑的關鍵字識別（值已非全大寫，value 比對不再成立）。
+                         */
+                        const plainValue = toPlainKeywordValue(tag.value, this)
+                        if (plainValue !== tag.value) {
+                            tag.value = plainValue
+                            tag.isKeyword = true
+                        }
                         // 保留 noCommaBefore / noCommaAfter
                     } else {
                         if (this._shouldRemoveLastComma(tag, nextTag, hasTrailingPeriod)) {
