@@ -10,7 +10,7 @@
 import common from "@/utils/common";
 import { IPromptTag } from "../promptTags/tag-types";
 import { IPromptOptionValueRecordWithLegacyRuntime } from '../promptOptions/definitions';
-import { tagIsBreak, tagIsLoraLike, tagIsSharp } from '../promptTags/util';
+import { tagIsBreak, tagIsKeyword, tagIsLoraLike, tagIsSharp } from '../promptTags/util';
 import { LORA_LIKE_CHARACTERS_REGEX } from '../promptTags/util/tag-lora';
 import {
 	EnumTagWeightSymbol,
@@ -86,8 +86,14 @@ export interface IWrapWeightCharactersOptions extends IWeightCharacterOptions
 	close: string;
 }
 
-/** BREAK 的固定顯示內容：左右虛線夾住 BREAK 字樣；不含使用者輸入，無須 escape */
-const BREAK_HTML = '<div class="break-character">---------------------</div> <div class="character">BREAK</div> <div class="break-character">---------------------</div>'
+/**
+ * BREAK 的固定顯示內容：左右虛線夾住 BREAK 字樣；不含使用者輸入，無須 escape。
+ *
+ * 中段雖是特殊處理的固定內容，BREAK 本身仍是語法關鍵字，
+ * 故一併套上 keyword-character——與一般關鍵字同款 class，
+ * 樣式擴充（tag-keyword-character）啟用時才有同樣的顏色提示。
+ */
+const BREAK_HTML = '<div class="break-character">---------------------</div> <div class="character keyword-character">BREAK</div> <div class="break-character">---------------------</div>'
 
 /**
  * 權重醒目樣式用的 class 字串。
@@ -222,7 +228,7 @@ function wrapLoraLikeCharacters(value: string, options: ICharactersOptions): str
  *
  * @param value     - 未 escape 的 tag 內容
  * @param tag       - 要渲染的 tag
- * @param className - 附加在主體上的 class（如 sharp-character）
+ * @param className - 附加在主體上的 class（如 sharp-character / keyword-character）
  * @returns 顯示用 HTML
  */
 function wrapTagCharacters(value: string, tag: IPromptTag, className?: string): string
@@ -281,8 +287,17 @@ export function renderTagCore(tag: IPromptTag | undefined, options: IPromptOptio
 	}
 	else
 	{
-		/** 只有 `#` 需要額外標記，其餘一般 tag 維持原樣 */
-		value = wrapTagCharacters(value, tag, tagIsSharp(tag) ? 'sharp-character' : undefined)
+		/**
+		 * 只有 `#`（sharp-character）與關鍵字（keyword-character）需要額外標記，
+		 * 其餘一般 tag 維持原樣。關鍵字含 autoKeywordToPlain 轉換後的 'And'
+		 * ——tagIsKeyword 靠 tag.isKeyword 旗標識別，改值後仍會套到 class。
+		 * BREAK 未走 BREAK_HTML 特殊處理（autoBreak 皆未勾選）時也在此補上
+		 * keyword-character，讓兩條渲染路徑的 class 一致。
+		 */
+		const className = tagIsSharp(tag)
+			? 'sharp-character'
+			: (tagIsKeyword(tag) || tagIsBreak(tag) ? 'keyword-character' : undefined)
+		value = wrapTagCharacters(value, tag, className)
 	}
 	return value
 }

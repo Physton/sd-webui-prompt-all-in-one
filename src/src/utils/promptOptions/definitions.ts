@@ -218,7 +218,7 @@ const _promptOptions = [
         propDefault: false,
         afterSave: EnumPromptOptionAfterSave.resplitAndPrompt,
         emittedBy: [EnumPromptOptionComponent.promptFormat],
-        checkUi: {labelLangKey: 'is_keyword_to_plain', parentKey: 'autoSplitByPeriod'},
+        checkUi: {labelLangKey: 'is_keyword_to_plain'},
         note: '自動使特定關鍵字變成普通提示詞（目前僅 AND → And）：只改寫關鍵字 tag 的值，切割、noCommaBefore / noCommaAfter 標記與其餘機制完全不變，因此需先 applySplitByPeriod() 改寫既有關鍵字 tag 的值，再重新產生輸出。',
     },
 ] as const satisfies I_PromptOptionDefinition[]
