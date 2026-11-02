@@ -246,6 +246,33 @@ export function setLayers(
 	return wrapLayers(inner, num, start, end, joinStr)
 }
 
+export function trimInnerOfBracket(str: string): string
+{
+	if (!str?.length || !/[\(\[\{\<] | [\)\]\}\>]/.test(str)) return str
+
+	const bracket = hasBrackets(str)
+
+	if (!bracket) return str
+
+	const { inner, layers } = unwrapLayers(str, bracket[0], bracket[1])
+
+	if (layers > 0)
+	{
+		return wrapLayers(inner.trim(), layers, bracket[0], bracket[1])
+	}
+
+	return str
+}
+
+export function applyTagTrimInnerOfBracket(tag: IPromptTag): void
+{
+	const value = trimInnerOfBracket(tag.value)
+	if (value !== tag.value)
+	{
+		tag.value = value
+	}
+}
+
 /**
  * 剝除 str 外層的指定括號組（連續同組包裹會全部剝除）。
  */

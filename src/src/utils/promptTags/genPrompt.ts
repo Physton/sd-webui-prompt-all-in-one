@@ -17,7 +17,7 @@
  */
 
 import common from '../common'
-import { applyTagWeightNumToValue } from './util/tag-weight'
+import { applyTagTrimInnerOfBracket, applyTagWeightNumToValue, hasBrackets } from './util/tag-weight'
 import { getLoraLikeName } from './util/tag-lora'
 import {
     findTagUntil,
@@ -269,6 +269,7 @@ export function genPromptCore(
 
             /** 權重數值改寫（正規化到小數 6 位並回寫 value） */
             applyTagWeightNumToValue(tag)
+            applyTagTrimInnerOfBracket(tag)
             if (tag.disabled && !ignoreDisabled) return
 
             /**
