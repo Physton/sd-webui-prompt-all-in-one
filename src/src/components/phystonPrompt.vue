@@ -1106,10 +1106,7 @@ export default {
                  * 巢狀括號防護：stack-based 單次遍歷，僅在括號已完全關閉的位置切割。
                  * 算法已抽離至 @/utils/splitByPeriod.js，此處直接呼叫。
                  */
-                const parts = splitByPeriod(tag.value, {
-                    includeParen: this.autoSplitByPeriodIncludeParen,
-                    splitSemicolon: this.autoSplitByPeriodSemicolon,
-                })
+                const parts = splitByPeriod(tag.value, this)
 
                 /** 需滿足：至少有 2 段 + 首段非空 + 末段非空 */
                 if (parts.length > 1 && parts[0] !== '' && parts[parts.length - 1] !== '') {

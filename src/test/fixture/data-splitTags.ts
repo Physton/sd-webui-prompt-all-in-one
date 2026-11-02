@@ -753,7 +753,7 @@ export const pipelineCases: ISplitTagsPipelineCase[] = [
 	{
 		input: "her fingers and the orks' legs; gnarled dead trees stand as dark silhouettes at the frame edges, dense fog swallows the middle distance, \n#, \npixelated",
 		note: 'pipeline splitSemicolon — semicolon splits like period (option B)',
-		splitByPeriodOptions: { splitSemicolon: true },
+		splitByPeriodOptions: { autoSplitByPeriodSemicolon: true },
 		expectChanged: true,
 		expectOriginalChanged: false,
 	},

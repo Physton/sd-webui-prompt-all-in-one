@@ -29,78 +29,78 @@ export const noPeriodCases: ISplitByPeriodCase[] = [
 	},
 ]
 export const bracketProtectionCases: ISplitByPeriodCase[] = [
-	{ input: 'xxx. (111. 222)', args: [{ includeParen: true }], expected: ['xxx.', '(111. 222)'] },
-	{ input: '(111. 222). xxx', args: [{ includeParen: true }], expected: ['(111. 222).', 'xxx'] },
+	{ input: 'xxx. (111. 222)', args: [{ autoSplitByPeriodIncludeParen: true }], expected: ['xxx.', '(111. 222)'] },
+	{ input: '(111. 222). xxx', args: [{ autoSplitByPeriodIncludeParen: true }], expected: ['(111. 222).', 'xxx'] },
 	{
-		input: 'xxx. (111. 222', args: [{ includeParen: true }], expected: ['xxx.', '(111. 222'],
+		input: 'xxx. (111. 222', args: [{ autoSplitByPeriodIncludeParen: true }], expected: ['xxx.', '(111. 222'],
 		note: 'unclosed paren',
 	},
 	{
-		input: '(111. 222. xxx', args: [{ includeParen: true }], expected: ['(111. 222. xxx'],
+		input: '(111. 222. xxx', args: [{ autoSplitByPeriodIncludeParen: true }], expected: ['(111. 222. xxx'],
 		note: 'unclosed paren — no split at all',
 	},
 	{
-		input: 'aaa. (bbb. ccc). ddd. eee', args: [{ includeParen: true }],
+		input: 'aaa. (bbb. ccc). ddd. eee', args: [{ autoSplitByPeriodIncludeParen: true }],
 		expected: ['aaa.', '(bbb. ccc).', 'ddd.', 'eee'],
 	},
 	{
-		input: 'aaa. [bbb. ccc]. ddd', args: [{ includeParen: true }],
+		input: 'aaa. [bbb. ccc]. ddd', args: [{ autoSplitByPeriodIncludeParen: true }],
 		expected: ['aaa.', '[bbb. ccc].', 'ddd'], note: 'square brackets',
 	},
 	{
-		input: 'aaa. {bbb. ccc}. ddd', args: [{ includeParen: true }],
+		input: 'aaa. {bbb. ccc}. ddd', args: [{ autoSplitByPeriodIncludeParen: true }],
 		expected: ['aaa.', '{bbb. ccc}.', 'ddd'], note: 'curly brackets',
 	},
 	{
-		input: 'a. ((b. c). d). e', args: [{ includeParen: true }],
+		input: 'a. ((b. c). d). e', args: [{ autoSplitByPeriodIncludeParen: true }],
 		expected: ['a.', '((b. c). d).', 'e'], note: 'deeply nested',
 	},
 	{
-		input: 'a. ([b. c]). d', args: [{ includeParen: true }],
+		input: 'a. ([b. c]). d', args: [{ autoSplitByPeriodIncludeParen: true }],
 		expected: ['a.', '([b. c]).', 'd'], note: 'mixed bracket types',
 	},
 ]
 export const includeParenFalseCases: ISplitByPeriodCase[] = [
 	{
-		input: 'xxx. (111. 222)', args: [{ includeParen: false }], expected: ['xxx. (111. 222)'],
+		input: 'xxx. (111. 222)', args: [{ autoSplitByPeriodIncludeParen: false }], expected: ['xxx. (111. 222)'],
 		note: 'first open paren stops',
 	},
 	{
-		input: 'a. b. (c. d)', args: [{ includeParen: false }], expected: ['a.', 'b. (c. d)'],
+		input: 'a. b. (c. d)', args: [{ autoSplitByPeriodIncludeParen: false }], expected: ['a.', 'b. (c. d)'],
 		note: 'splits first two, stops at third',
 	},
 	{
-		input: 'a. b. [c. d]', args: [{ includeParen: false }], expected: ['a.', 'b. [c. d]'],
+		input: 'a. b. [c. d]', args: [{ autoSplitByPeriodIncludeParen: false }], expected: ['a.', 'b. [c. d]'],
 		note: 'square bracket stops',
 	},
 	{
-		input: 'a. b. {c. d}', args: [{ includeParen: false }], expected: ['a.', 'b. {c. d}'],
+		input: 'a. b. {c. d}', args: [{ autoSplitByPeriodIncludeParen: false }], expected: ['a.', 'b. {c. d}'],
 		note: 'curly bracket stops',
 	},
 	{
-		input: '(111. 222). xxx', args: [{ includeParen: false }], expected: ['(111. 222).', 'xxx'],
+		input: '(111. 222). xxx', args: [{ autoSplitByPeriodIncludeParen: false }], expected: ['(111. 222).', 'xxx'],
 		note: 'closed paren — split works',
 	},
 	{
-		input: 'a. b. c', args: [{ includeParen: false }], expected: ['a.', 'b.', 'c'],
+		input: 'a. b. c', args: [{ autoSplitByPeriodIncludeParen: false }], expected: ['a.', 'b.', 'c'],
 		note: 'no parens — all splits work',
 	},
 ]
 export const mismatchedBracketCases: ISplitByPeriodCase[] = [
 	{
-		input: 'a. )b. c', args: [{ includeParen: true }], expected: ['a.', ')b.', 'c'],
+		input: 'a. )b. c', args: [{ autoSplitByPeriodIncludeParen: true }], expected: ['a.', ')b.', 'c'],
 		note: 'stray close paren ignored',
 	},
 	{
-		input: 'a. ]. b', args: [{ includeParen: true }], expected: ['a.', '].', 'b'],
+		input: 'a. ]. b', args: [{ autoSplitByPeriodIncludeParen: true }], expected: ['a.', '].', 'b'],
 		note: 'stray close bracket ignored',
 	},
 	{
-		input: '(a. (b. c)). d', args: [{ includeParen: true }],
+		input: '(a. (b. c)). d', args: [{ autoSplitByPeriodIncludeParen: true }],
 		expected: ['(a. (b. c)).', 'd'], note: 'nested open parens',
 	},
 	{
-		input: '((a. b). (c. d)). e', args: [{ includeParen: true }],
+		input: '((a. b). (c. d)). e', args: [{ autoSplitByPeriodIncludeParen: true }],
 		expected: ['((a. b). (c. d)).', 'e'], note: 'multiple nested groups',
 	},
 ]
@@ -119,7 +119,7 @@ export const whitespaceCases: ISplitByPeriodCase[] = [
 		note: 'newline after period — kept as "\\\\n" marker',
 	},
 	{
-		input: 'a.   (b. c)', args: [{ includeParen: true }], expected: ['a.', '(b. c)'],
+		input: 'a.   (b. c)', args: [{ autoSplitByPeriodIncludeParen: true }], expected: ['a.', '(b. c)'],
 		note: 'many spaces then open paren',
 	},
 ]
@@ -129,47 +129,47 @@ export const semicolonCases: ISplitByPeriodCase[] = [
 		note: 'default off — semicolon is not a split point',
 	},
 	{
-		input: 'her legs; gnarled trees', args: [{ splitSemicolon: false }], expected: ['her legs; gnarled trees'],
+		input: 'her legs; gnarled trees', args: [{ autoSplitByPeriodSemicolon: false }], expected: ['her legs; gnarled trees'],
 		note: 'explicitly off',
 	},
 	{
-		input: 'her legs; gnarled trees', args: [{ splitSemicolon: true }], expected: ['her legs;', 'gnarled trees'],
+		input: 'her legs; gnarled trees', args: [{ autoSplitByPeriodSemicolon: true }], expected: ['her legs;', 'gnarled trees'],
 		note: 'enabled — splits like period, delimiter kept at segment end',
 	},
 	{
-		input: 'a; b. c', args: [{ splitSemicolon: true }], expected: ['a;', 'b.', 'c'],
+		input: 'a; b. c', args: [{ autoSplitByPeriodSemicolon: true }], expected: ['a;', 'b.', 'c'],
 		note: 'semicolon and period share the same mechanism',
 	},
 	{
-		input: 'legs;;; gnarled', args: [{ splitSemicolon: true }], expected: ['legs;;;', 'gnarled'],
+		input: 'legs;;; gnarled', args: [{ autoSplitByPeriodSemicolon: true }], expected: ['legs;;;', 'gnarled'],
 		note: 'consecutive semicolons preserved — not condensed',
 	},
 	{
-		input: 'a;;b', args: [{ splitSemicolon: true }], expected: ['a;;b'],
+		input: 'a;;b', args: [{ autoSplitByPeriodSemicolon: true }], expected: ['a;;b'],
 		note: 'no whitespace after — no split (same mechanism as period)',
 	},
 	{
-		input: 'legs;', args: [{ splitSemicolon: true }], expected: ['legs;'],
+		input: 'legs;', args: [{ autoSplitByPeriodSemicolon: true }], expected: ['legs;'],
 		note: 'trailing semicolon — no split, preserved',
 	},
 	{
-		input: 'with "a; b" end', args: [{ splitSemicolon: true }], expected: ['with "a; b" end'],
+		input: 'with "a; b" end', args: [{ autoSplitByPeriodSemicolon: true }], expected: ['with "a; b" end'],
 		note: 'semicolon inside double quotes protected',
 	},
 	{
-		input: '(a; b); c', args: [{ splitSemicolon: true, includeParen: true }], expected: ['(a; b);', 'c'],
+		input: '(a; b); c', args: [{ autoSplitByPeriodSemicolon: true, autoSplitByPeriodIncludeParen: true }], expected: ['(a; b);', 'c'],
 		note: 'semicolon inside parens protected, after close splits',
 	},
 	{
-		input: 'a; (b; c)', args: [{ splitSemicolon: true }], expected: ['a; (b; c)'],
+		input: 'a; (b; c)', args: [{ autoSplitByPeriodSemicolon: true }], expected: ['a; (b; c)'],
 		note: 'includeParen=false stops at paren (same as period)',
 	},
 	{
-		input: 'a;\nb', args: [{ splitSemicolon: true }], expected: ['a;', '\n', 'b'],
+		input: 'a;\nb', args: [{ autoSplitByPeriodSemicolon: true }], expected: ['a;', '\n', 'b'],
 		note: 'semicolon before newline — split, newline marker kept',
 	},
 	{
-		input: "orks' legs; gnarled trees", args: [{ splitSemicolon: true }], expected: ["orks' legs;", 'gnarled trees'],
+		input: "orks' legs; gnarled trees", args: [{ autoSplitByPeriodSemicolon: true }], expected: ["orks' legs;", 'gnarled trees'],
 		note: 'unclosed single quote (possessive) ignored — semicolon still splits',
 	},
 ]
@@ -211,15 +211,15 @@ export const newlineCases: ISplitByPeriodCase[] = [
 		note: 'newline split then period split',
 	},
 	{
-		input: 'a\nb. c', args: [{ includeParen: true }], expected: ['a', '\n', 'b.', 'c'],
+		input: 'a\nb. c', args: [{ autoSplitByPeriodIncludeParen: true }], expected: ['a', '\n', 'b.', 'c'],
 		note: 'newline split then period split with includeParen=true',
 	},
 	{
-		input: '(a\nb). c', args: [{ includeParen: true }], expected: ['(a', '\n', 'b).', 'c'],
+		input: '(a\nb). c', args: [{ autoSplitByPeriodIncludeParen: true }], expected: ['(a', '\n', 'b).', 'c'],
 		note: 'newline in parens splits, paren state reset',
 	},
 	{
-		input: 'a. \n(b)', args: [{ includeParen: false }], expected: ['a.', '\n', '(b)'],
+		input: 'a. \n(b)', args: [{ autoSplitByPeriodIncludeParen: false }], expected: ['a.', '\n', '(b)'],
 		note: 'newline priority overrides includeParen=false stop',
 	},
 	{
@@ -230,101 +230,101 @@ export const newlineCases: ISplitByPeriodCase[] = [
 export const realWorldCases: ISplitByPeriodCase[] = [
 	{
 		input: 'masterpiece, best quality. (1girl:1.2), looking at viewer',
-		args: [{ includeParen: true }],
+		args: [{ autoSplitByPeriodIncludeParen: true }],
 		expected: ['masterpiece, best quality.', '(1girl:1.2), looking at viewer'],
 	},
 	{
 		input: 'highly detailed. [horse:donkey:0.5]. landscape',
-		args: [{ includeParen: true }],
+		args: [{ autoSplitByPeriodIncludeParen: true }],
 		expected: ['highly detailed.', '[horse:donkey:0.5].', 'landscape'],
 	},
 	{
 		input: '(masterpiece:1.0), best quality. 1girl, {red hair}',
-		args: [{ includeParen: true }],
+		args: [{ autoSplitByPeriodIncludeParen: true }],
 		expected: ['(masterpiece:1.0), best quality.', '1girl, {red hair}'],
 	},
 	{
 		input: 'tag. (nested. prompt. here). end',
-		args: [{ includeParen: true }],
+		args: [{ autoSplitByPeriodIncludeParen: true }],
 		expected: ['tag.', '(nested. prompt. here).', 'end'],
 	},
 ]
 export const quoteProtectionCases: ISplitByPeriodCase[] = [
 	{
 		input: 'with "Small joys. Brighter days." below.',
-		args: [{ includeParen: true }],
+		args: [{ autoSplitByPeriodIncludeParen: true }],
 		expected: ['with "Small joys. Brighter days." below.'],
 		note: 'double-quoted sentence preserved',
 	},
 	{
 		input: "with 'Small joys. Brighter days.' below.",
-		args: [{ includeParen: true }],
+		args: [{ autoSplitByPeriodIncludeParen: true }],
 		expected: ["with 'Small joys. Brighter days.' below."],
 		note: 'single-quoted sentence preserved',
 	},
 	{
 		input: 'a. "b. c". d',
-		args: [{ includeParen: true }],
+		args: [{ autoSplitByPeriodIncludeParen: true }],
 		expected: ['a.', '"b. c".', 'd'],
 		note: 'quotes in middle — split outside only',
 	},
 	{
 		input: '"a. b. c"',
-		args: [{ includeParen: true }],
+		args: [{ autoSplitByPeriodIncludeParen: true }],
 		expected: ['"a. b. c"'],
 		note: 'entire string quoted — no split',
 	},
 	{
 		input: '"a. b". "c. d"',
-		args: [{ includeParen: true }],
+		args: [{ autoSplitByPeriodIncludeParen: true }],
 		expected: ['"a. b".', '"c. d"'],
 		note: 'two quoted segments',
 	},
 	{
 		input: "it's a. test",
-		args: [{ includeParen: true }],
+		args: [{ autoSplitByPeriodIncludeParen: true }],
 		expected: ["it's a.", 'test'],
 		note: 'apostrophe (single char) does not open quote',
 	},
 	{
 		input: 'a. "b. c',
-		args: [{ includeParen: true }],
+		args: [{ autoSplitByPeriodIncludeParen: true }],
 		expected: ['a.', '"b. c'],
 		note: 'unclosed double quote — rest is protected to end',
 	},
 	{
 		input: "a. 'b. c",
-		args: [{ includeParen: true }],
+		args: [{ autoSplitByPeriodIncludeParen: true }],
 		expected: ["a.", "'b.", 'c'],
 		note: 'unclosed single quote — ignored at segmentation, period splits (same rule as splitTags)',
 	},
 	{
 		input: '"it\'s a. b. c". d',
-		args: [{ includeParen: true }],
+		args: [{ autoSplitByPeriodIncludeParen: true }],
 		expected: ['"it\'s a. b. c".', 'd'],
 		note: 'apostrophe inside double-quoted string',
 	},
 	{
 		input: "'hello. world' a. b",
-		args: [{ includeParen: true }],
+		args: [{ autoSplitByPeriodIncludeParen: true }],
 		expected: ["'hello. world' a.", 'b'],
 		note: 'closing quote does not split — space after is part of same segment',
 	},
 	{
 		input: "don't stop. go",
-		args: [{ includeParen: true }],
+		args: [{ autoSplitByPeriodIncludeParen: true }],
 		expected: ["don't stop.", 'go'],
 		note: 'common contraction — no quote protection',
 	},
 	{
 		input: "path\u00e2's stop. go",
-		args: [{ includeParen: true }],
+		args: [{ autoSplitByPeriodIncludeParen: true }],
 		expected: ["path\u00e2's stop.", 'go'],
 		note: 'non-ASCII apostrophe (â) — no quote protection',
 	},
 	{
 		input: "end with '.",
-		args: [{ includeParen: true }],
+		args: [{ autoSplitByPeriodIncludeParen: true }],
 		expected: ["end with '."],
 		note: 'single quote at end — opens but no closer, period protected',
 	},

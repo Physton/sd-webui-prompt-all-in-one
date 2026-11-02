@@ -1,4 +1,5 @@
 import { IPromptTagValue } from './promptTags/tag-types'
+import { IHostPromptOptions } from './promptTags/types'
 import {
     EnumPromptBracketClose,
     EnumPromptQuoteChar,
@@ -9,25 +10,6 @@ import {
     promptBracketPairsReversed,
     type IPromptBracketOpen,
 } from './splitPromptTypes'
-
-/**
- * 切割選項。
- */
-export interface ISplitByPeriodOptions {
-    /**
-     * 是否允許在括號前方切割（無預設值）。
-     * - true  ：句號後遇到開括號仍執行切割。
-     * - false / undefined：句號後遇到開括號時停止切割（保留括號與前段的關聯）。
-     */
-    includeParen?: boolean
-    /**
-     * 是否將 ASCII 分號 ";" 併入句號機制切割（預設關閉）。
-     * - true  ：";" 後接空白時切割，分隔符保留在段尾（與 "." 同一機制）；
-     *           多個連續 ";" 全數保留於段內，不縮減、不產生空段。
-     * - false / undefined：";" 不是分隔符。
-     */
-    splitSemicolon?: boolean
-}
 
 /**
  * 行級 runtime 狀態介面。
@@ -80,7 +62,7 @@ function createLineState(): IPeriodLineState {
  *     未關閉雙引號則保持保護到結尾。
  *
  * @param {unknown} str - 要切割的原始字串。非字串時以 String() 轉換為單一元素陣列回傳（防禦 js 呼叫端）。
- * @param {ISplitByPeriodOptions} [options] - 切割選項。
+ * @param {IHostPromptOptions} [options] - 切割選項。
  * @returns {IPromptTagValue[]} 切割後的片段陣列。若無可切割點則回傳包含完整字串的單元素陣列。
  *
  * @example
@@ -111,7 +93,7 @@ function createLineState(): IPeriodLineState {
  *   splitByPeriod("a;;; b", { splitSemicolon: true })
  *   // → ["a;;;", "b"]       （連續分號全數保留，不縮減）
  */
-export function splitByPeriod(str: unknown, { includeParen, splitSemicolon }: ISplitByPeriodOptions = {}): IPromptTagValue[] {
+export function splitByPeriod(str: unknown, { autoSplitByPeriodIncludeParen: includeParen, autoSplitByPeriodSemicolon: splitSemicolon }: IHostPromptOptions = {}): IPromptTagValue[] {
     if (typeof str !== 'string') return [String(str)]
     return walk(str, includeParen, splitSemicolon, true)
 }

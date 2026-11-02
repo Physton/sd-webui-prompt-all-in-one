@@ -1,9 +1,6 @@
 
 import type { TestContext } from 'node:test'
 import type {
-	ISplitByPeriodOptions,
-} from '#/src/utils/splitByPeriod'
-import type {
 	IGenPromptHooks,
 } from '#/src/utils/promptTags/genPrompt'
 import type { IUpdatePromptHost } from '#/src/utils/promptTags/updatePrompt'
@@ -26,7 +23,7 @@ export type ISplitTagsArgs = [
  * 與 splitByPeriod(str, options) 對應。
  */
 export type ISplitByPeriodArgs = [
-	options?: ISplitByPeriodOptions,
+	options?: IHostPromptOptions,
 ]
 
 /**
@@ -146,7 +143,7 @@ export interface ISplitTagsCase {
  */
 export interface ISplitTagsPipelineCase extends ISplitTagsCase {
 	/** 逐 tag 傳入 splitByPeriod 的選項 */
-	splitByPeriodOptions?: ISplitByPeriodOptions
+	splitByPeriodOptions?: IHostPromptOptions
 	/** 期望 splitByPeriod 是否改變了 splitTags 的輸出 */
 	expectChanged?: boolean
 	/**
