@@ -61,8 +61,8 @@ function createLineState(): IPeriodLineState {
  *     重走整段，重新套用句號／分號／分行／括號規則（與 splitTags pushSegment 同規則）；
  *     未關閉雙引號則保持保護到結尾。
  *
- * @param {unknown} str - 要切割的原始字串。非字串時以 String() 轉換為單一元素陣列回傳（防禦 js 呼叫端）。
- * @param {IHostPromptOptions} [options] - 切割選項。
+ * @param str - 要切割的原始字串。非字串時以 String() 轉換為單一元素陣列回傳（防禦 js 呼叫端）。
+ * @param [options] - 切割選項。
  * @returns {IPromptTagValue[]} 切割後的片段陣列。若無可切割點則回傳包含完整字串的單元素陣列。
  *
  * @example
@@ -93,24 +93,22 @@ function createLineState(): IPeriodLineState {
  *   splitByPeriod("a;;; b", { splitSemicolon: true })
  *   // → ["a;;;", "b"]       （連續分號全數保留，不縮減）
  */
-export function splitByPeriod(str: unknown, { autoSplitByPeriodIncludeParen: includeParen, autoSplitByPeriodSemicolon: splitSemicolon }: IHostPromptOptions = {}): IPromptTagValue[] {
+export function splitByPeriod(str: unknown, options?: IHostPromptOptions): IPromptTagValue[] {
     if (typeof str !== 'string') return [String(str)]
-    return walk(str, includeParen, splitSemicolon, true)
+    return walk(str, options || {}, true)
 }
 
 /**
  * 走訪切割核心（可遞迴重處理）。
  *
- * @param {string}  str
- * @param {boolean} includeParen
- * @param {boolean} splitSemicolon
- * @param {boolean} allowSingleQuote - 是否允許單引號開啟引號。
+ * @param str
+ * @param options
+ * @param allowSingleQuote - 是否允許單引號開啟引號。
  *   主呼叫為 true；若收尾時單引號仍未關閉（false positive，如所有格 orks'），
  *   以 false 重走——忽略該單引號，重新套用句號／分號／分行／括號規則。
  *   未關閉雙引號不觸發重走（保持保護到結尾）。
- * @returns {IPromptTagValue[]}
  */
-function walk(str: string, includeParen: boolean | undefined, splitSemicolon: boolean | undefined, allowSingleQuote: boolean): IPromptTagValue[] {
+function walk(str: string, options: IHostPromptOptions, allowSingleQuote: boolean): IPromptTagValue[] {
 
     const len = str.length
     const parts: IPromptTagValue[] = []
@@ -122,7 +120,7 @@ function walk(str: string, includeParen: boolean | undefined, splitSemicolon: bo
     let start = 0
 
     /** 預先計算：includeParen=false 時，若下一個非空白字元是開括號則停止切割 */
-    const notAllowParen = !includeParen
+    const notAllowParen = !options.autoSplitByPeriodIncludeParen
 
     /**
      * 分行切割：與 splitTags 同規則——分行優先級最高，
@@ -191,7 +189,7 @@ function walk(str: string, includeParen: boolean | undefined, splitSemicolon: bo
             if (parenStack.length > 0 && parenStack[parenStack.length - 1] === promptBracketPairsReversed[ch]) {
                 parenStack.pop()
             }
-        } else if ((ch === EnumPromptSplitDelimiter.period || (splitSemicolon && ch === EnumPromptSplitDelimiter.semicolon)) && parenStack.length === 0) {
+        } else if ((ch === EnumPromptSplitDelimiter.period || (options.autoSplitByPeriodSemicolon && ch === EnumPromptSplitDelimiter.semicolon)) && parenStack.length === 0) {
             /**
              * 僅在括號已全部關閉（parenStack 為空）時才考慮切割。
              * "." 與 ";"（splitSemicolon 開啟時）共用同一機制：
@@ -228,7 +226,7 @@ function walk(str: string, includeParen: boolean | undefined, splitSemicolon: bo
      *（與 splitTags pushSegment 同規則；重走時單引號不再開啟，不會遞迴）。
      */
     if (allowSingleQuote && lineState.quoteChar === EnumPromptQuoteChar.single) {
-        return walk(str, includeParen, splitSemicolon, false)
+        return walk(str, options, false)
     }
 
     /**
@@ -293,7 +291,7 @@ const reKeywordDelimiter = /[ \t,]/
 export function splitByPart(str: unknown, options?: IHostPromptOptions): I_SplitByPart[] {
     if (typeof str !== 'string') return [{ value: String(str) }]
     if (str === '') return [{ value: '' }]
-    return walkSplitByPart(str, options, true)
+    return walkSplitByPart(str, options || {}, true)
 }
 
 /**
