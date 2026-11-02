@@ -92,12 +92,12 @@ export const genPromptCases: IGenPromptCase[] = [
 	},
 	/**
 	 * ── 第六組：autoSplitByPeriod ──
-	 * splitNoComma 由 applySplitByPeriod 標記，genPrompt 只負責依標記去逗號。
+	 * splitNoCommaAfter 由 applySplitByPeriod 標記，genPrompt 只負責依標記去逗號。
 	 */
 	{
-		input: [{ ..._t_createTag_text('a'), splitNoComma: true }, _t_createTag_text('b')],
+		input: [{ ..._t_createTag_text('a'), splitNoCommaAfter: true }, _t_createTag_text('b')],
 		args: [false, { autoSplitByPeriod: true }],
-		note: 'autoSplitByPeriod — 已標記 splitNoComma 的中間段不加逗號',
+		note: 'autoSplitByPeriod — 已標記 splitNoCommaAfter 的中間段不加逗號',
 		expected: 'a b, ',
 	},
 	/**

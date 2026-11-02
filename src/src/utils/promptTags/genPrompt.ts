@@ -363,7 +363,7 @@ export function genPromptCore(
             }
 
             // autoSplitByPeriod：若此 tag 是分割產生的中間段且原始 tag 無逗號，則移除逗號
-            if (options.autoSplitByPeriod && tag.splitNoComma && splitSymbol.includes(',')) {
+            if (options.autoSplitByPeriod && tag.splitNoCommaAfter && splitSymbol.includes(',')) {
                 splitSymbol = splitSymbol.replace(/,/g, '')
             }
 

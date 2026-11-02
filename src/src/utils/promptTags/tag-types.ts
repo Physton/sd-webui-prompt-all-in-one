@@ -45,7 +45,10 @@ export type IPromptTagValueRuntimeInput<T extends IPromptTagValue = IPromptTagVa
  */
 export interface IPromptTagRuntimeExtraProps
 {
-	splitNoComma?: boolean;
+	/**
+	 * Whether to remove the comma after this tag when splitting by period.
+	 */
+	splitNoCommaAfter?: boolean;
 }
 
 export interface IPromptTagRuntimeProps

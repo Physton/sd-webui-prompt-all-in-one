@@ -32,7 +32,7 @@ export default {
      * 新增自訂屬性時只需在此陣列追加
      */
     RESTOREABLE_PROPERTIES: [
-        'splitNoComma',
+        'splitNoCommaAfter',
     ],
     methods: {
         _setTag(tag) {
@@ -194,7 +194,7 @@ export default {
             } else {
                 index = this.tags.push(tag)
             }
-            // 若提供 source，自動還原自訂屬性（splitNoComma 等）
+            // 若提供 source，自動還原自訂屬性（splitNoCommaAfter 等）
             if (source) this._restoreTagProperties(tag, source)
             this.$nextTick(() => {
                 if (this.$refs['promptTagEdit-' + id]) autoSizeInput(this.$refs['promptTagEdit-' + id][0])
@@ -224,7 +224,7 @@ export default {
          * 從 source 還原自訂屬性到已建立的 tag 上。
          *
          * 原因：_appendTag() 只建立核心欄位（value, localValue, disabled, type），
-         * 但 tag 上可能有其他自訂屬性（如 splitNoComma）需要在 round-trip（儲存→載入）
+         * 但 tag 上可能有其他自訂屬性（如 splitNoCommaAfter）需要在 round-trip（儲存→載入）
          * 或 rebuild（textarea 重建）時保留。
          *
          * 做法：只複製 RESTOREABLE_PROPERTIES 中定義的屬性，避免無差別複製

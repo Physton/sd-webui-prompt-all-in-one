@@ -1042,7 +1042,7 @@ export default {
          * 註：選項已更名為「自動優化分割符號」並成為獨立選項（不再屬於 autoSplitByPeriod 子選項）。
          *     其新增的分行前條件（「:」結尾 / 該行含 # tag / 分行前為 Lora）
          *     於 genPrompt() 的 _shouldRemoveCommaBeforeWrap() 在輸出層判定，不經過此方法，
-         *     因此不依賴 autoSplitByPeriod；此方法僅負責拆分流程的 splitNoComma 標記。
+         *     因此不依賴 autoSplitByPeriod；此方法僅負責拆分流程的 splitNoCommaAfter 標記。
          *
          * @param {object}      tag     - 當前標籤（用於檢查 value 是否以句號結尾）
          * @param {object|null} nextTag - 下一個標籤，由呼叫端負責提供（null 時直接回傳不移除）
@@ -1086,8 +1086,8 @@ export default {
          *   - 巢狀括號防護：stack 追蹤括號配對，僅在所有括號已關閉的位置切割
          *   - 邊界驗證：第一段與最後一段不得為空（排除開頭句號、結尾句號、僅句號空白的情境）
          *   - splitNoComma：中間段永遠不加逗號；最後一段繼承原 tag 的 comma 行為
-         *   - else 分支同時負責清除 history 載入時 `_restoreTagProperties` 還原的過期 splitNoComma
-         *     （tag.value 已不含句號卻仍帶有 splitNoComma 時，表示 prompt 結構已變動）
+         *   - else 分支同時負責清除 history 載入時 `_restoreTagProperties` 還原的過期 splitNoCommaAfter
+         *     （tag.value 已不含句號卻仍帶有 splitNoCommaAfter 時，表示 prompt 結構已變動）
          */
         applySplitByPeriod() {
             if (!this.autoSplitByPeriod) return
@@ -1127,7 +1127,7 @@ export default {
                          * 最後一段：shouldRemoveLastComma=true 時不加（移除逗號）
                          */
                         if (isIntermediate || shouldRemoveLastComma) {
-                            this.tags[tagIndex].splitNoComma = true
+                            this.tags[tagIndex].splitNoCommaAfter = true
                         }
                     })
 
@@ -1138,14 +1138,14 @@ export default {
                     let hasTrailingPeriod = /\.\s*$/.test(tag.value)
 
                     if (this._shouldRemoveLastComma(tag, nextTag, hasTrailingPeriod)) {
-                        tag.splitNoComma = true
+                        tag.splitNoCommaAfter = true
                     } else if (!hasTrailingPeriod) {
                         /**
                          * 清除 history 載入時由 _restoreTagProperties 還原的過期 splitNoComma：
                          * 舊 session 中 tag 曾以句號結尾而被標記，但當前 value 已不含句號，
                          * 表示使用者已编辑或 prompt 結構已變動，應移除不再適用的標記
                          */
-                        delete tag.splitNoComma
+                        delete tag.splitNoCommaAfter
                     }
                     i++
                 }
