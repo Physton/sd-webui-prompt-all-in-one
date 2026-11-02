@@ -33,6 +33,7 @@ export default {
      */
     RESTOREABLE_PROPERTIES: [
         'splitNoCommaAfter',
+        'splitNoCommaBefore',
     ],
     methods: {
         _setTag(tag) {

@@ -49,6 +49,12 @@ export interface IPromptTagRuntimeExtraProps
 	 * Whether to remove the comma after this tag when splitting by period.
 	 */
 	splitNoCommaAfter?: boolean;
+	/**
+	 * Whether to remove the comma before this tag when splitting the standalone
+	 * uppercase AND keyword. Only set on tags produced by the AND split; the
+	 * comma between the previous tag and an AND tag is controlled by this flag.
+	 */
+	splitNoCommaBefore?: boolean;
 }
 
 export interface IPromptTagRuntimeProps

@@ -597,7 +597,7 @@ import GroupTagsMixin from "@/mixins/phystonPrompt/groupTagsMixin"
 import IconSvg from "@/components/iconSvg.vue"
 import HighlightPrompt from "@/components/highlightPrompt.vue"
 import { ColorPicker } from "vue3-colorpicker"
-import { splitByPeriod } from "@/utils/splitByPeriod"
+import { splitPromptParts, isSplitByAndKeyword } from "@/utils/splitByPeriod"
 import { getPromptOptionEmits, getPromptOptionProps } from "@/utils/promptOptions"
 import { tagIsBreak, tagIsLoraLike, tagIsWrap } from "@/utils/promptTags/util"
 import { genPromptCore } from "@/utils/promptTags/genPrompt"
@@ -1085,6 +1085,8 @@ export default {
          *   - 以句號後的空白字元為斷點，句號自動保留在前段末尾
          *   - 巢狀括號防護：stack 追蹤括號配對，僅在所有括號已關閉的位置切割
          *   - 邊界驗證：第一段與最後一段不得為空（排除開頭句號、結尾句號、僅句號空白的情境）
+         *   - AND 關鍵字：全大寫 AND 獨立成段，依原始相鄰逗號設定
+         *     splitNoCommaBefore / splitNoCommaAfter（見 splitPromptParts）
          *   - splitNoComma：中間段永遠不加逗號；最後一段繼承原 tag 的 comma 行為
          *   - else 分支同時負責清除 history 載入時 `_restoreTagProperties` 還原的過期 splitNoCommaAfter
          *     （tag.value 已不含句號卻仍帶有 splitNoCommaAfter 時，表示 prompt 結構已變動）
@@ -1104,30 +1106,59 @@ export default {
 
                 /**
                  * 巢狀括號防護：stack-based 單次遍歷，僅在括號已完全關閉的位置切割。
-                 * 算法已抽離至 @/utils/splitByPeriod.js，此處直接呼叫。
+                 * 句號 / 分號 / 分行切割後再逐段套用 AND 關鍵字切割。
                  */
-                const parts = splitByPeriod(tag.value, this)
+                const parts = splitPromptParts(tag.value, this)
 
                 /** 需滿足：至少有 2 段 + 首段非空 + 末段非空 */
-                if (parts.length > 1 && parts[0] !== '' && parts[parts.length - 1] !== '') {
+                if (parts.length > 1 && parts[0].value !== '' && parts[parts.length - 1].value !== '') {
                     let shouldRemoveLastComma = this._shouldRemoveLastComma(tag, nextTag, true)
 
                     /** 移除舊 tag，轉換新 parts 並直接插入對應位置 */
                     this.tags.splice(i, 1)
                     parts.forEach((part, index) => {
-                        this._appendTag(part, '', false, i + index, 'text')
+                        this._appendTag(part.value, '', false, i + index, 'text')
                         /**
                          * 不依賴 _appendTag 回傳值（index>=0 時回傳 index-1，與實際插入位置不符）
                          * 直接使用已知的插入位置 i + index
                          */
                         let tagIndex = i + index
+                        let newTag = this.tags[tagIndex]
                         let isIntermediate = index < parts.length - 1
+
+                        /**
+                         * AND 關鍵字段：splitNoComma* 完全由原始字串的相鄰逗號決定，
+                         * 不套用「中間段一律不加逗號」的預設規則；
+                         * 字串邊界（開頭 / 結尾）不標記對應的 noComma*，
+                         * 以保留跨 tag 的預設逗號行為。
+                         */
+                        if (part.isAnd) {
+                            if (part.noCommaBefore) {
+                                newTag.splitNoCommaBefore = true
+                            } else {
+                                delete newTag.splitNoCommaBefore
+                            }
+                            if (part.noCommaAfter) {
+                                newTag.splitNoCommaAfter = true
+                            } else {
+                                delete newTag.splitNoCommaAfter
+                            }
+                            return
+                        }
+
+                        /**
+                         * 下一段是 AND：前方逗號交由 AND 的 splitNoCommaBefore
+                         * 於輸出層（genPrompt）判定，此處不可套用中間段預設——
+                         * 否則會吃掉 "a,AND b" 中原本就存在的逗號。
+                         */
+                        if (parts[index + 1] && parts[index + 1].isAnd) return
+
                         /**
                          * 中間段：永遠不加逗號（原本是同一個 tag 的一部分）
                          * 最後一段：shouldRemoveLastComma=true 時不加（移除逗號）
                          */
                         if (isIntermediate || shouldRemoveLastComma) {
-                            this.tags[tagIndex].splitNoCommaAfter = true
+                            newTag.splitNoCommaAfter = true
                         }
                     })
 
@@ -1137,15 +1168,25 @@ export default {
                     /** 未觸發分割：僅 tag 以句號結尾時才進入逗號移除判定 */
                     let hasTrailingPeriod = /\.\s*$/.test(tag.value)
 
-                    if (this._shouldRemoveLastComma(tag, nextTag, hasTrailingPeriod)) {
-                        tag.splitNoCommaAfter = true
-                    } else if (!hasTrailingPeriod) {
-                        /**
-                         * 清除 history 載入時由 _restoreTagProperties 還原的過期 splitNoComma：
-                         * 舊 session 中 tag 曾以句號結尾而被標記，但當前 value 已不含句號，
-                         * 表示使用者已编辑或 prompt 結構已變動，應移除不再適用的標記
-                         */
-                        delete tag.splitNoCommaAfter
+                    /**
+                     * AND 關鍵字 tag：splitNoComma* 由切割時的相鄰逗號決定，
+                     * 重跑分割時必須保留，不進入下方的句號過期清理。
+                     */
+                    if (isSplitByAndKeyword(tag.value)) {
+                        // 保留 splitNoCommaBefore / splitNoCommaAfter
+                    } else {
+                        if (this._shouldRemoveLastComma(tag, nextTag, hasTrailingPeriod)) {
+                            tag.splitNoCommaAfter = true
+                        } else if (!hasTrailingPeriod) {
+                            /**
+                             * 清除 history 載入時由 _restoreTagProperties 還原的過期 splitNoComma：
+                             * 舊 session 中 tag 曾以句號結尾而被標記，但當前 value 已不含句號，
+                             * 表示使用者已编辑或 prompt 結構已變動，應移除不再適用的標記
+                             */
+                            delete tag.splitNoCommaAfter
+                        }
+                        /** splitNoCommaBefore 僅在 AND tag 上有意義，非 AND tag 一律清除 */
+                        delete tag.splitNoCommaBefore
                     }
                     i++
                 }

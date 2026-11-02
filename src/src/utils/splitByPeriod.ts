@@ -244,4 +244,203 @@ function walk(str: string, includeParen: boolean | undefined, splitSemicolon: bo
     return parts
 }
 
+/**
+ * AND 關鍵字切割後的單一段落結構。
+ *
+ * 與 splitByPeriod 的純字串結果不同：AND 段落需額外携带
+ * 「原始字串中 AND 相鄰兩側是否存在逗號」的資訊，
+ * 由呼叫端（applySplitByPeriod）轉換為 tag 上的
+ * splitNoCommaBefore / splitNoCommaAfter 標記。
+ */
+export interface ISplitByAndPart {
+    /** 段落文字；isAnd=true 時恆為 "AND" */
+    value: IPromptTagValue
+    /** 此段是否為 AND 關鍵字（全大寫、獨立詞、不在引號 / 括號內） */
+    isAnd?: boolean
+    /** AND 之前的同一字串相鄰處沒有逗號（僅在前方有內容時才標記） */
+    noCommaBefore?: boolean
+    /** AND 之後的同一字串相鄰處沒有逗號（僅在後方有內容時才標記） */
+    noCommaAfter?: boolean
+}
+
+/** AND 關鍵字（僅全小寫以外的全大寫形式；ANDROID、BRAND 等內嵌詞不切割）。 */
+const PROMPT_AND_KEYWORD = 'AND'
+
+/** AND 邊界字元：前後不得為詞字元（[A-Za-z0-9_]），避免內嵌詞誤切割。 */
+const reAndBoundary = /[A-Za-z0-9_]/
+
+/** AND 相鄰可吃掉的分隔字元：空白與逗號（逗號有無決定 noComma* 標記）。 */
+const reAndDelimiter = /[ \t,]/
+
+/**
+ * 判斷文字是否為 AND 關鍵字段落。
+ *
+ * 供呼叫端區分「切割產生的 AND tag」與一般文字：
+ * AND tag 的 splitNoComma* 標記由切割時的相鄰逗號決定，
+ * 重跑分割時必須保留，不可套用句號機制的過期清理規則。
+ *
+ * @param {unknown} value - 待檢查的 tag value
+ * @returns {boolean} 是否為獨立的 "AND" 關鍵字
+ */
+export function isSplitByAndKeyword(value: unknown): boolean {
+    return typeof value === 'string' && /^AND$/.test(value.trim())
+}
+
+/**
+ * 以全大寫關鍵字 "AND" 為分隔符切割字串，AND 獨立成段。
+ *
+ * 防護規則與 walk()（splitByPeriod）同構：
+ *   - 引號（" / '，單引號需先排除撇號）內的 AND 不切割；
+ *   - 括號 stack 未清空（巢狀 / 未關閉）時不切割；
+ *   - 邊界字元檢查：前後為詞字元時（如 ANDROID、BRAND）不切割。
+ *
+ * 切割時會吃掉 AND 兩側相鄰的空白與逗號，並記錄逗號有無：
+ *   - "a AND b"   → [a, AND, b]  兩側皆無逗號 → noCommaBefore + noCommaAfter
+ *   - "a,AND b"   → [a, AND, b]  之前有逗號   → 僅 noCommaAfter
+ *   - "a AND, b"  → [a, AND, b]  之後有逗號   → 僅 noCommaBefore
+ *
+ * 字串開頭 / 結尾的邊界不標記對應的 noComma*：
+ * 該側沒有可見的相鄰內容時，跨 tag 的逗號不屬於本字串可見範圍，
+ * 標記反而會吃掉分割前就存在的跨 tag 逗號，故一律保留預設行為。
+ *
+ * 註：本函式不處理分行——呼叫端應先經 splitByPeriod 將 "\n"
+ * 隔離成獨立段落後再逐段呼叫（見 splitPromptParts）。
+ *
+ * @param {unknown} str - 要切割的原始字串。非字串時以單段落結構回傳。
+ * @returns {ISplitByAndPart[]} 段落陣列；無 AND 時回傳單段（value 為原字串）。
+ *
+ * @example
+ *   splitByAnd("a AND b")   // → [{a}, {AND, noCommaBefore, noCommaAfter}, {b}]
+ *   splitByAnd("a,AND b")   // → [{a}, {AND, noCommaAfter}, {b}]
+ *   splitByAnd("a AND, b")  // → [{a}, {AND, noCommaBefore}, {b}]
+ *   splitByAnd("ANDROID b") // → [{ANDROID b}]（內嵌詞，不切割）
+ *   splitByAnd("(a AND b)") // → [{(a AND b)}]（括號內不切割）
+ */
+export function splitByAnd(str: unknown): ISplitByAndPart[] {
+    if (typeof str !== 'string') return [{ value: String(str) }]
+    if (str === '') return [{ value: '' }]
+    return walkByAnd(str, true)
+}
+
+/**
+ * 走訪 AND 切割核心（可遞迴重處理，與 walk() 的 allowSingleQuote 同規則）。
+ *
+ * @param {string} str
+ * @param {boolean} allowSingleQuote - 是否允許單引號開啟引號。
+ *   主呼叫為 true；若收尾時單引號仍未關閉，以 false 重走——
+ *   單引號視為一般字元，AND 照常切割（不會再遞迴）。
+ * @returns {ISplitByAndPart[]}
+ */
+function walkByAnd(str: string, allowSingleQuote: boolean): ISplitByAndPart[] {
+    const len = str.length
+    const parts: ISplitByAndPart[] = []
+    let start = 0
+    /** 目前開啟的引號字元（null = 不在引號內；不跨呼叫保留） */
+    let quoteChar: EnumPromptQuoteChar | null = null
+    /** 未關閉括號的 stack（與 walk() 同規則：清空前不切割） */
+    const parenStack: IPromptBracketOpen[] = []
+
+    for (let ci = 0; ci < len; ci++) {
+        const ch = str[ci]
+
+        /** ── 引號追蹤（優先級最高）── */
+        if (quoteChar) {
+            if (ch === quoteChar) {
+                quoteChar = null
+            }
+            continue
+        }
+        if (ch === EnumPromptQuoteChar.double) {
+            quoteChar = EnumPromptQuoteChar.double
+            continue
+        }
+        if (ch === EnumPromptQuoteChar.single && allowSingleQuote) {
+            /** 單引號需區分撇號（it's）與引號開啟（'hello'），規則同 walk() */
+            const prevChar = ci > 0 ? str[ci - 1] : ''
+            const nextChar = ci < len - 1 ? str[ci + 1] : ''
+            const isApostrophe = /^\S$/.test(prevChar) && /^\S$/.test(nextChar)
+            if (!isApostrophe) {
+                quoteChar = EnumPromptQuoteChar.single
+            }
+            continue
+        }
+
+        /** ── 括號追蹤 ── */
+        if (isPromptBracketOpen(ch)) {
+            parenStack.push(ch)
+            continue
+        }
+        if (isPromptBracketClose(ch)) {
+            if (parenStack.length > 0 && parenStack[parenStack.length - 1] === promptBracketPairsReversed[ch]) {
+                parenStack.pop()
+            }
+            continue
+        }
+
+        /** ── AND 關鍵字：全大寫、獨立詞、且不在引號 / 括號內 ── */
+        if (parenStack.length !== 0) continue
+        if (!str.startsWith(PROMPT_AND_KEYWORD, ci)) continue
+
+        const kwEnd = ci + PROMPT_AND_KEYWORD.length
+        const prevChar = ci > 0 ? str[ci - 1] : ''
+        const nextChar = kwEnd < len ? str[kwEnd] : ''
+        if (ci > 0 && reAndBoundary.test(prevChar)) continue
+        if (nextChar !== '' && reAndBoundary.test(nextChar)) continue
+
+        /** 向後吃掉分隔（空白 / 逗號）：逗號有無決定 noCommaBefore */
+        let b = ci
+        while (b > start && reAndDelimiter.test(str[b - 1])) b--
+        const beforeRegion = str.substring(b, ci)
+        const hasContentBefore = b > start
+
+        /** 向前吃掉分隔（空白 / 逗號）：逗號有無決定 noCommaAfter */
+        let f = kwEnd
+        while (f < len && reAndDelimiter.test(str[f])) f++
+        const afterRegion = str.substring(kwEnd, f)
+        const hasContentAfter = f < len
+
+        const part: ISplitByAndPart = { value: PROMPT_AND_KEYWORD, isAnd: true }
+        if (hasContentBefore && !beforeRegion.includes(',')) part.noCommaBefore = true
+        if (hasContentAfter && !afterRegion.includes(',')) part.noCommaAfter = true
+
+        /** 兩側皆有內容才切出相鄰段；僅一側有內容時該側保留邊界不切 */
+        if (hasContentBefore) parts.push({ value: str.substring(start, b) })
+        parts.push(part)
+        start = hasContentAfter ? f : len
+        ci = start - 1
+    }
+
+    /**
+     * 未關閉的單引號：忽略它並以 allowSingleQuote=false 重走
+     *（與 walk() 同規則；重走時單引號不再開啟，不會遞迴）。
+     */
+    if (allowSingleQuote && quoteChar === EnumPromptQuoteChar.single) {
+        return walkByAnd(str, false)
+    }
+
+    /** 收尾：AND 之後的剩餘字串（AND 在結尾時 start 已推進至 len，不產生空段） */
+    if (start < len) parts.push({ value: str.substring(start) })
+
+    return parts
+}
+
+/**
+ * 組合切割：先以句號 / 分號 / 分行機制切割（splitByPeriod），
+ * 再對每一段套用 AND 關鍵字切割（splitByAnd）。
+ *
+ * 順序不可反：splitByPeriod 負責將分行 "\n" 標記隔離成獨立段落，
+ * 使 splitByAnd 只會看到不含換行的段落（AND 切割不處理分行）。
+ *
+ * @param {unknown} str - 原始字串
+ * @param {IHostPromptOptions} [options] - 切割選項（傳給 splitByPeriod）
+ * @returns {ISplitByAndPart[]} 段落陣列（含 AND 相鄰逗號資訊）；無切割點時為單段
+ */
+export function splitPromptParts(str: unknown, options: IHostPromptOptions = {}): ISplitByAndPart[] {
+    const parts: ISplitByAndPart[] = []
+    splitByPeriod(str, options).forEach(seg => {
+        splitByAnd(seg).forEach(part => parts.push(part))
+    })
+    return parts
+}
+
 export default splitByPeriod
