@@ -1,0 +1,308 @@
+exports[`updatePrompt > BREAK 但兩個自動換行選項皆關閉 — 不插入，直接提交 1`] = `
+{
+  "input": [
+    {
+      "type": "text",
+      "value": "cat"
+    },
+    {
+      "type": "text",
+      "value": "BREAK"
+    },
+    {
+      "type": "text",
+      "value": "dog"
+    }
+  ],
+  "args": {
+    "options": {},
+    "usesRealGenPrompt": false
+  },
+  "appended": [],
+  "refreshCount": 0,
+  "committed": [
+    "<genPrompt>"
+  ]
+}
+`;
+
+exports[`updatePrompt > BREAK 位於開頭 — 不產生前方換行（原行為保留），改走提交 1`] = `
+{
+  "input": [
+    {
+      "type": "text",
+      "value": "BREAK"
+    },
+    {
+      "type": "text",
+      "value": "cat"
+    }
+  ],
+  "args": {
+    "options": {
+      "autoBreakBeforeWrap": true
+    },
+    "usesRealGenPrompt": false
+  },
+  "appended": [],
+  "refreshCount": 0,
+  "committed": [
+    "<genPrompt>"
+  ]
+}
+`;
+
+exports[`updatePrompt > BREAK 前已是換行 — 不重複插入，直接提交 1`] = `
+{
+  "input": [
+    {
+      "type": "text",
+      "value": "cat"
+    },
+    {
+      "type": "wrap",
+      "value": "\\n"
+    },
+    {
+      "type": "text",
+      "value": "BREAK"
+    },
+    {
+      "type": "text",
+      "value": "dog"
+    }
+  ],
+  "args": {
+    "options": {
+      "autoBreakBeforeWrap": true
+    },
+    "usesRealGenPrompt": false
+  },
+  "appended": [],
+  "refreshCount": 0,
+  "committed": [
+    "<genPrompt>"
+  ]
+}
+`;
+
+exports[`updatePrompt > autoBreakAfterWrap — 於 BREAK 後插入（索引 2） 1`] = `
+{
+  "input": [
+    {
+      "type": "text",
+      "value": "cat"
+    },
+    {
+      "type": "text",
+      "value": "BREAK"
+    },
+    {
+      "type": "text",
+      "value": "dog"
+    }
+  ],
+  "args": {
+    "options": {
+      "autoBreakAfterWrap": true
+    },
+    "usesRealGenPrompt": false
+  },
+  "appended": [
+    {
+      "value": "\\n",
+      "localValue": "\\n",
+      "disabled": false,
+      "index": 2,
+      "type": "wrap"
+    }
+  ],
+  "refreshCount": 1,
+  "committed": []
+}
+`;
+
+exports[`updatePrompt > autoBreakBeforeWrap — 於 BREAK 前插入（索引 1） 1`] = `
+{
+  "input": [
+    {
+      "type": "text",
+      "value": "cat"
+    },
+    {
+      "type": "text",
+      "value": "BREAK"
+    },
+    {
+      "type": "text",
+      "value": "dog"
+    }
+  ],
+  "args": {
+    "options": {
+      "autoBreakBeforeWrap": true
+    },
+    "usesRealGenPrompt": false
+  },
+  "appended": [
+    {
+      "value": "\\n",
+      "localValue": "\\n",
+      "disabled": false,
+      "index": 1,
+      "type": "wrap"
+    }
+  ],
+  "refreshCount": 1,
+  "committed": []
+}
+`;
+
+exports[`updatePrompt > 兩個 BREAK — 四處插入，索引分別為 1 / 3 / 5 / 7 1`] = `
+{
+  "input": [
+    {
+      "type": "text",
+      "value": "a"
+    },
+    {
+      "type": "text",
+      "value": "BREAK"
+    },
+    {
+      "type": "text",
+      "value": "b"
+    },
+    {
+      "type": "text",
+      "value": "BREAK"
+    },
+    {
+      "type": "text",
+      "value": "c"
+    }
+  ],
+  "args": {
+    "options": {
+      "autoBreakBeforeWrap": true,
+      "autoBreakAfterWrap": true
+    },
+    "usesRealGenPrompt": false
+  },
+  "appended": [
+    {
+      "value": "\\n",
+      "localValue": "\\n",
+      "disabled": false,
+      "index": 1,
+      "type": "wrap"
+    },
+    {
+      "value": "\\n",
+      "localValue": "\\n",
+      "disabled": false,
+      "index": 3,
+      "type": "wrap"
+    },
+    {
+      "value": "\\n",
+      "localValue": "\\n",
+      "disabled": false,
+      "index": 5,
+      "type": "wrap"
+    },
+    {
+      "value": "\\n",
+      "localValue": "\\n",
+      "disabled": false,
+      "index": 7,
+      "type": "wrap"
+    }
+  ],
+  "refreshCount": 1,
+  "committed": []
+}
+`;
+
+exports[`updatePrompt > 前後都要插入 — 第二個索引需加上先前插入造成的位移（1 → 3） 1`] = `
+{
+  "input": [
+    {
+      "type": "text",
+      "value": "cat"
+    },
+    {
+      "type": "text",
+      "value": "BREAK"
+    },
+    {
+      "type": "text",
+      "value": "dog"
+    }
+  ],
+  "args": {
+    "options": {
+      "autoBreakBeforeWrap": true,
+      "autoBreakAfterWrap": true
+    },
+    "usesRealGenPrompt": false
+  },
+  "appended": [
+    {
+      "value": "\\n",
+      "localValue": "\\n",
+      "disabled": false,
+      "index": 1,
+      "type": "wrap"
+    },
+    {
+      "value": "\\n",
+      "localValue": "\\n",
+      "disabled": false,
+      "index": 3,
+      "type": "wrap"
+    }
+  ],
+  "refreshCount": 1,
+  "committed": []
+}
+`;
+
+exports[`updatePrompt > 沒有 BREAK — 不插入、不 refresh，直接提交 genPrompt 結果 1`] = `
+{
+  "input": [
+    {
+      "type": "text",
+      "value": "cat"
+    },
+    {
+      "type": "text",
+      "value": "dog"
+    }
+  ],
+  "args": {
+    "options": {},
+    "usesRealGenPrompt": false
+  },
+  "appended": [],
+  "refreshCount": 0,
+  "committed": [
+    "<genPrompt>"
+  ]
+}
+`;
+
+exports[`updatePrompt > 空標籤陣列 — 不插入、不 refresh，直接提交 genPrompt 結果 1`] = `
+{
+  "input": [],
+  "args": {
+    "options": {},
+    "usesRealGenPrompt": false
+  },
+  "appended": [],
+  "refreshCount": 0,
+  "committed": [
+    "<genPrompt>"
+  ]
+}
+`;

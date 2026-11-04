@@ -1,0 +1,204 @@
+exports[`repairMojibake > mojibake repair intent (direct assertions, no snapshot) > gap-fill tier B: stripped C1 in curly-quote mojibake, C1 marker present — [7df95fcd] \"queenâs\" 1`] = `
+{
+  "input": "queenâs",
+  "result": {
+    "text": "queen–s",
+    "method": "gap-fill",
+    "confidence": 0.35,
+    "changed": true
+  }
+}
+`;
+
+exports[`repairMojibake > mojibake repair intent (direct assertions, no snapshot) > gap-fill: fully stripped leads (no anchors) rebuilt to dictionary-validated CJK — [713a0f49] \"åçç\" 1`] = `
+{
+  "input": "åçç",
+  "result": {
+    "text": "先生理",
+    "method": "gap-fill",
+    "confidence": 0.44,
+    "changed": true
+  }
+}
+`;
+
+exports[`repairMojibake > mojibake repair intent (direct assertions, no snapshot) > gap-fill: single stripped C1 (0x9D) rebuilt via surviving anchor → 東京 — [99cf1ecf] \"æ±äº¬\" 1`] = `
+{
+  "input": "æ±äº¬",
+  "result": {
+    "text": "東京",
+    "method": "gap-fill",
+    "confidence": 0.5,
+    "changed": true
+  }
+}
+`;
+
+exports[`repairMojibake > mojibake repair intent (direct assertions, no snapshot) > lossless: Windows-1252 specials (€/™ bytes) reverse-mapped — [51b4cf9f] \"â€™abc\" 1`] = `
+{
+  "input": "â€™abc",
+  "result": {
+    "text": "’abc",
+    "method": "round-trip",
+    "confidence": 0.95,
+    "changed": true
+  }
+}
+`;
+
+exports[`repairMojibake > mojibake repair intent (direct assertions, no snapshot) > lossless: mojibake-shaped Ã without C1 (cafÃ© → café) — [1f023555] \"cafÃ©\" 1`] = `
+{
+  "input": "cafÃ©",
+  "result": {
+    "text": "café",
+    "method": "round-trip",
+    "confidence": 0.8,
+    "changed": true
+  }
+}
+`;
+
+exports[`repairMojibake > mojibake repair intent (direct assertions, no snapshot) > lossless: raw C1 present, 東京 restored byte-exact — [01ffde27] \"æ±äº¬\" 1`] = `
+{
+  "input": "æ±äº¬",
+  "result": {
+    "text": "東京",
+    "method": "round-trip",
+    "confidence": 0.95,
+    "changed": true
+  }
+}
+`;
+
+exports[`repairMojibake > mojibake repair intent (direct assertions, no snapshot) > mixed line: correct em-dash preserved while raw-C1 mojibake repaired (segmented path) — [ffcbfa0b] \"a—b queenâ\" 1`] = `
+{
+  "input": "a—b queenâ",
+  "result": {
+    "text": "a—b queen’",
+    "method": "round-trip",
+    "confidence": 0.95,
+    "changed": true
+  }
+}
+`;
+
+exports[`repairMojibake > mojibake repair intent (direct assertions, no snapshot) > multi-line: repaired per line, newline structure preserved — [4fd77fa8] \"æ±äº¬\\ncafÃ©\" 1`] = `
+{
+  "input": "æ±äº¬\\ncafÃ©",
+  "result": {
+    "text": "東京\\ncafé",
+    "method": "round-trip",
+    "confidence": 0.8,
+    "changed": true
+  }
+}
+`;
+
+exports[`repairMojibake > mojibake repair intent (direct assertions, no snapshot) > pipeline: ZWSP mojibake repaired then removed by existing trimPromptText — [6bf97f4c] \"â€‹abc\" 1`] = `
+{
+  "input": "â€‹abc",
+  "result": {
+    "text": "​abc",
+    "method": "round-trip",
+    "confidence": 0.95,
+    "changed": true
+  }
+}
+`;
+
+exports[`repairMojibake > mojibake repair intent (direct assertions, no snapshot) > untouched: Nordic text with mixed high chars — [5c510cb3] \"Ångström\" 1`] = `
+{
+  "input": "Ångström",
+  "result": {
+    "text": "Ångström",
+    "method": "none",
+    "confidence": 0,
+    "changed": false
+  }
+}
+`;
+
+exports[`repairMojibake > mojibake repair intent (direct assertions, no snapshot) > untouched: genuine CJK text is not mojibake — [46932f1e] \"你好，世界\" 1`] = `
+{
+  "input": "你好，世界",
+  "result": {
+    "text": "你好，世界",
+    "method": "none",
+    "confidence": 0,
+    "changed": false
+  }
+}
+`;
+
+exports[`repairMojibake > mojibake repair intent (direct assertions, no snapshot) > untouched: legit accented Latin (truncated UTF-8 lead must not trigger repair) — [850f7dc4] \"café\" 1`] = `
+{
+  "input": "café",
+  "result": {
+    "text": "café",
+    "method": "none",
+    "confidence": 0,
+    "changed": false
+  }
+}
+`;
+
+exports[`repairMojibake > mojibake repair intent (direct assertions, no snapshot) > untouched: pure ASCII fast path — [91c2cf27] \"plain ascii 123\" 1`] = `
+{
+  "input": "plain ascii 123",
+  "result": {
+    "text": "plain ascii 123",
+    "method": "none",
+    "confidence": 0,
+    "changed": false
+  }
+}
+`;
+
+exports[`splitTags autoRepairMojibake option > option gates repair at splitTags entry > option OFF: mojibake input untouched (gating proven) — [99cf1ecf] \"æ±äº¬\" (false, false, {autoRepairMojibake: false}) 1`] = `
+{
+  "input": "æ±äº¬",
+  "args": [
+    false,
+    false,
+    {
+      "autoRepairMojibake": false
+    }
+  ],
+  "result": [
+    "æ±äº¬"
+  ]
+}
+`;
+
+exports[`splitTags autoRepairMojibake option > option gates repair at splitTags entry > option ON: repair runs before comma split → café + next — [6a0d94e4] \"cafÃ©, next\" (false, false, {autoRepairMojibake: true}) 1`] = `
+{
+  "input": "cafÃ©, next",
+  "args": [
+    false,
+    false,
+    {
+      "autoRepairMojibake": true
+    }
+  ],
+  "result": [
+    "café",
+    "next"
+  ]
+}
+`;
+
+exports[`splitTags autoRepairMojibake option > option gates repair at splitTags entry > option ON: repaired at splitTags entry → 東京 — [99cf1ecf] \"æ±äº¬\" (false, false, {autoRepairMojibake: true}) 1`] = `
+{
+  "input": "æ±äº¬",
+  "args": [
+    false,
+    false,
+    {
+      "autoRepairMojibake": true
+    }
+  ],
+  "result": [
+    "東京"
+  ]
+}
+`;

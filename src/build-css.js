@@ -14,8 +14,9 @@ const fs = require('fs')
 const path = require('path')
 const less = require('less')
 const CleanCSSPlugin = require('less-plugin-clean-css')
+const { __PROJECT_ROOT, __ROOT } = require('./test/__root.ts')
 
-const STYLES_DIR = path.resolve(__dirname, '..', 'styles')
+const STYLES_DIR = path.resolve(__PROJECT_ROOT, 'styles')
 const MAIN_LESS = path.join(STYLES_DIR, 'main.less')
 const EXTENSIONS_DIR = path.join(STYLES_DIR, 'extensions')
 
@@ -25,6 +26,10 @@ const USAGE = [
     '  extensions  compile styles/extensions/**/*.less -> sibling .min.css',
     '  all         compile both all',
 ].join('\n')
+
+console.log(`[build:css] __ROOT: ${__ROOT}`)
+console.log(`[build:css] __PROJECT_ROOT: ${__PROJECT_ROOT}`)
+console.log('')
 
 /**
  * 遞迴收集目錄下的 .less 檔
@@ -94,10 +99,10 @@ async function main() {
     for (const file of files) {
         try {
             const outFile = await compile(file)
-            console.log(`[build:css] ${path.relative(process.cwd(), file)} -> ${path.relative(process.cwd(), outFile)}`)
+            console.log(`[build:css] ${path.relative(__ROOT, file)} -> ${path.relative(__ROOT, outFile)}`)
         } catch (err) {
             failed++
-            console.error(`[build:css] FAILED: ${path.relative(process.cwd(), file)}`)
+            console.error(`[build:css] FAILED: ${path.relative(__ROOT, file)}`)
             console.error((err && err.message) || err)
         }
     }

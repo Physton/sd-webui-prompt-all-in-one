@@ -1,0 +1,38 @@
+{
+  "compilerOptions": {
+    /* 請參考 https://aka.ms/tsconfig */
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "strict": false,
+    "jsx": "preserve",
+    "resolveJsonModule": true,
+    "allowJs": true,        /* 允許 JS 檔存在，並可被 TS 檔引用 */
+    "checkJs": false,
+    "noEmit": true,         /* TS 僅做型別檢查，交由 Vite 負責輸出 */
+    "noImplicitAny": false,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "ignoreDeprecations": "6.0",
+    "newLine": "lf",
+    "baseUrl": ".",
+    "paths": {
+      "#/*": ["./*"],
+      "@/*": ["./src/*"]
+    },
+    "types": [
+      "vite/client",
+      "./shims-vue.d.ts"
+    ]
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.vue",
+    "types/**/*.d.ts",
+    "shims-vue.d.ts"
+  ],
+  "exclude": ["node_modules", "../javascript"]
+}

@@ -1,2 +1,8 @@
 /javascript
 __pycache__
+pnpm-lock.yaml
+styles/extensions/*/*.min.css
+styles/main.min.css
+styles/animate.min.css
+node_modules
+.kilo

@@ -5,8 +5,25 @@
                 .prompt-tag-main {
                     .prompt-tag-edit {
                         .prompt-tag-value {
+                            // 語法符號（權重括號、lora-like 的 <> 與名稱分隔）統一用等寬字型：
+                            // 這些字元在比例字型下會寬窄不一，同一種符號看起來反而像不同字。
+                            --pp-pt-dsb-ptl-pt-ptm-pte-promptTagValue-bracket-font-family:
+                                "JetBrains Mono",
+                                "Noto Sans",
+                                "Liberation Sans",
+                                "Helvetica Neue",
+                                "Arial",
+                                "Segoe UI",
+                                sans-serif;
+
                             .weight-character {
-                                font-weight: bold;
+                                font-weight: 900;
+
+                                font-synthesis: weight;
+                                -webkit-text-stroke: 2px currentColor;
+
+                                font-family: var(--pp-pt-dsb-ptl-pt-ptm-pte-promptTagValue-bracket-font-family);
+
                                 padding: 0 1px;
                                 &:first-of-type {
                                     padding-right: 3px;
@@ -14,6 +31,42 @@
                                 &:last-of-type {
                                     padding-left: 3px;
                                 }
+                            }
+
+                            // lora-like 的 `<lora:` / `>` 只是語法外殼，
+                            // 以淡化處理把注意力留給模型名稱；不加粗是為了與 weight-character 區隔，
+                            // 避免同一行出現兩種同樣搶眼的符號。
+                            .lora-like-open-character,
+                            .lora-like-close-character {
+                                font-family: var(--pp-pt-dsb-ptl-pt-ptm-pte-promptTagValue-bracket-font-family);
+
+                                font-synthesis: none;
+                                font-weight: 400;
+                                opacity: .55;
+                            }
+
+                            // 權重數值（lora 的 :weight）與括號同屬「該被看見的權重資訊」，
+                            // 但它是數值不是符號：沿用同樣的字重與描邊，
+                            // 不套用括號的 first/last-of-type 邊緣留白。
+                            .weight-number-character,
+                            .dec-weight-number-character {
+                                font-weight: bold;
+                                font-synthesis: weight;
+
+                                font-family: var(--pp-pt-dsb-ptl-pt-ptm-pte-promptTagValue-bracket-font-family);
+
+                                padding: 0 1px;
+                            }
+
+                            // 權重段的醒目效果由 .weight-number-character 提供，
+                            // 這裡只補「權重 0 / 未寫權重」時的情境：仍讓它維持等寬字型。
+                            .lora-like-weight-character {
+                                font-family: var(--pp-pt-dsb-ptl-pt-ptm-pte-promptTagValue-bracket-font-family);
+                            }
+
+                            // 名稱是使用者真正在讀的部分，維持一般字型並略為加重
+                            .lora-like-name-character {
+                                font-weight: 700;
                             }
                         }
                     }

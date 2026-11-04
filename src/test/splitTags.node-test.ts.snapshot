@@ -1,3 +1,100 @@
+exports[`issues regression cases > issue#1: 原始回報輸入 — 孤立雙引號不產生孤兒逗號 tag — [735aeec6] \"Bright, direct mid-day sunlight illuminates the scene, casti…\" 1`] = `
+{
+  "input": "Bright, direct mid-day sunlight illuminates the scene, casting clear light across her face and chest above water while creating shimmering ripple patterns through the turquoise sea floor below.   Background, Composition & SettingSetting: An open tropical sea or lagoon with crystal-clear turquoise water over a pale sandy seabed. The horizon features a vast blue sky filled with fluffy white cumulus clouds.   Composition: An over-under (split-level) water shot using a wide-angle dome lens, capturing both the vibrant underwater scene in the lower half and the sunny sky with the subject in the upper half., \\"}, }\\nGrainy smartphone photo with high ISO noise, selfie, raw unedited aesthetic, moody boudoir erotica, voyeuristic sensual editorial look, heroin chic vibe. Candid photo raking from the side, muted desaturated colors, nostalgic film look, photo dump style. Shot on a 28mm lens at f/1.8 with visible digital grain., <lora:realism_engine_krea2_v3.1:0.4>, <lora:babegenerator.ink-realism_helper:1> <lora:2_Strongx3_wl7:1>, <lora:realism_engine_krea2_v3.1:0.25>, <lora:babegenerator.ink-realism_helper:0.65>, <lora:Krea2_TextFusion_Refusal_Reduction:2>",
+  "result": [
+    "Bright",
+    "direct mid-day sunlight illuminates the scene",
+    "casting clear light across her face and chest above water while creating shimmering ripple patterns through the turquoise sea floor below.   Background",
+    "Composition & SettingSetting: An open tropical sea or lagoon with crystal-clear turquoise water over a pale sandy seabed. The horizon features a vast blue sky filled with fluffy white cumulus clouds.   Composition: An over-under (split-level) water shot using a wide-angle dome lens",
+    "capturing both the vibrant underwater scene in the lower half and the sunny sky with the subject in the upper half.",
+    "\\"}, }",
+    "\\n",
+    "Grainy smartphone photo with high ISO noise",
+    "selfie",
+    "raw unedited aesthetic",
+    "moody boudoir erotica",
+    "voyeuristic sensual editorial look",
+    "heroin chic vibe. Candid photo raking from the side",
+    "muted desaturated colors",
+    "nostalgic film look",
+    "photo dump style. Shot on a 28mm lens at f/1.8 with visible digital grain.",
+    "<lora:realism_engine_krea2_v3.1:0.4>",
+    "<lora:babegenerator.ink-realism_helper:1>",
+    "<lora:2_Strongx3_wl7:1>",
+    "<lora:realism_engine_krea2_v3.1:0.25>",
+    "<lora:babegenerator.ink-realism_helper:0.65>",
+    "<lora:Krea2_TextFusion_Refusal_Reduction:2>"
+  ]
+}
+`;
+
+exports[`issues regression cases > issue#1: 引號不跨行保留 — 第二行逗號照常切割 — [cefdd1bb] \"a \\\"b, c\\nd, e\" 1`] = `
+{
+  "input": "a \\"b, c\\nd, e",
+  "result": [
+    "a \\"b, c",
+    "\\n",
+    "d",
+    "e"
+  ]
+}
+`;
+
+exports[`issues regression cases > issue#1: 最小重現 — 加入孤立 \"（唯一變因）不得產生孤兒逗號 — [78b48f86] \"Scene text., \\\"}, }\\nGrainy photo with grain., <lora:A:0.4>, <…\" 1`] = `
+{
+  "input": "Scene text., \\"}, }\\nGrainy photo with grain., <lora:A:0.4>, <lora:B:1> <lora:C:1>, <lora:D:0.25>",
+  "result": [
+    "Scene text.",
+    "\\"}, }",
+    "\\n",
+    "Grainy photo with grain.",
+    "<lora:A:0.4>",
+    "<lora:B:1>",
+    "<lora:C:1>",
+    "<lora:D:0.25>"
+  ]
+}
+`;
+
+exports[`issues regression cases > issue#1: 最小重現 — 無引號對照組 — [21a21bb8] \"Scene text., }\\nGrainy photo with grain., <lora:A:0.4>, <lora…\" 1`] = `
+{
+  "input": "Scene text., }\\nGrainy photo with grain., <lora:A:0.4>, <lora:B:1> <lora:C:1>, <lora:D:0.25>",
+  "result": [
+    "Scene text.",
+    "}",
+    "\\n",
+    "Grainy photo with grain.",
+    "<lora:A:0.4>",
+    "<lora:B:1>",
+    "<lora:C:1>",
+    "<lora:D:0.25>"
+  ]
+}
+`;
+
+exports[`issues regression cases > issue#1: 無引號對照組 — 正常輸入不受影響 — [162c9380] \"Grainy smartphone photo with high ISO noise, selfie, raw une…\" 1`] = `
+{
+  "input": "Grainy smartphone photo with high ISO noise, selfie, raw unedited aesthetic, moody boudoir erotica, voyeuristic sensual editorial look, heroin chic vibe. Candid photo raking from the side, muted desaturated colors, nostalgic film look, photo dump style. Shot on a 28mm lens at f/1.8 with visible digital grain., <lora:realism_engine_krea2_v3.1:0.4>, <lora:babegenerator.ink-realism_helper:1> <lora:2_Strongx3_wl7:1>, <lora:realism_engine_krea2_v3.1:0.25>, <lora:babegenerator.ink-realism_helper:0.65>, <lora:Krea2_TextFusion_Refusal_Reduction:2>",
+  "result": [
+    "Grainy smartphone photo with high ISO noise",
+    "selfie",
+    "raw unedited aesthetic",
+    "moody boudoir erotica",
+    "voyeuristic sensual editorial look",
+    "heroin chic vibe. Candid photo raking from the side",
+    "muted desaturated colors",
+    "nostalgic film look",
+    "photo dump style. Shot on a 28mm lens at f/1.8 with visible digital grain.",
+    "<lora:realism_engine_krea2_v3.1:0.4>",
+    "<lora:babegenerator.ink-realism_helper:1>",
+    "<lora:2_Strongx3_wl7:1>",
+    "<lora:realism_engine_krea2_v3.1:0.25>",
+    "<lora:babegenerator.ink-realism_helper:0.65>",
+    "<lora:Krea2_TextFusion_Refusal_Reduction:2>"
+  ]
+}
+`;
+
 exports[`splitTags > BREAK keyword splits — [bcbb06ec] \"a, BREAK, b\" 1`] = `
 {
   "input": "a, BREAK, b",
@@ -217,6 +314,111 @@ exports[`splitTags > both quote types closed, comma outside splits — [d36cc3f4
     "c"
   ],
   "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > cleanup: NULL char removed — [2b10de34] \"a\\u0000b, c\" 1`] = `
+{
+  "input": "a\\u0000b, c",
+  "result": [
+    "ab",
+    "c"
+  ],
+  "changedFromOriginal": true,
+  "originalResult": [
+    "a\\u0000b",
+    "c"
+  ]
+}
+`;
+
+exports[`splitTags > cleanup: edge BOM (U+FEFF) removed — JS \\s includes U+FEFF — [5868a377] \"﻿abc, def\" 1`] = `
+{
+  "input": "﻿abc, def",
+  "result": [
+    "abc",
+    "def"
+  ],
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > cleanup: edge spaces trimmed but boundary newlines preserved — [a8f85b71] \" \\nabc\\n \" 1`] = `
+{
+  "input": " \\nabc\\n ",
+  "result": [
+    "\\n",
+    "abc",
+    "\\n"
+  ],
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > cleanup: edge spaces trimmed, internal kept — [3e59aee2] \"  abc ,  def  \" 1`] = `
+{
+  "input": "  abc ,  def  ",
+  "result": [
+    "abc",
+    "def"
+  ],
+  "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > cleanup: invisible-chars-only input returns [] — [82899120] \"​\\u0000\" 1`] = `
+{
+  "input": "​\\u0000",
+  "result": [],
+  "changedFromOriginal": true,
+  "originalResult": [
+    "​\\u0000"
+  ]
+}
+`;
+
+exports[`splitTags > cleanup: leading zero-width space removed — [cefb41ac] \"​abc, def\" 1`] = `
+{
+  "input": "​abc, def",
+  "result": [
+    "abc",
+    "def"
+  ],
+  "changedFromOriginal": true,
+  "originalResult": [
+    "​abc",
+    "def"
+  ]
+}
+`;
+
+exports[`splitTags > cleanup: trailing zero-width space removed — [e3bffa5f] \"abc, def​\" 1`] = `
+{
+  "input": "abc, def​",
+  "result": [
+    "abc",
+    "def"
+  ],
+  "changedFromOriginal": true,
+  "originalResult": [
+    "abc",
+    "def​"
+  ]
+}
+`;
+
+exports[`splitTags > cleanup: zero-width space inside segment removed — [9570efc2] \"abc​, def\" 1`] = `
+{
+  "input": "abc​, def",
+  "result": [
+    "abc",
+    "def"
+  ],
+  "changedFromOriginal": true,
+  "originalResult": [
+    "abc​",
+    "def"
+  ]
 }
 `;
 
@@ -859,10 +1061,15 @@ exports[`splitTags > newline inside quotes still splits — [1596094b] \"\\\"quo
   "result": [
     "\\"quoted",
     "\\n",
+    "newline\\", next"
+  ],
+  "changedFromOriginal": true,
+  "originalResult": [
+    "\\"quoted",
+    "\\n",
     "newline\\"",
     "next"
-  ],
-  "changedFromOriginal": false
+  ]
 }
 `;
 
@@ -1203,6 +1410,26 @@ exports[`splitTags > unclosed double quote containing single quote char — [5b8
     "a \\"b 'c"
   ],
   "changedFromOriginal": false
+}
+`;
+
+exports[`splitTags > unclosed double quote ends at newline — line 2 commas split normally (quote not carried over) — [cefdd1bb] \"a \\\"b, c\\nd, e\" 1`] = `
+{
+  "input": "a \\"b, c\\nd, e",
+  "result": [
+    "a \\"b, c",
+    "\\n",
+    "d",
+    "e"
+  ],
+  "changedFromOriginal": true,
+  "originalResult": [
+    "a \\"b",
+    "c",
+    "\\n",
+    "d",
+    "e"
+  ]
 }
 `;
 

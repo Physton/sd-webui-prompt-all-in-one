@@ -6,90 +6,13 @@
                 <icon-svg name="close"/>
             </div>
             <div class="format-list" @click.stop>
-                <div class="format-item">
+                <!-- checkbox 結構由 definitions.ts 的 checkUi 生成：v-for 維持定義表順序，子選項依父選項啟用與否過濾並縮排 -->
+                <div class="format-item" v-for="option in formatOptions" :key="option.key"
+                     :style="option.parentKey ? 'padding-left: 20px;' : null">
                     <input class="format-checkbox" type="checkbox"
-                           :checked="autoRemoveSpace"
-                           @change="$emit('update:autoRemoveSpace', $event.target.checked)">
-                    <div class="format-desc" v-html="getLang('is_remove_space')"></div>
-                </div>
-                <div class="format-item">
-                    <input class="format-checkbox" type="checkbox"
-                           :checked="autoRemoveLastComma"
-                           @change="$emit('update:autoRemoveLastComma', $event.target.checked)">
-                    <div class="format-desc" v-html="getLang('is_remove_last_comma')"></div>
-                </div>
-                <div class="format-item">
-                    <input class="format-checkbox" type="checkbox"
-                           :checked="autoKeepWeightZero"
-                           @change="$emit('update:autoKeepWeightZero', $event.target.checked)">
-                    <div class="format-desc" v-html="getLang('is_keep_weight_zero')"></div>
-                </div>
-                <div class="format-item">
-                    <input class="format-checkbox" type="checkbox"
-                           :checked="autoBreakBeforeWrap"
-                           @change="$emit('update:autoBreakBeforeWrap', $event.target.checked)">
-                    <div class="format-desc" v-html="getLang('is_break_before_wrap')"></div>
-                </div>
-                <div class="format-item">
-                    <input class="format-checkbox" type="checkbox"
-                           :checked="autoBreakAfterWrap"
-                           @change="$emit('update:autoBreakAfterWrap', $event.target.checked)">
-                    <div class="format-desc" v-html="getLang('is_break_after_wrap')"></div>
-                </div>
-                <div class="format-item">
-                    <input class="format-checkbox" type="checkbox"
-                           :checked="autoRemoveLoraBeforeComma"
-                           @change="$emit('update:autoRemoveLoraBeforeComma', $event.target.checked)">
-                    <div class="format-desc" v-html="getLang('is_remove_lora_before_comma')"></div>
-                </div>
-                <div class="format-item">
-                    <input class="format-checkbox" type="checkbox"
-                           :checked="autoRemoveLoraAfterComma"
-                           @change="$emit('update:autoRemoveLoraAfterComma', $event.target.checked)">
-                    <div class="format-desc" v-html="getLang('is_remove_lora_after_comma')"></div>
-                </div>
-                <div class="format-item">
-                    <input class="format-checkbox" type="checkbox"
-                           :checked="useNovelAiWeightSymbol"
-                           @change="$emit('update:useNovelAiWeightSymbol', $event.target.checked)">
-                    <div class="format-desc" v-html="getLang('is_use_novel_ai_weight_symbol')"></div>
-                </div>
-                <div class="format-item">
-                    <input class="format-checkbox" type="checkbox"
-                           :checked="autoRemoveBeforeLineComma"
-                           @change="$emit('update:autoRemoveBeforeLineComma', $event.target.checked)">
-                    <div class="format-desc" v-html="getLang('is_remove_before_line_comma')"></div>
-                </div>
-                <!-- 自動優化分割符號：獨立選項（不再屬於 autoSplitByPeriod 子選項），因此不加 v-if 與縮排 -->
-                <div class="format-item">
-                    <input class="format-checkbox" type="checkbox"
-                           :checked="autoOptimizeSplitSymbol"
-                           @change="$emit('update:autoOptimizeSplitSymbol', $event.target.checked)">
-                    <div class="format-desc" v-html="getLang('is_auto_optimize_split_symbol')"></div>
-                </div>
-                <div class="format-item">
-                    <input class="format-checkbox" type="checkbox"
-                           :checked="allowKeepEmptyLine"
-                           @change="$emit('update:allowKeepEmptyLine', $event.target.checked)">
-                    <div class="format-desc" v-html="getLang('is_allow_keep_empty_line')"></div>
-                </div>
-                <div class="format-item">
-                    <input class="format-checkbox" type="checkbox"
-                           :checked="autoSplitByPeriod"
-                           @change="$emit('update:autoSplitByPeriod', $event.target.checked)">
-                    <div class="format-desc" v-html="getLang('is_split_by_period')"></div>
-                </div>
-                <div class="format-item" v-if="autoSplitByPeriod" style="padding-left: 20px;">
-                    <input class="format-checkbox" type="checkbox"
-                           :checked="autoSplitByPeriodIncludeParen"
-                           @change="$emit('update:autoSplitByPeriodIncludeParen', $event.target.checked)">
-                    <div class="format-desc" v-html="getLang('is_split_by_period_include_paren')"></div>
-                </div>
-                <div class="format-item" v-if="autoSplitByPeriod" style="padding-left: 20px;">
-                    <input class="format-checkbox" type="checkbox"
-                           :checked="autoSplitByPeriodSemicolon"
-                           @change="$emit('update:autoSplitByPeriodSemicolon', $event.target.checked)">
-                    <div class="format-desc" v-html="getLang('is_split_by_period_semicolon')"></div>
+                           :checked="option.value"
+                           @change="$emit(option.emitEvent, $event.target.checked)">
+                    <div class="format-desc" v-html="getLang(option.labelLangKey)"></div>
                 </div>
             </div>
         </div>
@@ -99,72 +22,15 @@
 <script>
 import LanguageMixin from "@/mixins/languageMixin";
 import IconSvg from "@/components/iconSvg.vue";
+import { filterPromptOptionCheckVisible, getPromptOptionChecks, getPromptOptionEmits, getPromptOptionProps, withPromptOptionCheckValues } from "@/utils/promptOptions"
 
 export default {
     name: 'PromptFormat',
     components: {IconSvg},
     mixins: [LanguageMixin],
     props: {
-        autoRemoveSpace: {
-            type: Boolean,
-            default: false,
-        },
-        autoRemoveLastComma: {
-            type: Boolean,
-            default: false,
-        },
-        autoKeepWeightZero: {
-            type: Boolean,
-            default: false,
-        },
-        autoKeepWeightOne: {
-            type: Boolean,
-            default: false,
-        },
-        autoBreakBeforeWrap: {
-            type: Boolean,
-            default: false,
-        },
-        autoBreakAfterWrap: {
-            type: Boolean,
-            default: false,
-        },
-        autoRemoveLoraBeforeComma: {
-            type: Boolean,
-            default: false,
-        },
-        autoRemoveLoraAfterComma: {
-            type: Boolean,
-            default: false,
-        },
-        useNovelAiWeightSymbol: {
-            type: Boolean,
-            default: false,
-        },
-        autoRemoveBeforeLineComma: {
-            type: Boolean,
-            default: false,
-        },
-        autoSplitByPeriod: {
-            type: Boolean,
-            default: false,
-        },
-        autoSplitByPeriodIncludeParen: {
-            type: Boolean,
-            default: false,
-        },
-        autoSplitByPeriodSemicolon: {
-            type: Boolean,
-            default: false,
-        },
-        autoOptimizeSplitSymbol: {
-            type: Boolean,
-            default: false,
-        },
-        allowKeepEmptyLine: {
-            type: Boolean,
-            default: false,
-        },
+        /** prompts 系列選項 props：由 src/src/utils/promptOptions 生成 */
+        ...getPromptOptionProps(),
     },
     data() {
         return {
@@ -172,23 +38,23 @@ export default {
         }
     },
     emits: [
-        'update:autoRemoveSpace',
-        'update:autoRemoveLastComma',
-        'update:autoKeepWeightZero',
-        'update:autoKeepWeightOne',
-        'update:autoBreakBeforeWrap',
-        'update:autoBreakAfterWrap',
-        'update:autoRemoveLoraBeforeComma',
-        'update:autoRemoveLoraAfterComma',
-        'update:useNovelAiWeightSymbol',
-        'update:autoRemoveBeforeLineComma',
-        'update:autoSplitByPeriod',
-        'update:autoSplitByPeriodIncludeParen',
-        'update:autoSplitByPeriodSemicolon',
-        'update:autoOptimizeSplitSymbol',
-        'update:allowKeepEmptyLine',
+        /** v-model 事件名（update:key）：依 emittedBy 生成——本元件的 14 個 checkbox 實際會 emit */
+        ...getPromptOptionEmits('promptFormat'),
     ],
-    computed: {},
+    computed: {
+        /**
+         * checkbox 面板結構：靜態結構與執行期狀態分段生成。
+         *
+         * 1. getPromptOptionChecks          — 靜態結構
+         * 2. withPromptOptionCheckValues    — 掛上目前值 value（傳入 this，computed 內讀取 props 以收集響應式依賴）
+         * 3. filterPromptOptionCheckVisible — 子選項僅在父選項目前啟用時保留（等同原本的 v-if）
+         */
+        formatOptions() {
+            const checks = getPromptOptionChecks('promptFormat')
+            const checksWithValues = withPromptOptionCheckValues(checks, this)
+            return filterPromptOptionCheckVisible(checksWithValues, this)
+        },
+    },
     mounted() {
     },
     methods: {

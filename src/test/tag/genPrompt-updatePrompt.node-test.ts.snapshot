@@ -1,0 +1,281 @@
+exports[`genPrompt + updatePrompt composite > BREAK 前已是換行 — 不重複插入，直接組字 1`] = `
+{
+  "input": [
+    {
+      "type": "text",
+      "value": "cat"
+    },
+    {
+      "type": "wrap",
+      "value": "\\n"
+    },
+    {
+      "type": "text",
+      "value": "BREAK"
+    },
+    {
+      "type": "text",
+      "value": "dog"
+    }
+  ],
+  "args": {
+    "options": {
+      "autoBreakBeforeWrap": true
+    },
+    "usesRealGenPrompt": true
+  },
+  "appended": [],
+  "refreshCount": 0,
+  "committed": [
+    "cat, \\nBREAK dog"
+  ]
+}
+`;
+
+exports[`genPrompt + updatePrompt composite > 兩個 BREAK 四處插入 — 第二輪已無可插入處，流程收斂 1`] = `
+{
+  "input": [
+    {
+      "type": "text",
+      "value": "a"
+    },
+    {
+      "type": "text",
+      "value": "BREAK"
+    },
+    {
+      "type": "text",
+      "value": "b"
+    },
+    {
+      "type": "text",
+      "value": "BREAK"
+    },
+    {
+      "type": "text",
+      "value": "c"
+    }
+  ],
+  "args": {
+    "options": {
+      "autoBreakBeforeWrap": true,
+      "autoBreakAfterWrap": true
+    },
+    "usesRealGenPrompt": true
+  },
+  "appended": [
+    {
+      "value": "\\n",
+      "localValue": "\\n",
+      "disabled": false,
+      "index": 1,
+      "type": "wrap"
+    },
+    {
+      "value": "\\n",
+      "localValue": "\\n",
+      "disabled": false,
+      "index": 3,
+      "type": "wrap"
+    },
+    {
+      "value": "\\n",
+      "localValue": "\\n",
+      "disabled": false,
+      "index": 5,
+      "type": "wrap"
+    },
+    {
+      "value": "\\n",
+      "localValue": "\\n",
+      "disabled": false,
+      "index": 7,
+      "type": "wrap"
+    }
+  ],
+  "refreshCount": 1,
+  "committed": [
+    "a\\nBREAK\\nb\\nBREAK\\nc"
+  ]
+}
+`;
+
+exports[`genPrompt + updatePrompt composite > 前後都補換行 + 移除換行前逗號與末段逗號 — 三段乾淨輸出 1`] = `
+{
+  "input": [
+    {
+      "type": "text",
+      "value": "cat"
+    },
+    {
+      "type": "text",
+      "value": "BREAK"
+    },
+    {
+      "type": "text",
+      "value": "dog"
+    }
+  ],
+  "args": {
+    "options": {
+      "autoBreakBeforeWrap": true,
+      "autoBreakAfterWrap": true
+    },
+    "usesRealGenPrompt": true
+  },
+  "appended": [
+    {
+      "value": "\\n",
+      "localValue": "\\n",
+      "disabled": false,
+      "index": 1,
+      "type": "wrap"
+    },
+    {
+      "value": "\\n",
+      "localValue": "\\n",
+      "disabled": false,
+      "index": 3,
+      "type": "wrap"
+    }
+  ],
+  "refreshCount": 1,
+  "committed": [
+    "cat\\nBREAK\\ndog"
+  ]
+}
+`;
+
+exports[`genPrompt + updatePrompt composite > 只在 BREAK 後補換行 — 前段以空白分隔 1`] = `
+{
+  "input": [
+    {
+      "type": "text",
+      "value": "cat"
+    },
+    {
+      "type": "text",
+      "value": "BREAK"
+    },
+    {
+      "type": "text",
+      "value": "dog"
+    }
+  ],
+  "args": {
+    "options": {
+      "autoBreakAfterWrap": true
+    },
+    "usesRealGenPrompt": true
+  },
+  "appended": [
+    {
+      "value": "\\n",
+      "localValue": "\\n",
+      "disabled": false,
+      "index": 2,
+      "type": "wrap"
+    }
+  ],
+  "refreshCount": 1,
+  "committed": [
+    "cat BREAK\\ndog"
+  ]
+}
+`;
+
+exports[`genPrompt + updatePrompt composite > 未開 autoRemoveBeforeLineComma — 換行前仍保留預設逗號（現況鎖定） 1`] = `
+{
+  "input": [
+    {
+      "type": "text",
+      "value": "cat"
+    },
+    {
+      "type": "text",
+      "value": "BREAK"
+    },
+    {
+      "type": "text",
+      "value": "dog"
+    }
+  ],
+  "args": {
+    "options": {
+      "autoBreakBeforeWrap": true,
+      "autoBreakAfterWrap": true
+    },
+    "usesRealGenPrompt": true
+  },
+  "appended": [
+    {
+      "value": "\\n",
+      "localValue": "\\n",
+      "disabled": false,
+      "index": 1,
+      "type": "wrap"
+    },
+    {
+      "value": "\\n",
+      "localValue": "\\n",
+      "disabled": false,
+      "index": 3,
+      "type": "wrap"
+    }
+  ],
+  "refreshCount": 1,
+  "committed": [
+    "cat, \\nBREAK\\ndog"
+  ]
+}
+`;
+
+exports[`genPrompt + updatePrompt composite > 沒有 BREAK — 首輪直接以 genPrompt 組字 1`] = `
+{
+  "input": [
+    {
+      "type": "text",
+      "value": "cat"
+    },
+    {
+      "type": "text",
+      "value": "dog"
+    }
+  ],
+  "args": {
+    "options": {},
+    "usesRealGenPrompt": true
+  },
+  "appended": [],
+  "refreshCount": 0,
+  "committed": [
+    "cat, dog"
+  ]
+}
+`;
+
+exports[`genPrompt + updatePrompt composite > 連續 Lora — 與 BREAK 無關，首輪直接組字且逗號被換成空白 1`] = `
+{
+  "input": [
+    {
+      "type": "lora",
+      "value": "<lora:foo:1>",
+      "isLora": true
+    },
+    {
+      "type": "lora",
+      "value": "<lora:bar:1>",
+      "isLora": true
+    }
+  ],
+  "args": {
+    "options": {},
+    "usesRealGenPrompt": true
+  },
+  "appended": [],
+  "refreshCount": 0,
+  "committed": [
+    "<lora:foo:1> <lora:bar:1> "
+  ]
+}
+`;

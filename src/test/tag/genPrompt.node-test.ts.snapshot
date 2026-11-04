@@ -1,0 +1,661 @@
+exports[`genPrompt > genPrompt cases > BREAK 標籤 — 前段以空白分隔，BREAK 後段以空白分隔 1`] = `
+{
+  "input": [
+    {
+      "type": "text",
+      "value": "cat"
+    },
+    {
+      "type": "text",
+      "value": "BREAK"
+    },
+    {
+      "type": "text",
+      "value": "dog"
+    }
+  ],
+  "result": "cat BREAK dog, "
+}
+`;
+
+exports[`genPrompt > genPrompt cases > autoOptimizeSplitSymbol + autoRemoveLoraAfterComma — 末段 Lora 的逗號換成空白（autoRemoveSpace 關閉時保留空白） (false, {autoOptimizeSplitSymbol: true, autoRemoveLoraAfterComma: true}) 1`] = `
+{
+  "input": [
+    {
+      "type": "lora",
+      "value": "<lora:foo:1>",
+      "isLora": true
+    },
+    {
+      "type": "lora",
+      "value": "<lora:bar:1>",
+      "isLora": true
+    }
+  ],
+  "args": [
+    false,
+    {
+      "autoOptimizeSplitSymbol": true,
+      "autoRemoveLoraAfterComma": true
+    }
+  ],
+  "result": "<lora:foo:1> <lora:bar:1> "
+}
+`;
+
+exports[`genPrompt > genPrompt cases > autoOptimizeSplitSymbol — '#' 本身的結果快照 (false, {autoOptimizeSplitSymbol: true}) 1`] = `
+{
+  "input": [
+    {
+      "type": "text",
+      "value": "#"
+    },
+    {
+      "type": "wrap",
+      "value": "\\n"
+    },
+    {
+      "type": "text",
+      "value": "cat"
+    }
+  ],
+  "args": [
+    false,
+    {
+      "autoOptimizeSplitSymbol": true
+    }
+  ],
+  "result": "#\\ncat, "
+}
+`;
+
+exports[`genPrompt > genPrompt cases > autoOptimizeSplitSymbol — 連續 Lora 之間的逗號被移除（規則 1） (false, {autoOptimizeSplitSymbol: true}) 1`] = `
+{
+  "input": [
+    {
+      "type": "lora",
+      "value": "<lora:foo:1>",
+      "isLora": true
+    },
+    {
+      "type": "lora",
+      "value": "<lora:bar:1>",
+      "isLora": true
+    }
+  ],
+  "args": [
+    false,
+    {
+      "autoOptimizeSplitSymbol": true
+    }
+  ],
+  "result": "<lora:foo:1> <lora:bar:1>, "
+}
+`;
+
+exports[`genPrompt > genPrompt cases > autoRemoveBeforeLineComma — 換行前的逗號一併移除 (false, {autoRemoveBeforeLineComma: true}) 1`] = `
+{
+  "input": [
+    {
+      "type": "text",
+      "value": "cat"
+    },
+    {
+      "type": "wrap",
+      "value": "\\n"
+    },
+    {
+      "type": "text",
+      "value": "dog"
+    }
+  ],
+  "args": [
+    false,
+    {
+      "autoRemoveBeforeLineComma": true
+    }
+  ],
+  "result": "cat\\ndog, "
+}
+`;
+
+exports[`genPrompt > genPrompt cases > autoRemoveDuplicateLora + ignoreDisabled=true — disabled 不移除、也不使啟用者被去重 (true, {autoRemoveDuplicateLora: true}) 1`] = `
+{
+  "input": [
+    {
+      "type": "lora",
+      "value": "<lora:foo:1>",
+      "isLora": true,
+      "disabled": true
+    },
+    {
+      "type": "lora",
+      "value": "<lora:foo:1>",
+      "isLora": true
+    }
+  ],
+  "args": [
+    true,
+    {
+      "autoRemoveDuplicateLora": true
+    }
+  ],
+  "result": "<lora:foo:1>, <lora:foo:1>, "
+}
+`;
+
+exports[`genPrompt > genPrompt cases > autoRemoveDuplicateLora — # 保護僅限該行，下一行的同名 Lora 參與去重後保留最後一個 (false, {autoRemoveDuplicateLora: true}) 1`] = `
+{
+  "input": [
+    {
+      "type": "text",
+      "value": "#"
+    },
+    {
+      "type": "lora",
+      "value": "<lora:foo:1>",
+      "isLora": true
+    },
+    {
+      "type": "wrap",
+      "value": "\\n"
+    },
+    {
+      "type": "lora",
+      "value": "<lora:foo:1>",
+      "isLora": true
+    }
+  ],
+  "args": [
+    false,
+    {
+      "autoRemoveDuplicateLora": true
+    }
+  ],
+  "result": "#, <lora:foo:1>, \\n<lora:foo:1>, "
+}
+`;
+
+exports[`genPrompt > genPrompt cases > autoRemoveDuplicateLora — '#' 之後的 Lora 不參與去重，兩個 foo 都保留 (false, {autoRemoveDuplicateLora: true}) 1`] = `
+{
+  "input": [
+    {
+      "type": "lora",
+      "value": "<lora:foo:1>",
+      "isLora": true
+    },
+    {
+      "type": "text",
+      "value": "#"
+    },
+    {
+      "type": "lora",
+      "value": "<lora:foo:1>",
+      "isLora": true
+    }
+  ],
+  "args": [
+    false,
+    {
+      "autoRemoveDuplicateLora": true
+    }
+  ],
+  "result": "<lora:foo:1>, #, <lora:foo:1>, "
+}
+`;
+
+exports[`genPrompt > genPrompt cases > autoRemoveDuplicateLora — disabled 的 Lora 不參與去重（預設已先行過濾 disabled） (false, {autoRemoveDuplicateLora: true}) 1`] = `
+{
+  "input": [
+    {
+      "type": "lora",
+      "value": "<lora:foo:1>",
+      "isLora": true
+    },
+    {
+      "type": "lora",
+      "value": "<lora:foo:1>",
+      "isLora": true,
+      "disabled": true
+    }
+  ],
+  "args": [
+    false,
+    {
+      "autoRemoveDuplicateLora": true
+    }
+  ],
+  "result": "<lora:foo:1>, "
+}
+`;
+
+exports[`genPrompt > genPrompt cases > autoRemoveDuplicateLora — lora / lyco 同名視為同一個，保留最後一個 (false, {autoRemoveDuplicateLora: true}) 1`] = `
+{
+  "input": [
+    {
+      "type": "lora",
+      "value": "<lora:foo:1>",
+      "isLora": true
+    },
+    {
+      "type": "lyco",
+      "value": "<lyco:foo:1>",
+      "isLyco": true
+    }
+  ],
+  "args": [
+    false,
+    {
+      "autoRemoveDuplicateLora": true
+    }
+  ],
+  "result": "<lyco:foo:1>, "
+}
+`;
+
+exports[`genPrompt > genPrompt cases > autoRemoveDuplicateLora — loraName 優先於 value：value 手動解析結果不同仍視為重複 (false, {autoRemoveDuplicateLora: true}) 1`] = `
+{
+  "input": [
+    {
+      "type": "lora",
+      "value": "<lora:foo:1>",
+      "isLora": true,
+      "loraName": "foo"
+    },
+    {
+      "type": "text",
+      "value": "foo bar",
+      "isLora": true,
+      "loraName": "foo"
+    }
+  ],
+  "args": [
+    false,
+    {
+      "autoRemoveDuplicateLora": true
+    }
+  ],
+  "result": "foo bar, "
+}
+`;
+
+exports[`genPrompt > genPrompt cases > autoRemoveDuplicateLora — loraName 存在時直接作為重複鍵，不手動解析 value (false, {autoRemoveDuplicateLora: true}) 1`] = `
+{
+  "input": [
+    {
+      "type": "lora",
+      "value": "<lora:foo:1>",
+      "isLora": true,
+      "loraName": "foo"
+    },
+    {
+      "type": "lora",
+      "value": "<lora:foo:0.5>",
+      "isLora": true,
+      "loraName": "foo"
+    }
+  ],
+  "args": [
+    false,
+    {
+      "autoRemoveDuplicateLora": true
+    }
+  ],
+  "result": "<lora:foo:0.5>, "
+}
+`;
+
+exports[`genPrompt > genPrompt cases > autoRemoveDuplicateLora — lycoName 存在時直接作為重複鍵 (false, {autoRemoveDuplicateLora: true}) 1`] = `
+{
+  "input": [
+    {
+      "type": "lyco",
+      "value": "<lyco:foo:1>",
+      "isLyco": true,
+      "lycoName": "foo"
+    },
+    {
+      "type": "text",
+      "value": "foo bar",
+      "isLyco": true,
+      "lycoName": "foo"
+    }
+  ],
+  "args": [
+    false,
+    {
+      "autoRemoveDuplicateLora": true
+    }
+  ],
+  "result": "foo bar, "
+}
+`;
+
+exports[`genPrompt > genPrompt cases > autoRemoveDuplicateLora — 一般文字 tag 的重複不受影響 (false, {autoRemoveDuplicateLora: true}) 1`] = `
+{
+  "input": [
+    {
+      "type": "text",
+      "value": "cat"
+    },
+    {
+      "type": "text",
+      "value": "cat"
+    }
+  ],
+  "args": [
+    false,
+    {
+      "autoRemoveDuplicateLora": true
+    }
+  ],
+  "result": "cat, cat, "
+}
+`;
+
+exports[`genPrompt > genPrompt cases > autoRemoveDuplicateLora — 三個中移除最早的 foo，bar 不受影響 (false, {autoRemoveDuplicateLora: true}) 1`] = `
+{
+  "input": [
+    {
+      "type": "lora",
+      "value": "<lora:foo:1>",
+      "isLora": true
+    },
+    {
+      "type": "lora",
+      "value": "<lora:bar:1>",
+      "isLora": true
+    },
+    {
+      "type": "lora",
+      "value": "<lora:foo:1>",
+      "isLora": true
+    }
+  ],
+  "args": [
+    false,
+    {
+      "autoRemoveDuplicateLora": true
+    }
+  ],
+  "result": "<lora:bar:1>, <lora:foo:1>, "
+}
+`;
+
+exports[`genPrompt > genPrompt cases > autoRemoveDuplicateLora — 分行不阻斷去重，跨行同名仍保留最後一個 (false, {autoRemoveDuplicateLora: true}) 1`] = `
+{
+  "input": [
+    {
+      "type": "lora",
+      "value": "<lora:foo:1>",
+      "isLora": true
+    },
+    {
+      "type": "wrap",
+      "value": "\\n"
+    },
+    {
+      "type": "lora",
+      "value": "<lora:foo:1>",
+      "isLora": true
+    }
+  ],
+  "args": [
+    false,
+    {
+      "autoRemoveDuplicateLora": true
+    }
+  ],
+  "result": "\\n<lora:foo:1>, "
+}
+`;
+
+exports[`genPrompt > genPrompt cases > autoRemoveDuplicateLora — 同名重複只保留最後一個 (false, {autoRemoveDuplicateLora: true}) 1`] = `
+{
+  "input": [
+    {
+      "type": "lora",
+      "value": "<lora:foo:1>",
+      "isLora": true
+    },
+    {
+      "type": "lora",
+      "value": "<lora:foo:1>",
+      "isLora": true
+    }
+  ],
+  "args": [
+    false,
+    {
+      "autoRemoveDuplicateLora": true
+    }
+  ],
+  "result": "<lora:foo:1>, "
+}
+`;
+
+exports[`genPrompt > genPrompt cases > autoRemoveDuplicateLora — 名稱不同不互相去重 (false, {autoRemoveDuplicateLora: true}) 1`] = `
+{
+  "input": [
+    {
+      "type": "lora",
+      "value": "<lora:foo:1>",
+      "isLora": true
+    },
+    {
+      "type": "lora",
+      "value": "<lora:bar:1>",
+      "isLora": true
+    }
+  ],
+  "args": [
+    false,
+    {
+      "autoRemoveDuplicateLora": true
+    }
+  ],
+  "result": "<lora:foo:1>, <lora:bar:1>, "
+}
+`;
+
+exports[`genPrompt > genPrompt cases > autoRemoveDuplicateLora — 權重不視為差異，保留最後一個（權重 0.5） (false, {autoRemoveDuplicateLora: true}) 1`] = `
+{
+  "input": [
+    {
+      "type": "lora",
+      "value": "<lora:foo:1>",
+      "isLora": true
+    },
+    {
+      "type": "lora",
+      "value": "<lora:foo:0.5>",
+      "isLora": true
+    }
+  ],
+  "args": [
+    false,
+    {
+      "autoRemoveDuplicateLora": true
+    }
+  ],
+  "result": "<lora:foo:0.5>, "
+}
+`;
+
+exports[`genPrompt > genPrompt cases > autoRemoveDuplicateLora 關閉（預設）— 重複 Lora 一律保留 1`] = `
+{
+  "input": [
+    {
+      "type": "lora",
+      "value": "<lora:foo:1>",
+      "isLora": true
+    },
+    {
+      "type": "lora",
+      "value": "<lora:foo:1>",
+      "isLora": true
+    }
+  ],
+  "result": "<lora:foo:1>, <lora:foo:1>, "
+}
+`;
+
+exports[`genPrompt > genPrompt cases > autoRemoveLastComma — 最後一個標籤不加逗號 (false, {autoRemoveLastComma: true}) 1`] = `
+{
+  "input": [
+    {
+      "type": "text",
+      "value": "cat"
+    },
+    {
+      "type": "text",
+      "value": "dog"
+    }
+  ],
+  "args": [
+    false,
+    {
+      "autoRemoveLastComma": true
+    }
+  ],
+  "result": "cat, dog"
+}
+`;
+
+exports[`genPrompt > genPrompt cases > autoRemoveSpace — 分割符號不含空白 (false, {autoRemoveSpace: true}) 1`] = `
+{
+  "input": [
+    {
+      "type": "text",
+      "value": "cat"
+    },
+    {
+      "type": "text",
+      "value": "dog"
+    }
+  ],
+  "args": [
+    false,
+    {
+      "autoRemoveSpace": true
+    }
+  ],
+  "result": "cat,dog,"
+}
+`;
+
+exports[`genPrompt > genPrompt cases > autoSplitByPeriod — 已標記 noCommaAfter 的中間段不加逗號 (false, {autoSplitByPeriod: true}) 1`] = `
+{
+  "input": [
+    {
+      "type": "text",
+      "value": "a",
+      "noCommaAfter": true
+    },
+    {
+      "type": "text",
+      "value": "b"
+    }
+  ],
+  "args": [
+    false,
+    {
+      "autoSplitByPeriod": true
+    }
+  ],
+  "result": "a b, "
+}
+`;
+
+exports[`genPrompt > genPrompt cases > ignoreDisabled=true — 保留 disabled 標籤 (true) 1`] = `
+{
+  "input": [
+    {
+      "type": "text",
+      "value": "cat"
+    },
+    {
+      "type": "text",
+      "value": "dog",
+      "disabled": true
+    }
+  ],
+  "args": [
+    true
+  ],
+  "result": "cat, dog, "
+}
+`;
+
+exports[`genPrompt > genPrompt cases > 中間為換行標籤 — 換行符獨立成段，前段仍保留預設逗號 1`] = `
+{
+  "input": [
+    {
+      "type": "text",
+      "value": "cat"
+    },
+    {
+      "type": "wrap",
+      "value": "\\n"
+    },
+    {
+      "type": "text",
+      "value": "dog"
+    }
+  ],
+  "result": "cat, \\ndog, "
+}
+`;
+
+exports[`genPrompt > genPrompt cases > 全部為 disabled — 回傳空字串 1`] = `
+{
+  "input": [
+    {
+      "type": "text",
+      "value": "cat",
+      "disabled": true
+    }
+  ],
+  "result": ""
+}
+`;
+
+exports[`genPrompt > genPrompt cases > 兩個一般標籤 — 預設以 \", \" 串接，末段仍帶逗號（autoRemoveLastComma 關閉） 1`] = `
+{
+  "input": [
+    {
+      "type": "text",
+      "value": "cat"
+    },
+    {
+      "type": "text",
+      "value": "dog"
+    }
+  ],
+  "result": "cat, dog, "
+}
+`;
+
+exports[`genPrompt > genPrompt cases > 空標籤陣列 — 回傳空字串 1`] = `
+{
+  "input": [],
+  "result": ""
+}
+`;
+
+exports[`genPrompt > genPrompt cases > 預設過濾 disabled 標籤 1`] = `
+{
+  "input": [
+    {
+      "type": "text",
+      "value": "cat"
+    },
+    {
+      "type": "text",
+      "value": "dog",
+      "disabled": true
+    }
+  ],
+  "result": "cat, "
+}
+`;

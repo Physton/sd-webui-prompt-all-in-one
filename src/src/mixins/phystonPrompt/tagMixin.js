@@ -1,5 +1,18 @@
-import common from "@/utils/common";
 import autoSizeInput from "autosize-input";
+import { findTagUntil, tagIsDisabled, tagIsSharp, tagIsWrap, findTagByID } from "@/utils/promptTags/util";
+import {
+    getTagDecWeight,
+    getTagIncWeight,
+    extractTagValueFromBrackets,
+    getTagWeightNum,
+    applyTagDecWeight,
+    applyTagIncWeight,
+    applyTagWeightNum,
+} from "@/utils/promptTags/util/tag-weight";
+import { getTagClasses } from "@/utils/promptTagRender/tagClasses";
+import { renderTagCore } from "@/utils/promptTagRender/renderTag";
+import { _createTagBase, _createTagUuid } from "@/utils/promptTags/createTag";
+import { parseLoraLikeValue } from "@/utils/promptTags/util/tag-lora";
 
 export default {
     data() {
@@ -19,7 +32,9 @@ export default {
      * 新增自訂屬性時只需在此陣列追加
      */
     RESTOREABLE_PROPERTIES: [
-        'splitNoComma',
+        'noCommaAfter',
+        'noCommaBefore',
+        'isKeyword',
     ],
     methods: {
         _setTag(tag) {
@@ -28,24 +43,17 @@ export default {
                 tag.incWeight = 0
                 tag.decWeight = 0
             } else {
-                tag.weightNum = common.getTagWeightNum(tag.value)
+                tag.weightNum = getTagWeightNum(tag.value)
                 // tag.weightNum = tag.weightNum <= 0 ? 1 : tag.weightNum
                 // tag.weightNum = tag.weightNum === 0 ? 1 : tag.weightNum
-                tag.incWeight = common.getTagIncWeight(tag.value, this.useNovelAiWeightSymbol)
-                tag.decWeight = common.getTagDecWeight(tag.value)
-                // const bracket = common.hasBrackets(tag.value)
+                tag.incWeight = getTagIncWeight(tag.value, this)
+                tag.decWeight = getTagDecWeight(tag.value)
 
                 tag.originalValue = tag.value
-                if (!tag.value.match(common.loraRegex) && !tag.value.match(common.lycoRegex)) {
+                /** Lora / Lyco 語法偵測：單一事實在 parseLoraLikeValue()，不另行比對正則 */
+                if (!parseLoraLikeValue(tag.value)) {
                     // tag.weightNum = tag.weightNum <= 0 ? 1 : tag.weightNum
-                    let value = tag.value
-                    const bracket = common.hasBrackets(value)
-                    if ((bracket[0] === '(' && bracket[1] === ')') || (bracket[0] === '[' && bracket[1] === ']') || (this.useNovelAiWeightSymbol && bracket[0] === '{' && bracket[1] === '}')) {
-                        // 移除括号
-                        value = common.setLayers(value, 0, bracket[0], bracket[1])
-                        // 移除权重数
-                        tag.originalValue = value.replace(common.weightNumRegex, '$1')
-                    }
+                    tag.originalValue = extractTagValueFromBrackets(tag.value, this)
                 }
             }
             this._setTagClass(tag)
@@ -73,9 +81,6 @@ export default {
                 }
             }, 50)
         },
-        _getTagType(tag) {
-
-        },
         _setTagClass(tag) {
             tag.isLora = false
             tag.loraExists = false
@@ -85,24 +90,24 @@ export default {
 
             if (typeof tag['type'] === 'string' && tag.type === 'wrap') {
             } else {
-                // 判断是否lora
-                const match = tag.value.match(common.loraRegex)
-                if (match) {
-                    tag.isLora = true
-                    tag.loraName = match[1]
-                    const loraName = this.loraExists(match[1])
-                    if (loraName !== false) {
-                        tag.loraExists = true
-                    }
-                }
+                // 判断是否lora / lyco —— 解析單一事實在 parseLoraLikeValue()，
+                // 命中的 kind 決定 isLora / isLyco 與對應的名稱欄位
+                const parsed = parseLoraLikeValue(tag.value)
 
-                if (!tag.isLora) {
-                    // 判断是否lyco
-                    const match = tag.value.match(common.lycoRegex)
-                    if (match) {
+                if (parsed) {
+                     if (parsed.kind === 'lora') {
+                        tag.isLora = true
+                        tag.loraName = parsed.name
+                        const loraName = this.loraExists(parsed.name)
+                        if (loraName !== false) {
+                            tag.loraExists = true
+                        }
+                    }
+
+                    if (parsed.kind === 'lyco') {
                         tag.isLyco = true
-                        tag.lycoName = match[1]
-                        const lycoName = this.lycoExists(match[1])
+                        tag.lycoName = parsed.name
+                        const lycoName = this.lycoExists(parsed.name)
                         if (lycoName !== false) {
                             tag.lycoExists = true
                         }
@@ -127,25 +132,8 @@ export default {
                 }
             }
 
-            let classes = ['prompt-tag-value']
-            if (tag.isLora) {
-                classes.push('lora-tag')
-                if (!tag.loraExists) {
-                    classes.push('lora-not-exists')
-                }
-            } else if (tag.isLyco) {
-                classes.push('lyco-tag')
-                if (!tag.lycoExists) {
-                    classes.push('lyco-not-exists')
-                }
-            } else if (tag.isEmbedding) {
-                classes.push('embedding-tag')
-            } else if (this.neg) {
-                classes.push('neg-tag')
-            }
-
-            tag.classes = classes
-            return classes
+            tag.classes = getTagClasses(tag, this)
+            return tag.classes
         },
         _setTagById(id, value = null, localValue = null) {
             let tag = this.tags.find(tag => tag.id === id)
@@ -181,22 +169,26 @@ export default {
          * @param {string}  type       - 'text' | 'wrap'
          * @param {object}  [opts]     - 可選設定
          * @param {object}  [opts.source] - 舊 tag 或儲存資料；提供時自動還原 RESTOREABLE_PROPERTIES
-         * @returns {number} 新 tag 的 index，失敗回傳 -1
+         * @returns {number} 新 tag 的 index；value 為空字串或命中黑名單時回傳 -1
          */
         _appendTag(value, localValue = '', disabled = false, index = -1, type = 'text', { source } = {}) {
             if (value === '') return -1
             // 唯一数：当前时间戳+随机数
-            const id = Date.now() + (Math.random() * 1000000).toFixed(0)
-            let tag = {
+            const id = _createTagUuid()
+            const tag = _createTagBase({
                 id,
-                value: value === null || value === undefined || value === false ? '' : value,
-                localValue: localValue === null || localValue === undefined || localValue === false ? '' : localValue,
+                type,
+                value,
+                localValue,
                 disabled,
-                type
-            }
+            })
+            /**
+             * * 順序不可調換：黑名單判定必須排在 _setTag() 之後，
+             * 因為 _isTagBlacklist() 依賴 _setTag() 才算得出的 isLora / originalValue。
+             */
             this._setTag(tag)
-            // value           = common.setLayers(value, 0, '(', ')')
-            // value           = common.setLayers(value, 0, '[', ']')
+            // value           = setLayers(value, 0, '(', ')')
+            // value           = setLayers(value, 0, '[', ']')
             if (this._isTagBlacklist(tag)) return -1
             if (index >= 0) {
                 // 插入到指定位置
@@ -204,7 +196,7 @@ export default {
             } else {
                 index = this.tags.push(tag)
             }
-            // 若提供 source，自動還原自訂屬性（splitNoComma 等）
+            // 若提供 source，自動還原自訂屬性（splitNoCommaAfter 等）
             if (source) this._restoreTagProperties(tag, source)
             this.$nextTick(() => {
                 if (this.$refs['promptTagEdit-' + id]) autoSizeInput(this.$refs['promptTagEdit-' + id][0])
@@ -234,7 +226,7 @@ export default {
          * 從 source 還原自訂屬性到已建立的 tag 上。
          *
          * 原因：_appendTag() 只建立核心欄位（value, localValue, disabled, type），
-         * 但 tag 上可能有其他自訂屬性（如 splitNoComma）需要在 round-trip（儲存→載入）
+         * 但 tag 上可能有其他自訂屬性（如 splitNoCommaAfter）需要在 round-trip（儲存→載入）
          * 或 rebuild（textarea 重建）時保留。
          *
          * 做法：只複製 RESTOREABLE_PROPERTIES 中定義的屬性，避免無差別複製
@@ -253,38 +245,7 @@ export default {
             })
         },
         renderTag(id) {
-            let tag = this.tags.find(tag => tag.id === id)
-            if (!tag) return ''
-            let value = tag.value
-            if (value === 'BREAK' && (this.autoBreakBeforeWrap || this.autoBreakAfterWrap)) {
-                value = '<div class="break-character">---------------------</div> <div class="character">BREAK</div> <div class="break-character">---------------------</div>'
-            } else {
-                value = common.escapeHtml(value)
-                if (tag.incWeight > 0) {
-                    if (this.useNovelAiWeightSymbol) {
-                        value = common.setLayers(value, 0, '{', '}')
-                        value = '<div class="character">' + value + '</div>'
-                        let start = '<div class="weight-character">' + '{'.repeat(tag.incWeight) + '</div>'
-                        let end = '<div class="weight-character">' + '}'.repeat(tag.incWeight) + '</div>'
-                        value = start + value + end
-                    } else {
-                        value = common.setLayers(value, 0, '(', ')')
-                        value = '<div class="character">' + value + '</div>'
-                        let start = '<div class="weight-character">' + '('.repeat(tag.incWeight) + '</div>'
-                        let end = '<div class="weight-character">' + ')'.repeat(tag.incWeight) + '</div>'
-                        value = start + value + end
-                    }
-                } else if (tag.decWeight > 0) {
-                    value = common.setLayers(value, 0, '[', ']')
-                    value = '<div class="character">' + value + '</div>'
-                    let start = '<div class="weight-character">' + '['.repeat(tag.decWeight) + '</div>'
-                    let end = '<div class="weight-character">' + ']'.repeat(tag.decWeight) + '</div>'
-                    value = start + value + end
-                } else {
-                    value = '<div class="character">' + value + '</div>'
-                }
-            }
-            return value
+            return renderTagCore(findTagByID(this.tags, id), this)
         },
         isFavorite(id) {
             let tag = this.tags.find(tag => tag.id === id)
@@ -367,6 +328,49 @@ export default {
                     break
             }
         },
+        /**
+         * 雙擊行號（.prompt-tag-line-no）時的行為：
+         *
+         * - 該行為「空行」（只計算未被停用的 tag）→ 不做任何變更。
+         * - 該行第一個 tag 不是 `#` → 在行首插入一個 value 為 `#` 的普通 tag。
+         * - 該行第一個 tag 已是 `#` → 切換該 `#` tag 自身的停用狀態。
+         *
+         * 註：`#` 是普通 tag（value 恰為 `#`），並非特殊型別。
+         *
+         * @param {string} id - 行首 tag 的 id（line-no 元素的 data-id）
+         */
+        onLineNumberDblclick(id) {
+            const startIndex = this.tags.findIndex(tag => tag.id === id)
+            if (startIndex === -1) return
+
+            const firstTag = this.tags[startIndex]
+
+            /**
+             * 找出該行結尾：略過所有「非分行」tag，停在第一個分行 tag。
+             * 找不到分行 tag 時（最後一行無結尾換行）以陣列末端為界。
+             */
+            const wrapScan = findTagUntil(this.tags, {
+                startIndex,
+                ignore: tag => !tagIsWrap(tag),
+                untilTarget: tag => tagIsWrap(tag),
+            })
+
+            if (tagIsSharp(firstTag)) {
+                /** 規則：已是 # → 只切換該 # tag 自身的停用狀態 */
+                firstTag.disabled = !firstTag.disabled
+            } else {
+                const lineEnd = wrapScan.found ? wrapScan.index : this.tags.length
+                /** 該行的 tag（不含結尾的分行 tag；行首為分行 tag 時為空陣列） */
+                const lineTags = this.tags.slice(startIndex, lineEnd)
+
+                /** 規則：空行（只檢查未被停用的 tag）→ 無任何變化 */
+                if (!lineTags.length || !lineTags.some(tag => !tagIsDisabled(tag))) return
+
+                /** 規則：不是 # → 於行首插入 value 為 # 的普通 tag */
+                this._appendTag('#', '', false, startIndex, 'text')
+            }
+            this.updateTags()
+        },
         onTagRightClick(id, e) {
             switch (this.hotkey.rightClick) {
                 case 'edit':
@@ -441,66 +445,14 @@ export default {
             if (!tag) return false
             e = typeof e === "number" || typeof e === "string" ? e : e.target.value
             if (tag.weightNum == e) return
-            let weightNum = e
-            let value = tag.value
-            let localValue = tag.localValue
-            if (weightNum !== 0) {
-                if (weightNum === 1 && !this.autoKeepWeightOne) {
-                    // 如果权重数是1，那么就去掉权重数
-                    const bracket = common.hasBrackets(value)
-                    if (bracket[0] === '(' && bracket[1] === ')' || (this.useNovelAiWeightSymbol && bracket[0] === '{' && bracket[1] === '}')) {
-                        // 移除括号
-                        value = common.setLayers(value, 0, bracket[0], bracket[1])
-                        if (localValue !== '') localValue = common.setLayers(localValue, 0, bracket[0], bracket[1])
-                    } else {
-                        // 不移除括号
-                    }
-                    // 移除权重数
-                    value = value.replace(common.weightNumRegex, '$1')
-                    if (localValue !== '') localValue = localValue.replace(common.weightNumRegex, '$1')
-                } else {
-                    // 如果原来没有权重数，那么就加上权重数
-                    if (!common.weightNumRegex.test(value)) {
-                        // 如果原来有括号，就要加到括号内
-                        let bracket = common.hasBrackets(value)
-                        if (bracket) {
-                            value = common.setLayers(value, 1, bracket[0], bracket[1], ':' + weightNum)
-                            if (localValue !== '') localValue = common.setLayers(localValue, 1, bracket[0], bracket[1], ':' + weightNum)
-                        } else {
-                            value = value + ':' + weightNum
-                            if (localValue !== '') localValue = localValue + ':' + weightNum
-                        }
-                    }
-                    // 排除Lora、embedding、lyco
-                    // 如果原来没有括号() [] {}，那么就加上括号
-                    if (tag.isLora||tag.isLyco||tag.isEmbedding){}
-                    else if (!common.hasBrackets(value)) {
-                        if (this.useNovelAiWeightSymbol) {
-                            value = common.setLayers(value, 1, '{', '}')
-                            if (localValue !== '') localValue = common.setLayers(localValue, 1, '{', '}')
-                        } else {
-                            value = common.setLayers(value, 1, '(', ')')
-                            if (localValue !== '') localValue = common.setLayers(localValue, 1, '(', ')')
-                        }
-                    }
-                }
-                if (value !== tag.value) {
-                    tag.value = value
-                    if (localValue !== '') tag.localValue = localValue
-                    this._setTag(tag)
-                }
-            }  else {
-                if (this.autoKeepWeightZero) {
-                    // 保留权重数
-                    tag.value = value.replace(common.weightNumRegex, '$1:0')
-                    if (localValue !== '') tag.localValue = tag.localValue.replace(common.weightNumRegex, '$1:0')
-                } else {
-                    // 移除权重数
-                    tag.value = value.replace(common.weightNumRegex, '$1')
-                    if (localValue !== '') tag.localValue = tag.localValue.replace(common.weightNumRegex, '$1')
-                }
-            }
-            tag.weightNum = weightNum
+            /**
+             * 權重語法改寫抽離於 applyTagWeightNum()（參數：tag / options: this）。
+             * 回傳 true 代表 value 已改寫、需重算權重欄位；
+             * weightNum 必須在 _setTag() 之後寫回，才能蓋過由 value 解析出的數值。
+             */
+            const changed = applyTagWeightNum(tag, e, this)
+            if (changed) this._setTag(tag)
+            tag.weightNum = e
             this.updateTags()
         },
         onDeleteTagClick(id) {
@@ -541,50 +493,13 @@ export default {
         onIncWeightClick(id, num) {
             let tag = this.tags.find(tag => tag.id === id)
             if (!tag) return
-            let value = tag.value
-            let localValue = tag.localValue
-            value = common.setLayers(value, 0, '[', ']')
-            if (localValue !== '') localValue = common.setLayers(localValue, 0, '[', ']')
-            if (this.useNovelAiWeightSymbol) {
-                value = common.setLayers(value, 0, '(', ')')
-                if (localValue !== '') localValue = common.setLayers(localValue, 0, '(', ')')
-            }
-            let incWeight = tag.incWeight
-            incWeight += num
-            if (incWeight < 0) incWeight = 0
-            tag.incWeight = incWeight
-            tag.decWeight = 0
-            if (this.useNovelAiWeightSymbol) {
-                value = common.setLayers(value, incWeight, '{', '}')
-                if (localValue !== '') localValue = common.setLayers(localValue, incWeight, '{', '}')
-            } else {
-                value = common.setLayers(value, incWeight, '(', ')')
-                if (localValue !== '') localValue = common.setLayers(localValue, incWeight, '(', ')')
-            }
-            tag.value = value
-            if (localValue !== '') tag.localValue = localValue
+            applyTagIncWeight(tag, num, this)
             this.updateTags()
         },
         onDecWeightClick(id, num) {
             let tag = this.tags.find(tag => tag.id === id)
             if (!tag) return
-            let value = tag.value
-            let localValue = tag.localValue
-            value = common.setLayers(value, 0, '(', ')')
-            if (localValue !== '') localValue = common.setLayers(localValue, 0, '(', ')')
-            if (this.useNovelAiWeightSymbol) {
-                value = common.setLayers(value, 0, '{', '}')
-                if (localValue !== '') localValue = common.setLayers(localValue, 0, '{', '}')
-            }
-            let decWeight = tag.decWeight
-            decWeight += num
-            if (decWeight < 0) decWeight = 0
-            tag.incWeight = 0
-            tag.decWeight = decWeight
-            value = common.setLayers(value, decWeight, '[', ']')
-            if (localValue !== '') localValue = common.setLayers(localValue, decWeight, '[', ']')
-            tag.value = value
-            if (localValue !== '') tag.localValue = localValue
+            applyTagDecWeight(tag, num, this)
             this.updateTags()
         },
         onWrapTagClick(id) {

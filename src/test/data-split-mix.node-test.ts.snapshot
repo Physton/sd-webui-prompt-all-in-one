@@ -1,0 +1,24 @@
+exports[`splitTags + splitByPeriod combined pipeline > group 1 — hash # marker count preserved > pixel art prompt — 3 standalone # markers survive splitTags → splitByPeriod — [eb682143] \"- **Art Style**: The entire image is rendered in a pixel art…\" 1`] = `
+{
+  "input": "- **Art Style**: The entire image is rendered in a pixel art style, giving it a retro video game aesthetic.\\n#\\nOverall, \\n#\\n#,\\nhe image portrays a cute, \\nenergetic, and stylish character with a blend of traditional anime features and modern pixel art design.",
+  "splitTagsResult": [
+    "- **Art Style**: The entire image is rendered in a pixel art style",
+    "giving it a retro video game aesthetic.",
+    "\\n",
+    "#",
+    "\\n",
+    "Overall",
+    "\\n",
+    "#",
+    "\\n",
+    "#",
+    "\\n",
+    "he image portrays a cute",
+    "\\n",
+    "energetic",
+    "and stylish character with a blend of traditional anime features and modern pixel art design."
+  ],
+  "splitByPeriodChanged": false,
+  "changedFromOriginal": false
+}
+`;

@@ -46,11 +46,19 @@
     // 外框與內距會向 left 方向的留白區延伸，不會與 tag 重疊。
     --pp-pt-dsb-ptl-promptTagLineNo-padding: 1px 2px;
     --pp-pt-dsb-ptl-promptTagLineNo-text-align: right;
-    --pp-pt-dsb-ptl-promptTagLineNo-pointer-events: none;
+    /**
+     * 行號需可雙擊（onLineNumberDblclick），故必須接收指標事件。
+     * 注意：偽元素/行號本體可點擊後，游標需提示為 pointer。
+     */
+    --pp-pt-dsb-ptl-promptTagLineNo-pointer-events: auto;
+    --pp-pt-dsb-ptl-promptTagLineNo-cursor: pointer;
     // 滑過所屬 tag 時：行號提升至全亮度，強調游標目前所在的列。
     // 偽元素本身 pointer-events 為 none，無法自行接收 hover，
     // 故由父層 .prompt-tag 的 :hover 連動其 ::before（見下方 &::before 規則後）。
     --pp-pt-dsb-ptl-promptTagLineNoHover-opacity: 1;
+
+    --pp-pt-dsb-ptl-promptTagLineNo-font: Consolas, monospace;
+    --pp-pt-dsb-ptl-promptTagLineNo-font-variant: tabular-nums;
  }
 
 .physton-prompt {
@@ -59,15 +67,26 @@
         padding-left: 34px;
 
         .prompt-tag-line-no {
-            --pp-pt-dsb-ptl-promptTagLineNo-content: attr(data-line);
+            //--pp-pt-dsb-ptl-promptTagLineNo-content: attr(data-line);
             position: relative;
             /**
              * 1px 寬度用於在不影響布局的情況下佔位
              */
             width: 1px;
 
-            &.line-no::before {
-                content: var(--pp-pt-dsb-ptl-promptTagLineNo-content);
+            user-select: none;
+
+            display: none;
+
+            &.line-no {
+                display: block;
+            }
+
+            // &.line-no::before,
+            &.line-no .prompt-tag-line-no-main {
+                display: block;
+
+                // content: var(--pp-pt-dsb-ptl-promptTagLineNo-content);
                 position: var(--pp-pt-dsb-ptl-promptTagLineNo-position);
                 left: var(--pp-pt-dsb-ptl-promptTagLineNo-left);
                 top: var(--pp-pt-dsb-ptl-promptTagLineNo-top);
@@ -81,8 +100,9 @@
                 opacity: var(--pp-pt-dsb-ptl-promptTagLineNo-opacity);
                 text-align: var(--pp-pt-dsb-ptl-promptTagLineNo-text-align);
                 pointer-events: var(--pp-pt-dsb-ptl-promptTagLineNo-pointer-events);
-                font-family: Consolas, monospace;
-                font-variant-numeric: tabular-nums;
+                cursor: var(--pp-pt-dsb-ptl-promptTagLineNo-cursor);
+                font-family: var(--pp-pt-dsb-ptl-promptTagLineNo-font);
+                font-variant-numeric: var(--pp-pt-dsb-ptl-promptTagLineNo-font-variant);
             }
 
             /**
@@ -91,7 +111,9 @@
              * 故由父層 .prompt-tag 的 :hover 連動。
              * 僅 line-no tag 才有行號偽元素，此規則對其生效；其餘 tag 無偽元素、不受影響。
              */
-            &.line-no:hover::before, &.line-no::before:hover {
+            // &.line-no:hover::before,
+            // &.line-no::before:hover,
+            &.line-no .prompt-tag-line-no-main:hover, &.line-no:hover .prompt-tag-line-no-main {
                 opacity: var(--pp-pt-dsb-ptl-promptTagLineNoHover-opacity);
                 color: red;
             }

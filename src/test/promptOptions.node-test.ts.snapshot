@@ -1,0 +1,45 @@
+exports[`promptOptions:snapshot 1`] = `
+{
+  "default": {
+    "autoRemoveSpace": false,
+    "autoRemoveLastComma": true,
+    "autoKeepWeightZero": true,
+    "autoKeepWeightOne": false,
+    "autoBreakBeforeWrap": true,
+    "autoBreakAfterWrap": true,
+    "autoRemoveLoraBeforeComma": false,
+    "autoRemoveLoraAfterComma": false,
+    "autoRemoveDuplicateLora": true,
+    "useNovelAiWeightSymbol": false,
+    "autoRemoveBeforeLineComma": false,
+    "autoOptimizeSplitSymbol": false,
+    "allowKeepEmptyLine": true,
+    "autoRepairMojibake": true,
+    "autoSplitByPeriod": true,
+    "autoSplitByPeriodIncludeParen": true,
+    "autoSplitByPeriodSemicolon": true,
+    "autoKeywordToPlain": true
+  },
+  "overridden": {
+    "autoRemoveSpace": false,
+    "autoRemoveLastComma": true,
+    "autoKeepWeightZero": true,
+    "autoKeepWeightOne": false,
+    "autoBreakBeforeWrap": true,
+    "autoBreakAfterWrap": true,
+    "autoRemoveLoraBeforeComma": false,
+    "autoRemoveLoraAfterComma": false,
+    "autoRemoveDuplicateLora": true,
+    "useNovelAiWeightSymbol": false,
+    "autoRemoveBeforeLineComma": false,
+    "autoOptimizeSplitSymbol": false,
+    "allowKeepEmptyLine": true,
+    "autoRepairMojibake": true,
+    "autoSplitByPeriod": true,
+    "autoSplitByPeriodIncludeParen": true,
+    "autoSplitByPeriodSemicolon": true,
+    "autoKeywordToPlain": true,
+    "autoSplitByPeriodRemoveWrapComma": true
+  }
+}
+`;

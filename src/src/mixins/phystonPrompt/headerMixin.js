@@ -1,4 +1,6 @@
 import common from "@/utils/common";
+import { hasBrackets, replaceBrackets } from "@/utils/promptTags/util/tag-weight";
+import { setPromptTextareaValueAndDispatchEvent } from "@/utils/promptTextarea";
 
 export default {
     data() {
@@ -42,6 +44,17 @@ export default {
             favorites: [],
             autoInputPrompt: 'disabled',
             autoInputPromptKey: '',
+            /**
+             * initAutoInputPrompt「初始化完成」旗標：初始為 false，
+             * 待 initAutoInputPrompt 的資料取得與自動載入流程全部結束後設為 true（不再還原）。
+             *
+             * 原因：自動載入「上一條歷史 / 收藏」時會經由 useHistory() → updateTags()，
+             * 而 updateTags() 會把當前 prompt 寫回歷史（setHistory / pushHistory），
+             * 造成初始化階段產生一筆不必要的重複紀錄。
+             * 因此歷史寫入機制（updateTags() 內的判斷）只在本旗標為 true 時啟動，
+             * 即「初始化完成後」才開始寫入歷史。
+             */
+            autoInputPromptInitialized: false,
         }
     },
     computed: {
@@ -168,6 +181,36 @@ export default {
         },
         onClickLoadWebuiPrompt() {
             this.onTextareaChange(true)
+        },
+        onPasteToDefaultInputClick() {
+            // 先 focus 默認輸入框，確保文件取得焦點，再嘗試程式化讀取剪貼簿
+            if (this.textarea && typeof this.textarea.focus === 'function') {
+                this.textarea.focus()
+            }
+            // 讀取失敗時提示手動貼上
+            const pasteFailed = (text) => {
+                console.log(`Clipboard is empty or failed to read: ${text}`)
+                this.$toastr.error(this.getLang('paste_clipboard_failed'))
+            }
+            if (!navigator.clipboard?.readText) {
+                pasteFailed()
+                return
+            }
+            setTimeout(() => {
+                this.textarea.focus()
+                navigator.clipboard.readText().then(text => {
+                    console.log('Clipboard content:', text)
+                    if (!text?.trim()?.length) {
+                        return pasteFailed(text)
+                    }
+                    setPromptTextareaValueAndDispatchEvent(this.textarea, text)
+                    this.onTextareaChange(true)
+                }).catch((e) => {
+                    // 權限被拒、非 secure context、或焦點被搶走都會走到這裡
+                    return pasteFailed(e)
+                })
+            }, 200)
+
         },
         appendListItemName(item) {
             let names = []
@@ -300,15 +343,15 @@ export default {
                 if (localValue) {
                     // 去除末尾的逗号
                     tags = tags.replace(/\s*,\s*$/, '').trim()
-                    if (common.hasBrackets(tags)) {
-                        tags = common.replaceBrackets(tags)
+                    if (hasBrackets(tags)) {
+                        tags = replaceBrackets(tags)
                     }
                     this._appendTag(tags, localValue)
                     this.updateTags()
                 } else {
-                    if (common.hasBrackets(tags)) {
+                    if (hasBrackets(tags)) {
                         // 如果已经被英文括号括起来，那么就不需要再分词了
-                        tags = common.replaceBrackets(tags)
+                        tags = replaceBrackets(tags)
                         tags = [tags]
                     } else {
                         tags = common.splitTags(tags, this.autoBreakBeforeWrap, this.autoBreakAfterWrap)
@@ -520,8 +563,8 @@ export default {
                 this.$refs.promptTagAppend.value = ''
                 // 去除末尾的逗号
                 tags = tags.replace(/\s*,\s*$/, '').trim()
-                if (common.hasBrackets(tags)) {
-                    tags = common.replaceBrackets(tags)
+                if (hasBrackets(tags)) {
+                    tags = replaceBrackets(tags)
                 }
                 this._appendTag(tags, text)
                 this.updateTags()
@@ -552,31 +595,51 @@ export default {
         },
         initAutoInputPrompt() {
             this.autoInputPromptKey = 'autoInputPrompt-' + this.name
+
+            this.autoInputPromptInitialized = false
+
+            /** 初始化結束（含無資料、無對應收藏、請求失敗）時啟動歷史寫入機制 */
+            const markInitialized = () => {
+                this.autoInputPromptInitialized = true
+            }
             this.gradioAPI.getData(this.autoInputPromptKey).then(res => {
-                if (res === null) return
+                if (res === null) {
+                    return markInitialized()
+                }
                 this.autoInputPrompt = res
                 if (this.autoInputPrompt === 'last') {
-                    this.gradioAPI.getLatestHistory(this.historyKey).then(res => {
-                        this.useHistory(res)
-                    })
+                    return this.gradioAPI.getLatestHistory(this.historyKey).then(res => this.useHistory(res))
                 } else {
-                    const getFavorites = () => {
-                        if (typeof window.phystonPromptfavorites === 'object' && window.phystonPromptfavorites.length > 0) {
-                            for (let item of window.phystonPromptfavorites) {
-                                for (let favorite of item.list) {
-                                    if (favorite.id === this.autoInputPrompt) {
-                                        this.useFavorite(favorite)
-                                        return
-                                    }
-                                }
+                    /** 輪詢等待收藏資料準備完成後 resolve 收藏清單；逾時則 resolve([]) 放棄載入 */
+                    const favoritesReady = new Promise(resolve => {
+                        const waitTimeout = 5000
+                        const waitInterval = 250
+                        const startTime = Date.now()
+                        const getFavorites = () => {
+                            if (typeof window.phystonPromptfavorites === 'object' && window.phystonPromptfavorites.length > 0) {
+                                resolve(window.phystonPromptfavorites)
+                                return
                             }
-                            return
+                            if (Date.now() - startTime >= waitTimeout) {
+                                /** 收藏資料遲未就緒（如 API 失敗），放棄等待，交由外層標記初始化完成 */
+                                resolve([])
+                                return
+                            }
+                            setTimeout(getFavorites, waitInterval)
                         }
-                        setTimeout(getFavorites, 100)
-                    }
-                    setTimeout(getFavorites, 100)
+                        setTimeout(getFavorites, waitInterval)
+                    })
+                    /** 回傳 promise 讓外層鏈在載入完成後才 markInitialized */
+                    return favoritesReady.then(favorites => {
+                        let target = null
+                        for (let item of favorites) {
+                            target = item.list.find(favorite => favorite.id === this.autoInputPrompt)
+                            if (target) break
+                        }
+                        if (target) this.useFavorite(target)
+                    })
                 }
-            })
+            }).catch(markInitialized).finally(markInitialized)
         },
     }
 }

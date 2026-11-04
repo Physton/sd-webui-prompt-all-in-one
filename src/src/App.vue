@@ -22,13 +22,16 @@
                             v-model:auto-break-after-wrap="autoBreakAfterWrap"
                             v-model:auto-remove-lora-before-comma="autoRemoveLoraBeforeComma"
                             v-model:auto-remove-lora-after-comma="autoRemoveLoraAfterComma"
+                            v-model:auto-remove-duplicate-lora="autoRemoveDuplicateLora"
                             v-model:use-novel-ai-weight-symbol="useNovelAiWeightSymbol"
                             v-model:auto-remove-before-line-comma="autoRemoveBeforeLineComma"
                             v-model:auto-split-by-period="autoSplitByPeriod"
                             v-model:auto-split-by-period-include-paren="autoSplitByPeriodIncludeParen"
                             v-model:auto-split-by-period-semicolon="autoSplitByPeriodSemicolon"
+                            v-model:auto-keyword-to-plain="autoKeywordToPlain"
                             v-model:auto-optimize-split-symbol="autoOptimizeSplitSymbol"
                             v-model:allow-keep-empty-line="allowKeepEmptyLine"
+                            v-model:auto-repair-mojibake="autoRepairMojibake"
                             :hide-default-input="item.hideDefaultInput"
                             @update:hide-default-input="onUpdateHideDefaultInput(item.id, $event)"
                             :auto-load-webui-prompt="item.autoLoadWebuiPrompt"
@@ -73,6 +76,8 @@
                             @show-extra-networks="onShowExtraNetworks"
                             @hide-extra-networks="onHideExtraNetworks"
                             @refresh-extra-networks="onRefreshExtraNetworks"
+                            :extra-networks-load-called="requestLoadExtraNetworksCalled"
+                            @request-load-extra-networks="onRequestLoadExtraNetworks"
             ></physton-prompt>
         </template>
         <translate-setting ref="translateSetting" v-model:language-code="languageCode"
@@ -99,13 +104,16 @@
                        v-model:auto-break-after-wrap="autoBreakAfterWrap"
                        v-model:auto-remove-lora-before-comma="autoRemoveLoraBeforeComma"
                        v-model:auto-remove-lora-after-comma="autoRemoveLoraAfterComma"
+                       v-model:auto-remove-duplicate-lora="autoRemoveDuplicateLora"
                        v-model:use-novel-ai-weight-symbol="useNovelAiWeightSymbol"
                        v-model:auto-remove-before-line-comma="autoRemoveBeforeLineComma"
                        v-model:auto-split-by-period="autoSplitByPeriod"
                        v-model:auto-split-by-period-include-paren="autoSplitByPeriodIncludeParen"
                        v-model:auto-split-by-period-semicolon="autoSplitByPeriodSemicolon"
+                       v-model:auto-keyword-to-plain="autoKeywordToPlain"
                        v-model:auto-optimize-split-symbol="autoOptimizeSplitSymbol"
                        v-model:allow-keep-empty-line="allowKeepEmptyLine"
+                       v-model:auto-repair-mojibake="autoRepairMojibake"
         ></prompt-format>
         <blacklist ref="blacklist" v-model:language-code="languageCode"
                    :translate-apis="translateApis"
@@ -179,11 +187,12 @@ import PackagesState from "@/components/packagesState.vue";
 import ChatgptPrompt from "@/components/chatgptPrompt.vue";
 import About from "@/components/about.vue";
 import globals from "../globals";
-import jsYaml from "js-yaml";
+import { load as yamlLoad } from "js-yaml";
 import {ref} from "vue";
 import Hotkey from "@/components/hotkey.vue";
 import ExtraNetworksPopup from "@/components/extraNetworksPopup.vue";
 import waitTick from "@/utils/waitTick";
+import {getPromptOptionData, getPromptOptionWatchers, loadPromptOptions, promptOptionStorageKeys} from "@/utils/promptOptions";
 
 export default {
     name: 'App',
@@ -309,21 +318,8 @@ export default {
             autoTranslate: false,
             autoTranslateToEnglish: false,
             autoTranslateToLocal: false,
-            autoRemoveSpace: true,
-            autoRemoveLastComma: false,
-            autoKeepWeightZero: false,
-            autoKeepWeightOne: false,
-            autoBreakBeforeWrap: false,
-            autoBreakAfterWrap: false,
-            autoRemoveLoraBeforeComma: false,
-            autoRemoveLoraAfterComma: false,
-            useNovelAiWeightSymbol: false,
-            autoRemoveBeforeLineComma: false,
-            autoSplitByPeriod: false,
-            autoSplitByPeriodIncludeParen: false,
-            autoSplitByPeriodSemicolon: false,
-            autoOptimizeSplitSymbol: false,
-            allowKeepEmptyLine: false,
+            /** prompts 系列選項預設值：由 src/src/utils/promptOptions 生成 */
+            ...getPromptOptionData(),
             // hideDefaultInput: false,
             enableTooltip: true,
             tagCompleteFile: '',
@@ -345,6 +341,12 @@ export default {
             loras: [],
             lycos: [],
             embeddings: [],
+            /**
+             * loadExtraNetworks() 是否已呼叫過。
+             * Extra Networks 只在 genPromptCore 首次輸出 extra networks tag 時載入一次，
+             * 本旗標同時供 phystonPrompt 判斷是否還需要求載入。
+             */
+            requestLoadExtraNetworksCalled: false,
 
             python: '',
             packagesState: [],
@@ -422,210 +424,9 @@ export default {
             },
             immediate: false,
         },
-        autoRemoveSpace: {
-            handler: function (val, oldVal) {
-                if (!this.startWatchSave) return
-                console.log('onAutoRemoveSpaceChange', val)
-                this.gradioAPI.setData('autoRemoveSpace', val).then(data => {
-                    this.prompts.forEach(item => {
-                        this.$refs[item.id][0].updatePrompt()
-                    })
-                }).catch(err => {
-                })
-            },
-            immediate: false,
-        },
-        autoRemoveLastComma: {
-            handler: function (val, oldVal) {
-                if (!this.startWatchSave) return
-                console.log('onAutoRemoveLastCommaChange', val)
-                this.gradioAPI.setData('autoRemoveLastComma', val).then(data => {
-                    this.prompts.forEach(item => {
-                        this.$refs[item.id][0].updatePrompt()
-                    })
-                }).catch(err => {
-                })
-            },
-            immediate: false,
-        },
-        autoKeepWeightZero: {
-            handler: function (val, oldVal) {
-                if (!this.startWatchSave) return
-                console.log('onAutoKeepWeightZeroChange', val)
-                this.gradioAPI.setData('autoKeepWeightZero', val).then(data => {
-                }).catch(err => {
-                })
-            },
-            immediate: false,
-        },
-        autoKeepWeightOne: {
-            handler: function (val, oldVal) {
-                if (!this.startWatchSave) return
-                console.log('onAutoKeepWeightOneChange', val)
-                this.gradioAPI.setData('autoKeepWeightOne', val).then(data => {
-                }).catch(err => {
-                })
-            },
-            immediate: false,
-        },
-        autoBreakBeforeWrap: {
-            handler: function (val, oldVal) {
-                if (!this.startWatchSave) return
-                console.log('onAutoBreakBeforeWrap', val)
-                this.gradioAPI.setData('autoBreakBeforeWrap', val).then(data => {
-                    this.prompts.forEach(item => {
-                        this.$refs[item.id][0].updatePrompt()
-                    })
-                }).catch(err => {
-                })
-            },
-            immediate: false,
-        },
-        autoBreakAfterWrap: {
-            handler: function (val, oldVal) {
-                if (!this.startWatchSave) return
-                console.log('onAutoBreakAfterWrap', val)
-                this.gradioAPI.setData('autoBreakAfterWrap', val).then(data => {
-                    this.prompts.forEach(item => {
-                        this.$refs[item.id][0].updatePrompt()
-                    })
-                }).catch(err => {
-                })
-            },
-            immediate: false,
-        },
-        autoRemoveLoraBeforeComma: {
-            handler: function (val, oldVal) {
-                if (!this.startWatchSave) return
-                console.log('onAutoRemoveLoraBeforeCommaChange', val)
-                this.gradioAPI.setData('autoRemoveLoraBeforeComma', val).then(data => {
-                }).catch(err => {
-                })
-            },
-            immediate: false,
-        },
-        autoRemoveLoraAfterComma: {
-            handler: function (val, oldVal) {
-                if (!this.startWatchSave) return
-                console.log('onAutoRemoveLoraAfterCommaChange', val)
-                this.gradioAPI.setData('autoRemoveLoraAfterComma', val).then(data => {
-                }).catch(err => {
-                })
-            },
-            immediate: false,
-        },
-        useNovelAiWeightSymbol: {
-            handler: function (val, oldVal) {
-                if (!this.startWatchSave) return
-                console.log('onUseNovelAiWeightSymbolChange', val)
-                this.gradioAPI.setData('useNovelAiWeightSymbol', val).then(data => {
-                }).catch(err => {
-                })
-            },
-            immediate: false,
-        },
-        autoRemoveBeforeLineComma: {
-            handler: function (val, oldVal) {
-                if (!this.startWatchSave) return
-                console.log('onAutoRemoveBeforeLineCommaChange', val)
-                this.gradioAPI.setData('autoRemoveBeforeLineComma', val).then(data => {
-                }).catch(err => {
-                })
-            }
-        },
-        /**
-         * autoSplitByPeriod：選項變更時，先分割 tags 陣列，再重新產生輸出
-         * 原因：僅呼叫 updatePrompt() 只會在輸出字串層級分割，tags 陣列不會被修改，
-         * 導致 UI 顯示與輸出不一致。因此需先呼叫 applySplitByPeriod() 同步修改 tags。
-         */
-        autoSplitByPeriod: {
-            handler: function (val, oldVal) {
-                if (!this.startWatchSave) return
-                console.log('onAutoSplitByPeriodChange', val)
-                this.gradioAPI.setData('autoSplitByPeriod', val).then(data => {
-                    this.prompts.forEach(item => {
-                        this.$refs[item.id][0].applySplitByPeriod()
-                        this.$refs[item.id][0].updatePrompt()
-                    })
-                }).catch(err => {
-                })
-            },
-            immediate: false,
-        },
-        /**
-         * autoSplitByPeriodIncludeParen：子選項變更僅重新產生輸出
-         * 原因：此選項控制是否允許拆分括號前的 ". "（如 "word1. (test)"）。
-         * 由於 tags 已在 autoSplitByPeriod 開啟時被分割，此選項的變更不會影響已分割的 tags，
-         * 僅影響後續新載入標籤的分割行為。
-         */
-        autoSplitByPeriodIncludeParen: {
-            handler: function (val, oldVal) {
-                if (!this.startWatchSave) return
-                console.log('onAutoSplitByPeriodIncludeParenChange', val)
-                this.gradioAPI.setData('autoSplitByPeriodIncludeParen', val).then(data => {
-                    this.prompts.forEach(item => {
-                        this.$refs[item.id][0].updatePrompt()
-                    })
-                }).catch(err => {
-                })
-            },
-            immediate: false,
-        },
-        /**
-         * autoSplitByPeriodSemicolon：子選項變更需重新分割 tags 再重新產生輸出
-         * 原因：此選項控制 ";" 是否併入句號機制成為分割點，
-         * 需要重新執行 applySplitByPeriod() 才能將既有含分號的 tag 分割。
-         */
-        autoSplitByPeriodSemicolon: {
-            handler: function (val, oldVal) {
-                if (!this.startWatchSave) return
-                console.log('onAutoSplitByPeriodSemicolonChange', val)
-                this.gradioAPI.setData('autoSplitByPeriodSemicolon', val).then(data => {
-                    this.prompts.forEach(item => {
-                        this.$refs[item.id][0].applySplitByPeriod()
-                        this.$refs[item.id][0].updatePrompt()
-                    })
-                }).catch(err => {
-                })
-            },
-            immediate: false,
-        },
-        /**
-         * autoOptimizeSplitSymbol（自動優化分割符號）：獨立選項變更需重新產生輸出
-         * 原因：此選項已不再屬於 autoSplitByPeriod 子選項，其新增的分行前條件
-         * （「:」結尾 / 該行含 # tag / 分行前為 Lora）在 genPrompt() 輸出層直接判定；
-         * 同時它也改變 _shouldRemoveLastComma 的判定邏輯，影響 splitNoComma 的設定。
-         * 因此需同時呼叫 applySplitByPeriod()（重新標記 splitNoComma）與 updatePrompt()（重新產生輸出）。
-         */
-        autoOptimizeSplitSymbol: {
-            handler: function (val, oldVal) {
-                if (!this.startWatchSave) return
-                console.log('onAutoOptimizeSplitSymbolChange', val)
-                this.gradioAPI.setData('autoOptimizeSplitSymbol', val).then(data => {
-                    this.prompts.forEach(item => {
-                        this.$refs[item.id][0].applySplitByPeriod()
-                        this.$refs[item.id][0].updatePrompt()
-                    })
-                }).catch(err => {
-                })
-            },
-            immediate: false,
-        },
-        /**
-         * allowKeepEmptyLine（允許保持一個空行）：僅影響 prompt 解析階段
-         * （splitTags 的連續換行壓縮上限），不影響輸出格式，
-         * 因此只需儲存設定；下次解析（載入提示詞 / 輸入變動）時生效。
-         */
-        allowKeepEmptyLine: {
-            handler: function (val, oldVal) {
-                if (!this.startWatchSave) return
-                console.log('onAllowKeepEmptyLineChange', val)
-                this.gradioAPI.setData('allowKeepEmptyLine', val).then(data => {
-                }).catch(err => {
-                })
-            },
-            immediate: false,
-        },
+        // prompts 系列選項 watchers：由 SSOT 生成（src/src/utils/promptOptions）
+        // Prompt-format option watchers: generated from the SSOT.
+        ...getPromptOptionWatchers(),
         /*hideDefaultInput: {
             handler: function (val, oldVal) {
                 if (!this.startWatchSave) return
@@ -783,27 +584,14 @@ export default {
             return common.getLang(key, this.languageCode, this.languages)
         },
         init() {
-            this.loadExtraNetworks()
+            // this.loadExtraNetworks()
             let dataListsKeys = [
                 'languageCode',
                 'autoTranslate',
                 'autoTranslateToEnglish',
                 'autoTranslateToLocal',
-                'autoRemoveSpace',
-                'autoRemoveLastComma',
-                'autoKeepWeightZero',
-                'autoKeepWeightOne',
-                'autoBreakBeforeWrap',
-                'autoBreakAfterWrap',
-                'autoRemoveLoraBeforeComma',
-                'autoRemoveLoraAfterComma',
-                'useNovelAiWeightSymbol',
-                'autoRemoveBeforeLineComma',
-                'autoSplitByPeriod',
-                'autoSplitByPeriodIncludeParen',
-                'autoSplitByPeriodSemicolon',
-                'autoOptimizeSplitSymbol',
-                'autoSplitByPeriodRemoveWrapComma', // 舊存檔鍵：僅供遷移讀取（選項更名前的使用者設定），見下方載入邏輯
+                /** prompts 系列選項存檔鍵（含遷移用舊鍵） */
+                ...promptOptionStorageKeys,
                 /*'hideDefaultInput', */
                 'translateApi',
                 'enableTooltip',
@@ -876,52 +664,8 @@ export default {
                         this.autoTranslate = false
                     }
                 }
-                if (data.autoRemoveSpace !== null) {
-                    this.autoRemoveSpace = data.autoRemoveSpace
-                }
-                if (data.autoRemoveLastComma !== null) {
-                    this.autoRemoveLastComma = data.autoRemoveLastComma
-                }
-                if (data.autoKeepWeightZero !== null) {
-                    this.autoKeepWeightZero = data.autoKeepWeightZero
-                }
-                if (data.autoKeepWeightOne !== null) {
-                    this.autoKeepWeightOne = data.autoKeepWeightOne
-                }
-                if (data.autoBreakBeforeWrap !== null) {
-                    this.autoBreakBeforeWrap = data.autoBreakBeforeWrap
-                }
-                if (data.autoBreakAfterWrap !== null) {
-                    this.autoBreakAfterWrap = data.autoBreakAfterWrap
-                }
-                if (data.autoRemoveLoraBeforeComma !== null) {
-                    this.autoRemoveLoraBeforeComma = data.autoRemoveLoraBeforeComma
-                }
-                if (data.autoRemoveLoraAfterComma !== null) {
-                    this.autoRemoveLoraAfterComma = data.autoRemoveLoraAfterComma
-                }
-                if (data.useNovelAiWeightSymbol !== null) {
-                    this.useNovelAiWeightSymbol = data.useNovelAiWeightSymbol
-                }
-                if (data.autoRemoveBeforeLineComma !== null) {
-                    this.autoRemoveBeforeLineComma = data.autoRemoveBeforeLineComma
-                }
-                if (data.autoSplitByPeriod !== null) {
-                    this.autoSplitByPeriod = data.autoSplitByPeriod
-                }
-                if (data.autoSplitByPeriodIncludeParen !== null) {
-                    this.autoSplitByPeriodIncludeParen = data.autoSplitByPeriodIncludeParen
-                }
-                if (data.autoSplitByPeriodSemicolon !== null) {
-                    this.autoSplitByPeriodSemicolon = data.autoSplitByPeriodSemicolon
-                }
-                if (data.autoOptimizeSplitSymbol !== null) {
-                    this.autoOptimizeSplitSymbol = data.autoOptimizeSplitSymbol
-                } else if (data.autoSplitByPeriodRemoveWrapComma !== null) {
-                    // 舊存檔鍵遷移：autoSplitByPeriodRemoveWrapComma 已更名為 autoOptimizeSplitSymbol，
-                    // 讀取舊鍵避免使用者既有設定遺失；後續寫入一律走新鍵
-                    this.autoOptimizeSplitSymbol = data.autoSplitByPeriodRemoveWrapComma
-                }
+                /** prompts 系列選項載入回填（含舊鍵遷移） */
+                loadPromptOptions(this, data)
                 /*if (data.hideDefaultInput !== null) {
                     this.hideDefaultInput = data.hideDefaultInput
                 }*/
@@ -1069,7 +813,7 @@ export default {
                     this.groupTags = []
                 } else {
                     try {
-                        this.groupTags = jsYaml.load(data)
+                        this.groupTags = yamlLoad(data)
                         if (!Array.isArray(this.groupTags)) {
                             this.groupTags = []
                         }
@@ -1371,6 +1115,17 @@ export default {
         },
         onRefreshExtraNetworks() {
             this._loadExtraNetworks()
+        },
+        /**
+         * genPromptCore 首次輸出 extra networks tag 時，要求載入 Extra Networks。
+         *
+         * 重複請求直接忽略：prop 的更新要到下輪渲染才會傳回 phystonPrompt，
+         * 同一個 tick 內可能被要求多次。
+         */
+        onRequestLoadExtraNetworks() {
+            if (this.requestLoadExtraNetworksCalled) return
+            this.requestLoadExtraNetworksCalled = true
+            this.loadExtraNetworks()
         },
     },
 }

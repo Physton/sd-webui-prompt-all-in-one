@@ -1,0 +1,30 @@
+.physton-prompt {
+    .prompt-tags {
+        .prompt-tags-list {
+            .prompt-tag {
+                .prompt-tag-main {
+                    .prompt-tag-edit {
+                        .prompt-tag-value {
+                            // 關鍵字（renderTag 的 keyword-character：AND 與
+                            // autoKeywordToPlain 轉換後的 And）以顏色提示
+                            // 它是語法關鍵字，不是普通提示詞。
+                            //
+                            // 提示色刻意避開紅 / 綠 / 藍——三色已分別承擔權重、
+                            // 遞減權重與主題強調等既有語意，故新闢基本色橙色
+                            // （--physton-common-orange，定義見 styles/main.less）。
+                            //
+                            // 擴充樣式獨立編譯，取不到 main.less 的 @common-* less 變數，
+                            // 色值改引其來源 CSS 變數（--physton-common-*）；
+                            // 需要其他基本色時，先確認 main.less 是否已定義，未定義者再依同處的
+                            // "@common-x: var(--physton-common-x)" + "--physton-common-x: #hex" 慣例補上。
+                            .keyword-character {
+                                color: var(--physton-common-orange);
+                                font-weight: 700;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

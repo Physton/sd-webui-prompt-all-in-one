@@ -180,15 +180,21 @@
                 "move_down": "下移",
                 "is_remove_lora_before_comma": "是否去除Lora前面的逗号。<br/>勾选后Lora输出为“aaa &lt;lora:bbb:0.1&gt; &lt;lora:ccc:0.1&gt;, ddd”。<br/>取消勾选Lora输出为“aaa, &lt;lora:bbb:0.1&gt;, &lt;lora:ccc:0.1&gt;, ddd”。",
                 "is_remove_lora_after_comma": "是否去除Lora后面的逗号。<br/>勾选后Lora输出为“aaa, &lt;lora:bbb:0.1&gt; &lt;lora:ccc:0.1&gt; ddd”。<br/>取消勾选Lora输出为“aaa, &lt;lora:bbb:0.1&gt;, &lt;lora:ccc:0.1&gt;, ddd”。",
+                "is_remove_duplicate_lora": "消除重复的 Lora / Lyco 标签：以名称为重复键（权重不视为差异），重复时保留最后一个、移除较早出现者。<br/>“#”之后与已停用的 Lora 不参与去重。",
                 "is_use_novel_ai_weight_symbol": "是否使用NovelAI的权重符号。<br/>勾选后权重符号 () 将变为 {}",
                 "is_remove_before_line_comma": "是否去除换行前面的逗号。<br/>勾选后输出为“aaa, bbb<br/>ccc”。<br/>取消勾选输出为“aaa, bbb,<br/>ccc”。",
                 "is_split_by_period": "是否在句号+空格处分割关键词。<br/>勾选后将“word1. word2”分割为“word1.”和“word2”两个关键词。<br/>取消勾选则保持原样。",
                 "is_split_by_period_include_paren": "是否同时分割括号前的句号+空格（如“word1. (test)”）。<br/>需先勾选上方选项。",
                 "is_split_by_period_semicolon": "是否将分号 \";\" 并入句号机制分割关键词。<br/>勾选后将「word1; word2」分割为「word1;」和「word2」两个关键词（分号保留在前段末尾），连续多个分号全数保留。<br/>需先勾选上方选项。",
+                "is_keyword_to_plain": "自动将提示词运算子／Composable Diffusion 等关键字变成普通提示词（目前仅 AND → And）。<br/>关键词与一般文本标签内的 AND 一并转换，只改写值，分割与逗号标记等其余机制不变。",
                 "is_auto_optimize_split_symbol": "自动优化分割符号：自动移除不合适的逗号分隔符，使输出更符合 Stable Diffusion 的语法习惯（如分行前、连续 Lora 之间、BREAK 前后等场景）。此为独立选项，无需勾选“按句号分割关键词”。",
                 "is_allow_keep_empty_line": "是否允许在解析提示词时保留一个空行。<br/>勾选后，连续换行最多压缩为一个空行（即保留两个换行符）；未勾选则连续换行全部压缩为单个换行。",
+                "is_auto_repair_mojibake": "解析提示词时自动还原文本乱码（mojibake）。<br/>勾选后，被错误按 Latin-1/Windows-1252 解读的 UTF-8 文字会在分割标签前还原为原始字符；未勾选则不做处理。",
+                "json_input_split_skipped": "检测到输入为 JSON（如 ComfyUI 工作流），已跳过标签分割并保持原样。",
                 "auto_load_webui_prompt": "自动加载WebUI提示词变动。<br/>勾选后，当WebUI中提示词输入框的内容变动时，插件会自动加载关键词解析并格式化。<br/>未勾选，当WebUI中提示词输入框的内容变动时，需要手动点击加载提示词按钮。",
-                "load_webui_prompt": "加载WebUI提示词"
+                "load_webui_prompt": "加载WebUI提示词",
+                "paste_to_default_input_box": "粘贴剪贴板到提示词输入框",
+                "paste_clipboard_failed": "自動貼上失敗，請點擊輸入框後手動按貼上"
             }
         },
         {
@@ -370,15 +376,21 @@
                 "move_down": "下移",
                 "is_remove_lora_before_comma": "是否去除Lora前面的逗號。<br/>勾選後Lora輸出為「aaa &lt;lora:bbb:0.1&gt; &lt;lora:ccc:0.1&gt;, ddd」。<br/>取消勾選Lora輸出為「aaa, &lt;lora:bbb:0.1&gt;, &lt;lora:ccc:0.1&gt;, ddd」。",
                 "is_remove_lora_after_comma": "是否去除Lora後面的逗號。<br/>勾選後Lora輸出為「aaa, &lt;lora:bbb:0.1&gt; &lt;lora:ccc:0.1&gt; ddd」。<br/>取消勾選Lora輸出為「aaa, &lt;lora:bbb:0.1&gt;, &lt;lora:ccc:0.1&gt;, ddd」。",
+                "is_remove_duplicate_lora": "消除重複的 Lora / Lyco 標籤：以名稱為重複鍵（權重不視為差異），重複時保留最後一個、移除較早出現者。<br/>「#」之後與已停用的 Lora 不參與去重。",
                 "is_use_novel_ai_weight_symbol": "是否使用NovelAI的權重符號。<br/>勾選後權重符號 () 將變為 {}",
                 "is_remove_before_line_comma": "是否去除換行前面的逗號。<br/>勾選後輸出為「aaa, bbb<br/>ccc」。<br/>取消勾選輸出為「aaa, bbb,<br/>ccc」。",
                 "is_split_by_period": "是否在句號+空格處分割關鍵詞。<br/>勾選後將「word1. word2」分割為「word1.」和「word2」兩個關鍵詞。<br/>取消勾選則保持原樣。",
                 "is_split_by_period_include_paren": "是否同時分割括號前的句號+空格（如「word1. (test)」）。<br/>需先勾選上方選項。",
                 "is_split_by_period_semicolon": "是否將分號 \";\" 併入句號機制分割關鍵詞。<br/>勾選後將「word1; word2」分割為「word1;」和「word2」兩個關鍵詞（分號保留在前段末尾），連續多個分號全數保留。<br/>需先勾選上方選項。",
+                "is_keyword_to_plain": "自動將提示詞運算子／Composable Diffusion 等關鍵字變成普通提示詞（目前僅 AND → And）。<br/>關鍵字與一般文字標籤內的 AND 一併轉換，只改寫值，分割與逗號標記等其餘機制不變。",
                 "is_auto_optimize_split_symbol": "自動優化分割符號：自動移除不適合的逗號分隔符，使輸出更符合 Stable Diffusion 的語法習慣（如分行前、連續 Lora 之間、BREAK 前後等情境）。此為獨立選項，無需勾選「在句號+空格處分割關鍵詞」。",
                 "is_allow_keep_empty_line": "是否允許在解析提示詞時保留一個空行。<br/>勾選後，連續換行最多壓縮為一個空行（即保留兩個換行符）；未勾選則連續換行全部壓縮為單個換行。",
+                "is_auto_repair_mojibake": "解析提示詞時自動還原文字亂碼（mojibake）。<br/>勾選後，被錯誤按 Latin-1/Windows-1252 解讀的 UTF-8 文字會在分割標籤前還原為原始字元；未勾選則不做處理。",
+                "json_input_split_skipped": "偵測到輸入為 JSON（如 ComfyUI 工作流），已跳過標籤分割並保持原樣。",
                 "auto_load_webui_prompt": "自動加載WebUI提示詞變動。<br/>勾選後，當WebUI中提示詞輸入框的內容變動時，插件會自動加載關鍵詞解析並格式化。<br/>未勾選，當WebUI中提示詞輸入框的內容變動時，需要手動點擊加載提示詞按鈕。",
-                "load_webui_prompt": "加載WebUI提示詞"
+                "load_webui_prompt": "加載WebUI提示詞",
+                "paste_to_default_input_box": "粘貼剪貼簿到提示詞輸入框",
+                "paste_clipboard_failed": "自動貼上失敗，請點擊輸入框後手動按貼上"
             }
         },
         {
@@ -560,15 +572,21 @@
                 "move_down": "下移",
                 "is_remove_lora_before_comma": "是否移除Lora前面的逗號。<br/>勾選後Lora輸出為「aaa &lt;lora:bbb:0.1&gt; &lt;lora:ccc:0.1&gt;, ddd」。<br/>取消勾選Lora輸出為「aaa, &lt;lora:bbb:0.1&gt;, &lt;lora:ccc:0.1&gt;, ddd」。",
                 "is_remove_lora_after_comma": "是否移除Lora後面的逗號。<br/>勾選後Lora輸出為「aaa, &lt;lora:bbb:0.1&gt; &lt;lora:ccc:0.1&gt; ddd」。<br/>取消勾選Lora輸出為「aaa, &lt;lora:bbb:0.1&gt;, &lt;lora:ccc:0.1&gt;, ddd」。",
+                "is_remove_duplicate_lora": "消除重複的 Lora / Lyco 標籤：以名稱為重複鍵（權重不視為差異），重複時保留最後一個、移除較早出現者。<br/>「#」之後與已停用的 Lora 不參與去重。",
                 "is_use_novel_ai_weight_symbol": "是否使用NovelAI的權重符號。<br/>勾選後權重符號 () 將變為 {}",
                 "is_remove_before_line_comma": "是否移除換行前面的逗號。<br/>勾選後輸出為「aaa, bbb<br/>ccc」。<br/>取消勾選輸出為「aaa, bbb,<br/>ccc」。",
                 "is_split_by_period": "是否在句號+空格處分割關鍵詞。<br/>勾選後將「word1. word2」分割為「word1.」和「word2」兩個關鍵詞。<br/>取消勾選則保持原樣。",
                 "is_split_by_period_include_paren": "是否同時分割括號前的句號+空格（如「word1. (test)」）。<br/>需先勾選上方選項。",
                 "is_split_by_period_semicolon": "是否將分號 \";\" 併入句號機制分割關鍵詞。<br/>勾選後將「word1; word2」分割為「word1;」和「word2」兩個關鍵詞（分號保留在前段末尾），連續多個分號全數保留。<br/>需先勾選上方選項。",
+                "is_keyword_to_plain": "自動將提示詞運算子／Composable Diffusion 等關鍵字變成普通提示詞（目前僅 AND → And）。<br/>關鍵字與一般文字標籤內的 AND 一併轉換，只改寫值，分割與逗號標記等其餘機制不變。",
                 "is_auto_optimize_split_symbol": "自動優化分割符號：自動移除不適合的逗號分隔符，使輸出更符合 Stable Diffusion 的語法習慣（如分行前、連續 Lora 之間、BREAK 前後等情境）。此為獨立選項，無需勾選「在句號+空格處分割關鍵詞」。",
                 "is_allow_keep_empty_line": "是否允許在解析提示詞時保留一個空行。<br/>勾選後，連續換行最多壓縮為一個空行（即保留兩個換行符）；未勾選則連續換行全部壓縮為單個換行。",
+                "is_auto_repair_mojibake": "解析提示詞時自動還原文字亂碼（mojibake）。<br/>勾選後，被錯誤按 Latin-1/Windows-1252 解讀的 UTF-8 文字會在分割標籤前還原為原始字元；未勾選則不做處理。",
+                "json_input_split_skipped": "偵測到輸入為 JSON（如 ComfyUI 工作流），已跳過標籤分割並保持原樣。",
                 "auto_load_webui_prompt": "自動載入WebUI提示詞變動。<br/>勾選後，當WebUI中提示詞輸入框的內容變動時，插件會自動載入關鍵詞解析並格式化。<br/>未勾選，當WebUI中提示詞輸入框的內容變動時，需要手動點擊載入提示詞按鈕。",
-                "load_webui_prompt": "載入WebUI提示詞"
+                "load_webui_prompt": "載入WebUI提示詞",
+                "paste_to_default_input_box": "貼上剪貼簿到提示詞輸入框",
+                "paste_clipboard_failed": "自動貼上失敗，請點擊輸入框後手動按貼上"
             }
         },
         {
@@ -750,15 +768,21 @@
                 "move_down": "Move Down",
                 "is_remove_lora_before_comma": "Remove the comma before Lora or not.<br/>If selected, the Lora output will be 'aaa &lt;lora:bbb:0.1&gt; &lt;lora:ccc:0.1&gt;, ddd'.<br/>If unselected, the Lora output will be 'aaa, &lt;lora:bbb:0.1&gt;, &lt;lora:ccc:0.1&gt;, ddd'.",
                 "is_remove_lora_after_comma": "Remove the comma after Lora or not.<br/>If selected, the Lora output will be 'aaa, &lt;lora:bbb:0.1&gt; &lt;lora:ccc:0.1&gt; ddd'.<br/>If unselected, the Lora output will be 'aaa, &lt;lora:bbb:0.1&gt;, &lt;lora:ccc:0.1&gt;, ddd'.",
+                "is_remove_duplicate_lora": "Remove duplicate Lora / Lyco tags: the name is the duplicate key (weight is not a difference), the last occurrence is kept and earlier ones are removed.<br/>Loras after '#' or disabled Loras are not deduplicated.",
                 "is_use_novel_ai_weight_symbol": "Whether to use NovelAI's weight symbol.<br/>Checking this will change the weight symbol () to {}",
                 "is_remove_before_line_comma": "Whether to remove the comma before a line break.<br/>If checked, the output will be \"aaa, bbb<br/>ccc\".<br/>If unchecked, the output will be \"aaa, bbb,<br/>ccc\".",
                 "is_split_by_period": "Whether to split keywords at period+space.<br/>If checked, \"word1. word2\" will be split into \"word1.\" and \"word2\".<br/>If unchecked, it stays as is.",
                 "is_split_by_period_include_paren": "Also split at period+space before parentheses (e.g. \"word1. (test)\").<br/>Requires the above option.",
                 "is_split_by_period_semicolon": "Whether to split keywords at semicolon+space using the same mechanism as period.<br/>If checked, \"word1; word2\" will be split into \"word1;\" and \"word2\" (semicolon kept at the end of the first part); consecutive semicolons are all preserved.<br/>Requires the above option.",
+                "is_keyword_to_plain": "Automatically turn prompt operators / Composable Diffusion keywords into plain prompt text (currently only AND → And).<br/>AND inside keyword tags and plain-text tags is converted too; only values change, while splitting and comma markers stay as before.",
                 "is_auto_optimize_split_symbol": "Auto-optimize split symbol: automatically removes inappropriate comma separators so the output better follows Stable Diffusion syntax conventions (e.g. before a line break, between consecutive Loras, around BREAK, etc.). This is a standalone option and does not require \"split keywords at period+space\".",
                 "is_allow_keep_empty_line": "Whether to allow keeping one empty line when parsing the prompt.<br/>When checked, consecutive line breaks are compressed to at most one empty line (i.e. two newline characters); when unchecked, all consecutive line breaks are compressed into a single one.",
+                "is_auto_repair_mojibake": "Automatically repair mojibake text when parsing.<br/>When checked, text whose UTF-8 bytes were mis-decoded as Latin-1/Windows-1252 is restored to the original characters before tags are split; when unchecked, input is left untouched.",
+                "json_input_split_skipped": "Input looks like JSON (e.g. a ComfyUI workflow); tag splitting was skipped and the text was kept as-is.",
                 "auto_load_webui_prompt": "Auto-load WebUI prompt changes.<br/>When checked, the plugin will automatically load and format keyword parsing when the content of the prompt input box in WebUI changes.<br/>When unchecked, you need to manually click the load prompt button when the content of the prompt input box in WebUI changes.",
-                "load_webui_prompt": "Load WebUI prompt"
+                "load_webui_prompt": "Load WebUI prompt",
+                "paste_to_default_input_box": "Paste clipboard to prompt input box",
+                "paste_clipboard_failed": "Auto paste failed. Click the input box, then press paste manually."
             }
         },
         {
@@ -851,6 +875,9 @@
                 "only_csv_on_auto": "الترجمة الآلية تستخدم فقط ترجمة CSV (لا تستخدم الترجمة عبر الشبكة) ، والنقر على زر الترجمة يدويًا لاستخدام الترجمة CSV والترجمة عبر الشبكة.",
                 "one_translate_all_keywords": "ترجم جميع الكلمات الرئيسية بنقرة واحدة",
                 "auto_translate": "ترجم تلقائيًا بعد إدخال كلمات رئيسية جديدة",
+                "is_remove_last_comma": "هل ترغب في إزالة الفاصلة الأخيرة في Prompt.<br/>عند تحديد هذا الخيار، يصبح مخرجات Prompt هكذا \"aaa,bbb,ccc\".<br/>عند إلغاء التحديد، يصبح مخرجات Prompt هكذا \"aaa,bbb,ccc,\".",
+                "is_keep_weight_zero": "هل تريد الاحتفاظ بصيغة الكلمة المفتاحية ذات الوزن 0.<br/>عند تحديد هذا الخيار، تبقى الصيغة هكذا \"(text:0)\".<br/>عند إلغاء التحديد، لا تبقى الصيغة هكذا \"test\".",
+                "is_keep_weight_one": "هل تريد الاحتفاظ بصيغة الكلمة المفتاحية ذات الوزن 1.<br/>عند تحديد هذا الخيار، تبقى الصيغة هكذا \"(text:1)\".<br/>عند إلغاء التحديد، لا تبقى الصيغة هكذا \"test\".",
                 "prompt_format": "تنسيق Prompt",
                 "tagcomplete_translate_desc2": "اختيار ملف CSV الخاطئ سيؤدي إلى ترجمة فارغة أو '0'. بعد تغيير الملف، يرجى النقر على زر الاختبار أدناه والتحقق مما إذا كانت النتيجة المترجمة تعرض بشكل صحيح بلغتك المحلية.",
                 "dblclick_to_disable": "انقر مرتين لتعطيل / تمكين الكلمة الرئيسية",
@@ -865,6 +892,7 @@
                 "today_not_show": "لا تظهر هذه النافذة اليوم",
                 "free": "مجاني",
                 "apply_for_free": "التقديم للاستخدام المجاني",
+                "chatgpt_prompts_preset": "StableDiffusion هو نموذج تعلّم عميق للنص إلى الصورة يولّد صورًا بناءً على المطالبات (prompts). يمكن لهذه المطالبات تحديد العناصر المرغوبة في الصورة، مثل مظهر الشخصيات والخلفية واللون وتأثيرات الإضاءة، بالإضافة إلى موضوع الصورة وأسلوبها. تحتوي المطالبات غالبًا على أرقام موزونة بين قوسين لتوضيح أهمية بعض التفاصيل أو التأكيد عليها. على سبيل المثال، يشير \"(masterpiece:1.5)\" إلى أن جودة العمل مهمة جدًا. كما أن الأقواس المتعددة لها تأثيرات مشابهة. علاوة على ذلك، عند استخدام الأقواس المربعة، مثل \"{blue hair:white hair:0.3}\"، يمثل ذلك اندماج الشعر الأزرق والشعر الأبيض، حيث يمثل الشعر الأزرق 0.3.\nإليكم مثالًا على استخدام المطالبات لمساعدة نموذج الذكاء الاصطناعي على إنشاء صورة: masterpiece,(bestquality),highlydetailed,ultra-detailed,cold,solo,(1girl),(detailedeyes),(shinegoldeneyes),(longliverhair),expressionless,(long sleeves),(puffy sleeves),(white wings),shinehalo,(heavymetal:1.2),(metaljewelry),cross-lacedfootwear (chain),(Whitedoves:1.2)\n\nتبعًا للمثال، قدّم مجموعة من المطالبات التي تصف المحتوى التالي بالتفصيل. ابدأ المطالبات مباشرة دون استخدام اللغة الوصفية: ",
                 "use_chatgpt_gen_prompts": "استخدم ChatGPT لتوليد Prompts",
                 "input_image_desc": "يرجى إدخال وصف الصورة ، على سبيل المثال: قطة جالسة على سطح مبنى ، صورة عالية الدقة ومفصلة جدًا.",
                 "api_config": "تكوين API",
@@ -951,15 +979,21 @@
                 "move_down": "الانتقال لأسفل",
                 "is_remove_lora_before_comma": "هل ترغب في إزالة الفاصلة قبل Lora أم لا؟<br/>إذا تم تحديده، سيكون إخراج Lora على النحو التالي 'aaa &lt;lora:bbb:0.1&gt; &lt;lora:ccc:0.1&gt;, ddd'.<br/>إذا تم إلغاء التحديد، سيكون إخراج Lora على النحو التالي 'aaa, &lt;lora:bbb:0.1&gt;, &lt;lora:ccc:0.1&gt;, ddd'.",
                 "is_remove_lora_after_comma": "هل ترغب في إزالة الفاصلة بعد Lora أم لا؟<br/>إذا تم تحديده، سيكون إخراج Lora على النحو التالي 'aaa, &lt;lora:bbb:0.1&gt; &lt;lora:ccc:0.1&gt; ddd'.<br/>إذا تم إلغاء التحديد، سيكون إخراج Lora على النحو التالي 'aaa, &lt;lora:bbb:0.1&gt;, &lt;lora:ccc:0.1&gt;, ddd'.",
+                "is_remove_duplicate_lora": "إزالة وسوم Lora / Lyco المكررة: الاسم هو مفتاح التكرار (الوزن ليس فرقاً)، ويُحتفظ بالآخر وتُزال الأوائل.<br/>لا تخضع لإزالة التكرار وسوم Lora بعد '#' أو الوسوم المعطلة.",
                 "is_use_novel_ai_weight_symbol": "هل ترغب في استخدام رمز الوزن من NovelAI؟<br/>بعد التحقق من هذا، ستتغير رمز الوزن () إلى {}",
                 "is_remove_before_line_comma": "هل ترغب في إزالة الفاصلة قبل السطر المكتوب.<br/>إذا تم التحقق، سيكون الإخراج \"aaa، bbb<br/>ccc\".<br/>إذا لم يتم التحقق، سيكون الإخراج \"aaa، bbb،<br/>ccc\".",
                 "is_split_by_period": "هل تريد تقسيم الكلمات المفتاحية عند نقطة+مسافة.<br/>إذا تم التحقق، سيتم تقسيم \"word1. word2\" إلى \"word1.\" و \"word2\".<br/>إذا لم يتم التحقق، يبقى كما هو.",
                 "is_split_by_period_include_paren": "تقسيم أيضاً عند نقطة+مسافة قبل الأقواس (مثل \"word1. (test)\").<br/>يتطلب الخيار أعلاه.",
                 "is_split_by_period_semicolon": "تقسيم الكلمات المفتاحية عند فاصلة منقوطة+مسافة باستخدام نفس آلية النقطة.<br/>عند التحقق، سيتم تقسيم \"word1; word2\" إلى \"word1;\" و \"word2\" (تبقى الفاصلة المنقوطة في نهاية الجزء الأول)؛ وتُحفظ الفواصل المنقوطة المتتالية جميعها.<br/>يتطلب الخيار أعلاه.",
+                "is_keyword_to_plain": "تحويل عمليات الموجه / كلمات Composable Diffusion المفتاحية إلى نص موجه عادي (حالياً فقط AND → And).<br/>يُحوَّل كذلك AND داخل الكلمات المفتاحية ووسوم النص العادي؛ لا تتغير سوى القيم، ويبقى التقسيم وعلامات الفاصلة كما هي.",
                 "is_auto_optimize_split_symbol": "تحسين رمز الفصل تلقائياً: يزيل الفواصل غير المناسبة تلقائياً لتتوافق المخرجات مع اصطلاحات صياغة Stable Diffusion (مثل ما قبل فاصل السطر، وبين Loras متتالية، حول BREAK، إلخ). هذا خيار مستقل ولا يتطلب خيار تقسيم الكلمات عند النقطة.",
                 "is_allow_keep_empty_line": "ما إذا كان يُسمح بالإبقاء على سطر فارغ واحد عند تحليل الموجه.<br/>عند التحقق، تُضغط فواصل الأسطر المتتالية إلى سطر فارغ واحد كحد أقصى (أي محرفَي نهاية سطر)؛ وعند الإلغاء، تُضغط جميع فواصل الأسطر المتتالية إلى واحد واحد.",
+                "is_auto_repair_mojibake": "إصلاح تلقائي لنص mojibake عند التحليل.<br/>عند التحقق، يُعاد نص UTF-8 الذي فُسِّر خطأً على أنه Latin-1/Windows-1252 إلى الأحرف الأصلية قبل تقسيم الوسوم؛ وعند الإلغاء، يُترك المدخل كما هو.",
+                "json_input_split_skipped": "يبدو أن المدخل JSON (مثل سير عمل ComfyUI)؛ تم تخطٍّ تقسيم الوسوم وإبقاء النص كما هو.",
                 "auto_load_webui_prompt": "تحميل تلقائي لتغييرات تلميح واجهة المستخدم الرسومية عبر الويب.<br/>عند التحقق، سيقوم الملحق تلقائيًا بتحميل وتنسيق تحليل الكلمات الرئيسية عند تغيير محتوى مربع إدخال التلميح في واجهة المستخدم الرسومية عبر الويب.<br/>عند عدم التحقق، يتعين عليك النقر يدويًا على زر تحميل التلميح عند تغيير محتوى مربع إدخال التلميح في واجهة المستخدم الرسومية عبر الويب.",
-                "load_webui_prompt": "تحميل تلميح واجهة المستخدم الرسومية عبر الويب"
+                "load_webui_prompt": "تحميل تلميح واجهة المستخدم الرسومية عبر الويب",
+                "paste_to_default_input_box": "لصق محتوى الحافظة في مربع إدخال الكلمات المفتاحية",
+                "paste_clipboard_failed": "فشل اللصق التلقائي. انقر على مربع الإدخال ثم اضغط على لصق يدويًا."
             }
         },
         {
@@ -1154,6 +1188,7 @@
                 "today_not_show": "Ne pas afficher cette fenêtre aujourd'hui",
                 "free": "Gratuit",
                 "apply_for_free": "Demande d'utilisation gratuite",
+                "chatgpt_prompts_preset": "StableDiffusion est un modèle d'apprentissage profond de texte vers image qui génère des images à partir de prompts. Ces prompts peuvent spécifier les éléments souhaités de l'image, tels que l'apparence des personnages, l'arrière-plan, les couleurs et les effets d'éclairage, ainsi que le thème et le style de l'image. Les prompts contiennent souvent des numéros pondérés entre parenthèses pour indiquer l'importance ou l'accent mis sur certains détails. Par exemple, \"(masterpiece:1.5)\" indique que la qualité de l'œuvre est très importante. Les parenthèses multiples ont des effets similaires. De plus, si des crochets sont utilisés, comme \"{blue hair:white hair:0.3}\", cela représente la fusion des cheveux bleus et blancs, les cheveux bleus représentant 0.3.\nVoici un exemple d'utilisation de prompts pour aider un modèle d'IA à générer une image : masterpiece,(bestquality),highlydetailed,ultra-detailed,cold,solo,(1girl),(detailedeyes),(shinegoldeneyes),(longliverhair),expressionless,(long sleeves),(puffy sleeves),(white wings),shinehalo,(heavymetal:1.2),(metaljewelry),cross-lacedfootwear (chain),(Whitedoves:1.2)\n\nEn suivant l'exemple, fournissez un ensemble de prompts détaillant le contenu suivant. Commencez directement les prompts sans utiliser de langage naturel pour les décrire : ",
                 "use_chatgpt_gen_prompts": "Utiliser ChatGPT pour générer des prompts",
                 "input_image_desc": "Veuillez entrer la description de l'image, par exemple : un chat assis sur le toit d'un bâtiment, une photo très haute définition, très authentique.",
                 "api_config": "Configuration de l'API",
@@ -1240,15 +1275,21 @@
                 "move_down": "Déplacer vers le bas",
                 "is_remove_lora_before_comma": "Supprimer la virgule avant Lora ou non.<br/>Si sélectionné, la sortie Lora sera 'aaa &lt;lora:bbb:0.1&gt; &lt;lora:ccc:0.1&gt;, ddd'.<br/>Si non sélectionné, la sortie Lora sera 'aaa, &lt;lora:bbb:0.1&gt;, &lt;lora:ccc:0.1&gt;, ddd'.",
                 "is_remove_lora_after_comma": "Supprimer la virgule après Lora ou non.<br/>Si sélectionné, la sortie Lora sera 'aaa, &lt;lora:bbb:0.1&gt; &lt;lora:ccc:0.1&gt; ddd'.<br/>Si non sélectionné, la sortie Lora sera 'aaa, &lt;lora:bbb:0.1&gt;, &lt;lora:ccc:0.1&gt;, ddd'.",
+                "is_remove_duplicate_lora": "Supprimer les tags Lora / Lyco en double : le nom sert de clé de dédoublement (le poids n'est pas une différence), le dernier est conservé et les précédents sont supprimés.<br/>Les Loras après '#' ou désactivés ne sont pas dédupliqués.",
                 "is_use_novel_ai_weight_symbol": "Utiliser le symbole de poids de NovelAI.<br/>En cochant cette option, le symbole de poids () sera remplacé par {}",
                 "is_remove_before_line_comma": "Indique si vous souhaitez supprimer la virgule avant un saut de ligne.<br/>Si coché, la sortie sera \"aaa, bbb<br/>ccc\".<br/>Si décoché, la sortie sera \"aaa, bbb,<br/>ccc\".",
                 "is_split_by_period": "Séparer les mots-clés au point+espace.<br/>Si coché, \"word1. word2\" sera séparé en \"word1.\" et \"word2\".<br/>Si décoché, reste tel quel.",
                 "is_split_by_period_include_paren": "Séparer aussi au point+espace avant les parenthèses (ex. \"word1. (test)\").<br/>Nécessite l'option ci-dessus.",
                 "is_split_by_period_semicolon": "Séparer les mots-clés au point-virgule+espace avec le même mécanisme que le point.<br/>Si coché, \"word1; word2\" sera séparé en \"word1;\" et \"word2\" (le point-virgule reste en fin de la première partie) ; les point-virgules consécutifs sont tous conservés.<br/>Nécessite l'option ci-dessus.",
+                "is_keyword_to_plain": "Transformer automatiquement les opérateurs de prompt / mots-clés Composable Diffusion en texte de prompt simple (actuellement seulement AND → And).<br/>Le AND à l'intérieur des mots-clés et des étiquettes de texte est également converti ; seules les valeurs changent, le découpage et les marqueurs de virgule restent identiques.",
                 "is_auto_optimize_split_symbol": "Optimiser automatiquement le symbole de séparation : supprime automatiquement les virgules inappropriées pour que la sortie suive mieux les conventions de syntaxe de Stable Diffusion (par exemple avant un saut de ligne, entre Loras consécutifs, autour de BREAK, etc.). C'est une option indépendante et elle ne nécessite pas « Séparer les mots-clés au point+espace ».",
                 "is_allow_keep_empty_line": "Permettre de conserver une ligne vide lors de l'analyse du prompt.<br/>Si coché, les sauts de ligne consécutifs sont comprimés à une seule ligne vide au maximum (soit deux caractères de fin de ligne) ; si non coché, tous les sauts de ligne consécutifs sont comprimés en un seul.",
+                "is_auto_repair_mojibake": "Réparer automatiquement le texte mojibake lors de l'analyse.<br/>Si coché, le texte UTF-8 dont les octets ont été décodés à tort en Latin-1/Windows-1252 est restauré en caractères d'origine avant la segmentation ; si non coché, l'entrée est laissée telle quelle.",
+                "json_input_split_skipped": "L'entrée ressemble à un JSON (par exemple un workflow ComfyUI) ; la segmentation des mots-clés a été ignorée et le texte est conservé tel quel.",
                 "auto_load_webui_prompt": "Chargement automatique des modifications de l'invite WebUI.<br/>Lorsqu'il est coché, le plugin chargera automatiquement et formatera l'analyse des mots clés lorsque le contenu de la zone de saisie de l'invite dans WebUI change.<br/>Lorsqu'il n'est pas coché, vous devez cliquer manuellement sur le bouton de chargement de l'invite lorsque le contenu de la zone de saisie de l'invite dans WebUI change.",
-                "load_webui_prompt": "Charger l'invite WebUI"
+                "load_webui_prompt": "Charger l'invite WebUI",
+                "paste_to_default_input_box": "Coller le presse-papiers dans la zone de saisie des mots-clés",
+                "paste_clipboard_failed": "Le collage automatique a échoué. Cliquez sur la zone de saisie, puis collez manuellement."
             }
         },
         {
@@ -1358,6 +1399,7 @@
                 "today_not_show": "Diese Fenster heute nicht anzeigen",
                 "free": "Kostenlos",
                 "apply_for_free": "Für kostenlose Nutzung bewerben",
+                "chatgpt_prompts_preset": "StableDiffusion ist ein Deep-Learning-Text-zu-Bild-Modell, das Bilder auf Basis von Prompts erzeugt. Diese Prompts können die gewünschten Elemente des Bildes festlegen, wie das Erscheinungsbild der Figuren, den Hintergrund, die Farben und die Lichteffekte sowie Thema und Stil des Bildes. Die Prompts enthalten häufig gewichtete Zahlen in Klammern, um die Bedeutung oder Betonung bestimmter Details anzugeben. Zum Beispiel bedeutet \"(masterpiece:1.5)\", dass die Qualität der Arbeit sehr wichtig ist. Mehrere Klammern haben ähnliche Wirkungen. Wenn eckige Klammern verwendet werden, wie bei \"{blue hair:white hair:0.3}\", stellt dies die Verschmelzung von blauen und weißen Haaren dar, wobei blaue Haare 0.3 ausmachen.\nHier ist ein Beispiel für die Verwendung von Prompts, um einem KI-Modell bei der Erzeugung eines Bildes zu helfen: masterpiece,(bestquality),highlydetailed,ultra-detailed,cold,solo,(1girl),(detailedeyes),(shinegoldeneyes),(longliverhair),expressionless,(long sleeves),(puffy sleeves),(white wings),shinehalo,(heavymetal:1.2),(metaljewelry),cross-lacedfootwear (chain),(Whitedoves:1.2)\n\nFolgen Sie dem Beispiel und geben Sie eine Reihe von Prompts an, die den folgenden Inhalt detailliert beschreiben. Beginnen Sie die Prompts direkt, ohne sie in natürlicher Sprache zu beschreiben: ",
                 "use_chatgpt_gen_prompts": "Verwenden von ChatGPT zur Generierung von Prompts",
                 "input_image_desc": "Bitte geben Sie die Bildbeschreibung ein, zum Beispiel: Eine Katze sitzt auf dem Dach eines Gebäudes, ein sehr hochauflösendes, sehr authentisches Foto.",
                 "api_config": "API-Konfiguration",
@@ -1444,15 +1486,21 @@
                 "move_down": "Nach unten bewegen",
                 "is_remove_lora_before_comma": "Komma vor Lora entfernen oder nicht.<br/>Wenn ausgewählt, wird die Lora-Ausgabe 'aaa &lt;lora:bbb:0.1&gt; &lt;lora:ccc:0.1&gt;, ddd' sein.<br/>Wenn nicht ausgewählt, wird die Lora-Ausgabe 'aaa, &lt;lora:bbb:0.1&gt;, &lt;lora:ccc:0.1&gt;, ddd' sein.",
                 "is_remove_lora_after_comma": "Komma nach Lora entfernen oder nicht.<br/>Wenn ausgewählt, wird die Lora-Ausgabe 'aaa, &lt;lora:bbb:0.1&gt; &lt;lora:ccc:0.1&gt; ddd' sein.<br/>Wenn nicht ausgewählt, wird die Lora-Ausgabe 'aaa, &lt;lora:bbb:0.1&gt;, &lt;lora:ccc:0.1&gt;, ddd' sein.",
+                "is_remove_duplicate_lora": "Doppelte Lora / Lyco-Tags entfernen: Der Name ist der Duplikatschlüssel (das Gewicht ist kein Unterschied), das letzte Vorkommen bleibt erhalten und frühere werden entfernt.<br/>Loras nach '#' oder deaktivierte Loras werden nicht dedupliziert.",
                 "is_use_novel_ai_weight_symbol": "Ob das Gewichtssymbol von NovelAI verwendet werden soll.<br/>Wenn diese Option aktiviert ist, wird das Gewichtssymbol () zu {} geändert",
                 "is_remove_before_line_comma": "Gibt an, ob das Komma vor einem Zeilenumbruch entfernt werden soll.<br/>Wenn ausgewählt, wird die Ausgabe \"aaa, bbb<br/>ccc\" sein.<br/>Wenn nicht ausgewählt, wird die Ausgabe \"aaa, bbb,<br/>ccc\" sein.",
                 "is_split_by_period": "Schlüsselwörter bei Punkt+Leerzeichen trennen.<br/>Wenn aktiviert, wird \"word1. word2\" in \"word1.\" und \"word2\" aufgeteilt.<br/>Wenn deaktiviert, bleibt es wie es ist.",
                 "is_split_by_period_include_paren": "Auch bei Punkt+Leerzeichen vor Klammern trennen (z.B. \"word1. (test)\").<br/>Erfordert die obige Option.",
                 "is_split_by_period_semicolon": "Auch bei Semikolon+Leerzeichen mit demselben Mechanismus wie der Punkt trennen.<br/>Wenn aktiviert, wird \"word1; word2\" in \"word1;\" und \"word2\" aufgeteilt (Semikolon bleibt am Ende des ersten Teils); aufeinanderfolgende Semikolons werden alle erhalten.<br/>Erfordert die obige Option.",
+                "is_keyword_to_plain": "Prompt-Operatoren / Composable-Diffusion-Schlüsselwörter automatisch in normalen Prompt-Text umwandeln (derzeit nur AND → And).<br/>AND wird sowohl in Schlüsselwörtern als auch in Text-Tags umgewandelt; nur die Werte ändern sich, Trennung und Komma-Marker bleiben unverändert.",
                 "is_auto_optimize_split_symbol": "Trennzeichen automatisch optimieren: entfernt automatisch unpassende Kommas, damit die Ausgabe besser den Syntaxkonventionen von Stable Diffusion entspricht (z. B. vor einem Zeilenumbruch, zwischen aufeinanderfolgenden Loras, um BREAK usw.). Dies ist eine unabhängige Option und erfordert nicht \"Schlüsselwörter bei Punkt+Leerzeichen trennen\".",
                 "is_allow_keep_empty_line": "Beim Analysieren der Aufforderung eine Leerzeile behalten dürfen.<br/>Wenn aktiviert, werden aufeinanderfolgende Zeilenumbrüche auf maximal eine Leerzeile (d. h. zwei Zeilenumbruchzeichen) komprimiert; wenn deaktiviert, werden alle aufeinanderfolgenden Zeilenumbrüche auf einen einzigen komprimiert.",
+                "is_auto_repair_mojibake": "Mojibake-Text beim Analysieren automatisch reparieren.<br/>Wenn aktiviert, wird dessen als Latin-1/Windows-1252 falsch dekodierter UTF-8-Text vor dem Zerlegen in die Originalzeichen wiederhergestellt; wenn deaktiviert, bleibt die Eingabe unverändert.",
+                "json_input_split_skipped": "Die Eingabe sieht nach JSON aus (z. B. ein ComfyUI-Workflow); das Zerlegen der Tags wurde übersprungen und der Text unverändert belassen.",
                 "auto_load_webui_prompt": "Automatisches Laden von WebUI-Prompt-Änderungen.<br/>Wenn aktiviert, lädt das Plugin automatisch die Schlüsselwort-Analyse und -Formatierung, wenn sich der Inhalt des Eingabefelds für den Prompt in der WebUI ändert.<br/>Wenn deaktiviert, müssen Sie manuell auf die Schaltfläche zum Laden des Prompts klicken, wenn sich der Inhalt des Eingabefelds für den Prompt in der WebUI ändert.",
-                "load_webui_prompt": "WebUI-Prompt laden"
+                "load_webui_prompt": "WebUI-Prompt laden",
+                "paste_to_default_input_box": "Zwischenablage in das Eingabefeld für Schlüsselwörter einfügen",
+                "paste_clipboard_failed": "Automatisches Einfügen fehlgeschlagen. Klicken Sie auf das Eingabefeld und fügen Sie es manuell ein."
             }
         },
         {
@@ -1612,6 +1660,7 @@
                 "today_not_show": "Non mostrare questa finestra oggi",
                 "free": "Gratuito",
                 "apply_for_free": "Richiedi l'uso gratuito",
+                "chatgpt_prompts_preset": "StableDiffusion è un modello di apprendimento profondo testo-immagine che genera immagini a partire dai prompt. Questi prompt possono specificare gli elementi desiderati dell'immagine, come l'aspetto dei personaggi, lo sfondo, i colori e gli effetti di luce, oltre al tema e allo stile dell'immagine. I prompt spesso contengono numeri pesati tra parentesi per indicare l'importanza o l'enfasi di alcuni dettagli. Ad esempio, \"(masterpiece:1.5)\" indica che la qualità dell'opera è molto importante. Parentesi multiple hanno effetti simili. Inoltre, se vengono usate parentesi quadre, come \"{blue hair:white hair:0.3}\", ciò rappresenta la fusione dei capelli blu e biondi, con i capelli blu che rappresentano 0.3.\nEcco un esempio di utilizzo dei prompt per aiutare un modello IA a generare un'immagine: masterpiece,(bestquality),highlydetailed,ultra-detailed,cold,solo,(1girl),(detailedeyes),(shinegoldeneyes),(longliverhair),expressionless,(long sleeves),(puffy sleeves),(white wings),shinehalo,(heavymetal:1.2),(metaljewelry),cross-lacedfootwear (chain),(Whitedoves:1.2)\n\nSeguendo l'esempio, fornisci un insieme di prompt che descrivono in dettaglio il seguente contenuto. Inizia i prompt direttamente senza usarli per descriverli in linguaggio naturale: ",
                 "use_chatgpt_gen_prompts": "Utilizza ChatGPT per generare prompt",
                 "input_image_desc": "Inserisci la descrizione dell'immagine, ad esempio: un gatto seduto in cima a un edificio, una foto molto ad alta definizione e molto autentica.",
                 "api_config": "Configurazione API",
@@ -1698,15 +1747,21 @@
                 "move_down": "Sposta in basso",
                 "is_remove_lora_before_comma": "Rimuovere la virgola prima di Lora o meno.<br/>Se selezionato, l'output di Lora sarà 'aaa &lt;lora:bbb:0.1&gt; &lt;lora:ccc:0.1&gt;, ddd'.<br/>Se non selezionato, l'output di Lora sarà 'aaa, &lt;lora:bbb:0.1&gt;, &lt;lora:ccc:0.1&gt;, ddd'.",
                 "is_remove_lora_after_comma": "Rimuovere la virgola dopo Lora o meno.<br/>Se selezionato, l'output di Lora sarà 'aaa, &lt;lora:bbb:0.1&gt; &lt;lora:ccc:0.1&gt; ddd'.<br/>Se non selezionato, l'output di Lora sarà 'aaa, &lt;lora:bbb:0.1&gt;, &lt;lora:ccc:0.1&gt;, ddd'.",
+                "is_remove_duplicate_lora": "Rimuovere i tag Lora / Lyco duplicati: il nome è la chiave di deduplica (il peso non è una differenza), viene conservato l'ultimo e rimossi i precedenti.<br/>I Lora dopo '#' o disattivati non vengono deduplicati.",
                 "is_use_novel_ai_weight_symbol": "Se utilizzare il simbolo di peso di NovelAI.<br/>Selezionando questa opzione, il simbolo di peso () verrà sostituito con {}",
                 "is_remove_before_line_comma": "Seleziona se rimuovere la virgola prima di un'interruzione di riga.<br/>Se selezionato, l'output sarà \"aaa, bbb<br/>ccc\".<br/>Se deselezionato, l'output sarà \"aaa, bbb,<br/>ccc\".",
                 "is_split_by_period": "Dividere le parole chiave al punto+spazio.<br/>Se selezionato, \"word1. word2\" verrà diviso in \"word1.\" e \"word2\".<br/>Se deselezionato, rimane com'è.",
                 "is_split_by_period_include_paren": "Dividere anche al punto+spazio prima delle parentesi (es. \"word1. (test)\").<br/>Richiede l'opzione sopra.",
                 "is_split_by_period_semicolon": "Dividere anche al punto e virgola+spazio con lo stesso meccanismo del punto.<br/>Se selezionato, \"word1; word2\" verrà diviso in \"word1;\" e \"word2\" (il punto e virgola resta alla fine della prima parte); i punti e virgola consecutivi vengono tutti conservati.<br/>Richiede l'opzione sopra.",
+                "is_keyword_to_plain": "Convertire automaticamente gli operatori di prompt / le parole chiave Composable Diffusion in testo prompt normale (attualmente solo AND → And).<br/>Anche l'AND nelle parole chiave e nelle etichette di testo viene convertito; cambiano solo i valori, suddivisione e marcatori di virgola restano invariati.",
                 "is_auto_optimize_split_symbol": "Ottimizzare automaticamente il simbolo di separazione: rimuove automaticamente le virgole inappropriate affinché l'output segua meglio le convenzioni sintattiche di Stable Diffusion (ad esempio prima di un'interruzione di riga, tra Lora consecutivi, attorno a BREAK, ecc.). Si tratta di un'opzione indipendente e non richiede \"Dividere le parole chiave al punto+spazio\".",
                 "is_allow_keep_empty_line": "Consentire di mantenere una riga vuota durante l'analisi del prompt.<br/>Se selezionato, gli a capo consecutivi vengono compressi a una sola riga vuota al massimo (cioè due caratteri di nuova riga); se deselezionato, tutti gli a capo consecutivi vengono compressi in uno solo.",
+                "is_auto_repair_mojibake": "Riparare automaticamente il testo mojibake durante l'analisi.<br/>Se selezionato, il testo UTF-8 i cui byte sono stati decodificati erroneamente come Latin-1/Windows-1252 viene ripristinato nei caratteri originali prima della segmentazione; se deselezionato, l'input resta invariato.",
+                "json_input_split_skipped": "L'input sembra JSON (ad esempio un workflow ComfyUI); la segmentazione dei tag è stata ignorata e il testo è rimasto invariato.",
                 "auto_load_webui_prompt": "Caricamento automatico delle modifiche dell'invito WebUI.<br/>Quando selezionato, il plugin caricherà automaticamente e formatterà l'analisi delle parole chiave quando il contenuto della casella di input dell'invito in WebUI cambia.<br/>Quando deselezionato, è necessario fare clic manualmente sul pulsante di caricamento dell'invito quando il contenuto della casella di input dell'invito in WebUI cambia.",
-                "load_webui_prompt": "Carica invito WebUI"
+                "load_webui_prompt": "Carica invito WebUI",
+                "paste_to_default_input_box": "Incolla gli appunti nella casella di input delle parole chiave",
+                "paste_clipboard_failed": "Incollatura automatica non riuscita. Fai clic sulla casella di input, quindi incolla manualmente."
             }
         },
         {
@@ -1801,6 +1856,7 @@
                 "today_not_show": "今日このウィンドウを表示しない",
                 "free": "無料",
                 "apply_for_free": "無料使用を申請する",
+                "chatgpt_prompts_preset": "StableDiffusionはプロンプトに基づいて画像を生成するディープラーニングのテキストから画像へのモデルです。これらのプロンプトは、キャラクターの外見、背景、色や照明効果、そして画像のテーマやスタイルなど、画像の望ましい要素を指定できます。\nプロンプトには、ある詳細の重要性や強調を示すために、括弧内の重み付き数値が含まれることがよくあります。例えば、\"(masterpiece:1.5)\" は作品の品質が非常に重要であることを示します。複数の括弧も同様の効果を持ちます。また、\"{blue hair:white hair:0.3}\" のような角括弧を使う場合、これは青い髪と白い髪の融合を表し、青い髪が0.3を占めます。\n以下は、プロンプトを使ってAIモデルの画像生成を助ける例です：masterpiece,(bestquality),highlydetailed,ultra-detailed,cold,solo,(1girl),(detailedeyes),(shinegoldeneyes),(longliverhair),expressionless,(long sleeves),(puffy sleeves),(white wings),shinehalo,(heavymetal:1.2),(metaljewelry),cross-lacedfootwear (chain),(Whitedoves:1.2)\n\n例に従って、以下の内容を詳細に記述する一連のプロンプトを提供してください。自然言語で説明せず、プロンプトを直接開始してください：",
                 "use_chatgpt_gen_prompts": "ChatGPTを使用してプロンプトを生成する",
                 "input_image_desc": "画像の説明を入力してください。たとえば、建物の屋上に座っている猫、非常に高精細で非常にリアルな写真など。",
                 "api_config": "API構成",
@@ -1887,15 +1943,21 @@
                 "move_down": "下に移動",
                 "is_remove_lora_before_comma": "コンマの前にLoraを削除するかどうか。<br/>選択すると、Loraの出力は「aaa &lt;lora:bbb:0.1&gt; &lt;lora:ccc:0.1&gt;, ddd」となります。<br/>選択しない場合、Loraの出力は「aaa, &lt;lora:bbb:0.1&gt;, &lt;lora:ccc:0.1&gt;, ddd」となります。",
                 "is_remove_lora_after_comma": "コンマの後にLoraを削除するかどうか。<br/>選択すると、Loraの出力は「aaa, &lt;lora:bbb:0.1&gt; &lt;lora:ccc:0.1&gt; ddd」となります。<br/>選択しない場合、Loraの出力は「aaa, &lt;lora:bbb:0.1&gt;, &lt;lora:ccc:0.1&gt;, ddd」となります。",
+                "is_remove_duplicate_lora": "重複した Lora / Lyco タグを削除：名前を重複判定に使用し（重みは差異とみなさない）、最後の1つを保持して先のものを削除します。<br/>'#' の後の Lora と無効化された Lora は重複排除の対象外です。",
                 "is_use_novel_ai_weight_symbol": "NovelAIの重み記号を使用するかどうか。<br/>このオプションを選択すると、重み記号 () が {} に変更されます",
                 "is_remove_before_line_comma": "改行の前のカンマを削除するかどうか。<br/>チェックすると、出力は「aaa, bbb<br/>ccc」となります。<br/>チェックを外すと、出力は「aaa, bbb,<br/>ccc」となります。",
                 "is_split_by_period": "ピリオド+スペースでキーワードを分割するかどうか。<br/>チェックすると、「word1. word2」が「word1.」と「word2」に分割されます。<br/>チェックを外すとそのままです。",
                 "is_split_by_period_include_paren": "括弧前のピリオド+スペースでも分割する（例：「word1. (test)」）。<br/>上のオプションが必要です。",
                 "is_split_by_period_semicolon": "セミコロン+スペースでもピリオドと同じ仕様で分割するかどうか。<br/>チェックすると、「word1; word2」が「word1;」と「word2」に分割されます（セミコロンは前の部分の末尾に残ります）。連続したセミコロンもすべて保持されます。<br/>上のオプションが必要です。",
+                "is_keyword_to_plain": "プロンプト演算子／Composable Diffusion のキーワードを通常のプロンプト文に自動変換する（現在は AND → And のみ）。<br/>キーワードと一般テキストのタグ内の AND が両方変換され、値のみが変更されます。分割やカンママーカーなどの他の仕様は変わりません。",
                 "is_auto_optimize_split_symbol": "区切り記号を自動最適化：出力が Stable Diffusion の構文規約に従うよう、不適切なカンマ区切りを自動的に削除します（例：改行前、連続する Lora の間、BREAK の前後など）。これは独立したオプションで、「ピリオド+スペースでキーワードを分割する」は不要です。",
                 "is_allow_keep_empty_line": "プロンプト解析時に空行を1つ保持するかどうか。<br/>チェックすると、連続した改行は最大で空行1つ（改行文字2つ）まで圧縮されます。チェックを外すと、連続した改行はすべて1つの改行に圧縮されます。",
+                "is_auto_repair_mojibake": "解析時に文字化け（mojibake）テキストを自動修復する。<br/>チェックすると、Latin-1/Windows-1252 と誤デコードされた UTF-8 テキストがタグ分割前に元の文字へ復元されます。チェックを外すと入力はそのまま扱われます。",
+                "json_input_split_skipped": "入力が JSON（ComfyUI ワークフローなど）と判断されたため、タグ分割をスキップし、そのまま保持しました。",
                 "auto_load_webui_prompt": "WebUIプロンプトの変更を自動的にロードします。<br/>チェックすると、WebUIのプロンプト入力ボックスの内容が変更されたとき、プラグインはキーワードの解析とフォーマットを自動的にロードします。<br/>チェックしない場合、WebUIのプロンプト入力ボックスの内容が変更されたときに手動でプロンプトのロードボタンをクリックする必要があります。",
-                "load_webui_prompt": "WebUIプロンプトのロード"
+                "load_webui_prompt": "WebUIプロンプトのロード",
+                "paste_to_default_input_box": "クリップボードをプロンプト入力欄に貼り付け",
+                "paste_clipboard_failed": "自動貼り付けに失敗しました。入力欄をクリックしてから手動で貼り付けてください。"
             }
         },
         {
@@ -2015,6 +2077,7 @@
                 "today_not_show": "오늘 이 창을 표시하지 않음",
                 "free": "무료",
                 "apply_for_free": "무료 사용 신청",
+                "chatgpt_prompts_preset": "StableDiffusion는 프롬프트에 기반하여 이미지를 생성하는 딥러닝 텍스트-이미지 모델입니다. 이 프롬프트들은 캐릭터의 외모, 배경, 색상과 조명 효과, 그리고 이미지의 주제와 스타일과 같이 이미지에서 원하는 요소들을 지정할 수 있습니다.\n프롬프트에는 특정 세부 사항의 중요성이나 강조를 나타내는 괄호 안의 가중치 숫자가 자주 포함됩니다. 예를 들어, \"(masterpiece:1.5)\"는 작품의 품질이 매우 중요함을 나타냅니다. 여러 괄호도 비슷한 효과를 가집니다. 또한, \"{blue hair:white hair:0.3}\"와 같은 대괄호를 사용하는 경우 이는 푸른 머리와 흰 머리의 융합을 나타내며, 푸른 머리가 0.3을 차지합니다.\n다음은 프롬프트를 사용하여 AI 모델이 이미지를 생성하도록 돕는 예시입니다: masterpiece,(bestquality),highlydetailed,ultra-detailed,cold,solo,(1girl),(detailedeyes),(shinegoldeneyes),(longliverhair),expressionless,(long sleeves),(puffy sleeves),(white wings),shinehalo,(heavymetal:1.2),(metaljewelry),cross-lacedfootwear (chain),(Whitedoves:1.2)\n\n예시에 따라 다음 내용을 자세히 설명하는 일련의 프롬프트를 제공하세요. 자연어로 설명하지 말고 프롬프트를 바로 시작하세요: ",
                 "use_chatgpt_gen_prompts": "ChatGPT를 사용하여 프롬프트를 생성합니다",
                 "input_image_desc": "이미지 설명을 입력하세요. 예 : 건물 꼭대기에 앉아있는 고양이, 매우 고화질이며 매우 현실적인 사진 등",
                 "api_config": "API 구성",
@@ -2101,15 +2164,21 @@
                 "move_down": "아래로 이동",
                 "is_remove_lora_before_comma": "쉼표 앞의 Lora를 제거할지 여부입니다.<br/>선택한 경우 Lora 출력은 'aaa &lt;lora:bbb:0.1&gt; &lt;lora:ccc:0.1&gt;, ddd'가 됩니다.<br/>선택하지 않은 경우 Lora 출력은 'aaa, &lt;lora:bbb:0.1&gt;, &lt;lora:ccc:0.1&gt;, ddd'가 됩니다.",
                 "is_remove_lora_after_comma": "쉼표 뒤의 Lora를 제거할지 여부입니다.<br/>선택한 경우 Lora 출력은 'aaa, &lt;lora:bbb:0.1&gt; &lt;lora:ccc:0.1&gt; ddd'가 됩니다.<br/>선택하지 않은 경우 Lora 출력은 'aaa, &lt;lora:bbb:0.1&gt;, &lt;lora:ccc:0.1&gt;, ddd'가 됩니다.",
+                "is_remove_duplicate_lora": "중복된 Lora / Lyco 태그 제거: 이름을 중복 키로 사용하며(가중치는 차이로 보지 않음) 마지막 것을 유지하고 앞의 것을 제거합니다.<br/>'#' 뒤의 Lora와 비활성화된 Lora는 중복 제거 대상이 아닙니다.",
                 "is_use_novel_ai_weight_symbol": "NovelAI의 가중치 기호를 사용하시겠습니까?<br/>이 옵션을 선택하면 가중치 기호 () 가 {} 로 변경됩니다",
                 "is_remove_before_line_comma": "줄 바꿈 앞의 쉼표를 제거할지 여부입니다.<br/>선택한 경우 출력은 \"aaa, bbb<br/>ccc\"가 됩니다.<br/>선택하지 않은 경우 출력은 \"aaa, bbb,<br/>ccc\"가 됩니다.",
                 "is_split_by_period": "마침표+공백에서 키워드를 분할할지 여부입니다.<br/>선택하면 \"word1. word2\"가 \"word1.\"과 \"word2\"로 분할됩니다.<br/>선택하지 않으면 그대로 유지됩니다.",
                 "is_split_by_period_include_paren": "괄호 앞의 마침표+공백에서도 분할 (예: \"word1. (test)\").<br/>위 옵션이 필요합니다.",
                 "is_split_by_period_semicolon": "세미콜론+공백에서도 마침표와 동일한 방식으로 분할할지 여부입니다.<br/>선택하면 \"word1; word2\"가 \"word1;\"과 \"word2\"로 분할됩니다(세미콜론은 앞부분 끝에 유지). 연속된 세미콜론도 모두 보존됩니다.<br/>위 옵션이 필요합니다.",
+                "is_keyword_to_plain": "프롬프트 연산자／Composable Diffusion 키워드를 일반 프롬프트 텍스트로 자동 변환합니다(현재는 AND → And만).<br/>키워드와 일반 텍스트 태그 내의 AND가 모두 변환되며 값만 변경됩니다. 분할 및 쉼표 표시 등 다른 동작은 그대로입니다.",
                 "is_auto_optimize_split_symbol": "구분 기호 자동 최적화: 출력이 Stable Diffusion 구문 관례에 맞도록 부적절한 쉼표 구분자를 자동으로 제거합니다(예: 줄바꿈 앞, 연속된 Lora 사이, BREAK 앞뒤 등). 이는 독립적인 옵션이며 \"마침표+공백에서 키워드 분할\"이 필요 없습니다.",
                 "is_allow_keep_empty_line": "프롬프트 분석 시 빈 줄 하나를 유지할지 여부.<br/>선택하면 연속된 줄바꿈은 최대 빈 줄 하나(줄바꿈 문자 두 개)까지 압축됩니다. 선택하지 않으면 연속된 줄바꿈은 모두 하나의 줄바꿈으로 압축됩니다.",
+                "is_auto_repair_mojibake": "구문 분석 시 텍스트 깨짐(mojibake)을 자동 복구합니다.<br/>선택하면 Latin-1/Windows-1252로 잘못 해독된 UTF-8 텍스트가 태그 분할 전에 원래 문자로 복원됩니다. 선택하지 않으면 입력이 그대로 유지됩니다.",
+                "json_input_split_skipped": "입력이 JSON(예: ComfyUI 워크플로)으로 판단되어 태그 분할을 건너뛰고 그대로 유지했습니다.",
                 "auto_load_webui_prompt": "WebUI 프롬프트 변경 사항 자동로드.<br/>확인하면, WebUI의 프롬프트 입력란의 내용이 변경될 때 플러그인이 키워드 분석 및 형식 지정을 자동으로 로드합니다.<br/>체크하지 않으면, WebUI의 프롬프트 입력란의 내용이 변경될 때 수동으로 프롬프트 로드 버튼을 클릭해야 합니다.",
-                "load_webui_prompt": "WebUI 프롬프트 로드"
+                "load_webui_prompt": "WebUI 프롬프트 로드",
+                "paste_to_default_input_box": "클립보드를 프롬프트 입력란에 붙여넣기",
+                "paste_clipboard_failed": "자동 붙여넣기에 실패했습니다. 입력란을 클릭한 다음 수동으로 붙여넣으세요."
             }
         },
         {
@@ -2401,15 +2470,21 @@
                 "move_down": "Mover Para Baixo",
                 "is_remove_lora_before_comma": "Remover a vírgula antes do Lora ou não.<br/>Se selecionado, a saída do Lora será 'aaa &lt;lora:bbb:0.1&gt; &lt;lora:ccc:0.1&gt;, ddd'.<br/>Se não selecionado, a saída do Lora será 'aaa, &lt;lora:bbb:0.1&gt;, &lt;lora:ccc:0.1&gt;, ddd'.",
                 "is_remove_lora_after_comma": "Remover a vírgula depois do Lora ou não.<br/>Se selecionado, a saída do Lora será 'aaa, &lt;lora:bbb:0.1&gt; &lt;lora:ccc:0.1&gt; ddd'.<br/>Se não selecionado, a saída do Lora será 'aaa, &lt;lora:bbb:0.1&gt;, &lt;lora:ccc:0.1&gt;, ddd'.",
+                "is_remove_duplicate_lora": "Remover tags Lora / Lyco duplicadas: o nome é a chave de deduplicação (o peso não é diferença), o último é mantido e os anteriores são removidos.<br/>Loras após '#' ou desativados não são deduplicados.",
                 "is_use_novel_ai_weight_symbol": "Usar o símbolo de peso do NovelAI.<br/>Marcar isso mudará o símbolo de peso () para {}",
                 "is_remove_before_line_comma": "Remover a vírgula antes de uma quebra de linha.<br/>Se marcado, a saída será \"aaa, bbb<br/>ccc\".<br/>Se desmarcado, a saída será \"aaa, bbb,<br/>ccc\".",
                 "is_split_by_period": "Dividir palavras-chave por ponto+espaço.<br/>Se marcado, \"word1. word2\" será dividido em \"word1.\" e \"word2\".<br/>Se desmarcado, permanece como está.",
                 "is_split_by_period_include_paren": "Também dividir por ponto+espaço antes de parênteses (ex: \"word1. (test)\").<br/>Requer a opção acima.",
                 "is_split_by_period_semicolon": "Também dividir por ponto e vírgula+espaço usando o mesmo mecanismo do ponto.<br/>Se marcado, \"word1; word2\" será dividido em \"word1;\" e \"word2\" (o ponto e vírgula fica no final da primeira parte); pontos e vírgulas consecutivos são todos preservados.<br/>Requer a opção acima.",
+                "is_keyword_to_plain": "Converter automaticamente os operadores de prompt / palavras-chave Composable Diffusion em texto de prompt comum (atualmente apenas AND → And).<br/>O AND nas palavras-chave e nas etiquetas de texto também é convertido; apenas os valores mudam, a divisão e os marcadores de vírgula permanecem iguais.",
                 "is_auto_optimize_split_symbol": "Otimizar o símbolo de separação automaticamente: remove automaticamente vírgulas inapropriadas para que a saída siga melhor as convenções de sintaxe do Stable Diffusion (por exemplo, antes de uma quebra de linha, entre Loras consecutivos, em torno de BREAK, etc.). Trata-se de uma opção independente e não requer \"Dividir palavras-chave por ponto+espaço\".",
                 "is_allow_keep_empty_line": "Permitir manter uma linha vazia ao analisar o prompt.<br/>Se marcado, as quebras de linha consecutivas são comprimidas para no máximo uma linha vazia (ou seja, dois caracteres de quebra de linha); se desmarcado, todas as quebras de linha consecutivas são comprimidas em uma só.",
+                "is_auto_repair_mojibake": "Reparar automaticamente o texto mojibake ao analisar.<br/>Se marcado, o texto UTF-8 cujos bytes foram decodificados incorretamente como Latin-1/Windows-1252 é restaurado aos caracteres originais antes da segmentação; se desmarcado, a entrada permanece intacta.",
+                "json_input_split_skipped": "A entrada parece ser JSON (por exemplo, um workflow do ComfyUI); a segmentação de tags foi ignorada e o texto foi mantido como está.",
                 "auto_load_webui_prompt": "Carregar automaticamente mudanças de prompt do WebUI.<br/>Quando marcado, o plugin carregará automaticamente e formatará a análise de palavra-chave quando o conteúdo da caixa de entrada de prompt no WebUI mudar.<br/>Quando desmarcado, você precisa clicar manualmente no botão de carregar prompt quando o conteúdo da caixa de entrada de prompt no WebUI mudar.",
-                "load_webui_prompt": "Carregar prompt do WebUI"
+                "load_webui_prompt": "Carregar prompt do WebUI",
+                "paste_to_default_input_box": "Colar a área de transferência na caixa de entrada de palavras-chave",
+                "paste_clipboard_failed": "Falha na colagem automática. Clique na caixa de entrada e cole manualmente."
             }
         },
         {
@@ -2504,6 +2579,7 @@
                 "today_not_show": "Não mostrar esta janela hoje",
                 "free": "Grátis",
                 "apply_for_free": "Solicitar uso gratuito",
+                "chatgpt_prompts_preset": "StableDiffusion é um modelo de aprendizagem profunda de texto para imagem que gera imagens com base em prompts. Estes prompts podem especificar os elementos desejados da imagem, como a aparência dos personagens, o fundo, a cor e os efeitos de iluminação, bem como o tema e o estilo da imagem. Os prompts contêm frequentemente números com peso entre parênteses para indicar a importância ou o ênfase de certos detalhes. Por exemplo, \"(masterpiece:1.5)\" indica que a qualidade da obra é muito importante. Vários parênteses têm efeitos semelhantes. Além disso, se forem usados colchetes, como \"{blue hair:white hair:0.3}\", isto representa a fusão do cabelo azul e branco, com o cabelo azul a representar 0.3.\nAqui está um exemplo de utilização de prompts para ajudar um modelo de IA a gerar uma imagem: masterpiece,(bestquality),highlydetailed,ultra-detailed,cold,solo,(1girl),(detailedeyes),(shinegoldeneyes),(longliverhair),expressionless,(long sleeves),(puffy sleeves),(white wings),shinehalo,(heavymetal:1.2),(metaljewelry),cross-lacedfootwear (chain),(Whitedoves:1.2)\n\nSeguindo o exemplo, forneça um conjunto de prompts que detalhem o seguinte conteúdo. Comece os prompts diretamente, sem os descrever em linguagem natural: ",
                 "use_chatgpt_gen_prompts": "Usar o ChatGPT para Gerar Prompt",
                 "input_image_desc": "Por favor, escreva a descrição da imagem, por exemplo: um gato sentado no topo de um edifício, uma foto muito realista e de alta definição.",
                 "api_config": "Configuração da API",
@@ -2590,15 +2666,21 @@
                 "move_down": "Mover para baixo",
                 "is_remove_lora_before_comma": "Remover a vírgula antes de Lora ou não.<br/>Se selecionado, a saída de Lora será 'aaa &lt;lora:bbb:0.1&gt; &lt;lora:ccc:0.1&gt;, ddd'.<br/>Se não selecionado, a saída de Lora será 'aaa, &lt;lora:bbb:0.1&gt;, &lt;lora:ccc:0.1&gt;, ddd'.",
                 "is_remove_lora_after_comma": "Remover a vírgula depois de Lora ou não.<br/>Se selecionado, a saída de Lora será 'aaa, &lt;lora:bbb:0.1&gt; &lt;lora:ccc:0.1&gt; ddd'.<br/>Se não selecionado, a saída de Lora será 'aaa, &lt;lora:bbb:0.1&gt;, &lt;lora:ccc:0.1&gt;, ddd'.",
+                "is_remove_duplicate_lora": "Remover etiquetas Lora / Lyco duplicadas: o nome é a chave de deduplicação (o peso não é diferença), o último é mantido e os anteriores são removidos.<br/>Loras após '#' ou desativados não são deduplicados.",
                 "is_use_novel_ai_weight_symbol": "Se deve usar o símbolo de peso da NovelAI.<br/>Ao marcar esta opção, o símbolo de peso () será alterado para {}",
                 "is_remove_before_line_comma": "Selecione se deseja remover a vírgula antes de uma quebra de linha.<br/>Se marcado, a saída será \"aaa, bbb<br/>ccc\".<br/>Se desmarcado, a saída será \"aaa, bbb,<br/>ccc\".",
                 "is_split_by_period": "Dividir palavras-chave por ponto+espaço.<br/>Se marcado, \"word1. word2\" será dividido em \"word1.\" e \"word2\".<br/>Se desmarcado, permanece como está.",
                 "is_split_by_period_include_paren": "Também dividir por ponto+espaço antes de parênteses (ex: \"word1. (test)\").<br/>Requer a opção acima.",
                 "is_split_by_period_semicolon": "Também dividir por ponto e vírgula+espaço usando o mesmo mecanismo do ponto.<br/>Se marcado, \"word1; word2\" será dividido em \"word1;\" e \"word2\" (o ponto e vírgula fica no final da primeira parte); pontos e vírgulas consecutivos são todos preservados.<br/>Requer a opção acima.",
+                "is_keyword_to_plain": "Converter automaticamente os operadores de prompt / palavras-chave Composable Diffusion em texto de prompt comum (atualmente apenas AND → And).<br/>O AND nas palavras-chave e nas etiquetas de texto também é convertido; apenas os valores mudam, a divisão e os marcadores de vírgula permanecem iguais.",
                 "is_auto_optimize_split_symbol": "Otimizar o símbolo de separação automaticamente: remove automaticamente vírgulas inapropriadas para que a saída siga melhor as convenções de sintaxe do Stable Diffusion (por exemplo, antes de uma quebra de linha, entre Loras consecutivos, em torno de BREAK, etc.). Trata-se de uma opção independente e não requer \"Dividir palavras-chave por ponto+espaço\".",
                 "is_allow_keep_empty_line": "Permitir manter uma linha vazia ao analisar o prompt.<br/>Se marcado, as quebras de linha consecutivas são comprimidas para no máximo uma linha vazia (ou seja, dois caracteres de quebra de linha); se desmarcado, todas as quebras de linha consecutivas são comprimidas em uma só.",
+                "is_auto_repair_mojibake": "Reparar automaticamente o texto mojibake ao analisar.<br/>Se marcado, o texto UTF-8 cujos bytes foram decodificados incorretamente como Latin-1/Windows-1252 é restaurado aos caracteres originais antes da segmentação; se desmarcado, a entrada permanece intacta.",
+                "json_input_split_skipped": "A entrada parece ser JSON (por exemplo, um workflow do ComfyUI); a segmentação de tags foi ignorada e o texto foi mantido como está.",
                 "auto_load_webui_prompt": "Carregar automaticamente alterações no prompt do WebUI.<br/>Quando marcado, o plugin carregará automaticamente e formatará a análise de palavras-chave quando o conteúdo da caixa de entrada do prompt no WebUI for alterado.<br/>Quando desmarcado, é necessário clicar manualmente no botão de carregar o prompt quando o conteúdo da caixa de entrada do prompt no WebUI for alterado.",
-                "load_webui_prompt": "Carregar prompt do WebUI"
+                "load_webui_prompt": "Carregar prompt do WebUI",
+                "paste_to_default_input_box": "Colar a área de transferência na caixa de entrada de palavras-chave",
+                "paste_clipboard_failed": "A colagem automática falhou. Clique na caixa de entrada e cole manualmente."
             }
         },
         {
@@ -2708,6 +2790,7 @@
                 "today_not_show": "Не показывать это окно сегодня",
                 "free": "Бесплатно",
                 "apply_for_free": "Подать заявку на бесплатное использование",
+                "chatgpt_prompts_preset": "StableDiffusion — это модель глубокого обучения, создающая изображения из текста на основе промптов. Эти промпты могут указывать желаемые элементы изображения, такие как внешний вид персонажей, фон, цвет и освещение, а также тему и стиль изображения. В промптах часто содержатся взвешенные числа в скобках, указывающие важность или акцент определённых деталей. Например, \"(masterpiece:1.5)\" означает, что качество работы очень важно. Несколько скобок имеют похожий эффект. Кроме того, если используются квадратные скобки, как в \"{blue hair:white hair:0.3}\", это представляет слияние голубых и белых волос, где голубые волосы составляют 0.3.\nВот пример использования промптов для помощи модели ИИ в создании изображения: masterpiece,(bestquality),highlydetailed,ultra-detailed,cold,solo,(1girl),(detailedeyes),(shinegoldeneyes),(longliverhair),expressionless,(long sleeves),(puffy sleeves),(white wings),shinehalo,(heavymetal:1.2),(metaljewelry),cross-lacedfootwear (chain),(Whitedoves:1.2)\n\nСледуя примеру, предоставьте набор промптов, подробно описывающих следующий контент. Начните промпты сразу, не описывая их естественным языком: ",
                 "use_chatgpt_gen_prompts": "Использовать ChatGPT для генерации промптов",
                 "input_image_desc": "Введите описание изображения, например: кошка, сидящая на вершине здания, очень высокое разрешение, очень реалистичное фото.",
                 "api_config": "Конфигурация API",
@@ -2794,15 +2877,21 @@
                 "move_down": "Переместить вниз",
                 "is_remove_lora_before_comma": "Удалить запятую перед Lora или нет.<br/>Если выбрано, то вывод Lora будет 'aaa &lt;lora:bbb:0.1&gt; &lt;lora:ccc:0.1&gt;, ddd'.<br/>Если не выбрано, то вывод Lora будет 'aaa, &lt;lora:bbb:0.1&gt;, &lt;lora:ccc:0.1&gt;, ddd'.",
                 "is_remove_lora_after_comma": "Удалить запятую после Lora или нет.<br/>Если выбрано, то вывод Lora будет 'aaa, &lt;lora:bbb:0.1&gt; &lt;lora:ccc:0.1&gt; ddd'.<br/>Если не выбрано, то вывод Lora будет 'aaa, &lt;lora:bbb:0.1&gt;, &lt;lora:ccc:0.1&gt;, ddd'.",
+                "is_remove_duplicate_lora": "Удалить дублирующиеся теги Lora / Lyco: имя служит ключом дедупликации (вес не считается различием), последний сохраняется, а предыдущие удаляются.<br/>Lora после '#' или отключённые Lora не подлежат дедупликации.",
                 "is_use_novel_ai_weight_symbol": "Использовать символ веса NovelAI.<br/>При выборе этой опции символ веса () будет заменен на {}",
                 "is_remove_before_line_comma": "Удалить запятую перед переносом строки или нет.<br/>Если отмечено, то вывод будет \"aaa, bbb<br/>ccc\".<br/>Если не отмечено, то вывод будет \"aaa, bbb,<br/>ccc\".",
                 "is_split_by_period": "Разделять ключевые слова по точке+пробел.<br/>Если включено, \"word1. word2\" будет разделено на \"word1.\" и \"word2\".<br/>Если выключено, остаётся как есть.",
                 "is_split_by_period_include_paren": "Также разделять по точке+пробел перед скобками (напр. \"word1. (test)\").<br/>Требуется параметр выше.",
                 "is_split_by_period_semicolon": "Также разделять по точке с запятой+пробел по тому же механизму, что и точка.<br/>Если включено, \"word1; word2\" будет разделено на \"word1;\" и \"word2\" (точка с запятой остаётся в конце первой части); подряд идущие точки с запятой полностью сохраняются.<br/>Требуется параметр выше.",
+                "is_keyword_to_plain": "Автоматически превращать операторы промпта / ключевые слова Composable Diffusion в обычный текст промпта (сейчас только AND → And).<br/>AND внутри ключевых слов и текстовых тегов тоже преобразуется; меняются только значения, разделение и запятые остаются прежними.",
                 "is_auto_optimize_split_symbol": "Автоматическая оптимизация символа-разделителя: автоматически удаляет неуместные запятые, чтобы вывод лучше соответствовал синтаксическим соглашениям Stable Diffusion (например, перед переносом строки, между последовательными Lora, вокруг BREAK и т. д.). Это независимый параметр и не требует \"Разделять ключевые слова по точке+пробел\".",
                 "is_allow_keep_empty_line": "Разрешать сохранять одну пустую строку при разборе промпта.<br/>Если включено, последовательные переносы строки сжимаются максимум до одной пустой строки (то есть двух символов переноса строки); если выключено, все последовательные переносы строки сжимаются в один.",
+                "is_auto_repair_mojibake": "Автоматически исправлять текст mojibake при разборе.<br/>Если включено, текст UTF-8, ошибочно декодированный как Latin-1/Windows-1252, восстанавливается до исходных символов перед разбиением тегов; если выключено, ввод остаётся без изменений.",
+                "json_input_split_skipped": "Ввод похож на JSON (например, рабочий процесс ComfyUI); разбиение тегов пропущено, текст оставлен без изменений.",
                 "auto_load_webui_prompt": "Автоматическая загрузка изменений веб-интерфейса пользовательского интерфейса.<br/>Если отмечено, плагин автоматически загружает и форматирует анализ ключевых слов при изменении содержимого поля ввода подсказки веб-интерфейса.<br/>Если снято, вам нужно вручную нажать кнопку загрузки подсказки при изменении содержимого поля ввода подсказки веб-интерфейса.",
-                "load_webui_prompt": "Загрузить подсказку веб-интерфейса"
+                "load_webui_prompt": "Загрузить подсказку веб-интерфейса",
+                "paste_to_default_input_box": "Вставить содержимое буфера обмена в поле ввода ключевых слов",
+                "paste_clipboard_failed": "Не удалось вставить автоматически. Нажмите на поле ввода и вставьте вручную."
             }
         },
         {
@@ -2927,6 +3016,7 @@
                 "today_not_show": "No mostrar esta ventana hoy",
                 "free": "Gratis",
                 "apply_for_free": "Solicitar uso gratuito",
+                "chatgpt_prompts_preset": "StableDiffusion es un modelo de aprendizaje profundo de texto a imagen que genera imágenes a partir de prompts. Estos prompts pueden especificar los elementos deseados de la imagen, como la apariencia de los personajes, el fondo, el color y los efectos de iluminación, así como el tema y el estilo de la imagen. Los prompts a menudo contienen números con peso entre paréntesis para indicar la importancia o el énfasis de ciertos detalles. Por ejemplo, \"(masterpiece:1.5)\" indica que la calidad de la obra es muy importante. Múltiples paréntesis tienen efectos similares. Además, si se usan corchetes, como \"{blue hair:white hair:0.3}\", esto representa la fusión del cabello azul y blanco, con el cabello azul representando 0.3.\nAquí hay un ejemplo de uso de prompts para ayudar a un modelo de IA a generar una imagen: masterpiece,(bestquality),highlydetailed,ultra-detailed,cold,solo,(1girl),(detailedeyes),(shinegoldeneyes),(longliverhair),expressionless,(long sleeves),(puffy sleeves),(white wings),shinehalo,(heavymetal:1.2),(metaljewelry),cross-lacedfootwear (chain),(Whitedoves:1.2)\n\nSiguiendo el ejemplo, proporciona un conjunto de prompts que detallen el siguiente contenido. Comienza los prompts directamente, sin describirlos en lenguaje natural: ",
                 "use_chatgpt_gen_prompts": "Usar ChatGPT para generar Prompts",
                 "input_image_desc": "Ingrese la descripción de la imagen, por ejemplo: un gato sentado en la parte superior de un edificio, una foto muy realista y de alta definición.",
                 "api_config": "Configuración del API",
@@ -3013,15 +3103,21 @@
                 "move_down": "Mover hacia abajo",
                 "is_remove_lora_before_comma": "Eliminar la coma antes de Lora o no.<br/>Si se selecciona, la salida de Lora será 'aaa &lt;lora:bbb:0.1&gt; &lt;lora:ccc:0.1&gt;, ddd'.<br/>Si no se selecciona, la salida de Lora será 'aaa, &lt;lora:bbb:0.1&gt;, &lt;lora:ccc:0.1&gt;, ddd'.",
                 "is_remove_lora_after_comma": "Eliminar la coma después de Lora o no.<br/>Si se selecciona, la salida de Lora será 'aaa, &lt;lora:bbb:0.1&gt; &lt;lora:ccc:0.1&gt; ddd'.<br/>Si no se selecciona, la salida de Lora será 'aaa, &lt;lora:bbb:0.1&gt;, &lt;lora:ccc:0.1&gt;, ddd'.",
+                "is_remove_duplicate_lora": "Eliminar etiquetas Lora / Lyco duplicadas: el nombre es la clave de deduplicación (el peso no es una diferencia), se conserva la última y se eliminan las anteriores.<br/>Los Loras después de '#' o desactivados no se deduplican.",
                 "is_use_novel_ai_weight_symbol": "Si se debe usar el símbolo de peso de NovelAI.<br/>Al marcar esta opción, el símbolo de peso () se cambiará a {}",
                 "is_remove_before_line_comma": "Si desea eliminar la coma antes de un salto de línea.<br/>Si está marcado, la salida será \"aaa, bbb<br/>ccc\".<br/>Si no está marcado, la salida será \"aaa, bbb,<br/>ccc\".",
                 "is_split_by_period": "Dividir palabras clave por punto+espacio.<br/>Si está marcado, \"word1. word2\" se dividirá en \"word1.\" y \"word2\".<br/>Si no está marcado, se mantiene igual.",
                 "is_split_by_period_include_paren": "También dividir por punto+espacio antes de paréntesis (ej: \"word1. (test)\").<br/>Requiere la opción anterior.",
                 "is_split_by_period_semicolon": "También dividir por punto y coma+espacio usando el mismo mecanismo que el punto.<br/>Si está marcado, \"word1; word2\" se dividirá en \"word1;\" y \"word2\" (el punto y coma se mantiene al final de la primera parte); los puntos y coma consecutivos se conservan todos.<br/>Requiere la opción anterior.",
+                "is_keyword_to_plain": "Convertir automáticamente los operadores de prompt / palabras clave de Composable Diffusion en texto de prompt normal (actualmente solo AND → And).<br/>El AND dentro de las palabras clave y las etiquetas de texto también se convierte; solo cambian los valores, la división y los marcadores de coma permanecen igual.",
                 "is_auto_optimize_split_symbol": "Optimizar el símbolo de separación automáticamente: elimina automáticamente las comas inadecuadas para que la salida siga mejor las convenciones de sintaxis de Stable Diffusion (por ejemplo, antes de un salto de línea, entre Loras consecutivos, alrededor de BREAK, etc.). Es una opción independiente y no requiere \"Dividir palabras clave por punto+espacio\".",
                 "is_allow_keep_empty_line": "Permitir mantener una línea vacía al analizar el prompt.<br/>Si está marcado, los saltos de línea consecutivos se comprimen a como máximo una línea vacía (es decir, dos caracteres de salto de línea); si no está marcado, todos los saltos de línea consecutivos se comprimen en uno solo.",
+                "is_auto_repair_mojibake": "Reparar automáticamente el texto mojibake al analizar.<br/>Si está marcado, el texto UTF-8 cuyos bytes se decodificaron incorrectamente como Latin-1/Windows-1252 se restaura a los caracteres originales antes de segmentar; si no está marcado, la entrada se mantiene intacta.",
+                "json_input_split_skipped": "La entrada parece ser JSON (por ejemplo, un workflow de ComfyUI); se omitió la segmentación de etiquetas y el texto se mantuvo tal cual.",
                 "auto_load_webui_prompt": "Cargar automáticamente cambios en el aviso de WebUI.<br/>Cuando está marcado, el complemento cargará automáticamente y formateará el análisis de palabras clave cuando cambie el contenido del cuadro de entrada del aviso en WebUI.<br/>Cuando no está marcado, es necesario hacer clic manualmente en el botón de carga del aviso cuando cambie el contenido del cuadro de entrada del aviso en WebUI.",
-                "load_webui_prompt": "Cargar aviso de WebUI"
+                "load_webui_prompt": "Cargar aviso de WebUI",
+                "paste_to_default_input_box": "Pegar el portapapeles en el cuadro de entrada de palabras clave",
+                "paste_clipboard_failed": "Error al pegar automáticamente. Haz clic en el cuadro de entrada y pega manualmente."
             }
         },
         {
